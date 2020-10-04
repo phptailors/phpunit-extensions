@@ -2,6 +2,8 @@ version: '3'
 services:
   codeclimate:
     image: "codeclimate/codeclimate:${TLR_CODECLIMATE_TAG:-latest}"
+    environment:
+      - CODECLIMATE_CODE=${TLR_TOP_SRCDIR}
     env_file:
       - './common.env'
       - './codeclimate.env'
