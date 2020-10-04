@@ -21,7 +21,7 @@ assertClassPropertiesEqualTo()
    * - Package
      - php-tailors/phpunit-properties
    * - Trait
-     - :class:`PHPTailors\\PHPUnit\\ClassPropertiesEqualToTrait`
+     - :class:`Tailors\\PHPUnit\\ClassPropertiesEqualToTrait`
 
 Synopsis:
 
@@ -76,7 +76,7 @@ assertClassPropertiesIdenticalTo()
    * - Package
      - php-tailors/phpunit-properties
    * - Trait
-     - :class:`PHPTailors\\PHPUnit\\ClassPropertiesIdenticalToTrait`
+     - :class:`Tailors\\PHPUnit\\ClassPropertiesIdenticalToTrait`
 
 Synopsis:
 
@@ -133,7 +133,7 @@ assertExtendsClass()
    * - Package
      - php-tailors/phpunit-inheritance
    * - Trait
-     - :class:`PHPTailors\\PHPUnit\\ExtendsClassTrait`
+     - :class:`Tailors\\PHPUnit\\ExtendsClassTrait`
 
 Synopsis:
 
@@ -185,7 +185,7 @@ assertHasPregCaptures()
    * - Package
      - php-tailors/phpunit-pcre
    * - Trait
-     - :class:`PHPTailors\\PHPUnit\\HasPregCapturesTrait`
+     - :class:`Tailors\\PHPUnit\\HasPregCapturesTrait`
 
 Synopsis:
 
@@ -245,7 +245,7 @@ assertImplementsInterface()
    * - Package
      - php-tailors/phpunit-inheritance
    * - Trait
-     - :class:`PHPTailors\\PHPUnit\\ImplementsInterfaceTrait`
+     - :class:`Tailors\\PHPUnit\\ImplementsInterfaceTrait`
 
 Synopsis:
 
@@ -298,7 +298,7 @@ assertObjectPropertiesEqualTo()
    * - Package
      - php-tailors/phpunit-properties
    * - Trait
-     - :class:`PHPTailors\\PHPUnit\\ObjectPropertiesEqualToTrait`
+     - :class:`Tailors\\PHPUnit\\ObjectPropertiesEqualToTrait`
 
 Synopsis:
 
@@ -351,7 +351,7 @@ assertObjectPropertiesIdenticalTo()
    * - Package
      - php-tailors/phpunit-properties
    * - Trait
-     - :class:`PHPTailors\\PHPUnit\\ObjectPropertiesIdenticalToTrait`
+     - :class:`Tailors\\PHPUnit\\ObjectPropertiesIdenticalToTrait`
 
 Synopsis:
 
@@ -404,7 +404,7 @@ assertUsesTrait()
    * - Package
      - php-tailors/phpunit-inheritance
    * - Trait
-     - :class:`PHPTailors\\PHPUnit\\UsesTraitTrait`
+     - :class:`Tailors\\PHPUnit\\UsesTraitTrait`
 
 
 Synopsis:

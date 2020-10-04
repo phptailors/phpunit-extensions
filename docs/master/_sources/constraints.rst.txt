@@ -20,7 +20,7 @@ classPropertiesEqualTo
    * - Package
      - php-tailors/phpunit-properties
    * - Trait
-     - :class:`PHPTailors\\PHPUnit\\ClassPropertiesEqualToTrait`
+     - :class:`Tailors\\PHPUnit\\ClassPropertiesEqualToTrait`
 
 Synopsis:
 
@@ -28,7 +28,7 @@ Synopsis:
 
   function classPropertiesEqualTo(array $expected)
 
-Creates :class:`PHPTailors\\PHPUnit\\Constraint\\ClassPropertiesEqualTo` constraint.
+Creates :class:`Tailors\\PHPUnit\\Constraint\\ClassPropertiesEqualTo` constraint.
 
 The constraint accepts classes having selected properties equal to
 ``$expected``.
@@ -59,7 +59,7 @@ classPropertiesIdenticalTo
    * - Package
      - php-tailors/phpunit-properties
    * - Trait
-     - :class:`PHPTailors\\PHPUnit\\ClassPropertiesIdenticalToTrait`
+     - :class:`Tailors\\PHPUnit\\ClassPropertiesIdenticalToTrait`
 
 Synopsis:
 
@@ -67,7 +67,7 @@ Synopsis:
 
   function classPropertiesIdenticalTo(array $expected)
 
-Creates :class:`PHPTailors\\PHPUnit\\Constraint\\ClassPropertiesIdenticalTo` constraint.
+Creates :class:`Tailors\\PHPUnit\\Constraint\\ClassPropertiesIdenticalTo` constraint.
 
 The constraint accepts classes having selected properties identical to
 ``$expected``.
@@ -98,7 +98,7 @@ extendsClass
    * - Package
      - php-tailors/phpunit-inheritance
    * - Trait
-     - :class:`PHPTailors\\PHPUnit\\ExtendsClassTrait`
+     - :class:`Tailors\\PHPUnit\\ExtendsClassTrait`
 
 Synopsis:
 
@@ -106,7 +106,7 @@ Synopsis:
 
   function extendsClass(string $parent)
 
-Creates :class:`PHPTailors\\PHPUnit\\Constraint\\ExtendsClass` constraint.
+Creates :class:`Tailors\\PHPUnit\\Constraint\\ExtendsClass` constraint.
 
 The constraint accepts objects (and classes) that extend ``$parent`` class. The
 examined ``$subject`` may be an ``object`` or a class name as ``string``:
@@ -143,7 +143,7 @@ hasPregCaptures
    * - Package
      - php-tailors/phpunit-pcre
    * - Trait
-     - :class:`PHPTailors\\PHPUnit\\HasPregCapturesTrait`
+     - :class:`Tailors\\PHPUnit\\HasPregCapturesTrait`
 
 Synopsis:
 
@@ -151,7 +151,7 @@ Synopsis:
 
   function hasPregCaptures(array $expected)
 
-Creates :class:`PHPTailors\\PHPUnit\\Constraint\\HasPregCaptures` constraint.
+Creates :class:`Tailors\\PHPUnit\\Constraint\\HasPregCaptures` constraint.
 
 The constraint accepts arrays of matches returned from ``preg_match()`` having
 capture groups as specified in ``$expected``. Only entries present in
@@ -189,7 +189,7 @@ implementsInterface
    * - Package
      - php-tailors/phpunit-inheritance
    * - Trait
-     - :class:`PHPTailors\\PHPUnit\\ImplementsInterfaceTrait`
+     - :class:`Tailors\\PHPUnit\\ImplementsInterfaceTrait`
 
 Synopsis:
 
@@ -197,7 +197,7 @@ Synopsis:
 
   function implementsInterface(array $interface)
 
-Creates :class:`PHPTailors\\PHPUnit\\Constraint\\ImplementsInterface` constraint.
+Creates :class:`Tailors\\PHPUnit\\Constraint\\ImplementsInterface` constraint.
 
 The constraint accepts objects (and classes/interfaces) that implement given
 ``$interface``.
@@ -225,7 +225,7 @@ objectPropertiesEqualTo
    * - Package
      - php-tailors/phpunit-properties
    * - Trait
-     - :class:`PHPTailors\\PHPUnit\\ObjectPropertiesEqualToTrait`
+     - :class:`Tailors\\PHPUnit\\ObjectPropertiesEqualToTrait`
 
 Synopsis:
 
@@ -233,7 +233,7 @@ Synopsis:
 
   function objectPropertiesEqualTo(array $expected)
 
-Creates :class:`PHPTailors\\PHPUnit\\Constraint\\ObjectPropertiesEqualTo` constraint.
+Creates :class:`Tailors\\PHPUnit\\Constraint\\ObjectPropertiesEqualTo` constraint.
 
 The constraint accepts objects having selected properties equal to
 ``$expected``.
@@ -264,7 +264,7 @@ objectPropertiesIdenticalTo
    * - Package
      - php-tailors/phpunit-properties
    * - Trait
-     - :class:`PHPTailors\\PHPUnit\\ObjectPropertiesIdenticalToTrait`
+     - :class:`Tailors\\PHPUnit\\ObjectPropertiesIdenticalToTrait`
 
 Synopsis:
 
@@ -272,7 +272,7 @@ Synopsis:
 
   function objectPropertiesIdenticalTo(array $expected)
 
-Creates :class:`PHPTailors\\PHPUnit\\Constraint\\ObjectPropertiesIdenticalTo` constraint.
+Creates :class:`Tailors\\PHPUnit\\Constraint\\ObjectPropertiesIdenticalTo` constraint.
 
 The constraint accepts objects having selected properties identical to
 ``$expected``.
@@ -302,7 +302,7 @@ usesTrait
    * - Package
      - php-tailors/phpunit-inheritance
    * - Trait
-     - :class:`PHPTailors\\PHPUnit\\UsesTraitTrait`
+     - :class:`Tailors\\PHPUnit\\UsesTraitTrait`
 
 Synopsis:
 
@@ -310,7 +310,7 @@ Synopsis:
 
   function usesTrait(array $trait)
 
-Creates :class:`PHPTailors\\PHPUnit\\Constraint\\UsesTrait` constraint.
+Creates :class:`Tailors\\PHPUnit\\Constraint\\UsesTrait` constraint.
 
 The constraint accepts objects (and classes) that use given ``$trait``.
 

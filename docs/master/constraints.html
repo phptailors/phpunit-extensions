@@ -178,7 +178,7 @@ including appropriate trait as shown in prerequisite tables below.</p>
 <td><p>php-tailors/phpunit-properties</p></td>
 </tr>
 <tr class="row-even"><td><p>Trait</p></td>
-<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/PHPTailors/PHPUnit/ClassPropertiesEqualToTrait.html" title="PHPTailors\PHPUnit\ClassPropertiesEqualToTrait"><span class="pre">ClassPropertiesEqualToTrait</span></a></code></p></td>
+<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/Tailors/PHPUnit/ClassPropertiesEqualToTrait.html" title="Tailors\PHPUnit\ClassPropertiesEqualToTrait"><span class="pre">ClassPropertiesEqualToTrait</span></a></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -186,7 +186,7 @@ including appropriate trait as shown in prerequisite tables below.</p>
 <div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">classPropertiesEqualTo</span><span class="p">(</span><span class="k">array</span> <span class="nv">$expected</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Creates <code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/PHPTailors/PHPUnit/Constraint/ClassPropertiesEqualTo.html" title="PHPTailors\PHPUnit\Constraint\ClassPropertiesEqualTo"><span class="pre">ClassPropertiesEqualTo</span></a></code> constraint.</p>
+<p>Creates <code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/Tailors/PHPUnit/Constraint/ClassPropertiesEqualTo.html" title="Tailors\PHPUnit\Constraint\ClassPropertiesEqualTo"><span class="pre">ClassPropertiesEqualTo</span></a></code> constraint.</p>
 <p>The constraint accepts classes having selected properties equal to
 <code class="docutils literal notranslate"><span class="pre">$expected</span></code>.</p>
 <div class="literal-block-wrapper docutils container" id="constraints-classpropertiesequalto-example">
@@ -225,7 +225,7 @@ including appropriate trait as shown in prerequisite tables below.</p>
 
 <span class="k">final</span> <span class="k">class</span> <span class="nc">classPropertiesEqualToTest</span> <span class="k">extends</span> <span class="nx">\PHPUnit\Framework\TestCase</span>
 <span class="p">{</span>
-    <span class="k">use</span> <span class="nx">\PHPTailors\PHPUnit\ClassPropertiesEqualToTrait</span><span class="p">;</span>
+    <span class="k">use</span> <span class="nx">\Tailors\PHPUnit\ClassPropertiesEqualToTrait</span><span class="p">;</span>
 
     <span class="k">public</span> <span class="k">static</span> <span class="nv">$attribute</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
 
@@ -322,7 +322,7 @@ property to be a class with prescribed properties.</p>
 <td><p>php-tailors/phpunit-properties</p></td>
 </tr>
 <tr class="row-even"><td><p>Trait</p></td>
-<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/PHPTailors/PHPUnit/ClassPropertiesIdenticalToTrait.html" title="PHPTailors\PHPUnit\ClassPropertiesIdenticalToTrait"><span class="pre">ClassPropertiesIdenticalToTrait</span></a></code></p></td>
+<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/Tailors/PHPUnit/ClassPropertiesIdenticalToTrait.html" title="Tailors\PHPUnit\ClassPropertiesIdenticalToTrait"><span class="pre">ClassPropertiesIdenticalToTrait</span></a></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -330,7 +330,7 @@ property to be a class with prescribed properties.</p>
 <div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">classPropertiesIdenticalTo</span><span class="p">(</span><span class="k">array</span> <span class="nv">$expected</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Creates <code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/PHPTailors/PHPUnit/Constraint/ClassPropertiesIdenticalTo.html" title="PHPTailors\PHPUnit\Constraint\ClassPropertiesIdenticalTo"><span class="pre">ClassPropertiesIdenticalTo</span></a></code> constraint.</p>
+<p>Creates <code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/Tailors/PHPUnit/Constraint/ClassPropertiesIdenticalTo.html" title="Tailors\PHPUnit\Constraint\ClassPropertiesIdenticalTo"><span class="pre">ClassPropertiesIdenticalTo</span></a></code> constraint.</p>
 <p>The constraint accepts classes having selected properties identical to
 <code class="docutils literal notranslate"><span class="pre">$expected</span></code>.</p>
 <div class="literal-block-wrapper docutils container" id="constraints-classpropertiesidenticalto-example">
@@ -369,7 +369,7 @@ property to be a class with prescribed properties.</p>
 
 <span class="k">final</span> <span class="k">class</span> <span class="nc">classPropertiesIdenticalToTest</span> <span class="k">extends</span> <span class="nx">\PHPUnit\Framework\TestCase</span>
 <span class="p">{</span>
-    <span class="k">use</span> <span class="nx">\PHPTailors\PHPUnit\ClassPropertiesIdenticalToTrait</span><span class="p">;</span>
+    <span class="k">use</span> <span class="nx">\Tailors\PHPUnit\ClassPropertiesIdenticalToTrait</span><span class="p">;</span>
 
     <span class="k">public</span> <span class="k">static</span> <span class="nv">$attribute</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
 
@@ -466,7 +466,7 @@ property to be a class with prescribed properties.</p>
 <td><p>php-tailors/phpunit-inheritance</p></td>
 </tr>
 <tr class="row-even"><td><p>Trait</p></td>
-<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/PHPTailors/PHPUnit/ExtendsClassTrait.html" title="PHPTailors\PHPUnit\ExtendsClassTrait"><span class="pre">ExtendsClassTrait</span></a></code></p></td>
+<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/Tailors/PHPUnit/ExtendsClassTrait.html" title="Tailors\PHPUnit\ExtendsClassTrait"><span class="pre">ExtendsClassTrait</span></a></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -474,7 +474,7 @@ property to be a class with prescribed properties.</p>
 <div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">extendsClass</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$parent</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Creates <code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/PHPTailors/PHPUnit/Constraint/ExtendsClass.html" title="PHPTailors\PHPUnit\Constraint\ExtendsClass"><span class="pre">ExtendsClass</span></a></code> constraint.</p>
+<p>Creates <code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/Tailors/PHPUnit/Constraint/ExtendsClass.html" title="Tailors\PHPUnit\Constraint\ExtendsClass"><span class="pre">ExtendsClass</span></a></code> constraint.</p>
 <p>The constraint accepts objects (and classes) that extend <code class="docutils literal notranslate"><span class="pre">$parent</span></code> class. The
 examined <code class="docutils literal notranslate"><span class="pre">$subject</span></code> may be an <code class="docutils literal notranslate"><span class="pre">object</span></code> or a class name as <code class="docutils literal notranslate"><span class="pre">string</span></code>:</p>
 <ul class="simple">
@@ -512,7 +512,7 @@ that</p>
 
 <span class="k">final</span> <span class="k">class</span> <span class="nc">extendsClassTest</span> <span class="k">extends</span> <span class="nx">\PHPUnit\Framework\TestCase</span>
 <span class="p">{</span>
-    <span class="k">use</span> <span class="nx">\PHPTailors\PHPUnit\ExtendsClassTrait</span><span class="p">;</span>
+    <span class="k">use</span> <span class="nx">\Tailors\PHPUnit\ExtendsClassTrait</span><span class="p">;</span>
 
     <span class="k">public</span> <span class="k">function</span> <span class="nf">testExtendsClass</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
     <span class="p">{</span>
@@ -573,7 +573,7 @@ Tests: 2, Assertions: 3, Failures: 1.
 <td><p>php-tailors/phpunit-pcre</p></td>
 </tr>
 <tr class="row-even"><td><p>Trait</p></td>
-<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/PHPTailors/PHPUnit/HasPregCapturesTrait.html" title="PHPTailors\PHPUnit\HasPregCapturesTrait"><span class="pre">HasPregCapturesTrait</span></a></code></p></td>
+<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/Tailors/PHPUnit/HasPregCapturesTrait.html" title="Tailors\PHPUnit\HasPregCapturesTrait"><span class="pre">HasPregCapturesTrait</span></a></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -581,7 +581,7 @@ Tests: 2, Assertions: 3, Failures: 1.
 <div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">hasPregCaptures</span><span class="p">(</span><span class="k">array</span> <span class="nv">$expected</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Creates <code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/PHPTailors/PHPUnit/Constraint/HasPregCaptures.html" title="PHPTailors\PHPUnit\Constraint\HasPregCaptures"><span class="pre">HasPregCaptures</span></a></code> constraint.</p>
+<p>Creates <code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/Tailors/PHPUnit/Constraint/HasPregCaptures.html" title="Tailors\PHPUnit\Constraint\HasPregCaptures"><span class="pre">HasPregCaptures</span></a></code> constraint.</p>
 <p>The constraint accepts arrays of matches returned from <code class="docutils literal notranslate"><span class="pre">preg_match()</span></code> having
 capture groups as specified in <code class="docutils literal notranslate"><span class="pre">$expected</span></code>. Only entries present in
 <code class="docutils literal notranslate"><span class="pre">$expected</span></code> are checked, so <code class="docutils literal notranslate"><span class="pre">$expected</span> <span class="pre">=</span> <span class="pre">[]</span></code> accepts any array. Special
@@ -638,7 +638,7 @@ only with arrays obtained from <code class="docutils literal notranslate"><span 
 
 <span class="k">final</span> <span class="k">class</span> <span class="nc">hasPregCapturesTest</span> <span class="k">extends</span> <span class="nx">\PHPUnit\Framework\TestCase</span>
 <span class="p">{</span>
-    <span class="k">use</span> <span class="nx">\PHPTailors\PHPUnit\HasPregCapturesTrait</span><span class="p">;</span>
+    <span class="k">use</span> <span class="nx">\Tailors\PHPUnit\HasPregCapturesTrait</span><span class="p">;</span>
 
     <span class="k">private</span> <span class="nv">$regexp</span><span class="p">;</span>
     <span class="k">private</span> <span class="nv">$subject</span><span class="p">;</span>
@@ -745,7 +745,7 @@ Tests: 2, Assertions: 2, Failures: 1.
 <td><p>php-tailors/phpunit-inheritance</p></td>
 </tr>
 <tr class="row-even"><td><p>Trait</p></td>
-<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/PHPTailors/PHPUnit/ImplementsInterfaceTrait.html" title="PHPTailors\PHPUnit\ImplementsInterfaceTrait"><span class="pre">ImplementsInterfaceTrait</span></a></code></p></td>
+<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/Tailors/PHPUnit/ImplementsInterfaceTrait.html" title="Tailors\PHPUnit\ImplementsInterfaceTrait"><span class="pre">ImplementsInterfaceTrait</span></a></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -753,7 +753,7 @@ Tests: 2, Assertions: 2, Failures: 1.
 <div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">implementsInterface</span><span class="p">(</span><span class="k">array</span> <span class="nv">$interface</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Creates <code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/PHPTailors/PHPUnit/Constraint/ImplementsInterface.html" title="PHPTailors\PHPUnit\Constraint\ImplementsInterface"><span class="pre">ImplementsInterface</span></a></code> constraint.</p>
+<p>Creates <code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/Tailors/PHPUnit/Constraint/ImplementsInterface.html" title="Tailors\PHPUnit\Constraint\ImplementsInterface"><span class="pre">ImplementsInterface</span></a></code> constraint.</p>
 <p>The constraint accepts objects (and classes/interfaces) that implement given
 <code class="docutils literal notranslate"><span class="pre">$interface</span></code>.</p>
 <div class="literal-block-wrapper docutils container" id="constraints-implementsinterface-example">
@@ -778,7 +778,7 @@ Tests: 2, Assertions: 2, Failures: 1.
 
 <span class="k">final</span> <span class="k">class</span> <span class="nc">implementsInterfaceTest</span> <span class="k">extends</span> <span class="nx">\PHPUnit\Framework\TestCase</span>
 <span class="p">{</span>
-    <span class="k">use</span> <span class="nx">\PHPTailors\PHPUnit\ImplementsInterfaceTrait</span><span class="p">;</span>
+    <span class="k">use</span> <span class="nx">\Tailors\PHPUnit\ImplementsInterfaceTrait</span><span class="p">;</span>
 
     <span class="k">public</span> <span class="k">function</span> <span class="nf">testImplementsInterface</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
     <span class="p">{</span>
@@ -839,7 +839,7 @@ Tests: 2, Assertions: 3, Failures: 1.
 <td><p>php-tailors/phpunit-properties</p></td>
 </tr>
 <tr class="row-even"><td><p>Trait</p></td>
-<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/PHPTailors/PHPUnit/ObjectPropertiesEqualToTrait.html" title="PHPTailors\PHPUnit\ObjectPropertiesEqualToTrait"><span class="pre">ObjectPropertiesEqualToTrait</span></a></code></p></td>
+<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/Tailors/PHPUnit/ObjectPropertiesEqualToTrait.html" title="Tailors\PHPUnit\ObjectPropertiesEqualToTrait"><span class="pre">ObjectPropertiesEqualToTrait</span></a></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -847,7 +847,7 @@ Tests: 2, Assertions: 3, Failures: 1.
 <div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">objectPropertiesEqualTo</span><span class="p">(</span><span class="k">array</span> <span class="nv">$expected</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Creates <code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/PHPTailors/PHPUnit/Constraint/ObjectPropertiesEqualTo.html" title="PHPTailors\PHPUnit\Constraint\ObjectPropertiesEqualTo"><span class="pre">ObjectPropertiesEqualTo</span></a></code> constraint.</p>
+<p>Creates <code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/Tailors/PHPUnit/Constraint/ObjectPropertiesEqualTo.html" title="Tailors\PHPUnit\Constraint\ObjectPropertiesEqualTo"><span class="pre">ObjectPropertiesEqualTo</span></a></code> constraint.</p>
 <p>The constraint accepts objects having selected properties equal to
 <code class="docutils literal notranslate"><span class="pre">$expected</span></code>.</p>
 <div class="literal-block-wrapper docutils container" id="constraints-objectpropertiesequalto-example">
@@ -886,7 +886,7 @@ Tests: 2, Assertions: 3, Failures: 1.
 
 <span class="k">final</span> <span class="k">class</span> <span class="nc">objectPropertiesEqualToTest</span> <span class="k">extends</span> <span class="nx">\PHPUnit\Framework\TestCase</span>
 <span class="p">{</span>
-    <span class="k">use</span> <span class="nx">\PHPTailors\PHPUnit\ObjectPropertiesEqualToTrait</span><span class="p">;</span>
+    <span class="k">use</span> <span class="nx">\Tailors\PHPUnit\ObjectPropertiesEqualToTrait</span><span class="p">;</span>
 
     <span class="k">public</span> <span class="nv">$attribute</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
 
@@ -983,7 +983,7 @@ property to be an object with prescribed properties.</p>
 <td><p>php-tailors/phpunit-properties</p></td>
 </tr>
 <tr class="row-even"><td><p>Trait</p></td>
-<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/PHPTailors/PHPUnit/ObjectPropertiesIdenticalToTrait.html" title="PHPTailors\PHPUnit\ObjectPropertiesIdenticalToTrait"><span class="pre">ObjectPropertiesIdenticalToTrait</span></a></code></p></td>
+<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/Tailors/PHPUnit/ObjectPropertiesIdenticalToTrait.html" title="Tailors\PHPUnit\ObjectPropertiesIdenticalToTrait"><span class="pre">ObjectPropertiesIdenticalToTrait</span></a></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -991,7 +991,7 @@ property to be an object with prescribed properties.</p>
 <div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">objectPropertiesIdenticalTo</span><span class="p">(</span><span class="k">array</span> <span class="nv">$expected</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Creates <code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/PHPTailors/PHPUnit/Constraint/ObjectPropertiesIdenticalTo.html" title="PHPTailors\PHPUnit\Constraint\ObjectPropertiesIdenticalTo"><span class="pre">ObjectPropertiesIdenticalTo</span></a></code> constraint.</p>
+<p>Creates <code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/Tailors/PHPUnit/Constraint/ObjectPropertiesIdenticalTo.html" title="Tailors\PHPUnit\Constraint\ObjectPropertiesIdenticalTo"><span class="pre">ObjectPropertiesIdenticalTo</span></a></code> constraint.</p>
 <p>The constraint accepts objects having selected properties identical to
 <code class="docutils literal notranslate"><span class="pre">$expected</span></code>.</p>
 <div class="literal-block-wrapper docutils container" id="constraints-objectpropertiesidenticalto-example">
@@ -1030,7 +1030,7 @@ property to be an object with prescribed properties.</p>
 
 <span class="k">final</span> <span class="k">class</span> <span class="nc">objectPropertiesIdenticalToTest</span> <span class="k">extends</span> <span class="nx">\PHPUnit\Framework\TestCase</span>
 <span class="p">{</span>
-    <span class="k">use</span> <span class="nx">\PHPTailors\PHPUnit\ObjectPropertiesIdenticalToTrait</span><span class="p">;</span>
+    <span class="k">use</span> <span class="nx">\Tailors\PHPUnit\ObjectPropertiesIdenticalToTrait</span><span class="p">;</span>
 
     <span class="k">public</span> <span class="nv">$attribute</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
 
@@ -1127,7 +1127,7 @@ property to be an object with prescribed properties.</p>
 <td><p>php-tailors/phpunit-inheritance</p></td>
 </tr>
 <tr class="row-even"><td><p>Trait</p></td>
-<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/PHPTailors/PHPUnit/UsesTraitTrait.html" title="PHPTailors\PHPUnit\UsesTraitTrait"><span class="pre">UsesTraitTrait</span></a></code></p></td>
+<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/Tailors/PHPUnit/UsesTraitTrait.html" title="Tailors\PHPUnit\UsesTraitTrait"><span class="pre">UsesTraitTrait</span></a></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -1135,7 +1135,7 @@ property to be an object with prescribed properties.</p>
 <div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">usesTrait</span><span class="p">(</span><span class="k">array</span> <span class="nv">$trait</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Creates <code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/PHPTailors/PHPUnit/Constraint/UsesTrait.html" title="PHPTailors\PHPUnit\Constraint\UsesTrait"><span class="pre">UsesTrait</span></a></code> constraint.</p>
+<p>Creates <code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/Tailors/PHPUnit/Constraint/UsesTrait.html" title="Tailors\PHPUnit\Constraint\UsesTrait"><span class="pre">UsesTrait</span></a></code> constraint.</p>
 <p>The constraint accepts objects (and classes) that use given <code class="docutils literal notranslate"><span class="pre">$trait</span></code>.</p>
 <div class="literal-block-wrapper docutils container" id="constraints-usestrait-example">
 <div class="code-block-caption"><span class="caption-text">Usage of usesTrait()</span><a class="headerlink" href="#constraints-usestrait-example" title="Permalink to this code">¶</a></div>
@@ -1168,7 +1168,7 @@ property to be an object with prescribed properties.</p>
 
 <span class="k">final</span> <span class="k">class</span> <span class="nc">UsesTraitTest</span> <span class="k">extends</span> <span class="nx">\PHPUnit\Framework\TestCase</span>
 <span class="p">{</span>
-    <span class="k">use</span> <span class="nx">\PHPTailors\PHPUnit\UsesTraitTrait</span><span class="p">;</span>
+    <span class="k">use</span> <span class="nx">\Tailors\PHPUnit\UsesTraitTrait</span><span class="p">;</span>
     <span class="k">use</span> <span class="nx">ExampleTraitForUsesTraitTest</span><span class="p">;</span>
 
     <span class="k">public</span> <span class="k">function</span> <span class="nf">testUsesTrait</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
