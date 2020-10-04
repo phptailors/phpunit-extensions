@@ -8,11 +8,11 @@
  * Distributed under MIT license.
  */
 
-namespace PHPTailors\PHPUnit\Preg;
+namespace Tailors\PHPUnit\Preg;
 
 /**
  * @internal This interface is not covered by the backward compatibility promise
- * @psalm-internal PHPTailors\PHPUnit
+ * @psalm-internal Tailors\PHPUnit
  */
 interface CapturesFilterInterface
 {

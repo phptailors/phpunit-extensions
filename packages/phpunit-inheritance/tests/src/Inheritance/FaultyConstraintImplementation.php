@@ -8,11 +8,11 @@
  * Distributed under MIT license.
  */
 
-namespace PHPTailors\PHPUnit\Inheritance;
+namespace Tailors\PHPUnit\Inheritance;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
- * @psalm-internal PHPTailors\PHPUnit
+ * @psalm-internal Tailors\PHPUnit
  */
 final class FaultyConstraintImplementation extends AbstractConstraint
 {

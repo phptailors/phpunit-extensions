@@ -8,17 +8,17 @@
  * Distributed under MIT license.
  */
 
-namespace PHPTailors\PHPUnit\Properties;
+namespace Tailors\PHPUnit\Properties;
 
-use PHPTailors\PHPUnit\ImplementsInterfaceTrait;
 use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\ImplementsInterfaceTrait;
 
 /**
  * @small
- * @covers \PHPTailors\PHPUnit\Properties\EqualityComparator
+ * @covers \Tailors\PHPUnit\Properties\EqualityComparator
  *
  * @internal This class is not covered by the backward compatibility promise
- * @psalm-internal PHPTailors\PHPUnit
+ * @psalm-internal Tailors\PHPUnit
  */
 final class EqualityComparatorTest extends TestCase
 {

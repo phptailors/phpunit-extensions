@@ -8,7 +8,7 @@
  * Distributed under MIT license.
  */
 
-namespace PHPTailors\PHPUnit\Properties;
+namespace Tailors\PHPUnit\Properties;
 
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\LogicalNot;
@@ -23,7 +23,7 @@ use SebastianBergmann\Exporter\Exporter as SebastianBergmannExporter;
  * Support for other kinds of beings may be implemented if necessary.
  *
  * @internal This class is not covered by the backward compatibility promise
- * @psalm-internal PHPTailors\PHPUnit
+ * @psalm-internal Tailors\PHPUnit
  */
 abstract class AbstractConstraint extends Constraint implements ExpectedPropertiesInterface
 {

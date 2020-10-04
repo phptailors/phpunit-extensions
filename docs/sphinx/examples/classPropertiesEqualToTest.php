@@ -2,7 +2,7 @@
 
 final class classPropertiesEqualToTest extends \PHPUnit\Framework\TestCase
 {
-    use \PHPTailors\PHPUnit\ClassPropertiesEqualToTrait;
+    use \Tailors\PHPUnit\ClassPropertiesEqualToTrait;
 
     public static $attribute = 123;
 

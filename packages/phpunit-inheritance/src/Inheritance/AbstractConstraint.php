@@ -8,7 +8,7 @@
  * Distributed under MIT license.
  */
 
-namespace PHPTailors\PHPUnit\Inheritance;
+namespace Tailors\PHPUnit\Inheritance;
 
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\LogicalNot;
@@ -19,7 +19,7 @@ use PHPUnit\Framework\Constraint\Operator;
  * ImplementsInterface, UsesTrait, etc.).
  *
  * @internal This class is not covered by the backward compatibility promise
- * @psalm-internal PHPTailors\PHPUnit
+ * @psalm-internal Tailors\PHPUnit
  */
 abstract class AbstractConstraint extends Constraint
 {

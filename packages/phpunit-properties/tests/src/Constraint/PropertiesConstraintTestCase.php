@@ -8,23 +8,23 @@
  * Distributed under MIT license.
  */
 
-namespace PHPTailors\PHPUnit\Constraint;
+namespace Tailors\PHPUnit\Constraint;
 
-use PHPTailors\PHPUnit\ExtendsClassTrait;
-use PHPTailors\PHPUnit\ImplementsInterfaceTrait;
-use PHPTailors\PHPUnit\InvalidArgumentException;
-use PHPTailors\PHPUnit\Properties\AbstractConstraint;
-use PHPTailors\PHPUnit\Properties\ExpectedPropertiesInterface;
-use PHPTailors\PHPUnit\Properties\RecursivePropertiesUnwrapper;
-use PHPTailors\PHPUnit\Properties\RecursivePropertiesUnwrapperInterface;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\UnaryOperator;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\ExtendsClassTrait;
+use Tailors\PHPUnit\ImplementsInterfaceTrait;
+use Tailors\PHPUnit\InvalidArgumentException;
+use Tailors\PHPUnit\Properties\AbstractConstraint;
+use Tailors\PHPUnit\Properties\ExpectedPropertiesInterface;
+use Tailors\PHPUnit\Properties\RecursivePropertiesUnwrapper;
+use Tailors\PHPUnit\Properties\RecursivePropertiesUnwrapperInterface;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
- * @psalm-internal PHPTailors\PHPUnit
+ * @psalm-internal Tailors\PHPUnit
  */
 abstract class PropertiesConstraintTestCase extends TestCase
 {

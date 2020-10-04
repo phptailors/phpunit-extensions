@@ -8,27 +8,27 @@
  * Distributed under MIT license.
  */
 
-namespace PHPTailors\PHPUnit\Constraint;
+namespace Tailors\PHPUnit\Constraint;
 
 use Exception;
-use PHPTailors\PHPUnit\Examples\Inheritance\ExampleClassNotUsingTrait;
-use PHPTailors\PHPUnit\Examples\Inheritance\ExampleClassUsingTrait;
-use PHPTailors\PHPUnit\Examples\Inheritance\ExampleTrait;
-use PHPTailors\PHPUnit\Examples\Inheritance\ExampleTraitUsingTrait;
-use PHPTailors\PHPUnit\InvalidArgumentException;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\Examples\Inheritance\ExampleClassNotUsingTrait;
+use Tailors\PHPUnit\Examples\Inheritance\ExampleClassUsingTrait;
+use Tailors\PHPUnit\Examples\Inheritance\ExampleTrait;
+use Tailors\PHPUnit\Examples\Inheritance\ExampleTraitUsingTrait;
+use Tailors\PHPUnit\InvalidArgumentException;
 use Throwable;
 
 /**
  * @small
- * @covers \PHPTailors\PHPUnit\Constraint\InheritanceConstraintTestTrait
- * @covers \PHPTailors\PHPUnit\Constraint\UsesTrait
- * @covers \PHPTailors\PHPUnit\Inheritance\AbstractConstraint
- * @covers \PHPTailors\PHPUnit\Inheritance\ConstraintImplementationTrait
+ * @covers \Tailors\PHPUnit\Constraint\InheritanceConstraintTestTrait
+ * @covers \Tailors\PHPUnit\Constraint\UsesTrait
+ * @covers \Tailors\PHPUnit\Inheritance\AbstractConstraint
+ * @covers \Tailors\PHPUnit\Inheritance\ConstraintImplementationTrait
  *
  * @internal This class is not covered by the backward compatibility promise
- * @psalm-internal PHPTailors\PHPUnit
+ * @psalm-internal Tailors\PHPUnit
  */
 final class UsesTraitTest extends TestCase
 {

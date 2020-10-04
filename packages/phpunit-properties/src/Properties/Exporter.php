@@ -8,7 +8,7 @@
  * Distributed under MIT license.
  */
 
-namespace PHPTailors\PHPUnit\Properties;
+namespace Tailors\PHPUnit\Properties;
 
 use SebastianBergmann\Exporter\Exporter as SebastianBergmannExporter;
 use SebastianBergmann\RecursionContext\Context;
@@ -17,7 +17,7 @@ use SebastianBergmann\RecursionContext\Context;
  * An exporter that handles PropertiesInterface in a special way.
  *
  * @internal This class is not covered by the backward compatibility promise
- * @psalm-internal PHPTailors\PHPUnit
+ * @psalm-internal Tailors\PHPUnit
  */
 final class Exporter extends SebastianBergmannExporter
 {

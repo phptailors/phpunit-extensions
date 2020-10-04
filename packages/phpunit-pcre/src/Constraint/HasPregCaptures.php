@@ -8,13 +8,13 @@
  * Distributed under MIT license.
  */
 
-namespace PHPTailors\PHPUnit\Constraint;
+namespace Tailors\PHPUnit\Constraint;
 
-use PHPTailors\PHPUnit\InvalidArgumentException;
-use PHPTailors\PHPUnit\Preg\CapturesFilter;
-use PHPTailors\PHPUnit\Preg\CapturesFilterInterface;
 use PHPUnit\Framework\Constraint\Constraint;
 use SebastianBergmann\Comparator\ComparisonFailure;
+use Tailors\PHPUnit\InvalidArgumentException;
+use Tailors\PHPUnit\Preg\CapturesFilter;
+use Tailors\PHPUnit\Preg\CapturesFilterInterface;
 
 /**
  * Constraint that accepts arrays of matches returned from ``preg_match()``

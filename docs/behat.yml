@@ -8,4 +8,4 @@ default:
       paths:
         - "%paths.base%/sphinx/behat"
       contexts:
-        - "PHPTailors\\PHPUnit\\Docs\\Behat\\DocExampleContext"
+        - "Tailors\\PHPUnit\\Docs\\Behat\\DocExampleContext"

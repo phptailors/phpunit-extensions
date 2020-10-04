@@ -8,19 +8,19 @@
  * Distributed under MIT license.
  */
 
-namespace PHPTailors\PHPUnit\Constraint;
+namespace Tailors\PHPUnit\Constraint;
 
-use PHPTailors\PHPUnit\Properties\IdentityComparator;
+use Tailors\PHPUnit\Properties\IdentityComparator;
 
 /**
  * @small
- * @covers \PHPTailors\PHPUnit\Constraint\ObjectPropertiesIdenticalTo
- * @covers \PHPTailors\PHPUnit\Constraint\PropertiesConstraintTestCase
- * @covers \PHPTailors\PHPUnit\Constraint\ProvObjectPropertiesTrait
- * @covers \PHPTailors\PHPUnit\Properties\AbstractConstraint
+ * @covers \Tailors\PHPUnit\Constraint\ObjectPropertiesIdenticalTo
+ * @covers \Tailors\PHPUnit\Constraint\PropertiesConstraintTestCase
+ * @covers \Tailors\PHPUnit\Constraint\ProvObjectPropertiesTrait
+ * @covers \Tailors\PHPUnit\Properties\AbstractConstraint
  *
  * @internal This class is not covered by the backward compatibility promise
- * @psalm-internal PHPTailors\PHPUnit
+ * @psalm-internal Tailors\PHPUnit
  */
 final class ObjectPropertiesIdenticalToTest extends PropertiesConstraintTestCase
 {

@@ -8,20 +8,20 @@
  * Distributed under MIT license.
  */
 
-namespace PHPTailors\PHPUnit\Constraint;
+namespace Tailors\PHPUnit\Constraint;
 
-use PHPTailors\PHPUnit\InvalidArgumentException;
 use PHPUnit\Framework\Constraint\LogicalNot;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\InvalidArgumentException;
 
 /**
  * @small
- * @covers \PHPTailors\PHPUnit\Constraint\HasPregCaptures
- * @covers \PHPTailors\PHPUnit\Constraint\ProvHasPregCapturesTrait
+ * @covers \Tailors\PHPUnit\Constraint\HasPregCaptures
+ * @covers \Tailors\PHPUnit\Constraint\ProvHasPregCapturesTrait
  *
  * @internal This class is not covered by the backward compatibility promise
- * @psalm-internal PHPTailors\PHPUnit
+ * @psalm-internal Tailors\PHPUnit
  */
 final class HasPregCapturesTest extends TestCase
 {

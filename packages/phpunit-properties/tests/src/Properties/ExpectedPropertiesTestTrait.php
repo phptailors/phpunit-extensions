@@ -8,11 +8,11 @@
  * Distributed under MIT license.
  */
 
-namespace PHPTailors\PHPUnit\Properties;
+namespace Tailors\PHPUnit\Properties;
 
 /**
  * @internal This trait is not covered by the backward compatibility promise
- * @psalm-internal PHPTailors\PHPUnit
+ * @psalm-internal Tailors\PHPUnit
  */
 trait ExpectedPropertiesTestTrait
 {

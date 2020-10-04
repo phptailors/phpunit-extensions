@@ -8,16 +8,16 @@
  * Distributed under MIT license.
  */
 
-namespace PHPTailors\PHPUnit;
+namespace Tailors\PHPUnit;
 
 use PHPUnit\Framework\TestCase;
 
 /**
  * @small
- * @covers \PHPTailors\PHPUnit\StringArgumentValidator
+ * @covers \Tailors\PHPUnit\StringArgumentValidator
  *
  * @internal This class is not covered by the backward compatibility promise
- * @psalm-internal PHPTailors\PHPUnit
+ * @psalm-internal Tailors\PHPUnit
  */
 final class StringArgumentValidatorTest extends TestCase
 {

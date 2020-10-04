@@ -8,20 +8,20 @@
  * Distributed under MIT license.
  */
 
-namespace PHPTailors\PHPUnit\Properties;
+namespace Tailors\PHPUnit\Properties;
 
-use PHPTailors\PHPUnit\ExtendsClassTrait;
-use PHPTailors\PHPUnit\ImplementsInterfaceTrait;
-use PHPTailors\PHPUnit\InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\ExtendsClassTrait;
+use Tailors\PHPUnit\ImplementsInterfaceTrait;
+use Tailors\PHPUnit\InvalidArgumentException;
 
 /**
  * @small
- * @covers \PHPTailors\PHPUnit\Properties\AbstractPropertySelector
- * @covers \PHPTailors\PHPUnit\Properties\ObjectPropertySelector
+ * @covers \Tailors\PHPUnit\Properties\AbstractPropertySelector
+ * @covers \Tailors\PHPUnit\Properties\ObjectPropertySelector
  *
  * @internal This class is not covered by the backward compatibility promise
- * @psalm-internal PHPTailors\PHPUnit
+ * @psalm-internal Tailors\PHPUnit
  */
 final class ObjectPropertySelectorTest extends TestCase
 {

@@ -8,22 +8,22 @@
  * Distributed under MIT license.
  */
 
-namespace PHPTailors\PHPUnit;
+namespace Tailors\PHPUnit;
 
-use PHPTailors\PHPUnit\Constraint\UsesTrait;
-use PHPTailors\PHPUnit\Examples\Inheritance\ExampleClassNotUsingTrait;
-use PHPTailors\PHPUnit\Examples\Inheritance\ExampleClassUsingTrait;
-use PHPTailors\PHPUnit\Examples\Inheritance\ExampleTrait;
-use PHPTailors\PHPUnit\Examples\Inheritance\ExampleTraitUsingTrait;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\Constraint\UsesTrait;
+use Tailors\PHPUnit\Examples\Inheritance\ExampleClassNotUsingTrait;
+use Tailors\PHPUnit\Examples\Inheritance\ExampleClassUsingTrait;
+use Tailors\PHPUnit\Examples\Inheritance\ExampleTrait;
+use Tailors\PHPUnit\Examples\Inheritance\ExampleTraitUsingTrait;
 
 /**
  * @small
- * @covers \PHPTailors\PHPUnit\UsesTraitTrait
+ * @covers \Tailors\PHPUnit\UsesTraitTrait
  *
  * @internal This class is not covered by the backward compatibility promise
- * @psalm-internal PHPTailors\PHPUnit
+ * @psalm-internal Tailors\PHPUnit
  */
 final class UsesTraitTraitTest extends TestCase
 {

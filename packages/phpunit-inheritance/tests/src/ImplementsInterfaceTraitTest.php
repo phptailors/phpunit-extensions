@@ -8,19 +8,19 @@
  * Distributed under MIT license.
  */
 
-namespace PHPTailors\PHPUnit;
+namespace Tailors\PHPUnit;
 
-use PHPTailors\PHPUnit\Constraint\ImplementsInterface;
-use PHPTailors\PHPUnit\Examples\Inheritance\ExampleTrait;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\Constraint\ImplementsInterface;
+use Tailors\PHPUnit\Examples\Inheritance\ExampleTrait;
 
 /**
  * @small
- * @covers \PHPTailors\PHPUnit\ImplementsInterfaceTrait
+ * @covers \Tailors\PHPUnit\ImplementsInterfaceTrait
  *
  * @internal This class is not covered by the backward compatibility promise
- * @psalm-internal PHPTailors\PHPUnit
+ * @psalm-internal Tailors\PHPUnit
  */
 final class ImplementsInterfaceTraitTest extends TestCase
 {

@@ -8,11 +8,11 @@
  * Distributed under MIT license.
  */
 
-namespace PHPTailors\PHPUnit;
+namespace Tailors\PHPUnit;
 
-use PHPTailors\PHPUnit\Constraint\HasPregCaptures;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\LogicalNot;
+use Tailors\PHPUnit\Constraint\HasPregCaptures;
 
 trait HasPregCapturesTrait
 {

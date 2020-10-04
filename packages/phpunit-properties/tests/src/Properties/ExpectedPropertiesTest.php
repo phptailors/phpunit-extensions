@@ -8,19 +8,19 @@
  * Distributed under MIT license.
  */
 
-namespace PHPTailors\PHPUnit\Properties;
+namespace Tailors\PHPUnit\Properties;
 
-use PHPTailors\PHPUnit\ExtendsClassTrait;
-use PHPTailors\PHPUnit\ImplementsInterfaceTrait;
 use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\ExtendsClassTrait;
+use Tailors\PHPUnit\ImplementsInterfaceTrait;
 
 /**
  * @small
- * @covers \PHPTailors\PHPUnit\Properties\ExpectedProperties
- * @covers \PHPTailors\PHPUnit\Properties\ExpectedPropertiesTestTrait
+ * @covers \Tailors\PHPUnit\Properties\ExpectedProperties
+ * @covers \Tailors\PHPUnit\Properties\ExpectedPropertiesTestTrait
  *
  * @internal This class is not covered by the backward compatibility promise
- * @psalm-internal PHPTailors\PHPUnit
+ * @psalm-internal Tailors\PHPUnit
  */
 final class ExpectedPropertiesTest extends TestCase
 {

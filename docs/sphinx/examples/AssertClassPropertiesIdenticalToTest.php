@@ -2,7 +2,7 @@
 
 final class AssertClassPropertiesIdenticalToTest extends \PHPUnit\Framework\TestCase
 {
-    use \PHPTailors\PHPUnit\ClassPropertiesIdenticalToTrait;
+    use \Tailors\PHPUnit\ClassPropertiesIdenticalToTrait;
 
     public static $attribute = 123;
 

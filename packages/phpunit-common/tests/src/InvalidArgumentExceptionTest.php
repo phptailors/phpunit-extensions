@@ -8,12 +8,12 @@
  * Distributed under MIT license.
  */
 
-namespace PHPTailors\PHPUnit;
+namespace Tailors\PHPUnit;
 
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 
-if (!function_exists('PHPTailors\\PHPUnit\\testInvalidArgumentExceptionFromBackTrace')) {
+if (!function_exists('Tailors\\PHPUnit\\testInvalidArgumentExceptionFromBackTrace')) {
     function testInvalidArgumentExceptionFromBackTrace(
         int $argument,
         string $expected,
@@ -36,10 +36,10 @@ if (!function_exists('PHPTailors\\PHPUnit\\testInvalidArgumentExceptionFromBackT
 
 /**
  * @small
- * @covers \PHPTailors\PHPUnit\InvalidArgumentException
+ * @covers \Tailors\PHPUnit\InvalidArgumentException
  *
  * @internal This class is not covered by the backward compatibility promise
- * @psalm-internal PHPTailors\PHPUnit
+ * @psalm-internal Tailors\PHPUnit
  */
 final class InvalidArgumentExceptionTest extends TestCase
 {

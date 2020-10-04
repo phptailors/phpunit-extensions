@@ -72,7 +72,7 @@ static function ($container) : void {
         ],
         'autoload-dev' => [
             'psr-4' => [
-                'PHPTailors\\PHPUnit\\Docs\\Behat\\' => 'docs/sphinx/behat/',
+                'Tailors\\PHPUnit\\Docs\\Behat\\' => 'docs/sphinx/behat/',
             ],
         ],
     ]);

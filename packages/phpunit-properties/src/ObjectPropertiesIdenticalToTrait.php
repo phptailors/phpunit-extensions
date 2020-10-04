@@ -8,11 +8,11 @@
  * Distributed under MIT license.
  */
 
-namespace PHPTailors\PHPUnit;
+namespace Tailors\PHPUnit;
 
-use PHPTailors\PHPUnit\Constraint\ObjectPropertiesIdenticalTo;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\LogicalNot;
+use Tailors\PHPUnit\Constraint\ObjectPropertiesIdenticalTo;
 
 trait ObjectPropertiesIdenticalToTrait
 {
@@ -38,7 +38,7 @@ trait ObjectPropertiesIdenticalToTrait
      *                         Optional failure message
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \PHPTailors\PHPUnit\InvalidArgumentException  when a non-string keys are found in *$expected*
+     * @throws \Tailors\PHPUnit\InvalidArgumentException     when a non-string keys are found in *$expected*
      */
     public static function assertObjectPropertiesIdenticalTo(
         array $expected,
@@ -60,7 +60,7 @@ trait ObjectPropertiesIdenticalToTrait
      *                         Optional failure message
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \PHPTailors\PHPUnit\InvalidArgumentException  when a non-string keys are found in *$expected*
+     * @throws \Tailors\PHPUnit\InvalidArgumentException     when a non-string keys are found in *$expected*
      */
     public static function assertNotObjectPropertiesIdenticalTo(
         array $expected,
@@ -76,7 +76,7 @@ trait ObjectPropertiesIdenticalToTrait
      * @param array $expected
      *                        An array of key => value pairs with expected values of attributes
      *
-     * @throws \PHPTailors\PHPUnit\InvalidArgumentException when non-string keys are found in *$expected*
+     * @throws \Tailors\PHPUnit\InvalidArgumentException when non-string keys are found in *$expected*
      */
     public static function objectPropertiesIdenticalTo(array $expected): ObjectPropertiesIdenticalTo
     {

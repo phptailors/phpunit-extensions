@@ -8,18 +8,18 @@
  * Distributed under MIT license.
  */
 
-namespace PHPTailors\PHPUnit;
+namespace Tailors\PHPUnit;
 
-use PHPTailors\PHPUnit\Constraint\ProvClassPropertiesTrait;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\Constraint\ProvClassPropertiesTrait;
 
 /**
  * @small
- * @covers \PHPTailors\PHPUnit\ClassPropertiesEqualToTrait
+ * @covers \Tailors\PHPUnit\ClassPropertiesEqualToTrait
  *
  * @internal This class is not covered by the backward compatibility promise
- * @psalm-internal PHPTailors\PHPUnit
+ * @psalm-internal Tailors\PHPUnit
  */
 final class ClassPropertiesEqualToTraitTest extends TestCase
 {

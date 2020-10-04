@@ -8,10 +8,10 @@
  * Distributed under MIT license.
  */
 
-namespace PHPTailors\PHPUnit\Inheritance;
+namespace Tailors\PHPUnit\Inheritance;
 
-use PHPTailors\PHPUnit\InvalidReturnValueException;
-use PHPTailors\PHPUnit\StringArgumentValidator;
+use Tailors\PHPUnit\InvalidReturnValueException;
+use Tailors\PHPUnit\StringArgumentValidator;
 
 /**
  * Implementation of an inheritance constraint class.
@@ -25,12 +25,12 @@ use PHPTailors\PHPUnit\StringArgumentValidator;
  *      private static $supports;       // for example $supports = ['class_exists'];
  *
  * @internal This trait is not covered by the backward compatibility promise
- * @psalm-internal PHPTailors\PHPUnit
+ * @psalm-internal Tailors\PHPUnit
  */
 trait ConstraintImplementationTrait
 {
     /**
-     * @throws \PHPTailors\PHPUnit\InvalidArgumentException
+     * @throws \Tailors\PHPUnit\InvalidArgumentException
      *
      * @psalm-assert class-string $expected
      */

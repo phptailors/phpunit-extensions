@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php declare(strict_types=1);
 
-class PHPTailorsDockerInitializer
+class TailorsDockerInitializer
 {
     public function __construct(array $config = [])
     {
@@ -65,6 +65,6 @@ class PHPTailorsDockerInitializer
     }
 };
 
-(new PHPTailorsDockerInitializer)->run();
+(new TailorsDockerInitializer)->run();
 
 // vim: syntax=php sw=4 ts=4 et:

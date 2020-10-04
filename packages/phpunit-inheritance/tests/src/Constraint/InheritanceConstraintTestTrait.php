@@ -8,7 +8,7 @@
  * Distributed under MIT license.
  */
 
-namespace PHPTailors\PHPUnit\Constraint;
+namespace Tailors\PHPUnit\Constraint;
 
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\LogicalNot;
@@ -20,7 +20,7 @@ use PHPUnit\Framework\MockObject\Rule\AnyInvokedCount;
  * @small
  *
  * @internal This trait is not covered by the backward compatibility promise
- * @psalm-internal PHPTailors\PHPUnit
+ * @psalm-internal Tailors\PHPUnit
  */
 trait InheritanceConstraintTestTrait
 {

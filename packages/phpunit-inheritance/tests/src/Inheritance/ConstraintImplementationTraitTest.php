@@ -8,17 +8,17 @@
  * Distributed under MIT license.
  */
 
-namespace PHPTailors\PHPUnit\Inheritance;
+namespace Tailors\PHPUnit\Inheritance;
 
-use PHPTailors\PHPUnit\InvalidReturnValueException;
 use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\InvalidReturnValueException;
 
 /**
  * @small
- * @covers \PHPTailors\PHPUnit\Inheritance\ConstraintImplementationTrait
+ * @covers \Tailors\PHPUnit\Inheritance\ConstraintImplementationTrait
  *
  * @internal This class is not covered by the backward compatibility promise
- * @psalm-internal PHPTailors\PHPUnit
+ * @psalm-internal Tailors\PHPUnit
  */
 final class ConstraintImplementationTraitTest extends TestCase
 {

@@ -8,14 +8,14 @@
  * Distributed under MIT license.
  */
 
-namespace PHPTailors\PHPUnit\Constraint;
+namespace Tailors\PHPUnit\Constraint;
 
-use PHPTailors\PHPUnit\Properties\AbstractConstraint;
-use PHPTailors\PHPUnit\Properties\ComparatorInterface;
-use PHPTailors\PHPUnit\Properties\ConstraintImplementationTrait;
-use PHPTailors\PHPUnit\Properties\IdentityComparator;
-use PHPTailors\PHPUnit\Properties\ObjectPropertySelector;
-use PHPTailors\PHPUnit\Properties\PropertySelectorInterface;
+use Tailors\PHPUnit\Properties\AbstractConstraint;
+use Tailors\PHPUnit\Properties\ComparatorInterface;
+use Tailors\PHPUnit\Properties\ConstraintImplementationTrait;
+use Tailors\PHPUnit\Properties\IdentityComparator;
+use Tailors\PHPUnit\Properties\ObjectPropertySelector;
+use Tailors\PHPUnit\Properties\PropertySelectorInterface;
 
 /**
  * Constraint that accepts objects having properties identical to specified ones.

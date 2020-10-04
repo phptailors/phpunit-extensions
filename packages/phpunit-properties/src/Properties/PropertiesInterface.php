@@ -8,13 +8,13 @@
  * Distributed under MIT license.
  */
 
-namespace PHPTailors\PHPUnit\Properties;
+namespace Tailors\PHPUnit\Properties;
 
 /**
  * @extends \IteratorAggregate<array-key, mixed>
  *
  * @internal This interface is not covered by the backward compatibility promise
- * @psalm-internal PHPTailors\PHPUnit
+ * @psalm-internal Tailors\PHPUnit
  */
 interface PropertiesInterface extends \IteratorAggregate, \ArrayAccess, \Countable
 {

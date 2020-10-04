@@ -24,12 +24,12 @@
     },
     "autoload": {
       "psr-4" : {
-        "PHPTailors\\PHPUnit\\" : "src/"
+        "Tailors\\PHPUnit\\" : "src/"
       }
     },
     "autoload-dev": {
       "psr-4" : {
-        "PHPTailors\\PHPUnit\\" : "tests/src/"
+        "Tailors\\PHPUnit\\" : "tests/src/"
       }
     }
 }

@@ -8,13 +8,13 @@
  * Distributed under MIT license.
  */
 
-namespace PHPTailors\PHPUnit\Examples\Inheritance;
+namespace Tailors\PHPUnit\Examples\Inheritance;
 
 /**
  * Example trait for testing purposes.
  *
  * @internal This trait is not covered by the backward compatibility promise
- * @psalm-internal PHPTailors\PHPUnit
+ * @psalm-internal Tailors\PHPUnit
  */
 trait ExampleTraitUsingTrait
 {

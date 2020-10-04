@@ -8,11 +8,11 @@
  * Distributed under MIT license.
  */
 
-namespace PHPTailors\PHPUnit;
+namespace Tailors\PHPUnit;
 
-use PHPTailors\PHPUnit\Constraint\ObjectPropertiesEqualTo;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\LogicalNot;
+use Tailors\PHPUnit\Constraint\ObjectPropertiesEqualTo;
 
 trait ObjectPropertiesEqualToTrait
 {
@@ -38,7 +38,7 @@ trait ObjectPropertiesEqualToTrait
      *                         Optional failure message
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \PHPTailors\PHPUnit\InvalidArgumentException  when a non-string keys are found in *$expected*
+     * @throws \Tailors\PHPUnit\InvalidArgumentException     when a non-string keys are found in *$expected*
      */
     public static function assertObjectPropertiesEqualTo(
         array $expected,
@@ -60,7 +60,7 @@ trait ObjectPropertiesEqualToTrait
      *                         Optional failure message
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \PHPTailors\PHPUnit\InvalidArgumentException  when a non-string keys are found in *$expected*
+     * @throws \Tailors\PHPUnit\InvalidArgumentException     when a non-string keys are found in *$expected*
      */
     public static function assertNotObjectPropertiesEqualTo(
         array $expected,
@@ -77,7 +77,7 @@ trait ObjectPropertiesEqualToTrait
      *                        An array of key => value pairs with expected values of attributes
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \PHPTailors\PHPUnit\InvalidArgumentException  when non-string keys are found in *$expected*
+     * @throws \Tailors\PHPUnit\InvalidArgumentException     when non-string keys are found in *$expected*
      */
     public static function objectPropertiesEqualTo(array $expected): ObjectPropertiesEqualTo
     {

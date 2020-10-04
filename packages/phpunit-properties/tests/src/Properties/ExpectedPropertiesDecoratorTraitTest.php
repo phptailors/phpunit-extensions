@@ -8,16 +8,16 @@
  * Distributed under MIT license.
  */
 
-namespace PHPTailors\PHPUnit\Properties;
+namespace Tailors\PHPUnit\Properties;
 
 use PHPUnit\Framework\TestCase;
 
 /**
  * @small
- * @covers \PHPTailors\PHPUnit\Properties\ExpectedPropertiesDecoratorTrait
+ * @covers \Tailors\PHPUnit\Properties\ExpectedPropertiesDecoratorTrait
  *
  * @internal This class is not covered by the backward compatibility promise
- * @psalm-internal PHPTailors\PHPUnit
+ * @psalm-internal Tailors\PHPUnit
  */
 final class ExpectedPropertiesDecoratorTraitTest extends TestCase
 {

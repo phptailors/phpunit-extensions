@@ -8,19 +8,19 @@
  * Distributed under MIT license.
  */
 
-namespace PHPTailors\PHPUnit;
+namespace Tailors\PHPUnit;
 
-use PHPTailors\PHPUnit\Constraint\ProvHasPregCapturesTrait;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\Constraint\ProvHasPregCapturesTrait;
 
 /**
  * @small
- * @covers \PHPTailors\PHPUnit\Constraint\ProvHasPregCapturesTrait
- * @covers \PHPTailors\PHPUnit\HasPregCapturesTrait
+ * @covers \Tailors\PHPUnit\Constraint\ProvHasPregCapturesTrait
+ * @covers \Tailors\PHPUnit\HasPregCapturesTrait
  *
  * @internal This class is not covered by the backward compatibility promise
- * @psalm-internal PHPTailors\PHPUnit
+ * @psalm-internal Tailors\PHPUnit
  */
 final class HasPregCapturesTraitTest extends TestCase
 {

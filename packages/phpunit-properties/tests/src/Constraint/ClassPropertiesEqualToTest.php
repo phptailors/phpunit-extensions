@@ -8,19 +8,19 @@
  * Distributed under MIT license.
  */
 
-namespace PHPTailors\PHPUnit\Constraint;
+namespace Tailors\PHPUnit\Constraint;
 
-use PHPTailors\PHPUnit\Properties\EqualityComparator;
+use Tailors\PHPUnit\Properties\EqualityComparator;
 
 /**
  * @small
- * @covers \PHPTailors\PHPUnit\Constraint\ClassPropertiesEqualTo
- * @covers \PHPTailors\PHPUnit\Constraint\PropertiesConstraintTestCase
- * @covers \PHPTailors\PHPUnit\Constraint\ProvClassPropertiesTrait
- * @covers \PHPTailors\PHPUnit\Properties\AbstractConstraint
+ * @covers \Tailors\PHPUnit\Constraint\ClassPropertiesEqualTo
+ * @covers \Tailors\PHPUnit\Constraint\PropertiesConstraintTestCase
+ * @covers \Tailors\PHPUnit\Constraint\ProvClassPropertiesTrait
+ * @covers \Tailors\PHPUnit\Properties\AbstractConstraint
  *
  * @internal This class is not covered by the backward compatibility promise
- * @psalm-internal PHPTailors\PHPUnit
+ * @psalm-internal Tailors\PHPUnit
  */
 final class ClassPropertiesEqualToTest extends PropertiesConstraintTestCase
 {

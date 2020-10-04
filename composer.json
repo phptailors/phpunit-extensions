@@ -2,7 +2,7 @@
     "name": "php-tailors/phpunit-extensions",
     "autoload": {
         "psr-4": {
-            "PHPTailors\\PHPUnit\\": [
+            "Tailors\\PHPUnit\\": [
                 "packages/phpunit-common/src/",
                 "packages/phpunit-inheritance/src/",
                 "packages/phpunit-pcre/src/",
@@ -12,13 +12,13 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "PHPTailors\\PHPUnit\\": [
+            "Tailors\\PHPUnit\\": [
                 "packages/phpunit-common/tests/src/",
                 "packages/phpunit-inheritance/tests/src/",
                 "packages/phpunit-pcre/tests/src/",
                 "packages/phpunit-properties/tests/src/"
             ],
-            "PHPTailors\\PHPUnit\\Docs\\Behat\\": "docs/sphinx/behat/"
+            "Tailors\\PHPUnit\\Docs\\Behat\\": "docs/sphinx/behat/"
         }
     },
     "replace": {

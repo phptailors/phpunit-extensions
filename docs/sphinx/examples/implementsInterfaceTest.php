@@ -2,7 +2,7 @@
 
 final class implementsInterfaceTest extends \PHPUnit\Framework\TestCase
 {
-    use \PHPTailors\PHPUnit\ImplementsInterfaceTrait;
+    use \Tailors\PHPUnit\ImplementsInterfaceTrait;
 
     public function testImplementsInterface(): void
     {

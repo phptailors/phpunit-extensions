@@ -2,7 +2,7 @@
 
 final class hasPregCapturesTest extends \PHPUnit\Framework\TestCase
 {
-    use \PHPTailors\PHPUnit\HasPregCapturesTrait;
+    use \Tailors\PHPUnit\HasPregCapturesTrait;
 
     private $regexp;
     private $subject;

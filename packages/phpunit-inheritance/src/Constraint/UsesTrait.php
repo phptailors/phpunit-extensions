@@ -8,10 +8,10 @@
  * Distributed under MIT license.
  */
 
-namespace PHPTailors\PHPUnit\Constraint;
+namespace Tailors\PHPUnit\Constraint;
 
-use PHPTailors\PHPUnit\Inheritance\AbstractConstraint;
-use PHPTailors\PHPUnit\Inheritance\ConstraintImplementationTrait;
+use Tailors\PHPUnit\Inheritance\AbstractConstraint;
+use Tailors\PHPUnit\Inheritance\ConstraintImplementationTrait;
 
 /**
  * Constraint that accepts classes that extend given class.

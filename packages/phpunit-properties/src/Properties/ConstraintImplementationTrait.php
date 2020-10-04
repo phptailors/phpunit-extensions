@@ -8,13 +8,13 @@
  * Distributed under MIT license.
  */
 
-namespace PHPTailors\PHPUnit\Properties;
+namespace Tailors\PHPUnit\Properties;
 
-use PHPTailors\PHPUnit\InvalidArgumentException;
+use Tailors\PHPUnit\InvalidArgumentException;
 
 /**
  * @internal This trait is not covered by the backward compatibility promise
- * @psalm-internal PHPTailors\PHPUnit
+ * @psalm-internal Tailors\PHPUnit
  */
 trait ConstraintImplementationTrait
 {

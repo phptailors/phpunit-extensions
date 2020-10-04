@@ -8,26 +8,26 @@
  * Distributed under MIT license.
  */
 
-namespace PHPTailors\PHPUnit\Constraint;
+namespace Tailors\PHPUnit\Constraint;
 
 use Error;
 use ErrorException;
 use Exception;
-use PHPTailors\PHPUnit\Examples\Inheritance\ExampleTrait;
-use PHPTailors\PHPUnit\InvalidArgumentException;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\Examples\Inheritance\ExampleTrait;
+use Tailors\PHPUnit\InvalidArgumentException;
 use Throwable;
 
 /**
  * @small
- * @covers \PHPTailors\PHPUnit\Constraint\ExtendsClass
- * @covers \PHPTailors\PHPUnit\Constraint\InheritanceConstraintTestTrait
- * @covers \PHPTailors\PHPUnit\Inheritance\AbstractConstraint
- * @covers \PHPTailors\PHPUnit\Inheritance\ConstraintImplementationTrait
+ * @covers \Tailors\PHPUnit\Constraint\ExtendsClass
+ * @covers \Tailors\PHPUnit\Constraint\InheritanceConstraintTestTrait
+ * @covers \Tailors\PHPUnit\Inheritance\AbstractConstraint
+ * @covers \Tailors\PHPUnit\Inheritance\ConstraintImplementationTrait
  *
  * @internal This class is not covered by the backward compatibility promise
- * @psalm-internal PHPTailors\PHPUnit
+ * @psalm-internal Tailors\PHPUnit
  */
 final class ExtendsClassTest extends TestCase
 {

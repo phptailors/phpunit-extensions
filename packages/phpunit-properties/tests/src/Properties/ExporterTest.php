@@ -8,18 +8,18 @@
  * Distributed under MIT license.
  */
 
-namespace PHPTailors\PHPUnit\Properties;
+namespace Tailors\PHPUnit\Properties;
 
-use PHPTailors\PHPUnit\ExtendsClassTrait;
 use PHPUnit\Framework\TestCase;
 use SebastianBergmann\Exporter\Exporter as SebastianBergmannExporter;
+use Tailors\PHPUnit\ExtendsClassTrait;
 
 /**
  * @small
- * @covers \PHPTailors\PHPUnit\Properties\Exporter
+ * @covers \Tailors\PHPUnit\Properties\Exporter
  *
  * @internal This class is not covered by the backward compatibility promise
- * @psalm-internal PHPTailors\PHPUnit
+ * @psalm-internal Tailors\PHPUnit
  */
 final class ExporterTest extends TestCase
 {
