@@ -5,7 +5,7 @@ This file is part of php-tailors/phpunit-extensions.
 
 (c) Paweł Tomulik <ptomulik@meil.pw.edu.pl>
 
-Distributed under MIT license.
+View the LICENSE file for full copyright and license information.
 EOF;
 
 $finder = PhpCsFixer\Finder::create()

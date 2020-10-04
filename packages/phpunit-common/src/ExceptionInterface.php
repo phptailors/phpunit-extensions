@@ -5,7 +5,7 @@
  *
  * (c) Paweł Tomulik <ptomulik@meil.pw.edu.pl>
  *
- * Distributed under MIT license.
+ * View the LICENSE file for full copyright and license information.
  */
 
 namespace Tailors\PHPUnit;
