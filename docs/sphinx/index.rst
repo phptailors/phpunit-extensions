@@ -1,8 +1,8 @@
 .. _phpunit-extensions:
 
-#############################
-PHP-Fox Extensions to PHPUnit
-#############################
+##################
+PHPUnit Extensions
+##################
 
 .. toctree::
    :caption: Table of Contents
@@ -11,7 +11,6 @@ PHP-Fox Extensions to PHPUnit
 
    assertions
    constraints
-   devel_guide/index
 
 ******************
 Indices and tables
