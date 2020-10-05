@@ -15,13 +15,16 @@
 *~
 .~lock.*
 
-# IDE - VSCode
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-
 # Others
-/vendor
-/node_modules
+vendor
+node_modules
+*.gem
+Gemfile.lock
+.bundle/*
+!.bundle/config
+
+# Jekyll
+_site
+.sass-cache
+.jekyll-metadata
+.jekyll-cache
