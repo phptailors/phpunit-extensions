@@ -42,6 +42,8 @@ final class ClassPropertySelector extends AbstractPropertySelector
      * @param-out mixed $retval
      * @psalm-assert class-string $subject
      * @psalm-assert-if-false !callable $subject::$method
+     *
+     * @throws InvalidArgumentException
      */
     protected function selectWithMethod($subject, string $method, &$retval = null): bool
     {

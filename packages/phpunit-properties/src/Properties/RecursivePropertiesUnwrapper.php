@@ -96,6 +96,7 @@ final class RecursivePropertiesUnwrapper implements RecursivePropertiesUnwrapper
      * @param mixed $key
      *
      * @psalm-param array-key $key
+     * @throws CircularDependencyException
      */
     private function visit(&$value, $key, PropertiesInterface $parent): void
     {
@@ -110,6 +111,7 @@ final class RecursivePropertiesUnwrapper implements RecursivePropertiesUnwrapper
 
     /**
      * @param int|string $key
+     * @throws CircularDependencyException
      */
     private function throwCircular($key): void
     {

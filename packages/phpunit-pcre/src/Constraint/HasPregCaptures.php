@@ -58,6 +58,8 @@ final class HasPregCaptures extends Constraint
      * Initializes the constraint.
      *
      * @param array $expected an array of expected values
+     *
+     * @throws InvalidArgumentException
      */
     public static function create(array $expected, int $flags = PREG_OFFSET_CAPTURE | PREG_UNMATCHED_AS_NULL): self
     {
@@ -153,6 +155,8 @@ final class HasPregCaptures extends Constraint
 
     /**
      * @psalm-assert array<array-key, null|bool|string|array{0:null|string,1:int}> $array
+     *
+     * @throws InvalidArgumentException
      */
     private static function validateExpectations(int $argument, array $array, int $distance = 1): void
     {

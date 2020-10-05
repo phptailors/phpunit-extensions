@@ -18,6 +18,9 @@ use Tailors\PHPUnit\InvalidArgumentException;
  */
 trait ConstraintImplementationTrait
 {
+    /**
+     * @throws InvalidArgumentException
+     */
     public static function create(array $expected, RecursivePropertiesUnwrapperInterface $unwrapper = null): self
     {
         self::assertStringKeysOnly($expected, 1);

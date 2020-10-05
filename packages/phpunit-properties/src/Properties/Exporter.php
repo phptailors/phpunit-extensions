@@ -41,6 +41,7 @@ final class Exporter extends SebastianBergmannExporter
      * @param Context $processed   Previously processed objects
      *
      * @return string
+     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     public function recursiveExport(&$value, $indentation, $processed = null)
     {
@@ -80,6 +81,7 @@ final class Exporter extends SebastianBergmannExporter
     /**
      * @param int     $indentation
      * @param Context $processed
+     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     private function exportProperties(PropertiesInterface $value, $indentation, $processed = null): string
     {

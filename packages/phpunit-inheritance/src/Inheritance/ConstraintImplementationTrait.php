@@ -57,6 +57,9 @@ trait ConstraintImplementationTrait
         return self::$negatedVerb;
     }
 
+    /**
+     * @throws InvalidReturnValueException
+     */
     protected function inheritance(string $class): array
     {
         $value = (self::$inheritance)($class);
@@ -91,6 +94,8 @@ trait ConstraintImplementationTrait
      * @psalm-template ValueType $value
      * @psalm-param ValueType $value
      * @param-out ValueType $value
+     *
+     * @throws InvalidReturnValueException
      */
     private static function assertReturnValueIsArray($function, &$value): void
     {

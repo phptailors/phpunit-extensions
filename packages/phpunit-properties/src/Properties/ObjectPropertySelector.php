@@ -40,6 +40,8 @@ final class ObjectPropertySelector extends AbstractPropertySelector
      * @param mixed $retval
      * @param-out mixed $retval
      * @psalm-assert object $subject
+     *
+     * @throws InvalidArgumentException
      */
     protected function selectWithMethod($subject, string $method, &$retval = null): bool
     {
@@ -62,6 +64,8 @@ final class ObjectPropertySelector extends AbstractPropertySelector
      * @param-out mixed $retval
      * @psalm-param array-key $key
      * @psalm-assert object $subject
+     *
+     * @throws InvalidArgumentException
      */
     protected function selectWithAttribute($subject, $key, &$retval = null): bool
     {
