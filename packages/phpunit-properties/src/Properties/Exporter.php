@@ -99,7 +99,7 @@ final class Exporter extends SebastianBergmannExporter
             return $this->describe($value);
         }
 
-        $hash = $processed->add($value);
+        $processed->add($value);
         $values = '';
         $array = $this->toArray($value);
 

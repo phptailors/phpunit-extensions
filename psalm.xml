@@ -6,6 +6,8 @@
     xmlns:xi="http://www.w3.org/2001/XInclude"
     cacheDirectory="build/psalm/cache"
     checkForThrowsDocblock="true"
+    findUnusedVariablesAndParams="true"
+    findUnusedCode="true"
     errorBaseline=".psalm/baseline.xml"
     errorLevel="1"
 >
