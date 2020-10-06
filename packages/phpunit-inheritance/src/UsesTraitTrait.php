@@ -34,10 +34,12 @@ trait UsesTraitTrait
      * @param string $message custom message
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
+     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertUsesTrait(string $trait, $subject, string $message = ''): void
     {
-        static::assertThat($subject, static::usesTrait($trait), $message);
+        self::assertThat($subject, self::usesTrait($trait), $message);
     }
 
     /**
@@ -48,16 +50,20 @@ trait UsesTraitTrait
      * @param string $message custom message
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
+     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertNotUsesTrait(string $trait, $subject, string $message = ''): void
     {
-        static::assertThat($subject, new LogicalNot(static::usesTrait($trait)), $message);
+        self::assertThat($subject, new LogicalNot(self::usesTrait($trait)), $message);
     }
 
     /**
      * Checks objects (an classes) that they use given *$trait*.
      *
      * @param string $trait name of the trait that is expected to be included
+     *
+     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function usesTrait(string $trait): UsesTrait
     {

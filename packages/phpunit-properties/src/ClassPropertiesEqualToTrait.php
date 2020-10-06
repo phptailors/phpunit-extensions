@@ -38,14 +38,15 @@ trait ClassPropertiesEqualToTrait
      *                         Optional failure message
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \Tailors\PHPUnit\InvalidArgumentException     when a non-string keys are found in *$expected*
+     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertClassPropertiesEqualTo(
         array $expected,
         string $class,
         string $message = ''
     ): void {
-        static::assertThat($class, static::classPropertiesEqualTo($expected), $message);
+        self::assertThat($class, self::classPropertiesEqualTo($expected), $message);
     }
 
     /**
@@ -60,14 +61,15 @@ trait ClassPropertiesEqualToTrait
      *                         Optional failure message
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \Tailors\PHPUnit\InvalidArgumentException     when a non-string keys are found in *$expected*
+     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertNotClassPropertiesEqualTo(
         array $expected,
         string $class,
         string $message = ''
     ): void {
-        static::assertThat($class, new LogicalNot(static::classPropertiesEqualTo($expected)), $message);
+        self::assertThat($class, new LogicalNot(self::classPropertiesEqualTo($expected)), $message);
     }
 
     /**
@@ -76,8 +78,7 @@ trait ClassPropertiesEqualToTrait
      * @param array $expected
      *                        An array of key => value pairs with expected values of attributes
      *
-     * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \Tailors\PHPUnit\InvalidArgumentException     when non-string keys are found in *$expected*
+     * @throws \Tailors\PHPUnit\InvalidArgumentException when non-string keys are found in *$expected*
      */
     public static function classPropertiesEqualTo(array $expected): ClassPropertiesEqualTo
     {

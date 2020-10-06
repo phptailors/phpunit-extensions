@@ -69,7 +69,7 @@ final class RecursivePropertiesSelectorTest extends TestCase
 
         return [
             'RecursivePropertiesSelectorTest.php:'.__LINE__ => [
-                'selector' => static::createExpectedObjectProperties([]),
+                'selector' => self::createExpectedObjectProperties([]),
                 'subject'  => new class() {
                 },
                 'expect' => [
@@ -78,7 +78,7 @@ final class RecursivePropertiesSelectorTest extends TestCase
             ],
 
             'RecursivePropertiesSelectorTest.php:'.__LINE__ => [
-                'selector' => static::createExpectedObjectProperties([
+                'selector' => self::createExpectedObjectProperties([
                     'foo' => 'e:FOO',
                 ]),
                 'subject' => new class() {
@@ -91,7 +91,7 @@ final class RecursivePropertiesSelectorTest extends TestCase
             ],
 
             'RecursivePropertiesSelectorTest.php:'.__LINE__ => [
-                'selector' => static::createExpectedObjectProperties([
+                'selector' => self::createExpectedObjectProperties([
                     'foo' => 'e:FOO',
                     'bar' => [
                         'baz' => 'e:BAZ',
@@ -113,7 +113,7 @@ final class RecursivePropertiesSelectorTest extends TestCase
             ],
 
             'RecursivePropertiesSelectorTest.php:'.__LINE__ => [
-                'selector' => static::createExpectedObjectProperties([
+                'selector' => self::createExpectedObjectProperties([
                     'foo' => 'e:FOO',
                     'bar' => [
                         'baz' => 'e:BAZ',
@@ -131,9 +131,9 @@ final class RecursivePropertiesSelectorTest extends TestCase
             ],
 
             'RecursivePropertiesSelectorTest.php:'.__LINE__ => [
-                'selector' => static::createExpectedObjectProperties([
+                'selector' => self::createExpectedObjectProperties([
                     'foo' => 'e:FOO',
-                    'bar' => static::createExpectedObjectProperties([
+                    'bar' => self::createExpectedObjectProperties([
                         'baz' => 'e:BAZ',
                     ]),
                 ]),
@@ -159,7 +159,7 @@ final class RecursivePropertiesSelectorTest extends TestCase
             ],
 
             'RecursivePropertiesSelectorTest.php:'.__LINE__ => [
-                'selector' => static::createExpectedObjectProperties([
+                'selector' => self::createExpectedObjectProperties([
                     'foo' => 'e:FOO',
                     'bar' => 'e:BAR',
                 ]),
@@ -183,7 +183,7 @@ final class RecursivePropertiesSelectorTest extends TestCase
             ],
 
             'RecursivePropertiesSelectorTest.php:'.__LINE__ => [
-                'selector' => static::createExpectedObjectProperties([
+                'selector' => self::createExpectedObjectProperties([
                     'foo' => 'e:FOO',
                     'bar' => 'e:BAR',
                 ]),
@@ -204,7 +204,7 @@ final class RecursivePropertiesSelectorTest extends TestCase
             ],
 
             'RecursivePropertiesSelectorTest.php:'.__LINE__ => [
-                'selector' => static::createExpectedClassProperties([]),
+                'selector' => self::createExpectedClassProperties([]),
                 'subject'  => new class() {
                 },
                 'expect' => [
@@ -213,7 +213,7 @@ final class RecursivePropertiesSelectorTest extends TestCase
             ],
 
             'RecursivePropertiesSelectorTest.php:'.__LINE__ => [
-                'selector' => static::createExpectedClassProperties([
+                'selector' => self::createExpectedClassProperties([
                     'foo' => 'e:FOO',
                 ]),
                 'subject' => get_class(new class() {
@@ -226,9 +226,9 @@ final class RecursivePropertiesSelectorTest extends TestCase
             ],
 
             'RecursivePropertiesSelectorTest.php:'.__LINE__ => [
-                'selector' => static::createExpectedObjectProperties([
+                'selector' => self::createExpectedObjectProperties([
                     'foo'   => 'e:FOO',
-                    'bar()' => static::createExpectedClassProperties([
+                    'bar()' => self::createExpectedClassProperties([
                         'baz' => 'e:BAZ',
                     ]),
                 ]),
@@ -254,9 +254,9 @@ final class RecursivePropertiesSelectorTest extends TestCase
             ],
 
             'RecursivePropertiesSelectorTest.php:'.__LINE__ => [
-                'selector' => static::createExpectedObjectProperties([
+                'selector' => self::createExpectedObjectProperties([
                     'foo'   => 'e:FOO',
-                    'bar()' => static::createExpectedObjectProperties([
+                    'bar()' => self::createExpectedObjectProperties([
                         'baz' => 'e:BAZ',
                     ]),
                 ]),

@@ -38,14 +38,15 @@ trait ObjectPropertiesEqualToTrait
      *                         Optional failure message
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \Tailors\PHPUnit\InvalidArgumentException     when a non-string keys are found in *$expected*
+     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertObjectPropertiesEqualTo(
         array $expected,
         object $object,
         string $message = ''
     ): void {
-        static::assertThat($object, static::objectPropertiesEqualTo($expected), $message);
+        self::assertThat($object, self::objectPropertiesEqualTo($expected), $message);
     }
 
     /**
@@ -60,14 +61,15 @@ trait ObjectPropertiesEqualToTrait
      *                         Optional failure message
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \Tailors\PHPUnit\InvalidArgumentException     when a non-string keys are found in *$expected*
+     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertNotObjectPropertiesEqualTo(
         array $expected,
         object $object,
         string $message = ''
     ): void {
-        static::assertThat($object, new LogicalNot(static::objectPropertiesEqualTo($expected)), $message);
+        self::assertThat($object, new LogicalNot(self::objectPropertiesEqualTo($expected)), $message);
     }
 
     /**
@@ -76,8 +78,7 @@ trait ObjectPropertiesEqualToTrait
      * @param array $expected
      *                        An array of key => value pairs with expected values of attributes
      *
-     * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \Tailors\PHPUnit\InvalidArgumentException     when non-string keys are found in *$expected*
+     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function objectPropertiesEqualTo(array $expected): ObjectPropertiesEqualTo
     {

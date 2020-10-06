@@ -21,18 +21,14 @@ trait ConstraintImplementationTrait
     /**
      * @throws InvalidArgumentException
      */
-    public static function create(array $expected, RecursivePropertiesUnwrapperInterface $unwrapper = null): self
+    public static function create(array $expected): self
     {
         self::assertStringKeysOnly($expected, 1);
 
         $comparator = self::makeComparator();
         $selector = self::makePropertySelector();
 
-        if (null === $unwrapper) {
-            $unwrapper = new RecursivePropertiesUnwrapper();
-        }
-
-        return new self($comparator, new ExpectedProperties($selector, $expected), $unwrapper);
+        return new self($comparator, new ExpectedProperties($selector, $expected), new RecursivePropertiesUnwrapper());
     }
 
     /**

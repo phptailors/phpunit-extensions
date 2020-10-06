@@ -38,14 +38,15 @@ trait ObjectPropertiesIdenticalToTrait
      *                         Optional failure message
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \Tailors\PHPUnit\InvalidArgumentException     when a non-string keys are found in *$expected*
+     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertObjectPropertiesIdenticalTo(
         array $expected,
         object $object,
         string $message = ''
     ): void {
-        static::assertThat($object, static::objectPropertiesIdenticalTo($expected), $message);
+        self::assertThat($object, self::objectPropertiesIdenticalTo($expected), $message);
     }
 
     /**
@@ -60,14 +61,15 @@ trait ObjectPropertiesIdenticalToTrait
      *                         Optional failure message
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \Tailors\PHPUnit\InvalidArgumentException     when a non-string keys are found in *$expected*
+     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertNotObjectPropertiesIdenticalTo(
         array $expected,
         object $object,
         string $message = ''
     ): void {
-        static::assertThat($object, new LogicalNot(static::objectPropertiesIdenticalTo($expected)), $message);
+        self::assertThat($object, new LogicalNot(self::objectPropertiesIdenticalTo($expected)), $message);
     }
 
     /**
@@ -76,7 +78,7 @@ trait ObjectPropertiesIdenticalToTrait
      * @param array $expected
      *                        An array of key => value pairs with expected values of attributes
      *
-     * @throws \Tailors\PHPUnit\InvalidArgumentException when non-string keys are found in *$expected*
+     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function objectPropertiesIdenticalTo(array $expected): ObjectPropertiesIdenticalTo
     {

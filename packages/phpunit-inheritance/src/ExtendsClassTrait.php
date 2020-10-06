@@ -34,10 +34,12 @@ trait ExtendsClassTrait
      * @param string $message custom message
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
+     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertExtendsClass(string $parent, $subject, string $message = ''): void
     {
-        static::assertThat($subject, static::extendsClass($parent), $message);
+        self::assertThat($subject, self::extendsClass($parent), $message);
     }
 
     /**
@@ -48,16 +50,20 @@ trait ExtendsClassTrait
      * @param string $message custom message
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
+     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertNotExtendsClass(string $parent, $subject, string $message = ''): void
     {
-        static::assertThat($subject, new LogicalNot(static::extendsClass($parent)), $message);
+        self::assertThat($subject, new LogicalNot(self::extendsClass($parent)), $message);
     }
 
     /**
      * Checks objects (an classes) that they extend *$parent* class.
      *
      * @param string $parent name of the class that is expected to be extended
+     *
+     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function extendsClass(string $parent): ExtendsClass
     {

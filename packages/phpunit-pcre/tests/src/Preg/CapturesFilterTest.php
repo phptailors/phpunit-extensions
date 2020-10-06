@@ -26,15 +26,11 @@ final class CapturesFilterTest extends TestCase
         return [
             'CapturesFilterTest.php:'.__LINE__ => [
                 'args'   => [],
-                'expect' => [
-                    'flags' => 0,
-                ],
+                'expect' => [],
             ],
             'CapturesFilterTest.php:'.__LINE__ => [
                 'args'   => [123],
-                'expect' => [
-                    'flags' => 123,
-                ],
+                'expect' => [],
             ],
         ];
     }
@@ -46,7 +42,6 @@ final class CapturesFilterTest extends TestCase
     {
         $filter = new CapturesFilter(...$args);
         self::assertInstanceOf(CapturesFilterInterface::class, $filter);
-        self::assertSame($expect['flags'], $filter->getFlags());
     }
 
     public static function provIsCapture(): array

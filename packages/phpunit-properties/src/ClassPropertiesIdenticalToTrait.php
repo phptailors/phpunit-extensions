@@ -38,14 +38,15 @@ trait ClassPropertiesIdenticalToTrait
      *                         Optional failure message
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \Tailors\PHPUnit\InvalidArgumentException     when a non-string keys are found in *$expected*
+     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertClassPropertiesIdenticalTo(
         array $expected,
         string $class,
         string $message = ''
     ): void {
-        static::assertThat($class, static::classPropertiesIdenticalTo($expected), $message);
+        self::assertThat($class, self::classPropertiesIdenticalTo($expected), $message);
     }
 
     /**
@@ -60,14 +61,15 @@ trait ClassPropertiesIdenticalToTrait
      *                         Optional failure message
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \Tailors\PHPUnit\InvalidArgumentException     when a non-string keys are found in *$expected*
+     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertNotClassPropertiesIdenticalTo(
         array $expected,
         string $class,
         string $message = ''
     ): void {
-        static::assertThat($class, new LogicalNot(static::classPropertiesIdenticalTo($expected)), $message);
+        self::assertThat($class, new LogicalNot(self::classPropertiesIdenticalTo($expected)), $message);
     }
 
     /**
@@ -76,8 +78,7 @@ trait ClassPropertiesIdenticalToTrait
      * @param array $expected
      *                        An array of key => value pairs with expected values of attributes
      *
-     * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \Tailors\PHPUnit\InvalidArgumentException     when non-string keys are found in *$expected*
+     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function classPropertiesIdenticalTo(array $expected): ClassPropertiesIdenticalTo
     {

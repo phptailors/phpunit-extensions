@@ -17,11 +17,6 @@ namespace Tailors\PHPUnit\Preg;
 interface CapturesFilterInterface
 {
     /**
-     * Returns PCRE flags set to this object.
-     */
-    public function getFlags(): int;
-
-    /**
      * Filter-out all elements of $array with $this->acceptable().
      *
      * @return array the filtered array

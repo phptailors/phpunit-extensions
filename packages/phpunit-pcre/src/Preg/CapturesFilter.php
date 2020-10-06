@@ -31,14 +31,6 @@ final class CapturesFilter implements CapturesFilterInterface
     }
 
     /**
-     * Returns the $flags provided to constructor.
-     */
-    public function getFlags(): int
-    {
-        return $this->flags;
-    }
-
-    /**
      * Filter-out all elements of $array with $this->acceptable().
      *
      * @return array the filtered array

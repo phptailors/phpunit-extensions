@@ -60,30 +60,12 @@ abstract class AbstractConstraint extends Constraint implements ExpectedProperti
     }
 
     /**
-     * Returns an instance of ComparatorInterface which provides comparison
-     * operator (equality or identity).
-     */
-    final public function getComparator(): ComparatorInterface
-    {
-        return $this->comparator;
-    }
-
-    /**
      * Returns an instance of ExpectedPropertiesInterface which specifies
      * expectations that the constrant uses to examine subjects' properties.
      */
     final public function getExpectedProperties(): ExpectedPropertiesInterface
     {
         return $this->expected;
-    }
-
-    /**
-     * Returns an instance of RecursivePropertiesUnwrapperInterface used to convert
-     * expected/actual properties objects to raw arrays.
-     */
-    final public function getPropertiesUnwrapper(): RecursivePropertiesUnwrapperInterface
-    {
-        return $this->unwrapper;
     }
 
     /**

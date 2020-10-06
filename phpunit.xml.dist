@@ -15,6 +15,7 @@
     </include>
     <exclude>
       <directory suffix="Test.php">./packages/*/tests</directory>
+      <directory>./packages/*/tests/static-analysis</directory>
       <directory>./packages/*/behat</directory>
       <directory>./packages/*/resources</directory>
       <directory>./packages/*/vendor</directory>

@@ -12,15 +12,7 @@
     errorLevel="1"
 >
     <projectFiles>
-        <directory name="packages/phpunit-common" />
-        <directory name="packages/phpunit-inheritance" />
-        <directory name="packages/phpunit-pcre" />
-        <directory name="packages/phpunit-properties" />
-        <ignoreFiles>
-            <directory name="packages/phpunit-common/tests" />
-            <directory name="packages/phpunit-inheritance/tests" />
-            <directory name="packages/phpunit-pcre/tests" />
-            <directory name="packages/phpunit-properties/tests" />
-        </ignoreFiles>
+        <directory name="packages/*/src" />
+        <directory name="packages/*/tests/static-analysis" />
     </projectFiles>
 </psalm>

@@ -19,7 +19,6 @@ use Tailors\PHPUnit\ImplementsInterfaceTrait;
 use Tailors\PHPUnit\InvalidArgumentException;
 use Tailors\PHPUnit\Properties\AbstractConstraint;
 use Tailors\PHPUnit\Properties\ExpectedPropertiesInterface;
-use Tailors\PHPUnit\Properties\RecursivePropertiesUnwrapper;
 use Tailors\PHPUnit\Properties\RecursivePropertiesUnwrapperInterface;
 
 /**
@@ -61,17 +60,6 @@ abstract class PropertiesConstraintTestCase extends TestCase
                 'args'   => [['foo' => 'FOO']],
                 'expect' => [
                     'properties' => self::identicalTo(['foo' => 'FOO']),
-                    'unwrapper'  => self::isInstanceOf(RecursivePropertiesUnwrapper::class),
-                    'comparator' => self::isInstanceOf(static::comparatorClass()),
-                ],
-            ],
-
-            'PropertiesConstraintTestTrait.php:'.__LINE__ => [
-                'args'   => [['foo' => 'FOO'], $unwrapper],
-                'expect' => [
-                    'properties' => self::identicalTo(['foo' => 'FOO']),
-                    'unwrapper'  => self::identicalTo($unwrapper),
-                    'comparator' => self::isInstanceOf(static::comparatorClass()),
                 ],
             ],
         ];
@@ -86,9 +74,7 @@ abstract class PropertiesConstraintTestCase extends TestCase
     {
         $class = static::constraintClass();
         $constraint = $class::create(...$args);
-        self::assertThat($constraint->getPropertiesUnwrapper(), $expect['unwrapper']);
         self::assertThat($constraint->getArrayCopy(), $expect['properties']);
-        self::assertThat($constraint->getComparator(), $expect['comparator']);
     }
 
     // @codeCoverageIgnoreStart

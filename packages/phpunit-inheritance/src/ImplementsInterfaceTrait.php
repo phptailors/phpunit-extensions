@@ -34,10 +34,12 @@ trait ImplementsInterfaceTrait
      * @param string $message   custom message
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
+     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertImplementsInterface(string $interface, $subject, string $message = ''): void
     {
-        static::assertThat($subject, static::implementsInterface($interface), $message);
+        self::assertThat($subject, self::implementsInterface($interface), $message);
     }
 
     /**
@@ -48,16 +50,20 @@ trait ImplementsInterfaceTrait
      * @param string $message   custom message
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
+     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertNotImplementsInterface(string $interface, $subject, string $message = ''): void
     {
-        static::assertThat($subject, new LogicalNot(static::implementsInterface($interface)), $message);
+        self::assertThat($subject, new LogicalNot(self::implementsInterface($interface)), $message);
     }
 
     /**
      * Checks classes that they implement *$interface*.
      *
      * @param string $interface name of the interface that is expected to be implemented
+     *
+     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function implementsInterface(string $interface): ImplementsInterface
     {

@@ -53,45 +53,6 @@ final class RecursivePropertiesUnwrapperTest extends TestCase
     }
 
     //
-    // __construct()
-    //
-
-    public function provConstruct(): array
-    {
-        return [
-            'RecursivePropertiesUnwrapperTest.php:'.__LINE__ => [
-                'args'   => [],
-                'expect' => [
-                    'tagging' => true,
-                ],
-            ],
-
-            'RecursivePropertiesUnwrapperTest.php:'.__LINE__ => [
-                'args'   => [true],
-                'expect' => [
-                    'tagging' => true,
-                ],
-            ],
-
-            'RecursivePropertiesUnwrapperTest.php:'.__LINE__ => [
-                'args'   => [false],
-                'expect' => [
-                    'tagging' => false,
-                ],
-            ],
-        ];
-    }
-
-    /**
-     * @dataProvider provConstruct
-     */
-    public function testConstruct(array $args, array $expect): void
-    {
-        $unwrapper = new RecursivePropertiesUnwrapper(...$args);
-        self::assertSame($expect['tagging'], $unwrapper->isTagging());
-    }
-
-    //
     // unwrap()
     //
 

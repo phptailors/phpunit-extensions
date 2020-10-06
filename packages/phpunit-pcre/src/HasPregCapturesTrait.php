@@ -49,10 +49,12 @@ trait HasPregCapturesTrait
      *                         Additional message
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
+     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertHasPregCaptures(array $expected, array $matches, string $message = ''): void
     {
-        static::assertThat($matches, static::hasPregCaptures($expected), $message);
+        self::assertThat($matches, self::hasPregCaptures($expected), $message);
     }
 
     /**
@@ -66,11 +68,12 @@ trait HasPregCapturesTrait
      *                         Additional message
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \PHPUnit\Framework\Exception                  when a non-string keys are found in *$expected*
+     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertNotHasPregCaptures(array $expected, array $matches, string $message = ''): void
     {
-        static::assertThat($matches, new LogicalNot(static::hasPregCaptures($expected)), $message);
+        self::assertThat($matches, new LogicalNot(self::hasPregCaptures($expected)), $message);
     }
 
     /**
@@ -87,6 +90,8 @@ trait HasPregCapturesTrait
      * Boolean expectations (``['foo' => true]`` or ``['foo' => false]``) work
      * properly only with arrays obtained from ``preg_match()`` invoked with
      * ``PREG_UNMATCHED_AS_NULL`` flag.
+     *
+     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function hasPregCaptures(array $expected): HasPregCaptures
     {

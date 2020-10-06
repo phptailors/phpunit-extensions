@@ -42,14 +42,6 @@ final class RecursivePropertiesUnwrapper implements RecursivePropertiesUnwrapper
     }
 
     /**
-     * Returns whether the algorithm is tagging the unwrapped arrays.
-     */
-    public function isTagging(): bool
-    {
-        return $this->tagging;
-    }
-
-    /**
      * Walk recursively through $properties and unwrap nested instances of
      * PropertiesInterface when suitable.
      *
