@@ -34,8 +34,7 @@ equal to ``$expected`` ones (tested with ``==`` operator).
 A property is either a static attribute value or a value returned by class's
 static method that is callable without arguments. The method compares only
 properties described in ``$expected``, so ``$expected = []`` accepts any
-existing ``$class``. If ``$class`` does not exists, the constraint fails as
-well.
+existing ``$class``. If ``$class`` does not exists, the constraint fails.
 
 The arguments are:
 
@@ -90,7 +89,7 @@ A property is either a static attribute value or a value returned by
 ``$class``'s static method that is callable without arguments. The method
 compares only properties described in ``$expected``, so ``$expected = []``
 accepts any existing ``$class``. If ``$class`` does not exist, the constraint
-fails as well.
+fails.
 
 The arguments are:
 
