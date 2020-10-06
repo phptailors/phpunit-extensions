@@ -17,7 +17,7 @@ namespace Tailors\PHPUnit\Preg;
 interface CapturesFilterInterface
 {
     /**
-     * Filter-out all elements of $array with $this->acceptable().
+     * Filter-out all elements of $array with $this->accepts().
      *
      * @return array the filtered array
      * @psalm-return array<array-key, string|null|array{0:string|null,1:int}>
@@ -39,7 +39,7 @@ interface CapturesFilterInterface
      * @param mixed $value
      * @psalm-assert-if-true string|null|array{0:string|null,1:int} $value
      */
-    public function acceptable($value): bool;
+    public function accepts($value): bool;
 }
 
 // vim: syntax=php sw=4 ts=4 et:

@@ -187,7 +187,7 @@ final class CapturesFilterTest extends TestCase
     public function testIsCapture(array $args, $value, bool $expect): void
     {
         $filter = new CapturesFilter(...$args);
-        $this->assertSame($expect, $filter->acceptable($value));
+        $this->assertSame($expect, $filter->accepts($value));
     }
 
     public static function provFilter(): array

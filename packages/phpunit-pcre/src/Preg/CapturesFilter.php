@@ -31,14 +31,14 @@ final class CapturesFilter implements CapturesFilterInterface
     }
 
     /**
-     * Filter-out all elements of $array with $this->acceptable().
+     * Filter-out all elements of $array with $this->accepts().
      *
      * @return array the filtered array
      * @psalm-return array<array-key, string|null|array{0:string|null,1:int}>
      */
     public function filter(array $array): array
     {
-        return array_filter($array, [$this, 'acceptable']);
+        return array_filter($array, [$this, 'accepts']);
     }
 
     /**
@@ -56,7 +56,7 @@ final class CapturesFilter implements CapturesFilterInterface
      * @param mixed $value
      * @psalm-assert-if-true string|null|array{0:string|null,1:int} $value
      */
-    public function acceptable($value): bool
+    public function accepts($value): bool
     {
         return $this->isScalarCapture($value) || $this->isArrayCapture($value);
     }
