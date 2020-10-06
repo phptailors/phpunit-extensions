@@ -205,7 +205,7 @@ groups as specified in <em>$excpected</em>.</p>                </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_assertHasPregCaptures">
-        <div class="location">at         line 53</div>
+        <div class="location">at         line 55</div>
         <code>        static            void
     <strong>assertHasPregCaptures</strong>(array $expected, array $matches, string $message = &#039;&#039;)
         </code>
@@ -267,6 +267,14 @@ properly only with arrays obtained from <code>preg_match()</code> invoked with
                 <td><abbr title="PHPUnit\Framework\ExpectationFailedException">ExpectationFailedException</abbr></td>
                 <td></td>
             </tr>
+                    <tr>
+                <td><abbr title="SebastianBergmann\RecursionContext\InvalidArgumentException">InvalidArgumentException</abbr></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td><a href="../../Tailors/PHPUnit/InvalidArgumentException.html"><abbr title="Tailors\PHPUnit\InvalidArgumentException">InvalidArgumentException</abbr></a></td>
+                <td></td>
+            </tr>
             </table>
 
             
@@ -276,7 +284,7 @@ properly only with arrays obtained from <code>preg_match()</code> invoked with
             </div>
                     <div class="method-item">
                     <h3 id="method_assertNotHasPregCaptures">
-        <div class="location">at         line 71</div>
+        <div class="location">at         line 74</div>
         <code>        static            void
     <strong>assertNotHasPregCaptures</strong>(array $expected, array $matches, string $message = &#039;&#039;)
         </code>
@@ -327,8 +335,12 @@ properly only with arrays obtained from <code>preg_match()</code> invoked with
                 <td></td>
             </tr>
                     <tr>
-                <td><abbr title="PHPUnit\Framework\Exception">Exception</abbr></td>
-                <td>when a non-string keys are found in <em>$expected</em></td>
+                <td><abbr title="SebastianBergmann\RecursionContext\InvalidArgumentException">InvalidArgumentException</abbr></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td><a href="../../Tailors/PHPUnit/InvalidArgumentException.html"><abbr title="Tailors\PHPUnit\InvalidArgumentException">InvalidArgumentException</abbr></a></td>
+                <td></td>
             </tr>
             </table>
 
@@ -339,7 +351,7 @@ properly only with arrays obtained from <code>preg_match()</code> invoked with
             </div>
                     <div class="method-item">
                     <h3 id="method_hasPregCaptures">
-        <div class="location">at         line 91</div>
+        <div class="location">at         line 96</div>
         <code>        static            <a href="../../Tailors/PHPUnit/Constraint/HasPregCaptures.html"><abbr title="Tailors\PHPUnit\Constraint\HasPregCaptures">HasPregCaptures</abbr></a>
     <strong>hasPregCaptures</strong>(array $expected)
         </code>
@@ -384,6 +396,15 @@ properly only with arrays obtained from <code>preg_match()</code> invoked with
     </table>
 
             
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Tailors/PHPUnit/InvalidArgumentException.html"><abbr title="Tailors\PHPUnit\InvalidArgumentException">InvalidArgumentException</abbr></a></td>
+                <td></td>
+            </tr>
+            </table>
+
             
                     </div>
     </div>
