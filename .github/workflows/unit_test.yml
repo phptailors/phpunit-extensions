@@ -57,13 +57,11 @@ jobs:
           - phpunit-properties
         os:
           - ubuntu-latest
-#          - windows-latest
         php-version:
           - 7.3
           - 7.4
           - 8.0
         dependencies:
-#          - lowest
           - highest
 
     name: ${{ matrix.package_name }} (${{ matrix.os }}:PHP-${{ matrix.php-version }}:${{ matrix.dependencies }})
