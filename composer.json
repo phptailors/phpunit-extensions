@@ -5,7 +5,7 @@
             "Tailors\\PHPUnit\\": [
                 "packages/phpunit-common/src/",
                 "packages/phpunit-inheritance/src/",
-                "packages/phpunit-pcre/src/",
+                "packages/phpunit-regexp/src/",
                 "packages/phpunit-properties/src/"
             ]
         }
@@ -15,7 +15,7 @@
             "Tailors\\PHPUnit\\": [
                 "packages/phpunit-common/tests/src/",
                 "packages/phpunit-inheritance/tests/src/",
-                "packages/phpunit-pcre/tests/src/",
+                "packages/phpunit-regexp/tests/src/",
                 "packages/phpunit-properties/tests/src/"
             ],
             "Tailors\\PHPUnit\\Docs\\Behat\\": "docs/sphinx/behat/"
@@ -24,7 +24,7 @@
     "replace": {
         "php-tailors/phpunit-common": "self.version",
         "php-tailors/phpunit-inheritance": "self.version",
-        "php-tailors/phpunit-pcre": "self.version",
+        "php-tailors/phpunit-regexp": "self.version",
         "php-tailors/phpunit-properties": "self.version"
     },
     "description": "Extensions to PHPUnit framework",

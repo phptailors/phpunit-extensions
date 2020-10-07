@@ -1,5 +1,5 @@
 {
-    "name": "php-tailors/phpunit-pcre",
+    "name": "php-tailors/phpunit-regexp",
     "description": "PCRE assertions for PHPUnit-based tests",
     "type": "library",
     "license": "MIT",

@@ -53,7 +53,7 @@ jobs:
         package_name:
           - phpunit-common
           - phpunit-inheritance
-          - phpunit-pcre
+          - phpunit-regexp
           - phpunit-properties
         os:
           - ubuntu-latest

@@ -15,8 +15,8 @@ Feature: Examples
       | "implementsInterfaceTest.php"       | "implementsInterfaceTest.stdout"       | "implementsInterfaceTest.stderr"       | 1         |
       | "usesTraitTest.php"                 | "usesTraitTest.stdout"                 | "usesTraitTest.stderr"                 | 1         |
 
-  @phpunit-pcre
-  Scenario Outline: Examples for php-tailors/phpunit-pcre
+  @phpunit-regexp
+  Scenario Outline: Examples for php-tailors/phpunit-regexp
     Given I tested <example_file> with PHPUnit
     Then I should see PHPUnit stdout from <stdout_file>
     And I should see stderr from <stderr_file>
