@@ -141,7 +141,7 @@ hasPregCaptures
    :header-rows: 0
 
    * - Package
-     - php-tailors/phpunit-pcre
+     - php-tailors/phpunit-regexp
    * - Trait
      - :class:`Tailors\\PHPUnit\\HasPregCapturesTrait`
 
