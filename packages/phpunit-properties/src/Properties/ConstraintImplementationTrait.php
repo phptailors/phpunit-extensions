@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit\Properties;
 
+use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\InvalidArgumentException;
 
 /**

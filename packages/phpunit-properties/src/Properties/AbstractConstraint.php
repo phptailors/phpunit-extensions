@@ -15,6 +15,7 @@ use PHPUnit\Framework\Constraint\LogicalNot;
 use PHPUnit\Framework\Constraint\Operator;
 use SebastianBergmann\Comparator\ComparisonFailure;
 use SebastianBergmann\Exporter\Exporter as SebastianBergmannExporter;
+use Tailors\PHPUnit\Comparator\ComparatorInterface;
 
 /**
  * Abstract base for constraints that examine subject's properties.

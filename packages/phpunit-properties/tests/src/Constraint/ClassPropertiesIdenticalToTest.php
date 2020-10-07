@@ -10,7 +10,7 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
-use Tailors\PHPUnit\Properties\IdentityComparator;
+use Tailors\PHPUnit\Comparator\IdentityComparator;
 
 /**
  * @small

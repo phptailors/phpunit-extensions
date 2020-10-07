@@ -10,11 +10,11 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
+use Tailors\PHPUnit\Comparator\ComparatorInterface;
+use Tailors\PHPUnit\Comparator\EqualityComparator;
 use Tailors\PHPUnit\Properties\AbstractConstraint;
 use Tailors\PHPUnit\Properties\ClassPropertySelector;
-use Tailors\PHPUnit\Properties\ComparatorInterface;
 use Tailors\PHPUnit\Properties\ConstraintImplementationTrait;
-use Tailors\PHPUnit\Properties\EqualityComparator;
 use Tailors\PHPUnit\Properties\PropertySelectorInterface;
 
 /**

@@ -10,9 +10,9 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
+use Tailors\PHPUnit\Comparator\EqualityComparator;
 use Tailors\PHPUnit\ExtendsClassTrait;
 use Tailors\PHPUnit\ImplementsInterfaceTrait;
-use Tailors\PHPUnit\Properties\EqualityComparator;
 
 /**
  * @small

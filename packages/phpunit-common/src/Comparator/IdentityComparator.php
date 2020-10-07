@@ -8,29 +8,32 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Properties;
+namespace Tailors\PHPUnit\Comparator;
 
 /**
- * @internal This interface is not covered by the backward compatibility promise
+ * @internal This class is not covered by the backward compatibility promise
  * @psalm-internal Tailors\PHPUnit
  */
-interface ComparatorInterface
+final class IdentityComparator implements ComparatorInterface
 {
     /**
-     * Compares two values.
-     *
      * @param mixed $left
      * @param mixed $right
      */
-    public function compare($left, $right): bool;
+    public function compare($left, $right): bool
+    {
+        return $left === $right;
+    }
 
     /**
      * Returns an adjective that identifies this comparison operator.
      *
-     * Shall return strings such as "equal to" (equality operator ``==``),
-     * "identical to" (identity operator ``===``), etc..
+     * @return string "identical to"
      */
-    public function adjective(): string;
+    public function adjective(): string
+    {
+        return 'identical to';
+    }
 }
 
 // vim: syntax=php sw=4 ts=4 et:

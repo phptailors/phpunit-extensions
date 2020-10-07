@@ -10,10 +10,10 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
+use Tailors\PHPUnit\Comparator\ComparatorInterface;
+use Tailors\PHPUnit\Comparator\IdentityComparator;
 use Tailors\PHPUnit\Properties\AbstractConstraint;
-use Tailors\PHPUnit\Properties\ComparatorInterface;
 use Tailors\PHPUnit\Properties\ConstraintImplementationTrait;
-use Tailors\PHPUnit\Properties\IdentityComparator;
 use Tailors\PHPUnit\Properties\ObjectPropertySelector;
 use Tailors\PHPUnit\Properties\PropertySelectorInterface;
 

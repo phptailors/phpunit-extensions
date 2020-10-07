@@ -8,13 +8,13 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Properties;
+namespace Tailors\PHPUnit\Comparator;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
  * @psalm-internal Tailors\PHPUnit
  */
-final class IdentityComparator implements ComparatorInterface
+final class EqualityComparator implements ComparatorInterface
 {
     /**
      * @param mixed $left
@@ -22,17 +22,17 @@ final class IdentityComparator implements ComparatorInterface
      */
     public function compare($left, $right): bool
     {
-        return $left === $right;
+        return $left == $right;
     }
 
     /**
      * Returns an adjective that identifies this comparison operator.
      *
-     * @return string "identical to"
+     * @return string "equal to"
      */
     public function adjective(): string
     {
-        return 'identical to';
+        return 'equal to';
     }
 }
 
