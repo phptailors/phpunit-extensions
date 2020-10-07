@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="robots" content="index, follow, all" />
-    <title>Tailors\PHPUnit\Properties\IdentityComparator | API Documentation</title>
+    <title>Tailors\PHPUnit\Comparator\ComparatorInterface | API Documentation</title>
 
             <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-theme.min.css">
@@ -19,7 +19,7 @@
     
     </head>
 
-    <body id="class" data-name="class:Tailors_PHPUnit_Properties_IdentityComparator" data-root-path="../../../">
+    <body id="class" data-name="class:Tailors_PHPUnit_Comparator_ComparatorInterface" data-root-path="../../../">
             <div id="content">
         <div id="left-column">
                 <div id="control-panel">
@@ -65,22 +65,21 @@
 
                         <div class="namespace-breadcrumbs">
             <ol class="breadcrumb">
-                <li><span class="label label-default">class</span></li>
-                        <li><a href="../../../Tailors.html">Tailors</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit.html">PHPUnit</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit/Properties.html">Properties</a></li><li class="backslash">\</li><li>IdentityComparator</li>
+                <li><span class="label label-default">interface</span></li>
+                        <li><a href="../../../Tailors.html">Tailors</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit.html">PHPUnit</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit/Comparator.html">Comparator</a></li><li class="backslash">\</li><li>ComparatorInterface</li>
             </ol>
         </div>
                 <div id="page-content">
                 
     <div class="page-header">
         <h1>
-            IdentityComparator
+            ComparatorInterface
                 
         </h1>
     </div>
 
-    <p>    class
-    <strong>IdentityComparator</strong>        implements
-        <a href="../../../Tailors/PHPUnit/Properties/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Properties\ComparatorInterface">ComparatorInterface</abbr></a>
+    <p>    interface
+    <strong>ComparatorInterface</strong>
 </p>
 
         
@@ -100,8 +99,7 @@
                 <div class="col-md-8 type">
                     <a href="#method_compare">compare</a>(mixed $left, mixed $right)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Compares two values.</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -122,7 +120,7 @@
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method_compare">
-        <div class="location">at         line 23</div>
+        <div class="location">at         line 25</div>
         <code>                    bool
     <strong>compare</strong>(mixed $left, mixed $right)
         </code>
@@ -131,6 +129,8 @@
             
     
 
+                    <div class="method-description">
+                                    <p>Compares two values.</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
@@ -175,7 +175,8 @@
     
 
                     <div class="method-description">
-                                    <p>Returns an adjective that identifies this comparison operator.</p>                                                </div>
+                                    <p>Returns an adjective that identifies this comparison operator.</p>                    <p>Shall return strings such as "equal to" (equality operator <code>==</code>),
+"identical to" (identity operator <code>===</code>), etc..</p>                            </div>
                 <div class="tags">
             
                             <h4>Return Value</h4>
