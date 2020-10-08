@@ -32,6 +32,12 @@ trait ProvClassPropertiesTrait
 
         return [
             'ProvClassPropertiesTrait.php:'.__LINE__ => [
+                'expect' => [],
+                'actual' => $classes[0],
+                'string' => $classes[0],
+            ],
+
+            'ProvClassPropertiesTrait.php:'.__LINE__ => [
                 'expect' => [
                     'emptyString' => '',
                     'null'        => null,

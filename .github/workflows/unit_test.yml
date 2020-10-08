@@ -51,6 +51,7 @@ jobs:
       fail-fast: false
       matrix:
         package_name:
+          - phpunit-arrays
           - phpunit-common
           - phpunit-inheritance
           - phpunit-regexp

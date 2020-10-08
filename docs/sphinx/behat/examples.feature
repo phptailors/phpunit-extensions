@@ -1,4 +1,18 @@
 Feature: Examples
+  @phpunit-arrays
+  Scenario Outline: Examples for php-tailors/phpunit-arrays
+    Given I tested <example_file> with PHPUnit
+    Then I should see PHPUnit stdout from <stdout_file>
+    And I should see stderr from <stderr_file>
+    And I should see exit code <exit_code>
+
+    Examples:
+      | example_file                            | stdout_file                                | stderr_file                                    | exit_code |
+      | "AssertArrayValuesEqualToTest.php"      | "AssertArrayValuesEqualToTest.stdout"      | "AssertArrayValuesEqualToTest.stderr"      | 1         |
+      | "AssertArrayValuesIdenticalToTest.php"  | "AssertArrayValuesIdenticalToTest.stdout"  | "AssertArrayValuesIdenticalToTest.stderr"  | 1         |
+      | "arrayValuesEqualToTest.php"            | "arrayValuesEqualToTest.stdout"            | "arrayValuesEqualToTest.stderr"            | 1         |
+      | "arrayValuesIdenticalToTest.php"        | "arrayValuesIdenticalToTest.stdout"        | "arrayValuesIdenticalToTest.stderr"        | 1         |
+
   @phpunit-inheritance
   Scenario Outline: Examples for php-tailors/phpunit-inheritance
     Given I tested <example_file> with PHPUnit

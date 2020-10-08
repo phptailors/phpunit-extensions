@@ -7,6 +7,84 @@ This section lists the various constraint methods provided by sub-packages of
 php-tailors/phpunit-extensions. The methods may be added to your test class by
 including appropriate trait as shown in prerequisite tables below.
 
+.. _constraints.arrayValuesEqualTo:
+
+arrayValuesEqualTo
+------------------
+
+.. list-table:: Prerequisites for arrayValuesEqualTo()
+   :width: 100%
+   :widths: 25 75
+   :header-rows: 0
+
+   * - Package
+     - php-tailors/phpunit-arrays
+   * - Trait
+     - :class:`Tailors\\PHPUnit\\ArrayValuesEqualToTrait`
+
+Synopsis:
+
+.. code:: php
+
+  function arrayValuesEqualTo(array $expected)
+
+Creates :class:`Tailors\\PHPUnit\\Constraint\\ArrayValuesEqualTo` constraint.
+
+The constraint accepts arrays and ArrayAccess_ instances having selected values
+equal to ``$expected``.
+
+.. literalinclude:: examples/arrayValuesEqualToTest.php
+   :linenos:
+   :caption: Usage of arrayValuesEqualTo()
+   :name: constraints.arrayValuesEqualTo.example
+
+.. literalinclude:: examples/arrayValuesEqualToTest.stdout
+  :linenos:
+  :language: none
+
+The constraint may be used recursively, i.e. it may be used to require given
+nested value to be an array with prescribed properties.
+
+
+.. _constraints.arrayValuesIdenticalTo:
+
+arrayValuesIdenticalTo
+----------------------
+
+.. list-table:: Prerequisites for arrayValuesIdenticalTo()
+   :width: 100%
+   :widths: 25 75
+   :header-rows: 0
+
+   * - Package
+     - php-tailors/phpunit-arrays
+   * - Trait
+     - :class:`Tailors\\PHPUnit\\ArrayValuesIdenticalToTrait`
+
+Synopsis:
+
+.. code:: php
+
+  function arrayValuesIdenticalTo(array $expected)
+
+Creates :class:`Tailors\\PHPUnit\\Constraint\\ArrayValuesIdenticalTo` constraint.
+
+The constraint accepts arrays and ArrayAccess_ instances having selected values
+identical to ``$expected``.
+
+.. literalinclude:: examples/arrayValuesIdenticalToTest.php
+   :linenos:
+   :caption: Usage of arrayValuesIdenticalTo()
+   :name: constraints.arrayValuesIdenticalTo.example
+
+.. literalinclude:: examples/arrayValuesIdenticalToTest.stdout
+  :linenos:
+  :language: none
+
+The constraint may be used recursively, i.e. it may be used to require a nested
+value to be an array with prescribed values.
+
+
 .. _constraints.classPropertiesEqualTo:
 
 classPropertiesEqualTo
@@ -323,5 +401,6 @@ The constraint accepts objects (and classes) that use given ``$trait``.
   :linenos:
   :language: none
 
+.. _ArrayAccess:  https://www.php.net/manual/en/class.arrayaccess.php
 
 .. <!--- vim: set syntax=rst spell: -->

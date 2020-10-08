@@ -88,6 +88,12 @@ trait ProvObjectPropertiesTrait
 
         return [
             'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+                'expect' => [],
+                'actual' => $jsmith,
+                'string' => 'object '.get_class($jsmith),
+            ],
+
+            'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => ['name' => 'John', 'last' => 'Smith', 'age' => 21, 'wife' => $esmith],
                 'actual' => $jsmith,
                 'string' => 'object '.get_class($jsmith),
@@ -321,49 +327,49 @@ trait ProvObjectPropertiesTrait
         $registry->addFamily('smith', [$esmith, $jsmith]);
 
         return [
-            'ObjectPropertiesEqualToTraitTest.php:'.__LINE__ => [
+            'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => ['name' => 'John', 'last' => 'Brown', 'age' => 21],
                 'actual' => $jsmith,
                 'string' => 'object '.get_class($jsmith),
             ],
 
-            'ObjectPropertiesEqualToTraitTest.php:'.__LINE__ => [
+            'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => ['name' => 'John', 'last' => 'Smith', 'wife' => null],
                 'actual' => $jsmith,
                 'string' => 'object '.get_class($jsmith),
             ],
 
-            'ObjectPropertiesEqualToTraitTest.php:'.__LINE__ => [
+            'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => ['name' => 'John', 'last' => 'Smith', 'wife' => 'Emily'],
                 'actual' => $jsmith,
                 'string' => 'object '.get_class($jsmith),
             ],
 
-            'ObjectPropertiesEqualToTraitTest.php:'.__LINE__ => [
+            'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => ['name' => 'John', 'last' => 'Smith', 'wife' => $hbrown],
                 'actual' => $jsmith,
                 'string' => 'object '.get_class($jsmith),
             ],
 
-            'ObjectPropertiesEqualToTraitTest.php:'.__LINE__ => [
+            'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => ['name' => 'John', 'last' => 'Brown'],
                 'actual' => $jsmith,
                 'string' => 'object '.get_class($jsmith),
             ],
 
-            'ObjectPropertiesEqualToTraitTest.php:'.__LINE__ => [
+            'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => ['age' => 19],
                 'actual' => $jsmith,
                 'string' => 'object '.get_class($jsmith),
             ],
 
-            'ObjectPropertiesEqualToTraitTest.php:'.__LINE__ => [
+            'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => ['age' => 21, 'getSalary()' => 1230],
                 'actual' => $jsmith,
                 'string' => 'object '.get_class($jsmith),
             ],
 
-            'ObjectPropertiesEqualToTraitTest.php:'.__LINE__ => [
+            'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => [
                     'name' => 'John',
                     'last' => 'Smith',
@@ -385,7 +391,7 @@ trait ProvObjectPropertiesTrait
                 'string' => 'object '.get_class($jsmith),
             ],
 
-            'ObjectPropertiesEqualToTraitTest.php:'.__LINE__ => [
+            'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => [
                     'family' => [
                         ['name' => 'Emily', 'last' => 'Smith'],
@@ -395,7 +401,7 @@ trait ProvObjectPropertiesTrait
                 'string' => 'object '.get_class($jsmith),
             ],
 
-            'ObjectPropertiesEqualToTraitTest.php:'.__LINE__ => [
+            'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => [
                     'persons' => [
                         ['name' => 'Emily', 'last' => 'Smith'],
@@ -412,13 +418,13 @@ trait ProvObjectPropertiesTrait
                 'string' => 'object '.get_class($registry),
             ],
 
-            'ObjectPropertiesEqualToTraitTest.php:'.__LINE__ => [
+            'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => [
                     'persons' => [
                         $esmith,
                         $jsmith,
                     ],
-                    // the following should not match as the 'families' property is an array, not an object.
+                    // the following must not match, as the 'families' property is an array, not an object.
                     'families' => ObjectPropertiesIdenticalTo::create([
                         'smith' => [
                             $esmith,

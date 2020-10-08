@@ -1,8 +1,8 @@
-PHPUnit 9.3.11 by Sebastian Bergmann and contributors.
+PHPUnit 9.4.0 by Sebastian Bergmann and contributors.
 
 .F                                                                  2 / 2 (100%)
 
-Time: 00:00.006, Memory: 6.00 MB
+Time: 00:00.011, Memory: 6.00 MB
 
 There was 1 failure:
 
@@ -11,10 +11,10 @@ Failed asserting that classPropertiesIdenticalToTest is a class with properties 
 --- Expected
 +++ Actual
 @@ @@
--Properties <Expect> (
+-values <expect> (
 -    'attribute' => '123'
 -    'getValue()' => null
-+Properties <Actual> (
++values <actual> (
 +    'attribute' => 123
 +    'getValue()' => 321
  )
@@ -22,4 +22,4 @@ Failed asserting that classPropertiesIdenticalToTest is a class with properties 
 classPropertiesIdenticalToTest.php:27
 
 FAILURES!
-Tests: 2, Assertions: 4, Failures: 1.
+Tests: 2, Assertions: 2, Failures: 1.

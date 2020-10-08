@@ -12,10 +12,11 @@ namespace Tailors\PHPUnit\Constraint;
 
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\IdentityComparator;
-use Tailors\PHPUnit\Properties\AbstractConstraint;
-use Tailors\PHPUnit\Properties\ClassPropertySelector;
-use Tailors\PHPUnit\Properties\ConstraintImplementationTrait;
-use Tailors\PHPUnit\Properties\PropertySelectorInterface;
+use Tailors\PHPUnit\Properties\ValidateExpectationsTrait;
+use Tailors\PHPUnit\Values\AbstractConstraint;
+use Tailors\PHPUnit\Values\ClassPropertySelector;
+use Tailors\PHPUnit\Values\ConstraintImplementationTrait;
+use Tailors\PHPUnit\Values\ValueSelectorInterface;
 
 /**
  * Constraint that accepts classes having properties identical to specified ones.
@@ -44,6 +45,7 @@ use Tailors\PHPUnit\Properties\PropertySelectorInterface;
 final class ClassPropertiesIdenticalTo extends AbstractConstraint
 {
     use ConstraintImplementationTrait;
+    use ValidateExpectationsTrait;
 
     /**
      * Creates instance of IdentityComparator.
@@ -56,7 +58,7 @@ final class ClassPropertiesIdenticalTo extends AbstractConstraint
     /**
      * Creates instance of ClassPropertySelector.
      */
-    protected static function makePropertySelector(): PropertySelectorInterface
+    protected static function makeSelector(): ValueSelectorInterface
     {
         return new ClassPropertySelector();
     }

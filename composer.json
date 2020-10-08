@@ -3,33 +3,38 @@
     "autoload": {
         "psr-4": {
             "Tailors\\PHPUnit\\": [
+                "packages/phpunit-arrays/src/",
                 "packages/phpunit-common/src/",
                 "packages/phpunit-inheritance/src/",
-                "packages/phpunit-regexp/src/",
-                "packages/phpunit-properties/src/"
+                "packages/phpunit-properties/src/",
+                "packages/phpunit-regexp/src/"
             ]
         }
     },
     "autoload-dev": {
         "psr-4": {
             "Tailors\\PHPUnit\\": [
+                "packages/phpunit-arrays/tests/src/",
                 "packages/phpunit-common/tests/src/",
                 "packages/phpunit-inheritance/tests/src/",
-                "packages/phpunit-regexp/tests/src/",
-                "packages/phpunit-properties/tests/src/"
+                "packages/phpunit-properties/tests/src/",
+                "packages/phpunit-regexp/tests/src/"
             ],
             "Tailors\\PHPUnit\\Docs\\Behat\\": "docs/sphinx/behat/"
         }
     },
     "replace": {
+        "php-tailors/phpunit-arrays": "self.version",
         "php-tailors/phpunit-common": "self.version",
         "php-tailors/phpunit-inheritance": "self.version",
-        "php-tailors/phpunit-regexp": "self.version",
-        "php-tailors/phpunit-properties": "self.version"
+        "php-tailors/phpunit-properties": "self.version",
+        "php-tailors/phpunit-regexp": "self.version"
     },
     "description": "Extensions to PHPUnit framework",
     "require": {
-        "php": ">=7.3"
+        "php": ">=7.3",
+        "sebastian/exporter": "^4.0",
+        "sebastian/recursion-context": "^4.0.3"
     },
     "license": "MIT",
     "require-dev": {

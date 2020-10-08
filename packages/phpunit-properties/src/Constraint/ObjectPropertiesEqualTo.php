@@ -12,10 +12,11 @@ namespace Tailors\PHPUnit\Constraint;
 
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\EqualityComparator;
-use Tailors\PHPUnit\Properties\AbstractConstraint;
-use Tailors\PHPUnit\Properties\ConstraintImplementationTrait;
-use Tailors\PHPUnit\Properties\ObjectPropertySelector;
-use Tailors\PHPUnit\Properties\PropertySelectorInterface;
+use Tailors\PHPUnit\Properties\ValidateExpectationsTrait;
+use Tailors\PHPUnit\Values\AbstractConstraint;
+use Tailors\PHPUnit\Values\ConstraintImplementationTrait;
+use Tailors\PHPUnit\Values\ObjectPropertySelector;
+use Tailors\PHPUnit\Values\ValueSelectorInterface;
 
 /**
  * Constraint that accepts objects having properties equal to specified ones.
@@ -44,6 +45,7 @@ use Tailors\PHPUnit\Properties\PropertySelectorInterface;
 final class ObjectPropertiesEqualTo extends AbstractConstraint
 {
     use ConstraintImplementationTrait;
+    use ValidateExpectationsTrait;
 
     /**
      * Creates instance of EqualityComparator.
@@ -56,7 +58,7 @@ final class ObjectPropertiesEqualTo extends AbstractConstraint
     /**
      * Creates instance of ObjectPropertySelector.
      */
-    protected static function makePropertySelector(): PropertySelectorInterface
+    protected static function makeSelector(): ValueSelectorInterface
     {
         return new ObjectPropertySelector();
     }

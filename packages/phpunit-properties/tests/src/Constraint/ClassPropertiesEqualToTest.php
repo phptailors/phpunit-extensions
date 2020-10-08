@@ -11,13 +11,15 @@
 namespace Tailors\PHPUnit\Constraint;
 
 use Tailors\PHPUnit\Comparator\EqualityComparator;
+use Tailors\PHPUnit\Values\AbstractConstraint;
 
 /**
  * @small
  * @covers \Tailors\PHPUnit\Constraint\ClassPropertiesEqualTo
  * @covers \Tailors\PHPUnit\Constraint\PropertiesConstraintTestCase
  * @covers \Tailors\PHPUnit\Constraint\ProvClassPropertiesTrait
- * @covers \Tailors\PHPUnit\Properties\AbstractConstraint
+ * @covers \Tailors\PHPUnit\Values\AbstractConstraint
+ * @covers \Tailors\PHPUnit\Values\ConstraintTestCase
  *
  * @internal This class is not covered by the backward compatibility promise
  * @psalm-internal Tailors\PHPUnit
@@ -31,9 +33,19 @@ final class ClassPropertiesEqualToTest extends PropertiesConstraintTestCase
         return 'a class';
     }
 
+    public static function selectable(): string
+    {
+        return 'properties';
+    }
+
     public static function adjective(): string
     {
         return 'equal to';
+    }
+
+    public static function createConstraint(...$args): AbstractConstraint
+    {
+        return ClassPropertiesEqualTo::create(...$args);
     }
 
     public static function constraintClass(): string
@@ -54,7 +66,7 @@ final class ClassPropertiesEqualToTest extends PropertiesConstraintTestCase
      */
     public function testPropertiesEqualToSucceeds(array $expect, $actual): void
     {
-        parent::examinePropertiesMatchSucceeds($expect, $actual);
+        parent::examineValuesMatchSucceeds($expect, $actual);
     }
 
     /**
@@ -65,7 +77,7 @@ final class ClassPropertiesEqualToTest extends PropertiesConstraintTestCase
      */
     public function testPropertiesEqualToFails(array $expect, $actual, string $string): void
     {
-        parent::examinePropertiesMatchFails($expect, $actual, $string);
+        parent::examineValuesMatchFails($expect, $actual, $string);
     }
 
     /**
@@ -76,7 +88,7 @@ final class ClassPropertiesEqualToTest extends PropertiesConstraintTestCase
      */
     public function testNotClassPropertiesEqualToSucceeds(array $expect, $actual): void
     {
-        parent::examineNotPropertiesMatchSucceeds($expect, $actual);
+        parent::examineNotValuesMatchSucceeds($expect, $actual);
     }
 
     /**
@@ -87,7 +99,7 @@ final class ClassPropertiesEqualToTest extends PropertiesConstraintTestCase
      */
     public function testNotClassPropertiesEqualToFails(array $expect, $actual, string $string): void
     {
-        parent::examineNotPropertiesMatchFails($expect, $actual, $string);
+        parent::examineNotValuesMatchFails($expect, $actual, $string);
     }
 }
 
