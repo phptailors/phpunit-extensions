@@ -20,7 +20,7 @@ if (!function_exists('Tailors\\PHPUnit\\testInvalidArgumentExceptionFromBackTrac
         string $provided
     ): InvalidArgumentException {
         $message = sprintf(
-            'Argument #%d of %s() must be %s, %s given.',
+            'Argument %d passed to %s() must be %s, %s given.',
             $argument,
             __FUNCTION__,
             $expected,
@@ -58,7 +58,7 @@ final class InvalidArgumentExceptionTest extends TestCase
     public function testFromBackTrace(int $argument, string $expected, string $provided): void
     {
         $message = sprintf(
-            'Argument #%d of %s() must be %s, %s given.',
+            'Argument %d passed to %s() must be %s, %s given.',
             $argument,
             __METHOD__,
             $expected,
@@ -75,7 +75,7 @@ final class InvalidArgumentExceptionTest extends TestCase
     public function testFromBackTraceFromFunction(int $argument, string $expected, string $provided): void
     {
         $message = sprintf(
-            'Argument #%d of %s() must be %s, %s given.',
+            'Argument %d passed to %s() must be %s, %s given.',
             $argument,
             __METHOD__,
             $expected,

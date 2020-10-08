@@ -29,7 +29,7 @@ final class StringArgumentValidatorTest extends TestCase
 
     public function testValidateThrowsInvalidArgumentException(): void
     {
-        $message = sprintf('Argument #1 of %s() must be a numeric string, \'foo\' given.', __METHOD__);
+        $message = sprintf('Argument 1 passed to %s() must be a numeric string, \'foo\' given.', __METHOD__);
 
         $validator = new StringArgumentValidator('is_numeric', 'a numeric string');
 

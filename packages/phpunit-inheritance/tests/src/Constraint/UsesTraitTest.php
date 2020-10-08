@@ -116,7 +116,7 @@ final class UsesTraitTest extends TestCase
 
     public static function provConstraintThrowsInvalidArgumentException(): array
     {
-        $message = '/Argument #1 of \S+ must be a trait-string/';
+        $message = '/Argument 1 passed to \S+ must be a trait-string/';
 
         return [
             'UsesTraitTest.php:'.__LINE__ => [

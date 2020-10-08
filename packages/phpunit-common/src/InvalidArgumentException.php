@@ -40,7 +40,7 @@ final class InvalidArgumentException extends \InvalidArgumentException implement
     {
         return new self(
             sprintf(
-                'Argument #%d of %s() must be %s, %s given.',
+                'Argument %d passed to %s() must be %s, %s given.',
                 $argument,
                 $function,
                 $expected,

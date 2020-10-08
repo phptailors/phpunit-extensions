@@ -135,7 +135,7 @@ final class ImplementsInterfaceTraitTest extends TestCase
 
     public static function provImplementsInterfaceThrowsInvalidArgumentException(): array
     {
-        $template = 'Argument #1 of %s::create() must be an interface-string, \'%s\' given';
+        $template = 'Argument 1 passed to %s::create() must be an interface-string, \'%s\' given';
 
         return [
             'ImplementsInterfaceTraitTest.php:'.__LINE__ => [

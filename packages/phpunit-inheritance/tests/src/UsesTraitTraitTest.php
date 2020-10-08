@@ -148,7 +148,7 @@ final class UsesTraitTraitTest extends TestCase
 
     public static function provUsesTraitThrowsInvalidArgumentException(): array
     {
-        $template = 'Argument #1 of %s::create() must be a trait-string';
+        $template = 'Argument 1 passed to %s::create() must be a trait-string';
 
         return [
             'UsesTraitTraitTest.php:'.__LINE__ => [

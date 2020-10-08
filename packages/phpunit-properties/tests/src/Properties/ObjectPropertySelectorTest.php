@@ -267,7 +267,7 @@ final class ObjectPropertySelectorTest extends TestCase
 
         $method = preg_quote(ObjectPropertySelector::class.'::'.$method.'()', '/');
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessageMatches('/Argument #1 of '.$method.' must be an object/');
+        $this->expectExceptionMessageMatches('/Argument 1 passed to '.$method.' must be an object/');
 
         $selector->selectProperty(123, $key);
 

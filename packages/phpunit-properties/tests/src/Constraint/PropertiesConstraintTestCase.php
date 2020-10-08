@@ -251,7 +251,7 @@ abstract class PropertiesConstraintTestCase extends TestCase
         }
 
         $message = sprintf(
-            'Argument #1 of %s::create() must be an associative array with string keys, '.
+            'Argument 1 passed to %s::create() must be an associative array with string keys, '.
             'an array with %d non-string %s given',
             static::constraintClass(),
             $count,

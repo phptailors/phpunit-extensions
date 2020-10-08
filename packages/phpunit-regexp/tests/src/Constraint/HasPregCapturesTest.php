@@ -83,7 +83,7 @@ final class HasPregCapturesTest extends TestCase
 
     public static function provCreateThrowsInvalidArgumentException(): array
     {
-        $template = 'Argument #1 of '.HasPregCaptures::class.'::create() '.
+        $template = 'Argument 1 passed to '.HasPregCaptures::class.'::create() '.
             'must be an array of valid expectations, '.
             'invalid %s at %s given.';
 

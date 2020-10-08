@@ -110,7 +110,7 @@ final class ExtendsClassTest extends TestCase
 
     public static function provThrowsInvalidArgumentException(): array
     {
-        $message = '/Argument #1 of \S+ must be a class-string/';
+        $message = '/Argument 1 passed to \S+ must be a class-string/';
 
         return [
             'ExtendsClassTest.php:'.__LINE__ => [

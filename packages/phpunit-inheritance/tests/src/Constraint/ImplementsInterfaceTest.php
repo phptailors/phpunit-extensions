@@ -116,7 +116,7 @@ final class ImplementsInterfaceTest extends TestCase
 
     public static function provConstraintThrowsInvalidArgumentException(): array
     {
-        $message = '/Argument #1 of \S+ must be an interface-string/';
+        $message = '/Argument 1 passed to \S+ must be an interface-string/';
 
         return [
             'ImplementsInterfaceTest.php:'.__LINE__ => [
