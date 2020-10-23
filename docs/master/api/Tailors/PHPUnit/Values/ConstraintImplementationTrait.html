@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="robots" content="index, follow, all" />
-    <title>Tailors\PHPUnit\Properties\ClassPropertySelector | API Documentation</title>
+    <title>Tailors\PHPUnit\Values\ConstraintImplementationTrait | API Documentation</title>
 
             <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-theme.min.css">
@@ -19,7 +19,7 @@
     
     </head>
 
-    <body id="class" data-name="class:Tailors_PHPUnit_Properties_ClassPropertySelector" data-root-path="../../../">
+    <body id="class" data-name="class:Tailors_PHPUnit_Values_ConstraintImplementationTrait" data-root-path="../../../">
             <div id="content">
         <div id="left-column">
                 <div id="control-panel">
@@ -65,21 +65,21 @@
 
                         <div class="namespace-breadcrumbs">
             <ol class="breadcrumb">
-                <li><span class="label label-default">class</span></li>
-                        <li><a href="../../../Tailors.html">Tailors</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit.html">PHPUnit</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit/Properties.html">Properties</a></li><li class="backslash">\</li><li>ClassPropertySelector</li>
+                <li><span class="label label-default">trait</span></li>
+                        <li><a href="../../../Tailors.html">Tailors</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit.html">PHPUnit</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit/Values.html">Values</a></li><li class="backslash">\</li><li>ConstraintImplementationTrait</li>
             </ol>
         </div>
                 <div id="page-content">
                 
     <div class="page-header">
         <h1>
-            ClassPropertySelector
+            ConstraintImplementationTrait
                 
         </h1>
     </div>
 
-    <p>    class
-    <strong>ClassPropertySelector</strong>        extends <a href="../../../Tailors/PHPUnit/Properties/AbstractPropertySelector.html"><abbr title="Tailors\PHPUnit\Properties\AbstractPropertySelector">AbstractPropertySelector</abbr></a>
+    <p>    trait
+    <strong>ConstraintImplementationTrait</strong>
 </p>
 
         
@@ -94,21 +94,10 @@
             <div class="container-fluid underlined">
                     <div class="row">
                 <div class="col-md-2 type">
-                    bool
+                    static&nbsp;<a href="../../../Tailors/PHPUnit/Values/ConstraintImplementationTrait.html"><abbr title="Tailors\PHPUnit\Values\ConstraintImplementationTrait">ConstraintImplementationTrait</abbr></a>
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_selectProperty">selectProperty</a>(mixed $subject, mixed $key, mixed $retval = null)
-        
-                                            <p class="no-description">No description</p>
-                                    </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Properties/AbstractPropertySelector.html#method_selectProperty"><abbr title="Tailors\PHPUnit\Properties\AbstractPropertySelector">AbstractPropertySelector</abbr></a></small></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    bool
-                </div>
-                <div class="col-md-8 type">
-                    <a href="#method_selectWithMethod">selectWithMethod</a>($subject, string $method, $retval = null)
+                    <a href="#method_create">create</a>(array $expected)
         
                                             <p class="no-description">No description</p>
                                     </div>
@@ -116,10 +105,10 @@
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    bool
+                    static&nbsp;void
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_selectWithAttribute">selectWithAttribute</a>(mixed $subject, mixed $key, mixed $retval = null)
+                    <a href="#method_validateExpectations">validateExpectations</a>(array $expected, int $argument, int $depth = 1)
         
                                             <p class="no-description">No description</p>
                                     </div>
@@ -127,23 +116,22 @@
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    bool
+                    static&nbsp;<a href="../../../Tailors/PHPUnit/Values/ValueSelectorInterface.html"><abbr title="Tailors\PHPUnit\Values\ValueSelectorInterface">ValueSelectorInterface</abbr></a>
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_canSelectFrom">canSelectFrom</a>(mixed $subject)
+                    <a href="#method_makeSelector">makeSelector</a>()
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Creates instance of ValueSelectorInterface.</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    string
+                    static&nbsp;<a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a>
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_subject">subject</a>()
+                    <a href="#method_makeComparator">makeComparator</a>()
         
-                                            <p>Returns short description of subject type supported by this constraint.</p>                </div>
+                                            <p>Creates instance of EqualityComparator.</p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -153,10 +141,10 @@
 
             <div id="method-details">
                     <div class="method-item">
-                    <h3 id="method_selectProperty">
-        <div class="location">in <a href="../../../Tailors/PHPUnit/Properties/AbstractPropertySelector.html#method_selectProperty"><abbr title="Tailors\PHPUnit\Properties\AbstractPropertySelector">AbstractPropertySelector</abbr></a> at         line 26</div>
-        <code>                    bool
-    <strong>selectProperty</strong>(mixed $subject, mixed $key, mixed $retval = null)
+                    <h3 id="method_create">
+        <div class="location">at         line 24</div>
+        <code>        static            <a href="../../../Tailors/PHPUnit/Values/ConstraintImplementationTrait.html"><abbr title="Tailors\PHPUnit\Values\ConstraintImplementationTrait">ConstraintImplementationTrait</abbr></a>
+    <strong>create</strong>(array $expected)
         </code>
     </h3>
     <div class="details">
@@ -168,18 +156,8 @@
 
                     <table class="table table-condensed">
                     <tr>
-                <td>mixed</td>
-                <td>$subject</td>
-                <td></td>
-            </tr>
-                    <tr>
-                <td>mixed</td>
-                <td>$key</td>
-                <td></td>
-            </tr>
-                    <tr>
-                <td>mixed</td>
-                <td>$retval</td>
+                <td>array</td>
+                <td>$expected</td>
                 <td></td>
             </tr>
             </table>
@@ -189,55 +167,7 @@
 
                     <table class="table table-condensed">
         <tr>
-            <td>bool</td>
-            <td></td>
-        </tr>
-    </table>
-
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
-                    <h3 id="method_selectWithMethod">
-        <div class="location">at         line 48</div>
-        <code>            protected        bool
-    <strong>selectWithMethod</strong>($subject, string $method, $retval = null)
-        </code>
-    </h3>
-    <div class="details">
-            
-    
-
-                <div class="tags">
-                            <h4>Parameters</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td></td>
-                <td>$subject</td>
-                <td></td>
-            </tr>
-                    <tr>
-                <td>string</td>
-                <td>$method</td>
-                <td></td>
-            </tr>
-                    <tr>
-                <td></td>
-                <td>$retval</td>
-                <td></td>
-            </tr>
-            </table>
-
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td>bool</td>
+            <td><a href="../../../Tailors/PHPUnit/Values/ConstraintImplementationTrait.html"><abbr title="Tailors\PHPUnit\Values\ConstraintImplementationTrait">ConstraintImplementationTrait</abbr></a></td>
             <td></td>
         </tr>
     </table>
@@ -258,10 +188,10 @@
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_selectWithAttribute">
-        <div class="location">at         line 71</div>
-        <code>            protected        bool
-    <strong>selectWithAttribute</strong>(mixed $subject, mixed $key, mixed $retval = null)
+                    <h3 id="method_validateExpectations">
+        <div class="location">at         line 37</div>
+        <code>    abstract    static    protected        void
+    <strong>validateExpectations</strong>(array $expected, int $argument, int $depth = 1)
         </code>
     </h3>
     <div class="details">
@@ -273,18 +203,18 @@
 
                     <table class="table table-condensed">
                     <tr>
-                <td>mixed</td>
-                <td>$subject</td>
+                <td>array</td>
+                <td>$expected</td>
                 <td></td>
             </tr>
                     <tr>
-                <td>mixed</td>
-                <td>$key</td>
+                <td>int</td>
+                <td>$argument</td>
                 <td></td>
             </tr>
                     <tr>
-                <td>mixed</td>
-                <td>$retval</td>
+                <td>int</td>
+                <td>$depth</td>
                 <td></td>
             </tr>
             </table>
@@ -294,7 +224,7 @@
 
                     <table class="table table-condensed">
         <tr>
-            <td>bool</td>
+            <td>void</td>
             <td></td>
         </tr>
     </table>
@@ -315,48 +245,10 @@
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_canSelectFrom">
-        <div class="location">at         line 26</div>
-        <code>                    bool
-    <strong>canSelectFrom</strong>(mixed $subject)
-        </code>
-    </h3>
-    <div class="details">
-            
-    
-
-                <div class="tags">
-                            <h4>Parameters</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td>mixed</td>
-                <td>$subject</td>
-                <td></td>
-            </tr>
-            </table>
-
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td>bool</td>
-            <td></td>
-        </tr>
-    </table>
-
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
-                    <h3 id="method_subject">
-        <div class="location">at         line 34</div>
-        <code>                    string
-    <strong>subject</strong>()
+                    <h3 id="method_makeSelector">
+        <div class="location">at         line 42</div>
+        <code>    abstract    static    protected        <a href="../../../Tailors/PHPUnit/Values/ValueSelectorInterface.html"><abbr title="Tailors\PHPUnit\Values\ValueSelectorInterface">ValueSelectorInterface</abbr></a>
+    <strong>makeSelector</strong>()
         </code>
     </h3>
     <div class="details">
@@ -364,14 +256,44 @@
     
 
                     <div class="method-description">
-                                    <p>Returns short description of subject type supported by this constraint.</p>                                                </div>
+                                    <p>Creates instance of ValueSelectorInterface.</p>                                                </div>
                 <div class="tags">
             
                             <h4>Return Value</h4>
 
                     <table class="table table-condensed">
         <tr>
-            <td>string</td>
+            <td><a href="../../../Tailors/PHPUnit/Values/ValueSelectorInterface.html"><abbr title="Tailors\PHPUnit\Values\ValueSelectorInterface">ValueSelectorInterface</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_makeComparator">
+        <div class="location">at         line 47</div>
+        <code>    abstract    static    protected        <a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a>
+    <strong>makeComparator</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Creates instance of EqualityComparator.</p>                                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a></td>
             <td></td>
         </tr>
     </table>

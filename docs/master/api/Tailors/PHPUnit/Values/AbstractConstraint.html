@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="robots" content="index, follow, all" />
-    <title>Tailors\PHPUnit\Constraint\ClassPropertiesIdenticalTo | API Documentation</title>
+    <title>Tailors\PHPUnit\Values\AbstractConstraint | API Documentation</title>
 
             <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-theme.min.css">
@@ -19,7 +19,7 @@
     
     </head>
 
-    <body id="class" data-name="class:Tailors_PHPUnit_Constraint_ClassPropertiesIdenticalTo" data-root-path="../../../">
+    <body id="class" data-name="class:Tailors_PHPUnit_Values_AbstractConstraint" data-root-path="../../../">
             <div id="content">
         <div id="left-column">
                 <div id="control-panel">
@@ -66,71 +66,29 @@
                         <div class="namespace-breadcrumbs">
             <ol class="breadcrumb">
                 <li><span class="label label-default">class</span></li>
-                        <li><a href="../../../Tailors.html">Tailors</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit.html">PHPUnit</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit/Constraint.html">Constraint</a></li><li class="backslash">\</li><li>ClassPropertiesIdenticalTo</li>
+                        <li><a href="../../../Tailors.html">Tailors</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit.html">PHPUnit</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit/Values.html">Values</a></li><li class="backslash">\</li><li>AbstractConstraint</li>
             </ol>
         </div>
                 <div id="page-content">
                 
     <div class="page-header">
         <h1>
-            ClassPropertiesIdenticalTo
+            AbstractConstraint
                 
         </h1>
     </div>
 
-    <p>    class
-    <strong>ClassPropertiesIdenticalTo</strong>        extends <a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html"><abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a>
+    <p>abstract     class
+    <strong>AbstractConstraint</strong>        extends <abbr title="PHPUnit\Framework\Constraint\Constraint">Constraint</abbr>        implements
+        <a href="../../../Tailors/PHPUnit/Values/SelectionAggregateInterface.html"><abbr title="Tailors\PHPUnit\Values\SelectionAggregateInterface">SelectionAggregateInterface</abbr></a>
 </p>
 
         
     
 
             <div class="description">
-            <p>Constraint that accepts classes having properties identical to specified ones.</p>            <p>Compares only properties present in the array of expectations. A property is
-defined as either a static attribute value or a value returned by class'
-static method callable without arguments. The <code>===</code> operator (identity) is
-used for comparison.</p>
-
-<p>Any key in <em>$expected</em> array ending with <code>"()"</code> is considered to be a
-method that returns property value.</p>
-
-<pre><code> // ...
- $matcher = ClassPropertiesIdenticalTo::create([
-     'getName()' =&gt; 'John', 'age' =&gt; 21
- ]);
-
- self::assertThat(get_class(new class {
-     public static $age = 21;
-     public static getName(): string {
-         return 'John';
-     }
- }), $matcher);
-</code></pre>
-</p>                    </div>
+            <p>Abstract base for constraints that examine values.</p>                                </div>
     
-            <h2>Traits</h2>
-
-        
-    <div class="container-fluid underlined">
-                    <div class="row">
-                <div class="col-md-6">
-                                            <a href="../../../Tailors/PHPUnit/Values/ConstraintImplementationTrait.html"><abbr title="Tailors\PHPUnit\Values\ConstraintImplementationTrait">ConstraintImplementationTrait</abbr></a>
-                                            
-                </div>
-                <div class="col-md-6">
-                    
-                </div>
-            </div>
-                    <div class="row">
-                <div class="col-md-6">
-                                            <a href="../../../Tailors/PHPUnit/Properties/ValidateExpectationsTrait.html"><abbr title="Tailors\PHPUnit\Properties\ValidateExpectationsTrait">ValidateExpectationsTrait</abbr></a>
-                                            
-                </div>
-                <div class="col-md-6">
-                    
-                </div>
-            </div>
-            </div>
     
     
     
@@ -146,7 +104,7 @@ method that returns property value.</p>
         
                                             <p class="no-description">No description</p>
                                     </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html#method___construct"><abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a></small></div>
+                <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
@@ -156,7 +114,7 @@ method that returns property value.</p>
                     <a href="#method_getSelection">getSelection</a>()
         
                                             <p>Returns an instance of SelectionInterface which defines expected values.</p>                </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html#method_getSelection"><abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a></small></div>
+                <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
@@ -166,7 +124,7 @@ method that returns property value.</p>
                     <a href="#method_toString">toString</a>()
         
                                             <p>Returns a string representation of the constraint.</p>                </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html#method_toString"><abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a></small></div>
+                <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
@@ -177,7 +135,7 @@ method that returns property value.</p>
         
                                             <p>Returns a custom string representation of the constraint object when it
 appears in context of an $operator expression.</p>                </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html#method_toStringInContext"><abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a></small></div>
+                <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
@@ -187,7 +145,7 @@ appears in context of an $operator expression.</p>                </div>
                     <a href="#method_evaluate">evaluate</a>($other, string $description = &#039;&#039;, bool $returnResult = false)
         
                                             <p>Evaluates the constraint for parameter $other.</p>                </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html#method_evaluate"><abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a></small></div>
+                <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
@@ -198,7 +156,7 @@ appears in context of an $operator expression.</p>                </div>
         
                                             <p>Evaluates the constraint for parameter $other. Returns true if the
 constraint is met, false otherwise.</p>                </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html#method_matches"><abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a></small></div>
+                <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
@@ -209,7 +167,7 @@ constraint is met, false otherwise.</p>                </div>
         
                                             <p class="no-description">No description</p>
                                     </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html#method_exporter"><abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a></small></div>
+                <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
@@ -219,7 +177,7 @@ constraint is met, false otherwise.</p>                </div>
                     <a href="#method_failureDescription">failureDescription</a>(mixed $other)
         
                                             <p>Returns the description of the failure.</p>                </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html#method_failureDescription"><abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a></small></div>
+                <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
@@ -230,48 +188,6 @@ constraint is met, false otherwise.</p>                </div>
         
                                             <p>Returns the description of the failure when this constraint appears in
 context of an $operator expression.</p>                </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html#method_failureDescriptionInContext"><abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a></small></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    static&nbsp;<a href="../../../Tailors/PHPUnit/Values/ConstraintImplementationTrait.html"><abbr title="Tailors\PHPUnit\Values\ConstraintImplementationTrait">ConstraintImplementationTrait</abbr></a>
-                </div>
-                <div class="col-md-8 type">
-                    <a href="#method_create">create</a>(array $expected)
-        
-                                            <p class="no-description">No description</p>
-                                    </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Values/ConstraintImplementationTrait.html#method_create"><abbr title="Tailors\PHPUnit\Values\ConstraintImplementationTrait">ConstraintImplementationTrait</abbr></a></small></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    static&nbsp;void
-                </div>
-                <div class="col-md-8 type">
-                    <a href="#method_validateExpectations">validateExpectations</a>(array $expected, int $argument, int $depth = 1)
-        
-                                            <p class="no-description">No description</p>
-                                    </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Properties/ValidateExpectationsTrait.html#method_validateExpectations"><abbr title="Tailors\PHPUnit\Properties\ValidateExpectationsTrait">ValidateExpectationsTrait</abbr></a></small></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    static&nbsp;<a href="../../../Tailors/PHPUnit/Values/ValueSelectorInterface.html"><abbr title="Tailors\PHPUnit\Values\ValueSelectorInterface">ValueSelectorInterface</abbr></a>
-                </div>
-                <div class="col-md-8 type">
-                    <a href="#method_makeSelector">makeSelector</a>()
-        
-                                            <p>Creates instance of ClassPropertySelector.</p>                </div>
-                <div class="col-md-2"></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    static&nbsp;<a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a>
-                </div>
-                <div class="col-md-8 type">
-                    <a href="#method_makeComparator">makeComparator</a>()
-        
-                                            <p>Creates instance of IdentityComparator.</p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -282,7 +198,7 @@ context of an $operator expression.</p>                </div>
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method___construct">
-        <div class="location">in <a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html#method___construct"><abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a> at         line 50</div>
+        <div class="location">at         line 50</div>
         <code>final            protected        
     <strong>__construct</strong>(<a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a> $comparator, <a href="../../../Tailors/PHPUnit/Values/SelectionInterface.html"><abbr title="Tailors\PHPUnit\Values\SelectionInterface">SelectionInterface</abbr></a> $expected, <a href="../../../Tailors/PHPUnit/Values/RecursiveUnwrapperInterface.html"><abbr title="Tailors\PHPUnit\Values\RecursiveUnwrapperInterface">RecursiveUnwrapperInterface</abbr></a> $unwrapper)
         </code>
@@ -321,7 +237,7 @@ context of an $operator expression.</p>                </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_getSelection">
-        <div class="location">in <a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html#method_getSelection"><abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a> at         line 63</div>
+        <div class="location">at         line 63</div>
         <code>final                    <a href="../../../Tailors/PHPUnit/Values/SelectionInterface.html"><abbr title="Tailors\PHPUnit\Values\SelectionInterface">SelectionInterface</abbr></a>
     <strong>getSelection</strong>()
         </code>
@@ -351,7 +267,7 @@ context of an $operator expression.</p>                </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_toString">
-        <div class="location">in <a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html#method_toString"><abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a> at         line 71</div>
+        <div class="location">at         line 71</div>
         <code>final                    string
     <strong>toString</strong>()
         </code>
@@ -381,7 +297,7 @@ context of an $operator expression.</p>                </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_toStringInContext">
-        <div class="location">in <a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html#method_toStringInContext"><abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a> at         line 96</div>
+        <div class="location">at         line 96</div>
         <code>final                    string
     <strong>toStringInContext</strong>(<abbr title="PHPUnit\Framework\Constraint\Operator">Operator</abbr> $operator, mixed $role)
         </code>
@@ -433,7 +349,7 @@ customization by itself.</p>                            </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_evaluate">
-        <div class="location">in <a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html#method_evaluate"><abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a> at         line 126</div>
+        <div class="location">at         line 126</div>
         <code>final                    bool|null
     <strong>evaluate</strong>($other, string $description = &#039;&#039;, bool $returnResult = false)
         </code>
@@ -505,7 +421,7 @@ failure.</p>                            </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_matches">
-        <div class="location">in <a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html#method_matches"><abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a> at         line 159</div>
+        <div class="location">at         line 159</div>
         <code>final                    bool
     <strong>matches</strong>(mixed $other)
         </code>
@@ -546,7 +462,7 @@ constraint is met, false otherwise.</p>                                         
             </div>
                     <div class="method-item">
                     <h3 id="method_exporter">
-        <div class="location">in <a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html#method_exporter"><abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a> at         line 170</div>
+        <div class="location">at         line 170</div>
         <code>final            protected        <abbr title="SebastianBergmann\Exporter\Exporter">Exporter</abbr>
     <strong>exporter</strong>()
         </code>
@@ -574,7 +490,7 @@ constraint is met, false otherwise.</p>                                         
             </div>
                     <div class="method-item">
                     <h3 id="method_failureDescription">
-        <div class="location">in <a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html#method_failureDescription"><abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a> at         line 187</div>
+        <div class="location">at         line 187</div>
         <code>final            protected        string
     <strong>failureDescription</strong>(mixed $other)
         </code>
@@ -615,7 +531,7 @@ cases. This method should return the second part of that sentence.</p>          
             </div>
                     <div class="method-item">
                     <h3 id="method_failureDescriptionInContext">
-        <div class="location">in <a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html#method_failureDescriptionInContext"><abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a> at         line 208</div>
+        <div class="location">at         line 208</div>
         <code>final            protected        string
     <strong>failureDescriptionInContext</strong>(<abbr title="PHPUnit\Framework\Constraint\Operator">Operator</abbr> $operator, mixed $role, mixed $other)
         </code>
@@ -660,170 +576,6 @@ customization by itself.</p>                            </div>
                     <table class="table table-condensed">
         <tr>
             <td>string</td>
-            <td></td>
-        </tr>
-    </table>
-
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
-                    <h3 id="method_create">
-        <div class="location">in <a href="../../../Tailors/PHPUnit/Values/ConstraintImplementationTrait.html#method_create"><abbr title="Tailors\PHPUnit\Values\ConstraintImplementationTrait">ConstraintImplementationTrait</abbr></a> at         line 24</div>
-        <code>        static            <a href="../../../Tailors/PHPUnit/Values/ConstraintImplementationTrait.html"><abbr title="Tailors\PHPUnit\Values\ConstraintImplementationTrait">ConstraintImplementationTrait</abbr></a>
-    <strong>create</strong>(array $expected)
-        </code>
-    </h3>
-    <div class="details">
-            
-    
-
-                <div class="tags">
-                            <h4>Parameters</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td>array</td>
-                <td>$expected</td>
-                <td></td>
-            </tr>
-            </table>
-
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td><a href="../../../Tailors/PHPUnit/Values/ConstraintImplementationTrait.html"><abbr title="Tailors\PHPUnit\Values\ConstraintImplementationTrait">ConstraintImplementationTrait</abbr></a></td>
-            <td></td>
-        </tr>
-    </table>
-
-            
-                            <h4>Exceptions</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td><a href="../../../Tailors/PHPUnit/InvalidArgumentException.html"><abbr title="Tailors\PHPUnit\InvalidArgumentException">InvalidArgumentException</abbr></a></td>
-                <td></td>
-            </tr>
-            </table>
-
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
-                    <h3 id="method_validateExpectations">
-        <div class="location">in <a href="../../../Tailors/PHPUnit/Properties/ValidateExpectationsTrait.html#method_validateExpectations"><abbr title="Tailors\PHPUnit\Properties\ValidateExpectationsTrait">ValidateExpectationsTrait</abbr></a> at         line 24</div>
-        <code>        static    protected        void
-    <strong>validateExpectations</strong>(array $expected, int $argument, int $depth = 1)
-        </code>
-    </h3>
-    <div class="details">
-            
-    
-
-                <div class="tags">
-                            <h4>Parameters</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td>array</td>
-                <td>$expected</td>
-                <td></td>
-            </tr>
-                    <tr>
-                <td>int</td>
-                <td>$argument</td>
-                <td></td>
-            </tr>
-                    <tr>
-                <td>int</td>
-                <td>$depth</td>
-                <td></td>
-            </tr>
-            </table>
-
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td>void</td>
-            <td></td>
-        </tr>
-    </table>
-
-            
-                            <h4>Exceptions</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td><a href="../../../Tailors/PHPUnit/InvalidArgumentException.html"><abbr title="Tailors\PHPUnit\InvalidArgumentException">InvalidArgumentException</abbr></a></td>
-                <td></td>
-            </tr>
-            </table>
-
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
-                    <h3 id="method_makeSelector">
-        <div class="location">at         line 61</div>
-        <code>        static    protected        <a href="../../../Tailors/PHPUnit/Values/ValueSelectorInterface.html"><abbr title="Tailors\PHPUnit\Values\ValueSelectorInterface">ValueSelectorInterface</abbr></a>
-    <strong>makeSelector</strong>()
-        </code>
-    </h3>
-    <div class="details">
-            
-    
-
-                    <div class="method-description">
-                                    <p>Creates instance of ClassPropertySelector.</p>                                                </div>
-                <div class="tags">
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td><a href="../../../Tailors/PHPUnit/Values/ValueSelectorInterface.html"><abbr title="Tailors\PHPUnit\Values\ValueSelectorInterface">ValueSelectorInterface</abbr></a></td>
-            <td></td>
-        </tr>
-    </table>
-
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
-                    <h3 id="method_makeComparator">
-        <div class="location">at         line 53</div>
-        <code>        static    protected        <a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a>
-    <strong>makeComparator</strong>()
-        </code>
-    </h3>
-    <div class="details">
-            
-    
-
-                    <div class="method-description">
-                                    <p>Creates instance of IdentityComparator.</p>                                                </div>
-                <div class="tags">
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td><a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a></td>
             <td></td>
         </tr>
     </table>

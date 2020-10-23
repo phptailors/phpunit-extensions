@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="robots" content="index, follow, all" />
-    <title>Tailors\PHPUnit\Properties\RecursivePropertiesUnwrapper | API Documentation</title>
+    <title>Tailors\PHPUnit\Values\RecursiveUnwrapper | API Documentation</title>
 
             <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-theme.min.css">
@@ -19,7 +19,7 @@
     
     </head>
 
-    <body id="class" data-name="class:Tailors_PHPUnit_Properties_RecursivePropertiesUnwrapper" data-root-path="../../../">
+    <body id="class" data-name="class:Tailors_PHPUnit_Values_RecursiveUnwrapper" data-root-path="../../../">
             <div id="content">
         <div id="left-column">
                 <div id="control-panel">
@@ -66,21 +66,21 @@
                         <div class="namespace-breadcrumbs">
             <ol class="breadcrumb">
                 <li><span class="label label-default">class</span></li>
-                        <li><a href="../../../Tailors.html">Tailors</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit.html">PHPUnit</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit/Properties.html">Properties</a></li><li class="backslash">\</li><li>RecursivePropertiesUnwrapper</li>
+                        <li><a href="../../../Tailors.html">Tailors</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit.html">PHPUnit</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit/Values.html">Values</a></li><li class="backslash">\</li><li>RecursiveUnwrapper</li>
             </ol>
         </div>
                 <div id="page-content">
                 
     <div class="page-header">
         <h1>
-            RecursivePropertiesUnwrapper
+            RecursiveUnwrapper
                 
         </h1>
     </div>
 
     <p>    class
-    <strong>RecursivePropertiesUnwrapper</strong>        implements
-        <a href="../../../Tailors/PHPUnit/Properties/RecursivePropertiesUnwrapperInterface.html"><abbr title="Tailors\PHPUnit\Properties\RecursivePropertiesUnwrapperInterface">RecursivePropertiesUnwrapperInterface</abbr></a>
+    <strong>RecursiveUnwrapper</strong>        implements
+        <a href="../../../Tailors/PHPUnit/Values/RecursiveUnwrapperInterface.html"><abbr title="Tailors\PHPUnit\Values\RecursiveUnwrapperInterface">RecursiveUnwrapperInterface</abbr></a>
 </p>
 
         
@@ -120,10 +120,10 @@
                     array
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_unwrap">unwrap</a>(<a href="../../../Tailors/PHPUnit/Properties/PropertiesInterface.html"><abbr title="Tailors\PHPUnit\Properties\PropertiesInterface">PropertiesInterface</abbr></a> $properties)
+                    <a href="#method_unwrap">unwrap</a>(<a href="../../../Tailors/PHPUnit/Values/ValuesInterface.html"><abbr title="Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr></a> $values)
         
-                                            <p>Walk recursively through $properties and unwrap nested instances of
-PropertiesInterface when suitable.</p>                </div>
+                                            <p>Walk recursively through $values and unwrap nested instances of
+ValuesInterface when suitable.</p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -134,7 +134,7 @@ PropertiesInterface when suitable.</p>                </div>
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method___construct">
-        <div class="location">at         line 38</div>
+        <div class="location">at         line 40</div>
         <code>                    
     <strong>__construct</strong>(bool $tagging = true)
         </code>
@@ -166,9 +166,9 @@ PropertiesInterface when suitable.</p>                </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_unwrap">
-        <div class="location">at         line 53</div>
+        <div class="location">at         line 52</div>
         <code>                    array
-    <strong>unwrap</strong>(<a href="../../../Tailors/PHPUnit/Properties/PropertiesInterface.html"><abbr title="Tailors\PHPUnit\Properties\PropertiesInterface">PropertiesInterface</abbr></a> $properties)
+    <strong>unwrap</strong>(<a href="../../../Tailors/PHPUnit/Values/ValuesInterface.html"><abbr title="Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr></a> $values)
         </code>
     </h3>
     <div class="details">
@@ -176,16 +176,15 @@ PropertiesInterface when suitable.</p>                </div>
     
 
                     <div class="method-description">
-                                    <p>Walk recursively through $properties and unwrap nested instances of
-PropertiesInterface when suitable.</p>                    <p>A call to $properties->canUnwrapChild($child) is made to decide whether
-to unwrap given $child as well.</p>                            </div>
+                                    <p>Walk recursively through $values and unwrap nested instances of
+ValuesInterface when suitable.</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td><a href="../../../Tailors/PHPUnit/Properties/PropertiesInterface.html"><abbr title="Tailors\PHPUnit\Properties\PropertiesInterface">PropertiesInterface</abbr></a></td>
-                <td>$properties</td>
+                <td><a href="../../../Tailors/PHPUnit/Values/ValuesInterface.html"><abbr title="Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr></a></td>
+                <td>$values</td>
                 <td></td>
             </tr>
             </table>
@@ -205,7 +204,7 @@ to unwrap given $child as well.</p>                            </div>
 
                     <table class="table table-condensed">
                     <tr>
-                <td><a href="../../../Tailors/PHPUnit/Properties/CircularDependencyException.html"><abbr title="Tailors\PHPUnit\Properties\CircularDependencyException">CircularDependencyException</abbr></a></td>
+                <td><a href="../../../Tailors/PHPUnit/CircularDependencyException.html"><abbr title="Tailors\PHPUnit\CircularDependencyException">CircularDependencyException</abbr></a></td>
                 <td></td>
             </tr>
             </table>

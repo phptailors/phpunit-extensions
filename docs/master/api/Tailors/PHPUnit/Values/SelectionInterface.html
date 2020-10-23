@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="robots" content="index, follow, all" />
-    <title>Tailors\PHPUnit\Properties\Exporter | API Documentation</title>
+    <title>Tailors\PHPUnit\Values\SelectionInterface | API Documentation</title>
 
             <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-theme.min.css">
@@ -19,7 +19,7 @@
     
     </head>
 
-    <body id="class" data-name="class:Tailors_PHPUnit_Properties_Exporter" data-root-path="../../../">
+    <body id="class" data-name="class:Tailors_PHPUnit_Values_SelectionInterface" data-root-path="../../../">
             <div id="content">
         <div id="left-column">
                 <div id="control-panel">
@@ -65,28 +65,27 @@
 
                         <div class="namespace-breadcrumbs">
             <ol class="breadcrumb">
-                <li><span class="label label-default">class</span></li>
-                        <li><a href="../../../Tailors.html">Tailors</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit.html">PHPUnit</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit/Properties.html">Properties</a></li><li class="backslash">\</li><li>Exporter</li>
+                <li><span class="label label-default">interface</span></li>
+                        <li><a href="../../../Tailors.html">Tailors</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit.html">PHPUnit</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit/Values.html">Values</a></li><li class="backslash">\</li><li>SelectionInterface</li>
             </ol>
         </div>
                 <div id="page-content">
                 
     <div class="page-header">
         <h1>
-            Exporter
+            SelectionInterface
                 
         </h1>
     </div>
 
-    <p>    class
-    <strong>Exporter</strong>        extends <abbr title="SebastianBergmann\Exporter\Exporter">Exporter</abbr>
+    <p>    interface
+    <strong>SelectionInterface</strong>        implements
+        <a href="../../../Tailors/PHPUnit/Values/ValuesInterface.html"><abbr title="Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr></a>
 </p>
 
         
     
 
-            <div class="description">
-            <p>An exporter that handles PropertiesInterface in a special way.</p>                                </div>
     
     
     
@@ -96,33 +95,34 @@
             <div class="container-fluid underlined">
                     <div class="row">
                 <div class="col-md-2 type">
-                    string
+                    array
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_describe">describe</a>(<a href="../../../Tailors/PHPUnit/Properties/PropertiesInterface.html"><abbr title="Tailors\PHPUnit\Properties\PropertiesInterface">PropertiesInterface</abbr></a> $properties)
+                    <a href="#method_getArrayCopy">getArrayCopy</a>()
         
                                             <p class="no-description">No description</p>
                                     </div>
-                <div class="col-md-2"></div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Values/ValuesInterface.html#method_getArrayCopy"><abbr title="Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr></a></small></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    string
+                    bool
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_recursiveExport">recursiveExport</a>(mixed $value, int $indentation, <abbr title="SebastianBergmann\RecursionContext\Context">Context</abbr> $processed = null)
+                    <a href="#method_actual">actual</a>()
         
-                                            <p>Recursive implementation of export.</p>                </div>
-                <div class="col-md-2"></div>
+                                            <p>Returns true if this object represents actual values (as opposite to expected values).</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Values/ValuesInterface.html#method_actual"><abbr title="Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr></a></small></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    string
+                    <a href="../../../Tailors/PHPUnit/Values/ValueSelectorInterface.html"><abbr title="Tailors\PHPUnit\Values\ValueSelectorInterface">ValueSelectorInterface</abbr></a>
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_shortenedExport">shortenedExport</a>(mixed $value)
+                    <a href="#method_getSelector">getSelector</a>()
         
-                                            <p>Exports a value into a single-line string.</p>                </div>
+                                            <p class="no-description">No description</p>
+                                    </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -132,10 +132,10 @@
 
             <div id="method-details">
                     <div class="method-item">
-                    <h3 id="method_describe">
-        <div class="location">at         line 24</div>
-        <code>                    string
-    <strong>describe</strong>(<a href="../../../Tailors/PHPUnit/Properties/PropertiesInterface.html"><abbr title="Tailors\PHPUnit\Properties\PropertiesInterface">PropertiesInterface</abbr></a> $properties)
+                    <h3 id="method_getArrayCopy">
+        <div class="location">in <a href="../../../Tailors/PHPUnit/Values/ValuesInterface.html#method_getArrayCopy"><abbr title="Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr></a> at         line 26</div>
+        <code>                    array
+    <strong>getArrayCopy</strong>()
         </code>
     </h3>
     <div class="details">
@@ -143,22 +143,12 @@
     
 
                 <div class="tags">
-                            <h4>Parameters</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td><a href="../../../Tailors/PHPUnit/Properties/PropertiesInterface.html"><abbr title="Tailors\PHPUnit\Properties\PropertiesInterface">PropertiesInterface</abbr></a></td>
-                <td>$properties</td>
-                <td></td>
-            </tr>
-            </table>
-
             
                             <h4>Return Value</h4>
 
                     <table class="table table-condensed">
         <tr>
-            <td>string</td>
+            <td>array</td>
             <td></td>
         </tr>
     </table>
@@ -170,10 +160,10 @@
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_recursiveExport">
-        <div class="location">at         line 47</div>
-        <code>                    string
-    <strong>recursiveExport</strong>(mixed $value, int $indentation, <abbr title="SebastianBergmann\RecursionContext\Context">Context</abbr> $processed = null)
+                    <h3 id="method_actual">
+        <div class="location">in <a href="../../../Tailors/PHPUnit/Values/ValuesInterface.html#method_actual"><abbr title="Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr></a> at         line 31</div>
+        <code>                    bool
+    <strong>actual</strong>()
         </code>
     </h3>
     <div class="details">
@@ -181,87 +171,42 @@
     
 
                     <div class="method-description">
-                                    <p>Recursive implementation of export.</p>                                                </div>
+                                    <p>Returns true if this object represents actual values (as opposite to expected values).</p>                                                </div>
                 <div class="tags">
-                            <h4>Parameters</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td>mixed</td>
-                <td>$value</td>
-                <td>The value to export</td>
-            </tr>
-                    <tr>
-                <td>int</td>
-                <td>$indentation</td>
-                <td>The indentation level of the 2nd+ line</td>
-            </tr>
-                    <tr>
-                <td><abbr title="SebastianBergmann\RecursionContext\Context">Context</abbr></td>
-                <td>$processed</td>
-                <td>Previously processed objects</td>
-            </tr>
-            </table>
-
             
                             <h4>Return Value</h4>
 
                     <table class="table table-condensed">
         <tr>
-            <td>string</td>
+            <td>bool</td>
             <td></td>
         </tr>
     </table>
 
             
-                            <h4>Exceptions</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td><abbr title="SebastianBergmann\RecursionContext\InvalidArgumentException">InvalidArgumentException</abbr></td>
-                <td></td>
-            </tr>
-            </table>
-
             
                     </div>
     </div>
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_shortenedExport">
-        <div class="location">at         line 69</div>
-        <code>                    string
-    <strong>shortenedExport</strong>(mixed $value)
+                    <h3 id="method_getSelector">
+        <div class="location">at         line 19</div>
+        <code>                    <a href="../../../Tailors/PHPUnit/Values/ValueSelectorInterface.html"><abbr title="Tailors\PHPUnit\Values\ValueSelectorInterface">ValueSelectorInterface</abbr></a>
+    <strong>getSelector</strong>()
         </code>
     </h3>
     <div class="details">
             
     
 
-                    <div class="method-description">
-                                    <p>Exports a value into a single-line string.</p>                    <p>The output of this method is similar to the output of
-SebastianBergmann\Exporter\Exporter::export().</p>
-
-<p>Newlines are replaced by the visible string '\n'.
-Contents of arrays and objects (if any) are replaced by '...'.</p>                            </div>
                 <div class="tags">
-                            <h4>Parameters</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td>mixed</td>
-                <td>$value</td>
-                <td></td>
-            </tr>
-            </table>
-
             
                             <h4>Return Value</h4>
 
                     <table class="table table-condensed">
         <tr>
-            <td>string</td>
+            <td><a href="../../../Tailors/PHPUnit/Values/ValueSelectorInterface.html"><abbr title="Tailors\PHPUnit\Values\ValueSelectorInterface">ValueSelectorInterface</abbr></a></td>
             <td></td>
         </tr>
     </table>

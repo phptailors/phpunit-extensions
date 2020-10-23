@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="robots" content="index, follow, all" />
-    <title>Tailors\PHPUnit\Properties\ExpectedProperties | API Documentation</title>
+    <title>Tailors\PHPUnit\Values\AbstractValueSelector | API Documentation</title>
 
             <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-theme.min.css">
@@ -19,7 +19,7 @@
     
     </head>
 
-    <body id="class" data-name="class:Tailors_PHPUnit_Properties_ExpectedProperties" data-root-path="../../../">
+    <body id="class" data-name="class:Tailors_PHPUnit_Values_AbstractValueSelector" data-root-path="../../../">
             <div id="content">
         <div id="left-column">
                 <div id="control-panel">
@@ -66,21 +66,21 @@
                         <div class="namespace-breadcrumbs">
             <ol class="breadcrumb">
                 <li><span class="label label-default">class</span></li>
-                        <li><a href="../../../Tailors.html">Tailors</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit.html">PHPUnit</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit/Properties.html">Properties</a></li><li class="backslash">\</li><li>ExpectedProperties</li>
+                        <li><a href="../../../Tailors.html">Tailors</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit.html">PHPUnit</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit/Values.html">Values</a></li><li class="backslash">\</li><li>AbstractValueSelector</li>
             </ol>
         </div>
                 <div id="page-content">
                 
     <div class="page-header">
         <h1>
-            ExpectedProperties
+            AbstractValueSelector
                 
         </h1>
     </div>
 
-    <p>    class
-    <strong>ExpectedProperties</strong>        extends <a target="_blank" href="http://php.net/ArrayObject">ArrayObject</a>        implements
-        <a href="../../../Tailors/PHPUnit/Properties/ExpectedPropertiesInterface.html"><abbr title="Tailors\PHPUnit\Properties\ExpectedPropertiesInterface">ExpectedPropertiesInterface</abbr></a>
+    <p>abstract     class
+    <strong>AbstractValueSelector</strong>        implements
+        <a href="../../../Tailors/PHPUnit/Values/ValueSelectorInterface.html"><abbr title="Tailors\PHPUnit\Values\ValueSelectorInterface">ValueSelectorInterface</abbr></a>
 </p>
 
         
@@ -95,21 +95,10 @@
             <div class="container-fluid underlined">
                     <div class="row">
                 <div class="col-md-2 type">
-                    
+                    bool
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method___construct">__construct</a>(<a href="../../../Tailors/PHPUnit/Properties/PropertySelectorInterface.html"><abbr title="Tailors\PHPUnit\Properties\PropertySelectorInterface">PropertySelectorInterface</abbr></a> $propertySelector, $input = [])
-        
-                                            <p class="no-description">No description</p>
-                                    </div>
-                <div class="col-md-2"></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    <a href="../../../Tailors/PHPUnit/Properties/PropertySelectorInterface.html"><abbr title="Tailors\PHPUnit\Properties\PropertySelectorInterface">PropertySelectorInterface</abbr></a>
-                </div>
-                <div class="col-md-8 type">
-                    <a href="#method_getPropertySelector">getPropertySelector</a>()
+                    <a href="#method_select">select</a>(mixed $subject, mixed $key, mixed $retval = null)
         
                                             <p class="no-description">No description</p>
                                     </div>
@@ -120,7 +109,18 @@
                     bool
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_canUnwrapChild">canUnwrapChild</a>(<a href="../../../Tailors/PHPUnit/Properties/PropertiesInterface.html"><abbr title="Tailors\PHPUnit\Properties\PropertiesInterface">PropertiesInterface</abbr></a> $child)
+                    <a href="#method_selectFromSupported">selectFromSupported</a>(mixed $subject, mixed $key, mixed $retval = null)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_assertSupports">assertSupports</a>($subject, int $argument, int $distance = 1)
         
                                             <p class="no-description">No description</p>
                                     </div>
@@ -133,10 +133,10 @@
 
             <div id="method-details">
                     <div class="method-item">
-                    <h3 id="method___construct">
-        <div class="location">at         line 28</div>
-        <code>                    
-    <strong>__construct</strong>(<a href="../../../Tailors/PHPUnit/Properties/PropertySelectorInterface.html"><abbr title="Tailors\PHPUnit\Properties\PropertySelectorInterface">PropertySelectorInterface</abbr></a> $propertySelector, $input = [])
+                    <h3 id="method_select">
+        <div class="location">at         line 31</div>
+        <code>final                    bool
+    <strong>select</strong>(mixed $subject, mixed $key, mixed $retval = null)
         </code>
     </h3>
     <div class="details">
@@ -148,70 +148,18 @@
 
                     <table class="table table-condensed">
                     <tr>
-                <td><a href="../../../Tailors/PHPUnit/Properties/PropertySelectorInterface.html"><abbr title="Tailors\PHPUnit\Properties\PropertySelectorInterface">PropertySelectorInterface</abbr></a></td>
-                <td>$propertySelector</td>
+                <td>mixed</td>
+                <td>$subject</td>
                 <td></td>
             </tr>
                     <tr>
-                <td></td>
-                <td>$input</td>
+                <td>mixed</td>
+                <td>$key</td>
                 <td></td>
             </tr>
-            </table>
-
-            
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
-                    <h3 id="method_getPropertySelector">
-        <div class="location">at         line 37</div>
-        <code>                    <a href="../../../Tailors/PHPUnit/Properties/PropertySelectorInterface.html"><abbr title="Tailors\PHPUnit\Properties\PropertySelectorInterface">PropertySelectorInterface</abbr></a>
-    <strong>getPropertySelector</strong>()
-        </code>
-    </h3>
-    <div class="details">
-            
-    
-
-                <div class="tags">
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td><a href="../../../Tailors/PHPUnit/Properties/PropertySelectorInterface.html"><abbr title="Tailors\PHPUnit\Properties\PropertySelectorInterface">PropertySelectorInterface</abbr></a></td>
-            <td></td>
-        </tr>
-    </table>
-
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
-                    <h3 id="method_canUnwrapChild">
-        <div class="location">at         line 45</div>
-        <code>                    bool
-    <strong>canUnwrapChild</strong>(<a href="../../../Tailors/PHPUnit/Properties/PropertiesInterface.html"><abbr title="Tailors\PHPUnit\Properties\PropertiesInterface">PropertiesInterface</abbr></a> $child)
-        </code>
-    </h3>
-    <div class="details">
-            
-    
-
-                <div class="tags">
-                            <h4>Parameters</h4>
-
-                    <table class="table table-condensed">
                     <tr>
-                <td><a href="../../../Tailors/PHPUnit/Properties/PropertiesInterface.html"><abbr title="Tailors\PHPUnit\Properties\PropertiesInterface">PropertiesInterface</abbr></a></td>
-                <td>$child</td>
+                <td>mixed</td>
+                <td>$retval</td>
                 <td></td>
             </tr>
             </table>
@@ -227,6 +175,120 @@
     </table>
 
             
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../Tailors/PHPUnit/InvalidArgumentException.html"><abbr title="Tailors\PHPUnit\InvalidArgumentException">InvalidArgumentException</abbr></a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_selectFromSupported">
+        <div class="location">at         line 45</div>
+        <code>    abstract        protected        bool
+    <strong>selectFromSupported</strong>(mixed $subject, mixed $key, mixed $retval = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>mixed</td>
+                <td>$subject</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>mixed</td>
+                <td>$key</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>mixed</td>
+                <td>$retval</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_assertSupports">
+        <div class="location">at         line 54</div>
+        <code>final            protected        void
+    <strong>assertSupports</strong>($subject, int $argument, int $distance = 1)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td></td>
+                <td>$subject</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$argument</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$distance</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../Tailors/PHPUnit/InvalidArgumentException.html"><abbr title="Tailors\PHPUnit\InvalidArgumentException">InvalidArgumentException</abbr></a></td>
+                <td></td>
+            </tr>
+            </table>
+
             
                     </div>
     </div>

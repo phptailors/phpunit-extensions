@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="robots" content="index, follow, all" />
-    <title>Tailors\PHPUnit\Properties\ConstraintImplementationTrait | API Documentation</title>
+    <title>Tailors\PHPUnit\Exporter\Exporter | API Documentation</title>
 
             <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-theme.min.css">
@@ -19,7 +19,7 @@
     
     </head>
 
-    <body id="class" data-name="class:Tailors_PHPUnit_Properties_ConstraintImplementationTrait" data-root-path="../../../">
+    <body id="class" data-name="class:Tailors_PHPUnit_Exporter_Exporter" data-root-path="../../../">
             <div id="content">
         <div id="left-column">
                 <div id="control-panel">
@@ -65,26 +65,28 @@
 
                         <div class="namespace-breadcrumbs">
             <ol class="breadcrumb">
-                <li><span class="label label-default">trait</span></li>
-                        <li><a href="../../../Tailors.html">Tailors</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit.html">PHPUnit</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit/Properties.html">Properties</a></li><li class="backslash">\</li><li>ConstraintImplementationTrait</li>
+                <li><span class="label label-default">class</span></li>
+                        <li><a href="../../../Tailors.html">Tailors</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit.html">PHPUnit</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit/Exporter.html">Exporter</a></li><li class="backslash">\</li><li>Exporter</li>
             </ol>
         </div>
                 <div id="page-content">
                 
     <div class="page-header">
         <h1>
-            ConstraintImplementationTrait
+            Exporter
                 
         </h1>
     </div>
 
-    <p>    trait
-    <strong>ConstraintImplementationTrait</strong>
+    <p>    class
+    <strong>Exporter</strong>        extends <abbr title="SebastianBergmann\Exporter\Exporter">Exporter</abbr>
 </p>
 
         
     
 
+            <div class="description">
+            <p>An exporter that handles ValuesInterface in a special way.</p>                                </div>
     
     
     
@@ -94,10 +96,10 @@
             <div class="container-fluid underlined">
                     <div class="row">
                 <div class="col-md-2 type">
-                    static&nbsp;<a href="../../../Tailors/PHPUnit/Properties/ConstraintImplementationTrait.html"><abbr title="Tailors\PHPUnit\Properties\ConstraintImplementationTrait">ConstraintImplementationTrait</abbr></a>
+                    string
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_create">create</a>(array $expected)
+                    <a href="#method_describe">describe</a>(<a href="../../../Tailors/PHPUnit/Values/ValuesInterface.html"><abbr title="Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr></a> $values)
         
                                             <p class="no-description">No description</p>
                                     </div>
@@ -105,22 +107,22 @@
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    static&nbsp;<a href="../../../Tailors/PHPUnit/Properties/PropertySelectorInterface.html"><abbr title="Tailors\PHPUnit\Properties\PropertySelectorInterface">PropertySelectorInterface</abbr></a>
+                    string
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_makePropertySelector">makePropertySelector</a>()
+                    <a href="#method_recursiveExport">recursiveExport</a>(mixed $value, int $indentation, <abbr title="SebastianBergmann\RecursionContext\Context">Context</abbr> $processed = null)
         
-                                            <p>Creates instance of ClassPropertySelector.</p>                </div>
+                                            <p>Recursive implementation of export.</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    static&nbsp;<a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a>
+                    string
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_makeComparator">makeComparator</a>()
+                    <a href="#method_shortenedExport">shortenedExport</a>(mixed $value)
         
-                                            <p>Creates instance of EqualityComparator.</p>                </div>
+                                            <p>Exports a value into a single-line string.</p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -130,10 +132,10 @@
 
             <div id="method-details">
                     <div class="method-item">
-                    <h3 id="method_create">
+                    <h3 id="method_describe">
         <div class="location">at         line 25</div>
-        <code>        static            <a href="../../../Tailors/PHPUnit/Properties/ConstraintImplementationTrait.html"><abbr title="Tailors\PHPUnit\Properties\ConstraintImplementationTrait">ConstraintImplementationTrait</abbr></a>
-    <strong>create</strong>(array $expected)
+        <code>                    string
+    <strong>describe</strong>(<a href="../../../Tailors/PHPUnit/Values/ValuesInterface.html"><abbr title="Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr></a> $values)
         </code>
     </h3>
     <div class="details">
@@ -145,8 +147,8 @@
 
                     <table class="table table-condensed">
                     <tr>
-                <td>array</td>
-                <td>$expected</td>
+                <td><a href="../../../Tailors/PHPUnit/Values/ValuesInterface.html"><abbr title="Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr></a></td>
+                <td>$values</td>
                 <td></td>
             </tr>
             </table>
@@ -156,7 +158,57 @@
 
                     <table class="table table-condensed">
         <tr>
-            <td><a href="../../../Tailors/PHPUnit/Properties/ConstraintImplementationTrait.html"><abbr title="Tailors\PHPUnit\Properties\ConstraintImplementationTrait">ConstraintImplementationTrait</abbr></a></td>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_recursiveExport">
+        <div class="location">at         line 41</div>
+        <code>                    string
+    <strong>recursiveExport</strong>(mixed $value, int $indentation, <abbr title="SebastianBergmann\RecursionContext\Context">Context</abbr> $processed = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Recursive implementation of export.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>mixed</td>
+                <td>$value</td>
+                <td>The value to export</td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$indentation</td>
+                <td>The indentation level of the 2nd+ line</td>
+            </tr>
+                    <tr>
+                <td><abbr title="SebastianBergmann\RecursionContext\Context">Context</abbr></td>
+                <td>$processed</td>
+                <td>Previously processed objects</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
             <td></td>
         </tr>
     </table>
@@ -166,7 +218,7 @@
 
                     <table class="table table-condensed">
                     <tr>
-                <td><a href="../../../Tailors/PHPUnit/InvalidArgumentException.html"><abbr title="Tailors\PHPUnit\InvalidArgumentException">InvalidArgumentException</abbr></a></td>
+                <td><abbr title="SebastianBergmann\RecursionContext\InvalidArgumentException">InvalidArgumentException</abbr></td>
                 <td></td>
             </tr>
             </table>
@@ -177,10 +229,10 @@
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_makePropertySelector">
-        <div class="location">at         line 38</div>
-        <code>    abstract    static    protected        <a href="../../../Tailors/PHPUnit/Properties/PropertySelectorInterface.html"><abbr title="Tailors\PHPUnit\Properties\PropertySelectorInterface">PropertySelectorInterface</abbr></a>
-    <strong>makePropertySelector</strong>()
+                    <h3 id="method_shortenedExport">
+        <div class="location">at         line 63</div>
+        <code>                    string
+    <strong>shortenedExport</strong>(mixed $value)
         </code>
     </h3>
     <div class="details">
@@ -188,44 +240,28 @@
     
 
                     <div class="method-description">
-                                    <p>Creates instance of ClassPropertySelector.</p>                                                </div>
+                                    <p>Exports a value into a single-line string.</p>                    <p>The output of this method is similar to the output of
+SebastianBergmann\Exporter\Exporter::export().</p>
+
+<p>Newlines are replaced by the visible string '\n'.
+Contents of arrays and objects (if any) are replaced by '...'.</p>                            </div>
                 <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>mixed</td>
+                <td>$value</td>
+                <td></td>
+            </tr>
+            </table>
+
             
                             <h4>Return Value</h4>
 
                     <table class="table table-condensed">
         <tr>
-            <td><a href="../../../Tailors/PHPUnit/Properties/PropertySelectorInterface.html"><abbr title="Tailors\PHPUnit\Properties\PropertySelectorInterface">PropertySelectorInterface</abbr></a></td>
-            <td></td>
-        </tr>
-    </table>
-
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
-                    <h3 id="method_makeComparator">
-        <div class="location">at         line 43</div>
-        <code>    abstract    static    protected        <a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a>
-    <strong>makeComparator</strong>()
-        </code>
-    </h3>
-    <div class="details">
-            
-    
-
-                    <div class="method-description">
-                                    <p>Creates instance of EqualityComparator.</p>                                                </div>
-                <div class="tags">
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td><a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a></td>
+            <td>string</td>
             <td></td>
         </tr>
     </table>

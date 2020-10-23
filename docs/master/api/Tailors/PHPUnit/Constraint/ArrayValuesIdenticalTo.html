@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="robots" content="index, follow, all" />
-    <title>Tailors\PHPUnit\Constraint\ClassPropertiesIdenticalTo | API Documentation</title>
+    <title>Tailors\PHPUnit\Constraint\ArrayValuesIdenticalTo | API Documentation</title>
 
             <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-theme.min.css">
@@ -19,7 +19,7 @@
     
     </head>
 
-    <body id="class" data-name="class:Tailors_PHPUnit_Constraint_ClassPropertiesIdenticalTo" data-root-path="../../../">
+    <body id="class" data-name="class:Tailors_PHPUnit_Constraint_ArrayValuesIdenticalTo" data-root-path="../../../">
             <div id="content">
         <div id="left-column">
                 <div id="control-panel">
@@ -66,45 +66,37 @@
                         <div class="namespace-breadcrumbs">
             <ol class="breadcrumb">
                 <li><span class="label label-default">class</span></li>
-                        <li><a href="../../../Tailors.html">Tailors</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit.html">PHPUnit</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit/Constraint.html">Constraint</a></li><li class="backslash">\</li><li>ClassPropertiesIdenticalTo</li>
+                        <li><a href="../../../Tailors.html">Tailors</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit.html">PHPUnit</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit/Constraint.html">Constraint</a></li><li class="backslash">\</li><li>ArrayValuesIdenticalTo</li>
             </ol>
         </div>
                 <div id="page-content">
                 
     <div class="page-header">
         <h1>
-            ClassPropertiesIdenticalTo
+            ArrayValuesIdenticalTo
                 
         </h1>
     </div>
 
     <p>    class
-    <strong>ClassPropertiesIdenticalTo</strong>        extends <a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html"><abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a>
+    <strong>ArrayValuesIdenticalTo</strong>        extends <a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html"><abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a>
 </p>
 
         
     
 
             <div class="description">
-            <p>Constraint that accepts classes having properties identical to specified ones.</p>            <p>Compares only properties present in the array of expectations. A property is
-defined as either a static attribute value or a value returned by class'
-static method callable without arguments. The <code>===</code> operator (identity) is
-used for comparison.</p>
+            <p>Constraint that accepts arrays having values equal to specified ones.</p>            <p>Compares only values present in the array of expectations. The <code>===</code>
+operator (identity) is used for comparison.</p>
 
-<p>Any key in <em>$expected</em> array ending with <code>"()"</code> is considered to be a
-method that returns property value.</p>
-
-<pre><code> // ...
- $matcher = ClassPropertiesIdenticalTo::create([
-     'getName()' =&gt; 'John', 'age' =&gt; 21
+<pre><code> $matcher = ArrayValuesIdenticalTo::create([
+     'name' =&gt; 'John', 'age' =&gt; '21'
  ]);
 
- self::assertThat(get_class(new class {
-     public static $age = 21;
-     public static getName(): string {
-         return 'John';
-     }
- }), $matcher);
+ self::assertThat([
+     'age' =&gt; '21',
+     'name' =&gt; 'John',
+ ], $matcher);
 </code></pre>
 </p>                    </div>
     
@@ -123,7 +115,7 @@ method that returns property value.</p>
             </div>
                     <div class="row">
                 <div class="col-md-6">
-                                            <a href="../../../Tailors/PHPUnit/Properties/ValidateExpectationsTrait.html"><abbr title="Tailors\PHPUnit\Properties\ValidateExpectationsTrait">ValidateExpectationsTrait</abbr></a>
+                                            <a href="../../../Tailors/PHPUnit/Arrays/ValidateExpectationsTrait.html"><abbr title="Tailors\PHPUnit\Arrays\ValidateExpectationsTrait">ValidateExpectationsTrait</abbr></a>
                                             
                 </div>
                 <div class="col-md-6">
@@ -252,7 +244,7 @@ context of an $operator expression.</p>                </div>
         
                                             <p class="no-description">No description</p>
                                     </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Properties/ValidateExpectationsTrait.html#method_validateExpectations"><abbr title="Tailors\PHPUnit\Properties\ValidateExpectationsTrait">ValidateExpectationsTrait</abbr></a></small></div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Arrays/ValidateExpectationsTrait.html#method_validateExpectations"><abbr title="Tailors\PHPUnit\Arrays\ValidateExpectationsTrait">ValidateExpectationsTrait</abbr></a></small></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
@@ -261,7 +253,7 @@ context of an $operator expression.</p>                </div>
                 <div class="col-md-8 type">
                     <a href="#method_makeSelector">makeSelector</a>()
         
-                                            <p>Creates instance of ClassPropertySelector.</p>                </div>
+                                            <p>Creates instance of ArrayValueSelector.</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -719,7 +711,7 @@ customization by itself.</p>                            </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_validateExpectations">
-        <div class="location">in <a href="../../../Tailors/PHPUnit/Properties/ValidateExpectationsTrait.html#method_validateExpectations"><abbr title="Tailors\PHPUnit\Properties\ValidateExpectationsTrait">ValidateExpectationsTrait</abbr></a> at         line 24</div>
+        <div class="location">in <a href="../../../Tailors/PHPUnit/Arrays/ValidateExpectationsTrait.html#method_validateExpectations"><abbr title="Tailors\PHPUnit\Arrays\ValidateExpectationsTrait">ValidateExpectationsTrait</abbr></a> at         line 22</div>
         <code>        static    protected        void
     <strong>validateExpectations</strong>(array $expected, int $argument, int $depth = 1)
         </code>
@@ -760,15 +752,6 @@ customization by itself.</p>                            </div>
     </table>
 
             
-                            <h4>Exceptions</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td><a href="../../../Tailors/PHPUnit/InvalidArgumentException.html"><abbr title="Tailors\PHPUnit\InvalidArgumentException">InvalidArgumentException</abbr></a></td>
-                <td></td>
-            </tr>
-            </table>
-
             
                     </div>
     </div>
@@ -776,7 +759,7 @@ customization by itself.</p>                            </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_makeSelector">
-        <div class="location">at         line 61</div>
+        <div class="location">at         line 53</div>
         <code>        static    protected        <a href="../../../Tailors/PHPUnit/Values/ValueSelectorInterface.html"><abbr title="Tailors\PHPUnit\Values\ValueSelectorInterface">ValueSelectorInterface</abbr></a>
     <strong>makeSelector</strong>()
         </code>
@@ -786,7 +769,7 @@ customization by itself.</p>                            </div>
     
 
                     <div class="method-description">
-                                    <p>Creates instance of ClassPropertySelector.</p>                                                </div>
+                                    <p>Creates instance of ArrayValueSelector.</p>                                                </div>
                 <div class="tags">
             
                             <h4>Return Value</h4>
@@ -806,7 +789,7 @@ customization by itself.</p>                            </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_makeComparator">
-        <div class="location">at         line 53</div>
+        <div class="location">at         line 45</div>
         <code>        static    protected        <a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a>
     <strong>makeComparator</strong>()
         </code>

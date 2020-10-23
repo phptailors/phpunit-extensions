@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="robots" content="index, follow, all" />
-    <title>Tailors\PHPUnit\Properties\ExpectedPropertiesInterface | API Documentation</title>
+    <title>Tailors\PHPUnit\Values\ValueSelectorInterface | API Documentation</title>
 
             <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-theme.min.css">
@@ -19,7 +19,7 @@
     
     </head>
 
-    <body id="class" data-name="class:Tailors_PHPUnit_Properties_ExpectedPropertiesInterface" data-root-path="../../../">
+    <body id="class" data-name="class:Tailors_PHPUnit_Values_ValueSelectorInterface" data-root-path="../../../">
             <div id="content">
         <div id="left-column">
                 <div id="control-panel">
@@ -66,21 +66,20 @@
                         <div class="namespace-breadcrumbs">
             <ol class="breadcrumb">
                 <li><span class="label label-default">interface</span></li>
-                        <li><a href="../../../Tailors.html">Tailors</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit.html">PHPUnit</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit/Properties.html">Properties</a></li><li class="backslash">\</li><li>ExpectedPropertiesInterface</li>
+                        <li><a href="../../../Tailors.html">Tailors</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit.html">PHPUnit</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit/Values.html">Values</a></li><li class="backslash">\</li><li>ValueSelectorInterface</li>
             </ol>
         </div>
                 <div id="page-content">
                 
     <div class="page-header">
         <h1>
-            ExpectedPropertiesInterface
+            ValueSelectorInterface
                 
         </h1>
     </div>
 
     <p>    interface
-    <strong>ExpectedPropertiesInterface</strong>        implements
-        <a href="../../../Tailors/PHPUnit/Properties/PropertiesInterface.html"><abbr title="Tailors\PHPUnit\Properties\PropertiesInterface">PropertiesInterface</abbr></a>
+    <strong>ValueSelectorInterface</strong>
 </p>
 
         
@@ -95,35 +94,46 @@
             <div class="container-fluid underlined">
                     <div class="row">
                 <div class="col-md-2 type">
-                    array
+                    bool
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_getArrayCopy">getArrayCopy</a>()
+                    <a href="#method_supports">supports</a>(mixed $subject)
         
                                             <p class="no-description">No description</p>
                                     </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Properties/PropertiesInterface.html#method_getArrayCopy"><abbr title="Tailors\PHPUnit\Properties\PropertiesInterface">PropertiesInterface</abbr></a></small></div>
+                <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
                     bool
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_canUnwrapChild">canUnwrapChild</a>(<a href="../../../Tailors/PHPUnit/Properties/PropertiesInterface.html"><abbr title="Tailors\PHPUnit\Properties\PropertiesInterface">PropertiesInterface</abbr></a> $child)
+                    <a href="#method_select">select</a>(mixed $subject, mixed $key, mixed $retval = null)
         
                                             <p class="no-description">No description</p>
                                     </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Properties/PropertiesInterface.html#method_canUnwrapChild"><abbr title="Tailors\PHPUnit\Properties\PropertiesInterface">PropertiesInterface</abbr></a></small></div>
+                <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    <a href="../../../Tailors/PHPUnit/Properties/PropertySelectorInterface.html"><abbr title="Tailors\PHPUnit\Properties\PropertySelectorInterface">PropertySelectorInterface</abbr></a>
+                    string
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_getPropertySelector">getPropertySelector</a>()
+                    <a href="#method_subject">subject</a>()
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>A short string naming the subject type(s) supported by this selector
+(e.g. "an array", "an object", "a class", etc.).</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_selectable">selectable</a>()
+        
+                                            <p>A name for the values being selected from subject (in plural,
+e.g. "values" or "properties").</p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -133,38 +143,10 @@
 
             <div id="method-details">
                     <div class="method-item">
-                    <h3 id="method_getArrayCopy">
-        <div class="location">in <a href="../../../Tailors/PHPUnit/Properties/PropertiesInterface.html#method_getArrayCopy"><abbr title="Tailors\PHPUnit\Properties\PropertiesInterface">PropertiesInterface</abbr></a> at         line 24</div>
-        <code>                    array
-    <strong>getArrayCopy</strong>()
-        </code>
-    </h3>
-    <div class="details">
-            
-    
-
-                <div class="tags">
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td>array</td>
-            <td></td>
-        </tr>
-    </table>
-
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
-                    <h3 id="method_canUnwrapChild">
-        <div class="location">in <a href="../../../Tailors/PHPUnit/Properties/PropertiesInterface.html#method_canUnwrapChild"><abbr title="Tailors\PHPUnit\Properties\PropertiesInterface">PropertiesInterface</abbr></a> at         line 26</div>
+                    <h3 id="method_supports">
+        <div class="location">at         line 22</div>
         <code>                    bool
-    <strong>canUnwrapChild</strong>(<a href="../../../Tailors/PHPUnit/Properties/PropertiesInterface.html"><abbr title="Tailors\PHPUnit\Properties\PropertiesInterface">PropertiesInterface</abbr></a> $child)
+    <strong>supports</strong>(mixed $subject)
         </code>
     </h3>
     <div class="details">
@@ -176,8 +158,8 @@
 
                     <table class="table table-condensed">
                     <tr>
-                <td><a href="../../../Tailors/PHPUnit/Properties/PropertiesInterface.html"><abbr title="Tailors\PHPUnit\Properties\PropertiesInterface">PropertiesInterface</abbr></a></td>
-                <td>$child</td>
+                <td>mixed</td>
+                <td>$subject</td>
                 <td></td>
             </tr>
             </table>
@@ -199,10 +181,10 @@
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_getPropertySelector">
-        <div class="location">at         line 19</div>
-        <code>                    <a href="../../../Tailors/PHPUnit/Properties/PropertySelectorInterface.html"><abbr title="Tailors\PHPUnit\Properties\PropertySelectorInterface">PropertySelectorInterface</abbr></a>
-    <strong>getPropertySelector</strong>()
+                    <h3 id="method_select">
+        <div class="location">at         line 34</div>
+        <code>                    bool
+    <strong>select</strong>(mixed $subject, mixed $key, mixed $retval = null)
         </code>
     </h3>
     <div class="details">
@@ -210,12 +192,103 @@
     
 
                 <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>mixed</td>
+                <td>$subject</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>mixed</td>
+                <td>$key</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>mixed</td>
+                <td>$retval</td>
+                <td></td>
+            </tr>
+            </table>
+
             
                             <h4>Return Value</h4>
 
                     <table class="table table-condensed">
         <tr>
-            <td><a href="../../../Tailors/PHPUnit/Properties/PropertySelectorInterface.html"><abbr title="Tailors\PHPUnit\Properties\PropertySelectorInterface">PropertySelectorInterface</abbr></a></td>
+            <td>bool</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../Tailors/PHPUnit/InvalidArgumentException.html"><abbr title="Tailors\PHPUnit\InvalidArgumentException">InvalidArgumentException</abbr></a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_subject">
+        <div class="location">at         line 40</div>
+        <code>                    string
+    <strong>subject</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>A short string naming the subject type(s) supported by this selector
+(e.g. "an array", "an object", "a class", etc.).</p>                                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_selectable">
+        <div class="location">at         line 46</div>
+        <code>                    string
+    <strong>selectable</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>A name for the values being selected from subject (in plural,
+e.g. "values" or "properties").</p>                                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
             <td></td>
         </tr>
     </table>

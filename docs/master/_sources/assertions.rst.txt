@@ -8,6 +8,108 @@ sub-packages of php-tailors/phpunit-extensions. Assertions may be added to your
 test class by including appropriate trait as shown in prerequisite tables
 below.
 
+
+.. _assertions.assertArrayValuesEqualTo:
+
+assertArrayValuesEqualTo()
+--------------------------
+
+.. list-table:: Prerequisites for assertArrayValuesEqualTo()
+   :width: 100%
+   :widths: 25 75
+   :header-rows: 0
+
+   * - Package
+     - php-tailors/phpunit-arrays
+   * - Trait
+     - :class:`Tailors\\PHPUnit\\ArrayValuesEqualToTrait`
+
+Synopsis:
+
+.. code:: php
+
+  function assertArrayValuesEqualTo(array $expected, array|ArrayAccess $actual[, string $message = ''])
+
+Reports an error identified by ``$message`` if values in ``$actual`` array are
+not equal to ``$expected`` ones (tested with ``==`` operator). The method
+compares only values specified in ``$expected`` array, so ``$expected = []``
+accepts any ``$actual`` array. If ``$actual`` is not an array, the constraint
+fails.
+
+The arguments are:
+
+- ``$expected`` - an array of expected values,
+- ``$actual`` - an array or an ArrayAccess_ instance with actual values,
+- ``$message`` - optional failure message,
+
+The method
+
+.. code:: php
+
+  function assertNotArrayValuesEqualTo(array $expected, array|ArrayAccess $actual[, string $message = ''])
+
+is the inverse of this.
+
+.. literalinclude:: examples/AssertArrayValuesEqualToTest.php
+   :linenos:
+   :caption: Usage of assertArrayValuesEqualTo()
+   :name: assertions.assertArrayValuesEqualTo.example
+
+.. literalinclude:: examples/AssertArrayValuesEqualToTest.stdout
+   :linenos:
+   :language: none
+
+.. _assertions.assertArrayValuesIdenticalTo:
+
+assertArrayValuesIdenticalTo()
+------------------------------
+
+.. list-table:: Prerequisites for assertArrayValuesIdenticalTo()
+   :width: 100%
+   :widths: 25 75
+   :header-rows: 0
+
+   * - Package
+     - php-tailors/phpunit-arrays
+   * - Trait
+     - :class:`Tailors\\PHPUnit\\ArrayValuesIdenticalToTrait`
+
+Synopsis:
+
+.. code:: php
+
+  function assertArrayValuesIdenticalTo(array $expected, array|ArrayAccess$actual[, string $message = ''])
+
+Reports an error identified by ``$message`` if values in ``$actual`` array are
+not identical to ``$expected`` ones (tested with ``===`` operator).
+The method compares only values specified in ``$expected``, so ``$expected = []``
+accepts any ``$actual`` array. If ``$actual`` is not an array, the constraint
+fails.
+
+The arguments are:
+
+- ``$expected`` - an array of expected values,
+- ``$actual`` - an array or an ArrayAccess_ instance with actual values,
+- ``$message`` - optional failure message,
+
+The method
+
+.. code:: php
+
+  function assertNotArrayValuesIdenticalTo(array $expected, array|ArrayAcces $actual[, string $message = ''])
+
+is the inverse of this.
+
+.. literalinclude:: examples/AssertArrayValuesIdenticalToTest.php
+   :linenos:
+   :caption: Usage of assertArrayValuesIdenticalTo()
+   :name: assertions.assertArrayValuesIdenticalTo.example
+
+.. literalinclude:: examples/AssertArrayValuesIdenticalToTest.stdout
+   :linenos:
+   :language: none
+
+
 .. _assertions.assertClassPropertiesEqualTo:
 
 assertClassPropertiesEqualTo()
@@ -33,7 +135,7 @@ Reports an error identified by ``$message`` if properties of ``$class`` are not
 equal to ``$expected`` ones (tested with ``==`` operator).
 A property is either a static attribute value or a value returned by class's
 static method that is callable without arguments. The method compares only
-properties described in ``$expected``, so ``$expected = []`` accepts any
+properties specified in ``$expected``, so ``$expected = []`` accepts any
 existing ``$class``. If ``$class`` does not exists, the constraint fails.
 
 The arguments are:
@@ -87,7 +189,7 @@ Reports an error identified by ``$message`` if properties of ``$class``'s are
 not identical to ``$expected`` ones (tested with ``===`` operator).
 A property is either a static attribute value or a value returned by
 ``$class``'s static method that is callable without arguments. The method
-compares only properties described in ``$expected``, so ``$expected = []``
+compares only properties specified in ``$expected``, so ``$expected = []``
 accepts any existing ``$class``. If ``$class`` does not exist, the constraint
 fails.
 
@@ -195,7 +297,7 @@ Synopsis:
 Reports an error identified by ``$message`` if PCRE captures found in
 ``$matches`` (an array supposedly returned from `preg_match()`_) do not agree
 with the expectations prescribed in the ``$expected`` array. The method
-verifies only groups described in ``$expected``, so ``$expected = []``
+verifies only groups specified in ``$expected``, so ``$expected = []``
 accepts any array of ``$matches``. Expectations are formulated as follows:
 
 - ``$expected = ['foo' => true]`` requires ``$matches['foo']`` to be present,
@@ -309,7 +411,7 @@ Reports an error identified by ``$message`` if ``$object``'s properties are not
 equal to ``$expected`` ones (tested with ``==`` operator).
 A property is either an attribute value or a value returned by object's method
 that is callable without arguments. The method compares only properties
-described in ``$expected``, so ``$expected = []`` accepts any ``$object``.
+specified in ``$expected``, so ``$expected = []`` accepts any ``$object``.
 
 The arguments are:
 
@@ -362,7 +464,7 @@ Reports an error identified by ``$message`` if ``$object``'s properties are not
 identical with ``$expected`` ones (tested with ``===`` operator).
 A property is either an attribute value or a value returned by object's method
 that is callable without arguments. The method compares only properties
-described in ``$expected``, so ``$expected = []`` accepts any ``$object``.
+specified in ``$expected``, so ``$expected = []`` accepts any ``$object``.
 
 The arguments are:
 
@@ -442,5 +544,6 @@ is the inverse of this.
    :language: none
 
 .. _preg_match(): https://www.php.net/manual/en/function.preg-match.php
+.. _ArrayAccess:  https://www.php.net/manual/en/class.arrayaccess.php
 
 .. <!--- vim: set syntax=rst spell: -->

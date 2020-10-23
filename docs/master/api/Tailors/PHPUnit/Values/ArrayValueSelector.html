@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="robots" content="index, follow, all" />
-    <title>Tailors\PHPUnit\Properties\ObjectPropertySelector | API Documentation</title>
+    <title>Tailors\PHPUnit\Values\ArrayValueSelector | API Documentation</title>
 
             <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-theme.min.css">
@@ -19,7 +19,7 @@
     
     </head>
 
-    <body id="class" data-name="class:Tailors_PHPUnit_Properties_ObjectPropertySelector" data-root-path="../../../">
+    <body id="class" data-name="class:Tailors_PHPUnit_Values_ArrayValueSelector" data-root-path="../../../">
             <div id="content">
         <div id="left-column">
                 <div id="control-panel">
@@ -66,20 +66,20 @@
                         <div class="namespace-breadcrumbs">
             <ol class="breadcrumb">
                 <li><span class="label label-default">class</span></li>
-                        <li><a href="../../../Tailors.html">Tailors</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit.html">PHPUnit</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit/Properties.html">Properties</a></li><li class="backslash">\</li><li>ObjectPropertySelector</li>
+                        <li><a href="../../../Tailors.html">Tailors</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit.html">PHPUnit</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit/Values.html">Values</a></li><li class="backslash">\</li><li>ArrayValueSelector</li>
             </ol>
         </div>
                 <div id="page-content">
                 
     <div class="page-header">
         <h1>
-            ObjectPropertySelector
+            ArrayValueSelector
                 
         </h1>
     </div>
 
     <p>    class
-    <strong>ObjectPropertySelector</strong>        extends <a href="../../../Tailors/PHPUnit/Properties/AbstractPropertySelector.html"><abbr title="Tailors\PHPUnit\Properties\AbstractPropertySelector">AbstractPropertySelector</abbr></a>
+    <strong>ArrayValueSelector</strong>        extends <a href="../../../Tailors/PHPUnit/Values/AbstractValueSelector.html"><abbr title="Tailors\PHPUnit\Values\AbstractValueSelector">AbstractValueSelector</abbr></a>
 </p>
 
         
@@ -97,29 +97,18 @@
                     bool
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_selectProperty">selectProperty</a>(mixed $subject, mixed $key, mixed $retval = null)
+                    <a href="#method_select">select</a>(mixed $subject, mixed $key, mixed $retval = null)
         
                                             <p class="no-description">No description</p>
                                     </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Properties/AbstractPropertySelector.html#method_selectProperty"><abbr title="Tailors\PHPUnit\Properties\AbstractPropertySelector">AbstractPropertySelector</abbr></a></small></div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Values/AbstractValueSelector.html#method_select"><abbr title="Tailors\PHPUnit\Values\AbstractValueSelector">AbstractValueSelector</abbr></a></small></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
                     bool
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_selectWithMethod">selectWithMethod</a>($subject, string $method, $retval = null)
-        
-                                            <p class="no-description">No description</p>
-                                    </div>
-                <div class="col-md-2"></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    bool
-                </div>
-                <div class="col-md-8 type">
-                    <a href="#method_selectWithAttribute">selectWithAttribute</a>(mixed $subject, mixed $key, mixed $retval = null)
+                    <a href="#method_selectFromSupported">selectFromSupported</a>(mixed $subject, mixed $key, mixed $retval = null)
         
                                             <p class="no-description">No description</p>
                                     </div>
@@ -127,10 +116,21 @@
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_assertSupports">assertSupports</a>($subject, int $argument, int $distance = 1)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Values/AbstractValueSelector.html#method_assertSupports"><abbr title="Tailors\PHPUnit\Values\AbstractValueSelector">AbstractValueSelector</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
                     bool
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_canSelectFrom">canSelectFrom</a>(mixed $subject)
+                    <a href="#method_supports">supports</a>(mixed $subject)
         
                                             <p class="no-description">No description</p>
                                     </div>
@@ -143,7 +143,18 @@
                 <div class="col-md-8 type">
                     <a href="#method_subject">subject</a>()
         
-                                            <p>Returns short description of subject type supported by this constraint.</p>                </div>
+                                            <p>Returns short string explaining the type(s) of subjects the selector
+supports.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_selectable">selectable</a>()
+        
+                                            <p>A name for the values being selected from subject.</p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -153,115 +164,10 @@
 
             <div id="method-details">
                     <div class="method-item">
-                    <h3 id="method_selectProperty">
-        <div class="location">in <a href="../../../Tailors/PHPUnit/Properties/AbstractPropertySelector.html#method_selectProperty"><abbr title="Tailors\PHPUnit\Properties\AbstractPropertySelector">AbstractPropertySelector</abbr></a> at         line 26</div>
-        <code>                    bool
-    <strong>selectProperty</strong>(mixed $subject, mixed $key, mixed $retval = null)
-        </code>
-    </h3>
-    <div class="details">
-            
-    
-
-                <div class="tags">
-                            <h4>Parameters</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td>mixed</td>
-                <td>$subject</td>
-                <td></td>
-            </tr>
-                    <tr>
-                <td>mixed</td>
-                <td>$key</td>
-                <td></td>
-            </tr>
-                    <tr>
-                <td>mixed</td>
-                <td>$retval</td>
-                <td></td>
-            </tr>
-            </table>
-
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td>bool</td>
-            <td></td>
-        </tr>
-    </table>
-
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
-                    <h3 id="method_selectWithMethod">
-        <div class="location">at         line 46</div>
-        <code>            protected        bool
-    <strong>selectWithMethod</strong>($subject, string $method, $retval = null)
-        </code>
-    </h3>
-    <div class="details">
-            
-    
-
-                <div class="tags">
-                            <h4>Parameters</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td></td>
-                <td>$subject</td>
-                <td></td>
-            </tr>
-                    <tr>
-                <td>string</td>
-                <td>$method</td>
-                <td></td>
-            </tr>
-                    <tr>
-                <td></td>
-                <td>$retval</td>
-                <td></td>
-            </tr>
-            </table>
-
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td>bool</td>
-            <td></td>
-        </tr>
-    </table>
-
-            
-                            <h4>Exceptions</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td><a href="../../../Tailors/PHPUnit/InvalidArgumentException.html"><abbr title="Tailors\PHPUnit\InvalidArgumentException">InvalidArgumentException</abbr></a></td>
-                <td></td>
-            </tr>
-            </table>
-
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
-                    <h3 id="method_selectWithAttribute">
-        <div class="location">at         line 70</div>
-        <code>            protected        bool
-    <strong>selectWithAttribute</strong>(mixed $subject, mixed $key, mixed $retval = null)
+                    <h3 id="method_select">
+        <div class="location">in <a href="../../../Tailors/PHPUnit/Values/AbstractValueSelector.html#method_select"><abbr title="Tailors\PHPUnit\Values\AbstractValueSelector">AbstractValueSelector</abbr></a> at         line 31</div>
+        <code>final                    bool
+    <strong>select</strong>(mixed $subject, mixed $key, mixed $retval = null)
         </code>
     </h3>
     <div class="details">
@@ -315,10 +221,124 @@
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_canSelectFrom">
-        <div class="location">at         line 25</div>
+                    <h3 id="method_selectFromSupported">
+        <div class="location">at         line 60</div>
+        <code>            protected        bool
+    <strong>selectFromSupported</strong>(mixed $subject, mixed $key, mixed $retval = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>mixed</td>
+                <td>$subject</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>mixed</td>
+                <td>$key</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>mixed</td>
+                <td>$retval</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../Tailors/PHPUnit/InvalidArgumentException.html"><abbr title="Tailors\PHPUnit\InvalidArgumentException">InvalidArgumentException</abbr></a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_assertSupports">
+        <div class="location">in <a href="../../../Tailors/PHPUnit/Values/AbstractValueSelector.html#method_assertSupports"><abbr title="Tailors\PHPUnit\Values\AbstractValueSelector">AbstractValueSelector</abbr></a> at         line 54</div>
+        <code>final            protected        void
+    <strong>assertSupports</strong>($subject, int $argument, int $distance = 1)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td></td>
+                <td>$subject</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$argument</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$distance</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../Tailors/PHPUnit/InvalidArgumentException.html"><abbr title="Tailors\PHPUnit\InvalidArgumentException">InvalidArgumentException</abbr></a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_supports">
+        <div class="location">at         line 27</div>
         <code>                    bool
-    <strong>canSelectFrom</strong>(mixed $subject)
+    <strong>supports</strong>(mixed $subject)
         </code>
     </h3>
     <div class="details">
@@ -354,7 +374,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_subject">
-        <div class="location">at         line 33</div>
+        <div class="location">at         line 36</div>
         <code>                    string
     <strong>subject</strong>()
         </code>
@@ -364,7 +384,38 @@
     
 
                     <div class="method-description">
-                                    <p>Returns short description of subject type supported by this constraint.</p>                                                </div>
+                                    <p>Returns short string explaining the type(s) of subjects the selector
+supports.</p>                                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_selectable">
+        <div class="location">at         line 44</div>
+        <code>                    string
+    <strong>selectable</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>A name for the values being selected from subject.</p>                                                </div>
                 <div class="tags">
             
                             <h4>Return Value</h4>
