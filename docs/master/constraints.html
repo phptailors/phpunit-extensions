@@ -258,12 +258,11 @@ equal to <code class="docutils literal notranslate"><span class="pre">$expected<
 23
 24
 25
-26
-27</pre></div></td><td class="code"><div class="highlight"><pre><span></span>PHPUnit 9.4.0 by Sebastian Bergmann and contributors.
+26</pre></div></td><td class="code"><div class="highlight"><pre><span></span>PHPUnit 9.4.0 by Sebastian Bergmann and contributors.
 
 .F                                                                  2 / 2 (100%)
 
-Time: 00:00.011, Memory: 6.00 MB
+Time: 00:00.010, Memory: 6.00 MB
 
 There was 1 failure:
 
@@ -272,11 +271,10 @@ Failed asserting that array is an array or ArrayAccess with values equal to spec
 --- Expected
 +++ Actual
 @@ @@
--values &lt;expect&gt; (
+ values (
 -    &#39;int&#39; =&gt; 123
 -    1 =&gt; &#39;&#39;
 -    &#39;foo&#39; =&gt; &#39;BAR&#39;
-+values &lt;actual&gt; (
 +    &#39;int&#39; =&gt; &#39;123&#39;
 +    1 =&gt; null
 +    &#39;foo&#39; =&gt; &#39;FOO&#39;
@@ -381,12 +379,11 @@ identical to <code class="docutils literal notranslate"><span class="pre">$expec
 20
 21
 22
-23
-24</pre></div></td><td class="code"><div class="highlight"><pre><span></span>PHPUnit 9.4.0 by Sebastian Bergmann and contributors.
+23</pre></div></td><td class="code"><div class="highlight"><pre><span></span>PHPUnit 9.4.0 by Sebastian Bergmann and contributors.
 
 .F                                                                  2 / 2 (100%)
 
-Time: 00:00.010, Memory: 6.00 MB
+Time: 00:00.011, Memory: 6.00 MB
 
 There was 1 failure:
 
@@ -395,8 +392,7 @@ Failed asserting that array is an array or ArrayAccess with values identical to 
 --- Expected
 +++ Actual
 @@ @@
--values &lt;expect&gt; (
-+values &lt;actual&gt; (
+ values (
      &#39;int&#39; =&gt; 123
 -    1 =&gt; null
 +    1 =&gt; &#39;&#39;
@@ -524,12 +520,11 @@ value to be an array with prescribed values.</p>
 21
 22
 23
-24
-25</pre></div></td><td class="code"><div class="highlight"><pre><span></span>PHPUnit 9.4.0 by Sebastian Bergmann and contributors.
+24</pre></div></td><td class="code"><div class="highlight"><pre><span></span>PHPUnit 9.4.0 by Sebastian Bergmann and contributors.
 
 .F                                                                  2 / 2 (100%)
 
-Time: 00:00.011, Memory: 6.00 MB
+Time: 00:00.010, Memory: 6.00 MB
 
 There was 1 failure:
 
@@ -538,10 +533,9 @@ Failed asserting that classPropertiesEqualToTest is a class with properties equa
 --- Expected
 +++ Actual
 @@ @@
--values &lt;expect&gt; (
+ values (
 -    &#39;attribute&#39; =&gt; &#39;123&#39;
 -    &#39;getValue()&#39; =&gt; null
-+values &lt;actual&gt; (
 +    &#39;attribute&#39; =&gt; 123
 +    &#39;getValue()&#39; =&gt; 321
  )
@@ -668,12 +662,11 @@ property to be a class with prescribed properties.</p>
 21
 22
 23
-24
-25</pre></div></td><td class="code"><div class="highlight"><pre><span></span>PHPUnit 9.4.0 by Sebastian Bergmann and contributors.
+24</pre></div></td><td class="code"><div class="highlight"><pre><span></span>PHPUnit 9.4.0 by Sebastian Bergmann and contributors.
 
 .F                                                                  2 / 2 (100%)
 
-Time: 00:00.011, Memory: 6.00 MB
+Time: 00:00.009, Memory: 6.00 MB
 
 There was 1 failure:
 
@@ -682,10 +675,9 @@ Failed asserting that classPropertiesIdenticalToTest is a class with properties 
 --- Expected
 +++ Actual
 @@ @@
--values &lt;expect&gt; (
+ values (
 -    &#39;attribute&#39; =&gt; &#39;123&#39;
 -    &#39;getValue()&#39; =&gt; null
-+values &lt;actual&gt; (
 +    &#39;attribute&#39; =&gt; 123
 +    &#39;getValue()&#39; =&gt; 321
  )
@@ -792,7 +784,7 @@ that</p>
 
 .F                                                                  2 / 2 (100%)
 
-Time: 00:00.011, Memory: 6.00 MB
+Time: 00:00.007, Memory: 6.00 MB
 
 There was 1 failure:
 
@@ -952,7 +944,7 @@ only with arrays obtained from <code class="docutils literal notranslate"><span 
 
 .F                                                                  2 / 2 (100%)
 
-Time: 00:00.009, Memory: 6.00 MB
+Time: 00:00.010, Memory: 6.00 MB
 
 There was 1 failure:
 
@@ -1058,7 +1050,7 @@ Tests: 2, Assertions: 2, Failures: 1.
 
 .F                                                                  2 / 2 (100%)
 
-Time: 00:00.008, Memory: 6.00 MB
+Time: 00:00.006, Memory: 6.00 MB
 
 There was 1 failure:
 
@@ -1185,12 +1177,11 @@ Tests: 2, Assertions: 3, Failures: 1.
 21
 22
 23
-24
-25</pre></div></td><td class="code"><div class="highlight"><pre><span></span>PHPUnit 9.4.0 by Sebastian Bergmann and contributors.
+24</pre></div></td><td class="code"><div class="highlight"><pre><span></span>PHPUnit 9.4.0 by Sebastian Bergmann and contributors.
 
 .F                                                                  2 / 2 (100%)
 
-Time: 00:00.010, Memory: 6.00 MB
+Time: 00:00.016, Memory: 6.00 MB
 
 There was 1 failure:
 
@@ -1199,10 +1190,9 @@ Failed asserting that object objectPropertiesEqualToTest is an object with prope
 --- Expected
 +++ Actual
 @@ @@
--values &lt;expect&gt; (
+ values (
 -    &#39;attribute&#39; =&gt; &#39;123&#39;
 -    &#39;getValue()&#39; =&gt; null
-+values &lt;actual&gt; (
 +    &#39;attribute&#39; =&gt; 123
 +    &#39;getValue()&#39; =&gt; 321
  )
@@ -1329,12 +1319,11 @@ property to be an object with prescribed properties.</p>
 21
 22
 23
-24
-25</pre></div></td><td class="code"><div class="highlight"><pre><span></span>PHPUnit 9.4.0 by Sebastian Bergmann and contributors.
+24</pre></div></td><td class="code"><div class="highlight"><pre><span></span>PHPUnit 9.4.0 by Sebastian Bergmann and contributors.
 
 .F                                                                  2 / 2 (100%)
 
-Time: 00:00.011, Memory: 6.00 MB
+Time: 00:00.009, Memory: 6.00 MB
 
 There was 1 failure:
 
@@ -1343,10 +1332,9 @@ Failed asserting that object objectPropertiesIdenticalToTest is an object with p
 --- Expected
 +++ Actual
 @@ @@
--values &lt;expect&gt; (
+ values (
 -    &#39;attribute&#39; =&gt; &#39;123&#39;
 -    &#39;getValue()&#39; =&gt; null
-+values &lt;actual&gt; (
 +    &#39;attribute&#39; =&gt; 123
 +    &#39;getValue()&#39; =&gt; 321
  )
@@ -1449,7 +1437,7 @@ property to be an object with prescribed properties.</p>
 
 .F                                                                  2 / 2 (100%)
 
-Time: 00:00.009, Memory: 6.00 MB
+Time: 00:00.008, Memory: 6.00 MB
 
 There was 1 failure:
 
