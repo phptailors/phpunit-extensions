@@ -22,11 +22,6 @@ use Tailors\PHPUnit\Values\ValuesInterface;
  */
 final class Exporter extends SebastianBergmannExporter
 {
-    public function describe(ValuesInterface $values): string
-    {
-        return sprintf('values <%s>', $values->actual() ? 'actual' : 'expect');
-    }
-
     /**
      * Recursive implementation of export.
      *
@@ -63,11 +58,7 @@ final class Exporter extends SebastianBergmannExporter
     public function shortenedExport($value)
     {
         if ($value instanceof ValuesInterface) {
-            return sprintf(
-                '%s (%s)',
-                $this->describe($value),
-                count($this->toArray($value)) > 0 ? '...' : ''
-            );
+            return sprintf('values (%s)', count($this->toArray($value)) > 0 ? '...' : '');
         }
 
         return parent::shortenedExport($value);
@@ -90,7 +81,7 @@ final class Exporter extends SebastianBergmannExporter
         $hash = $processed->contains($value);
 
         if ($hash) {
-            return $this->describe($value);
+            return 'values';
         }
 
         $processed->add($value);
@@ -111,7 +102,7 @@ final class Exporter extends SebastianBergmannExporter
             $values = "\n".$values.$whitespace;
         }
 
-        return sprintf('%s (%s)', $this->describe($value), $values);
+        return sprintf('values (%s)', $values);
     }
 }
 

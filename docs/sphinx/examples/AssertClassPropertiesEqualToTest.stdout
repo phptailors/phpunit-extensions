@@ -11,10 +11,9 @@ Failed asserting that AssertClassPropertiesEqualToTest is a class with propertie
 --- Expected
 +++ Actual
 @@ @@
--values <expect> (
+ values (
 -    'attribute' => '123'
 -    'getValue()' => null
-+values <actual> (
 +    'attribute' => 123
 +    'getValue()' => 321
  )

@@ -14,7 +14,6 @@ use PHPUnit\Framework\TestCase;
 use SebastianBergmann\Exporter\Exporter as SebastianBergmannExporter;
 use Tailors\PHPUnit\Values\ActualValues;
 use Tailors\PHPUnit\Values\ExpectedValues;
-use Tailors\PHPUnit\Values\ValuesInterface;
 
 /**
  * @small
@@ -34,47 +33,6 @@ final class ExporterTest extends TestCase
     public function testExtendsSebastianBergmannExporter(): void
     {
         self::assertInstanceOf(SebastianBergmannExporter::class, new Exporter());
-    }
-
-    //
-    // describe()
-    //
-
-    public function provDescribe(): array
-    {
-        $expect = $this->createMock(ValuesInterface::class);
-        $actual = $this->createMock(ValuesInterface::class);
-
-        $expect->expects($this->any())
-            ->method('actual')
-            ->willReturn(false)
-        ;
-
-        $actual->expects($this->any())
-            ->method('actual')
-            ->willReturn(true)
-        ;
-
-        return [
-            'ExporterTest.php:'.__LINE__ => [
-                'argument' => $expect,
-                'expected' => 'values <expect>',
-            ],
-
-            'ExporterTest.php:'.__LINE__ => [
-                'argument' => $actual,
-                'expected' => 'values <actual>',
-            ],
-        ];
-    }
-
-    /**
-     * @dataProvider provDescribe
-     */
-    public function testDescribe(ValuesInterface $argument, string $expected): void
-    {
-        $exporter = new Exporter();
-        self::assertSame($expected, $exporter->describe($argument));
     }
 
     //
@@ -104,13 +62,13 @@ final class ExporterTest extends TestCase
         // #4
         $cases[] = [
             'arguments' => new ActualValues([]),
-            'expected'  => 'values <actual> ()',
+            'expected'  => 'values ()',
         ];
 
         // #5
         $cases[] = [
             'arguments' => new ExpectedValues([]),
-            'expected'  => 'values <expect> ()',
+            'expected'  => 'values ()',
         ];
 
         // #6
@@ -118,7 +76,7 @@ final class ExporterTest extends TestCase
             'arguments' => new ActualValues([
                 'foo' => 'FOO',
             ]),
-            'expected' => "values <actual> (\n".
+            'expected' => "values (\n".
                           "    'foo' => 'FOO'\n".
                           ')',
         ];
@@ -128,7 +86,7 @@ final class ExporterTest extends TestCase
             'arguments' => new ExpectedValues([
                 'foo' => 'FOO',
             ]),
-            'expected' => "values <expect> (\n".
+            'expected' => "values (\n".
                           "    'foo' => 'FOO'\n".
                           ')',
         ];
@@ -153,8 +111,8 @@ final class ExporterTest extends TestCase
         $argument = new ActualValues([]);
         $argument['foo'] = $argument;
 
-        $expected = "values <actual> (\n".
-            "    'foo' => values <actual>\n".
+        $expected = "values (\n".
+            "    'foo' => values\n".
             ')';
         self::assertSame($expected, $exporter->export($argument));
     }
@@ -184,13 +142,13 @@ final class ExporterTest extends TestCase
         // #4
         $cases[] = [
             'arguments' => new ActualValues([]),
-            'expected'  => 'values <actual> ()',
+            'expected'  => 'values ()',
         ];
 
         // #5
         $cases[] = [
             'arguments' => new ExpectedValues([]),
-            'expected'  => 'values <expect> ()',
+            'expected'  => 'values ()',
         ];
 
         // #6
@@ -198,7 +156,7 @@ final class ExporterTest extends TestCase
             'arguments' => new ActualValues([
                 'foo' => 'FOO',
             ]),
-            'expected' => 'values <actual> (...)',
+            'expected' => 'values (...)',
         ];
 
         // #7
@@ -206,7 +164,7 @@ final class ExporterTest extends TestCase
             'arguments' => new ExpectedValues([
                 'foo' => 'FOO',
             ]),
-            'expected' => 'values <expect> (...)',
+            'expected' => 'values (...)',
         ];
 
         return $cases;
