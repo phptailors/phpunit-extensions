@@ -53,26 +53,24 @@ final class ExporterTest extends TestCase
 
         $cases = [];
         foreach ($sebastianHandles as $value) {
-            $cases[] = [
+            $type = is_object($value) ? get_class($value) : gettype($value);
+            $cases[sprintf('ExporterTest.php:%d (%s)', __LINE__, $type)] = [
                 'argument' => $value,
                 'expected' => $sebastianExporter->export($value),
             ];
         }
 
-        // #4
-        $cases[] = [
+        $cases['ExporterTest.php:'.__LINE__] = [
             'arguments' => new ActualValues([]),
             'expected'  => 'values ()',
         ];
 
-        // #5
-        $cases[] = [
+        $cases['ExporterTest.php:'.__LINE__] = [
             'arguments' => new ExpectedValues([]),
             'expected'  => 'values ()',
         ];
 
-        // #6
-        $cases[] = [
+        $cases['ExporterTest.php:'.__LINE__] = [
             'arguments' => new ActualValues([
                 'foo' => 'FOO',
             ]),
@@ -81,8 +79,7 @@ final class ExporterTest extends TestCase
                           ')',
         ];
 
-        // #7
-        $cases[] = [
+        $cases['ExporterTest.php:'.__LINE__] = [
             'arguments' => new ExpectedValues([
                 'foo' => 'FOO',
             ]),
@@ -133,34 +130,31 @@ final class ExporterTest extends TestCase
 
         $cases = [];
         foreach ($sebastianHandles as $value) {
-            $cases[] = [
+            $type = is_object($value) ? get_class($value) : gettype($value);
+            $cases[sprintf('ExporterTest.php:%d (%s)', __LINE__, $type)] = [
                 'argument' => $value,
                 'expected' => $sebastianExporter->shortenedExport($value),
             ];
         }
 
-        // #4
-        $cases[] = [
+        $cases['ExporterTest.php:'.__LINE__] = [
             'arguments' => new ActualValues([]),
             'expected'  => 'values ()',
         ];
 
-        // #5
-        $cases[] = [
+        $cases['ExporterTest.php:'.__LINE__] = [
             'arguments' => new ExpectedValues([]),
             'expected'  => 'values ()',
         ];
 
-        // #6
-        $cases[] = [
+        $cases['ExporterTest.php:'.__LINE__] = [
             'arguments' => new ActualValues([
                 'foo' => 'FOO',
             ]),
             'expected' => 'values (...)',
         ];
 
-        // #7
-        $cases[] = [
+        $cases['ExporterTest.php:'.__LINE__] = [
             'arguments' => new ExpectedValues([
                 'foo' => 'FOO',
             ]),
