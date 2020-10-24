@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of php-tailors/phpunit-extensions.
+ * This file is part of phptailors/phpunit-extensions.
  *
  * Copyright (c) Paweł Tomulik <ptomulik@meil.pw.edu.pl>
  *
@@ -12,6 +12,7 @@ namespace Tailors\PHPUnit;
 
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\Constraint\ArrayValuesIdenticalTo;
 use Tailors\PHPUnit\Constraint\ProvArrayValuesTrait;
 
 /**
@@ -25,6 +26,14 @@ final class ArrayValuesIdenticalToTraitTest extends TestCase
 {
     use ArrayValuesIdenticalToTrait;
     use ProvArrayValuesTrait;
+
+    /**
+     * @param mixed $args
+     */
+    public function createConstraint(...$args): ArrayValuesIdenticalTo
+    {
+        return ArrayValuesIdenticalTo::create(...$args);
+    }
 
     /**
      * @dataProvider provArrayValuesIdenticalTo

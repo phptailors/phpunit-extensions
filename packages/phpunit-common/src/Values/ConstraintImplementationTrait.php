@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of php-tailors/phpunit-extensions.
+ * This file is part of phptailors/phpunit-extensions.
  *
  * Copyright (c) Paweł Tomulik <ptomulik@meil.pw.edu.pl>
  *
@@ -28,13 +28,15 @@ trait ConstraintImplementationTrait
         $comparator = self::makeComparator();
         $selector = self::makeSelector();
 
+        (new RecursiveComparatorValidator($comparator))->validate($expected, 1);
+
         return new self($comparator, new Selection($selector, $expected), new RecursiveUnwrapper());
     }
 
     /**
      * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
-    abstract protected static function validateExpectations(array $expected, int $argument, int $depth = 1): void;
+    abstract protected static function validateExpectations(array $expected, int $argument, int $distance = 1): void;
 
     /**
      * Creates instance of ValueSelectorInterface.
@@ -42,7 +44,7 @@ trait ConstraintImplementationTrait
     abstract protected static function makeSelector(): ValueSelectorInterface;
 
     /**
-     * Creates instance of EqualityComparator.
+     * Creates instance of ComparatorInterface.
      */
     abstract protected static function makeComparator(): ComparatorInterface;
 }

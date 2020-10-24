@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of php-tailors/phpunit-extensions.
+ * This file is part of phptailors/phpunit-extensions.
  *
  * Copyright (c) Paweł Tomulik <ptomulik@meil.pw.edu.pl>
  *
@@ -15,7 +15,7 @@ use Tailors\PHPUnit\InvalidArgumentException;
 /**
  * @internal This class is not covered by the backward compatibility promise
  * @psalm-internal Tailors\PHPUnit
- * @template SubjectType
+ * @psalm-template SubjectType
  */
 abstract class AbstractValueSelector implements ValueSelectorInterface
 {
@@ -48,6 +48,8 @@ abstract class AbstractValueSelector implements ValueSelectorInterface
      * @psalm-assert SubjectType $subject
      *
      * @param mixed $subject
+     * @param int   $argument
+     * @param int   $distance
      *
      * @throws InvalidArgumentException
      */

@@ -4,6 +4,7 @@
 /circleci
 /docker-compose
 /sami
+/doctum
 /tmp
 /tests/cache
 /tools

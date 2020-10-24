@@ -24,6 +24,8 @@ plugins:
           php:
             filters:
               # The traits providing assertions are all similar, by design.
+              - "(Stmt_Trait ArrayValuesEqualToTrait ___)"
+              - "(Stmt_Trait ArrayValuesIdenticalToTrait ___)"
               - "(Stmt_Trait ClassPropertiesEqualToTrait ___)"
               - "(Stmt_Trait ClassPropertiesIdenticalToTrait ___)"
               - "(Stmt_Trait ObjectPropertiesEqualToTrait ___)"

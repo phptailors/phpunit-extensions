@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of php-tailors/phpunit-extensions.
+ * This file is part of phptailors/phpunit-extensions.
  *
  * Copyright (c) Paweł Tomulik <ptomulik@meil.pw.edu.pl>
  *
@@ -19,7 +19,7 @@ trait ValidateExpectationsTrait
     /**
      * @psalm-suppress UnusedParam
      */
-    protected static function validateExpectations(array $expected, int $argument, int $depth = 1): void
+    protected static function validateExpectations(array $expected, int $argument, int $distance = 1): void
     {
     }
 }

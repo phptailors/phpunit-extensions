@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of php-tailors/phpunit-extensions.
+ * This file is part of phptailors/phpunit-extensions.
  *
  * Copyright (c) Paweł Tomulik <ptomulik@meil.pw.edu.pl>
  *
@@ -51,7 +51,7 @@ abstract class PropertiesConstraintTestCase extends ConstraintTestCase
      */
     final public function testCreateWithNonStringKeys(array $array, int $count): void
     {
-        $this->examineExceptionOnNonStringKeys($array, $count);
+        $this->examineCreateWithNonStringKeys($array, $count);
 
         // @codeCoverageIgnoreStart
     }
@@ -59,25 +59,21 @@ abstract class PropertiesConstraintTestCase extends ConstraintTestCase
     // @codeCoverageIgnoreEnd
 
     /**
-     * Assert that $function throws InvalidArgumentException with appropriate
-     * message when provided with an array having one or more non-string keys.
+     * Assert that constraint constructor throws InvalidArgumentException with
+     * appropriate message when provided with an array having one or more
+     * non-string keys.
      *
-     * @param array    $array    An array with non-string keys to be passed as an argument to $function
-     * @param int      $count    Number of non-string keys in $array
-     * @param callable $function A function that creates constraint
+     * @param array $array An array with non-string keys to be passed as an argument to $function
+     * @param int   $count Number of non-string keys in $array
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
      */
-    private function examineExceptionOnNonStringKeys(array $array, int $count, callable $function = null): void
+    private function examineCreateWithNonStringKeys(array $array, int $count): void
     {
-        if (null === $function) {
-            $function = [static::constraintClass(), 'create'];
-        }
-
         $message = sprintf(
             'Argument 1 passed to %s::create() must be an associative array with string keys, '.
             'an array with %d non-string %s given',
-            static::constraintClass(),
+            get_class($this->createConstraint([])),
             $count,
             $count > 1 ? 'keys' : 'key'
         );
@@ -85,7 +81,7 @@ abstract class PropertiesConstraintTestCase extends ConstraintTestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage($message);
 
-        call_user_func($function, $array);
+        $this->createConstraint($array);
 
         // @codeCoverageIgnoreStart
     }

@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of php-tailors/phpunit-extensions.
+ * This file is part of phptailors/phpunit-extensions.
  *
  * Copyright (c) Paweł Tomulik <ptomulik@meil.pw.edu.pl>
  *
@@ -17,6 +17,7 @@ use SebastianBergmann\Comparator\ComparisonFailure;
 use SebastianBergmann\Exporter\Exporter as SebastianBergmannExporter;
 use Tailors\PHPUnit\CircularDependencyException;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
+use Tailors\PHPUnit\Comparator\ComparatorWrapperInterface;
 use Tailors\PHPUnit\Exporter\Exporter;
 
 /**
@@ -25,7 +26,7 @@ use Tailors\PHPUnit\Exporter\Exporter;
  * @internal This class is not covered by the backward compatibility promise
  * @psalm-internal Tailors\PHPUnit
  */
-abstract class AbstractConstraint extends Constraint implements SelectionAggregateInterface
+abstract class AbstractConstraint extends Constraint implements ComparatorWrapperInterface, SelectionWrapperInterface
 {
     /**
      * @var SelectionInterface
@@ -66,6 +67,14 @@ abstract class AbstractConstraint extends Constraint implements SelectionAggrega
     }
 
     /**
+     * Returns an instance of ComparatorInterface which implements comparison operator.
+     */
+    final public function getComparator(): ComparatorInterface
+    {
+        return $this->comparator;
+    }
+
+    /**
      * Returns a string representation of the constraint.
      */
     final public function toString(): string
@@ -79,35 +88,6 @@ abstract class AbstractConstraint extends Constraint implements SelectionAggrega
     }
 
     /**
-     * Returns a custom string representation of the constraint object when it
-     * appears in context of an $operator expression.
-     *
-     * The purpose of this method is to provide meaningful descriptive string
-     * in context of operators such as LogicalNot. Native PHPUnit constraints
-     * are supported out of the box by LogicalNot, but externally developed
-     * ones had no way to provide correct strings in this context.
-     *
-     * The method shall return empty string, when it does not handle
-     * customization by itself.
-     *
-     * @param Operator $operator the $operator of the expression
-     * @param mixed    $role     role of $this constraint in the $operator expression
-     */
-    final public function toStringInContext(Operator $operator, $role): string
-    {
-        if ($operator instanceof LogicalNot) {
-            return sprintf(
-                'fails to be %s with %s %s specified',
-                $this->expected->getSelector()->subject(),
-                $this->expected->getSelector()->selectable(),
-                $this->comparator->adjective()
-            );
-        }
-
-        return '';
-    }
-
-    /**
      * Evaluates the constraint for parameter $other.
      *
      * If $returnResult is set to false (the default), an exception is thrown
@@ -117,7 +97,9 @@ abstract class AbstractConstraint extends Constraint implements SelectionAggrega
      * a boolean value instead: true in case of success, false in case of a
      * failure.
      *
-     * @param mixed $other
+     * @param mixed  $other
+     * @param string $description
+     * @param bool   $returnResult
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
@@ -151,12 +133,41 @@ abstract class AbstractConstraint extends Constraint implements SelectionAggrega
     }
 
     /**
+     * Returns a custom string representation of the constraint object when it
+     * appears in context of an $operator expression.
+     *
+     * The purpose of this method is to provide meaningful descriptive string
+     * in context of operators such as LogicalNot. Native PHPUnit constraints
+     * are supported out of the box by LogicalNot, but externally developed
+     * ones had no way to provide correct strings in this context.
+     *
+     * The method shall return empty string, when it does not handle
+     * customization by itself.
+     *
+     * @param Operator $operator the $operator of the expression
+     * @param mixed    $role     role of $this constraint in the $operator expression
+     */
+    final protected function toStringInContext(Operator $operator, $role): string
+    {
+        if ($operator instanceof LogicalNot) {
+            return sprintf(
+                'fails to be %s with %s %s specified',
+                $this->expected->getSelector()->subject(),
+                $this->expected->getSelector()->selectable(),
+                $this->comparator->adjective()
+            );
+        }
+
+        return '';
+    }
+
+    /**
      * Evaluates the constraint for parameter $other. Returns true if the
      * constraint is met, false otherwise.
      *
      * @param mixed $other value or object to evaluate
      */
-    final public function matches($other): bool
+    final protected function matches($other): bool
     {
         if (!$this->expected->getSelector()->supports($other)) {
             return false;

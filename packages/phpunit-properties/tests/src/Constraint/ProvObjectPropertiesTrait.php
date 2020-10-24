@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of php-tailors/phpunit-extensions.
+ * This file is part of phptailors/phpunit-extensions.
  *
  * Copyright (c) Paweł Tomulik <ptomulik@meil.pw.edu.pl>
  *
@@ -10,15 +10,22 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
+use Tailors\PHPUnit\Values\AbstractConstraint;
+
 /**
  * @internal This trait is not covered by the backward compatibility promise
  * @psalm-internal Tailors\PHPUnit
  */
 trait ProvObjectPropertiesTrait
 {
+    /**
+     * @param mixed $args
+     */
+    abstract public function createConstraint(...$args): AbstractConstraint;
+
     // @codeCoverageIgnoreStart
 
-    public static function provObjectPropertiesIdenticalTo(): array
+    public function provObjectPropertiesIdenticalTo(): array
     {
         $esmith = new class() {
             public $name = 'Emily';
@@ -139,7 +146,7 @@ trait ProvObjectPropertiesTrait
                     'name' => 'John',
                     'last' => 'Smith',
                     'age'  => 21,
-                    'wife' => ObjectPropertiesIdenticalTo::create([
+                    'wife' => $this->createConstraint([
                         'name'        => 'Emily',
                         'last'        => 'Smith',
                         'age'         => 20,
@@ -156,11 +163,11 @@ trait ProvObjectPropertiesTrait
                     'name' => 'John',
                     'last' => 'Smith',
                     'age'  => 21,
-                    'wife' => ObjectPropertiesIdenticalTo::create([
+                    'wife' => $this->createConstraint([
                         'name'    => 'Emily',
                         'last'    => 'Smith',
                         'age'     => 20,
-                        'husband' => ObjectPropertiesIdenticalTo::create([
+                        'husband' => $this->createConstraint([
                             'name'        => 'John',
                             'last'        => 'Smith',
                             'age'         => 21,
@@ -184,7 +191,7 @@ trait ProvObjectPropertiesTrait
             'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => [
                     'family' => [
-                        ObjectPropertiesIdenticalTo::create(['name' => 'Emily', 'last' => 'Smith']),
+                        $this->createConstraint(['name' => 'Emily', 'last' => 'Smith']),
                     ],
                 ],
                 'actual' => $jsmith,
@@ -194,13 +201,13 @@ trait ProvObjectPropertiesTrait
             'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => [
                     'persons' => [
-                        ObjectPropertiesIdenticalTo::create(['name' => 'Emily', 'last' => 'Smith']),
-                        ObjectPropertiesIdenticalTo::create(['name' => 'John', 'last' => 'Smith']),
+                        $this->createConstraint(['name' => 'Emily', 'last' => 'Smith']),
+                        $this->createConstraint(['name' => 'John', 'last' => 'Smith']),
                     ],
                     'families' => [
                         'smith' => [
-                            ObjectPropertiesIdenticalTo::create(['name' => 'Emily', 'last' => 'Smith']),
-                            ObjectPropertiesIdenticalTo::create(['name' => 'John', 'last' => 'Smith']),
+                            $this->createConstraint(['name' => 'Emily', 'last' => 'Smith']),
+                            $this->createConstraint(['name' => 'John', 'last' => 'Smith']),
                         ],
                     ],
                 ],
@@ -252,7 +259,7 @@ trait ProvObjectPropertiesTrait
         ];
     }
 
-    public static function provObjectPropertiesNotEqualTo(): array
+    public function provObjectPropertiesNotEqualTo(): array
     {
         $hbrown = new class() {
             public $name = 'Helen';
@@ -425,7 +432,7 @@ trait ProvObjectPropertiesTrait
                         $jsmith,
                     ],
                     // the following must not match, as the 'families' property is an array, not an object.
-                    'families' => ObjectPropertiesIdenticalTo::create([
+                    'families' => $this->createConstraint([
                         'smith' => [
                             $esmith,
                             $jsmith,

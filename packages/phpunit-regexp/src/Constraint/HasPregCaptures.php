@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of php-tailors/phpunit-extensions.
+ * This file is part of phptailors/phpunit-extensions.
  *
  * Copyright (c) Paweł Tomulik <ptomulik@meil.pw.edu.pl>
  *
@@ -58,6 +58,7 @@ final class HasPregCaptures extends Constraint
      * Initializes the constraint.
      *
      * @param array $expected an array of expected values
+     * @param int   $flags    flags as in preg_match()
      *
      * @throws InvalidArgumentException
      */
@@ -86,7 +87,9 @@ final class HasPregCaptures extends Constraint
      * a boolean value instead: true in case of success, false in case of a
      * failure.
      *
-     * @param mixed $other
+     * @param mixed  $other
+     * @param string $description
+     * @param bool   $returnResult
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException

@@ -8,6 +8,7 @@
     checkForThrowsDocblock="true"
     findUnusedVariablesAndParams="true"
     findUnusedCode="true"
+    rememberPropertyAssignmentsAfterCall="false"
     errorBaseline=".psalm/baseline.xml"
     errorLevel="1"
 >

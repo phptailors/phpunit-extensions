@@ -4,6 +4,6 @@
     <targetDirectory>./bin</targetDirectory>
   </configuration>
   <phar name="composer-require-checker" version="^2.1.0" location="./bin/composer-require-checker" copy="true" installed="2.1.0"/>
-  <phar name="psalm" version="^3.11" location="./bin/psalm" copy="true" installed="3.16.0"/>
-  <phar name="php-cs-fixer" version="^2.16" location="./bin/php-cs-fixer" copy="true" installed="2.16.4"/>
+  <phar name="psalm" version="^4.3" location="./bin/psalm" copy="true" installed="4.3.1"/>
+  <phar name="php-cs-fixer" version="^2.16" location="./bin/php-cs-fixer" copy="true" installed="2.17.1"/>
 </phive>

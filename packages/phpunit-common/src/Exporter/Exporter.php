@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of php-tailors/phpunit-extensions.
+ * This file is part of phptailors/phpunit-extensions.
  *
  * Copyright (c) Paweł Tomulik <ptomulik@meil.pw.edu.pl>
  *
@@ -72,7 +72,7 @@ final class Exporter extends SebastianBergmannExporter
      */
     private function exportValues(ValuesInterface $value, $indentation, $processed = null): string
     {
-        $whitespace = str_repeat(' ', (int) (4 * $indentation));
+        $whitespace = str_repeat(' ', 4 * $indentation);
 
         if (!$processed) {
             $processed = new Context();

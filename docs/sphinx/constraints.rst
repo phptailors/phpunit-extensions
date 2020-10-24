@@ -4,7 +4,7 @@ Constraints
 ===========
 
 This section lists the various constraint methods provided by sub-packages of
-php-tailors/phpunit-extensions. The methods may be added to your test class by
+phptailors/phpunit-extensions. The methods may be added to your test class by
 including appropriate trait as shown in prerequisite tables below.
 
 .. _constraints.arrayValuesEqualTo:
@@ -18,7 +18,7 @@ arrayValuesEqualTo
    :header-rows: 0
 
    * - Package
-     - php-tailors/phpunit-arrays
+     - phptailors/phpunit-arrays
    * - Trait
      - :class:`Tailors\\PHPUnit\\ArrayValuesEqualToTrait`
 
@@ -57,7 +57,7 @@ arrayValuesIdenticalTo
    :header-rows: 0
 
    * - Package
-     - php-tailors/phpunit-arrays
+     - phptailors/phpunit-arrays
    * - Trait
      - :class:`Tailors\\PHPUnit\\ArrayValuesIdenticalToTrait`
 
@@ -96,7 +96,7 @@ classPropertiesEqualTo
    :header-rows: 0
 
    * - Package
-     - php-tailors/phpunit-properties
+     - phptailors/phpunit-properties
    * - Trait
      - :class:`Tailors\\PHPUnit\\ClassPropertiesEqualToTrait`
 
@@ -135,7 +135,7 @@ classPropertiesIdenticalTo
    :header-rows: 0
 
    * - Package
-     - php-tailors/phpunit-properties
+     - phptailors/phpunit-properties
    * - Trait
      - :class:`Tailors\\PHPUnit\\ClassPropertiesIdenticalToTrait`
 
@@ -174,7 +174,7 @@ extendsClass
    :header-rows: 0
 
    * - Package
-     - php-tailors/phpunit-inheritance
+     - phptailors/phpunit-inheritance
    * - Trait
      - :class:`Tailors\\PHPUnit\\ExtendsClassTrait`
 
@@ -219,7 +219,7 @@ hasPregCaptures
    :header-rows: 0
 
    * - Package
-     - php-tailors/phpunit-regexp
+     - phptailors/phpunit-regexp
    * - Trait
      - :class:`Tailors\\PHPUnit\\HasPregCapturesTrait`
 
@@ -265,7 +265,7 @@ implementsInterface
    :header-rows: 0
 
    * - Package
-     - php-tailors/phpunit-inheritance
+     - phptailors/phpunit-inheritance
    * - Trait
      - :class:`Tailors\\PHPUnit\\ImplementsInterfaceTrait`
 
@@ -301,7 +301,7 @@ objectPropertiesEqualTo
    :header-rows: 0
 
    * - Package
-     - php-tailors/phpunit-properties
+     - phptailors/phpunit-properties
    * - Trait
      - :class:`Tailors\\PHPUnit\\ObjectPropertiesEqualToTrait`
 
@@ -340,7 +340,7 @@ objectPropertiesIdenticalTo
    :header-rows: 0
 
    * - Package
-     - php-tailors/phpunit-properties
+     - phptailors/phpunit-properties
    * - Trait
      - :class:`Tailors\\PHPUnit\\ObjectPropertiesIdenticalToTrait`
 
@@ -378,7 +378,7 @@ usesTrait
    :header-rows: 0
 
    * - Package
-     - php-tailors/phpunit-inheritance
+     - phptailors/phpunit-inheritance
    * - Trait
      - :class:`Tailors\\PHPUnit\\UsesTraitTrait`
 

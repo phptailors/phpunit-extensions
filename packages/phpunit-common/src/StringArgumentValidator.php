@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of php-tailors/phpunit-extensions.
+ * This file is part of phptailors/phpunit-extensions.
  *
  * Copyright (c) Paweł Tomulik <ptomulik@meil.pw.edu.pl>
  *
@@ -35,21 +35,21 @@ final class StringArgumentValidator
     /**
      * @throws InvalidArgumentException
      */
-    public function validate(int $argument, string $value, int $depth = 1): void
+    public function validate(int $argument, string $value, int $distance = 1): void
     {
         if (!call_user_func($this->validator, $value)) {
-            $this->throwInvalidArgumentException($argument, $value, 1 + $depth);
+            $this->throwInvalidArgumentException($argument, $value, 1 + $distance);
         }
     }
 
     /**
      * @throws InvalidArgumentException
      */
-    private function throwInvalidArgumentException(int $argument, string $value, int $depth = 1): void
+    private function throwInvalidArgumentException(int $argument, string $value, int $distance = 1): void
     {
         $provided = sprintf("'%s'", addslashes($value));
 
-        throw InvalidArgumentException::fromBackTrace($argument, $this->expected, $provided, 1 + $depth);
+        throw InvalidArgumentException::fromBackTrace($argument, $this->expected, $provided, 1 + $distance);
     }
 }
 

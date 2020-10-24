@@ -1,13 +1,13 @@
 {
-    "name": "php-tailors/phpunit-common",
-    "description": "Common objects used by other php-tailors/phunit-* packages",
+    "name": "phptailors/phpunit-common",
+    "description": "Common objects used by other phptailors/phunit-* packages",
     "type": "library",
     "license": "MIT",
     "minimum-stability": "dev",
     "prefer-stable": true,
     "support": {
-      "issues": "https://github.com/php-tailors/phpunit-extensions/issues",
-      "source": "https://github.com/php-tailors/phpunit-extensions"
+      "issues": "https://github.com/phptailors/phpunit-extensions/issues",
+      "source": "https://github.com/phptailors/phpunit-extensions"
     },
     "authors": [
         {

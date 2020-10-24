@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of php-tailors/phpunit-extensions.
+ * This file is part of phptailors/phpunit-extensions.
  *
  * Copyright (c) Paweł Tomulik <ptomulik@meil.pw.edu.pl>
  *
@@ -16,7 +16,7 @@ use Tailors\PHPUnit\InvalidArgumentException;
  * @internal This class is not covered by the backward compatibility promise
  * @psalm-internal Tailors\PHPUnit
  *
- * @extends AbstractValueSelector<array|\ArrayAccess>
+ * @template-extends AbstractValueSelector<array|\ArrayAccess>
  */
 final class ArrayValueSelector extends AbstractValueSelector
 {

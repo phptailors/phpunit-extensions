@@ -1,6 +1,6 @@
 Feature: Examples
   @phpunit-arrays
-  Scenario Outline: Examples for php-tailors/phpunit-arrays
+  Scenario Outline: Examples for phptailors/phpunit-arrays
     Given I tested <example_file> with PHPUnit
     Then I should see PHPUnit stdout from <stdout_file>
     And I should see stderr from <stderr_file>
@@ -14,7 +14,7 @@ Feature: Examples
       | "arrayValuesIdenticalToTest.php"        | "arrayValuesIdenticalToTest.stdout"        | "arrayValuesIdenticalToTest.stderr"        | 1         |
 
   @phpunit-inheritance
-  Scenario Outline: Examples for php-tailors/phpunit-inheritance
+  Scenario Outline: Examples for phptailors/phpunit-inheritance
     Given I tested <example_file> with PHPUnit
     Then I should see PHPUnit stdout from <stdout_file>
     And I should see stderr from <stderr_file>
@@ -30,7 +30,7 @@ Feature: Examples
       | "usesTraitTest.php"                 | "usesTraitTest.stdout"                 | "usesTraitTest.stderr"                 | 1         |
 
   @phpunit-regexp
-  Scenario Outline: Examples for php-tailors/phpunit-regexp
+  Scenario Outline: Examples for phptailors/phpunit-regexp
     Given I tested <example_file> with PHPUnit
     Then I should see PHPUnit stdout from <stdout_file>
     And I should see stderr from <stderr_file>
@@ -42,7 +42,7 @@ Feature: Examples
       | "hasPregCapturesTest.php"        | "hasPregCapturesTest.stdout"       | "hasPregCapturesTest.stderr"       | 1         |
 
   @phpunit-properties
-  Scenario Outline: Examples for php-tailors/phpunit-properties
+  Scenario Outline: Examples for phptailors/phpunit-properties
     Given I tested <example_file> with PHPUnit
     Then I should see PHPUnit stdout from <stdout_file>
     And I should see stderr from <stderr_file>

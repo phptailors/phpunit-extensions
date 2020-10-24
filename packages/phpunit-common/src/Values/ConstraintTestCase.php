@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of php-tailors/phpunit-extensions.
+ * This file is part of phptailors/phpunit-extensions.
  *
  * Copyright (c) Paweł Tomulik <ptomulik@meil.pw.edu.pl>
  *
@@ -27,39 +27,9 @@ abstract class ConstraintTestCase extends TestCase
     abstract public static function adjective(): string;
 
     /**
-     * @psalm-return class-string
-     */
-    abstract public static function comparatorClass(): string;
-
-    /**
-     * @psalm-return class-string
-     */
-    abstract public static function constraintClass(): string;
-
-    /**
      * @param mixed $args
      */
-    abstract public static function createConstraint(...$args): AbstractConstraint;
-
-    /**
-     * @throws \PHPUnit\Framework\Exception
-     * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
-     */
-    public function testExtendsAbstractConstraint(): void
-    {
-        self::assertInstanceOf(AbstractConstraint::class, static::createConstraint([]));
-    }
-
-    /**
-     * @throws \PHPUnit\Framework\Exception
-     * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
-     */
-    public function testImplementsSelectionAggregateInterface(): void
-    {
-        self::assertInstanceOf(SelectionAggregateInterface::class, static::createConstraint([]));
-    }
+    abstract public function createConstraint(...$args): AbstractConstraint;
 
     // @codeCoverageIgnoreStart
     public function provCreate(): array
@@ -86,19 +56,20 @@ abstract class ConstraintTestCase extends TestCase
      */
     public function testCreate(array $args, array $expect): void
     {
-        $constraint = static::createConstraint(...$args);
+        $constraint = $this->createConstraint(...$args);
         self::assertThat($constraint->getSelection()->getArrayCopy(), $expect['values']);
     }
 
     /**
      * @throws \PHPUnit\Framework\Exception
      * @throws \PHPUnit\Framework\ExpectationFailedException
+     * @throws \PHPUnit\Framework\MockObject\ReflectionException
      * @throws \PHPUnit\Framework\MockObject\RuntimeException
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     final public function testFailureExceptionInUnaryOperatorContext(): void
     {
-        $constraint = static::createConstraint([]);
+        $constraint = $this->createConstraint([]);
 
         $unary = $this->wrapWithUnaryOperator($constraint);
         $verbSubject = sprintf('is %s', static::subject());
@@ -112,7 +83,10 @@ abstract class ConstraintTestCase extends TestCase
         // @codeCoverageIgnoreStart
     }
 
+    // @codeCoverageIgnoreEnd
+
     /**
+     * @param array $expect
      * @param mixed $actual
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
@@ -120,12 +94,14 @@ abstract class ConstraintTestCase extends TestCase
      */
     final public function examineValuesMatchSucceeds(array $expect, $actual): void
     {
-        $constraint = static::createConstraint($expect);
+        $constraint = $this->createConstraint($expect);
         self::assertThat($actual, $constraint);
     }
 
     /**
-     * @param mixed $actual
+     * @param array  $expect
+     * @param mixed  $actual
+     * @param string $string
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
@@ -133,7 +109,7 @@ abstract class ConstraintTestCase extends TestCase
      */
     final public function examineValuesMatchFails(array $expect, $actual, string $string): void
     {
-        $constraint = static::createConstraint($expect);
+        $constraint = $this->createConstraint($expect);
         $verbSubject = sprintf('is %s', static::subject());
         $selectableAdjective = sprintf('%s %s', static::selectable(), static::adjective());
         $message = self::message($string, $verbSubject, $selectableAdjective);
@@ -148,6 +124,7 @@ abstract class ConstraintTestCase extends TestCase
     // @codeCoverageIgnoreEnd
 
     /**
+     * @param array $expect
      * @param mixed $actual
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
@@ -155,19 +132,21 @@ abstract class ConstraintTestCase extends TestCase
      */
     final public function examineNotValuesMatchSucceeds(array $expect, $actual): void
     {
-        $constraint = self::logicalNot(static::createConstraint($expect));
+        $constraint = self::logicalNot($this->createConstraint($expect));
         self::assertThat($actual, $constraint);
     }
 
     /**
-     * @param mixed $actual
+     * @param array  $expect
+     * @param mixed  $actual
+     * @param string $string
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     final public function examineNotValuesMatchFails(array $expect, $actual, string $string): void
     {
-        $constraint = self::logicalNot(static::createConstraint($expect));
+        $constraint = self::logicalNot($this->createConstraint($expect));
         $verbSubject = sprintf('fails to be %s', static::subject());
         $selectableAdjective = sprintf('%s %s', static::selectable(), static::adjective());
         $message = self::message($string, $verbSubject, $selectableAdjective);
@@ -186,6 +165,7 @@ abstract class ConstraintTestCase extends TestCase
      *
      * @throws \PHPUnit\Framework\Exception
      * @throws \PHPUnit\Framework\MockObject\RuntimeException
+     * @throws \PHPUnit\Framework\MockObject\ReflectionException
      */
     final protected function wrapWithUnaryOperator(
         AbstractConstraint $constraint,
@@ -209,8 +189,6 @@ abstract class ConstraintTestCase extends TestCase
         return $unary;
     }
 
-    // @codeCoverageIgnoreEnd
-
     /**
      * Assembles expected failure message out of pieces.
      *
@@ -220,9 +198,6 @@ abstract class ConstraintTestCase extends TestCase
      * @param string $verbSubject         A concatenated verb and subject, such
      *                                    as "is a class", or "fails to be an
      *                                    object"
-     * @param string $adjective           An adjective reflecting the
-     *                                    comparison: "equal to" or "identical
-     *                                    to"
      * @param string $selectableAdjective A selectable name and adjective
      *                                    reflecting the comparison: "values
      *                                    equal to" or "properties identical

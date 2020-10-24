@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-use Sami\Sami;
+use Doctum\Doctum;
 use Symfony\Component\Finder\Finder;
 
 $srcdirs = ['packages/*'];
@@ -17,7 +17,7 @@ $iterator = Finder::create()
   ->exclude("vendor")
   ->in($srcdirs);
 
-return new Sami($iterator, array(
+return new Doctum($iterator, array(
   'theme'     => 'default',
   'title'     => 'PHPUnit Extensions API',
   'build_dir' => __DIR__ . '/../build/html/api',

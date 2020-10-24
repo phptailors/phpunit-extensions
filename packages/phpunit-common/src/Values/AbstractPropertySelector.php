@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of php-tailors/phpunit-extensions.
+ * This file is part of phptailors/phpunit-extensions.
  *
  * Copyright (c) Paweł Tomulik <ptomulik@meil.pw.edu.pl>
  *
@@ -13,8 +13,8 @@ namespace Tailors\PHPUnit\Values;
 /**
  * @internal This class is not covered by the backward compatibility promise
  * @psalm-internal Tailors\PHPUnit
- * @extends AbstractValueSelector<object|class-string>
- * @template SubjectType
+ * @psalm-template SubjectType of object|class-string
+ * @template-extends AbstractValueSelector<SubjectType>
  */
 abstract class AbstractPropertySelector extends AbstractValueSelector
 {
@@ -32,7 +32,7 @@ abstract class AbstractPropertySelector extends AbstractValueSelector
      * @param mixed $key
      * @param mixed $retval
      *
-     * @psalm-param object|class-string $subject
+     * @psalm-param SubjectType $subject
      * @psalm-param array-key $key
      */
     final protected function selectFromSupported($subject, $key, &$retval = null): bool
@@ -57,8 +57,9 @@ abstract class AbstractPropertySelector extends AbstractValueSelector
     abstract protected function getSubjectAttribute($subject, $key);
 
     /**
-     * @param mixed $subject
-     * @param mixed $retval
+     * @param mixed  $subject
+     * @param string $method
+     * @param mixed  $retval
      *
      * @psalm-param object|class-string $subject
      * @param-out mixed $retval
@@ -80,9 +81,8 @@ abstract class AbstractPropertySelector extends AbstractValueSelector
      * @param mixed $retval
      *
      * @param-out mixed $retval
-     * @psalm-param object|class-string $subject
+     * @psalm-param SubjectType $subject
      * @psalm-param array-key $key
-     * @psalm-assert class-string $subject
      */
     final protected function selectWithAttribute($subject, $key, &$retval = null): bool
     {

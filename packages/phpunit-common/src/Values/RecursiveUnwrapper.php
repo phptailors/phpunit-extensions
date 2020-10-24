@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of php-tailors/phpunit-extensions.
+ * This file is part of phptailors/phpunit-extensions.
  *
  * Copyright (c) Paweł Tomulik <ptomulik@meil.pw.edu.pl>
  *
@@ -92,7 +92,7 @@ final class RecursiveUnwrapper implements RecursiveUnwrapperInterface
      */
     private function visit(&$value, $key, ValuesInterface $parent): void
     {
-        if ($value instanceof SelectionAggregateInterface) {
+        if ($value instanceof SelectionWrapperInterface) {
             $value = $value->getSelection();
         }
 

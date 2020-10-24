@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of php-tailors/phpunit-extensions.
+ * This file is part of phptailors/phpunit-extensions.
  *
  * Copyright (c) Paweł Tomulik <ptomulik@meil.pw.edu.pl>
  *
@@ -21,9 +21,9 @@ trait ValidateExpectationsTrait
     /**
      * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
-    protected static function validateExpectations(array $expected, int $argument, int $depth = 1): void
+    protected static function validateExpectations(array $expected, int $argument, int $distance = 1): void
     {
-        self::assertStringKeysOnly($expected, $argument, 1 + $depth);
+        self::assertStringKeysOnly($expected, $argument, 1 + $distance);
     }
 
     /**
@@ -31,7 +31,7 @@ trait ValidateExpectationsTrait
      *
      * @throws InvalidArgumentException
      */
-    private static function assertStringKeysOnly(array $array, int $argument, int $depth = 1): void
+    private static function assertStringKeysOnly(array $array, int $argument, int $distance = 1): void
     {
         $valid = array_filter($array, 'is_string', ARRAY_FILTER_USE_KEY);
         if (($count = count($array) - count($valid)) > 0) {
@@ -39,7 +39,7 @@ trait ValidateExpectationsTrait
                 $argument,
                 'an associative array with string keys',
                 sprintf('an array with %d non-string %s', $count, $count > 1 ? 'keys' : 'key'),
-                1 + $depth
+                1 + $distance
             );
         }
     }

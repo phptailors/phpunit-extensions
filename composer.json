@@ -1,5 +1,5 @@
 {
-    "name": "php-tailors/phpunit-extensions",
+    "name": "phptailors/phpunit-extensions",
     "autoload": {
         "psr-4": {
             "Tailors\\PHPUnit\\": [
@@ -24,11 +24,11 @@
         }
     },
     "replace": {
-        "php-tailors/phpunit-arrays": "self.version",
-        "php-tailors/phpunit-common": "self.version",
-        "php-tailors/phpunit-inheritance": "self.version",
-        "php-tailors/phpunit-properties": "self.version",
-        "php-tailors/phpunit-regexp": "self.version"
+        "phptailors/phpunit-arrays": "self.version",
+        "phptailors/phpunit-common": "self.version",
+        "phptailors/phpunit-inheritance": "self.version",
+        "phptailors/phpunit-properties": "self.version",
+        "phptailors/phpunit-regexp": "self.version"
     },
     "description": "Extensions to PHPUnit framework",
     "require": {

@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of php-tailors/phpunit-extensions.
+ * This file is part of phptailors/phpunit-extensions.
  *
  * Copyright (c) Paweł Tomulik <ptomulik@meil.pw.edu.pl>
  *
@@ -10,15 +10,22 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
+use Tailors\PHPUnit\Values\AbstractConstraint;
+
 /**
  * @internal This trait is not covered by the backward compatibility promise
  * @psalm-internal Tailors\PHPUnit
  */
 trait ProvArrayValuesTrait
 {
+    /**
+     * @param mixed $args
+     */
+    abstract public function createConstraint(...$args): AbstractConstraint;
+
     // @codeCoverageIgnoreStart
 
-    public static function provArrayValuesIdenticalTo(): array
+    public function provArrayValuesIdenticalTo(): array
     {
         return [
             'ProvArrayValuesTrait.php:'.__LINE__ => [
@@ -61,7 +68,7 @@ trait ProvArrayValuesTrait
                 'expect' => [
                     'foo' => 'FOO',
                     'int' => 21,
-                    'arr' => ArrayValuesIdenticalTo::create([
+                    'arr' => $this->createConstraint([
                         'bar' => 'BAR',
                         'int' => 20,
                     ]),
@@ -83,10 +90,10 @@ trait ProvArrayValuesTrait
                 'expect' => [
                     'foo' => 'FOO',
                     'int' => 21,
-                    'arr' => ArrayValuesIdenticalTo::create([
+                    'arr' => $this->createConstraint([
                         'bar' => 'BAR',
                         'int' => 20,
-                        'arr' => ArrayValuesIdenticalTo::create([
+                        'arr' => $this->createConstraint([
                             'frd' => 'FRD',
                         ]),
                     ]),
@@ -111,7 +118,7 @@ trait ProvArrayValuesTrait
             'ProvArrayValuesTrait.php:'.__LINE__ => [
                 'expect' => [
                     'arr' => [
-                        ArrayValuesIdenticalTo::create(['foo' => 'FOO']),
+                        $this->createConstraint(['foo' => 'FOO']),
                     ],
                 ],
                 'actual' => [

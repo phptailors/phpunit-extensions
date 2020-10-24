@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of php-tailors/phpunit-extensions.
+ * This file is part of phptailors/phpunit-extensions.
  *
  * Copyright (c) Paweł Tomulik <ptomulik@meil.pw.edu.pl>
  *
@@ -17,8 +17,9 @@ namespace Tailors\PHPUnit;
 final class InvalidReturnValueException extends \LogicException implements ExceptionInterface
 {
     /**
-     * @param mixed $function
-     * @param mixed $actualValue Actual value
+     * @param mixed  $function
+     * @param string $expectedType
+     * @param mixed  $actualValue  Actual value
      *
      * @psalm-template ActualType
      * @psalm-param ActualType $actualValue
@@ -32,7 +33,9 @@ final class InvalidReturnValueException extends \LogicException implements Excep
     }
 
     /**
-     * @param mixed $function
+     * @param mixed  $function
+     * @param string $expected
+     * @param string $actual
      */
     public static function fromExpectedAndActual($function, string $expected, string $actual): self
     {

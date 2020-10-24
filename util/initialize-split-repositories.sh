@@ -6,7 +6,7 @@ here="`dirname $0`";
 
 top="$here/..";
 abstop="`readlink -f $top`";
-repobase="build/monorepo-split/repositories/php-tailors";
+repobase="build/monorepo-split/repositories/phptailors";
 
 if [ "`pwd`" != "$abstop" ]; then
   repobasedoc="${abstop}/${repobase}";

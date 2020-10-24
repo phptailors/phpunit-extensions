@@ -1,13 +1,13 @@
 {
-    "name": "php-tailors/phpunit-regexp",
+    "name": "phptailors/phpunit-regexp",
     "description": "PCRE assertions for PHPUnit-based tests",
     "type": "library",
     "license": "MIT",
     "minimum-stability": "dev",
     "prefer-stable": true,
     "support": {
-      "issues": "https://github.com/php-tailors/phpunit-extensions/issues",
-      "source": "https://github.com/php-tailors/phpunit-extensions"
+      "issues": "https://github.com/phptailors/phpunit-extensions/issues",
+      "source": "https://github.com/phptailors/phpunit-extensions"
     },
     "authors": [
         {
@@ -17,7 +17,7 @@
     ],
     "require": {
         "php": ">=7.3",
-        "php-tailors/phpunit-common": "*"
+        "phptailors/phpunit-common": "*"
     },
     "require-dev": {
         "phpunit/phpunit": ">=9.3"

@@ -53,7 +53,7 @@ jobs:
       - name: Build API docs
         run: |
           php docker/initialize
-          docker/docs run --rm sami build
+          docker/docs run --rm doctum build
 
       - name: Build user docs
         run: |

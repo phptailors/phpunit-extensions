@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-use Sami\Sami;
-use Sami\Version\GitVersionCollection;
-use Sami\RemoteRepository\GitHubRemoteRepository;
+use Doctum\Doctum;
+use Doctum\Version\GitVersionCollection;
+use Doctum\RemoteRepository\GitHubRemoteRepository;
 use Symfony\Component\Finder\Finder;
 
 $srcdirs = ['packages/*'];
@@ -24,7 +24,7 @@ $versions = GitVersionCollection::create($dir)
           ->add('master', 'master branch')
           ->add('devel', 'devel branch');
 
-return new Sami($iterator, array(
+return new Doctum($iterator, array(
   'theme'     => 'default',
   'versions'  => $versions,
   'title'     => 'PHPUnit Extensions API',

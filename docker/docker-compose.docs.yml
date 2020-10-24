@@ -17,19 +17,19 @@ services:
       - './docs.env'
       - './sphinx.env'
 
-  sami:
+  doctum:
     build:
       context: default
       args:
-        TLR_IMG: "korowai/sami:${TLR_SAMI_TAG:-latest}"
+        TLR_IMG: "phptailors/doctum:${TLR_DOCTUM_TAG:-latest}"
         TLR_UID: "${TLR_UID:-6789}"
         TLR_GID: "${TLR_GID:-6789}"
     env_file:
       - './common.env'
       - './docs.env'
-      - './sami.env'
+      - './doctum.env'
     ports:
-      - "${TLR_SAMI_PORT:-8001}:8001"
+      - "${TLR_DOCTUM_PORT:-8001}:8001"
     volumes:
       - ../:${TLR_CODE:-/code}
     user: "${TLR_UID:-6789}:${TLR_GID:-6789}"

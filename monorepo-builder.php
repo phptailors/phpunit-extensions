@@ -7,7 +7,7 @@ use Symplify\MonorepoBuilder\ValueObject\Option;
 //
 // USAGE EXAMPLES:
 //
-// 1. Split onto repositories under "build/monorepo-split/repositories/php-tailors/"
+// 1. Split onto repositories under "build/monorepo-split/repositories/phptailors/"
 //
 //      vendor/bin/monorepo-builder split
 //
@@ -16,9 +16,9 @@ use Symplify\MonorepoBuilder\ValueObject\Option;
 //
 //      util/initialize-split-repositories.sh
 //
-// 2. Split onto repositories under git@github.com:php-tailors/
+// 2. Split onto repositories under git@github.com:phptailors/
 //
-//      MONOREPO_SPLIT_REPO_BASE='git@github.com:php-tailors' vendor/bin/monorepo-builder split
+//      MONOREPO_SPLIT_REPO_BASE='git@github.com:phptailors' vendor/bin/monorepo-builder split
 //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -82,7 +82,7 @@ static function ($container) : void {
     $packages = \array_map('basename', $packagesDirs);
     $packagesSubdirs = \preg_replace('/^/', $packagesSubdirsBase.'/', $packages);
 
-    $defaultSplitRepositoryBase = 'file://'.$top.'/build/monorepo-split/repositories/php-tailors';
+    $defaultSplitRepositoryBase = 'file://'.$top.'/build/monorepo-split/repositories/phptailors';
     $parameters->set('default_split_repository_base', $defaultSplitRepositoryBase);
     $splitRepositoryBase = '%env(default:default_split_repository_base:MONOREPO_SPLIT_REPO_BASE)%/';
 

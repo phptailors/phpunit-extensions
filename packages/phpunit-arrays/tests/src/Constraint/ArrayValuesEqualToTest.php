@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of php-tailors/phpunit-extensions.
+ * This file is part of phptailors/phpunit-extensions.
  *
  * Copyright (c) Paweł Tomulik <ptomulik@meil.pw.edu.pl>
  *
@@ -10,7 +10,6 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
-use Tailors\PHPUnit\Comparator\EqualityComparator;
 use Tailors\PHPUnit\Values\AbstractConstraint;
 use Tailors\PHPUnit\Values\ConstraintTestCase;
 
@@ -18,7 +17,6 @@ use Tailors\PHPUnit\Values\ConstraintTestCase;
  * @small
  * @covers \Tailors\PHPUnit\Constraint\ArrayValuesEqualTo
  * @covers \Tailors\PHPUnit\Constraint\ProvArrayValuesTrait
- * @covers \Tailors\PHPUnit\Values\AbstractConstraint
  * @covers \Tailors\PHPUnit\Values\ConstraintTestCase
  *
  * @internal This class is not covered by the backward compatibility promise
@@ -43,19 +41,9 @@ final class ArrayValuesEqualToTest extends ConstraintTestCase
         return 'equal to';
     }
 
-    public static function createConstraint(...$args): AbstractConstraint
+    public function createConstraint(...$args): AbstractConstraint
     {
         return ArrayValuesEqualTo::create(...$args);
-    }
-
-    public static function constraintClass(): string
-    {
-        return ArrayValuesEqualTo::class;
-    }
-
-    public static function comparatorClass(): string
-    {
-        return EqualityComparator::class;
     }
 
     /**
