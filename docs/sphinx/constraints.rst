@@ -240,8 +240,8 @@ values may be used in the expectations:
 - ``['foo' => true]`` asserts that group ``'foo'`` was captured,
 - ``['foo' => 'FOO']`` asserts that group ``'foo'`` was captured and its value equals ``'FOO'``.
 
-Boolean expectations (``['foo' => true]`` or ``['foo' => false]`` work properly
-only with arrays obtained from ``preg_match()`` invoked with
+Boolean expectations (``['foo' => true]`` or ``['foo' => false]``) work
+properly only with arrays obtained from ``preg_match()`` invoked with
 ``PREG_UNMATCHED_AS_NULL`` flag.
 
 .. literalinclude:: examples/hasPregCapturesTest.php
