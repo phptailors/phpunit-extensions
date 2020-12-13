@@ -7,27 +7,23 @@
 
             <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-theme.min.css">
-        <link rel="stylesheet" type="text/css" href="../../../css/sami.css">
-        <script src="../../../js/jquery-1.11.1.min.js"></script>
-        <script src="../../../js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="../../../css/doctum.css">
+        <link rel="stylesheet" type="text/css" href="../../../fonts/doctum-font.css">
+        <script src="../../../js/jquery-3.5.1.slim.min.js"></script>
+        <script async defer src="../../../js/bootstrap.min.js"></script>
         <script src="../../../js/typeahead.min.js"></script>
-        <script src="../../../sami.js"></script>
+        <script src="../../../doctum.js"></script>
         <meta name="MobileOptimized" content="width">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-    
-    
     </head>
 
     <body id="class" data-name="class:Tailors_PHPUnit_Values_AbstractConstraint" data-root-path="../../../">
             <div id="content">
         <div id="left-column">
                 <div id="control-panel">
-                <script>
-            $('option[data-version="'+window.projectVersion+'"]').prop('selected', true);
-        </script>
-        <form id="search-form" action="../../../search.html" method="GET">
-            <span class="glyphicon glyphicon-search"></span>
+                <form id="search-form" action="../../../search.html">
+            <span class="icon icon-search"></span>
             <input name="search"
                    class="typeahead form-control"
                    type="search"
@@ -53,8 +49,8 @@
             <div class="collapse navbar-collapse" id="navbar-elements">
                 <ul class="nav navbar-nav">
                     <li><a href="../../../classes.html">Classes</a></li>
-                                            <li><a href="../../../namespaces.html">Namespaces</a></li>
-                                        <li><a href="../../../interfaces.html">Interfaces</a></li>
+                    <li><a href="../../../namespaces.html">Namespaces</a></li>
+                    <li><a href="../../../interfaces.html">Interfaces</a></li>
                     <li><a href="../../../traits.html">Traits</a></li>
                     <li><a href="../../../doc-index.html">Index</a></li>
                     <li><a href="../../../search.html">Search</a></li>
@@ -80,7 +76,7 @@
 
     <p>abstract     class
     <strong>AbstractConstraint</strong>        extends <abbr title="PHPUnit\Framework\Constraint\Constraint">Constraint</abbr>        implements
-        <a href="../../../Tailors/PHPUnit/Values/SelectionAggregateInterface.html"><abbr title="Tailors\PHPUnit\Values\SelectionAggregateInterface">SelectionAggregateInterface</abbr></a>
+        <a href="../../../Tailors/PHPUnit/Comparator/ComparatorWrapperInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorWrapperInterface">ComparatorWrapperInterface</abbr></a>, <a href="../../../Tailors/PHPUnit/Values/SelectionWrapperInterface.html"><abbr title="Tailors\PHPUnit\Values\SelectionWrapperInterface">SelectionWrapperInterface</abbr></a>
 </p>
 
         
@@ -118,12 +114,32 @@
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
+                    <a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getComparator">getComparator</a>()
+        
+                                            <p>Returns an instance of ComparatorInterface which implements comparison operator.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
                     string
                 </div>
                 <div class="col-md-8 type">
                     <a href="#method_toString">toString</a>()
         
                                             <p>Returns a string representation of the constraint.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    bool|null
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_evaluate">evaluate</a>(mixed $other, string $description = &#039;&#039;, bool $returnResult = false)
+        
+                                            <p>Evaluates the constraint for parameter $other.</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -135,16 +151,6 @@
         
                                             <p>Returns a custom string representation of the constraint object when it
 appears in context of an $operator expression.</p>                </div>
-                <div class="col-md-2"></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    bool|null
-                </div>
-                <div class="col-md-8 type">
-                    <a href="#method_evaluate">evaluate</a>($other, string $description = &#039;&#039;, bool $returnResult = false)
-        
-                                            <p>Evaluates the constraint for parameter $other.</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -198,7 +204,7 @@ context of an $operator expression.</p>                </div>
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method___construct">
-        <div class="location">at         line 50</div>
+        <div class="location">at line 51</div>
         <code>final            protected        
     <strong>__construct</strong>(<a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a> $comparator, <a href="../../../Tailors/PHPUnit/Values/SelectionInterface.html"><abbr title="Tailors\PHPUnit\Values\SelectionInterface">SelectionInterface</abbr></a> $expected, <a href="../../../Tailors/PHPUnit/Values/RecursiveUnwrapperInterface.html"><abbr title="Tailors\PHPUnit\Values\RecursiveUnwrapperInterface">RecursiveUnwrapperInterface</abbr></a> $unwrapper)
         </code>
@@ -237,7 +243,7 @@ context of an $operator expression.</p>                </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_getSelection">
-        <div class="location">at         line 63</div>
+        <div class="location">at line 64</div>
         <code>final                    <a href="../../../Tailors/PHPUnit/Values/SelectionInterface.html"><abbr title="Tailors\PHPUnit\Values\SelectionInterface">SelectionInterface</abbr></a>
     <strong>getSelection</strong>()
         </code>
@@ -266,8 +272,38 @@ context of an $operator expression.</p>                </div>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_getComparator">
+        <div class="location">at line 72</div>
+        <code>final                    <a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a>
+    <strong>getComparator</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns an instance of ComparatorInterface which implements comparison operator.</p>                                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_toString">
-        <div class="location">at         line 71</div>
+        <div class="location">at line 80</div>
         <code>final                    string
     <strong>toString</strong>()
         </code>
@@ -296,9 +332,81 @@ context of an $operator expression.</p>                </div>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_evaluate">
+        <div class="location">at line 108</div>
+        <code>final                    bool|null
+    <strong>evaluate</strong>(mixed $other, string $description = &#039;&#039;, bool $returnResult = false)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Evaluates the constraint for parameter $other.</p>                    <p>If $returnResult is set to false (the default), an exception is thrown
+in case of a failure. null is returned otherwise.</p>
+
+<p>If $returnResult is true, the result of the evaluation is returned as
+a boolean value instead: true in case of success, false in case of a
+failure.</p>                            </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>mixed</td>
+                <td>$other</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$description</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>bool</td>
+                <td>$returnResult</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool|null</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="PHPUnit\Framework\ExpectationFailedException">ExpectationFailedException</abbr></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td><abbr title="SebastianBergmann\RecursionContext\InvalidArgumentException">InvalidArgumentException</abbr></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>CircularDependencyException</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_toStringInContext">
-        <div class="location">at         line 96</div>
-        <code>final                    string
+        <div class="location">at line 150</div>
+        <code>final            protected        string
     <strong>toStringInContext</strong>(<abbr title="PHPUnit\Framework\Constraint\Operator">Operator</abbr> $operator, mixed $role)
         </code>
     </h3>
@@ -348,81 +456,9 @@ customization by itself.</p>                            </div>
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_evaluate">
-        <div class="location">at         line 126</div>
-        <code>final                    bool|null
-    <strong>evaluate</strong>($other, string $description = &#039;&#039;, bool $returnResult = false)
-        </code>
-    </h3>
-    <div class="details">
-            
-    
-
-                    <div class="method-description">
-                                    <p>Evaluates the constraint for parameter $other.</p>                    <p>If $returnResult is set to false (the default), an exception is thrown
-in case of a failure. null is returned otherwise.</p>
-
-<p>If $returnResult is true, the result of the evaluation is returned as
-a boolean value instead: true in case of success, false in case of a
-failure.</p>                            </div>
-                <div class="tags">
-                            <h4>Parameters</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td></td>
-                <td>$other</td>
-                <td></td>
-            </tr>
-                    <tr>
-                <td>string</td>
-                <td>$description</td>
-                <td></td>
-            </tr>
-                    <tr>
-                <td>bool</td>
-                <td>$returnResult</td>
-                <td></td>
-            </tr>
-            </table>
-
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td>bool|null</td>
-            <td></td>
-        </tr>
-    </table>
-
-            
-                            <h4>Exceptions</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td><abbr title="PHPUnit\Framework\ExpectationFailedException">ExpectationFailedException</abbr></td>
-                <td></td>
-            </tr>
-                    <tr>
-                <td><abbr title="SebastianBergmann\RecursionContext\InvalidArgumentException">InvalidArgumentException</abbr></td>
-                <td></td>
-            </tr>
-                    <tr>
-                <td><a href="../../../Tailors/PHPUnit/CircularDependencyException.html"><abbr title="Tailors\PHPUnit\CircularDependencyException">CircularDependencyException</abbr></a></td>
-                <td></td>
-            </tr>
-            </table>
-
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
                     <h3 id="method_matches">
-        <div class="location">at         line 159</div>
-        <code>final                    bool
+        <div class="location">at line 170</div>
+        <code>final            protected        bool
     <strong>matches</strong>(mixed $other)
         </code>
     </h3>
@@ -462,7 +498,7 @@ constraint is met, false otherwise.</p>                                         
             </div>
                     <div class="method-item">
                     <h3 id="method_exporter">
-        <div class="location">at         line 170</div>
+        <div class="location">at line 181</div>
         <code>final            protected        <abbr title="SebastianBergmann\Exporter\Exporter">Exporter</abbr>
     <strong>exporter</strong>()
         </code>
@@ -490,7 +526,7 @@ constraint is met, false otherwise.</p>                                         
             </div>
                     <div class="method-item">
                     <h3 id="method_failureDescription">
-        <div class="location">at         line 187</div>
+        <div class="location">at line 198</div>
         <code>final            protected        string
     <strong>failureDescription</strong>(mixed $other)
         </code>
@@ -531,7 +567,7 @@ cases. This method should return the second part of that sentence.</p>          
             </div>
                     <div class="method-item">
                     <h3 id="method_failureDescriptionInContext">
-        <div class="location">at         line 208</div>
+        <div class="location">at line 219</div>
         <code>final            protected        string
     <strong>failureDescriptionInContext</strong>(<abbr title="PHPUnit\Framework\Constraint\Operator">Operator</abbr> $operator, mixed $role, mixed $other)
         </code>
@@ -589,12 +625,9 @@ customization by itself.</p>                            </div>
             </div>
 
     
-            </div>
-                <div id="footer">
-        Generated by <a href="http://sami.sensiolabs.org/">Sami, the API Documentation Generator</a>.
-    </div>
-
-        </div>
+            </div><div id="footer">
+        Generated by <a href="https://github.com/code-lts/doctum">Doctum, a API Documentation generator and fork of Sami</a>.
+    </div></div>
     </div>
     </body>
 

@@ -4,7 +4,7 @@ Assertions
 ==========
 
 This section lists the various assertion methods that are provided by
-sub-packages of php-tailors/phpunit-extensions. Assertions may be added to your
+sub-packages of phptailors/phpunit-extensions. Assertions may be added to your
 test class by including appropriate trait as shown in prerequisite tables
 below.
 
@@ -20,7 +20,7 @@ assertArrayValuesEqualTo()
    :header-rows: 0
 
    * - Package
-     - php-tailors/phpunit-arrays
+     - phptailors/phpunit-arrays
    * - Trait
      - :class:`Tailors\\PHPUnit\\ArrayValuesEqualToTrait`
 
@@ -70,7 +70,7 @@ assertArrayValuesIdenticalTo()
    :header-rows: 0
 
    * - Package
-     - php-tailors/phpunit-arrays
+     - phptailors/phpunit-arrays
    * - Trait
      - :class:`Tailors\\PHPUnit\\ArrayValuesIdenticalToTrait`
 
@@ -121,7 +121,7 @@ assertClassPropertiesEqualTo()
    :header-rows: 0
 
    * - Package
-     - php-tailors/phpunit-properties
+     - phptailors/phpunit-properties
    * - Trait
      - :class:`Tailors\\PHPUnit\\ClassPropertiesEqualToTrait`
 
@@ -175,7 +175,7 @@ assertClassPropertiesIdenticalTo()
    :header-rows: 0
 
    * - Package
-     - php-tailors/phpunit-properties
+     - phptailors/phpunit-properties
    * - Trait
      - :class:`Tailors\\PHPUnit\\ClassPropertiesIdenticalToTrait`
 
@@ -232,7 +232,7 @@ assertExtendsClass()
    :header-rows: 0
 
    * - Package
-     - php-tailors/phpunit-inheritance
+     - phptailors/phpunit-inheritance
    * - Trait
      - :class:`Tailors\\PHPUnit\\ExtendsClassTrait`
 
@@ -284,7 +284,7 @@ assertHasPregCaptures()
    :header-rows: 0
 
    * - Package
-     - php-tailors/phpunit-regexp
+     - phptailors/phpunit-regexp
    * - Trait
      - :class:`Tailors\\PHPUnit\\HasPregCapturesTrait`
 
@@ -344,7 +344,7 @@ assertImplementsInterface()
    :header-rows: 0
 
    * - Package
-     - php-tailors/phpunit-inheritance
+     - phptailors/phpunit-inheritance
    * - Trait
      - :class:`Tailors\\PHPUnit\\ImplementsInterfaceTrait`
 
@@ -397,7 +397,7 @@ assertObjectPropertiesEqualTo()
    :header-rows: 0
 
    * - Package
-     - php-tailors/phpunit-properties
+     - phptailors/phpunit-properties
    * - Trait
      - :class:`Tailors\\PHPUnit\\ObjectPropertiesEqualToTrait`
 
@@ -450,7 +450,7 @@ assertObjectPropertiesIdenticalTo()
    :header-rows: 0
 
    * - Package
-     - php-tailors/phpunit-properties
+     - phptailors/phpunit-properties
    * - Trait
      - :class:`Tailors\\PHPUnit\\ObjectPropertiesIdenticalToTrait`
 
@@ -503,7 +503,7 @@ assertUsesTrait()
    :header-rows: 0
 
    * - Package
-     - php-tailors/phpunit-inheritance
+     - phptailors/phpunit-inheritance
    * - Trait
      - :class:`Tailors\\PHPUnit\\UsesTraitTrait`
 
