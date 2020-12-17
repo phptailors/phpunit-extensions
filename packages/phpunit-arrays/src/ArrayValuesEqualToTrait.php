@@ -31,12 +31,9 @@ trait ArrayValuesEqualToTrait
     /**
      * Asserts that selected properties of *$actual* are identical to *$expected* ones.
      *
-     * @param array  $expected
-     *                         An array of expected values
-     * @param mixed  $actual
-     *                         A name of a class to be examined
-     * @param string $message
-     *                         Optional failure message
+     * @param array  $expected an array of expected values
+     * @param mixed  $actual   a name of a class to be examined
+     * @param string $message  optional failure message
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
@@ -53,12 +50,9 @@ trait ArrayValuesEqualToTrait
     /**
      * Asserts that selected properties of *$actual* are not identical to *$expected* ones.
      *
-     * @param array  $expected
-     *                         An array expected values
-     * @param mixed  $actual
-     *                         A name of a class to be examined
-     * @param string $message
-     *                         Optional failure message
+     * @param array  $expected an array expected values
+     * @param mixed  $actual   a name of a class to be examined
+     * @param string $message  optional failure message
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
@@ -75,8 +69,7 @@ trait ArrayValuesEqualToTrait
     /**
      * Compares selected properties of *$actual* with *$expected* ones.
      *
-     * @param array $expected
-     *                        An array of expected values
+     * @param array $expected an array of expected values
      *
      * @throws \Tailors\PHPUnit\InvalidArgumentException
      */

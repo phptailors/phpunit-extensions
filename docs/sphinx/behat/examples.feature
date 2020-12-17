@@ -12,6 +12,10 @@ Feature: Examples
       | "AssertArrayValuesIdenticalToTest.php"  | "AssertArrayValuesIdenticalToTest.stdout"  | "AssertArrayValuesIdenticalToTest.stderr"  | 1         |
       | "arrayValuesEqualToTest.php"            | "arrayValuesEqualToTest.stdout"            | "arrayValuesEqualToTest.stderr"            | 1         |
       | "arrayValuesIdenticalToTest.php"        | "arrayValuesIdenticalToTest.stdout"        | "arrayValuesIdenticalToTest.stderr"        | 1         |
+      | "AssertKsortedArrayEqualToTest.php"     | "AssertKsortedArrayEqualToTest.stdout"     | "AssertKsortedArrayEqualToTest.stderr"     | 1         |
+      | "AssertKsortedArrayIdenticalToTest.php" | "AssertKsortedArrayIdenticalToTest.stdout" | "AssertKsortedArrayIdenticalToTest.stderr" | 1         |
+      | "ksortedArrayEqualToTest.php"           | "ksortedArrayEqualToTest.stdout"           | "ksortedArrayEqualToTest.stderr"           | 1         |
+      | "ksortedArrayIdenticalToTest.php"       | "ksortedArrayIdenticalToTest.stdout"       | "ksortedArrayIdenticalToTest.stderr"       | 1         |
 
   @phpunit-inheritance
   Scenario Outline: Examples for phptailors/phpunit-inheritance

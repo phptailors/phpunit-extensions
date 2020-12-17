@@ -1,0 +1,36 @@
+{
+  "symbol-whitelist" : [
+    "null",
+    "true",
+    "false",
+    "static",
+    "self",
+    "parent",
+    "array",
+    "string",
+    "int",
+    "float",
+    "bool",
+    "iterable",
+    "callable",
+    "void",
+    "object",
+    "PHPUnit\\Framework\\Constraint\\Constraint",
+    "PHPUnit\\Framework\\Constraint\\LogicalNot",
+    "PHPUnit\\Framework\\Constraint\\Operator",
+    "PHPUnit\\Framework\\Constraint\\UnaryOperator",
+    "PHPUnit\\Framework\\ExpectationFailedException",
+    "PHPUnit\\Framework\\TestCase",
+    "SebastianBergmann\\Comparator\\ComparisonFailure"
+  ],
+  "php-core-extensions" : [
+    "Core",
+    "date",
+    "pcre",
+    "Phar",
+    "Reflection",
+    "SPL",
+    "standard"
+  ],
+  "scan-files" : []
+}

@@ -10,7 +10,7 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
-use Tailors\PHPUnit\Values\AbstractConstraint;
+use PHPUnit\Framework\Constraint\Constraint;
 
 /**
  * @internal This trait is not covered by the backward compatibility promise
@@ -21,7 +21,7 @@ trait ProvArrayValuesTrait
     /**
      * @param mixed $args
      */
-    abstract public function createConstraint(...$args): AbstractConstraint;
+    abstract public function createConstraint(...$args): Constraint;
 
     // @codeCoverageIgnoreStart
 
@@ -166,12 +166,6 @@ trait ProvArrayValuesTrait
             'ProvArrayValuesTrait.php:'.__LINE__ => [
                 'expect' => ['foo' => 'FOO', 'bar' => 'GEZ', 'int' => 21],
                 'actual' => ['foo' => 'FOO', 'bar' => 'BAR', 'int' => 21],
-                'string' => 'array',
-            ],
-
-            'ProvArrayValuesTrait.php:'.__LINE__ => [
-                'expect' => ['foo' => 'FOO', 'arr' => ['bar' => 'GEZ']],
-                'actual' => ['foo' => 'FOO', 'arr' => ['bar' => 'BAR']],
                 'string' => 'array',
             ],
 

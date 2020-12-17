@@ -10,7 +10,7 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
-use Tailors\PHPUnit\Values\AbstractConstraint;
+use PHPUnit\Framework\Constraint\Constraint;
 
 /**
  * @small
@@ -41,7 +41,12 @@ final class ObjectPropertiesEqualToTest extends PropertiesConstraintTestCase
         return 'equal to';
     }
 
-    public function createConstraint(...$args): AbstractConstraint
+    public static function getConstraintClass(): string
+    {
+        return ObjectPropertiesEqualTo::class;
+    }
+
+    public function createConstraint(...$args): Constraint
     {
         return ObjectPropertiesEqualTo::create(...$args);
     }

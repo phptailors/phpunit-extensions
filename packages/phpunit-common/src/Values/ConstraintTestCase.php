@@ -10,13 +10,13 @@
 
 namespace Tailors\PHPUnit\Values;
 
-use PHPUnit\Framework\Constraint\UnaryOperator;
-use PHPUnit\Framework\ExpectationFailedException;
-use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Constraint\Constraint;
+use Tailors\PHPUnit\Constraint\TestCase;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
  * @psalm-internal Tailors\PHPUnit
+ * @extends TestCase<AbstractConstraint>
  */
 abstract class ConstraintTestCase extends TestCase
 {
@@ -26,13 +26,8 @@ abstract class ConstraintTestCase extends TestCase
 
     abstract public static function adjective(): string;
 
-    /**
-     * @param mixed $args
-     */
-    abstract public function createConstraint(...$args): AbstractConstraint;
-
     // @codeCoverageIgnoreStart
-    public function provCreate(): array
+    public function provCreateConstraint(): array
     {
         return [
             'ConstraintTestCase.php:'.__LINE__ => [
@@ -47,16 +42,17 @@ abstract class ConstraintTestCase extends TestCase
     // @codeCoverageIgnoreEnd
 
     /**
-     * @dataProvider provCreate
+     * @dataProvider provCreateConstraint
      *
+     * @throws \PHPUnit\Framework\Exception
      * @throws \PHPUnit\Framework\ExpectationFailedException
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      *
      * @psalm-param array{values:\PHPUnit\Framework\Constraint\Constraint} $expect
      */
-    public function testCreate(array $args, array $expect): void
+    final public function testCreateConstraint(array $args, array $expect): void
     {
-        $constraint = $this->createConstraint(...$args);
+        $constraint = $this->examineCreateConstraint($args);
         self::assertThat($constraint->getSelection()->getArrayCopy(), $expect['values']);
     }
 
@@ -67,18 +63,9 @@ abstract class ConstraintTestCase extends TestCase
      * @throws \PHPUnit\Framework\MockObject\RuntimeException
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
-    final public function testFailureExceptionInUnaryOperatorContext(): void
+    final public function testConstraintUnaryOperatorFailure(): void
     {
-        $constraint = $this->createConstraint([]);
-
-        $unary = $this->wrapWithUnaryOperator($constraint);
-        $verbSubject = sprintf('is %s', static::subject());
-        $selectableAdjective = sprintf('%s %s', static::selectable(), static::adjective());
-
-        self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessage(self::message('null', $verbSubject, $selectableAdjective));
-
-        self::assertThat(null, $unary);
+        $this->examineConstraintUnaryOperatorFailure([[]], null, self::message('null'));
 
         // @codeCoverageIgnoreStart
     }
@@ -94,8 +81,7 @@ abstract class ConstraintTestCase extends TestCase
      */
     final public function examineValuesMatchSucceeds(array $expect, $actual): void
     {
-        $constraint = $this->createConstraint($expect);
-        self::assertThat($actual, $constraint);
+        $this->examineConstraintMatchSucceeds([$expect], $actual);
     }
 
     /**
@@ -109,15 +95,8 @@ abstract class ConstraintTestCase extends TestCase
      */
     final public function examineValuesMatchFails(array $expect, $actual, string $string): void
     {
-        $constraint = $this->createConstraint($expect);
-        $verbSubject = sprintf('is %s', static::subject());
-        $selectableAdjective = sprintf('%s %s', static::selectable(), static::adjective());
-        $message = self::message($string, $verbSubject, $selectableAdjective);
+        $this->examineConstraintMatchFails([$expect], $actual, self::message($string));
 
-        $this->expectException(ExpectationFailedException::class);
-        $this->expectExceptionMessage($message);
-
-        $constraint->evaluate($actual);
         // @codeCoverageIgnoreStart
     }
 
@@ -132,8 +111,7 @@ abstract class ConstraintTestCase extends TestCase
      */
     final public function examineNotValuesMatchSucceeds(array $expect, $actual): void
     {
-        $constraint = self::logicalNot($this->createConstraint($expect));
-        self::assertThat($actual, $constraint);
+        $this->examineNotConstraintMatchSucceeds([$expect], $actual);
     }
 
     /**
@@ -146,85 +124,47 @@ abstract class ConstraintTestCase extends TestCase
      */
     final public function examineNotValuesMatchFails(array $expect, $actual, string $string): void
     {
-        $constraint = self::logicalNot($this->createConstraint($expect));
-        $verbSubject = sprintf('fails to be %s', static::subject());
-        $selectableAdjective = sprintf('%s %s', static::selectable(), static::adjective());
-        $message = self::message($string, $verbSubject, $selectableAdjective);
+        $this->examineNotConstraintMatchFails([$expect], $actual, self::message($string, true));
 
-        $this->expectException(ExpectationFailedException::class);
-        $this->expectExceptionMessage($message);
-
-        $constraint->evaluate($actual);
         // @codeCoverageIgnoreStart
     }
 
     // @codeCoverageIgnoreEnd
 
     /**
-     * Returns $constraint wrapped with UnaryOperator mock.
-     *
-     * @throws \PHPUnit\Framework\Exception
-     * @throws \PHPUnit\Framework\MockObject\RuntimeException
-     * @throws \PHPUnit\Framework\MockObject\ReflectionException
-     */
-    final protected function wrapWithUnaryOperator(
-        AbstractConstraint $constraint,
-        string $operator = 'noop',
-        int $precedence = 1
-    ): UnaryOperator {
-        $unary = $this->getMockBuilder(UnaryOperator::class)
-            ->setConstructorArgs([$constraint])
-            ->getMockForAbstractClass()
-        ;
-
-        $unary->expects(self::any())
-            ->method('operator')
-            ->willReturn($operator)
-        ;
-        $unary->expects(self::any())
-            ->method('precedence')
-            ->willReturn($precedence)
-        ;
-
-        return $unary;
-    }
-
-    /**
      * Assembles expected failure message out of pieces.
      *
-     * @param string $value               A noun representing the actual value,
-     *                                    such as "123" or "array" or "object
-     *                                    stdClass"
-     * @param string $verbSubject         A concatenated verb and subject, such
-     *                                    as "is a class", or "fails to be an
-     *                                    object"
-     * @param string $selectableAdjective A selectable name and adjective
-     *                                    reflecting the comparison: "values
-     *                                    equal to" or "properties identical
-     *                                    to"
+     * @param string $export   A noun representing the actual value, such as
+     *                         "123" or "array" or "object stdClass"
+     * @param bool   $negative indicates whether the generated message is for the
+     *                         tested constraint (false) or a constraint negated
+     *                         with LogicalNot (true)
      */
-    final protected static function message(string $value, string $verbSubject, string $selectableAdjective): string
+    final protected static function message(string $export, bool $negative = false): string
     {
-        return sprintf('Failed asserting that %s.', self::statement($value, $verbSubject, $selectableAdjective));
+        return sprintf('Failed asserting that %s.', self::statement($export, $negative));
     }
 
     /**
      * Assembles a statement which is a part of failure message.
      *
-     * @param string $value               A noun representing the actual value,
-     *                                    such as "123" or "array" or "object
-     *                                    stdClass"
-     * @param string $verbSubject         A concatenated verb and subject, such
-     *                                    as "is a class", or "fails to be an
-     *                                    object"
-     * @param string $selectableAdjective A selectable name and adjective
-     *                                    reflecting the comparison: "values
-     *                                    equal to" or "properties identical
-     *                                    to"
+     * @param string $export   A noun representing the actual value,
+     *                         such as "123" or "array" or "object
+     *                         stdClass"
+     * @param bool   $negative indicates whether the generated statement is for
+     *                         the constraint under test (false) or a constraint
+     *                         negated with LogicalNot (true)
      */
-    final protected static function statement(string $value, string $verbSubject, string $selectableAdjective): string
+    final protected static function statement(string $export, bool $negative = false): string
     {
-        return sprintf('%s %s with %s specified', $value, $verbSubject, $selectableAdjective);
+        return sprintf(
+            '%s %s %s with %s %s specified',
+            $export,
+            $negative ? 'fails to be' : 'is',
+            static::subject(),
+            static::selectable(),
+            static::adjective()
+        );
     }
 }
 

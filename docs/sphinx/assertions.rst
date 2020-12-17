@@ -28,13 +28,13 @@ Synopsis:
 
 .. code:: php
 
-  function assertArrayValuesEqualTo(array $expected, array|ArrayAccess $actual[, string $message = ''])
+  function assertArrayValuesEqualTo(array $expected, mixed $actual[, string $message = ''])
 
-Reports an error identified by ``$message`` if values in ``$actual`` array are
-not equal to ``$expected`` ones (tested with ``==`` operator). The method
-compares only values specified in ``$expected`` array, so ``$expected = []``
-accepts any ``$actual`` array. If ``$actual`` is not an array, the constraint
-fails.
+Reports an error identified by ``$message`` if values in ``$actual`` (array or
+ArrayAccess instance) are not equal to ``$expected`` ones (tested with ``==``
+operator). The method compares only values specified in ``$expected`` array, so
+``$expected = []`` accepts any ``$actual`` array. If ``$actual`` is not an
+array nor ArrayAccess instance, the constraint fails.
 
 The arguments are:
 
@@ -46,7 +46,7 @@ The method
 
 .. code:: php
 
-  function assertNotArrayValuesEqualTo(array $expected, array|ArrayAccess $actual[, string $message = ''])
+  function assertNotArrayValuesEqualTo(array $expected, mixed $actual[, string $message = ''])
 
 is the inverse of this.
 
@@ -329,6 +329,104 @@ is the inverse of this.
    :name: assertions.assertHasPregCaptures.example
 
 .. literalinclude:: examples/AssertHasPregCapturesTest.stdout
+   :linenos:
+   :language: none
+
+
+.. _assertions.assertKsortedArrayEqualTo:
+
+assertKsortedArrayEqualTo()
+--------------------------
+
+.. list-table:: Prerequisites for assertKsortedArrayEqualTo()
+   :width: 100%
+   :widths: 25 75
+   :header-rows: 0
+
+   * - Package
+     - phptailors/phpunit-arrays
+   * - Trait
+     - :class:`Tailors\\PHPUnit\\KsortedArrayEqualToTrait`
+
+Synopsis:
+
+.. code:: php
+
+  function assertKsortedArrayEqualTo(array $expected, mixed $actual[, string $message = ''])
+
+Reports an error identified by ``$message`` if ``$actual`` array is not equal
+to ``$expected`` when key-sorted (tested with ``==`` operator). If ``$actual``
+is not an array, the constraint fails.
+
+The arguments are:
+
+- ``$expected`` - an array of expected values,
+- ``$actual`` - an actual value,
+- ``$message`` - optional failure message,
+
+The method
+
+.. code:: php
+
+  function assertNotKsortedArrayEqualTo(array $expected, mixed $actual[, string $message = ''])
+
+is the inverse of this.
+
+.. literalinclude:: examples/AssertKsortedArrayEqualToTest.php
+   :linenos:
+   :caption: Usage of assertKsortedArrayEqualTo()
+   :name: assertions.assertKsortedArrayEqualTo.example
+
+.. literalinclude:: examples/AssertKsortedArrayEqualToTest.stdout
+   :linenos:
+   :language: none
+
+
+.. _assertions.assertKsortedArrayIdenticalTo:
+
+assertKsortedArrayIdenticalTo()
+------------------------------
+
+.. list-table:: Prerequisites for assertKsortedArrayIdenticalTo()
+   :width: 100%
+   :widths: 25 75
+   :header-rows: 0
+
+   * - Package
+     - phptailors/phpunit-arrays
+   * - Trait
+     - :class:`Tailors\\PHPUnit\\KsortedArrayIdenticalToTrait`
+
+Synopsis:
+
+.. code:: php
+
+  function assertKsortedArrayIdenticalTo(array $expected, mixed $actual[, string $message = ''])
+
+Reports an error identified by ``$message`` if ``$actual`` is not identical to
+``$expected`` one when key-sorted (tested with ``===`` operator). If
+``$actual`` is not an array, the constraint fails.
+
+The arguments are:
+
+- ``$expected`` - an array of expected values,
+- ``$actual`` - actual value,
+- ``$message`` - optional failure message,
+
+The method
+
+.. code:: php
+
+  function assertNotKsortedArrayIdenticalTo(array $expected, mixed $actual[, string $message = ''])
+
+is the inverse of this.
+
+.. literalinclude:: examples/AssertKsortedArrayIdenticalToTest.php
+   :linenos:
+   :caption: Usage of assertKsortedArrayIdenticalTo()
+   :name: assertions.assertKsortedArrayIdenticalTo.example
+
+.. literalinclude:: examples/AssertKsortedArrayIdenticalToTest.stdout
    :linenos:
    :language: none
 

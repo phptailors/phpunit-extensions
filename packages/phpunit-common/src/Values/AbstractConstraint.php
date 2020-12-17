@@ -16,6 +16,7 @@ use PHPUnit\Framework\Constraint\Operator;
 use SebastianBergmann\Comparator\ComparisonFailure;
 use SebastianBergmann\Exporter\Exporter as SebastianBergmannExporter;
 use Tailors\PHPUnit\CircularDependencyException;
+use Tailors\PHPUnit\Common\ShortFailureDescriptionTrait;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\ComparatorWrapperInterface;
 use Tailors\PHPUnit\Exporter\Exporter;
@@ -28,6 +29,8 @@ use Tailors\PHPUnit\Exporter\Exporter;
  */
 abstract class AbstractConstraint extends Constraint implements ComparatorWrapperInterface, SelectionWrapperInterface
 {
+    use ShortFailureDescriptionTrait;
+
     /**
      * @var SelectionInterface
      */
@@ -188,74 +191,11 @@ abstract class AbstractConstraint extends Constraint implements ComparatorWrappe
     }
 
     /**
-     * Returns the description of the failure.
-     *
-     * The beginning of failure messages is "Failed asserting that" in most
-     * cases. This method should return the second part of that sentence.
-     *
-     * @param mixed $other evaluated value or object
-     */
-    final protected function failureDescription($other): string
-    {
-        return $this->short($other).' '.$this->toString();
-    }
-
-    /**
-     * Returns the description of the failure when this constraint appears in
-     * context of an $operator expression.
-     *
-     * The purpose of this method is to provide meaningful failue description
-     * in context of operators such as LogicalNot. Native PHPUnit constraints
-     * are supported out of the box by LogicalNot, but externally developed
-     * ones had no way to provide correct messages in this context.
-     *
-     * The method shall return empty string, when it does not handle
-     * customization by itself.
-     *
-     * @param Operator $operator the $operator of the expression
-     * @param mixed    $role     role of $this constraint in the $operator expression
-     * @param mixed    $other    evaluated value or object
-     */
-    final protected function failureDescriptionInContext(Operator $operator, $role, $other): string
-    {
-        $string = $this->toStringInContext($operator, $role);
-
-        if ('' === $string) {
-            return '';
-        }
-
-        return $this->short($other).' '.$string;
-    }
-
-    /**
      * @param mixed $subject
      */
     private function select($subject): ValuesInterface
     {
         return (new RecursiveSelector($this->expected))->select($subject);
-    }
-
-    /**
-     * Returns short representation of $subject for failureDescription().
-     *
-     * @param mixed $subject
-     */
-    private function short($subject): string
-    {
-        if (is_object($subject)) {
-            return 'object '.get_class($subject);
-        }
-
-        if (is_array($subject)) {
-            return 'array';
-        }
-
-        if (is_string($subject) && class_exists($subject)) {
-            // avoid converting anonymous class names to binary strings.
-            return $subject;
-        }
-
-        return $this->exporter()->export($subject);
     }
 }
 

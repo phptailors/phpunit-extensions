@@ -8,7 +8,7 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Constraint;
+namespace Tailors\PHPUnit\StaticAnalysis\HappyPath\ValuesConstraintTestCase;
 
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Values\ConstraintTestCase;
@@ -24,10 +24,10 @@ use Tailors\PHPUnit\Values\ConstraintTestCase;
  */
 function consume(ConstraintTestCase $test): ConstraintTestCase
 {
-    $test->provCreate();
-    $test->testCreate([], ['values' => TestCase::identicalTo([])]);
+    $test->provCreateConstraint();
+    $test->testCreateConstraint([], ['values' => TestCase::identicalTo([])]);
 
-    $test->testFailureExceptionInUnaryOperatorContext();
+    $test->testConstraintUnaryOperatorFailure();
 
     $test->examineValuesMatchSucceeds([], []);
     $test->examineValuesMatchFails([], [], '');

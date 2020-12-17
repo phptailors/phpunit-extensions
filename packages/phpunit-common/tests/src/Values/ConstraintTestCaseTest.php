@@ -10,6 +10,8 @@
 
 namespace Tailors\PHPUnit\Values;
 
+use PHPUnit\Framework\Constraint\Constraint;
+
 /**
  * @small
  * @covers \Tailors\PHPUnit\Values\ConstraintTestCase
@@ -35,9 +37,14 @@ final class ConstraintTestCaseTest extends ConstraintTestCase
         return 'identical to';
     }
 
-    public function createConstraint(...$args): AbstractConstraint
+    public function createConstraint(...$args): Constraint
     {
         return ExampleConstraint::create(...$args);
+    }
+
+    public static function getConstraintClass(): string
+    {
+        return ExampleConstraint::class;
     }
 
     public static function provArrayValuesIdenticalTo(): array

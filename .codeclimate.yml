@@ -28,12 +28,14 @@ plugins:
               - "(Stmt_Trait ArrayValuesIdenticalToTrait ___)"
               - "(Stmt_Trait ClassPropertiesEqualToTrait ___)"
               - "(Stmt_Trait ClassPropertiesIdenticalToTrait ___)"
+              - "(Stmt_Trait ExtendsClassTrait ___)"
+              - "(Stmt_Trait HasPregCapturesTrait ___)"
+              - "(Stmt_Trait ImplementsInterfaceTrait ___)"
+              - "(Stmt_Trait KsortedArrayEqualToTrait ___)"
+              - "(Stmt_Trait KsortedArrayIdenticalToTrait ___)"
               - "(Stmt_Trait ObjectPropertiesEqualToTrait ___)"
               - "(Stmt_Trait ObjectPropertiesIdenticalToTrait ___)"
-              - "(Stmt_Trait ExtendsClassTrait ___)"
-              - "(Stmt_Trait ImplementsInterfaceTrait ___)"
               - "(Stmt_Trait UsesTraitTrait ___)"
-              - "(Stmt_Trait HasPregCapturesTrait ___)"
 
   fixme:
     enabled: true

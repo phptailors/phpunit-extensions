@@ -10,7 +10,7 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
-use Tailors\PHPUnit\Values\AbstractConstraint;
+use PHPUnit\Framework\Constraint\Constraint;
 
 /**
  * @internal This trait is not covered by the backward compatibility promise
@@ -21,7 +21,7 @@ trait ProvObjectPropertiesTrait
     /**
      * @param mixed $args
      */
-    abstract public function createConstraint(...$args): AbstractConstraint;
+    abstract public function createConstraint(...$args): Constraint;
 
     // @codeCoverageIgnoreStart
 
