@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="robots" content="index, follow, all" />
-    <title>Tailors\PHPUnit\ArrayValuesEqualToTrait | API Documentation</title>
+    <title>Tailors\PHPUnit\KsortedArrayEqualToTrait | API Documentation</title>
 
             <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../../css/bootstrap-theme.min.css">
@@ -18,7 +18,7 @@
         <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
     </head>
 
-    <body id="class" data-name="class:Tailors_PHPUnit_ArrayValuesEqualToTrait" data-root-path="../../">
+    <body id="class" data-name="class:Tailors_PHPUnit_KsortedArrayEqualToTrait" data-root-path="../../">
             <div id="content">
         <div id="left-column">
                 <div id="control-panel">
@@ -62,20 +62,20 @@
                         <div class="namespace-breadcrumbs">
             <ol class="breadcrumb">
                 <li><span class="label label-default">trait</span></li>
-                        <li><a href="../../Tailors.html">Tailors</a></li><li class="backslash">\</li><li><a href="../../Tailors/PHPUnit.html">PHPUnit</a></li><li class="backslash">\</li><li>ArrayValuesEqualToTrait</li>
+                        <li><a href="../../Tailors.html">Tailors</a></li><li class="backslash">\</li><li><a href="../../Tailors/PHPUnit.html">PHPUnit</a></li><li class="backslash">\</li><li>KsortedArrayEqualToTrait</li>
             </ol>
         </div>
                 <div id="page-content">
                 
     <div class="page-header">
         <h1>
-            ArrayValuesEqualToTrait
+            KsortedArrayEqualToTrait
                 
         </h1>
     </div>
 
     <p>    trait
-    <strong>ArrayValuesEqualToTrait</strong>
+    <strong>KsortedArrayEqualToTrait</strong>
 </p>
 
         
@@ -103,9 +103,9 @@
                     static&nbsp;void
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_assertArrayValuesEqualTo">assertArrayValuesEqualTo</a>(array $expected, mixed $actual, string $message = &#039;&#039;)
+                    <a href="#method_assertKsortedArrayEqualTo">assertKsortedArrayEqualTo</a>(array $expected, mixed $actual, string $message = &#039;&#039;)
         
-                                            <p>Asserts that selected properties of <em>$actual</em> are identical to <em>$expected</em> ones.</p>                </div>
+                                            <p>Asserts that <em>$actual</em> is an array equal to <em>$expected</em> when key-sorted.</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -113,19 +113,19 @@
                     static&nbsp;void
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_assertNotArrayValuesEqualTo">assertNotArrayValuesEqualTo</a>(array $expected, mixed $actual, string $message = &#039;&#039;)
+                    <a href="#method_assertNotKsortedArrayEqualTo">assertNotKsortedArrayEqualTo</a>(array $expected, mixed $actual, string $message = &#039;&#039;)
         
-                                            <p>Asserts that selected properties of <em>$actual</em> are not identical to <em>$expected</em> ones.</p>                </div>
+                                            <p>Asserts that <em>$actual</em> fails to be an array equal to <em>$expected</em> when key-sorted.</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    static&nbsp;<a href="../../Tailors/PHPUnit/Constraint/ArrayValuesEqualTo.html"><abbr title="Tailors\PHPUnit\Constraint\ArrayValuesEqualTo">ArrayValuesEqualTo</abbr></a>
+                    static&nbsp;<a href="../../Tailors/PHPUnit/Constraint/KsortedArrayEqualTo.html"><abbr title="Tailors\PHPUnit\Constraint\KsortedArrayEqualTo">KsortedArrayEqualTo</abbr></a>
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_arrayValuesEqualTo">arrayValuesEqualTo</a>(array $expected)
+                    <a href="#method_ksortedArrayEqualTo">ksortedArrayEqualTo</a>(array $expected)
         
-                                            <p>Compares selected properties of <em>$actual</em> with <em>$expected</em> ones.</p>                </div>
+                                            <p>Compares selected <em>$actual</em> with <em>$expected</em> array after key-sorting both sides.</p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -198,10 +198,10 @@
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_assertArrayValuesEqualTo">
+                    <h3 id="method_assertKsortedArrayEqualTo">
         <div class="location">at line 42</div>
         <code>        static            void
-    <strong>assertArrayValuesEqualTo</strong>(array $expected, mixed $actual, string $message = &#039;&#039;)
+    <strong>assertKsortedArrayEqualTo</strong>(array $expected, mixed $actual, string $message = &#039;&#039;)
         </code>
     </h3>
     <div class="details">
@@ -209,7 +209,7 @@
     
 
                     <div class="method-description">
-                                    <p>Asserts that selected properties of <em>$actual</em> are identical to <em>$expected</em> ones.</p>                                                </div>
+                                    <p>Asserts that <em>$actual</em> is an array equal to <em>$expected</em> when key-sorted.</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
@@ -217,12 +217,12 @@
                     <tr>
                 <td>array</td>
                 <td>$expected</td>
-                <td>an array of expected values</td>
+                <td>expected array</td>
             </tr>
                     <tr>
                 <td>mixed</td>
                 <td>$actual</td>
-                <td>a name of a class to be examined</td>
+                <td>actual value</td>
             </tr>
                     <tr>
                 <td>string</td>
@@ -265,10 +265,10 @@
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_assertNotArrayValuesEqualTo">
+                    <h3 id="method_assertNotKsortedArrayEqualTo">
         <div class="location">at line 61</div>
         <code>        static            void
-    <strong>assertNotArrayValuesEqualTo</strong>(array $expected, mixed $actual, string $message = &#039;&#039;)
+    <strong>assertNotKsortedArrayEqualTo</strong>(array $expected, mixed $actual, string $message = &#039;&#039;)
         </code>
     </h3>
     <div class="details">
@@ -276,7 +276,7 @@
     
 
                     <div class="method-description">
-                                    <p>Asserts that selected properties of <em>$actual</em> are not identical to <em>$expected</em> ones.</p>                                                </div>
+                                    <p>Asserts that <em>$actual</em> fails to be an array equal to <em>$expected</em> when key-sorted.</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
@@ -284,12 +284,12 @@
                     <tr>
                 <td>array</td>
                 <td>$expected</td>
-                <td>an array expected values</td>
+                <td>expected array</td>
             </tr>
                     <tr>
                 <td>mixed</td>
                 <td>$actual</td>
-                <td>a name of a class to be examined</td>
+                <td>actual value</td>
             </tr>
                     <tr>
                 <td>string</td>
@@ -332,10 +332,10 @@
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_arrayValuesEqualTo">
+                    <h3 id="method_ksortedArrayEqualTo">
         <div class="location">at line 76</div>
-        <code>        static            <a href="../../Tailors/PHPUnit/Constraint/ArrayValuesEqualTo.html"><abbr title="Tailors\PHPUnit\Constraint\ArrayValuesEqualTo">ArrayValuesEqualTo</abbr></a>
-    <strong>arrayValuesEqualTo</strong>(array $expected)
+        <code>        static            <a href="../../Tailors/PHPUnit/Constraint/KsortedArrayEqualTo.html"><abbr title="Tailors\PHPUnit\Constraint\KsortedArrayEqualTo">KsortedArrayEqualTo</abbr></a>
+    <strong>ksortedArrayEqualTo</strong>(array $expected)
         </code>
     </h3>
     <div class="details">
@@ -343,7 +343,7 @@
     
 
                     <div class="method-description">
-                                    <p>Compares selected properties of <em>$actual</em> with <em>$expected</em> ones.</p>                                                </div>
+                                    <p>Compares selected <em>$actual</em> with <em>$expected</em> array after key-sorting both sides.</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
@@ -351,7 +351,7 @@
                     <tr>
                 <td>array</td>
                 <td>$expected</td>
-                <td>an array of expected values</td>
+                <td>expected array</td>
             </tr>
             </table>
 
@@ -360,7 +360,7 @@
 
                     <table class="table table-condensed">
         <tr>
-            <td><a href="../../Tailors/PHPUnit/Constraint/ArrayValuesEqualTo.html"><abbr title="Tailors\PHPUnit\Constraint\ArrayValuesEqualTo">ArrayValuesEqualTo</abbr></a></td>
+            <td><a href="../../Tailors/PHPUnit/Constraint/KsortedArrayEqualTo.html"><abbr title="Tailors\PHPUnit\Constraint\KsortedArrayEqualTo">KsortedArrayEqualTo</abbr></a></td>
             <td></td>
         </tr>
     </table>

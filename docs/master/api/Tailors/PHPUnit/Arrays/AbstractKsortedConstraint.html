@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="robots" content="index, follow, all" />
-    <title>Tailors\PHPUnit\Values\AbstractConstraint | API Documentation</title>
+    <title>Tailors\PHPUnit\Arrays\AbstractKsortedConstraint | API Documentation</title>
 
             <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-theme.min.css">
@@ -18,7 +18,7 @@
         <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
     </head>
 
-    <body id="class" data-name="class:Tailors_PHPUnit_Values_AbstractConstraint" data-root-path="../../../">
+    <body id="class" data-name="class:Tailors_PHPUnit_Arrays_AbstractKsortedConstraint" data-root-path="../../../">
             <div id="content">
         <div id="left-column">
                 <div id="control-panel">
@@ -62,28 +62,28 @@
                         <div class="namespace-breadcrumbs">
             <ol class="breadcrumb">
                 <li><span class="label label-default">class</span></li>
-                        <li><a href="../../../Tailors.html">Tailors</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit.html">PHPUnit</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit/Values.html">Values</a></li><li class="backslash">\</li><li>AbstractConstraint</li>
+                        <li><a href="../../../Tailors.html">Tailors</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit.html">PHPUnit</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit/Arrays.html">Arrays</a></li><li class="backslash">\</li><li>AbstractKsortedConstraint</li>
             </ol>
         </div>
                 <div id="page-content">
                 
     <div class="page-header">
         <h1>
-            AbstractConstraint
+            AbstractKsortedConstraint
                 
         </h1>
     </div>
 
     <p>abstract     class
-    <strong>AbstractConstraint</strong>        extends <abbr title="PHPUnit\Framework\Constraint\Constraint">Constraint</abbr>        implements
-        <a href="../../../Tailors/PHPUnit/Comparator/ComparatorWrapperInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorWrapperInterface">ComparatorWrapperInterface</abbr></a>, <a href="../../../Tailors/PHPUnit/Values/SelectionWrapperInterface.html"><abbr title="Tailors\PHPUnit\Values\SelectionWrapperInterface">SelectionWrapperInterface</abbr></a>
+    <strong>AbstractKsortedConstraint</strong>        extends <abbr title="PHPUnit\Framework\Constraint\Constraint">Constraint</abbr>        implements
+        <a href="../../../Tailors/PHPUnit/Comparator/ComparatorWrapperInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorWrapperInterface">ComparatorWrapperInterface</abbr></a>
 </p>
 
         
     
 
             <div class="description">
-            <p>Abstract base for constraints that examine values.</p>                                </div>
+            <p>Abstract base class for constraints that compare key-sorted arrays.</p>                                </div>
     
             <h2>Traits</h2>
 
@@ -154,27 +154,18 @@ appears in context of an $operator expression.</p>                </div>
         
                                             <p class="no-description">No description</p>
                                     </div>
-                <div class="col-md-2"></div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Common/ShortFailureDescriptionTrait.html#method_exporter">
+<abbr title="Tailors\PHPUnit\Common\ShortFailureDescriptionTrait">ShortFailureDescriptionTrait</abbr></a></small></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
                     
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method___construct">__construct</a>(<a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a> $comparator, <a href="../../../Tailors/PHPUnit/Values/SelectionInterface.html"><abbr title="Tailors\PHPUnit\Values\SelectionInterface">SelectionInterface</abbr></a> $expected, <a href="../../../Tailors/PHPUnit/Values/RecursiveUnwrapperInterface.html"><abbr title="Tailors\PHPUnit\Values\RecursiveUnwrapperInterface">RecursiveUnwrapperInterface</abbr></a> $unwrapper)
+                    <a href="#method___construct">__construct</a>(<a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a> $comparator, array $expected, int $flags)
         
                                             <p class="no-description">No description</p>
                                     </div>
-                <div class="col-md-2"></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    <a href="../../../Tailors/PHPUnit/Values/SelectionInterface.html"><abbr title="Tailors\PHPUnit\Values\SelectionInterface">SelectionInterface</abbr></a>
-                </div>
-                <div class="col-md-8 type">
-                    <a href="#method_getSelection">getSelection</a>()
-        
-                                            <p>Returns an instance of SelectionInterface which defines expected values.</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -199,6 +190,16 @@ appears in context of an $operator expression.</p>                </div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_ksorted">ksorted</a>(array $array)
+        
+                                            <p>Returns key-sorted copy of $array.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
                     bool
                 </div>
                 <div class="col-md-8 type">
@@ -206,6 +207,17 @@ appears in context of an $operator expression.</p>                </div>
         
                                             <p>Evaluates the constraint for parameter $other. Returns true if the
 constraint is met, false otherwise.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    bool
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_supports">supports</a>(mixed $other)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -216,7 +228,7 @@ constraint is met, false otherwise.</p>                </div>
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method_toString">
-        <div class="location">at line 83</div>
+        <div class="location">at line 62</div>
         <code>final                    string
     <strong>toString</strong>()
         </code>
@@ -346,7 +358,7 @@ customization by itself.</p>                            </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_toStringInContext">
-        <div class="location">at line 153</div>
+        <div class="location">at line 139</div>
         <code>final            protected        string
     <strong>toStringInContext</strong>(<abbr title="PHPUnit\Framework\Constraint\Operator">Operator</abbr> $operator, mixed $role)
         </code>
@@ -398,8 +410,9 @@ customization by itself.</p>                            </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_exporter">
-        <div class="location">at line 184</div>
-        <code>final            protected        <abbr title="SebastianBergmann\Exporter\Exporter">Exporter</abbr>
+        <div class="location">in <a href="../../../Tailors/PHPUnit/Common/ShortFailureDescriptionTrait.html#method_exporter">
+<abbr title="Tailors\PHPUnit\Common\ShortFailureDescriptionTrait">ShortFailureDescriptionTrait</abbr></a> at line 84</div>
+        <code>    abstract        protected        <abbr title="SebastianBergmann\Exporter\Exporter">Exporter</abbr>
     <strong>exporter</strong>()
         </code>
     </h3>
@@ -426,9 +439,9 @@ customization by itself.</p>                            </div>
             </div>
                     <div class="method-item">
                     <h3 id="method___construct">
-        <div class="location">at line 54</div>
+        <div class="location">at line 44</div>
         <code>final            protected        
-    <strong>__construct</strong>(<a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a> $comparator, <a href="../../../Tailors/PHPUnit/Values/SelectionInterface.html"><abbr title="Tailors\PHPUnit\Values\SelectionInterface">SelectionInterface</abbr></a> $expected, <a href="../../../Tailors/PHPUnit/Values/RecursiveUnwrapperInterface.html"><abbr title="Tailors\PHPUnit\Values\RecursiveUnwrapperInterface">RecursiveUnwrapperInterface</abbr></a> $unwrapper)
+    <strong>__construct</strong>(<a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a> $comparator, array $expected, int $flags)
         </code>
     </h3>
     <div class="details">
@@ -445,13 +458,13 @@ customization by itself.</p>                            </div>
                 <td></td>
             </tr>
                     <tr>
-                <td><a href="../../../Tailors/PHPUnit/Values/SelectionInterface.html"><abbr title="Tailors\PHPUnit\Values\SelectionInterface">SelectionInterface</abbr></a></td>
+                <td>array</td>
                 <td>$expected</td>
                 <td></td>
             </tr>
                     <tr>
-                <td><a href="../../../Tailors/PHPUnit/Values/RecursiveUnwrapperInterface.html"><abbr title="Tailors\PHPUnit\Values\RecursiveUnwrapperInterface">RecursiveUnwrapperInterface</abbr></a></td>
-                <td>$unwrapper</td>
+                <td>int</td>
+                <td>$flags</td>
                 <td></td>
             </tr>
             </table>
@@ -464,38 +477,8 @@ customization by itself.</p>                            </div>
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_getSelection">
-        <div class="location">at line 67</div>
-        <code>final                    <a href="../../../Tailors/PHPUnit/Values/SelectionInterface.html"><abbr title="Tailors\PHPUnit\Values\SelectionInterface">SelectionInterface</abbr></a>
-    <strong>getSelection</strong>()
-        </code>
-    </h3>
-    <div class="details">
-            
-    
-
-                    <div class="method-description">
-                                    <p>Returns an instance of SelectionInterface which defines expected values.</p>                                                </div>
-                <div class="tags">
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td><a href="../../../Tailors/PHPUnit/Values/SelectionInterface.html"><abbr title="Tailors\PHPUnit\Values\SelectionInterface">SelectionInterface</abbr></a></td>
-            <td></td>
-        </tr>
-    </table>
-
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
                     <h3 id="method_getComparator">
-        <div class="location">at line 75</div>
+        <div class="location">at line 54</div>
         <code>final                    <a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a>
     <strong>getComparator</strong>()
         </code>
@@ -525,7 +508,7 @@ customization by itself.</p>                            </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_evaluate">
-        <div class="location">at line 111</div>
+        <div class="location">at line 88</div>
         <code>final                    bool|null
     <strong>evaluate</strong>(mixed $other, string $description = &#039;&#039;, bool $returnResult = false)
         </code>
@@ -596,8 +579,48 @@ failure.</p>                            </div>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_ksorted">
+        <div class="location">at line 117</div>
+        <code>final                    array
+    <strong>ksorted</strong>(array $array)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns key-sorted copy of $array.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$array</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_matches">
-        <div class="location">at line 173</div>
+        <div class="location">at line 157</div>
         <code>final            protected        bool
     <strong>matches</strong>(mixed $other)
         </code>
@@ -609,6 +632,44 @@ failure.</p>                            </div>
                     <div class="method-description">
                                     <p>Evaluates the constraint for parameter $other. Returns true if the
 constraint is met, false otherwise.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>mixed</td>
+                <td>$other</td>
+                <td>value or object to evaluate</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_supports">
+        <div class="location">at line 171</div>
+        <code>final            protected        bool
+    <strong>supports</strong>(mixed $other)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
                 <div class="tags">
                             <h4>Parameters</h4>
 

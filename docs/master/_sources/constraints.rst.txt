@@ -289,6 +289,75 @@ The constraint accepts objects (and classes/interfaces) that implement given
   :linenos:
   :language: none
 
+.. _constraints.ksortedArrayEqualTo:
+
+ksortedArrayEqualTo
+------------------
+
+.. list-table:: Prerequisites for ksortedArrayEqualTo()
+   :width: 100%
+   :widths: 25 75
+   :header-rows: 0
+
+   * - Package
+     - phptailors/phpunit-arrays
+   * - Trait
+     - :class:`Tailors\\PHPUnit\\KsortedArrayEqualToTrait`
+
+Synopsis:
+
+.. code:: php
+
+  function ksortedArrayEqualTo(array $expected)
+
+Creates :class:`Tailors\\PHPUnit\\Constraint\\KsortedArrayEqualTo` constraint.
+
+The constraint accepts arrays that are equal to ``$expected`` when key-sorted.
+
+.. literalinclude:: examples/ksortedArrayEqualToTest.php
+   :linenos:
+   :caption: Usage of ksortedArrayEqualTo()
+   :name: constraints.ksortedArrayEqualTo.example
+
+.. literalinclude:: examples/ksortedArrayEqualToTest.stdout
+  :linenos:
+  :language: none
+
+
+.. _constraints.ksortedArrayIdenticalTo:
+
+ksortedArrayIdenticalTo
+----------------------
+
+.. list-table:: Prerequisites for ksortedArrayIdenticalTo()
+   :width: 100%
+   :widths: 25 75
+   :header-rows: 0
+
+   * - Package
+     - phptailors/phpunit-arrays
+   * - Trait
+     - :class:`Tailors\\PHPUnit\\KsortedArrayIdenticalToTrait`
+
+Synopsis:
+
+.. code:: php
+
+  function ksortedArrayIdenticalTo(array $expected)
+
+Creates :class:`Tailors\\PHPUnit\\Constraint\\KsortedArrayIdenticalTo` constraint.
+
+The constraint accepts arrays identical to ``$expected`` when key-sorted.
+
+.. literalinclude:: examples/ksortedArrayIdenticalToTest.php
+   :linenos:
+   :caption: Usage of ksortedArrayIdenticalTo()
+   :name: constraints.ksortedArrayIdenticalTo.example
+
+.. literalinclude:: examples/ksortedArrayIdenticalToTest.stdout
+  :linenos:
+  :language: none
+
 
 .. _constraints.objectPropertiesEqualTo:
 
