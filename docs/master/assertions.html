@@ -191,10 +191,10 @@ below.</p>
 </pre></div>
 </div>
 <p>Reports an error identified by <code class="docutils literal notranslate"><span class="pre">$message</span></code> if values in <code class="docutils literal notranslate"><span class="pre">$actual</span></code> (array or
-ArrayAccess instance) are not equal to <code class="docutils literal notranslate"><span class="pre">$expected</span></code> ones (tested with <code class="docutils literal notranslate"><span class="pre">==</span></code>
+<a class="reference external" href="https://www.php.net/manual/en/class.arrayaccess.php">ArrayAccess</a> instance) are not equal to <code class="docutils literal notranslate"><span class="pre">$expected</span></code> ones (tested with <code class="docutils literal notranslate"><span class="pre">==</span></code>
 operator). The method compares only values specified in <code class="docutils literal notranslate"><span class="pre">$expected</span></code> array, so
 <code class="docutils literal notranslate"><span class="pre">$expected</span> <span class="pre">=</span> <span class="pre">[]</span></code> accepts any <code class="docutils literal notranslate"><span class="pre">$actual</span></code> array. If <code class="docutils literal notranslate"><span class="pre">$actual</span></code> is not an
-array nor ArrayAccess instance, the constraint fails.</p>
+array nor <a class="reference external" href="https://www.php.net/manual/en/class.arrayaccess.php">ArrayAccess</a> instance, the constraint fails.</p>
 <p>The arguments are:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">$expected</span></code> - an array of expected values,</p></li>
@@ -326,14 +326,14 @@ Tests: 2, Assertions: 2, Failures: 1.
 </tbody>
 </table>
 <p>Synopsis:</p>
-<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">assertArrayValuesIdenticalTo</span><span class="p">(</span><span class="k">array</span> <span class="nv">$expected</span><span class="p">,</span> <span class="k">array</span><span class="o">|</span><span class="nx">ArrayAccess</span><span class="nv">$actual</span><span class="p">[,</span> <span class="nx">string</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">])</span>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">assertArrayValuesIdenticalTo</span><span class="p">(</span><span class="k">array</span> <span class="nv">$expected</span><span class="p">,</span> <span class="nx">mixed</span> <span class="nv">$actual</span><span class="p">[,</span> <span class="nx">string</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
-<p>Reports an error identified by <code class="docutils literal notranslate"><span class="pre">$message</span></code> if values in <code class="docutils literal notranslate"><span class="pre">$actual</span></code> array are
-not identical to <code class="docutils literal notranslate"><span class="pre">$expected</span></code> ones (tested with <code class="docutils literal notranslate"><span class="pre">===</span></code> operator).
-The method compares only values specified in <code class="docutils literal notranslate"><span class="pre">$expected</span></code>, so <code class="docutils literal notranslate"><span class="pre">$expected</span> <span class="pre">=</span> <span class="pre">[]</span></code>
-accepts any <code class="docutils literal notranslate"><span class="pre">$actual</span></code> array. If <code class="docutils literal notranslate"><span class="pre">$actual</span></code> is not an array, the constraint
-fails.</p>
+<p>Reports an error identified by <code class="docutils literal notranslate"><span class="pre">$message</span></code> if values in <code class="docutils literal notranslate"><span class="pre">$actual</span></code> (array or
+<a class="reference external" href="https://www.php.net/manual/en/class.arrayaccess.php">ArrayAccess</a> instance) are not identical to <code class="docutils literal notranslate"><span class="pre">$expected</span></code> ones (tested with
+<code class="docutils literal notranslate"><span class="pre">===</span></code> operator). The method compares only values specified in <code class="docutils literal notranslate"><span class="pre">$expected</span></code>,
+so <code class="docutils literal notranslate"><span class="pre">$expected</span> <span class="pre">=</span> <span class="pre">[]</span></code> accepts any <code class="docutils literal notranslate"><span class="pre">$actual</span></code> array. If <code class="docutils literal notranslate"><span class="pre">$actual</span></code> is not an
+array nor an <a class="reference external" href="https://www.php.net/manual/en/class.arrayaccess.php">ArrayAccess</a> instance, the constraint fails.</p>
 <p>The arguments are:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">$expected</span></code> - an array of expected values,</p></li>
@@ -341,7 +341,7 @@ fails.</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">$message</span></code> - optional failure message,</p></li>
 </ul>
 <p>The method</p>
-<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">assertNotArrayValuesIdenticalTo</span><span class="p">(</span><span class="k">array</span> <span class="nv">$expected</span><span class="p">,</span> <span class="k">array</span><span class="o">|</span><span class="nx">ArrayAcces</span> <span class="nv">$actual</span><span class="p">[,</span> <span class="nx">string</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">])</span>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">assertNotArrayValuesIdenticalTo</span><span class="p">(</span><span class="k">array</span> <span class="nv">$expected</span><span class="p">,</span> <span class="nx">mixed</span> <span class="nv">$actual</span><span class="p">[,</span> <span class="nx">string</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>is the inverse of this.</p>
