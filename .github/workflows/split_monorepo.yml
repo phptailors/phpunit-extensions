@@ -28,7 +28,7 @@ jobs:
 
       # get package json list
       - id: output_data
-        run: echo "::set-output name=matrix::$(packages/monorepo-builder/bin/monorepo-builder packages-json)"
+        run: echo "::set-output name=matrix::$(vendor/bin/monorepo-builder packages-json)"
 
     # this step is needed, so the output gets to the next defined job
     outputs:
@@ -36,6 +36,8 @@ jobs:
 
   split_monorepo:
     needs: provide_packages_json
+
+    name: ${{ matrix.package }}
 
     runs-on: ubuntu-latest
     strategy:

@@ -12,6 +12,8 @@ jobs:
     # see https://stackoverflow.com/a/62953566/1348344
     runs-on: ubuntu-latest
 
+    name: ${{ matrix.package }}
+
     steps:
       - uses: actions/checkout@v2
 
@@ -25,7 +27,7 @@ jobs:
 
         # get package json list
       - id: output_data
-        run: echo "::set-output name=matrix::$(packages/monorepo-builder/bin/monorepo-builder packages-json)"
+        run: echo "::set-output name=matrix::$(vendor/bin/monorepo-builder packages-json)"
 
           # this step is needed, so the output gets to the next defined job
         outputs:
