@@ -65,7 +65,7 @@ static function ($container) : void {
 
     $parameters->set(Option::DATA_TO_APPEND, [
         'require-dev' => [
-            'symplify/monorepo-builder' => '^8.0.1',
+            'symplify/monorepo-builder' => '^9.0.11',
             'phpunit/phpunit' => '>=9.3',
             'behat/behat' => '^3.4',
             'psy/psysh' => 'dev-master',
@@ -76,18 +76,4 @@ static function ($container) : void {
             ],
         ],
     ]);
-
-    $packagesComposerJsonFiles = glob($top.'/'.$packagesSubdirsBase.'/*/composer.json');
-    $packagesDirs  = \array_map('dirname', $packagesComposerJsonFiles);
-    $packages = \array_map('basename', $packagesDirs);
-    $packagesSubdirs = \preg_replace('/^/', $packagesSubdirsBase.'/', $packages);
-
-    $defaultSplitRepositoryBase = 'file://'.$top.'/build/monorepo-split/repositories/phptailors';
-    $parameters->set('default_split_repository_base', $defaultSplitRepositoryBase);
-    $splitRepositoryBase = '%env(default:default_split_repository_base:MONOREPO_SPLIT_REPO_BASE)%/';
-
-    $packageRepos = \preg_replace('/^(.+)$/', $splitRepositoryBase.'\1.git', $packages);
-    $directoriesToRepositories = array_combine($packagesSubdirs, $packageRepos);
-
-    $parameters->set(Option::DIRECTORIES_TO_REPOSITORIES, $directoriesToRepositories);
 };

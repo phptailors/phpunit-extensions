@@ -4,7 +4,28 @@ on:
   - pull_request
   - push
 
+env:
+   # see https://github.com/composer/composer/issues/9368#issuecomment-718112361
+  COMPOSER_ROOT_VERSION: "dev-master"
+
 jobs:
+  provide_packages_json:
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: 7.4
+          coverage: none
+      - run: composer install --no-interaction --no-progress --ansi
+
+      # get package json list
+      - id: output_data
+        run: echo "::set-output name=matrix::$(vendor/bin/monorepo-builder packages-json)"
+    outputs:
+      matrix: ${{ steps.output_data.outputs.matrix }}
+
   monorepo_testing:
     runs-on: ${{ matrix.os }}
     strategy:
@@ -25,13 +46,13 @@ jobs:
         with:
           php-version: ${{ matrix.php-version }}
 
+      - run: composer --version
+
       - if: matrix.dependencies == 'highest'
-        run: |
-          composer update --no-interaction --no-progress --no-ansi
+        run: composer update --no-interaction --no-progress --no-ansi
 
       - if: matrix.dependencies == 'lowest'
-        run: |
-          composer update --no-interaction --no-progress --no-ansi --prefer-lowest
+        run: composer update --no-interaction --no-progress --no-ansi --prefer-lowest
 
       - name: Run composer-require-checker --config-file=.composer-require-checker.json
         uses: docker://webfactory/composer-require-checker:latest
@@ -41,16 +62,14 @@ jobs:
 
 
   after_split_testing:
+    needs: provide_packages_json
+
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        package_name:
-          - phpunit-arrays
-          - phpunit-common
-          - phpunit-inheritance
-          - phpunit-regexp
-          - phpunit-properties
+        package:
+          ${{ fromJson(needs.provide_packages_json.outputs.matrix) }}
         os:
           - ubuntu-latest
         php-version:
@@ -59,7 +78,7 @@ jobs:
           - lowest
           - highest
 
-    name: ${{ matrix.package_name }} (${{ matrix.os }}:PHP-${{ matrix.php-version }}:${{ matrix.dependencies }})
+    name: ${{ matrix.package }} (${{ matrix.os }}:PHP-${{ matrix.php-version }}:${{ matrix.dependencies }})
 
     steps:
       - uses: actions/checkout@v2
@@ -68,22 +87,18 @@ jobs:
           php-version: ${{ matrix.php-version }}
           coverage: none
 
-      - run: |
-          composer update --no-interaction --no-progress --no-ansi
-          vendor/bin/monorepo-builder localize-composer-paths --ansi
+      - run: composer update --no-interaction --no-progress --no-ansi
+
+      - run: vendor/bin/monorepo-builder localize-composer-paths --no-interaction --ansi packages/${{ matrix.package }}/composer.json
 
       - if: matrix.dependencies == 'highest'
-        run: |
-          cd packages/${{ matrix.package_name }}
-          composer update --no-interaction --no-progress --no-ansi
+        run: composer update --no-interaction --no-progress --ansi --working-dir packages/${{ matrix.package }}
 
       - if: matrix.dependencies == 'lowest'
-        run: |
-          cd packages/${{ matrix.package_name }}
-          composer update --no-interaction --no-progress --no-ansi --prefer-lowest
+        run: composer update --no-interaction --no-progress --ansi --working-dir packages/${{ matrix.package }} --prefer-lowest
 
       - name: Run composer-require-checker --config-file=.composer-require-checker.json
         uses: docker://webfactory/composer-require-checker:latest
         with:
           args: --config-file=.composer-require-checker.json
-          volume: "./packages/${{ matrix.package_name }}:/app ./.composer-require-checker.json:/app/.composer-require-checker.json"
+          volume: "./packages/${{ matrix.package }}:/app ./.composer-require-checker.json:/app/.composer-require-checker.json"

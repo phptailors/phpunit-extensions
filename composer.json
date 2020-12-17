@@ -1,5 +1,11 @@
 {
     "name": "phptailors/phpunit-extensions",
+    "authors": [
+        {
+            "name": "Paweł Tomulik",
+            "email": "ptomulik@meil.pw.edu.pl"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Tailors\\PHPUnit\\": [
@@ -41,7 +47,7 @@
         "behat/behat": "^3.4",
         "phpunit/phpunit": ">=9.3",
         "psy/psysh": "dev-master",
-        "symplify/monorepo-builder": "^8.0.1"
+        "symplify/monorepo-builder": "^9.0.11"
     },
     "minimum-stability": "dev",
     "prefer-stable": true
