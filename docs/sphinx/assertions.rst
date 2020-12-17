@@ -31,10 +31,10 @@ Synopsis:
   function assertArrayValuesEqualTo(array $expected, mixed $actual[, string $message = ''])
 
 Reports an error identified by ``$message`` if values in ``$actual`` (array or
-ArrayAccess instance) are not equal to ``$expected`` ones (tested with ``==``
+ArrayAccess_ instance) are not equal to ``$expected`` ones (tested with ``==``
 operator). The method compares only values specified in ``$expected`` array, so
 ``$expected = []`` accepts any ``$actual`` array. If ``$actual`` is not an
-array nor ArrayAccess instance, the constraint fails.
+array nor ArrayAccess_ instance, the constraint fails.
 
 The arguments are:
 
@@ -78,13 +78,13 @@ Synopsis:
 
 .. code:: php
 
-  function assertArrayValuesIdenticalTo(array $expected, array|ArrayAccess$actual[, string $message = ''])
+  function assertArrayValuesIdenticalTo(array $expected, mixed $actual[, string $message = ''])
 
-Reports an error identified by ``$message`` if values in ``$actual`` array are
-not identical to ``$expected`` ones (tested with ``===`` operator).
-The method compares only values specified in ``$expected``, so ``$expected = []``
-accepts any ``$actual`` array. If ``$actual`` is not an array, the constraint
-fails.
+Reports an error identified by ``$message`` if values in ``$actual`` (array or
+ArrayAccess_ instance) are not identical to ``$expected`` ones (tested with
+``===`` operator). The method compares only values specified in ``$expected``,
+so ``$expected = []`` accepts any ``$actual`` array. If ``$actual`` is not an
+array nor an ArrayAccess_ instance, the constraint fails.
 
 The arguments are:
 
@@ -96,7 +96,7 @@ The method
 
 .. code:: php
 
-  function assertNotArrayValuesIdenticalTo(array $expected, array|ArrayAcces $actual[, string $message = ''])
+  function assertNotArrayValuesIdenticalTo(array $expected, mixed $actual[, string $message = ''])
 
 is the inverse of this.
 
