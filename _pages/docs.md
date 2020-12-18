@@ -9,6 +9,6 @@ Documentation pages for particular versions:
   {% assign components=file.path | split: "/" %}
   {% assign numcomponents=components | size %}
   {% if numcomponents == 4 and components[1] == "docs" and components.last == "index.html" %}
-- [{{ components[2] }}]({{ file.path }})
+- [{{ components[2] }}]({{ file.path | relative_url }})
   {% endif %}
 {% endfor %}
