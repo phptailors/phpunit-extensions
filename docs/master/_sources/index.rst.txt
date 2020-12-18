@@ -4,6 +4,8 @@
 PHPUnit Extensions
 ##################
 
+Welcome to PHPUnit Extensions documentation!
+
 .. toctree::
    :caption: Table of Contents
    :maxdepth: 3
