@@ -69,3 +69,4 @@ jobs:
           force_orphan: false
           tag_name: ${{ steps.tag_info.outputs.deploy_tag_name }}
           tag_message: "deployment of docs for ${{ steps.tag_info.outputs.tag_name }}"
+          enable_jekyll: true
