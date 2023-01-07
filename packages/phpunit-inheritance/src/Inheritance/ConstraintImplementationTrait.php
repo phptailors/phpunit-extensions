@@ -25,6 +25,7 @@ use Tailors\PHPUnit\StringArgumentValidator;
  *      private static $supports;       // for example $supports = ['class_exists'];
  *
  * @internal This trait is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 trait ConstraintImplementationTrait
@@ -92,8 +93,12 @@ trait ConstraintImplementationTrait
      * @param mixed $value
      *
      * @psalm-template ValueType $value
+     *
      * @psalm-param ValueType $value
+     *
      * @param-out ValueType $value
+     *
+     * @psalm-assert array $value
      *
      * @throws InvalidReturnValueException
      */

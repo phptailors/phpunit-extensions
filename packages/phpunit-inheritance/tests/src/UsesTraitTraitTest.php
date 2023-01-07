@@ -20,9 +20,11 @@ use Tailors\PHPUnit\Examples\Inheritance\ExampleTraitUsingTrait;
 
 /**
  * @small
+ *
  * @covers \Tailors\PHPUnit\UsesTraitTrait
  *
  * @internal This class is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 final class UsesTraitTraitTest extends TestCase

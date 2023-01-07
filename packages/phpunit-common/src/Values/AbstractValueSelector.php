@@ -14,7 +14,9 @@ use Tailors\PHPUnit\InvalidArgumentException;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
+ *
  * @psalm-template SubjectType
  */
 abstract class AbstractValueSelector implements ValueSelectorInterface
@@ -39,6 +41,7 @@ abstract class AbstractValueSelector implements ValueSelectorInterface
      * @param mixed $subject
      * @param mixed $key
      * @param mixed $retval
+     *
      * @psalm-param SubjectType $subject
      * @psalm-param array-key $key
      */

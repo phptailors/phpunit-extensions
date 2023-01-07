@@ -17,9 +17,11 @@ use Tailors\PHPUnit\Constraint\ProvArrayValuesTrait;
 
 /**
  * @small
+ *
  * @covers \Tailors\PHPUnit\ArrayValuesIdenticalToTrait
  *
  * @internal This class is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 final class ArrayValuesIdenticalToTraitTest extends TestCase

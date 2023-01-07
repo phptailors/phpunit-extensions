@@ -16,7 +16,9 @@ use PHPUnit\Framework\ExpectationFailedException;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
+ *
  * @psalm-template ConstraintClass of Constraint
  */
 abstract class TestCase extends \PHPUnit\Framework\TestCase
@@ -30,6 +32,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
      * Returns constraint's class name.
      *
      * @psalm-return class-string<ConstraintClass>
+     *
      * @psalm-pure
      */
     abstract public static function getConstraintClass(): string;

@@ -14,6 +14,7 @@ namespace Tailors\PHPUnit\Values;
  * Selects actual values from a $subject according to expected values.
  *
  * @internal This class is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 final class RecursiveSelector implements RecursiveSelectorInterface

@@ -14,6 +14,7 @@ use PHPUnit\Framework\Constraint\Constraint;
 
 /**
  * @internal This trait is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 trait ProvObjectPropertiesTrait
@@ -164,10 +165,10 @@ trait ProvObjectPropertiesTrait
                     'last' => 'Smith',
                     'age'  => 21,
                     'wife' => $this->createConstraint([
-                        'name'    => 'Emily',
-                        'last'    => 'Smith',
-                        'age'     => 20,
-                        'husband' => $this->createConstraint([
+                        'name'        => 'Emily',
+                        'last'        => 'Smith',
+                        'age'         => 20,
+                        'husband'     => $this->createConstraint([
                             'name'        => 'John',
                             'last'        => 'Smith',
                             'age'         => 21,
@@ -200,7 +201,7 @@ trait ProvObjectPropertiesTrait
 
             'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => [
-                    'persons' => [
+                    'persons'  => [
                         $this->createConstraint(['name' => 'Emily', 'last' => 'Smith']),
                         $this->createConstraint(['name' => 'John', 'last' => 'Smith']),
                     ],
@@ -217,7 +218,7 @@ trait ProvObjectPropertiesTrait
 
             'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => [
-                    'persons' => [
+                    'persons'  => [
                         $esmith,
                         $jsmith,
                     ],
@@ -382,10 +383,10 @@ trait ProvObjectPropertiesTrait
                     'last' => 'Smith',
                     'age'  => 21,
                     'wife' => [
-                        'name'    => 'Emily',
-                        'last'    => 'Smith',
-                        'age'     => 20,
-                        'husband' => [
+                        'name'        => 'Emily',
+                        'last'        => 'Smith',
+                        'age'         => 20,
+                        'husband'     => [
                             'name'        => 'John',
                             'last'        => 'Smith',
                             'age'         => 21,
@@ -410,7 +411,7 @@ trait ProvObjectPropertiesTrait
 
             'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => [
-                    'persons' => [
+                    'persons'  => [
                         ['name' => 'Emily', 'last' => 'Smith'],
                         ['name' => 'John', 'last' => 'Smith'],
                     ],
@@ -427,7 +428,7 @@ trait ProvObjectPropertiesTrait
 
             'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => [
-                    'persons' => [
+                    'persons'  => [
                         $esmith,
                         $jsmith,
                     ],

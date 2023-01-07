@@ -13,13 +13,25 @@ namespace Tailors\PHPUnit\Values;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\InvalidArgumentException;
 
+final class ClassWithNonStaticMethodFooBLSGG
+{
+    public function foo()
+    {
+        // @codeCoverageIgnoreStart
+    }
+
+    // @codeCoverageIgnoreEnd
+}
+
 /**
  * @small
+ *
  * @covers \Tailors\PHPUnit\Values\AbstractPropertySelector
  * @covers \Tailors\PHPUnit\Values\AbstractValueSelector
  * @covers \Tailors\PHPUnit\Values\ClassPropertySelector
  *
  * @internal This class is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 final class ClassPropertySelectorTest extends TestCase
@@ -49,27 +61,27 @@ final class ClassPropertySelectorTest extends TestCase
     {
         return [
             // #0
-            'string' => [
+            'string'                    => [
                 'subject' => 'foo',
                 'expect'  => false,
             ],
 
             // #1
-            'array' => [
+            'array'                     => [
                 'subject' => [],
                 'expect'  => false,
             ],
 
-            'class' => [
+            'class'                     => [
                 'subject' => self::class,
                 'expect'  => true,
             ],
 
             // #2
-            'object' => [
+            'object'                    => [
                 'subject' => get_class(new class() {
                 }),
-                'expect' => true,
+                'expect'  => true,
             ],
 
             // #3
@@ -103,7 +115,7 @@ final class ClassPropertySelectorTest extends TestCase
         return [
             // #0
             [
-                'class' => get_class(new class() {
+                'class'  => get_class(new class() {
                     public static $foo = 'FOO';
                 }),
                 'key'    => 'foo',
@@ -113,7 +125,7 @@ final class ClassPropertySelectorTest extends TestCase
 
             // #1
             [
-                'class' => get_class(new class() {
+                'class'  => get_class(new class() {
                     public static $foo = 'FOO';
                 }),
                 'key'    => 'bar',
@@ -123,7 +135,7 @@ final class ClassPropertySelectorTest extends TestCase
 
             // #2
             [
-                'class' => get_class(new class() {
+                'class'  => get_class(new class() {
                     public static function foo()
                     {
                         return 'FOO';
@@ -136,7 +148,7 @@ final class ClassPropertySelectorTest extends TestCase
 
             // #3
             [
-                'class' => get_class(new class() {
+                'class'  => get_class(new class() {
                     public static function foo()
                     {
                         return 'FOO';
@@ -206,24 +218,16 @@ final class ClassPropertySelectorTest extends TestCase
 
     public function testSelectThrowsOnNonStaticMethod(): void
     {
-        $class = get_class(new class() {
-            public function foo()
-            {
-                // @codeCoverageIgnoreStart
-            }
-
-            // @codeCoverageIgnoreEnd
-        });
+        $class = ClassWithNonStaticMethodFooBLSGG::class;
         $selector = new ClassPropertySelector();
 
         if (PHP_VERSION_ID < 80000) {
-            $this->expectError();
-            $this->expectErrorMessage('should not be called statically');
+            $this->expectDeprecation();
+            $this->expectDeprecationMessage('should not be called statically');
         } else {
             $this->expectException(\TypeError::class);
             $this->expectExceptionMessage('cannot be called statically');
         }
-
         $selector->select($class, 'foo()');
 
         // @codeCoverageIgnoreStart

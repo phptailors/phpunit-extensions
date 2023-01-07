@@ -14,6 +14,7 @@ namespace Tailors\PHPUnit\Values;
  * @small
  *
  * @internal This class is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 trait ValuesTestTrait

@@ -15,9 +15,11 @@ use PHPUnit\Framework\Constraint\IsTrue;
 
 /**
  * @small
+ *
  * @covers \Tailors\PHPUnit\Constraint\TestCase
  *
  * @internal This class is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 final class TestCaseTest extends TestCase

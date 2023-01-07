@@ -32,18 +32,21 @@ final class ImplementsInterface extends AbstractConstraint
 
     /**
      * @var array
+     *
      * @psalm-var array{0:callable, 1:string}
      */
     private static $validation = ['interface_exists', 'an interface-string'];
 
     /**
      * @var callable
+     *
      * @psalm-var callable
      */
     private static $inheritance = 'class_implements';
 
     /**
      * @var array
+     *
      * @psalm-var array{0:callable, 1:callable}
      */
     private static $supports = ['class_exists', 'interface_exists'];

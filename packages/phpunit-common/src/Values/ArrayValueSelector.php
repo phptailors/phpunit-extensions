@@ -14,6 +14,7 @@ use Tailors\PHPUnit\InvalidArgumentException;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  *
  * @template-extends AbstractValueSelector<array|\ArrayAccess>
@@ -22,6 +23,7 @@ final class ArrayValueSelector extends AbstractValueSelector
 {
     /**
      * @param mixed $subject
+     *
      * @psalm-assert-if-true array|\ArrayAccess $subject
      */
     public function supports($subject): bool
@@ -53,6 +55,7 @@ final class ArrayValueSelector extends AbstractValueSelector
      *
      * @psalm-param array|\ArrayAccess $subject
      * @psalm-param array-key $key
+     *
      * @param-out mixed $retval
      *
      * @throws InvalidArgumentException

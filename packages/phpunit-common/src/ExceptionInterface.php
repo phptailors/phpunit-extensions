@@ -12,6 +12,7 @@ namespace Tailors\PHPUnit;
 
 /**
  * @internal This interface is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 interface ExceptionInterface extends \Throwable

@@ -14,9 +14,11 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @small
+ *
  * @covers \Tailors\PHPUnit\InvalidReturnValueException
  *
  * @internal This class is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 final class InvalidReturnValueExceptionTest extends TestCase
@@ -49,7 +51,7 @@ final class InvalidReturnValueExceptionTest extends TestCase
     /**
      * @dataProvider provFromExpectedAndActual
      *
-     * @param array{0:string|object,1:string}|string|callable $function
+     * @param array{0:object|string,1:string}|callable|string $function
      */
     public function testFromExpectedAndActual($function, string $expected, string $actual): void
     {
@@ -88,7 +90,7 @@ final class InvalidReturnValueExceptionTest extends TestCase
     /**
      * @dataProvider provFromExpectedTypeAndActualValue
      *
-     * @param array{0:string|object,1:string}|string|callable $function
+     * @param array{0:object|string,1:string}|callable|string $function
      * @param mixed                                           $actual
      */
     public function testFromExpectedTypeAndActualValue($function, string $expected, $actual): void

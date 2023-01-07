@@ -14,6 +14,7 @@ namespace Tailors\PHPUnit\Values;
  * An array of expected values.
  *
  * @internal This class is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 class ExpectedValues extends AbstractValues

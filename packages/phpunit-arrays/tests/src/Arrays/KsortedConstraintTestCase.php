@@ -15,6 +15,7 @@ use Tailors\PHPUnit\Constraint\TestCase;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 abstract class KsortedConstraintTestCase extends TestCase

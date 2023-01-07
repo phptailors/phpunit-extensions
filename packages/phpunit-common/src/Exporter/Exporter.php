@@ -18,6 +18,7 @@ use Tailors\PHPUnit\Values\ValuesInterface;
  * An exporter that handles ValuesInterface in a special way.
  *
  * @internal This class is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 final class Exporter extends SebastianBergmannExporter
@@ -29,9 +30,9 @@ final class Exporter extends SebastianBergmannExporter
      * @param int     $indentation The indentation level of the 2nd+ line
      * @param Context $processed   Previously processed objects
      *
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
-     *
      * @return string
+     *
+     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     public function recursiveExport(&$value, $indentation, $processed = null)
     {

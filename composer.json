@@ -29,6 +29,24 @@
             "Tailors\\PHPUnit\\Docs\\Behat\\": "docs/sphinx/behat/"
         }
     },
+    "description": "Extensions to PHPUnit framework",
+    "require": {
+        "php": ">=7.4",
+        "sebastian/exporter": "^4.0",
+        "sebastian/recursion-context": "^4.0.3"
+    },
+    "license": "MIT",
+    "require-dev": {
+        "bamarni/composer-bin-plugin": "^1.8",
+        "symplify/monorepo-builder": "^9.0.11"
+    },
+    "extra": {
+        "bamarni-bin": {
+            "bin-links": true,
+            "target-directory": "vendor-bin",
+            "forward-command": false
+        }
+    },
     "replace": {
         "phptailors/phpunit-arrays": "self.version",
         "phptailors/phpunit-common": "self.version",
@@ -36,18 +54,10 @@
         "phptailors/phpunit-properties": "self.version",
         "phptailors/phpunit-regexp": "self.version"
     },
-    "description": "Extensions to PHPUnit framework",
-    "require": {
-        "php": ">=7.3",
-        "sebastian/exporter": "^4.0",
-        "sebastian/recursion-context": "^4.0.3"
-    },
-    "license": "MIT",
-    "require-dev": {
-        "behat/behat": "^3.4",
-        "phpunit/phpunit": ">=9.3",
-        "psy/psysh": "dev-master",
-        "symplify/monorepo-builder": "^9.0.11"
+    "config": {
+        "allow-plugins": {
+            "bamarni/composer-bin-plugin": true
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true

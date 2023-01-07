@@ -3,14 +3,20 @@ name: Docs Tests
 on:
   pull_request:
     paths:
-      - 'docs/**'
       - '.github/workflows/docs_test.yml'
       - 'README.md'
+      - 'docker/**'
+      - 'docs/**'
+      - 'packages/**'
+      - 'vendor-bin/behat/composer.json'
   push:
     paths:
-      - 'docs/**'
       - '.github/workflows/docs_test.yml'
       - 'README.md'
+      - 'docker/**'
+      - 'docs/**'
+      - 'packages/**'
+      - 'vendor-bin/behat/composer.json'
 
 jobs:
   test-examples:
@@ -19,13 +25,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: shivammathur/setup-php@v2
         with:
-          php-version: 7.4
+          php-version: 8.1
           coverage: none
 
       - run: composer update --no-interaction --no-progress --no-ansi
+      - run: composer bin behat update --no-interaction --no-progress --no-ansi
 
       - run: vendor/bin/behat -c docs/behat.yml
 
@@ -36,11 +43,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: shivammathur/setup-php@v2
         with:
-          php-version: 7.4
+          php-version: 8.1
           coverage: none
+
+      - name: Display settings
+        run: |
+          id
 
       - name: Build API docs
         run: |

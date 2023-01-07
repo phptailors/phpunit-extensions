@@ -44,7 +44,7 @@ jobs:
           echo "::set-output name=dest_dir::${DEST_DIR}"
           echo "DEST_DIR=${DEST_DIR}"
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: shivammathur/setup-php@v2
         with:
           php-version: 7.4

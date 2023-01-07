@@ -10,7 +10,6 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
-use Exception;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Examples\Inheritance\ExampleClassNotUsingTrait;
@@ -18,16 +17,17 @@ use Tailors\PHPUnit\Examples\Inheritance\ExampleClassUsingTrait;
 use Tailors\PHPUnit\Examples\Inheritance\ExampleTrait;
 use Tailors\PHPUnit\Examples\Inheritance\ExampleTraitUsingTrait;
 use Tailors\PHPUnit\InvalidArgumentException;
-use Throwable;
 
 /**
  * @small
+ *
  * @covers \Tailors\PHPUnit\Constraint\InheritanceConstraintTestTrait
  * @covers \Tailors\PHPUnit\Constraint\UsesTrait
  * @covers \Tailors\PHPUnit\Inheritance\AbstractConstraint
  * @covers \Tailors\PHPUnit\Inheritance\ConstraintImplementationTrait
  *
  * @internal This class is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 final class UsesTraitTest extends TestCase
@@ -40,7 +40,7 @@ final class UsesTraitTest extends TestCase
         return [
             'UsesTraitTest.php:'.__LINE__ => [
                 'constraint' => UsesTrait::create(ExampleTrait::class),
-                'subject'    => Exception::class,
+                'subject'    => \Exception::class,
                 'expect'     => [
                     'exception' => ExpectationFailedException::class,
                     'message'   => '/Exception uses trait '.preg_quote(ExampleTrait::class, '/').'/',
@@ -125,12 +125,12 @@ final class UsesTraitTest extends TestCase
             ],
 
             'UsesTraitTest.php:'.__LINE__ => [
-                'argument' => Exception::class,
+                'argument' => \Exception::class,
                 'messsage' => $message,
             ],
 
             'UsesTraitTest.php:'.__LINE__ => [
-                'argument' => Throwable::class,
+                'argument' => \Throwable::class,
                 'messsage' => $message,
             ],
         ];

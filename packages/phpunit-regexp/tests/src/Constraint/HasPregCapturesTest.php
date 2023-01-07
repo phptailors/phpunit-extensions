@@ -17,10 +17,12 @@ use Tailors\PHPUnit\InvalidArgumentException;
 
 /**
  * @small
+ *
  * @covers \Tailors\PHPUnit\Constraint\HasPregCaptures
  * @covers \Tailors\PHPUnit\Constraint\ProvHasPregCapturesTrait
  *
  * @internal This class is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 final class HasPregCapturesTest extends TestCase
@@ -89,14 +91,14 @@ final class HasPregCapturesTest extends TestCase
 
         return [
             'HasPregCapturesTest.php:'.__LINE__ => [
-                'args' => [[
+                'args'    => [[
                     'foo' => new \stdClass(),
                 ]],
                 'message' => sprintf($template, 'expectation', 'key \'foo\''),
             ],
 
             'HasPregCapturesTest.php:'.__LINE__ => [
-                'args' => [[
+                'args'    => [[
                     0 => 123.456,
                     1 => false,
                     2 => ['', 1, ''],

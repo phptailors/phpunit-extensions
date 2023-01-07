@@ -14,9 +14,11 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @small
+ *
  * @covers \Tailors\PHPUnit\Values\RecursiveSelector
  *
  * @internal This class is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 final class RecursiveSelectorTest extends TestCase
@@ -70,10 +72,10 @@ final class RecursiveSelectorTest extends TestCase
                 'selection' => self::createSelection([
                     'foo' => 'e:FOO',
                 ]),
-                'subject' => [
+                'subject'   => [
                     'foo' => 'a:FOO',
                 ],
-                'expect' => [
+                'expect'    => [
                     'foo'            => 'a:FOO',
                     self::UNIQUE_TAG => true,
                 ],
@@ -86,15 +88,15 @@ final class RecursiveSelectorTest extends TestCase
                         'baz' => 'e:BAZ',
                     ],
                 ]),
-                'subject' => [
+                'subject'   => [
                     'foo' => 'a:FOO',
                     'bar' => [
                         'baz' => 'a:BAZ',
                     ],
                 ],
-                'expect' => [
-                    'foo' => 'a:FOO',
-                    'bar' => [
+                'expect'    => [
+                    'foo'            => 'a:FOO',
+                    'bar'            => [
                         'baz' => 'a:BAZ',
                     ],
                     self::UNIQUE_TAG => true,
@@ -108,11 +110,11 @@ final class RecursiveSelectorTest extends TestCase
                         'baz' => 'e:BAZ',
                     ],
                 ]),
-                'subject' => [
+                'subject'   => [
                     'foo' => 'a:FOO',
                     'bar' => 'a:BAR',
                 ],
-                'expect' => [
+                'expect'    => [
                     'foo'            => 'a:FOO',
                     'bar'            => 'a:BAR',
                     self::UNIQUE_TAG => true,
@@ -126,16 +128,16 @@ final class RecursiveSelectorTest extends TestCase
                         'baz' => 'e:BAZ',
                     ]),
                 ]),
-                'subject' => [
+                'subject'   => [
                     'foo' => 'a:FOO',
                     'bar' => [
                         'baz' => 'a:BAZ',
                         'qux' => 'a:QUX',
                     ],
                 ],
-                'expect' => [
-                    'foo' => 'a:FOO',
-                    'bar' => [
+                'expect'    => [
+                    'foo'            => 'a:FOO',
+                    'bar'            => [
                         'baz'            => 'a:BAZ',
                         self::UNIQUE_TAG => true,
                     ],
@@ -150,16 +152,16 @@ final class RecursiveSelectorTest extends TestCase
                         'baz' => 'e:BAZ',
                     ]),
                 ]),
-                'subject' => [
+                'subject'   => [
                     'foo' => 'a:FOO',
                     'bar' => [
                         'baz' => 'a:BAZ',
                         'qux' => 'a:QUX',
                     ],
                 ],
-                'expect' => [
-                    'foo' => 'a:FOO',
-                    'bar' => [
+                'expect'    => [
+                    'foo'            => 'a:FOO',
+                    'bar'            => [
                         'baz'            => 'a:BAZ',
                         self::UNIQUE_TAG => true,
                     ],
@@ -174,16 +176,16 @@ final class RecursiveSelectorTest extends TestCase
                         'baz' => 'e:BAZ',
                     ]),
                 ]),
-                'subject' => [
+                'subject'   => [
                     'foo' => 'a:FOO',
                     'bar' => new \ArrayObject([
                         'baz' => 'a:BAZ',
                         'qux' => 'a:QUX',
                     ]),
                 ],
-                'expect' => [
-                    'foo' => 'a:FOO',
-                    'bar' => [
+                'expect'    => [
+                    'foo'            => 'a:FOO',
+                    'bar'            => [
                         'baz'            => 'a:BAZ',
                         self::UNIQUE_TAG => true,
                     ],
@@ -198,16 +200,16 @@ final class RecursiveSelectorTest extends TestCase
                         'baz' => 'e:BAZ',
                     ]),
                 ]),
-                'subject' => [
+                'subject'   => [
                     'foo' => 'a:FOO',
                     'bar' => new \ArrayObject([
                         'baz' => 'a:BAZ',
                         'qux' => 'a:QUX',
                     ]),
                 ],
-                'expect' => [
-                    'foo' => 'a:FOO',
-                    'bar' => [
+                'expect'    => [
+                    'foo'            => 'a:FOO',
+                    'bar'            => [
                         'baz'            => 'a:BAZ',
                         self::UNIQUE_TAG => true,
                     ],
@@ -222,11 +224,11 @@ final class RecursiveSelectorTest extends TestCase
                         'baz' => 'e:BAZ',
                     ]),
                 ]),
-                'subject' => [
+                'subject'   => [
                     'foo' => 'a:FOO',
                     'bar' => 'a:BAR',
                 ],
-                'expect' => [
+                'expect'    => [
                     'foo'            => 'a:FOO',
                     'bar'            => 'a:BAR',
                     self::UNIQUE_TAG => true,
@@ -240,11 +242,11 @@ final class RecursiveSelectorTest extends TestCase
                         'baz' => 'e:BAZ',
                     ]),
                 ]),
-                'subject' => [
+                'subject'   => [
                     'foo' => 'a:FOO',
                     'bar' => 'a:BAR',
                 ],
-                'expect' => [
+                'expect'    => [
                     'foo'            => 'a:FOO',
                     'bar'            => 'a:BAR',
                     self::UNIQUE_TAG => true,
@@ -258,11 +260,11 @@ final class RecursiveSelectorTest extends TestCase
                         'baz' => 'e:BAZ',
                     ]),
                 ]),
-                'subject' => [
+                'subject'   => [
                     'foo' => 'a:FOO',
                     'bar' => 'a:BAR',
                 ],
-                'expect' => [
+                'expect'    => [
                     'foo'            => 'a:FOO',
                     'bar'            => 'a:BAR',
                     self::UNIQUE_TAG => true,
@@ -276,11 +278,11 @@ final class RecursiveSelectorTest extends TestCase
                         'baz' => 'e:BAZ',
                     ]),
                 ]),
-                'subject' => [
+                'subject'   => [
                     'foo' => 'a:FOO',
                     'bar' => 'a:BAR',
                 ],
-                'expect' => [
+                'expect'    => [
                     'foo'            => 'a:FOO',
                     'bar'            => 'a:BAR',
                     self::UNIQUE_TAG => true,

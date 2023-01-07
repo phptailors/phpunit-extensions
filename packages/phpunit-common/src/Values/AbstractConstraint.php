@@ -25,6 +25,7 @@ use Tailors\PHPUnit\Exporter\Exporter;
  * Abstract base for constraints that examine values.
  *
  * @internal This class is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 abstract class AbstractConstraint extends Constraint implements ComparatorWrapperInterface, SelectionWrapperInterface

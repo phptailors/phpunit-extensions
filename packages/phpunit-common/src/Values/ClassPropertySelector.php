@@ -12,13 +12,16 @@ namespace Tailors\PHPUnit\Values;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
+ *
  * @template-extends AbstractPropertySelector<class-string>
  */
 final class ClassPropertySelector extends AbstractPropertySelector
 {
     /**
      * @param mixed $subject
+     *
      * @psalm-assert-if-true class-string $subject
      */
     public function supports($subject): bool

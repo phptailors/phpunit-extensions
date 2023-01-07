@@ -16,4 +16,7 @@
         <directory name="packages/*/src" />
         <directory name="packages/*/tests/static-analysis" />
     </projectFiles>
+    <plugins>
+        <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
+    </plugins>
 </psalm>

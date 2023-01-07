@@ -30,11 +30,14 @@ use Tailors\PHPUnit\Preg\CapturesFilterInterface;
  * Boolean expectations (``['foo' => true]`` or ``['foo' => false]``) work
  * properly only with arrays obtained from ``preg_match()`` invoked with
  * ``PREG_UNMATCHED_AS_NULL`` flag.
+ *
+ * @psalm-type CaptureExpectation = null|bool|string|array{0:null|string,1:int}
+ * @psalm-type PregMatchCaptured = string|null|array{0:string|null,1:int}
  */
 final class HasPregCaptures extends Constraint
 {
     /**
-     * @psalm-var array<array-key, null|bool|string|array{0:null|string,1:int}>
+     * @psalm-var array<array-key, CaptureExpectation>
      */
     private $expected;
 
@@ -46,7 +49,7 @@ final class HasPregCaptures extends Constraint
     /**
      * Initializes the constraint.
      *
-     * @psalm-param array<array-key, null|bool|string|array{0:null|string,1:int}> $expected
+     * @psalm-param array<array-key, CaptureExpectation> $expected
      */
     private function __construct(array $expected, CapturesFilterInterface $filter)
     {
@@ -157,7 +160,7 @@ final class HasPregCaptures extends Constraint
     }
 
     /**
-     * @psalm-assert array<array-key, null|bool|string|array{0:null|string,1:int}> $array
+     * @psalm-assert array<array-key, CaptureExpectation> $array
      *
      * @throws InvalidArgumentException
      */
@@ -189,7 +192,8 @@ final class HasPregCaptures extends Constraint
 
     /**
      * @param mixed $value
-     * @assert-if-true null|bool|string|array{0:null|string,1:int} $value
+     *
+     * @assert-if-true CaptureExpectation $value
      */
     private static function isValidExpectation($value): bool
     {
@@ -226,7 +230,7 @@ final class HasPregCaptures extends Constraint
     /**
      * @psalm-param array<array-key, string|null|array{0:string|null,1:int}> $matches
      * @psalm-param array-key $key
-     * @psalm-param null|bool|string|array{0:null|string,1:int} $value
+     * @psalm-param CaptureExpectation $value
      *
      * @param mixed $key
      * @param mixed $value
@@ -257,7 +261,7 @@ final class HasPregCaptures extends Constraint
 
     /**
      * @psalm-param array-key $key
-     * @psalm-param array<array-key, string|null|array{0:string|null,1:int}> $matches
+     * @psalm-param array<array-key, PregMatchCaptured> $matches
      *
      * @param mixed $key
      */
@@ -267,10 +271,10 @@ final class HasPregCaptures extends Constraint
             return false;
         }
         if (is_array($val)) {
-            return !empty($val) && is_string($val[0]);
+            return is_string($val[0]);
         }
 
-        //return is_string($val);
+        // return is_string($val);
         return true;
     }
 }

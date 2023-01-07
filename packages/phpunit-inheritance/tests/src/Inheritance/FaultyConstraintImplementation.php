@@ -12,6 +12,7 @@ namespace Tailors\PHPUnit\Inheritance;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 final class FaultyConstraintImplementation extends AbstractConstraint
@@ -32,18 +33,21 @@ final class FaultyConstraintImplementation extends AbstractConstraint
 
     /**
      * @var array
+     *
      * @psalm-var array{0:callable, 1:string}
      */
     private static $validation = ['is_string', 'a string'];
 
     /**
      * @var callable
+     *
      * @psalm-var callable
      */
     private static $inheritance = 'strlen';
 
     /**
      * @var array
+     *
      * @psalm-var array{0:callable}
      */
     private static $supports = ['is_string'];

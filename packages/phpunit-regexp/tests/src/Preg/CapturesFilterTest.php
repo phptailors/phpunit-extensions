@@ -14,9 +14,11 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @small
+ *
  * @covers \Tailors\PHPUnit\Preg\CapturesFilter
  *
  * @internal This class is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 final class CapturesFilterTest extends TestCase
@@ -61,7 +63,7 @@ final class CapturesFilterTest extends TestCase
             ],
 
             'CapturesFilterTest.php:'.__LINE__ => [
-                'args'   => [0xf0f0f0 | PREG_UNMATCHED_AS_NULL],
+                'args'   => [0xF0F0F0 | PREG_UNMATCHED_AS_NULL],
                 'value'  => null,
                 'expect' => true,
             ],

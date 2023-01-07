@@ -36,9 +36,11 @@ if (!function_exists('Tailors\\PHPUnit\\testInvalidArgumentExceptionFromBackTrac
 
 /**
  * @small
+ *
  * @covers \Tailors\PHPUnit\InvalidArgumentException
  *
  * @internal This class is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 final class InvalidArgumentExceptionTest extends TestCase

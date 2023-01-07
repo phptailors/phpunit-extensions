@@ -19,12 +19,14 @@ use PHPUnit\Framework\Constraint\Operator;
  * ImplementsInterface, UsesTrait, etc.).
  *
  * @internal This class is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 abstract class AbstractConstraint extends Constraint
 {
     /**
      * @var string
+     *
      * @psalm-readonly
      */
     private $expected;

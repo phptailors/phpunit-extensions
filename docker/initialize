@@ -49,7 +49,7 @@ class TailorsDockerInitializer
             '@CODE@'            => '/code',
             '@PHP_TAG@'         => 'cli',
             '@CODECLIMATE_TAG@' => 'latest',
-            '@DOCTUM_TAG@'      => 'latest',
+            '@DOCTUM_TAG@'      => 'latest-php8.1',
             '@DOCTUM_PORT@'     => '8001',
             '@SPHINX_TAG@'      => 'latest',
             '@SPHINX_PORT@'     => '8002',

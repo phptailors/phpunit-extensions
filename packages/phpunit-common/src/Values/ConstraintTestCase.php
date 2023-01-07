@@ -15,7 +15,9 @@ use Tailors\PHPUnit\Constraint\TestCase;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
+ *
  * @extends TestCase<AbstractConstraint>
  */
 abstract class ConstraintTestCase extends TestCase
@@ -26,7 +28,11 @@ abstract class ConstraintTestCase extends TestCase
 
     abstract public static function adjective(): string;
 
-    // @codeCoverageIgnoreStart
+    /**
+     * @psalm-return array<string,array{args:array,expect:array{values: Constraint}}>
+     *
+     * @codeCoverageIgnoreStart
+     */
     public function provCreateConstraint(): array
     {
         return [

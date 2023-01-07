@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Instal PHP
         uses: shivammathur/setup-php@v2
@@ -21,8 +21,14 @@ jobs:
           coverage: none
           tools: php-cs-fixer:2.17.1
 
-      - name: Run friendsofphp/php-cs-fixer
-        run: php-cs-fixer fix --diff-format=udiff --dry-run --show-progress=dots --using-cache=no --verbose
+      - name: Update dependencies with composer
+        run: composer update --no-interaction --no-ansi --no-progress
+
+      - name: Install php-cs-fixer with composer
+        run: composer bin php-cs-fixer update --no-interaction --no-ansi --no-progress
+
+      - name: Run php-cs-fixer
+        run: vendor/bin/php-cs-fixer fix --diff --dry-run --show-progress=dots --using-cache=no --verbose
 
   type-checker:
     name: Type Checker (vimeo/psalm)
@@ -31,17 +37,20 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Install PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: 7.4
           coverage: none
-          tools: composer:v1, psalm:4.3.1
+          tools: composer:v2
 
       - name: Update dependencies with composer
         run: composer update --no-interaction --no-ansi --no-progress
 
+      - name: Install psalm with composer
+        run: composer bin psalm update --no-interaction --no-ansi --no-progress
+
       - name: Run vimeo/psalm on packages
-        run: psalm --no-progress --shepherd --show-info=true --stats
+        run: vendor/bin/psalm --no-progress --shepherd --show-info=true --stats

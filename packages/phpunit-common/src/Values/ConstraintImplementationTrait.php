@@ -14,6 +14,7 @@ use Tailors\PHPUnit\Comparator\ComparatorInterface;
 
 /**
  * @internal This trait is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 trait ConstraintImplementationTrait

@@ -14,8 +14,10 @@ namespace Tailors\PHPUnit\Values;
  * An array of actual or expected values.
  *
  * @template-extends \Traversable<array-key, mixed>
+ * @template-extends \ArrayAccess<array-key, mixed>
  *
  * @internal This interface is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 interface ValuesInterface extends \Traversable, \ArrayAccess, \Countable

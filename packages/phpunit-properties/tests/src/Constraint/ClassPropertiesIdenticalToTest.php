@@ -14,12 +14,14 @@ use PHPUnit\Framework\Constraint\Constraint;
 
 /**
  * @small
+ *
  * @covers \Tailors\PHPUnit\Constraint\ClassPropertiesIdenticalTo
  * @covers \Tailors\PHPUnit\Constraint\PropertiesConstraintTestCase
  * @covers \Tailors\PHPUnit\Constraint\ProvClassPropertiesTrait
  * @covers \Tailors\PHPUnit\Values\ConstraintTestCase
  *
  * @internal This class is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 final class ClassPropertiesIdenticalToTest extends PropertiesConstraintTestCase

@@ -12,12 +12,14 @@ namespace Tailors\PHPUnit\Preg;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 final class CapturesFilter implements CapturesFilterInterface
 {
     /**
      * @var int
+     *
      * @psalm-readonly
      */
     private $flags;
@@ -34,6 +36,7 @@ final class CapturesFilter implements CapturesFilterInterface
      * Filter-out all elements of $array with $this->accepts().
      *
      * @return array the filtered array
+     *
      * @psalm-return array<array-key, string|null|array{0:string|null,1:int}>
      */
     public function filter(array $array): array
@@ -54,6 +57,7 @@ final class CapturesFilter implements CapturesFilterInterface
      *      - $value[1] is an integer,
      *
      * @param mixed $value
+     *
      * @psalm-assert-if-true string|null|array{0:string|null,1:int} $value
      */
     public function accepts($value): bool
@@ -63,6 +67,7 @@ final class CapturesFilter implements CapturesFilterInterface
 
     /**
      * @param mixed $value
+     *
      * @assert-if-true string|null $value
      */
     private function isScalarCapture($value): bool
@@ -72,6 +77,7 @@ final class CapturesFilter implements CapturesFilterInterface
 
     /**
      * @param mixed $value
+     *
      * @assert-if-true array{0:string|null,1:int} $value
      */
     private function isArrayCapture($value): bool

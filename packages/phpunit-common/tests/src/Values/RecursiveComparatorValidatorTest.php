@@ -20,9 +20,11 @@ use Tailors\PHPUnit\InvalidArgumentException;
 
 /**
  * @small
+ *
  * @covers \Tailors\PHPUnit\Values\RecursiveComparatorValidator
  *
  * @internal This class is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 final class RecursiveComparatorValidatorTest extends TestCase
@@ -137,7 +139,7 @@ final class RecursiveComparatorValidatorTest extends TestCase
                     [],
                     1,
                 ],
-                'expect' => [
+                'expect'     => [
                 ],
             ],
 
@@ -153,7 +155,7 @@ final class RecursiveComparatorValidatorTest extends TestCase
                     ],
                     1,
                 ],
-                'expect' => [
+                'expect'     => [
                 ],
             ],
 
@@ -165,7 +167,7 @@ final class RecursiveComparatorValidatorTest extends TestCase
                     ],
                     123,
                 ],
-                'expect' => [
+                'expect'     => [
                     'exception' => InvalidArgumentException::class,
                     'message'   => self::makeFailureMessage(123, __CLASS__.'::testValidate', 'EqualityComparator', 1),
                 ],
@@ -179,7 +181,7 @@ final class RecursiveComparatorValidatorTest extends TestCase
                     ],
                     123,
                 ],
-                'expect' => [
+                'expect'     => [
                     'exception' => InvalidArgumentException::class,
                     'message'   => self::makeFailureMessage(123, __CLASS__.'::testValidate', 'IdentityComparator', 1),
                 ],
@@ -194,11 +196,11 @@ final class RecursiveComparatorValidatorTest extends TestCase
                             'gez'  => 'GEZ',
                             'err2' => $identityWrapper,
                         ],
-                        'frd' => $equalityWrapper,
+                        'frd'  => $equalityWrapper,
                     ],
                     11,
                 ],
-                'expect' => [
+                'expect'     => [
                     'exception' => InvalidArgumentException::class,
                     'message'   => self::makeFailureMessage(11, __CLASS__.'::testValidate', 'EqualityComparator', 2),
                 ],
@@ -218,7 +220,7 @@ final class RecursiveComparatorValidatorTest extends TestCase
                     ],
                     123,
                 ],
-                'expect' => [
+                'expect'     => [
                     'exception' => InvalidArgumentException::class,
                     'message'   => self::makeFailureMessage(123, __CLASS__.'::testValidate', 'EqualityComparator', 2),
                 ],
@@ -233,7 +235,7 @@ final class RecursiveComparatorValidatorTest extends TestCase
                     ],
                     123,
                 ],
-                'expect' => [
+                'expect'     => [
                     'exception' => InvalidArgumentException::class,
                     'message'   => self::makeFailureMessage(123, __CLASS__.'::testValidate', 'EqualityComparator', 2),
                 ],

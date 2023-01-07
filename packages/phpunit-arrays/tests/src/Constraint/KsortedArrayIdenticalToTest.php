@@ -15,12 +15,14 @@ use Tailors\PHPUnit\Comparator\IdentityComparator;
 
 /**
  * @small
+ *
  * @covers \Tailors\PHPUnit\Arrays\AbstractKsortedConstraint
  * @covers \Tailors\PHPUnit\Arrays\KsortedConstraintTestCase
  * @covers \Tailors\PHPUnit\Constraint\KsortedArrayIdenticalTo
  * @covers \Tailors\PHPUnit\Constraint\ProvKsortedArrayTrait
  *
  * @internal This class is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 final class KsortedArrayIdenticalToTest extends KsortedConstraintTestCase

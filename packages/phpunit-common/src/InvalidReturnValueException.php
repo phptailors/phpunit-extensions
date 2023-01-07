@@ -12,6 +12,7 @@ namespace Tailors\PHPUnit;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 final class InvalidReturnValueException extends \LogicException implements ExceptionInterface
@@ -22,7 +23,9 @@ final class InvalidReturnValueException extends \LogicException implements Excep
      * @param mixed  $actualValue  Actual value
      *
      * @psalm-template ActualType
+     *
      * @psalm-param ActualType $actualValue
+     *
      * @param-out ActualType $actualValue
      */
     public static function fromExpectedTypeAndActualValue($function, string $expectedType, &$actualValue): self

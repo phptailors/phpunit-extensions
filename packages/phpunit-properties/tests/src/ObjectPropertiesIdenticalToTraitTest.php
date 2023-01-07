@@ -17,9 +17,11 @@ use Tailors\PHPUnit\Constraint\ProvObjectPropertiesTrait;
 
 /**
  * @small
+ *
  * @covers \Tailors\PHPUnit\ObjectPropertiesIdenticalToTrait
  *
  * @internal This class is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 final class ObjectPropertiesIdenticalToTraitTest extends TestCase
