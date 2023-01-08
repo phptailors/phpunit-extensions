@@ -19,7 +19,7 @@ jobs:
         if: startsWith(github.ref, 'refs/heads/')
         run: |
           BRANCH_NAME="${GITHUB_REF##refs/heads/}"
-          echo "name=branch_name::${BRANCH_NAME}" >> $GITHUB_OUTPUT
+          echo "branch_name=${BRANCH_NAME}" >> $GITHUB_OUTPUT
           echo "BRANCH_NAME=${BRANCH_NAME}"
 
       - id: tag_info
@@ -27,8 +27,8 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         run: |
           TAG_NAME="${GITHUB_REF##refs/tags/}"
-          echo "name=tag_name::${TAG_NAME}" >> $GITHUB_OUTPUT
-          echo "name=deploy_tag_name::deploy-docs-${TAG_NAME}" >> $GITHUB_OUTPUT
+          echo "tag_name=${TAG_NAME}" >> $GITHUB_OUTPUT
+          echo "deploy_tag_name=deploy-docs-${TAG_NAME}" >> $GITHUB_OUTPUT
           echo "TAG_NAME=${TAG_NAME}"
 
       - id: dest_dir
@@ -41,7 +41,7 @@ jobs:
           else \
             DEST_DIR=tmp; \
           fi
-          echo "name=dest_dir::${DEST_DIR}" >> $GITHUB_OUTPUT
+          echo "dest_dir=${DEST_DIR}" >> $GITHUB_OUTPUT
           echo "DEST_DIR=${DEST_DIR}"
 
       - uses: actions/checkout@v3
