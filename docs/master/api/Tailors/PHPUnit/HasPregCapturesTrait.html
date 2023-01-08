@@ -10,24 +10,37 @@
         <link rel="stylesheet" type="text/css" href="../../css/doctum.css">
         <link rel="stylesheet" type="text/css" href="../../fonts/doctum-font.css">
         <script src="../../js/jquery-3.5.1.slim.min.js"></script>
+        <script async defer src="../../doctum.js"></script>
         <script async defer src="../../js/bootstrap.min.js"></script>
-        <script src="../../js/typeahead.min.js"></script>
-        <script src="../../doctum.js"></script>
+        <script async defer src="../../js/autocomplete.min.js"></script>
         <meta name="MobileOptimized" content="width">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+
     </head>
 
-    <body id="class" data-name="class:Tailors_PHPUnit_HasPregCapturesTrait" data-root-path="../../">
+    <body id="class" data-name="class:Tailors_PHPUnit_HasPregCapturesTrait" data-root-path="../../" data-search-index-url="../../doctum-search.json">
             <div id="content">
         <div id="left-column">
                 <div id="control-panel">
-                <form id="search-form" action="../../search.html">
+                <div class="search-bar hidden" id="search-progress-bar-container">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" id="search-progress-bar"
+                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+            </div>
+        </div>
+        <form id="search-form" action="../../search.html">
             <span class="icon icon-search"></span>
             <input name="search"
+                   id="doctum-search-auto-complete"
                    class="typeahead form-control"
                    type="search"
-                   placeholder="Search">
+                   placeholder="Search"
+                   spellcheck="false"
+                   autocorrect="off"
+                   autocomplete="off"
+                   autocapitalize="off">
+            <div class="auto-complete-results" id="auto-complete-results"></div>
         </form>
     </div>
 
@@ -66,23 +79,22 @@
             </ol>
         </div>
                 <div id="page-content">
-                
     <div class="page-header">
-        <h1>
-            HasPregCapturesTrait
-                
-        </h1>
+        <h1>HasPregCapturesTrait    
+            </h1>
     </div>
 
+    
     <p>        trait
     <strong>HasPregCapturesTrait</strong>
 </p>
 
         
     
+        
 
-    
-    
+            
+        
     
     
             <h2>Methods</h2>
@@ -92,42 +104,42 @@
                 <div class="col-md-2 type">
                     static&nbsp;void
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_assertThat">assertThat</a>(mixed $value, <abbr title="PHPUnit\Framework\Constraint\Constraint">Constraint</abbr> $constraint, string $message = &#039;&#039;)
         
-                                            <p>Evaluates a \PHPUnit\Framework\Constraint\Constraint matcher object.</p>                </div>
+                                            <p><p>Evaluates a \PHPUnit\Framework\Constraint\Constraint matcher object.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
                     static&nbsp;void
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_assertHasPregCaptures">assertHasPregCaptures</a>(array $expected, array $matches, string $message = &#039;&#039;)
         
-                                            <p>Asserts that an array of <em>$matches</em> returned from <code>preg_match()</code> has
-capture groups as specified in <em>$expected</em>.</p>                </div>
+                                            <p><p>Asserts that an array of <em>$matches</em> returned from <code>preg_match()</code> has
+capture groups as specified in <em>$expected</em>.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
                     static&nbsp;void
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_assertNotHasPregCaptures">assertNotHasPregCaptures</a>(array $expected, array $matches, string $message = &#039;&#039;)
         
-                                            <p>Negated assertHasPregCaptures().</p>                </div>
+                                            <p><p>Negated assertHasPregCaptures().</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
                     static&nbsp;<a href="../../Tailors/PHPUnit/Constraint/HasPregCaptures.html"><abbr title="Tailors\PHPUnit\Constraint\HasPregCaptures">HasPregCaptures</abbr></a>
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_hasPregCaptures">hasPregCaptures</a>(array $expected)
         
-                                            <p>Accepts arrays of matches returned from <code>preg_match()</code> having capture
-groups as specified in <em>$excpected</em>.</p>                </div>
+                                            <p><p>Accepts arrays of matches returned from <code>preg_match()</code> having capture
+groups as specified in <em>$excpected</em>.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -143,13 +155,14 @@ groups as specified in <em>$excpected</em>.</p>                </div>
     <strong>assertThat</strong>(mixed $value, <abbr title="PHPUnit\Framework\Constraint\Constraint">Constraint</abbr> $constraint, string $message = &#039;&#039;)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>Evaluates a \PHPUnit\Framework\Constraint\Constraint matcher object.</p>                                                </div>
-                <div class="tags">
+        <div class="method-description">
+                            <p><p>Evaluates a \PHPUnit\Framework\Constraint\Constraint matcher object.</p></p>                        
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
@@ -195,6 +208,7 @@ groups as specified in <em>$excpected</em>.</p>                </div>
             </table>
 
             
+            
                     </div>
     </div>
 
@@ -206,42 +220,41 @@ groups as specified in <em>$excpected</em>.</p>                </div>
     <strong>assertHasPregCaptures</strong>(array $expected, array $matches, string $message = &#039;&#039;)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>Asserts that an array of <em>$matches</em> returned from <code>preg_match()</code> has
-capture groups as specified in <em>$expected</em>.</p>                    <p>Checks only entries present in <em>$expected</em>, so <em>$expected = []</em> accepts
+        <div class="method-description">
+                            <p><p>Asserts that an array of <em>$matches</em> returned from <code>preg_match()</code> has
+capture groups as specified in <em>$expected</em>.</p></p>                <p><p>Checks only entries present in <em>$expected</em>, so <em>$expected = []</em> accepts
 any array. Special values may be used in the expectations:</p>
-
 <ul>
 <li><code>['foo' =&gt; false]</code> asserts that group <code>'foo'</code> was not captured,</li>
 <li><code>['foo' =&gt; true]</code> asserts that group <code>'foo'</code> was captured,</li>
 <li><code>['foo' =&gt; 'FOO']</code> asserts that group <code>'foo'</code> was captured and it's value equals <code>'FOO'</code>.</li>
 </ul>
-
 <p>Boolean expectations (<code>['foo' =&gt; true]</code> or <code>['foo' =&gt; false]</code>) work
 properly only with arrays obtained from <code>preg_match()</code> invoked with
-<code>PREG_UNMATCHED_AS_NULL</code> flag.</p>                            </div>
-                <div class="tags">
+<code>PREG_UNMATCHED_AS_NULL</code> flag.</p></p>        
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
                 <td>array</td>
                 <td>$expected</td>
-                <td>An array of expectations</td>
+                <td><p>An array of expectations</p></td>
             </tr>
                     <tr>
                 <td>array</td>
                 <td>$matches</td>
-                <td>An array of preg matches to be examined</td>
+                <td><p>An array of preg matches to be examined</p></td>
             </tr>
                     <tr>
                 <td>string</td>
                 <td>$message</td>
-                <td>Additional message</td>
+                <td><p>Additional message</p></td>
             </tr>
             </table>
 
@@ -273,6 +286,7 @@ properly only with arrays obtained from <code>preg_match()</code> invoked with
             </tr>
             </table>
 
+            
             
                     </div>
     </div>
@@ -285,30 +299,31 @@ properly only with arrays obtained from <code>preg_match()</code> invoked with
     <strong>assertNotHasPregCaptures</strong>(array $expected, array $matches, string $message = &#039;&#039;)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>Negated assertHasPregCaptures().</p>                                                </div>
-                <div class="tags">
+        <div class="method-description">
+                            <p><p>Negated assertHasPregCaptures().</p></p>                        
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
                 <td>array</td>
                 <td>$expected</td>
-                <td>An array of expectations</td>
+                <td><p>An array of expectations</p></td>
             </tr>
                     <tr>
                 <td>array</td>
                 <td>$matches</td>
-                <td>An array of preg matches to be examined</td>
+                <td><p>An array of preg matches to be examined</p></td>
             </tr>
                     <tr>
                 <td>string</td>
                 <td>$message</td>
-                <td>Additional message</td>
+                <td><p>Additional message</p></td>
             </tr>
             </table>
 
@@ -341,6 +356,7 @@ properly only with arrays obtained from <code>preg_match()</code> invoked with
             </table>
 
             
+            
                     </div>
     </div>
 
@@ -352,25 +368,24 @@ properly only with arrays obtained from <code>preg_match()</code> invoked with
     <strong>hasPregCaptures</strong>(array $expected)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>Accepts arrays of matches returned from <code>preg_match()</code> having capture
-groups as specified in <em>$excpected</em>.</p>                    <p>Checks only entries present in <em>$expected</em>, so <em>$expected = []</em> accepts
+        <div class="method-description">
+                            <p><p>Accepts arrays of matches returned from <code>preg_match()</code> having capture
+groups as specified in <em>$excpected</em>.</p></p>                <p><p>Checks only entries present in <em>$expected</em>, so <em>$expected = []</em> accepts
 any array. Special values may be used in the expectations:</p>
-
 <ul>
 <li><code>['foo' =&gt; false]</code> asserts that group <code>'foo'</code> was not captured,</li>
 <li><code>['foo' =&gt; true]</code> asserts that group <code>'foo'</code> was captured,</li>
 <li><code>['foo' =&gt; 'FOO']</code> asserts that group <code>'foo'</code> was captured and its value equals <code>'FOO'</code>.</li>
 </ul>
-
 <p>Boolean expectations (<code>['foo' =&gt; true]</code> or <code>['foo' =&gt; false]</code>) work
 properly only with arrays obtained from <code>preg_match()</code> invoked with
-<code>PREG_UNMATCHED_AS_NULL</code> flag.</p>                            </div>
-                <div class="tags">
+<code>PREG_UNMATCHED_AS_NULL</code> flag.</p></p>        
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
@@ -402,6 +417,7 @@ properly only with arrays obtained from <code>preg_match()</code> invoked with
             </table>
 
             
+            
                     </div>
     </div>
 
@@ -409,7 +425,7 @@ properly only with arrays obtained from <code>preg_match()</code> invoked with
             </div>
 
     
-            </div><div id="footer">
+</div><div id="footer">
         Generated by <a href="https://github.com/code-lts/doctum">Doctum, a API Documentation generator and fork of Sami</a>.</div></div>
     </div>
     </body>

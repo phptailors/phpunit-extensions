@@ -10,24 +10,37 @@
         <link rel="stylesheet" type="text/css" href="../../../css/doctum.css">
         <link rel="stylesheet" type="text/css" href="../../../fonts/doctum-font.css">
         <script src="../../../js/jquery-3.5.1.slim.min.js"></script>
+        <script async defer src="../../../doctum.js"></script>
         <script async defer src="../../../js/bootstrap.min.js"></script>
-        <script src="../../../js/typeahead.min.js"></script>
-        <script src="../../../doctum.js"></script>
+        <script async defer src="../../../js/autocomplete.min.js"></script>
         <meta name="MobileOptimized" content="width">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+
     </head>
 
-    <body id="class" data-name="class:Tailors_PHPUnit_Constraint_ObjectPropertiesIdenticalTo" data-root-path="../../../">
+    <body id="class" data-name="class:Tailors_PHPUnit_Constraint_ObjectPropertiesIdenticalTo" data-root-path="../../../" data-search-index-url="../../../doctum-search.json">
             <div id="content">
         <div id="left-column">
                 <div id="control-panel">
-                <form id="search-form" action="../../../search.html">
+                <div class="search-bar hidden" id="search-progress-bar-container">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" id="search-progress-bar"
+                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+            </div>
+        </div>
+        <form id="search-form" action="../../../search.html">
             <span class="icon icon-search"></span>
             <input name="search"
+                   id="doctum-search-auto-complete"
                    class="typeahead form-control"
                    type="search"
-                   placeholder="Search">
+                   placeholder="Search"
+                   spellcheck="false"
+                   autocorrect="off"
+                   autocomplete="off"
+                   autocapitalize="off">
+            <div class="auto-complete-results" id="auto-complete-results"></div>
         </form>
     </div>
 
@@ -66,30 +79,27 @@
             </ol>
         </div>
                 <div id="page-content">
-                
     <div class="page-header">
-        <h1>
-            ObjectPropertiesIdenticalTo
-                
-        </h1>
+        <h1>ObjectPropertiesIdenticalTo    
+            </h1>
     </div>
 
+    
     <p>final         class
     <strong>ObjectPropertiesIdenticalTo</strong>        extends <a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html"><abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a>
 </p>
 
         
     
+        
 
             <div class="description">
-            <p>Constraint that accepts objects having properties identical to specified ones.</p>            <p>Compares only properties present in the array of expectations. A property is
+            <p><p>Constraint that accepts objects having properties identical to specified ones.</p></p>            <p><p>Compares only properties present in the array of expectations. A property is
 defined as either an attribute value or a value returned by object's method
 callable without arguments. The <code>===</code> operator (identity) is used for
 comparison.</p>
-
 <p>Any key in <em>$expected</em> array ending with <code>"()"</code> is considered to be a
 method that returns property value.</p>
-
 <pre><code> // ...
  $matcher = ObjectPropertiesIdenticalTo::create([
      'getName()' =&gt; 'John', 'age' =&gt; 21
@@ -100,11 +110,9 @@ method that returns property value.</p>
      public static getName(): string {
          return 'John';
      }
- }, $matcher);
-</code></pre>
-</p>                    </div>
-    
-            <h2>Traits</h2>
+ }, $matcher);</code></pre></p>        </div>
+            
+                <h2>Traits</h2>
 
         
     <div class="container-fluid underlined">
@@ -134,10 +142,10 @@ method that returns property value.</p>
                 <div class="col-md-2 type">
                     string
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_toString">toString</a>()
         
-                                            <p>Returns a string representation of the constraint.</p>                </div>
+                                            <p><p>Returns a string representation of the constraint.</p></p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Common/ShortFailureDescriptionTrait.html#method_toString">
 <abbr title="Tailors\PHPUnit\Common\ShortFailureDescriptionTrait">ShortFailureDescriptionTrait</abbr></a></small></div>
             </div>
@@ -145,10 +153,10 @@ method that returns property value.</p>
                 <div class="col-md-2 type">
                     string
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_failureDescription">failureDescription</a>(mixed $other)
         
-                                            <p>Returns the description of the failure.</p>                </div>
+                                            <p><p>Returns the description of the failure.</p></p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Common/ShortFailureDescriptionTrait.html#method_failureDescription">
 <abbr title="Tailors\PHPUnit\Common\ShortFailureDescriptionTrait">ShortFailureDescriptionTrait</abbr></a></small></div>
             </div>
@@ -156,11 +164,11 @@ method that returns property value.</p>
                 <div class="col-md-2 type">
                     string
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_failureDescriptionInContext">failureDescriptionInContext</a>(<abbr title="PHPUnit\Framework\Constraint\Operator">Operator</abbr> $operator, mixed $role, mixed $other)
         
-                                            <p>Returns the description of the failure when this constraint appears in
-context of an $operator expression.</p>                </div>
+                                            <p><p>Returns the description of the failure when this constraint appears in
+context of an $operator expression.</p></p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Common/ShortFailureDescriptionTrait.html#method_failureDescriptionInContext">
 <abbr title="Tailors\PHPUnit\Common\ShortFailureDescriptionTrait">ShortFailureDescriptionTrait</abbr></a></small></div>
             </div>
@@ -168,11 +176,11 @@ context of an $operator expression.</p>                </div>
                 <div class="col-md-2 type">
                     string
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_toStringInContext">toStringInContext</a>(<abbr title="PHPUnit\Framework\Constraint\Operator">Operator</abbr> $operator, mixed $role)
         
-                                            <p>Returns a custom string representation of the constraint object when it
-appears in context of an $operator expression.</p>                </div>
+                                            <p><p>Returns a custom string representation of the constraint object when it
+appears in context of an $operator expression.</p></p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Common/ShortFailureDescriptionTrait.html#method_toStringInContext">
 <abbr title="Tailors\PHPUnit\Common\ShortFailureDescriptionTrait">ShortFailureDescriptionTrait</abbr></a></small></div>
             </div>
@@ -180,7 +188,7 @@ appears in context of an $operator expression.</p>                </div>
                 <div class="col-md-2 type">
                     <abbr title="SebastianBergmann\Exporter\Exporter">Exporter</abbr>
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_exporter">exporter</a>()
         
                                             <p class="no-description">No description</p>
@@ -192,7 +200,7 @@ appears in context of an $operator expression.</p>                </div>
                 <div class="col-md-2 type">
                     
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method___construct">__construct</a>(<a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a> $comparator, <a href="../../../Tailors/PHPUnit/Values/SelectionInterface.html"><abbr title="Tailors\PHPUnit\Values\SelectionInterface">SelectionInterface</abbr></a> $expected, <a href="../../../Tailors/PHPUnit/Values/RecursiveUnwrapperInterface.html"><abbr title="Tailors\PHPUnit\Values\RecursiveUnwrapperInterface">RecursiveUnwrapperInterface</abbr></a> $unwrapper)
         
                                             <p class="no-description">No description</p>
@@ -204,10 +212,10 @@ appears in context of an $operator expression.</p>                </div>
                 <div class="col-md-2 type">
                     <a href="../../../Tailors/PHPUnit/Values/SelectionInterface.html"><abbr title="Tailors\PHPUnit\Values\SelectionInterface">SelectionInterface</abbr></a>
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_getSelection">getSelection</a>()
         
-                                            <p>Returns an instance of SelectionInterface which defines expected values.</p>                </div>
+                                            <p><p>Returns an instance of SelectionInterface which defines expected values.</p></p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html#method_getSelection">
 <abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a></small></div>
             </div>
@@ -215,10 +223,10 @@ appears in context of an $operator expression.</p>                </div>
                 <div class="col-md-2 type">
                     <a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a>
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_getComparator">getComparator</a>()
         
-                                            <p>Returns an instance of ComparatorInterface which implements comparison operator.</p>                </div>
+                                            <p><p>Returns an instance of ComparatorInterface which implements comparison operator.</p></p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html#method_getComparator">
 <abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a></small></div>
             </div>
@@ -226,10 +234,10 @@ appears in context of an $operator expression.</p>                </div>
                 <div class="col-md-2 type">
                     bool|null
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_evaluate">evaluate</a>(mixed $other, string $description = &#039;&#039;, bool $returnResult = false)
         
-                                            <p>Evaluates the constraint for parameter $other.</p>                </div>
+                                            <p><p>Evaluates the constraint for parameter $other.</p></p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html#method_evaluate">
 <abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a></small></div>
             </div>
@@ -237,11 +245,11 @@ appears in context of an $operator expression.</p>                </div>
                 <div class="col-md-2 type">
                     bool
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_matches">matches</a>(mixed $other)
         
-                                            <p>Evaluates the constraint for parameter $other. Returns true if the
-constraint is met, false otherwise.</p>                </div>
+                                            <p><p>Evaluates the constraint for parameter $other. Returns true if the
+constraint is met, false otherwise.</p></p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html#method_matches">
 <abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a></small></div>
             </div>
@@ -249,7 +257,7 @@ constraint is met, false otherwise.</p>                </div>
                 <div class="col-md-2 type">
                     static&nbsp;<a href="../../../Tailors/PHPUnit/Values/ConstraintImplementationTrait.html"><abbr title="Tailors\PHPUnit\Values\ConstraintImplementationTrait">ConstraintImplementationTrait</abbr></a>
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_create">create</a>(array $expected)
         
                                             <p class="no-description">No description</p>
@@ -261,7 +269,7 @@ constraint is met, false otherwise.</p>                </div>
                 <div class="col-md-2 type">
                     static&nbsp;void
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_validateExpectations">validateExpectations</a>(array $expected, int $argument, int $distance = 1)
         
                                             <p class="no-description">No description</p>
@@ -273,20 +281,20 @@ constraint is met, false otherwise.</p>                </div>
                 <div class="col-md-2 type">
                     static&nbsp;<a href="../../../Tailors/PHPUnit/Values/ValueSelectorInterface.html"><abbr title="Tailors\PHPUnit\Values\ValueSelectorInterface">ValueSelectorInterface</abbr></a>
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_makeSelector">makeSelector</a>()
         
-                                            <p>Creates instance of ObjectPropertySelector.</p>                </div>
+                                            <p><p>Creates instance of ObjectPropertySelector.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
                     static&nbsp;<a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a>
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_makeComparator">makeComparator</a>()
         
-                                            <p>Creates instance of IdentityComparator.</p>                </div>
+                                            <p><p>Creates instance of IdentityComparator.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -298,18 +306,19 @@ constraint is met, false otherwise.</p>                </div>
                     <div class="method-item">
                     <h3 id="method_toString">
         <div class="location">in <a href="../../../Tailors/PHPUnit/Common/ShortFailureDescriptionTrait.html#method_toString">
-<abbr title="Tailors\PHPUnit\Common\ShortFailureDescriptionTrait">ShortFailureDescriptionTrait</abbr></a> at line 25</div>
+<abbr title="Tailors\PHPUnit\Common\ShortFailureDescriptionTrait">ShortFailureDescriptionTrait</abbr></a> at line 26</div>
         <code>    abstract                string
     <strong>toString</strong>()
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>Returns a string representation of the constraint.</p>                                                </div>
-                <div class="tags">
+        <div class="method-description">
+                            <p><p>Returns a string representation of the constraint.</p></p>                        
+        </div>
+        <div class="tags">
             
                             <h4>Return Value</h4>
 
@@ -320,6 +329,7 @@ constraint is met, false otherwise.</p>                </div>
         </tr>
     </table>
 
+            
             
             
                     </div>
@@ -329,26 +339,27 @@ constraint is met, false otherwise.</p>                </div>
                     <div class="method-item">
                     <h3 id="method_failureDescription">
         <div class="location">in <a href="../../../Tailors/PHPUnit/Common/ShortFailureDescriptionTrait.html#method_failureDescription">
-<abbr title="Tailors\PHPUnit\Common\ShortFailureDescriptionTrait">ShortFailureDescriptionTrait</abbr></a> at line 35</div>
+<abbr title="Tailors\PHPUnit\Common\ShortFailureDescriptionTrait">ShortFailureDescriptionTrait</abbr></a> at line 36</div>
         <code>final                    string
     <strong>failureDescription</strong>(mixed $other)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>Returns the description of the failure.</p>                    <p>The beginning of failure messages is "Failed asserting that" in most
-cases. This method should return the second part of that sentence.</p>                            </div>
-                <div class="tags">
+        <div class="method-description">
+                            <p><p>Returns the description of the failure.</p></p>                <p><p>The beginning of failure messages is &quot;Failed asserting that&quot; in most
+cases. This method should return the second part of that sentence.</p></p>        
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
                 <td>mixed</td>
                 <td>$other</td>
-                <td>evaluated value or object</td>
+                <td><p>evaluated value or object</p></td>
             </tr>
             </table>
 
@@ -362,6 +373,7 @@ cases. This method should return the second part of that sentence.</p>          
         </tr>
     </table>
 
+            
             
             
                     </div>
@@ -371,42 +383,42 @@ cases. This method should return the second part of that sentence.</p>          
                     <div class="method-item">
                     <h3 id="method_failureDescriptionInContext">
         <div class="location">in <a href="../../../Tailors/PHPUnit/Common/ShortFailureDescriptionTrait.html#method_failureDescriptionInContext">
-<abbr title="Tailors\PHPUnit\Common\ShortFailureDescriptionTrait">ShortFailureDescriptionTrait</abbr></a> at line 56</div>
+<abbr title="Tailors\PHPUnit\Common\ShortFailureDescriptionTrait">ShortFailureDescriptionTrait</abbr></a> at line 57</div>
         <code>final                    string
     <strong>failureDescriptionInContext</strong>(<abbr title="PHPUnit\Framework\Constraint\Operator">Operator</abbr> $operator, mixed $role, mixed $other)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>Returns the description of the failure when this constraint appears in
-context of an $operator expression.</p>                    <p>The purpose of this method is to provide meaningful failue description
+        <div class="method-description">
+                            <p><p>Returns the description of the failure when this constraint appears in
+context of an $operator expression.</p></p>                <p><p>The purpose of this method is to provide meaningful failue description
 in context of operators such as LogicalNot. Native PHPUnit constraints
 are supported out of the box by LogicalNot, but externally developed
 ones had no way to provide correct messages in this context.</p>
-
 <p>The method shall return empty string, when it does not handle
-customization by itself.</p>                            </div>
-                <div class="tags">
+customization by itself.</p></p>        
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
                 <td><abbr title="PHPUnit\Framework\Constraint\Operator">Operator</abbr></td>
                 <td>$operator</td>
-                <td>the $operator of the expression</td>
+                <td><p>the $operator of the expression</p></td>
             </tr>
                     <tr>
                 <td>mixed</td>
                 <td>$role</td>
-                <td>role of $this constraint in the $operator expression</td>
+                <td><p>role of $this constraint in the $operator expression</p></td>
             </tr>
                     <tr>
                 <td>mixed</td>
                 <td>$other</td>
-                <td>evaluated value or object</td>
+                <td><p>evaluated value or object</p></td>
             </tr>
             </table>
 
@@ -420,6 +432,7 @@ customization by itself.</p>                            </div>
         </tr>
     </table>
 
+            
             
             
                     </div>
@@ -429,37 +442,37 @@ customization by itself.</p>                            </div>
                     <div class="method-item">
                     <h3 id="method_toStringInContext">
         <div class="location">in <a href="../../../Tailors/PHPUnit/Common/ShortFailureDescriptionTrait.html#method_toStringInContext">
-<abbr title="Tailors\PHPUnit\Common\ShortFailureDescriptionTrait">ShortFailureDescriptionTrait</abbr></a> at line 82</div>
+<abbr title="Tailors\PHPUnit\Common\ShortFailureDescriptionTrait">ShortFailureDescriptionTrait</abbr></a> at line 83</div>
         <code>    abstract        protected        string
     <strong>toStringInContext</strong>(<abbr title="PHPUnit\Framework\Constraint\Operator">Operator</abbr> $operator, mixed $role)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>Returns a custom string representation of the constraint object when it
-appears in context of an $operator expression.</p>                    <p>The purpose of this method is to provide meaningful descriptive string
+        <div class="method-description">
+                            <p><p>Returns a custom string representation of the constraint object when it
+appears in context of an $operator expression.</p></p>                <p><p>The purpose of this method is to provide meaningful descriptive string
 in context of operators such as LogicalNot. Native PHPUnit constraints
 are supported out of the box by LogicalNot, but externally developed
 ones had no way to provide correct strings in this context.</p>
-
 <p>The method shall return empty string, when it does not handle
-customization by itself.</p>                            </div>
-                <div class="tags">
+customization by itself.</p></p>        
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
                 <td><abbr title="PHPUnit\Framework\Constraint\Operator">Operator</abbr></td>
                 <td>$operator</td>
-                <td>the $operator of the expression</td>
+                <td><p>the $operator of the expression</p></td>
             </tr>
                     <tr>
                 <td>mixed</td>
                 <td>$role</td>
-                <td>role of $this constraint in the $operator expression</td>
+                <td><p>role of $this constraint in the $operator expression</p></td>
             </tr>
             </table>
 
@@ -475,6 +488,7 @@ customization by itself.</p>                            </div>
 
             
             
+            
                     </div>
     </div>
 
@@ -482,16 +496,20 @@ customization by itself.</p>                            </div>
                     <div class="method-item">
                     <h3 id="method_exporter">
         <div class="location">in <a href="../../../Tailors/PHPUnit/Common/ShortFailureDescriptionTrait.html#method_exporter">
-<abbr title="Tailors\PHPUnit\Common\ShortFailureDescriptionTrait">ShortFailureDescriptionTrait</abbr></a> at line 84</div>
+<abbr title="Tailors\PHPUnit\Common\ShortFailureDescriptionTrait">ShortFailureDescriptionTrait</abbr></a> at line 85</div>
         <code>    abstract        protected        <abbr title="SebastianBergmann\Exporter\Exporter">Exporter</abbr>
     <strong>exporter</strong>()
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                <div class="tags">
+        <div class="method-description">
+                            <p class="no-description">No description</p>
+                    
+        </div>
+        <div class="tags">
             
                             <h4>Return Value</h4>
 
@@ -504,6 +522,7 @@ customization by itself.</p>                            </div>
 
             
             
+            
                     </div>
     </div>
 
@@ -511,16 +530,20 @@ customization by itself.</p>                            </div>
                     <div class="method-item">
                     <h3 id="method___construct">
         <div class="location">in <a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html#method___construct">
-<abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a> at line 54</div>
+<abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a> at line 55</div>
         <code>final            protected        
     <strong>__construct</strong>(<a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a> $comparator, <a href="../../../Tailors/PHPUnit/Values/SelectionInterface.html"><abbr title="Tailors\PHPUnit\Values\SelectionInterface">SelectionInterface</abbr></a> $expected, <a href="../../../Tailors/PHPUnit/Values/RecursiveUnwrapperInterface.html"><abbr title="Tailors\PHPUnit\Values\RecursiveUnwrapperInterface">RecursiveUnwrapperInterface</abbr></a> $unwrapper)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                <div class="tags">
+        <div class="method-description">
+                            <p class="no-description">No description</p>
+                    
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
@@ -544,6 +567,7 @@ customization by itself.</p>                            </div>
             
             
             
+            
                     </div>
     </div>
 
@@ -551,18 +575,19 @@ customization by itself.</p>                            </div>
                     <div class="method-item">
                     <h3 id="method_getSelection">
         <div class="location">in <a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html#method_getSelection">
-<abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a> at line 67</div>
+<abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a> at line 68</div>
         <code>final                    <a href="../../../Tailors/PHPUnit/Values/SelectionInterface.html"><abbr title="Tailors\PHPUnit\Values\SelectionInterface">SelectionInterface</abbr></a>
     <strong>getSelection</strong>()
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>Returns an instance of SelectionInterface which defines expected values.</p>                                                </div>
-                <div class="tags">
+        <div class="method-description">
+                            <p><p>Returns an instance of SelectionInterface which defines expected values.</p></p>                        
+        </div>
+        <div class="tags">
             
                             <h4>Return Value</h4>
 
@@ -575,6 +600,7 @@ customization by itself.</p>                            </div>
 
             
             
+            
                     </div>
     </div>
 
@@ -582,18 +608,19 @@ customization by itself.</p>                            </div>
                     <div class="method-item">
                     <h3 id="method_getComparator">
         <div class="location">in <a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html#method_getComparator">
-<abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a> at line 75</div>
+<abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a> at line 76</div>
         <code>final                    <a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a>
     <strong>getComparator</strong>()
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>Returns an instance of ComparatorInterface which implements comparison operator.</p>                                                </div>
-                <div class="tags">
+        <div class="method-description">
+                            <p><p>Returns an instance of ComparatorInterface which implements comparison operator.</p></p>                        
+        </div>
+        <div class="tags">
             
                             <h4>Return Value</h4>
 
@@ -606,6 +633,7 @@ customization by itself.</p>                            </div>
 
             
             
+            
                     </div>
     </div>
 
@@ -613,23 +641,23 @@ customization by itself.</p>                            </div>
                     <div class="method-item">
                     <h3 id="method_evaluate">
         <div class="location">in <a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html#method_evaluate">
-<abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a> at line 111</div>
+<abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a> at line 112</div>
         <code>final                    bool|null
     <strong>evaluate</strong>(mixed $other, string $description = &#039;&#039;, bool $returnResult = false)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>Evaluates the constraint for parameter $other.</p>                    <p>If $returnResult is set to false (the default), an exception is thrown
+        <div class="method-description">
+                            <p><p>Evaluates the constraint for parameter $other.</p></p>                <p><p>If $returnResult is set to false (the default), an exception is thrown
 in case of a failure. null is returned otherwise.</p>
-
 <p>If $returnResult is true, the result of the evaluation is returned as
 a boolean value instead: true in case of success, false in case of a
-failure.</p>                            </div>
-                <div class="tags">
+failure.</p></p>        
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
@@ -673,11 +701,12 @@ failure.</p>                            </div>
                 <td></td>
             </tr>
                     <tr>
-                <td>CircularDependencyException</td>
+                <td><a href="../../../Tailors/PHPUnit/CircularDependencyException.html"><abbr title="Tailors\PHPUnit\CircularDependencyException">CircularDependencyException</abbr></a></td>
                 <td></td>
             </tr>
             </table>
 
+            
             
                     </div>
     </div>
@@ -686,26 +715,27 @@ failure.</p>                            </div>
                     <div class="method-item">
                     <h3 id="method_matches">
         <div class="location">in <a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html#method_matches">
-<abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a> at line 173</div>
+<abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a> at line 174</div>
         <code>final            protected        bool
     <strong>matches</strong>(mixed $other)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>Evaluates the constraint for parameter $other. Returns true if the
-constraint is met, false otherwise.</p>                                                </div>
-                <div class="tags">
+        <div class="method-description">
+                            <p><p>Evaluates the constraint for parameter $other. Returns true if the
+constraint is met, false otherwise.</p></p>                        
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
                 <td>mixed</td>
                 <td>$other</td>
-                <td>value or object to evaluate</td>
+                <td><p>value or object to evaluate</p></td>
             </tr>
             </table>
 
@@ -721,6 +751,7 @@ constraint is met, false otherwise.</p>                                         
 
             
             
+            
                     </div>
     </div>
 
@@ -728,16 +759,20 @@ constraint is met, false otherwise.</p>                                         
                     <div class="method-item">
                     <h3 id="method_create">
         <div class="location">in <a href="../../../Tailors/PHPUnit/Values/ConstraintImplementationTrait.html#method_create">
-<abbr title="Tailors\PHPUnit\Values\ConstraintImplementationTrait">ConstraintImplementationTrait</abbr></a> at line 24</div>
+<abbr title="Tailors\PHPUnit\Values\ConstraintImplementationTrait">ConstraintImplementationTrait</abbr></a> at line 25</div>
         <code>        static            <a href="../../../Tailors/PHPUnit/Values/ConstraintImplementationTrait.html"><abbr title="Tailors\PHPUnit\Values\ConstraintImplementationTrait">ConstraintImplementationTrait</abbr></a>
     <strong>create</strong>(array $expected)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                <div class="tags">
+        <div class="method-description">
+                            <p class="no-description">No description</p>
+                    
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
@@ -769,6 +804,7 @@ constraint is met, false otherwise.</p>                                         
             </table>
 
             
+            
                     </div>
     </div>
 
@@ -776,16 +812,20 @@ constraint is met, false otherwise.</p>                                         
                     <div class="method-item">
                     <h3 id="method_validateExpectations">
         <div class="location">in <a href="../../../Tailors/PHPUnit/Properties/ValidateExpectationsTrait.html#method_validateExpectations">
-<abbr title="Tailors\PHPUnit\Properties\ValidateExpectationsTrait">ValidateExpectationsTrait</abbr></a> at line 24</div>
+<abbr title="Tailors\PHPUnit\Properties\ValidateExpectationsTrait">ValidateExpectationsTrait</abbr></a> at line 25</div>
         <code>        static    protected        void
     <strong>validateExpectations</strong>(array $expected, int $argument, int $distance = 1)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                <div class="tags">
+        <div class="method-description">
+                            <p class="no-description">No description</p>
+                    
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
@@ -827,6 +867,7 @@ constraint is met, false otherwise.</p>                                         
             </table>
 
             
+            
                     </div>
     </div>
 
@@ -838,13 +879,14 @@ constraint is met, false otherwise.</p>                                         
     <strong>makeSelector</strong>()
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>Creates instance of ObjectPropertySelector.</p>                                                </div>
-                <div class="tags">
+        <div class="method-description">
+                            <p><p>Creates instance of ObjectPropertySelector.</p></p>                        
+        </div>
+        <div class="tags">
             
                             <h4>Return Value</h4>
 
@@ -855,6 +897,7 @@ constraint is met, false otherwise.</p>                                         
         </tr>
     </table>
 
+            
             
             
                     </div>
@@ -868,13 +911,14 @@ constraint is met, false otherwise.</p>                                         
     <strong>makeComparator</strong>()
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>Creates instance of IdentityComparator.</p>                                                </div>
-                <div class="tags">
+        <div class="method-description">
+                            <p><p>Creates instance of IdentityComparator.</p></p>                        
+        </div>
+        <div class="tags">
             
                             <h4>Return Value</h4>
 
@@ -887,6 +931,7 @@ constraint is met, false otherwise.</p>                                         
 
             
             
+            
                     </div>
     </div>
 
@@ -894,7 +939,7 @@ constraint is met, false otherwise.</p>                                         
             </div>
 
     
-            </div><div id="footer">
+</div><div id="footer">
         Generated by <a href="https://github.com/code-lts/doctum">Doctum, a API Documentation generator and fork of Sami</a>.</div></div>
     </div>
     </body>

@@ -10,24 +10,37 @@
         <link rel="stylesheet" type="text/css" href="../../../css/doctum.css">
         <link rel="stylesheet" type="text/css" href="../../../fonts/doctum-font.css">
         <script src="../../../js/jquery-3.5.1.slim.min.js"></script>
+        <script async defer src="../../../doctum.js"></script>
         <script async defer src="../../../js/bootstrap.min.js"></script>
-        <script src="../../../js/typeahead.min.js"></script>
-        <script src="../../../doctum.js"></script>
+        <script async defer src="../../../js/autocomplete.min.js"></script>
         <meta name="MobileOptimized" content="width">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+
     </head>
 
-    <body id="class" data-name="class:Tailors_PHPUnit_Values_RecursiveUnwrapper" data-root-path="../../../">
+    <body id="class" data-name="class:Tailors_PHPUnit_Values_RecursiveUnwrapper" data-root-path="../../../" data-search-index-url="../../../doctum-search.json">
             <div id="content">
         <div id="left-column">
                 <div id="control-panel">
-                <form id="search-form" action="../../../search.html">
+                <div class="search-bar hidden" id="search-progress-bar-container">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" id="search-progress-bar"
+                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+            </div>
+        </div>
+        <form id="search-form" action="../../../search.html">
             <span class="icon icon-search"></span>
             <input name="search"
+                   id="doctum-search-auto-complete"
                    class="typeahead form-control"
                    type="search"
-                   placeholder="Search">
+                   placeholder="Search"
+                   spellcheck="false"
+                   autocorrect="off"
+                   autocomplete="off"
+                   autocapitalize="off">
+            <div class="auto-complete-results" id="auto-complete-results"></div>
         </form>
     </div>
 
@@ -66,29 +79,34 @@
             </ol>
         </div>
                 <div id="page-content">
-                
     <div class="page-header">
-        <h1>
-            RecursiveUnwrapper
-                
-        </h1>
+        <h1>RecursiveUnwrapper    
+            </h1>
     </div>
 
+    
     <p>final         class
-    <strong>RecursiveUnwrapper</strong>        implements
-        <a href="../../../Tailors/PHPUnit/Values/RecursiveUnwrapperInterface.html"><abbr title="Tailors\PHPUnit\Values\RecursiveUnwrapperInterface">RecursiveUnwrapperInterface</abbr></a>
+    <strong>RecursiveUnwrapper</strong>        implements        <a href="../../../Tailors/PHPUnit/Values/RecursiveUnwrapperInterface.html"><abbr title="Tailors\PHPUnit\Values\RecursiveUnwrapperInterface">RecursiveUnwrapperInterface</abbr></a>
 </p>
 
         
     
-
+                        <table>
+            <tr>
+                <td><span class="label label-warning">internal</span></td>
+                <td>&nbsp;This class is not covered by the backward compatibility promise</td>
+            </tr>
+        </table>
+                &nbsp;
     
-    
-            <h2>Constants</h2>
 
-            <table class="table table-condensed">
+            
+        
+            <h2>Constants</h2>    <table class="table table-condensed">
                     <tr>
-                <td>UNIQUE_TAG</td>
+                <td>
+                                                                                                                        UNIQUE_TAG
+                                    </td>
                 <td class="last">
                     <p><em></em></p>
                     <p></p>
@@ -105,21 +123,21 @@
                 <div class="col-md-2 type">
                     
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method___construct">__construct</a>(bool $tagging = true)
         
-                                            <p>Initializes the object.</p>                </div>
+                                            <p><p>Initializes the object.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
                     array
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_unwrap">unwrap</a>(<a href="../../../Tailors/PHPUnit/Values/ValuesInterface.html"><abbr title="Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr></a> $values)
         
-                                            <p>Walk recursively through $values and unwrap nested instances of
-ValuesInterface when suitable.</p>                </div>
+                                            <p><p>Walk recursively through $values and unwrap nested instances of
+ValuesInterface when suitable.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -130,29 +148,31 @@ ValuesInterface when suitable.</p>                </div>
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method___construct">
-        <div class="location">at line 40</div>
+        <div class="location">at line 41</div>
         <code>                    
     <strong>__construct</strong>(bool $tagging = true)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>Initializes the object.</p>                                                </div>
-                <div class="tags">
+        <div class="method-description">
+                            <p><p>Initializes the object.</p></p>                        
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
                 <td>bool</td>
                 <td>$tagging</td>
-                <td>If true, then a unique tag will be appended to the end of every
-array that results from unwrapping of array of properties</td>
+                <td><p>If true, then a unique tag will be appended to the end of every
+array that results from unwrapping of array of properties</p></td>
             </tr>
             </table>
 
+            
             
             
             
@@ -162,19 +182,20 @@ array that results from unwrapping of array of properties</td>
             </div>
                     <div class="method-item">
                     <h3 id="method_unwrap">
-        <div class="location">at line 52</div>
+        <div class="location">at line 53</div>
         <code>                    array
     <strong>unwrap</strong>(<a href="../../../Tailors/PHPUnit/Values/ValuesInterface.html"><abbr title="Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr></a> $values)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>Walk recursively through $values and unwrap nested instances of
-ValuesInterface when suitable.</p>                                                </div>
-                <div class="tags">
+        <div class="method-description">
+                            <p><p>Walk recursively through $values and unwrap nested instances of
+ValuesInterface when suitable.</p></p>                        
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
@@ -200,11 +221,12 @@ ValuesInterface when suitable.</p>                                              
 
                     <table class="table table-condensed">
                     <tr>
-                <td>CircularDependencyException</td>
+                <td><a href="../../../Tailors/PHPUnit/CircularDependencyException.html"><abbr title="Tailors\PHPUnit\CircularDependencyException">CircularDependencyException</abbr></a></td>
                 <td></td>
             </tr>
             </table>
 
+            
             
                     </div>
     </div>
@@ -213,7 +235,7 @@ ValuesInterface when suitable.</p>                                              
             </div>
 
     
-            </div><div id="footer">
+</div><div id="footer">
         Generated by <a href="https://github.com/code-lts/doctum">Doctum, a API Documentation generator and fork of Sami</a>.</div></div>
     </div>
     </body>

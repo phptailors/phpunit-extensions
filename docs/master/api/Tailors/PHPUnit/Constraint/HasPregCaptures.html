@@ -10,24 +10,37 @@
         <link rel="stylesheet" type="text/css" href="../../../css/doctum.css">
         <link rel="stylesheet" type="text/css" href="../../../fonts/doctum-font.css">
         <script src="../../../js/jquery-3.5.1.slim.min.js"></script>
+        <script async defer src="../../../doctum.js"></script>
         <script async defer src="../../../js/bootstrap.min.js"></script>
-        <script src="../../../js/typeahead.min.js"></script>
-        <script src="../../../doctum.js"></script>
+        <script async defer src="../../../js/autocomplete.min.js"></script>
         <meta name="MobileOptimized" content="width">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+
     </head>
 
-    <body id="class" data-name="class:Tailors_PHPUnit_Constraint_HasPregCaptures" data-root-path="../../../">
+    <body id="class" data-name="class:Tailors_PHPUnit_Constraint_HasPregCaptures" data-root-path="../../../" data-search-index-url="../../../doctum-search.json">
             <div id="content">
         <div id="left-column">
                 <div id="control-panel">
-                <form id="search-form" action="../../../search.html">
+                <div class="search-bar hidden" id="search-progress-bar-container">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" id="search-progress-bar"
+                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+            </div>
+        </div>
+        <form id="search-form" action="../../../search.html">
             <span class="icon icon-search"></span>
             <input name="search"
+                   id="doctum-search-auto-complete"
                    class="typeahead form-control"
                    type="search"
-                   placeholder="Search">
+                   placeholder="Search"
+                   spellcheck="false"
+                   autocorrect="off"
+                   autocomplete="off"
+                   autocapitalize="off">
+            <div class="auto-complete-results" id="auto-complete-results"></div>
         </form>
     </div>
 
@@ -66,37 +79,34 @@
             </ol>
         </div>
                 <div id="page-content">
-                
     <div class="page-header">
-        <h1>
-            HasPregCaptures
-                
-        </h1>
+        <h1>HasPregCaptures    
+            </h1>
     </div>
 
+    
     <p>final         class
     <strong>HasPregCaptures</strong>        extends <abbr title="PHPUnit\Framework\Constraint\Constraint">Constraint</abbr>
 </p>
 
         
     
+        
 
             <div class="description">
-            <p>Constraint that accepts arrays of matches returned from <code>preg_match()</code>
-having capture groups as specified in the array of expectations.</p>            <p>Checks only entries present in the array of expectations. Special values may
+            <p><p>Constraint that accepts arrays of matches returned from <code>preg_match()</code>
+having capture groups as specified in the array of expectations.</p></p>            <p><p>Checks only entries present in the array of expectations. Special values may
 be used in the expectations:</p>
-
 <ul>
 <li><code>['foo' =&gt; false]</code> asserts that group <code>'foo'</code> was not captured,</li>
 <li><code>['foo' =&gt; true]</code> asserts that group <code>'foo'</code> was captured,</li>
 <li><code>['foo' =&gt; 'FOO']</code> asserts that group <code>'foo'</code> was captured and it's value equals <code>'FOO'</code>.</li>
 </ul>
-
 <p>Boolean expectations (<code>['foo' =&gt; true]</code> or <code>['foo' =&gt; false]</code>) work
 properly only with arrays obtained from <code>preg_match()</code> invoked with
-<code>PREG_UNMATCHED_AS_NULL</code> flag.</p>                    </div>
-    
-    
+<code>PREG_UNMATCHED_AS_NULL</code> flag.</p></p>        </div>
+            
+        
     
     
             <h2>Methods</h2>
@@ -106,51 +116,51 @@ properly only with arrays obtained from <code>preg_match()</code> invoked with
                 <div class="col-md-2 type">
                     static&nbsp;<a href="../../../Tailors/PHPUnit/Constraint/HasPregCaptures.html"><abbr title="Tailors\PHPUnit\Constraint\HasPregCaptures">HasPregCaptures</abbr></a>
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_create">create</a>(array $expected, int $flags = PREG_OFFSET_CAPTURE | PREG_UNMATCHED_AS_NULL)
         
-                                            <p>Initializes the constraint.</p>                </div>
+                                            <p><p>Initializes the constraint.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
                     string
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_toString">toString</a>()
         
-                                            <p>Returns a string representation of the constraint.</p>                </div>
+                                            <p><p>Returns a string representation of the constraint.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
                     bool|null
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_evaluate">evaluate</a>(mixed $other, string $description = &#039;&#039;, bool $returnResult = false)
         
-                                            <p>Evaluates the constraint for parameter $other.</p>                </div>
+                                            <p><p>Evaluates the constraint for parameter $other.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
                     bool
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_matches">matches</a>(mixed $other)
         
-                                            <p>Evaluates the constraint for parameter $other. Returns true if the
-constraint is met, false otherwise.</p>                </div>
+                                            <p><p>Evaluates the constraint for parameter $other. Returns true if the
+constraint is met, false otherwise.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
                     string
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_failureDescription">failureDescription</a>(mixed $other)
         
-                                            <p>Returns the description of the failure.</p>                </div>
+                                            <p><p>Returns the description of the failure.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -161,30 +171,31 @@ constraint is met, false otherwise.</p>                </div>
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method_create">
-        <div class="location">at line 65</div>
+        <div class="location">at line 68</div>
         <code>        static            <a href="../../../Tailors/PHPUnit/Constraint/HasPregCaptures.html"><abbr title="Tailors\PHPUnit\Constraint\HasPregCaptures">HasPregCaptures</abbr></a>
     <strong>create</strong>(array $expected, int $flags = PREG_OFFSET_CAPTURE | PREG_UNMATCHED_AS_NULL)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>Initializes the constraint.</p>                                                </div>
-                <div class="tags">
+        <div class="method-description">
+                            <p><p>Initializes the constraint.</p></p>                        
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
                 <td>array</td>
                 <td>$expected</td>
-                <td>an array of expected values</td>
+                <td><p>an array of expected values</p></td>
             </tr>
                     <tr>
                 <td>int</td>
                 <td>$flags</td>
-                <td>flags as in preg_match()</td>
+                <td><p>flags as in preg_match()</p></td>
             </tr>
             </table>
 
@@ -203,11 +214,12 @@ constraint is met, false otherwise.</p>                </div>
 
                     <table class="table table-condensed">
                     <tr>
-                <td><a target="_blank" rel="noopener" href="https://www.php.net/InvalidArgumentException">InvalidArgumentException</a></td>
+                <td><a href="../../../Tailors/PHPUnit/InvalidArgumentException.html"><abbr title="Tailors\PHPUnit\InvalidArgumentException">InvalidArgumentException</abbr></a></td>
                 <td></td>
             </tr>
             </table>
 
+            
             
                     </div>
     </div>
@@ -215,18 +227,19 @@ constraint is met, false otherwise.</p>                </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_toString">
-        <div class="location">at line 75</div>
+        <div class="location">at line 78</div>
         <code>                    string
     <strong>toString</strong>()
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>Returns a string representation of the constraint.</p>                                                </div>
-                <div class="tags">
+        <div class="method-description">
+                            <p><p>Returns a string representation of the constraint.</p></p>                        
+        </div>
+        <div class="tags">
             
                             <h4>Return Value</h4>
 
@@ -239,29 +252,30 @@ constraint is met, false otherwise.</p>                </div>
 
             
             
+            
                     </div>
     </div>
 
             </div>
                     <div class="method-item">
                     <h3 id="method_evaluate">
-        <div class="location">at line 97</div>
+        <div class="location">at line 100</div>
         <code>                    bool|null
     <strong>evaluate</strong>(mixed $other, string $description = &#039;&#039;, bool $returnResult = false)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>Evaluates the constraint for parameter $other.</p>                    <p>If $returnResult is set to false (the default), an exception is thrown
+        <div class="method-description">
+                            <p><p>Evaluates the constraint for parameter $other.</p></p>                <p><p>If $returnResult is set to false (the default), an exception is thrown
 in case of a failure. null is returned otherwise.</p>
-
 <p>If $returnResult is true, the result of the evaluation is returned as
 a boolean value instead: true in case of success, false in case of a
-failure.</p>                            </div>
-                <div class="tags">
+failure.</p></p>        
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
@@ -307,32 +321,34 @@ failure.</p>                            </div>
             </table>
 
             
+            
                     </div>
     </div>
 
             </div>
                     <div class="method-item">
                     <h3 id="method_matches">
-        <div class="location">at line 130</div>
+        <div class="location">at line 133</div>
         <code>            protected        bool
     <strong>matches</strong>(mixed $other)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>Evaluates the constraint for parameter $other. Returns true if the
-constraint is met, false otherwise.</p>                                                </div>
-                <div class="tags">
+        <div class="method-description">
+                            <p><p>Evaluates the constraint for parameter $other. Returns true if the
+constraint is met, false otherwise.</p></p>                        
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
                 <td>mixed</td>
                 <td>$other</td>
-                <td>value or object to evaluate</td>
+                <td><p>value or object to evaluate</p></td>
             </tr>
             </table>
 
@@ -348,32 +364,34 @@ constraint is met, false otherwise.</p>                                         
 
             
             
+            
                     </div>
     </div>
 
             </div>
                     <div class="method-item">
                     <h3 id="method_failureDescription">
-        <div class="location">at line 148</div>
+        <div class="location">at line 151</div>
         <code>            protected        string
     <strong>failureDescription</strong>(mixed $other)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>Returns the description of the failure.</p>                    <p>The beginning of failure messages is "Failed asserting that" in most
-cases. This method should return the second part of that sentence.</p>                            </div>
-                <div class="tags">
+        <div class="method-description">
+                            <p><p>Returns the description of the failure.</p></p>                <p><p>The beginning of failure messages is &quot;Failed asserting that&quot; in most
+cases. This method should return the second part of that sentence.</p></p>        
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
                 <td>mixed</td>
                 <td>$other</td>
-                <td>evaluated value or object</td>
+                <td><p>evaluated value or object</p></td>
             </tr>
             </table>
 
@@ -389,6 +407,7 @@ cases. This method should return the second part of that sentence.</p>          
 
             
             
+            
                     </div>
     </div>
 
@@ -396,7 +415,7 @@ cases. This method should return the second part of that sentence.</p>          
             </div>
 
     
-            </div><div id="footer">
+</div><div id="footer">
         Generated by <a href="https://github.com/code-lts/doctum">Doctum, a API Documentation generator and fork of Sami</a>.</div></div>
     </div>
     </body>

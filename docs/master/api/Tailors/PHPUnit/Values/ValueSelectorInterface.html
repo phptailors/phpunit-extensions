@@ -10,24 +10,37 @@
         <link rel="stylesheet" type="text/css" href="../../../css/doctum.css">
         <link rel="stylesheet" type="text/css" href="../../../fonts/doctum-font.css">
         <script src="../../../js/jquery-3.5.1.slim.min.js"></script>
+        <script async defer src="../../../doctum.js"></script>
         <script async defer src="../../../js/bootstrap.min.js"></script>
-        <script src="../../../js/typeahead.min.js"></script>
-        <script src="../../../doctum.js"></script>
+        <script async defer src="../../../js/autocomplete.min.js"></script>
         <meta name="MobileOptimized" content="width">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+
     </head>
 
-    <body id="class" data-name="class:Tailors_PHPUnit_Values_ValueSelectorInterface" data-root-path="../../../">
+    <body id="class" data-name="class:Tailors_PHPUnit_Values_ValueSelectorInterface" data-root-path="../../../" data-search-index-url="../../../doctum-search.json">
             <div id="content">
         <div id="left-column">
                 <div id="control-panel">
-                <form id="search-form" action="../../../search.html">
+                <div class="search-bar hidden" id="search-progress-bar-container">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" id="search-progress-bar"
+                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+            </div>
+        </div>
+        <form id="search-form" action="../../../search.html">
             <span class="icon icon-search"></span>
             <input name="search"
+                   id="doctum-search-auto-complete"
                    class="typeahead form-control"
                    type="search"
-                   placeholder="Search">
+                   placeholder="Search"
+                   spellcheck="false"
+                   autocorrect="off"
+                   autocomplete="off"
+                   autocapitalize="off">
+            <div class="auto-complete-results" id="auto-complete-results"></div>
         </form>
     </div>
 
@@ -66,23 +79,29 @@
             </ol>
         </div>
                 <div id="page-content">
-                
     <div class="page-header">
-        <h1>
-            ValueSelectorInterface
-                
-        </h1>
+        <h1>ValueSelectorInterface    
+            </h1>
     </div>
 
+    
     <p>        interface
     <strong>ValueSelectorInterface</strong>
 </p>
 
         
     
+                        <table>
+            <tr>
+                <td><span class="label label-warning">internal</span></td>
+                <td>&nbsp;This interface is not covered by the backward compatibility promise</td>
+            </tr>
+        </table>
+                &nbsp;
+    
 
-    
-    
+            
+        
     
     
             <h2>Methods</h2>
@@ -92,7 +111,7 @@
                 <div class="col-md-2 type">
                     bool
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_supports">supports</a>(mixed $subject)
         
                                             <p class="no-description">No description</p>
@@ -103,8 +122,8 @@
                 <div class="col-md-2 type">
                     bool
                 </div>
-                <div class="col-md-8 type">
-                    <a href="#method_select">select</a>(mixed $subject, mixed $key, mixed $retval = null)
+                <div class="col-md-8">
+                    <a href="#method_select">select</a>(mixed $subject, mixed $key, mixed $retval)
         
                                             <p class="no-description">No description</p>
                                     </div>
@@ -114,22 +133,22 @@
                 <div class="col-md-2 type">
                     string
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_subject">subject</a>()
         
-                                            <p>A short string naming the subject type(s) supported by this selector
-(e.g. "an array", "an object", "a class", etc.).</p>                </div>
+                                            <p><p>A short string naming the subject type(s) supported by this selector
+(e.g. &quot;an array&quot;, &quot;an object&quot;, &quot;a class&quot;, etc.).</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
                     string
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_selectable">selectable</a>()
         
-                                            <p>A name for the values being selected from subject (in plural,
-e.g. "values" or "properties").</p>                </div>
+                                            <p><p>A name for the values being selected from subject (in plural,
+e.g. &quot;values&quot; or &quot;properties&quot;).</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -140,16 +159,20 @@ e.g. "values" or "properties").</p>                </div>
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method_supports">
-        <div class="location">at line 22</div>
+        <div class="location">at line 23</div>
         <code>                    bool
     <strong>supports</strong>(mixed $subject)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                <div class="tags">
+        <div class="method-description">
+                            <p class="no-description">No description</p>
+                    
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
@@ -172,22 +195,27 @@ e.g. "values" or "properties").</p>                </div>
 
             
             
+            
                     </div>
     </div>
 
             </div>
                     <div class="method-item">
                     <h3 id="method_select">
-        <div class="location">at line 34</div>
+        <div class="location">at line 36</div>
         <code>                    bool
-    <strong>select</strong>(mixed $subject, mixed $key, mixed $retval = null)
+    <strong>select</strong>(mixed $subject, mixed $key, mixed $retval)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                <div class="tags">
+        <div class="method-description">
+                            <p class="no-description">No description</p>
+                    
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
@@ -229,25 +257,27 @@ e.g. "values" or "properties").</p>                </div>
             </table>
 
             
+            
                     </div>
     </div>
 
             </div>
                     <div class="method-item">
                     <h3 id="method_subject">
-        <div class="location">at line 40</div>
+        <div class="location">at line 42</div>
         <code>                    string
     <strong>subject</strong>()
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>A short string naming the subject type(s) supported by this selector
-(e.g. "an array", "an object", "a class", etc.).</p>                                                </div>
-                <div class="tags">
+        <div class="method-description">
+                            <p><p>A short string naming the subject type(s) supported by this selector
+(e.g. &quot;an array&quot;, &quot;an object&quot;, &quot;a class&quot;, etc.).</p></p>                        
+        </div>
+        <div class="tags">
             
                             <h4>Return Value</h4>
 
@@ -258,6 +288,7 @@ e.g. "values" or "properties").</p>                </div>
         </tr>
     </table>
 
+            
             
             
                     </div>
@@ -266,19 +297,20 @@ e.g. "values" or "properties").</p>                </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_selectable">
-        <div class="location">at line 46</div>
+        <div class="location">at line 48</div>
         <code>                    string
     <strong>selectable</strong>()
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>A name for the values being selected from subject (in plural,
-e.g. "values" or "properties").</p>                                                </div>
-                <div class="tags">
+        <div class="method-description">
+                            <p><p>A name for the values being selected from subject (in plural,
+e.g. &quot;values&quot; or &quot;properties&quot;).</p></p>                        
+        </div>
+        <div class="tags">
             
                             <h4>Return Value</h4>
 
@@ -291,6 +323,7 @@ e.g. "values" or "properties").</p>                                             
 
             
             
+            
                     </div>
     </div>
 
@@ -298,7 +331,7 @@ e.g. "values" or "properties").</p>                                             
             </div>
 
     
-            </div><div id="footer">
+</div><div id="footer">
         Generated by <a href="https://github.com/code-lts/doctum">Doctum, a API Documentation generator and fork of Sami</a>.</div></div>
     </div>
     </body>

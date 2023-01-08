@@ -10,24 +10,37 @@
         <link rel="stylesheet" type="text/css" href="../../../css/doctum.css">
         <link rel="stylesheet" type="text/css" href="../../../fonts/doctum-font.css">
         <script src="../../../js/jquery-3.5.1.slim.min.js"></script>
+        <script async defer src="../../../doctum.js"></script>
         <script async defer src="../../../js/bootstrap.min.js"></script>
-        <script src="../../../js/typeahead.min.js"></script>
-        <script src="../../../doctum.js"></script>
+        <script async defer src="../../../js/autocomplete.min.js"></script>
         <meta name="MobileOptimized" content="width">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+
     </head>
 
-    <body id="class" data-name="class:Tailors_PHPUnit_Constraint_TestCase" data-root-path="../../../">
+    <body id="class" data-name="class:Tailors_PHPUnit_Constraint_TestCase" data-root-path="../../../" data-search-index-url="../../../doctum-search.json">
             <div id="content">
         <div id="left-column">
                 <div id="control-panel">
-                <form id="search-form" action="../../../search.html">
+                <div class="search-bar hidden" id="search-progress-bar-container">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" id="search-progress-bar"
+                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+            </div>
+        </div>
+        <form id="search-form" action="../../../search.html">
             <span class="icon icon-search"></span>
             <input name="search"
+                   id="doctum-search-auto-complete"
                    class="typeahead form-control"
                    type="search"
-                   placeholder="Search">
+                   placeholder="Search"
+                   spellcheck="false"
+                   autocorrect="off"
+                   autocomplete="off"
+                   autocapitalize="off">
+            <div class="auto-complete-results" id="auto-complete-results"></div>
         </form>
     </div>
 
@@ -66,23 +79,29 @@
             </ol>
         </div>
                 <div id="page-content">
-                
     <div class="page-header">
-        <h1>
-            TestCase
-                
-        </h1>
+        <h1>TestCase    
+            </h1>
     </div>
 
+    
     <p>    abstract     class
     <strong>TestCase</strong>        extends <abbr title="PHPUnit\Framework\TestCase">TestCase</abbr>
 </p>
 
         
     
+                        <table>
+            <tr>
+                <td><span class="label label-warning">internal</span></td>
+                <td>&nbsp;This class is not covered by the backward compatibility promise</td>
+            </tr>
+        </table>
+                &nbsp;
+    
 
-    
-    
+            
+        
     
     
             <h2>Methods</h2>
@@ -92,7 +111,7 @@
                 <div class="col-md-2 type">
                     <abbr title="PHPUnit\Framework\Constraint\Constraint">Constraint</abbr>
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_createConstraint">createConstraint</a>(mixed ...$args)
         
                                             <p class="no-description">No description</p>
@@ -103,17 +122,17 @@
                 <div class="col-md-2 type">
                     static&nbsp;string
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_getConstraintClass">getConstraintClass</a>()
         
-                                            <p>Returns constraint's class name.</p>                </div>
+                                            <p><p>Returns constraint's class name.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
                     <abbr title="PHPUnit\Framework\Constraint\Constraint">Constraint</abbr>
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_examineCreateConstraint">examineCreateConstraint</a>(array $args)
         
                                             <p class="no-description">No description</p>
@@ -124,18 +143,18 @@
                 <div class="col-md-2 type">
                     void
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_examineConstraintUnaryOperatorFailure">examineConstraintUnaryOperatorFailure</a>(array $args, mixed $actual, string $message)
         
-                                            <p>Tests whether the constraint throws expected exception with expected
-message when wrapped with an unary operator.</p>                </div>
+                                            <p><p>Tests whether the constraint throws expected exception with expected
+message when wrapped with an unary operator.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
                     void
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_examineConstraintMatchSucceeds">examineConstraintMatchSucceeds</a>(array $args, mixed $actual)
         
                                             <p class="no-description">No description</p>
@@ -146,7 +165,7 @@ message when wrapped with an unary operator.</p>                </div>
                 <div class="col-md-2 type">
                     void
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_examineConstraintMatchFails">examineConstraintMatchFails</a>(array $args, mixed $actual, string $message)
         
                                             <p class="no-description">No description</p>
@@ -157,7 +176,7 @@ message when wrapped with an unary operator.</p>                </div>
                 <div class="col-md-2 type">
                     void
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_examineNotConstraintMatchSucceeds">examineNotConstraintMatchSucceeds</a>(array $args, mixed $actual)
         
                                             <p class="no-description">No description</p>
@@ -168,7 +187,7 @@ message when wrapped with an unary operator.</p>                </div>
                 <div class="col-md-2 type">
                     void
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_examineNotConstraintMatchFails">examineNotConstraintMatchFails</a>(array $args, mixed $actual, string $message)
         
                                             <p class="no-description">No description</p>
@@ -179,10 +198,10 @@ message when wrapped with an unary operator.</p>                </div>
                 <div class="col-md-2 type">
                     <abbr title="PHPUnit\Framework\Constraint\UnaryOperator">UnaryOperator</abbr>
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_wrapWithUnaryOperator">wrapWithUnaryOperator</a>(<abbr title="PHPUnit\Framework\Constraint\Constraint">Constraint</abbr> $constraint, string $operator = &#039;noop&#039;, int $precedence = 1)
         
-                                            <p>Returns $constraint wrapped with UnaryOperator mock.</p>                </div>
+                                            <p><p>Returns $constraint wrapped with UnaryOperator mock.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -193,16 +212,20 @@ message when wrapped with an unary operator.</p>                </div>
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method_createConstraint">
-        <div class="location">at line 27</div>
+        <div class="location">at line 29</div>
         <code>    abstract                <abbr title="PHPUnit\Framework\Constraint\Constraint">Constraint</abbr>
     <strong>createConstraint</strong>(mixed ...$args)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                <div class="tags">
+        <div class="method-description">
+                            <p class="no-description">No description</p>
+                    
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
@@ -225,24 +248,26 @@ message when wrapped with an unary operator.</p>                </div>
 
             
             
+            
                     </div>
     </div>
 
             </div>
                     <div class="method-item">
                     <h3 id="method_getConstraintClass">
-        <div class="location">at line 35</div>
+        <div class="location">at line 38</div>
         <code>    abstract    static            string
     <strong>getConstraintClass</strong>()
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>Returns constraint's class name.</p>                                                </div>
-                <div class="tags">
+        <div class="method-description">
+                            <p><p>Returns constraint's class name.</p></p>                        
+        </div>
+        <div class="tags">
             
                             <h4>Return Value</h4>
 
@@ -255,29 +280,34 @@ message when wrapped with an unary operator.</p>                </div>
 
             
             
+            
                     </div>
     </div>
 
             </div>
                     <div class="method-item">
                     <h3 id="method_examineCreateConstraint">
-        <div class="location">at line 46</div>
+        <div class="location">at line 49</div>
         <code>final                    <abbr title="PHPUnit\Framework\Constraint\Constraint">Constraint</abbr>
     <strong>examineCreateConstraint</strong>(array $args)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                <div class="tags">
+        <div class="method-description">
+                            <p class="no-description">No description</p>
+                    
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
                 <td>array</td>
                 <td>$args</td>
-                <td>arguments for createConstraint()</td>
+                <td><p>arguments for createConstraint()</p></td>
             </tr>
             </table>
 
@@ -310,42 +340,44 @@ message when wrapped with an unary operator.</p>                </div>
             </table>
 
             
+            
                     </div>
     </div>
 
             </div>
                     <div class="method-item">
                     <h3 id="method_examineConstraintUnaryOperatorFailure">
-        <div class="location">at line 68</div>
+        <div class="location">at line 71</div>
         <code>final                    void
     <strong>examineConstraintUnaryOperatorFailure</strong>(array $args, mixed $actual, string $message)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>Tests whether the constraint throws expected exception with expected
-message when wrapped with an unary operator.</p>                                                </div>
-                <div class="tags">
+        <div class="method-description">
+                            <p><p>Tests whether the constraint throws expected exception with expected
+message when wrapped with an unary operator.</p></p>                        
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
                 <td>array</td>
                 <td>$args</td>
-                <td>arguments for createConstraint()</td>
+                <td><p>arguments for createConstraint()</p></td>
             </tr>
                     <tr>
                 <td>mixed</td>
                 <td>$actual</td>
-                <td>actual value that shall cause the constraint to fail</td>
+                <td><p>actual value that shall cause the constraint to fail</p></td>
             </tr>
                     <tr>
                 <td>string</td>
                 <td>$message</td>
-                <td>expected exception message</td>
+                <td><p>expected exception message</p></td>
             </tr>
             </table>
 
@@ -386,34 +418,39 @@ message when wrapped with an unary operator.</p>                                
             </table>
 
             
+            
                     </div>
     </div>
 
             </div>
                     <div class="method-item">
                     <h3 id="method_examineConstraintMatchSucceeds">
-        <div class="location">at line 91</div>
+        <div class="location">at line 94</div>
         <code>final                    void
     <strong>examineConstraintMatchSucceeds</strong>(array $args, mixed $actual)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                <div class="tags">
+        <div class="method-description">
+                            <p class="no-description">No description</p>
+                    
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
                 <td>array</td>
                 <td>$args</td>
-                <td>arguments passed to createConstraint()</td>
+                <td><p>arguments passed to createConstraint()</p></td>
             </tr>
                     <tr>
                 <td>mixed</td>
                 <td>$actual</td>
-                <td>actual value</td>
+                <td><p>actual value</p></td>
             </tr>
             </table>
 
@@ -442,29 +479,34 @@ message when wrapped with an unary operator.</p>                                
             </table>
 
             
+            
                     </div>
     </div>
 
             </div>
                     <div class="method-item">
                     <h3 id="method_examineConstraintMatchFails">
-        <div class="location">at line 106</div>
+        <div class="location">at line 109</div>
         <code>final                    void
     <strong>examineConstraintMatchFails</strong>(array $args, mixed $actual, string $message)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                <div class="tags">
+        <div class="method-description">
+                            <p class="no-description">No description</p>
+                    
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
                 <td>array</td>
                 <td>$args</td>
-                <td>arguments passed to createConstraint()</td>
+                <td><p>arguments passed to createConstraint()</p></td>
             </tr>
                     <tr>
                 <td>mixed</td>
@@ -507,29 +549,34 @@ message when wrapped with an unary operator.</p>                                
             </table>
 
             
+            
                     </div>
     </div>
 
             </div>
                     <div class="method-item">
                     <h3 id="method_examineNotConstraintMatchSucceeds">
-        <div class="location">at line 126</div>
+        <div class="location">at line 129</div>
         <code>final                    void
     <strong>examineNotConstraintMatchSucceeds</strong>(array $args, mixed $actual)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                <div class="tags">
+        <div class="method-description">
+                            <p class="no-description">No description</p>
+                    
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
                 <td>array</td>
                 <td>$args</td>
-                <td>arguments passed to createConstraint()</td>
+                <td><p>arguments passed to createConstraint()</p></td>
             </tr>
                     <tr>
                 <td>mixed</td>
@@ -563,29 +610,34 @@ message when wrapped with an unary operator.</p>                                
             </table>
 
             
+            
                     </div>
     </div>
 
             </div>
                     <div class="method-item">
                     <h3 id="method_examineNotConstraintMatchFails">
-        <div class="location">at line 140</div>
+        <div class="location">at line 143</div>
         <code>final                    void
     <strong>examineNotConstraintMatchFails</strong>(array $args, mixed $actual, string $message)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                <div class="tags">
+        <div class="method-description">
+                            <p class="no-description">No description</p>
+                    
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
                 <td>array</td>
                 <td>$args</td>
-                <td>arguments passed to createConstraint()</td>
+                <td><p>arguments passed to createConstraint()</p></td>
             </tr>
                     <tr>
                 <td>mixed</td>
@@ -624,24 +676,26 @@ message when wrapped with an unary operator.</p>                                
             </table>
 
             
+            
                     </div>
     </div>
 
             </div>
                     <div class="method-item">
                     <h3 id="method_wrapWithUnaryOperator">
-        <div class="location">at line 160</div>
+        <div class="location">at line 163</div>
         <code>final            protected        <abbr title="PHPUnit\Framework\Constraint\UnaryOperator">UnaryOperator</abbr>
     <strong>wrapWithUnaryOperator</strong>(<abbr title="PHPUnit\Framework\Constraint\Constraint">Constraint</abbr> $constraint, string $operator = &#039;noop&#039;, int $precedence = 1)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>Returns $constraint wrapped with UnaryOperator mock.</p>                                                </div>
-                <div class="tags">
+        <div class="method-description">
+                            <p><p>Returns $constraint wrapped with UnaryOperator mock.</p></p>                        
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
@@ -691,6 +745,7 @@ message when wrapped with an unary operator.</p>                                
             </table>
 
             
+            
                     </div>
     </div>
 
@@ -698,7 +753,7 @@ message when wrapped with an unary operator.</p>                                
             </div>
 
     
-            </div><div id="footer">
+</div><div id="footer">
         Generated by <a href="https://github.com/code-lts/doctum">Doctum, a API Documentation generator and fork of Sami</a>.</div></div>
     </div>
     </body>

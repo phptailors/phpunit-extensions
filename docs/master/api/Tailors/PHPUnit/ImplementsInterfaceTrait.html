@@ -10,24 +10,37 @@
         <link rel="stylesheet" type="text/css" href="../../css/doctum.css">
         <link rel="stylesheet" type="text/css" href="../../fonts/doctum-font.css">
         <script src="../../js/jquery-3.5.1.slim.min.js"></script>
+        <script async defer src="../../doctum.js"></script>
         <script async defer src="../../js/bootstrap.min.js"></script>
-        <script src="../../js/typeahead.min.js"></script>
-        <script src="../../doctum.js"></script>
+        <script async defer src="../../js/autocomplete.min.js"></script>
         <meta name="MobileOptimized" content="width">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+
     </head>
 
-    <body id="class" data-name="class:Tailors_PHPUnit_ImplementsInterfaceTrait" data-root-path="../../">
+    <body id="class" data-name="class:Tailors_PHPUnit_ImplementsInterfaceTrait" data-root-path="../../" data-search-index-url="../../doctum-search.json">
             <div id="content">
         <div id="left-column">
                 <div id="control-panel">
-                <form id="search-form" action="../../search.html">
+                <div class="search-bar hidden" id="search-progress-bar-container">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" id="search-progress-bar"
+                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+            </div>
+        </div>
+        <form id="search-form" action="../../search.html">
             <span class="icon icon-search"></span>
             <input name="search"
+                   id="doctum-search-auto-complete"
                    class="typeahead form-control"
                    type="search"
-                   placeholder="Search">
+                   placeholder="Search"
+                   spellcheck="false"
+                   autocorrect="off"
+                   autocomplete="off"
+                   autocapitalize="off">
+            <div class="auto-complete-results" id="auto-complete-results"></div>
         </form>
     </div>
 
@@ -66,23 +79,22 @@
             </ol>
         </div>
                 <div id="page-content">
-                
     <div class="page-header">
-        <h1>
-            ImplementsInterfaceTrait
-                
-        </h1>
+        <h1>ImplementsInterfaceTrait    
+            </h1>
     </div>
 
+    
     <p>        trait
     <strong>ImplementsInterfaceTrait</strong>
 </p>
 
         
     
+        
 
-    
-    
+            
+        
     
     
             <h2>Methods</h2>
@@ -92,40 +104,40 @@
                 <div class="col-md-2 type">
                     static&nbsp;void
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_assertThat">assertThat</a>(mixed $value, <abbr title="PHPUnit\Framework\Constraint\Constraint">Constraint</abbr> $constraint, string $message = &#039;&#039;)
         
-                                            <p>Evaluates a \PHPUnit\Framework\Constraint\Constraint matcher object.</p>                </div>
+                                            <p><p>Evaluates a \PHPUnit\Framework\Constraint\Constraint matcher object.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
                     static&nbsp;void
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_assertImplementsInterface">assertImplementsInterface</a>(string $interface, mixed $subject, string $message = &#039;&#039;)
         
-                                            <p>Asserts that <em>$subject</em> implements <em>$interface</em>.</p>                </div>
+                                            <p><p>Asserts that <em>$subject</em> implements <em>$interface</em>.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
                     static&nbsp;void
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_assertNotImplementsInterface">assertNotImplementsInterface</a>(string $interface, mixed $subject, string $message = &#039;&#039;)
         
-                                            <p>Asserts that <em>$subject</em> does not implement <em>$interface</em>.</p>                </div>
+                                            <p><p>Asserts that <em>$subject</em> does not implement <em>$interface</em>.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
                     static&nbsp;<a href="../../Tailors/PHPUnit/Constraint/ImplementsInterface.html"><abbr title="Tailors\PHPUnit\Constraint\ImplementsInterface">ImplementsInterface</abbr></a>
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_implementsInterface">implementsInterface</a>(string $interface)
         
-                                            <p>Checks classes that they implement <em>$interface</em>.</p>                </div>
+                                            <p><p>Checks classes that they implement <em>$interface</em>.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -141,13 +153,14 @@
     <strong>assertThat</strong>(mixed $value, <abbr title="PHPUnit\Framework\Constraint\Constraint">Constraint</abbr> $constraint, string $message = &#039;&#039;)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>Evaluates a \PHPUnit\Framework\Constraint\Constraint matcher object.</p>                                                </div>
-                <div class="tags">
+        <div class="method-description">
+                            <p><p>Evaluates a \PHPUnit\Framework\Constraint\Constraint matcher object.</p></p>                        
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
@@ -193,6 +206,7 @@
             </table>
 
             
+            
                     </div>
     </div>
 
@@ -204,30 +218,31 @@
     <strong>assertImplementsInterface</strong>(string $interface, mixed $subject, string $message = &#039;&#039;)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>Asserts that <em>$subject</em> implements <em>$interface</em>.</p>                                                </div>
-                <div class="tags">
+        <div class="method-description">
+                            <p><p>Asserts that <em>$subject</em> implements <em>$interface</em>.</p></p>                        
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
                 <td>string</td>
                 <td>$interface</td>
-                <td>name of the interface that is expected to be implemented</td>
+                <td><p>name of the interface that is expected to be implemented</p></td>
             </tr>
                     <tr>
                 <td>mixed</td>
                 <td>$subject</td>
-                <td>an object or a class name that is being examined</td>
+                <td><p>an object or a class name that is being examined</p></td>
             </tr>
                     <tr>
                 <td>string</td>
                 <td>$message</td>
-                <td>custom message</td>
+                <td><p>custom message</p></td>
             </tr>
             </table>
 
@@ -259,6 +274,7 @@
             </tr>
             </table>
 
+            
             
                     </div>
     </div>
@@ -271,30 +287,31 @@
     <strong>assertNotImplementsInterface</strong>(string $interface, mixed $subject, string $message = &#039;&#039;)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>Asserts that <em>$subject</em> does not implement <em>$interface</em>.</p>                                                </div>
-                <div class="tags">
+        <div class="method-description">
+                            <p><p>Asserts that <em>$subject</em> does not implement <em>$interface</em>.</p></p>                        
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
                 <td>string</td>
                 <td>$interface</td>
-                <td>name of the interface that is expected to be implemented</td>
+                <td><p>name of the interface that is expected to be implemented</p></td>
             </tr>
                     <tr>
                 <td>mixed</td>
                 <td>$subject</td>
-                <td>an object or a class name that is being examined</td>
+                <td><p>an object or a class name that is being examined</p></td>
             </tr>
                     <tr>
                 <td>string</td>
                 <td>$message</td>
-                <td>custom message</td>
+                <td><p>custom message</p></td>
             </tr>
             </table>
 
@@ -327,6 +344,7 @@
             </table>
 
             
+            
                     </div>
     </div>
 
@@ -338,20 +356,21 @@
     <strong>implementsInterface</strong>(string $interface)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>Checks classes that they implement <em>$interface</em>.</p>                                                </div>
-                <div class="tags">
+        <div class="method-description">
+                            <p><p>Checks classes that they implement <em>$interface</em>.</p></p>                        
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
                 <td>string</td>
                 <td>$interface</td>
-                <td>name of the interface that is expected to be implemented</td>
+                <td><p>name of the interface that is expected to be implemented</p></td>
             </tr>
             </table>
 
@@ -376,6 +395,7 @@
             </table>
 
             
+            
                     </div>
     </div>
 
@@ -383,7 +403,7 @@
             </div>
 
     
-            </div><div id="footer">
+</div><div id="footer">
         Generated by <a href="https://github.com/code-lts/doctum">Doctum, a API Documentation generator and fork of Sami</a>.</div></div>
     </div>
     </body>

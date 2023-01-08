@@ -1,488 +1,87 @@
+var Doctum = {
+    treeJson: {"tree":{"l":0,"n":"","p":"","c":[{"l":1,"n":"Tailors","p":"Tailors","c":[{"l":2,"n":"PHPUnit","p":"Tailors/PHPUnit","c":[{"l":3,"n":"Arrays","p":"Tailors/PHPUnit/Arrays","c":[{"l":4,"n":"AbstractKsortedConstraint","p":"Tailors/PHPUnit/Arrays/AbstractKsortedConstraint"},{"l":4,"n":"ValidateExpectationsTrait","p":"Tailors/PHPUnit/Arrays/ValidateExpectationsTrait"}]},{"l":3,"n":"Common","p":"Tailors/PHPUnit/Common","c":[{"l":4,"n":"ShortFailureDescriptionTrait","p":"Tailors/PHPUnit/Common/ShortFailureDescriptionTrait"}]},{"l":3,"n":"Comparator","p":"Tailors/PHPUnit/Comparator","c":[{"l":4,"n":"ComparatorInterface","p":"Tailors/PHPUnit/Comparator/ComparatorInterface"},{"l":4,"n":"ComparatorWrapperInterface","p":"Tailors/PHPUnit/Comparator/ComparatorWrapperInterface"},{"l":4,"n":"EqualityComparator","p":"Tailors/PHPUnit/Comparator/EqualityComparator"},{"l":4,"n":"IdentityComparator","p":"Tailors/PHPUnit/Comparator/IdentityComparator"}]},{"l":3,"n":"Constraint","p":"Tailors/PHPUnit/Constraint","c":[{"l":4,"n":"ArrayValuesEqualTo","p":"Tailors/PHPUnit/Constraint/ArrayValuesEqualTo"},{"l":4,"n":"ArrayValuesIdenticalTo","p":"Tailors/PHPUnit/Constraint/ArrayValuesIdenticalTo"},{"l":4,"n":"ClassPropertiesEqualTo","p":"Tailors/PHPUnit/Constraint/ClassPropertiesEqualTo"},{"l":4,"n":"ClassPropertiesIdenticalTo","p":"Tailors/PHPUnit/Constraint/ClassPropertiesIdenticalTo"},{"l":4,"n":"ExtendsClass","p":"Tailors/PHPUnit/Constraint/ExtendsClass"},{"l":4,"n":"HasPregCaptures","p":"Tailors/PHPUnit/Constraint/HasPregCaptures"},{"l":4,"n":"ImplementsInterface","p":"Tailors/PHPUnit/Constraint/ImplementsInterface"},{"l":4,"n":"KsortedArrayEqualTo","p":"Tailors/PHPUnit/Constraint/KsortedArrayEqualTo"},{"l":4,"n":"KsortedArrayIdenticalTo","p":"Tailors/PHPUnit/Constraint/KsortedArrayIdenticalTo"},{"l":4,"n":"ObjectPropertiesEqualTo","p":"Tailors/PHPUnit/Constraint/ObjectPropertiesEqualTo"},{"l":4,"n":"ObjectPropertiesIdenticalTo","p":"Tailors/PHPUnit/Constraint/ObjectPropertiesIdenticalTo"},{"l":4,"n":"TestCase","p":"Tailors/PHPUnit/Constraint/TestCase"},{"l":4,"n":"UsesTrait","p":"Tailors/PHPUnit/Constraint/UsesTrait"}]},{"l":3,"n":"Exporter","p":"Tailors/PHPUnit/Exporter","c":[{"l":4,"n":"Exporter","p":"Tailors/PHPUnit/Exporter/Exporter"}]},{"l":3,"n":"Inheritance","p":"Tailors/PHPUnit/Inheritance","c":[{"l":4,"n":"AbstractConstraint","p":"Tailors/PHPUnit/Inheritance/AbstractConstraint"},{"l":4,"n":"ConstraintImplementationTrait","p":"Tailors/PHPUnit/Inheritance/ConstraintImplementationTrait"}]},{"l":3,"n":"Preg","p":"Tailors/PHPUnit/Preg","c":[{"l":4,"n":"CapturesFilter","p":"Tailors/PHPUnit/Preg/CapturesFilter"},{"l":4,"n":"CapturesFilterInterface","p":"Tailors/PHPUnit/Preg/CapturesFilterInterface"}]},{"l":3,"n":"Properties","p":"Tailors/PHPUnit/Properties","c":[{"l":4,"n":"ValidateExpectationsTrait","p":"Tailors/PHPUnit/Properties/ValidateExpectationsTrait"}]},{"l":3,"n":"Values","p":"Tailors/PHPUnit/Values","c":[{"l":4,"n":"AbstractConstraint","p":"Tailors/PHPUnit/Values/AbstractConstraint"},{"l":4,"n":"AbstractPropertySelector","p":"Tailors/PHPUnit/Values/AbstractPropertySelector"},{"l":4,"n":"AbstractValueSelector","p":"Tailors/PHPUnit/Values/AbstractValueSelector"},{"l":4,"n":"AbstractValues","p":"Tailors/PHPUnit/Values/AbstractValues"},{"l":4,"n":"ActualValues","p":"Tailors/PHPUnit/Values/ActualValues"},{"l":4,"n":"ArrayValueSelector","p":"Tailors/PHPUnit/Values/ArrayValueSelector"},{"l":4,"n":"ClassPropertySelector","p":"Tailors/PHPUnit/Values/ClassPropertySelector"},{"l":4,"n":"ConstraintImplementationTrait","p":"Tailors/PHPUnit/Values/ConstraintImplementationTrait"},{"l":4,"n":"ConstraintTestCase","p":"Tailors/PHPUnit/Values/ConstraintTestCase"},{"l":4,"n":"ExpectedValues","p":"Tailors/PHPUnit/Values/ExpectedValues"},{"l":4,"n":"ObjectPropertySelector","p":"Tailors/PHPUnit/Values/ObjectPropertySelector"},{"l":4,"n":"RecursiveComparatorValidator","p":"Tailors/PHPUnit/Values/RecursiveComparatorValidator"},{"l":4,"n":"RecursiveSelector","p":"Tailors/PHPUnit/Values/RecursiveSelector"},{"l":4,"n":"RecursiveSelectorInterface","p":"Tailors/PHPUnit/Values/RecursiveSelectorInterface"},{"l":4,"n":"RecursiveUnwrapper","p":"Tailors/PHPUnit/Values/RecursiveUnwrapper"},{"l":4,"n":"RecursiveUnwrapperInterface","p":"Tailors/PHPUnit/Values/RecursiveUnwrapperInterface"},{"l":4,"n":"Selection","p":"Tailors/PHPUnit/Values/Selection"},{"l":4,"n":"SelectionInterface","p":"Tailors/PHPUnit/Values/SelectionInterface"},{"l":4,"n":"SelectionWrapperInterface","p":"Tailors/PHPUnit/Values/SelectionWrapperInterface"},{"l":4,"n":"ValueSelectorInterface","p":"Tailors/PHPUnit/Values/ValueSelectorInterface"},{"l":4,"n":"ValuesInterface","p":"Tailors/PHPUnit/Values/ValuesInterface"}]},{"l":3,"n":"ArrayValuesEqualToTrait","p":"Tailors/PHPUnit/ArrayValuesEqualToTrait"},{"l":3,"n":"ArrayValuesIdenticalToTrait","p":"Tailors/PHPUnit/ArrayValuesIdenticalToTrait"},{"l":3,"n":"CircularDependencyException","p":"Tailors/PHPUnit/CircularDependencyException"},{"l":3,"n":"ClassPropertiesEqualToTrait","p":"Tailors/PHPUnit/ClassPropertiesEqualToTrait"},{"l":3,"n":"ClassPropertiesIdenticalToTrait","p":"Tailors/PHPUnit/ClassPropertiesIdenticalToTrait"},{"l":3,"n":"ExceptionInterface","p":"Tailors/PHPUnit/ExceptionInterface"},{"l":3,"n":"ExtendsClassTrait","p":"Tailors/PHPUnit/ExtendsClassTrait"},{"l":3,"n":"HasPregCapturesTrait","p":"Tailors/PHPUnit/HasPregCapturesTrait"},{"l":3,"n":"ImplementsInterfaceTrait","p":"Tailors/PHPUnit/ImplementsInterfaceTrait"},{"l":3,"n":"InvalidArgumentException","p":"Tailors/PHPUnit/InvalidArgumentException"},{"l":3,"n":"InvalidReturnValueException","p":"Tailors/PHPUnit/InvalidReturnValueException"},{"l":3,"n":"KsortedArrayEqualToTrait","p":"Tailors/PHPUnit/KsortedArrayEqualToTrait"},{"l":3,"n":"KsortedArrayIdenticalToTrait","p":"Tailors/PHPUnit/KsortedArrayIdenticalToTrait"},{"l":3,"n":"ObjectPropertiesEqualToTrait","p":"Tailors/PHPUnit/ObjectPropertiesEqualToTrait"},{"l":3,"n":"ObjectPropertiesIdenticalToTrait","p":"Tailors/PHPUnit/ObjectPropertiesIdenticalToTrait"},{"l":3,"n":"StringArgumentValidator","p":"Tailors/PHPUnit/StringArgumentValidator"},{"l":3,"n":"UsesTraitTrait","p":"Tailors/PHPUnit/UsesTraitTrait"}]}]}]},"treeOpenLevel":2},
+    /** @var boolean */
+    treeLoaded: false,
+    /** @var boolean */
+    listenersRegistered: false,
+    autoCompleteData: null,
+    /** @var boolean */
+    autoCompleteLoading: false,
+    /** @var boolean */
+    autoCompleteLoaded: false,
+    /** @var string|null */
+    rootPath: null,
+    /** @var string|null */
+    autoCompleteDataUrl: null,
+    /** @var HTMLElement|null */
+    doctumSearchAutoComplete: null,
+    /** @var HTMLElement|null */
+    doctumSearchAutoCompleteProgressBarContainer: null,
+    /** @var HTMLElement|null */
+    doctumSearchAutoCompleteProgressBar: null,
+    /** @var number */
+    doctumSearchAutoCompleteProgressBarPercent: 0,
+    /** @var autoComplete|null */
+    autoCompleteJS: null,
+    querySearchSecurityRegex: /([^0-9a-zA-Z:\\\\_\s])/gi,
+    buildTreeNode: function (treeNode, htmlNode, treeOpenLevel) {
+        var ulNode = document.createElement('ul');
+        for (var childKey in treeNode.c) {
+            var child = treeNode.c[childKey];
+            var liClass = document.createElement('li');
+            var hasChildren = child.hasOwnProperty('c');
+            var nodeSpecialName = (hasChildren ? 'namespace:' : 'class:') + child.p.replace(/\//g, '_');
+            liClass.setAttribute('data-name', nodeSpecialName);
 
-
-(function(root) {
-
-    var bhIndex = null;
-    var rootPath = '';
-    var treeHtml = '<ul><li data-name="namespace:Tailors" class="opened"><div style="padding-left:0px" class="hd"><span class="icon icon-play"></span><a href="Tailors.html">Tailors</a></div><div class="bd"><ul><li data-name="namespace:Tailors_PHPUnit" class="opened"><div style="padding-left:18px" class="hd"><span class="icon icon-play"></span><a href="Tailors/PHPUnit.html">PHPUnit</a></div><div class="bd"><ul><li data-name="namespace:Tailors_PHPUnit_Arrays" ><div style="padding-left:36px" class="hd"><span class="icon icon-play"></span><a href="Tailors/PHPUnit/Arrays.html">Arrays</a></div><div class="bd"><ul><li data-name="class:Tailors_PHPUnit_Arrays_AbstractKsortedConstraint" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Arrays/AbstractKsortedConstraint.html">AbstractKsortedConstraint</a></div></li><li data-name="class:Tailors_PHPUnit_Arrays_ValidateExpectationsTrait" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Arrays/ValidateExpectationsTrait.html">ValidateExpectationsTrait</a></div></li></ul></div></li><li data-name="namespace:Tailors_PHPUnit_Common" ><div style="padding-left:36px" class="hd"><span class="icon icon-play"></span><a href="Tailors/PHPUnit/Common.html">Common</a></div><div class="bd"><ul><li data-name="class:Tailors_PHPUnit_Common_ShortFailureDescriptionTrait" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Common/ShortFailureDescriptionTrait.html">ShortFailureDescriptionTrait</a></div></li></ul></div></li><li data-name="namespace:Tailors_PHPUnit_Comparator" ><div style="padding-left:36px" class="hd"><span class="icon icon-play"></span><a href="Tailors/PHPUnit/Comparator.html">Comparator</a></div><div class="bd"><ul><li data-name="class:Tailors_PHPUnit_Comparator_ComparatorInterface" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Comparator/ComparatorInterface.html">ComparatorInterface</a></div></li><li data-name="class:Tailors_PHPUnit_Comparator_ComparatorWrapperInterface" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Comparator/ComparatorWrapperInterface.html">ComparatorWrapperInterface</a></div></li><li data-name="class:Tailors_PHPUnit_Comparator_EqualityComparator" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Comparator/EqualityComparator.html">EqualityComparator</a></div></li><li data-name="class:Tailors_PHPUnit_Comparator_IdentityComparator" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Comparator/IdentityComparator.html">IdentityComparator</a></div></li></ul></div></li><li data-name="namespace:Tailors_PHPUnit_Constraint" ><div style="padding-left:36px" class="hd"><span class="icon icon-play"></span><a href="Tailors/PHPUnit/Constraint.html">Constraint</a></div><div class="bd"><ul><li data-name="class:Tailors_PHPUnit_Constraint_ArrayValuesEqualTo" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Constraint/ArrayValuesEqualTo.html">ArrayValuesEqualTo</a></div></li><li data-name="class:Tailors_PHPUnit_Constraint_ArrayValuesIdenticalTo" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Constraint/ArrayValuesIdenticalTo.html">ArrayValuesIdenticalTo</a></div></li><li data-name="class:Tailors_PHPUnit_Constraint_ClassPropertiesEqualTo" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Constraint/ClassPropertiesEqualTo.html">ClassPropertiesEqualTo</a></div></li><li data-name="class:Tailors_PHPUnit_Constraint_ClassPropertiesIdenticalTo" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Constraint/ClassPropertiesIdenticalTo.html">ClassPropertiesIdenticalTo</a></div></li><li data-name="class:Tailors_PHPUnit_Constraint_ExtendsClass" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Constraint/ExtendsClass.html">ExtendsClass</a></div></li><li data-name="class:Tailors_PHPUnit_Constraint_HasPregCaptures" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Constraint/HasPregCaptures.html">HasPregCaptures</a></div></li><li data-name="class:Tailors_PHPUnit_Constraint_ImplementsInterface" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Constraint/ImplementsInterface.html">ImplementsInterface</a></div></li><li data-name="class:Tailors_PHPUnit_Constraint_KsortedArrayEqualTo" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Constraint/KsortedArrayEqualTo.html">KsortedArrayEqualTo</a></div></li><li data-name="class:Tailors_PHPUnit_Constraint_KsortedArrayIdenticalTo" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Constraint/KsortedArrayIdenticalTo.html">KsortedArrayIdenticalTo</a></div></li><li data-name="class:Tailors_PHPUnit_Constraint_ObjectPropertiesEqualTo" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Constraint/ObjectPropertiesEqualTo.html">ObjectPropertiesEqualTo</a></div></li><li data-name="class:Tailors_PHPUnit_Constraint_ObjectPropertiesIdenticalTo" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Constraint/ObjectPropertiesIdenticalTo.html">ObjectPropertiesIdenticalTo</a></div></li><li data-name="class:Tailors_PHPUnit_Constraint_TestCase" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Constraint/TestCase.html">TestCase</a></div></li><li data-name="class:Tailors_PHPUnit_Constraint_UsesTrait" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Constraint/UsesTrait.html">UsesTrait</a></div></li></ul></div></li><li data-name="namespace:Tailors_PHPUnit_Exporter" ><div style="padding-left:36px" class="hd"><span class="icon icon-play"></span><a href="Tailors/PHPUnit/Exporter.html">Exporter</a></div><div class="bd"><ul><li data-name="class:Tailors_PHPUnit_Exporter_Exporter" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Exporter/Exporter.html">Exporter</a></div></li></ul></div></li><li data-name="namespace:Tailors_PHPUnit_Inheritance" ><div style="padding-left:36px" class="hd"><span class="icon icon-play"></span><a href="Tailors/PHPUnit/Inheritance.html">Inheritance</a></div><div class="bd"><ul><li data-name="class:Tailors_PHPUnit_Inheritance_AbstractConstraint" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Inheritance/AbstractConstraint.html">AbstractConstraint</a></div></li><li data-name="class:Tailors_PHPUnit_Inheritance_ConstraintImplementationTrait" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Inheritance/ConstraintImplementationTrait.html">ConstraintImplementationTrait</a></div></li></ul></div></li><li data-name="namespace:Tailors_PHPUnit_Preg" ><div style="padding-left:36px" class="hd"><span class="icon icon-play"></span><a href="Tailors/PHPUnit/Preg.html">Preg</a></div><div class="bd"><ul><li data-name="class:Tailors_PHPUnit_Preg_CapturesFilter" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Preg/CapturesFilter.html">CapturesFilter</a></div></li><li data-name="class:Tailors_PHPUnit_Preg_CapturesFilterInterface" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Preg/CapturesFilterInterface.html">CapturesFilterInterface</a></div></li></ul></div></li><li data-name="namespace:Tailors_PHPUnit_Properties" ><div style="padding-left:36px" class="hd"><span class="icon icon-play"></span><a href="Tailors/PHPUnit/Properties.html">Properties</a></div><div class="bd"><ul><li data-name="class:Tailors_PHPUnit_Properties_ValidateExpectationsTrait" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Properties/ValidateExpectationsTrait.html">ValidateExpectationsTrait</a></div></li></ul></div></li><li data-name="namespace:Tailors_PHPUnit_Values" ><div style="padding-left:36px" class="hd"><span class="icon icon-play"></span><a href="Tailors/PHPUnit/Values.html">Values</a></div><div class="bd"><ul><li data-name="class:Tailors_PHPUnit_Values_AbstractConstraint" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Values/AbstractConstraint.html">AbstractConstraint</a></div></li><li data-name="class:Tailors_PHPUnit_Values_AbstractPropertySelector" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Values/AbstractPropertySelector.html">AbstractPropertySelector</a></div></li><li data-name="class:Tailors_PHPUnit_Values_AbstractValueSelector" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Values/AbstractValueSelector.html">AbstractValueSelector</a></div></li><li data-name="class:Tailors_PHPUnit_Values_AbstractValues" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Values/AbstractValues.html">AbstractValues</a></div></li><li data-name="class:Tailors_PHPUnit_Values_ActualValues" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Values/ActualValues.html">ActualValues</a></div></li><li data-name="class:Tailors_PHPUnit_Values_ArrayValueSelector" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Values/ArrayValueSelector.html">ArrayValueSelector</a></div></li><li data-name="class:Tailors_PHPUnit_Values_ClassPropertySelector" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Values/ClassPropertySelector.html">ClassPropertySelector</a></div></li><li data-name="class:Tailors_PHPUnit_Values_ConstraintImplementationTrait" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Values/ConstraintImplementationTrait.html">ConstraintImplementationTrait</a></div></li><li data-name="class:Tailors_PHPUnit_Values_ConstraintTestCase" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Values/ConstraintTestCase.html">ConstraintTestCase</a></div></li><li data-name="class:Tailors_PHPUnit_Values_ExpectedValues" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Values/ExpectedValues.html">ExpectedValues</a></div></li><li data-name="class:Tailors_PHPUnit_Values_ObjectPropertySelector" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Values/ObjectPropertySelector.html">ObjectPropertySelector</a></div></li><li data-name="class:Tailors_PHPUnit_Values_RecursiveComparatorValidator" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Values/RecursiveComparatorValidator.html">RecursiveComparatorValidator</a></div></li><li data-name="class:Tailors_PHPUnit_Values_RecursiveSelector" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Values/RecursiveSelector.html">RecursiveSelector</a></div></li><li data-name="class:Tailors_PHPUnit_Values_RecursiveSelectorInterface" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Values/RecursiveSelectorInterface.html">RecursiveSelectorInterface</a></div></li><li data-name="class:Tailors_PHPUnit_Values_RecursiveUnwrapper" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Values/RecursiveUnwrapper.html">RecursiveUnwrapper</a></div></li><li data-name="class:Tailors_PHPUnit_Values_RecursiveUnwrapperInterface" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Values/RecursiveUnwrapperInterface.html">RecursiveUnwrapperInterface</a></div></li><li data-name="class:Tailors_PHPUnit_Values_Selection" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Values/Selection.html">Selection</a></div></li><li data-name="class:Tailors_PHPUnit_Values_SelectionInterface" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Values/SelectionInterface.html">SelectionInterface</a></div></li><li data-name="class:Tailors_PHPUnit_Values_SelectionWrapperInterface" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Values/SelectionWrapperInterface.html">SelectionWrapperInterface</a></div></li><li data-name="class:Tailors_PHPUnit_Values_ValueSelectorInterface" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Values/ValueSelectorInterface.html">ValueSelectorInterface</a></div></li><li data-name="class:Tailors_PHPUnit_Values_ValuesInterface" ><div style="padding-left:62px" class="hd leaf"><a href="Tailors/PHPUnit/Values/ValuesInterface.html">ValuesInterface</a></div></li></ul></div></li><li data-name="class:Tailors_PHPUnit_ArrayValuesEqualToTrait" ><div style="padding-left:44px" class="hd leaf"><a href="Tailors/PHPUnit/ArrayValuesEqualToTrait.html">ArrayValuesEqualToTrait</a></div></li><li data-name="class:Tailors_PHPUnit_ArrayValuesIdenticalToTrait" ><div style="padding-left:44px" class="hd leaf"><a href="Tailors/PHPUnit/ArrayValuesIdenticalToTrait.html">ArrayValuesIdenticalToTrait</a></div></li><li data-name="class:Tailors_PHPUnit_CircularDependencyException" ><div style="padding-left:44px" class="hd leaf"><a href="Tailors/PHPUnit/CircularDependencyException.html">CircularDependencyException</a></div></li><li data-name="class:Tailors_PHPUnit_ClassPropertiesEqualToTrait" ><div style="padding-left:44px" class="hd leaf"><a href="Tailors/PHPUnit/ClassPropertiesEqualToTrait.html">ClassPropertiesEqualToTrait</a></div></li><li data-name="class:Tailors_PHPUnit_ClassPropertiesIdenticalToTrait" ><div style="padding-left:44px" class="hd leaf"><a href="Tailors/PHPUnit/ClassPropertiesIdenticalToTrait.html">ClassPropertiesIdenticalToTrait</a></div></li><li data-name="class:Tailors_PHPUnit_ExceptionInterface" ><div style="padding-left:44px" class="hd leaf"><a href="Tailors/PHPUnit/ExceptionInterface.html">ExceptionInterface</a></div></li><li data-name="class:Tailors_PHPUnit_ExtendsClassTrait" ><div style="padding-left:44px" class="hd leaf"><a href="Tailors/PHPUnit/ExtendsClassTrait.html">ExtendsClassTrait</a></div></li><li data-name="class:Tailors_PHPUnit_HasPregCapturesTrait" ><div style="padding-left:44px" class="hd leaf"><a href="Tailors/PHPUnit/HasPregCapturesTrait.html">HasPregCapturesTrait</a></div></li><li data-name="class:Tailors_PHPUnit_ImplementsInterfaceTrait" ><div style="padding-left:44px" class="hd leaf"><a href="Tailors/PHPUnit/ImplementsInterfaceTrait.html">ImplementsInterfaceTrait</a></div></li><li data-name="class:Tailors_PHPUnit_InvalidArgumentException" ><div style="padding-left:44px" class="hd leaf"><a href="Tailors/PHPUnit/InvalidArgumentException.html">InvalidArgumentException</a></div></li><li data-name="class:Tailors_PHPUnit_InvalidReturnValueException" ><div style="padding-left:44px" class="hd leaf"><a href="Tailors/PHPUnit/InvalidReturnValueException.html">InvalidReturnValueException</a></div></li><li data-name="class:Tailors_PHPUnit_KsortedArrayEqualToTrait" ><div style="padding-left:44px" class="hd leaf"><a href="Tailors/PHPUnit/KsortedArrayEqualToTrait.html">KsortedArrayEqualToTrait</a></div></li><li data-name="class:Tailors_PHPUnit_KsortedArrayIdenticalToTrait" ><div style="padding-left:44px" class="hd leaf"><a href="Tailors/PHPUnit/KsortedArrayIdenticalToTrait.html">KsortedArrayIdenticalToTrait</a></div></li><li data-name="class:Tailors_PHPUnit_ObjectPropertiesEqualToTrait" ><div style="padding-left:44px" class="hd leaf"><a href="Tailors/PHPUnit/ObjectPropertiesEqualToTrait.html">ObjectPropertiesEqualToTrait</a></div></li><li data-name="class:Tailors_PHPUnit_ObjectPropertiesIdenticalToTrait" ><div style="padding-left:44px" class="hd leaf"><a href="Tailors/PHPUnit/ObjectPropertiesIdenticalToTrait.html">ObjectPropertiesIdenticalToTrait</a></div></li><li data-name="class:Tailors_PHPUnit_StringArgumentValidator" ><div style="padding-left:44px" class="hd leaf"><a href="Tailors/PHPUnit/StringArgumentValidator.html">StringArgumentValidator</a></div></li><li data-name="class:Tailors_PHPUnit_UsesTraitTrait" ><div style="padding-left:44px" class="hd leaf"><a href="Tailors/PHPUnit/UsesTraitTrait.html">UsesTraitTrait</a></div></li></ul></div></li></ul></div></li></ul>';
-
-    var searchTypeClasses = {
-        'Namespace': 'label-default',
-        'Class': 'label-info',
-        'Interface': 'label-primary',
-        'Trait': 'label-success',
-        'Method': 'label-danger',
-        '_': 'label-warning'
-    };
-
-    var searchIndex = [
-                        {"type":"Namespace","link":"Tailors.html","name":"Tailors","doc":"Namespace Tailors"},{"type":"Namespace","link":"Tailors/PHPUnit.html","name":"Tailors\\PHPUnit","doc":"Namespace Tailors\\PHPUnit"},{"type":"Namespace","link":"Tailors/PHPUnit/Arrays.html","name":"Tailors\\PHPUnit\\Arrays","doc":"Namespace Tailors\\PHPUnit\\Arrays"},{"type":"Namespace","link":"Tailors/PHPUnit/Common.html","name":"Tailors\\PHPUnit\\Common","doc":"Namespace Tailors\\PHPUnit\\Common"},{"type":"Namespace","link":"Tailors/PHPUnit/Comparator.html","name":"Tailors\\PHPUnit\\Comparator","doc":"Namespace Tailors\\PHPUnit\\Comparator"},{"type":"Namespace","link":"Tailors/PHPUnit/Constraint.html","name":"Tailors\\PHPUnit\\Constraint","doc":"Namespace Tailors\\PHPUnit\\Constraint"},{"type":"Namespace","link":"Tailors/PHPUnit/Exporter.html","name":"Tailors\\PHPUnit\\Exporter","doc":"Namespace Tailors\\PHPUnit\\Exporter"},{"type":"Namespace","link":"Tailors/PHPUnit/Inheritance.html","name":"Tailors\\PHPUnit\\Inheritance","doc":"Namespace Tailors\\PHPUnit\\Inheritance"},{"type":"Namespace","link":"Tailors/PHPUnit/Preg.html","name":"Tailors\\PHPUnit\\Preg","doc":"Namespace Tailors\\PHPUnit\\Preg"},{"type":"Namespace","link":"Tailors/PHPUnit/Properties.html","name":"Tailors\\PHPUnit\\Properties","doc":"Namespace Tailors\\PHPUnit\\Properties"},{"type":"Namespace","link":"Tailors/PHPUnit/Values.html","name":"Tailors\\PHPUnit\\Values","doc":"Namespace Tailors\\PHPUnit\\Values"},                                                 {"type":"Interface","fromName":"Tailors\\PHPUnit\\Comparator","fromLink":"Tailors/PHPUnit/Comparator.html","link":"Tailors/PHPUnit/Comparator/ComparatorInterface.html","name":"Tailors\\PHPUnit\\Comparator\\ComparatorInterface","doc":""},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Comparator\\ComparatorInterface","fromLink":"Tailors/PHPUnit/Comparator/ComparatorInterface.html","link":"Tailors/PHPUnit/Comparator/ComparatorInterface.html#method_compare","name":"Tailors\\PHPUnit\\Comparator\\ComparatorInterface::compare","doc":"Compares two values."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Comparator\\ComparatorInterface","fromLink":"Tailors/PHPUnit/Comparator/ComparatorInterface.html","link":"Tailors/PHPUnit/Comparator/ComparatorInterface.html#method_adjective","name":"Tailors\\PHPUnit\\Comparator\\ComparatorInterface::adjective","doc":"Returns an adjective that identifies this comparison operator."},
-            
-                                                 {"type":"Interface","fromName":"Tailors\\PHPUnit\\Comparator","fromLink":"Tailors/PHPUnit/Comparator.html","link":"Tailors/PHPUnit/Comparator/ComparatorWrapperInterface.html","name":"Tailors\\PHPUnit\\Comparator\\ComparatorWrapperInterface","doc":""},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Comparator\\ComparatorWrapperInterface","fromLink":"Tailors/PHPUnit/Comparator/ComparatorWrapperInterface.html","link":"Tailors/PHPUnit/Comparator/ComparatorWrapperInterface.html#method_getComparator","name":"Tailors\\PHPUnit\\Comparator\\ComparatorWrapperInterface::getComparator","doc":"Returns an instance of ComparatorInterface."},
-            
-                                                 {"type":"Interface","fromName":"Tailors\\PHPUnit","fromLink":"Tailors/PHPUnit.html","link":"Tailors/PHPUnit/ExceptionInterface.html","name":"Tailors\\PHPUnit\\ExceptionInterface","doc":""},
-                
-                                                 {"type":"Interface","fromName":"Tailors\\PHPUnit\\Preg","fromLink":"Tailors/PHPUnit/Preg.html","link":"Tailors/PHPUnit/Preg/CapturesFilterInterface.html","name":"Tailors\\PHPUnit\\Preg\\CapturesFilterInterface","doc":""},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Preg\\CapturesFilterInterface","fromLink":"Tailors/PHPUnit/Preg/CapturesFilterInterface.html","link":"Tailors/PHPUnit/Preg/CapturesFilterInterface.html#method_filter","name":"Tailors\\PHPUnit\\Preg\\CapturesFilterInterface::filter","doc":"Filter-out all elements of $array with $this->accepts()."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Preg\\CapturesFilterInterface","fromLink":"Tailors/PHPUnit/Preg/CapturesFilterInterface.html","link":"Tailors/PHPUnit/Preg/CapturesFilterInterface.html#method_accepts","name":"Tailors\\PHPUnit\\Preg\\CapturesFilterInterface::accepts","doc":"Returns true if $value is a capture group returned by preg_match()."},
-            
-                                                 {"type":"Interface","fromName":"Tailors\\PHPUnit\\Values","fromLink":"Tailors/PHPUnit/Values.html","link":"Tailors/PHPUnit/Values/RecursiveSelectorInterface.html","name":"Tailors\\PHPUnit\\Values\\RecursiveSelectorInterface","doc":""},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\RecursiveSelectorInterface","fromLink":"Tailors/PHPUnit/Values/RecursiveSelectorInterface.html","link":"Tailors/PHPUnit/Values/RecursiveSelectorInterface.html#method_select","name":"Tailors\\PHPUnit\\Values\\RecursiveSelectorInterface::select","doc":"Select an array of values from $subject."},
-            
-                                                 {"type":"Interface","fromName":"Tailors\\PHPUnit\\Values","fromLink":"Tailors/PHPUnit/Values.html","link":"Tailors/PHPUnit/Values/RecursiveUnwrapperInterface.html","name":"Tailors\\PHPUnit\\Values\\RecursiveUnwrapperInterface","doc":""},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\RecursiveUnwrapperInterface","fromLink":"Tailors/PHPUnit/Values/RecursiveUnwrapperInterface.html","link":"Tailors/PHPUnit/Values/RecursiveUnwrapperInterface.html#method_unwrap","name":"Tailors\\PHPUnit\\Values\\RecursiveUnwrapperInterface::unwrap","doc":null},
-            
-                                                 {"type":"Interface","fromName":"Tailors\\PHPUnit\\Values","fromLink":"Tailors/PHPUnit/Values.html","link":"Tailors/PHPUnit/Values/SelectionInterface.html","name":"Tailors\\PHPUnit\\Values\\SelectionInterface","doc":""},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\SelectionInterface","fromLink":"Tailors/PHPUnit/Values/SelectionInterface.html","link":"Tailors/PHPUnit/Values/SelectionInterface.html#method_getSelector","name":"Tailors\\PHPUnit\\Values\\SelectionInterface::getSelector","doc":null},
-            
-                                                 {"type":"Interface","fromName":"Tailors\\PHPUnit\\Values","fromLink":"Tailors/PHPUnit/Values.html","link":"Tailors/PHPUnit/Values/SelectionWrapperInterface.html","name":"Tailors\\PHPUnit\\Values\\SelectionWrapperInterface","doc":""},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\SelectionWrapperInterface","fromLink":"Tailors/PHPUnit/Values/SelectionWrapperInterface.html","link":"Tailors/PHPUnit/Values/SelectionWrapperInterface.html#method_getSelection","name":"Tailors\\PHPUnit\\Values\\SelectionWrapperInterface::getSelection","doc":"Returns an instance of SelectionInterface."},
-            
-                                                 {"type":"Interface","fromName":"Tailors\\PHPUnit\\Values","fromLink":"Tailors/PHPUnit/Values.html","link":"Tailors/PHPUnit/Values/ValueSelectorInterface.html","name":"Tailors\\PHPUnit\\Values\\ValueSelectorInterface","doc":""},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\ValueSelectorInterface","fromLink":"Tailors/PHPUnit/Values/ValueSelectorInterface.html","link":"Tailors/PHPUnit/Values/ValueSelectorInterface.html#method_supports","name":"Tailors\\PHPUnit\\Values\\ValueSelectorInterface::supports","doc":""},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\ValueSelectorInterface","fromLink":"Tailors/PHPUnit/Values/ValueSelectorInterface.html","link":"Tailors/PHPUnit/Values/ValueSelectorInterface.html#method_select","name":"Tailors\\PHPUnit\\Values\\ValueSelectorInterface::select","doc":""},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\ValueSelectorInterface","fromLink":"Tailors/PHPUnit/Values/ValueSelectorInterface.html","link":"Tailors/PHPUnit/Values/ValueSelectorInterface.html#method_subject","name":"Tailors\\PHPUnit\\Values\\ValueSelectorInterface::subject","doc":"A short string naming the subject type(s) supported by this selector\n(e.g. \"an array\", \"an object\", \"a class\", etc.)."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\ValueSelectorInterface","fromLink":"Tailors/PHPUnit/Values/ValueSelectorInterface.html","link":"Tailors/PHPUnit/Values/ValueSelectorInterface.html#method_selectable","name":"Tailors\\PHPUnit\\Values\\ValueSelectorInterface::selectable","doc":"A name for the values being selected from subject (in plural,\ne.g. \"values\" or \"properties\")."},
-            
-                                                 {"type":"Interface","fromName":"Tailors\\PHPUnit\\Values","fromLink":"Tailors/PHPUnit/Values.html","link":"Tailors/PHPUnit/Values/ValuesInterface.html","name":"Tailors\\PHPUnit\\Values\\ValuesInterface","doc":"An array of actual or expected values."},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\ValuesInterface","fromLink":"Tailors/PHPUnit/Values/ValuesInterface.html","link":"Tailors/PHPUnit/Values/ValuesInterface.html#method_getArrayCopy","name":"Tailors\\PHPUnit\\Values\\ValuesInterface::getArrayCopy","doc":""},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\ValuesInterface","fromLink":"Tailors/PHPUnit/Values/ValuesInterface.html","link":"Tailors/PHPUnit/Values/ValuesInterface.html#method_actual","name":"Tailors\\PHPUnit\\Values\\ValuesInterface::actual","doc":"Returns true if this object represents actual values (as opposite to expected values)."},
-            
-                                                        {"type":"Trait","fromName":"Tailors\\PHPUnit","fromLink":"Tailors/PHPUnit.html","link":"Tailors/PHPUnit/ArrayValuesEqualToTrait.html","name":"Tailors\\PHPUnit\\ArrayValuesEqualToTrait","doc":null},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\ArrayValuesEqualToTrait","fromLink":"Tailors/PHPUnit/ArrayValuesEqualToTrait.html","link":"Tailors/PHPUnit/ArrayValuesEqualToTrait.html#method_assertThat","name":"Tailors\\PHPUnit\\ArrayValuesEqualToTrait::assertThat","doc":"Evaluates a \\PHPUnit\\Framework\\Constraint\\Constraint matcher object."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\ArrayValuesEqualToTrait","fromLink":"Tailors/PHPUnit/ArrayValuesEqualToTrait.html","link":"Tailors/PHPUnit/ArrayValuesEqualToTrait.html#method_assertArrayValuesEqualTo","name":"Tailors\\PHPUnit\\ArrayValuesEqualToTrait::assertArrayValuesEqualTo","doc":"Asserts that selected properties of <em>$actual</em> are identical to <em>$expected</em> ones."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\ArrayValuesEqualToTrait","fromLink":"Tailors/PHPUnit/ArrayValuesEqualToTrait.html","link":"Tailors/PHPUnit/ArrayValuesEqualToTrait.html#method_assertNotArrayValuesEqualTo","name":"Tailors\\PHPUnit\\ArrayValuesEqualToTrait::assertNotArrayValuesEqualTo","doc":"Asserts that selected properties of <em>$actual</em> are not identical to <em>$expected</em> ones."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\ArrayValuesEqualToTrait","fromLink":"Tailors/PHPUnit/ArrayValuesEqualToTrait.html","link":"Tailors/PHPUnit/ArrayValuesEqualToTrait.html#method_arrayValuesEqualTo","name":"Tailors\\PHPUnit\\ArrayValuesEqualToTrait::arrayValuesEqualTo","doc":"Compares selected properties of <em>$actual</em> with <em>$expected</em> ones."},
-            
-                                                {"type":"Trait","fromName":"Tailors\\PHPUnit","fromLink":"Tailors/PHPUnit.html","link":"Tailors/PHPUnit/ArrayValuesIdenticalToTrait.html","name":"Tailors\\PHPUnit\\ArrayValuesIdenticalToTrait","doc":null},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\ArrayValuesIdenticalToTrait","fromLink":"Tailors/PHPUnit/ArrayValuesIdenticalToTrait.html","link":"Tailors/PHPUnit/ArrayValuesIdenticalToTrait.html#method_assertThat","name":"Tailors\\PHPUnit\\ArrayValuesIdenticalToTrait::assertThat","doc":"Evaluates a \\PHPUnit\\Framework\\Constraint\\Constraint matcher object."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\ArrayValuesIdenticalToTrait","fromLink":"Tailors/PHPUnit/ArrayValuesIdenticalToTrait.html","link":"Tailors/PHPUnit/ArrayValuesIdenticalToTrait.html#method_assertArrayValuesIdenticalTo","name":"Tailors\\PHPUnit\\ArrayValuesIdenticalToTrait::assertArrayValuesIdenticalTo","doc":"Asserts that selected values of <em>$actual</em> array are identical to <em>$expected</em> ones."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\ArrayValuesIdenticalToTrait","fromLink":"Tailors/PHPUnit/ArrayValuesIdenticalToTrait.html","link":"Tailors/PHPUnit/ArrayValuesIdenticalToTrait.html#method_assertNotArrayValuesIdenticalTo","name":"Tailors\\PHPUnit\\ArrayValuesIdenticalToTrait::assertNotArrayValuesIdenticalTo","doc":"Asserts that selected properties of <em>$actual</em> are not identical to <em>$expected</em> ones."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\ArrayValuesIdenticalToTrait","fromLink":"Tailors/PHPUnit/ArrayValuesIdenticalToTrait.html","link":"Tailors/PHPUnit/ArrayValuesIdenticalToTrait.html#method_arrayValuesIdenticalTo","name":"Tailors\\PHPUnit\\ArrayValuesIdenticalToTrait::arrayValuesIdenticalTo","doc":"Compares selected properties of <em>$actual</em> with <em>$expected</em> ones."},
-            
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit\\Arrays","fromLink":"Tailors/PHPUnit/Arrays.html","link":"Tailors/PHPUnit/Arrays/AbstractKsortedConstraint.html","name":"Tailors\\PHPUnit\\Arrays\\AbstractKsortedConstraint","doc":"Abstract base class for constraints that compare key-sorted arrays."},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Arrays\\AbstractKsortedConstraint","fromLink":"Tailors/PHPUnit/Arrays/AbstractKsortedConstraint.html","link":"Tailors/PHPUnit/Arrays/AbstractKsortedConstraint.html#method___construct","name":"Tailors\\PHPUnit\\Arrays\\AbstractKsortedConstraint::__construct","doc":null},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Arrays\\AbstractKsortedConstraint","fromLink":"Tailors/PHPUnit/Arrays/AbstractKsortedConstraint.html","link":"Tailors/PHPUnit/Arrays/AbstractKsortedConstraint.html#method_getComparator","name":"Tailors\\PHPUnit\\Arrays\\AbstractKsortedConstraint::getComparator","doc":"Returns an instance of ComparatorInterface which implements comparison operator."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Arrays\\AbstractKsortedConstraint","fromLink":"Tailors/PHPUnit/Arrays/AbstractKsortedConstraint.html","link":"Tailors/PHPUnit/Arrays/AbstractKsortedConstraint.html#method_toString","name":"Tailors\\PHPUnit\\Arrays\\AbstractKsortedConstraint::toString","doc":"Returns a string representation of the constraint."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Arrays\\AbstractKsortedConstraint","fromLink":"Tailors/PHPUnit/Arrays/AbstractKsortedConstraint.html","link":"Tailors/PHPUnit/Arrays/AbstractKsortedConstraint.html#method_evaluate","name":"Tailors\\PHPUnit\\Arrays\\AbstractKsortedConstraint::evaluate","doc":"Evaluates the constraint for parameter $other."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Arrays\\AbstractKsortedConstraint","fromLink":"Tailors/PHPUnit/Arrays/AbstractKsortedConstraint.html","link":"Tailors/PHPUnit/Arrays/AbstractKsortedConstraint.html#method_ksorted","name":"Tailors\\PHPUnit\\Arrays\\AbstractKsortedConstraint::ksorted","doc":"Returns key-sorted copy of $array."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Arrays\\AbstractKsortedConstraint","fromLink":"Tailors/PHPUnit/Arrays/AbstractKsortedConstraint.html","link":"Tailors/PHPUnit/Arrays/AbstractKsortedConstraint.html#method_toStringInContext","name":"Tailors\\PHPUnit\\Arrays\\AbstractKsortedConstraint::toStringInContext","doc":"Returns a custom string representation of the constraint object when it\nappears in context of an $operator expression."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Arrays\\AbstractKsortedConstraint","fromLink":"Tailors/PHPUnit/Arrays/AbstractKsortedConstraint.html","link":"Tailors/PHPUnit/Arrays/AbstractKsortedConstraint.html#method_matches","name":"Tailors\\PHPUnit\\Arrays\\AbstractKsortedConstraint::matches","doc":"Evaluates the constraint for parameter $other. Returns true if the\nconstraint is met, false otherwise."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Arrays\\AbstractKsortedConstraint","fromLink":"Tailors/PHPUnit/Arrays/AbstractKsortedConstraint.html","link":"Tailors/PHPUnit/Arrays/AbstractKsortedConstraint.html#method_supports","name":"Tailors\\PHPUnit\\Arrays\\AbstractKsortedConstraint::supports","doc":""},
-            
-                                                {"type":"Trait","fromName":"Tailors\\PHPUnit\\Arrays","fromLink":"Tailors/PHPUnit/Arrays.html","link":"Tailors/PHPUnit/Arrays/ValidateExpectationsTrait.html","name":"Tailors\\PHPUnit\\Arrays\\ValidateExpectationsTrait","doc":""},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Arrays\\ValidateExpectationsTrait","fromLink":"Tailors/PHPUnit/Arrays/ValidateExpectationsTrait.html","link":"Tailors/PHPUnit/Arrays/ValidateExpectationsTrait.html#method_validateExpectations","name":"Tailors\\PHPUnit\\Arrays\\ValidateExpectationsTrait::validateExpectations","doc":""},
-            
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit","fromLink":"Tailors/PHPUnit.html","link":"Tailors/PHPUnit/CircularDependencyException.html","name":"Tailors\\PHPUnit\\CircularDependencyException","doc":""},
-                
-                                                {"type":"Trait","fromName":"Tailors\\PHPUnit","fromLink":"Tailors/PHPUnit.html","link":"Tailors/PHPUnit/ClassPropertiesEqualToTrait.html","name":"Tailors\\PHPUnit\\ClassPropertiesEqualToTrait","doc":null},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\ClassPropertiesEqualToTrait","fromLink":"Tailors/PHPUnit/ClassPropertiesEqualToTrait.html","link":"Tailors/PHPUnit/ClassPropertiesEqualToTrait.html#method_assertThat","name":"Tailors\\PHPUnit\\ClassPropertiesEqualToTrait::assertThat","doc":"Evaluates a \\PHPUnit\\Framework\\Constraint\\Constraint matcher object."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\ClassPropertiesEqualToTrait","fromLink":"Tailors/PHPUnit/ClassPropertiesEqualToTrait.html","link":"Tailors/PHPUnit/ClassPropertiesEqualToTrait.html#method_assertClassPropertiesEqualTo","name":"Tailors\\PHPUnit\\ClassPropertiesEqualToTrait::assertClassPropertiesEqualTo","doc":"Asserts that selected properties of <em>$class</em> are identical to <em>$expected</em> ones."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\ClassPropertiesEqualToTrait","fromLink":"Tailors/PHPUnit/ClassPropertiesEqualToTrait.html","link":"Tailors/PHPUnit/ClassPropertiesEqualToTrait.html#method_assertNotClassPropertiesEqualTo","name":"Tailors\\PHPUnit\\ClassPropertiesEqualToTrait::assertNotClassPropertiesEqualTo","doc":"Asserts that selected properties of <em>$class</em> are not identical to <em>$expected</em> ones."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\ClassPropertiesEqualToTrait","fromLink":"Tailors/PHPUnit/ClassPropertiesEqualToTrait.html","link":"Tailors/PHPUnit/ClassPropertiesEqualToTrait.html#method_classPropertiesEqualTo","name":"Tailors\\PHPUnit\\ClassPropertiesEqualToTrait::classPropertiesEqualTo","doc":"Compares selected properties of <em>$class</em> with <em>$expected</em> ones."},
-            
-                                                {"type":"Trait","fromName":"Tailors\\PHPUnit","fromLink":"Tailors/PHPUnit.html","link":"Tailors/PHPUnit/ClassPropertiesIdenticalToTrait.html","name":"Tailors\\PHPUnit\\ClassPropertiesIdenticalToTrait","doc":null},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\ClassPropertiesIdenticalToTrait","fromLink":"Tailors/PHPUnit/ClassPropertiesIdenticalToTrait.html","link":"Tailors/PHPUnit/ClassPropertiesIdenticalToTrait.html#method_assertThat","name":"Tailors\\PHPUnit\\ClassPropertiesIdenticalToTrait::assertThat","doc":"Evaluates a \\PHPUnit\\Framework\\Constraint\\Constraint matcher object."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\ClassPropertiesIdenticalToTrait","fromLink":"Tailors/PHPUnit/ClassPropertiesIdenticalToTrait.html","link":"Tailors/PHPUnit/ClassPropertiesIdenticalToTrait.html#method_assertClassPropertiesIdenticalTo","name":"Tailors\\PHPUnit\\ClassPropertiesIdenticalToTrait::assertClassPropertiesIdenticalTo","doc":"Asserts that selected properties of <em>$class</em> are identical to <em>$expected</em> ones."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\ClassPropertiesIdenticalToTrait","fromLink":"Tailors/PHPUnit/ClassPropertiesIdenticalToTrait.html","link":"Tailors/PHPUnit/ClassPropertiesIdenticalToTrait.html#method_assertNotClassPropertiesIdenticalTo","name":"Tailors\\PHPUnit\\ClassPropertiesIdenticalToTrait::assertNotClassPropertiesIdenticalTo","doc":"Asserts that selected properties of <em>$class</em> are not identical to <em>$expected</em> ones."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\ClassPropertiesIdenticalToTrait","fromLink":"Tailors/PHPUnit/ClassPropertiesIdenticalToTrait.html","link":"Tailors/PHPUnit/ClassPropertiesIdenticalToTrait.html#method_classPropertiesIdenticalTo","name":"Tailors\\PHPUnit\\ClassPropertiesIdenticalToTrait::classPropertiesIdenticalTo","doc":"Compares selected properties of <em>$class</em> with <em>$expected</em> ones."},
-            
-                                                {"type":"Trait","fromName":"Tailors\\PHPUnit\\Common","fromLink":"Tailors/PHPUnit/Common.html","link":"Tailors/PHPUnit/Common/ShortFailureDescriptionTrait.html","name":"Tailors\\PHPUnit\\Common\\ShortFailureDescriptionTrait","doc":""},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Common\\ShortFailureDescriptionTrait","fromLink":"Tailors/PHPUnit/Common/ShortFailureDescriptionTrait.html","link":"Tailors/PHPUnit/Common/ShortFailureDescriptionTrait.html#method_toString","name":"Tailors\\PHPUnit\\Common\\ShortFailureDescriptionTrait::toString","doc":"Returns a string representation of the constraint."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Common\\ShortFailureDescriptionTrait","fromLink":"Tailors/PHPUnit/Common/ShortFailureDescriptionTrait.html","link":"Tailors/PHPUnit/Common/ShortFailureDescriptionTrait.html#method_failureDescription","name":"Tailors\\PHPUnit\\Common\\ShortFailureDescriptionTrait::failureDescription","doc":"Returns the description of the failure."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Common\\ShortFailureDescriptionTrait","fromLink":"Tailors/PHPUnit/Common/ShortFailureDescriptionTrait.html","link":"Tailors/PHPUnit/Common/ShortFailureDescriptionTrait.html#method_failureDescriptionInContext","name":"Tailors\\PHPUnit\\Common\\ShortFailureDescriptionTrait::failureDescriptionInContext","doc":"Returns the description of the failure when this constraint appears in\ncontext of an $operator expression."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Common\\ShortFailureDescriptionTrait","fromLink":"Tailors/PHPUnit/Common/ShortFailureDescriptionTrait.html","link":"Tailors/PHPUnit/Common/ShortFailureDescriptionTrait.html#method_toStringInContext","name":"Tailors\\PHPUnit\\Common\\ShortFailureDescriptionTrait::toStringInContext","doc":"Returns a custom string representation of the constraint object when it\nappears in context of an $operator expression."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Common\\ShortFailureDescriptionTrait","fromLink":"Tailors/PHPUnit/Common/ShortFailureDescriptionTrait.html","link":"Tailors/PHPUnit/Common/ShortFailureDescriptionTrait.html#method_exporter","name":"Tailors\\PHPUnit\\Common\\ShortFailureDescriptionTrait::exporter","doc":null},
-            
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit\\Comparator","fromLink":"Tailors/PHPUnit/Comparator.html","link":"Tailors/PHPUnit/Comparator/ComparatorInterface.html","name":"Tailors\\PHPUnit\\Comparator\\ComparatorInterface","doc":""},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Comparator\\ComparatorInterface","fromLink":"Tailors/PHPUnit/Comparator/ComparatorInterface.html","link":"Tailors/PHPUnit/Comparator/ComparatorInterface.html#method_compare","name":"Tailors\\PHPUnit\\Comparator\\ComparatorInterface::compare","doc":"Compares two values."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Comparator\\ComparatorInterface","fromLink":"Tailors/PHPUnit/Comparator/ComparatorInterface.html","link":"Tailors/PHPUnit/Comparator/ComparatorInterface.html#method_adjective","name":"Tailors\\PHPUnit\\Comparator\\ComparatorInterface::adjective","doc":"Returns an adjective that identifies this comparison operator."},
-            
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit\\Comparator","fromLink":"Tailors/PHPUnit/Comparator.html","link":"Tailors/PHPUnit/Comparator/ComparatorWrapperInterface.html","name":"Tailors\\PHPUnit\\Comparator\\ComparatorWrapperInterface","doc":""},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Comparator\\ComparatorWrapperInterface","fromLink":"Tailors/PHPUnit/Comparator/ComparatorWrapperInterface.html","link":"Tailors/PHPUnit/Comparator/ComparatorWrapperInterface.html#method_getComparator","name":"Tailors\\PHPUnit\\Comparator\\ComparatorWrapperInterface::getComparator","doc":"Returns an instance of ComparatorInterface."},
-            
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit\\Comparator","fromLink":"Tailors/PHPUnit/Comparator.html","link":"Tailors/PHPUnit/Comparator/EqualityComparator.html","name":"Tailors\\PHPUnit\\Comparator\\EqualityComparator","doc":""},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Comparator\\EqualityComparator","fromLink":"Tailors/PHPUnit/Comparator/EqualityComparator.html","link":"Tailors/PHPUnit/Comparator/EqualityComparator.html#method_compare","name":"Tailors\\PHPUnit\\Comparator\\EqualityComparator::compare","doc":""},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Comparator\\EqualityComparator","fromLink":"Tailors/PHPUnit/Comparator/EqualityComparator.html","link":"Tailors/PHPUnit/Comparator/EqualityComparator.html#method_adjective","name":"Tailors\\PHPUnit\\Comparator\\EqualityComparator::adjective","doc":"Returns an adjective that identifies this comparison operator."},
-            
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit\\Comparator","fromLink":"Tailors/PHPUnit/Comparator.html","link":"Tailors/PHPUnit/Comparator/IdentityComparator.html","name":"Tailors\\PHPUnit\\Comparator\\IdentityComparator","doc":""},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Comparator\\IdentityComparator","fromLink":"Tailors/PHPUnit/Comparator/IdentityComparator.html","link":"Tailors/PHPUnit/Comparator/IdentityComparator.html#method_compare","name":"Tailors\\PHPUnit\\Comparator\\IdentityComparator::compare","doc":""},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Comparator\\IdentityComparator","fromLink":"Tailors/PHPUnit/Comparator/IdentityComparator.html","link":"Tailors/PHPUnit/Comparator/IdentityComparator.html#method_adjective","name":"Tailors\\PHPUnit\\Comparator\\IdentityComparator::adjective","doc":"Returns an adjective that identifies this comparison operator."},
-            
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit\\Constraint","fromLink":"Tailors/PHPUnit/Constraint.html","link":"Tailors/PHPUnit/Constraint/ArrayValuesEqualTo.html","name":"Tailors\\PHPUnit\\Constraint\\ArrayValuesEqualTo","doc":"Constraint that accepts arrays having values equal to specified ones."},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Constraint\\ArrayValuesEqualTo","fromLink":"Tailors/PHPUnit/Constraint/ArrayValuesEqualTo.html","link":"Tailors/PHPUnit/Constraint/ArrayValuesEqualTo.html#method_makeComparator","name":"Tailors\\PHPUnit\\Constraint\\ArrayValuesEqualTo::makeComparator","doc":"Creates instance of EqualityComparator."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Constraint\\ArrayValuesEqualTo","fromLink":"Tailors/PHPUnit/Constraint/ArrayValuesEqualTo.html","link":"Tailors/PHPUnit/Constraint/ArrayValuesEqualTo.html#method_makeSelector","name":"Tailors\\PHPUnit\\Constraint\\ArrayValuesEqualTo::makeSelector","doc":"Creates instance of ArrayValueSelector."},
-            
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit\\Constraint","fromLink":"Tailors/PHPUnit/Constraint.html","link":"Tailors/PHPUnit/Constraint/ArrayValuesIdenticalTo.html","name":"Tailors\\PHPUnit\\Constraint\\ArrayValuesIdenticalTo","doc":"Constraint that accepts arrays having values equal to specified ones."},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Constraint\\ArrayValuesIdenticalTo","fromLink":"Tailors/PHPUnit/Constraint/ArrayValuesIdenticalTo.html","link":"Tailors/PHPUnit/Constraint/ArrayValuesIdenticalTo.html#method_makeComparator","name":"Tailors\\PHPUnit\\Constraint\\ArrayValuesIdenticalTo::makeComparator","doc":"Creates instance of IdentityComparator."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Constraint\\ArrayValuesIdenticalTo","fromLink":"Tailors/PHPUnit/Constraint/ArrayValuesIdenticalTo.html","link":"Tailors/PHPUnit/Constraint/ArrayValuesIdenticalTo.html#method_makeSelector","name":"Tailors\\PHPUnit\\Constraint\\ArrayValuesIdenticalTo::makeSelector","doc":"Creates instance of ArrayValueSelector."},
-            
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit\\Constraint","fromLink":"Tailors/PHPUnit/Constraint.html","link":"Tailors/PHPUnit/Constraint/ClassPropertiesEqualTo.html","name":"Tailors\\PHPUnit\\Constraint\\ClassPropertiesEqualTo","doc":"Constraint that accepts classes having properties equal to specified ones."},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Constraint\\ClassPropertiesEqualTo","fromLink":"Tailors/PHPUnit/Constraint/ClassPropertiesEqualTo.html","link":"Tailors/PHPUnit/Constraint/ClassPropertiesEqualTo.html#method_makeComparator","name":"Tailors\\PHPUnit\\Constraint\\ClassPropertiesEqualTo::makeComparator","doc":"Creates instance of EqualityComparator."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Constraint\\ClassPropertiesEqualTo","fromLink":"Tailors/PHPUnit/Constraint/ClassPropertiesEqualTo.html","link":"Tailors/PHPUnit/Constraint/ClassPropertiesEqualTo.html#method_makeSelector","name":"Tailors\\PHPUnit\\Constraint\\ClassPropertiesEqualTo::makeSelector","doc":"Creates instance of ClassPropertySelector."},
-            
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit\\Constraint","fromLink":"Tailors/PHPUnit/Constraint.html","link":"Tailors/PHPUnit/Constraint/ClassPropertiesIdenticalTo.html","name":"Tailors\\PHPUnit\\Constraint\\ClassPropertiesIdenticalTo","doc":"Constraint that accepts classes having properties identical to specified ones."},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Constraint\\ClassPropertiesIdenticalTo","fromLink":"Tailors/PHPUnit/Constraint/ClassPropertiesIdenticalTo.html","link":"Tailors/PHPUnit/Constraint/ClassPropertiesIdenticalTo.html#method_makeComparator","name":"Tailors\\PHPUnit\\Constraint\\ClassPropertiesIdenticalTo::makeComparator","doc":"Creates instance of IdentityComparator."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Constraint\\ClassPropertiesIdenticalTo","fromLink":"Tailors/PHPUnit/Constraint/ClassPropertiesIdenticalTo.html","link":"Tailors/PHPUnit/Constraint/ClassPropertiesIdenticalTo.html#method_makeSelector","name":"Tailors\\PHPUnit\\Constraint\\ClassPropertiesIdenticalTo::makeSelector","doc":"Creates instance of ClassPropertySelector."},
-            
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit\\Constraint","fromLink":"Tailors/PHPUnit/Constraint.html","link":"Tailors/PHPUnit/Constraint/ExtendsClass.html","name":"Tailors\\PHPUnit\\Constraint\\ExtendsClass","doc":"Constraint that accepts classes that extend given class."},
-                
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit\\Constraint","fromLink":"Tailors/PHPUnit/Constraint.html","link":"Tailors/PHPUnit/Constraint/HasPregCaptures.html","name":"Tailors\\PHPUnit\\Constraint\\HasPregCaptures","doc":"Constraint that accepts arrays of matches returned from <code>preg_match()</code>\nhaving capture groups as specified in the array of expectations."},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Constraint\\HasPregCaptures","fromLink":"Tailors/PHPUnit/Constraint/HasPregCaptures.html","link":"Tailors/PHPUnit/Constraint/HasPregCaptures.html#method_create","name":"Tailors\\PHPUnit\\Constraint\\HasPregCaptures::create","doc":"Initializes the constraint."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Constraint\\HasPregCaptures","fromLink":"Tailors/PHPUnit/Constraint/HasPregCaptures.html","link":"Tailors/PHPUnit/Constraint/HasPregCaptures.html#method_toString","name":"Tailors\\PHPUnit\\Constraint\\HasPregCaptures::toString","doc":"Returns a string representation of the constraint."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Constraint\\HasPregCaptures","fromLink":"Tailors/PHPUnit/Constraint/HasPregCaptures.html","link":"Tailors/PHPUnit/Constraint/HasPregCaptures.html#method_evaluate","name":"Tailors\\PHPUnit\\Constraint\\HasPregCaptures::evaluate","doc":"Evaluates the constraint for parameter $other."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Constraint\\HasPregCaptures","fromLink":"Tailors/PHPUnit/Constraint/HasPregCaptures.html","link":"Tailors/PHPUnit/Constraint/HasPregCaptures.html#method_matches","name":"Tailors\\PHPUnit\\Constraint\\HasPregCaptures::matches","doc":"Evaluates the constraint for parameter $other. Returns true if the\nconstraint is met, false otherwise."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Constraint\\HasPregCaptures","fromLink":"Tailors/PHPUnit/Constraint/HasPregCaptures.html","link":"Tailors/PHPUnit/Constraint/HasPregCaptures.html#method_failureDescription","name":"Tailors\\PHPUnit\\Constraint\\HasPregCaptures::failureDescription","doc":"Returns the description of the failure."},
-            
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit\\Constraint","fromLink":"Tailors/PHPUnit/Constraint.html","link":"Tailors/PHPUnit/Constraint/ImplementsInterface.html","name":"Tailors\\PHPUnit\\Constraint\\ImplementsInterface","doc":"Constraint that accepts classes that implement given interface."},
-                
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit\\Constraint","fromLink":"Tailors/PHPUnit/Constraint.html","link":"Tailors/PHPUnit/Constraint/KsortedArrayEqualTo.html","name":"Tailors\\PHPUnit\\Constraint\\KsortedArrayEqualTo","doc":"Constraint that accepts arrays equal to specified one when key-sorted."},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Constraint\\KsortedArrayEqualTo","fromLink":"Tailors/PHPUnit/Constraint/KsortedArrayEqualTo.html","link":"Tailors/PHPUnit/Constraint/KsortedArrayEqualTo.html#method_create","name":"Tailors\\PHPUnit\\Constraint\\KsortedArrayEqualTo::create","doc":null},
-            
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit\\Constraint","fromLink":"Tailors/PHPUnit/Constraint.html","link":"Tailors/PHPUnit/Constraint/KsortedArrayIdenticalTo.html","name":"Tailors\\PHPUnit\\Constraint\\KsortedArrayIdenticalTo","doc":"Constraint that accepts arrays identical to specified one when key-sorted."},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Constraint\\KsortedArrayIdenticalTo","fromLink":"Tailors/PHPUnit/Constraint/KsortedArrayIdenticalTo.html","link":"Tailors/PHPUnit/Constraint/KsortedArrayIdenticalTo.html#method_create","name":"Tailors\\PHPUnit\\Constraint\\KsortedArrayIdenticalTo::create","doc":null},
-            
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit\\Constraint","fromLink":"Tailors/PHPUnit/Constraint.html","link":"Tailors/PHPUnit/Constraint/ObjectPropertiesEqualTo.html","name":"Tailors\\PHPUnit\\Constraint\\ObjectPropertiesEqualTo","doc":"Constraint that accepts objects having properties equal to specified ones."},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Constraint\\ObjectPropertiesEqualTo","fromLink":"Tailors/PHPUnit/Constraint/ObjectPropertiesEqualTo.html","link":"Tailors/PHPUnit/Constraint/ObjectPropertiesEqualTo.html#method_makeComparator","name":"Tailors\\PHPUnit\\Constraint\\ObjectPropertiesEqualTo::makeComparator","doc":"Creates instance of EqualityComparator."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Constraint\\ObjectPropertiesEqualTo","fromLink":"Tailors/PHPUnit/Constraint/ObjectPropertiesEqualTo.html","link":"Tailors/PHPUnit/Constraint/ObjectPropertiesEqualTo.html#method_makeSelector","name":"Tailors\\PHPUnit\\Constraint\\ObjectPropertiesEqualTo::makeSelector","doc":"Creates instance of ObjectPropertySelector."},
-            
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit\\Constraint","fromLink":"Tailors/PHPUnit/Constraint.html","link":"Tailors/PHPUnit/Constraint/ObjectPropertiesIdenticalTo.html","name":"Tailors\\PHPUnit\\Constraint\\ObjectPropertiesIdenticalTo","doc":"Constraint that accepts objects having properties identical to specified ones."},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Constraint\\ObjectPropertiesIdenticalTo","fromLink":"Tailors/PHPUnit/Constraint/ObjectPropertiesIdenticalTo.html","link":"Tailors/PHPUnit/Constraint/ObjectPropertiesIdenticalTo.html#method_makeComparator","name":"Tailors\\PHPUnit\\Constraint\\ObjectPropertiesIdenticalTo::makeComparator","doc":"Creates instance of IdentityComparator."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Constraint\\ObjectPropertiesIdenticalTo","fromLink":"Tailors/PHPUnit/Constraint/ObjectPropertiesIdenticalTo.html","link":"Tailors/PHPUnit/Constraint/ObjectPropertiesIdenticalTo.html#method_makeSelector","name":"Tailors\\PHPUnit\\Constraint\\ObjectPropertiesIdenticalTo::makeSelector","doc":"Creates instance of ObjectPropertySelector."},
-            
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit\\Constraint","fromLink":"Tailors/PHPUnit/Constraint.html","link":"Tailors/PHPUnit/Constraint/TestCase.html","name":"Tailors\\PHPUnit\\Constraint\\TestCase","doc":""},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Constraint\\TestCase","fromLink":"Tailors/PHPUnit/Constraint/TestCase.html","link":"Tailors/PHPUnit/Constraint/TestCase.html#method_createConstraint","name":"Tailors\\PHPUnit\\Constraint\\TestCase::createConstraint","doc":""},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Constraint\\TestCase","fromLink":"Tailors/PHPUnit/Constraint/TestCase.html","link":"Tailors/PHPUnit/Constraint/TestCase.html#method_getConstraintClass","name":"Tailors\\PHPUnit\\Constraint\\TestCase::getConstraintClass","doc":"Returns constraint's class name."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Constraint\\TestCase","fromLink":"Tailors/PHPUnit/Constraint/TestCase.html","link":"Tailors/PHPUnit/Constraint/TestCase.html#method_examineCreateConstraint","name":"Tailors\\PHPUnit\\Constraint\\TestCase::examineCreateConstraint","doc":""},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Constraint\\TestCase","fromLink":"Tailors/PHPUnit/Constraint/TestCase.html","link":"Tailors/PHPUnit/Constraint/TestCase.html#method_examineConstraintUnaryOperatorFailure","name":"Tailors\\PHPUnit\\Constraint\\TestCase::examineConstraintUnaryOperatorFailure","doc":"Tests whether the constraint throws expected exception with expected\nmessage when wrapped with an unary operator."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Constraint\\TestCase","fromLink":"Tailors/PHPUnit/Constraint/TestCase.html","link":"Tailors/PHPUnit/Constraint/TestCase.html#method_examineConstraintMatchSucceeds","name":"Tailors\\PHPUnit\\Constraint\\TestCase::examineConstraintMatchSucceeds","doc":""},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Constraint\\TestCase","fromLink":"Tailors/PHPUnit/Constraint/TestCase.html","link":"Tailors/PHPUnit/Constraint/TestCase.html#method_examineConstraintMatchFails","name":"Tailors\\PHPUnit\\Constraint\\TestCase::examineConstraintMatchFails","doc":""},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Constraint\\TestCase","fromLink":"Tailors/PHPUnit/Constraint/TestCase.html","link":"Tailors/PHPUnit/Constraint/TestCase.html#method_examineNotConstraintMatchSucceeds","name":"Tailors\\PHPUnit\\Constraint\\TestCase::examineNotConstraintMatchSucceeds","doc":""},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Constraint\\TestCase","fromLink":"Tailors/PHPUnit/Constraint/TestCase.html","link":"Tailors/PHPUnit/Constraint/TestCase.html#method_examineNotConstraintMatchFails","name":"Tailors\\PHPUnit\\Constraint\\TestCase::examineNotConstraintMatchFails","doc":""},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Constraint\\TestCase","fromLink":"Tailors/PHPUnit/Constraint/TestCase.html","link":"Tailors/PHPUnit/Constraint/TestCase.html#method_wrapWithUnaryOperator","name":"Tailors\\PHPUnit\\Constraint\\TestCase::wrapWithUnaryOperator","doc":"Returns $constraint wrapped with UnaryOperator mock."},
-            
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit\\Constraint","fromLink":"Tailors/PHPUnit/Constraint.html","link":"Tailors/PHPUnit/Constraint/UsesTrait.html","name":"Tailors\\PHPUnit\\Constraint\\UsesTrait","doc":"Constraint that accepts classes that extend given class."},
-                
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit","fromLink":"Tailors/PHPUnit.html","link":"Tailors/PHPUnit/ExceptionInterface.html","name":"Tailors\\PHPUnit\\ExceptionInterface","doc":""},
-                
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit\\Exporter","fromLink":"Tailors/PHPUnit/Exporter.html","link":"Tailors/PHPUnit/Exporter/Exporter.html","name":"Tailors\\PHPUnit\\Exporter\\Exporter","doc":"An exporter that handles ValuesInterface in a special way."},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Exporter\\Exporter","fromLink":"Tailors/PHPUnit/Exporter/Exporter.html","link":"Tailors/PHPUnit/Exporter/Exporter.html#method_recursiveExport","name":"Tailors\\PHPUnit\\Exporter\\Exporter::recursiveExport","doc":"Recursive implementation of export."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Exporter\\Exporter","fromLink":"Tailors/PHPUnit/Exporter/Exporter.html","link":"Tailors/PHPUnit/Exporter/Exporter.html#method_shortenedExport","name":"Tailors\\PHPUnit\\Exporter\\Exporter::shortenedExport","doc":"Exports a value into a single-line string."},
-            
-                                                {"type":"Trait","fromName":"Tailors\\PHPUnit","fromLink":"Tailors/PHPUnit.html","link":"Tailors/PHPUnit/ExtendsClassTrait.html","name":"Tailors\\PHPUnit\\ExtendsClassTrait","doc":null},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\ExtendsClassTrait","fromLink":"Tailors/PHPUnit/ExtendsClassTrait.html","link":"Tailors/PHPUnit/ExtendsClassTrait.html#method_assertThat","name":"Tailors\\PHPUnit\\ExtendsClassTrait::assertThat","doc":"Evaluates a \\PHPUnit\\Framework\\Constraint\\Constraint matcher object."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\ExtendsClassTrait","fromLink":"Tailors/PHPUnit/ExtendsClassTrait.html","link":"Tailors/PHPUnit/ExtendsClassTrait.html#method_assertExtendsClass","name":"Tailors\\PHPUnit\\ExtendsClassTrait::assertExtendsClass","doc":"Asserts that <em>$subject</em> extends the class <em>$parent</em>."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\ExtendsClassTrait","fromLink":"Tailors/PHPUnit/ExtendsClassTrait.html","link":"Tailors/PHPUnit/ExtendsClassTrait.html#method_assertNotExtendsClass","name":"Tailors\\PHPUnit\\ExtendsClassTrait::assertNotExtendsClass","doc":"Asserts that <em>$subject</em> does not extend the class <em>$parent</em>."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\ExtendsClassTrait","fromLink":"Tailors/PHPUnit/ExtendsClassTrait.html","link":"Tailors/PHPUnit/ExtendsClassTrait.html#method_extendsClass","name":"Tailors\\PHPUnit\\ExtendsClassTrait::extendsClass","doc":"Checks objects (an classes) that they extend <em>$parent</em> class."},
-            
-                                                {"type":"Trait","fromName":"Tailors\\PHPUnit","fromLink":"Tailors/PHPUnit.html","link":"Tailors/PHPUnit/HasPregCapturesTrait.html","name":"Tailors\\PHPUnit\\HasPregCapturesTrait","doc":null},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\HasPregCapturesTrait","fromLink":"Tailors/PHPUnit/HasPregCapturesTrait.html","link":"Tailors/PHPUnit/HasPregCapturesTrait.html#method_assertThat","name":"Tailors\\PHPUnit\\HasPregCapturesTrait::assertThat","doc":"Evaluates a \\PHPUnit\\Framework\\Constraint\\Constraint matcher object."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\HasPregCapturesTrait","fromLink":"Tailors/PHPUnit/HasPregCapturesTrait.html","link":"Tailors/PHPUnit/HasPregCapturesTrait.html#method_assertHasPregCaptures","name":"Tailors\\PHPUnit\\HasPregCapturesTrait::assertHasPregCaptures","doc":"Asserts that an array of <em>$matches</em> returned from <code>preg_match()</code> has\ncapture groups as specified in <em>$expected</em>."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\HasPregCapturesTrait","fromLink":"Tailors/PHPUnit/HasPregCapturesTrait.html","link":"Tailors/PHPUnit/HasPregCapturesTrait.html#method_assertNotHasPregCaptures","name":"Tailors\\PHPUnit\\HasPregCapturesTrait::assertNotHasPregCaptures","doc":"Negated assertHasPregCaptures()."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\HasPregCapturesTrait","fromLink":"Tailors/PHPUnit/HasPregCapturesTrait.html","link":"Tailors/PHPUnit/HasPregCapturesTrait.html#method_hasPregCaptures","name":"Tailors\\PHPUnit\\HasPregCapturesTrait::hasPregCaptures","doc":"Accepts arrays of matches returned from <code>preg_match()</code> having capture\ngroups as specified in <em>$excpected</em>."},
-            
-                                                {"type":"Trait","fromName":"Tailors\\PHPUnit","fromLink":"Tailors/PHPUnit.html","link":"Tailors/PHPUnit/ImplementsInterfaceTrait.html","name":"Tailors\\PHPUnit\\ImplementsInterfaceTrait","doc":null},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\ImplementsInterfaceTrait","fromLink":"Tailors/PHPUnit/ImplementsInterfaceTrait.html","link":"Tailors/PHPUnit/ImplementsInterfaceTrait.html#method_assertThat","name":"Tailors\\PHPUnit\\ImplementsInterfaceTrait::assertThat","doc":"Evaluates a \\PHPUnit\\Framework\\Constraint\\Constraint matcher object."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\ImplementsInterfaceTrait","fromLink":"Tailors/PHPUnit/ImplementsInterfaceTrait.html","link":"Tailors/PHPUnit/ImplementsInterfaceTrait.html#method_assertImplementsInterface","name":"Tailors\\PHPUnit\\ImplementsInterfaceTrait::assertImplementsInterface","doc":"Asserts that <em>$subject</em> implements <em>$interface</em>."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\ImplementsInterfaceTrait","fromLink":"Tailors/PHPUnit/ImplementsInterfaceTrait.html","link":"Tailors/PHPUnit/ImplementsInterfaceTrait.html#method_assertNotImplementsInterface","name":"Tailors\\PHPUnit\\ImplementsInterfaceTrait::assertNotImplementsInterface","doc":"Asserts that <em>$subject</em> does not implement <em>$interface</em>."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\ImplementsInterfaceTrait","fromLink":"Tailors/PHPUnit/ImplementsInterfaceTrait.html","link":"Tailors/PHPUnit/ImplementsInterfaceTrait.html#method_implementsInterface","name":"Tailors\\PHPUnit\\ImplementsInterfaceTrait::implementsInterface","doc":"Checks classes that they implement <em>$interface</em>."},
-            
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit\\Inheritance","fromLink":"Tailors/PHPUnit/Inheritance.html","link":"Tailors/PHPUnit/Inheritance/AbstractConstraint.html","name":"Tailors\\PHPUnit\\Inheritance\\AbstractConstraint","doc":"Abstract base class for inheritance constraints (ExtendsClass,\nImplementsInterface, UsesTrait, etc.)."},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Inheritance\\AbstractConstraint","fromLink":"Tailors/PHPUnit/Inheritance/AbstractConstraint.html","link":"Tailors/PHPUnit/Inheritance/AbstractConstraint.html#method___construct","name":"Tailors\\PHPUnit\\Inheritance\\AbstractConstraint::__construct","doc":"Initializes the constraint."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Inheritance\\AbstractConstraint","fromLink":"Tailors/PHPUnit/Inheritance/AbstractConstraint.html","link":"Tailors/PHPUnit/Inheritance/AbstractConstraint.html#method_toString","name":"Tailors\\PHPUnit\\Inheritance\\AbstractConstraint::toString","doc":"Returns a string representation of the constraint."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Inheritance\\AbstractConstraint","fromLink":"Tailors/PHPUnit/Inheritance/AbstractConstraint.html","link":"Tailors/PHPUnit/Inheritance/AbstractConstraint.html#method_matches","name":"Tailors\\PHPUnit\\Inheritance\\AbstractConstraint::matches","doc":"Evaluates the constraint for parameter $other. Returns true if the\nconstraint is met, false otherwise."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Inheritance\\AbstractConstraint","fromLink":"Tailors/PHPUnit/Inheritance/AbstractConstraint.html","link":"Tailors/PHPUnit/Inheritance/AbstractConstraint.html#method_failureDescription","name":"Tailors\\PHPUnit\\Inheritance\\AbstractConstraint::failureDescription","doc":"Returns the description of the failure."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Inheritance\\AbstractConstraint","fromLink":"Tailors/PHPUnit/Inheritance/AbstractConstraint.html","link":"Tailors/PHPUnit/Inheritance/AbstractConstraint.html#method_verb","name":"Tailors\\PHPUnit\\Inheritance\\AbstractConstraint::verb","doc":"Returns short description of what we examine, e.g. <code>'impements interface'</code>."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Inheritance\\AbstractConstraint","fromLink":"Tailors/PHPUnit/Inheritance/AbstractConstraint.html","link":"Tailors/PHPUnit/Inheritance/AbstractConstraint.html#method_negatedVerb","name":"Tailors\\PHPUnit\\Inheritance\\AbstractConstraint::negatedVerb","doc":"Returns short negated description of what we examine, e.g. <code>'does not impement interface'</code>."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Inheritance\\AbstractConstraint","fromLink":"Tailors/PHPUnit/Inheritance/AbstractConstraint.html","link":"Tailors/PHPUnit/Inheritance/AbstractConstraint.html#method_inheritance","name":"Tailors\\PHPUnit\\Inheritance\\AbstractConstraint::inheritance","doc":"Returns an array of \"inherited classes\" -- eiher interfaces <em>$class</em>\nimplements, parent classes it extends or traits it uses, depending on\nthe actual implementation of this constraint."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Inheritance\\AbstractConstraint","fromLink":"Tailors/PHPUnit/Inheritance/AbstractConstraint.html","link":"Tailors/PHPUnit/Inheritance/AbstractConstraint.html#method_supports","name":"Tailors\\PHPUnit\\Inheritance\\AbstractConstraint::supports","doc":"Checks if <em>$subject</em> may be used as an argument to <code>inheritance()</code>."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Inheritance\\AbstractConstraint","fromLink":"Tailors/PHPUnit/Inheritance/AbstractConstraint.html","link":"Tailors/PHPUnit/Inheritance/AbstractConstraint.html#method_toStringInContext","name":"Tailors\\PHPUnit\\Inheritance\\AbstractConstraint::toStringInContext","doc":"Returns a custom string representation of the constraint object when it\nappears in context of an $operator expression."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Inheritance\\AbstractConstraint","fromLink":"Tailors/PHPUnit/Inheritance/AbstractConstraint.html","link":"Tailors/PHPUnit/Inheritance/AbstractConstraint.html#method_failureDescriptionInContext","name":"Tailors\\PHPUnit\\Inheritance\\AbstractConstraint::failureDescriptionInContext","doc":"Returns the description of the failure when this constraint appears in\ncontext of an $operator expression."},
-            
-                                                {"type":"Trait","fromName":"Tailors\\PHPUnit\\Inheritance","fromLink":"Tailors/PHPUnit/Inheritance.html","link":"Tailors/PHPUnit/Inheritance/ConstraintImplementationTrait.html","name":"Tailors\\PHPUnit\\Inheritance\\ConstraintImplementationTrait","doc":"Implementation of an inheritance constraint class."},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Inheritance\\ConstraintImplementationTrait","fromLink":"Tailors/PHPUnit/Inheritance/ConstraintImplementationTrait.html","link":"Tailors/PHPUnit/Inheritance/ConstraintImplementationTrait.html#method_create","name":"Tailors\\PHPUnit\\Inheritance\\ConstraintImplementationTrait::create","doc":""},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Inheritance\\ConstraintImplementationTrait","fromLink":"Tailors/PHPUnit/Inheritance/ConstraintImplementationTrait.html","link":"Tailors/PHPUnit/Inheritance/ConstraintImplementationTrait.html#method_verb","name":"Tailors\\PHPUnit\\Inheritance\\ConstraintImplementationTrait::verb","doc":"Returns short description of what we examine, e.g. <code>'impements interface'</code>."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Inheritance\\ConstraintImplementationTrait","fromLink":"Tailors/PHPUnit/Inheritance/ConstraintImplementationTrait.html","link":"Tailors/PHPUnit/Inheritance/ConstraintImplementationTrait.html#method_negatedVerb","name":"Tailors\\PHPUnit\\Inheritance\\ConstraintImplementationTrait::negatedVerb","doc":"Returns short negated description of what we examine, e.g. <code>'does not impement interface'</code>."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Inheritance\\ConstraintImplementationTrait","fromLink":"Tailors/PHPUnit/Inheritance/ConstraintImplementationTrait.html","link":"Tailors/PHPUnit/Inheritance/ConstraintImplementationTrait.html#method_inheritance","name":"Tailors\\PHPUnit\\Inheritance\\ConstraintImplementationTrait::inheritance","doc":""},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Inheritance\\ConstraintImplementationTrait","fromLink":"Tailors/PHPUnit/Inheritance/ConstraintImplementationTrait.html","link":"Tailors/PHPUnit/Inheritance/ConstraintImplementationTrait.html#method_supports","name":"Tailors\\PHPUnit\\Inheritance\\ConstraintImplementationTrait::supports","doc":"Checks if <em>$subject</em> may be used as an argument to inheritance()."},
-            
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit","fromLink":"Tailors/PHPUnit.html","link":"Tailors/PHPUnit/InvalidArgumentException.html","name":"Tailors\\PHPUnit\\InvalidArgumentException","doc":""},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\InvalidArgumentException","fromLink":"Tailors/PHPUnit/InvalidArgumentException.html","link":"Tailors/PHPUnit/InvalidArgumentException.html#method_fromBackTrace","name":"Tailors\\PHPUnit\\InvalidArgumentException::fromBackTrace","doc":null},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\InvalidArgumentException","fromLink":"Tailors/PHPUnit/InvalidArgumentException.html","link":"Tailors/PHPUnit/InvalidArgumentException.html#method_fromFunction","name":"Tailors\\PHPUnit\\InvalidArgumentException::fromFunction","doc":null},
-            
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit","fromLink":"Tailors/PHPUnit.html","link":"Tailors/PHPUnit/InvalidReturnValueException.html","name":"Tailors\\PHPUnit\\InvalidReturnValueException","doc":""},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\InvalidReturnValueException","fromLink":"Tailors/PHPUnit/InvalidReturnValueException.html","link":"Tailors/PHPUnit/InvalidReturnValueException.html#method_fromExpectedTypeAndActualValue","name":"Tailors\\PHPUnit\\InvalidReturnValueException::fromExpectedTypeAndActualValue","doc":""},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\InvalidReturnValueException","fromLink":"Tailors/PHPUnit/InvalidReturnValueException.html","link":"Tailors/PHPUnit/InvalidReturnValueException.html#method_fromExpectedAndActual","name":"Tailors\\PHPUnit\\InvalidReturnValueException::fromExpectedAndActual","doc":""},
-            
-                                                {"type":"Trait","fromName":"Tailors\\PHPUnit","fromLink":"Tailors/PHPUnit.html","link":"Tailors/PHPUnit/KsortedArrayEqualToTrait.html","name":"Tailors\\PHPUnit\\KsortedArrayEqualToTrait","doc":null},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\KsortedArrayEqualToTrait","fromLink":"Tailors/PHPUnit/KsortedArrayEqualToTrait.html","link":"Tailors/PHPUnit/KsortedArrayEqualToTrait.html#method_assertThat","name":"Tailors\\PHPUnit\\KsortedArrayEqualToTrait::assertThat","doc":"Evaluates a \\PHPUnit\\Framework\\Constraint\\Constraint matcher object."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\KsortedArrayEqualToTrait","fromLink":"Tailors/PHPUnit/KsortedArrayEqualToTrait.html","link":"Tailors/PHPUnit/KsortedArrayEqualToTrait.html#method_assertKsortedArrayEqualTo","name":"Tailors\\PHPUnit\\KsortedArrayEqualToTrait::assertKsortedArrayEqualTo","doc":"Asserts that <em>$actual</em> is an array equal to <em>$expected</em> when key-sorted."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\KsortedArrayEqualToTrait","fromLink":"Tailors/PHPUnit/KsortedArrayEqualToTrait.html","link":"Tailors/PHPUnit/KsortedArrayEqualToTrait.html#method_assertNotKsortedArrayEqualTo","name":"Tailors\\PHPUnit\\KsortedArrayEqualToTrait::assertNotKsortedArrayEqualTo","doc":"Asserts that <em>$actual</em> fails to be an array equal to <em>$expected</em> when key-sorted."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\KsortedArrayEqualToTrait","fromLink":"Tailors/PHPUnit/KsortedArrayEqualToTrait.html","link":"Tailors/PHPUnit/KsortedArrayEqualToTrait.html#method_ksortedArrayEqualTo","name":"Tailors\\PHPUnit\\KsortedArrayEqualToTrait::ksortedArrayEqualTo","doc":"Compares selected <em>$actual</em> with <em>$expected</em> array after key-sorting both sides."},
-            
-                                                {"type":"Trait","fromName":"Tailors\\PHPUnit","fromLink":"Tailors/PHPUnit.html","link":"Tailors/PHPUnit/KsortedArrayIdenticalToTrait.html","name":"Tailors\\PHPUnit\\KsortedArrayIdenticalToTrait","doc":null},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\KsortedArrayIdenticalToTrait","fromLink":"Tailors/PHPUnit/KsortedArrayIdenticalToTrait.html","link":"Tailors/PHPUnit/KsortedArrayIdenticalToTrait.html#method_assertThat","name":"Tailors\\PHPUnit\\KsortedArrayIdenticalToTrait::assertThat","doc":"Evaluates a \\PHPUnit\\Framework\\Constraint\\Constraint matcher object."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\KsortedArrayIdenticalToTrait","fromLink":"Tailors/PHPUnit/KsortedArrayIdenticalToTrait.html","link":"Tailors/PHPUnit/KsortedArrayIdenticalToTrait.html#method_assertKsortedArrayIdenticalTo","name":"Tailors\\PHPUnit\\KsortedArrayIdenticalToTrait::assertKsortedArrayIdenticalTo","doc":"Asserts that <em>$actual</em> is an array identical to <em>$expected</em> when key-sorted."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\KsortedArrayIdenticalToTrait","fromLink":"Tailors/PHPUnit/KsortedArrayIdenticalToTrait.html","link":"Tailors/PHPUnit/KsortedArrayIdenticalToTrait.html#method_assertNotKsortedArrayIdenticalTo","name":"Tailors\\PHPUnit\\KsortedArrayIdenticalToTrait::assertNotKsortedArrayIdenticalTo","doc":"Asserts that <em>$actual</em> fails to be an array identical to <em>$expected</em> when key-sorted."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\KsortedArrayIdenticalToTrait","fromLink":"Tailors/PHPUnit/KsortedArrayIdenticalToTrait.html","link":"Tailors/PHPUnit/KsortedArrayIdenticalToTrait.html#method_ksortedArrayIdenticalTo","name":"Tailors\\PHPUnit\\KsortedArrayIdenticalToTrait::ksortedArrayIdenticalTo","doc":"Compares selected <em>$actual</em> with <em>$expected</em> array after key-sorting both sides."},
-            
-                                                {"type":"Trait","fromName":"Tailors\\PHPUnit","fromLink":"Tailors/PHPUnit.html","link":"Tailors/PHPUnit/ObjectPropertiesEqualToTrait.html","name":"Tailors\\PHPUnit\\ObjectPropertiesEqualToTrait","doc":null},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\ObjectPropertiesEqualToTrait","fromLink":"Tailors/PHPUnit/ObjectPropertiesEqualToTrait.html","link":"Tailors/PHPUnit/ObjectPropertiesEqualToTrait.html#method_assertThat","name":"Tailors\\PHPUnit\\ObjectPropertiesEqualToTrait::assertThat","doc":"Evaluates a \\PHPUnit\\Framework\\Constraint\\Constraint matcher object."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\ObjectPropertiesEqualToTrait","fromLink":"Tailors/PHPUnit/ObjectPropertiesEqualToTrait.html","link":"Tailors/PHPUnit/ObjectPropertiesEqualToTrait.html#method_assertObjectPropertiesEqualTo","name":"Tailors\\PHPUnit\\ObjectPropertiesEqualToTrait::assertObjectPropertiesEqualTo","doc":"Asserts that selected properties of <em>$object</em> are identical to <em>$expected</em> ones."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\ObjectPropertiesEqualToTrait","fromLink":"Tailors/PHPUnit/ObjectPropertiesEqualToTrait.html","link":"Tailors/PHPUnit/ObjectPropertiesEqualToTrait.html#method_assertNotObjectPropertiesEqualTo","name":"Tailors\\PHPUnit\\ObjectPropertiesEqualToTrait::assertNotObjectPropertiesEqualTo","doc":"Asserts that selected properties of <em>$object</em> are not identical to <em>$expected</em> ones."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\ObjectPropertiesEqualToTrait","fromLink":"Tailors/PHPUnit/ObjectPropertiesEqualToTrait.html","link":"Tailors/PHPUnit/ObjectPropertiesEqualToTrait.html#method_objectPropertiesEqualTo","name":"Tailors\\PHPUnit\\ObjectPropertiesEqualToTrait::objectPropertiesEqualTo","doc":"Compares selected properties of <em>$object</em> with <em>$expected</em> ones."},
-            
-                                                {"type":"Trait","fromName":"Tailors\\PHPUnit","fromLink":"Tailors/PHPUnit.html","link":"Tailors/PHPUnit/ObjectPropertiesIdenticalToTrait.html","name":"Tailors\\PHPUnit\\ObjectPropertiesIdenticalToTrait","doc":null},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\ObjectPropertiesIdenticalToTrait","fromLink":"Tailors/PHPUnit/ObjectPropertiesIdenticalToTrait.html","link":"Tailors/PHPUnit/ObjectPropertiesIdenticalToTrait.html#method_assertThat","name":"Tailors\\PHPUnit\\ObjectPropertiesIdenticalToTrait::assertThat","doc":"Evaluates a \\PHPUnit\\Framework\\Constraint\\Constraint matcher object."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\ObjectPropertiesIdenticalToTrait","fromLink":"Tailors/PHPUnit/ObjectPropertiesIdenticalToTrait.html","link":"Tailors/PHPUnit/ObjectPropertiesIdenticalToTrait.html#method_assertObjectPropertiesIdenticalTo","name":"Tailors\\PHPUnit\\ObjectPropertiesIdenticalToTrait::assertObjectPropertiesIdenticalTo","doc":"Asserts that selected properties of <em>$object</em> are identical to <em>$expected</em> ones."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\ObjectPropertiesIdenticalToTrait","fromLink":"Tailors/PHPUnit/ObjectPropertiesIdenticalToTrait.html","link":"Tailors/PHPUnit/ObjectPropertiesIdenticalToTrait.html#method_assertNotObjectPropertiesIdenticalTo","name":"Tailors\\PHPUnit\\ObjectPropertiesIdenticalToTrait::assertNotObjectPropertiesIdenticalTo","doc":"Asserts that selected properties of <em>$object</em> are not identical to <em>$expected</em> ones."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\ObjectPropertiesIdenticalToTrait","fromLink":"Tailors/PHPUnit/ObjectPropertiesIdenticalToTrait.html","link":"Tailors/PHPUnit/ObjectPropertiesIdenticalToTrait.html#method_objectPropertiesIdenticalTo","name":"Tailors\\PHPUnit\\ObjectPropertiesIdenticalToTrait::objectPropertiesIdenticalTo","doc":"Compares selected properties of <em>$object</em> with <em>$expected</em> ones."},
-            
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit\\Preg","fromLink":"Tailors/PHPUnit/Preg.html","link":"Tailors/PHPUnit/Preg/CapturesFilter.html","name":"Tailors\\PHPUnit\\Preg\\CapturesFilter","doc":""},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Preg\\CapturesFilter","fromLink":"Tailors/PHPUnit/Preg/CapturesFilter.html","link":"Tailors/PHPUnit/Preg/CapturesFilter.html#method___construct","name":"Tailors\\PHPUnit\\Preg\\CapturesFilter::__construct","doc":""},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Preg\\CapturesFilter","fromLink":"Tailors/PHPUnit/Preg/CapturesFilter.html","link":"Tailors/PHPUnit/Preg/CapturesFilter.html#method_filter","name":"Tailors\\PHPUnit\\Preg\\CapturesFilter::filter","doc":"Filter-out all elements of $array with $this->accepts()."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Preg\\CapturesFilter","fromLink":"Tailors/PHPUnit/Preg/CapturesFilter.html","link":"Tailors/PHPUnit/Preg/CapturesFilter.html#method_accepts","name":"Tailors\\PHPUnit\\Preg\\CapturesFilter::accepts","doc":"Returns true if $value may be a capture group returned by preg_match()."},
-            
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit\\Preg","fromLink":"Tailors/PHPUnit/Preg.html","link":"Tailors/PHPUnit/Preg/CapturesFilterInterface.html","name":"Tailors\\PHPUnit\\Preg\\CapturesFilterInterface","doc":""},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Preg\\CapturesFilterInterface","fromLink":"Tailors/PHPUnit/Preg/CapturesFilterInterface.html","link":"Tailors/PHPUnit/Preg/CapturesFilterInterface.html#method_filter","name":"Tailors\\PHPUnit\\Preg\\CapturesFilterInterface::filter","doc":"Filter-out all elements of $array with $this->accepts()."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Preg\\CapturesFilterInterface","fromLink":"Tailors/PHPUnit/Preg/CapturesFilterInterface.html","link":"Tailors/PHPUnit/Preg/CapturesFilterInterface.html#method_accepts","name":"Tailors\\PHPUnit\\Preg\\CapturesFilterInterface::accepts","doc":"Returns true if $value is a capture group returned by preg_match()."},
-            
-                                                {"type":"Trait","fromName":"Tailors\\PHPUnit\\Properties","fromLink":"Tailors/PHPUnit/Properties.html","link":"Tailors/PHPUnit/Properties/ValidateExpectationsTrait.html","name":"Tailors\\PHPUnit\\Properties\\ValidateExpectationsTrait","doc":""},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Properties\\ValidateExpectationsTrait","fromLink":"Tailors/PHPUnit/Properties/ValidateExpectationsTrait.html","link":"Tailors/PHPUnit/Properties/ValidateExpectationsTrait.html#method_validateExpectations","name":"Tailors\\PHPUnit\\Properties\\ValidateExpectationsTrait::validateExpectations","doc":""},
-            
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit","fromLink":"Tailors/PHPUnit.html","link":"Tailors/PHPUnit/StringArgumentValidator.html","name":"Tailors\\PHPUnit\\StringArgumentValidator","doc":""},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\StringArgumentValidator","fromLink":"Tailors/PHPUnit/StringArgumentValidator.html","link":"Tailors/PHPUnit/StringArgumentValidator.html#method___construct","name":"Tailors\\PHPUnit\\StringArgumentValidator::__construct","doc":null},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\StringArgumentValidator","fromLink":"Tailors/PHPUnit/StringArgumentValidator.html","link":"Tailors/PHPUnit/StringArgumentValidator.html#method_validate","name":"Tailors\\PHPUnit\\StringArgumentValidator::validate","doc":""},
-            
-                                                {"type":"Trait","fromName":"Tailors\\PHPUnit","fromLink":"Tailors/PHPUnit.html","link":"Tailors/PHPUnit/UsesTraitTrait.html","name":"Tailors\\PHPUnit\\UsesTraitTrait","doc":null},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\UsesTraitTrait","fromLink":"Tailors/PHPUnit/UsesTraitTrait.html","link":"Tailors/PHPUnit/UsesTraitTrait.html#method_assertThat","name":"Tailors\\PHPUnit\\UsesTraitTrait::assertThat","doc":"Evaluates a \\PHPUnit\\Framework\\Constraint\\Constraint matcher object."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\UsesTraitTrait","fromLink":"Tailors/PHPUnit/UsesTraitTrait.html","link":"Tailors/PHPUnit/UsesTraitTrait.html#method_assertUsesTrait","name":"Tailors\\PHPUnit\\UsesTraitTrait::assertUsesTrait","doc":"Asserts that <em>$subject</em> uses <em>$trait</em>."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\UsesTraitTrait","fromLink":"Tailors/PHPUnit/UsesTraitTrait.html","link":"Tailors/PHPUnit/UsesTraitTrait.html#method_assertNotUsesTrait","name":"Tailors\\PHPUnit\\UsesTraitTrait::assertNotUsesTrait","doc":"Asserts that <em>$subject</em> does not use <em>$trait</em>."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\UsesTraitTrait","fromLink":"Tailors/PHPUnit/UsesTraitTrait.html","link":"Tailors/PHPUnit/UsesTraitTrait.html#method_usesTrait","name":"Tailors\\PHPUnit\\UsesTraitTrait::usesTrait","doc":"Checks objects (an classes) that they use given <em>$trait</em>."},
-            
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit\\Values","fromLink":"Tailors/PHPUnit/Values.html","link":"Tailors/PHPUnit/Values/AbstractConstraint.html","name":"Tailors\\PHPUnit\\Values\\AbstractConstraint","doc":"Abstract base for constraints that examine values."},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\AbstractConstraint","fromLink":"Tailors/PHPUnit/Values/AbstractConstraint.html","link":"Tailors/PHPUnit/Values/AbstractConstraint.html#method___construct","name":"Tailors\\PHPUnit\\Values\\AbstractConstraint::__construct","doc":null},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\AbstractConstraint","fromLink":"Tailors/PHPUnit/Values/AbstractConstraint.html","link":"Tailors/PHPUnit/Values/AbstractConstraint.html#method_getSelection","name":"Tailors\\PHPUnit\\Values\\AbstractConstraint::getSelection","doc":"Returns an instance of SelectionInterface which defines expected values."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\AbstractConstraint","fromLink":"Tailors/PHPUnit/Values/AbstractConstraint.html","link":"Tailors/PHPUnit/Values/AbstractConstraint.html#method_getComparator","name":"Tailors\\PHPUnit\\Values\\AbstractConstraint::getComparator","doc":"Returns an instance of ComparatorInterface which implements comparison operator."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\AbstractConstraint","fromLink":"Tailors/PHPUnit/Values/AbstractConstraint.html","link":"Tailors/PHPUnit/Values/AbstractConstraint.html#method_toString","name":"Tailors\\PHPUnit\\Values\\AbstractConstraint::toString","doc":"Returns a string representation of the constraint."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\AbstractConstraint","fromLink":"Tailors/PHPUnit/Values/AbstractConstraint.html","link":"Tailors/PHPUnit/Values/AbstractConstraint.html#method_evaluate","name":"Tailors\\PHPUnit\\Values\\AbstractConstraint::evaluate","doc":"Evaluates the constraint for parameter $other."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\AbstractConstraint","fromLink":"Tailors/PHPUnit/Values/AbstractConstraint.html","link":"Tailors/PHPUnit/Values/AbstractConstraint.html#method_toStringInContext","name":"Tailors\\PHPUnit\\Values\\AbstractConstraint::toStringInContext","doc":"Returns a custom string representation of the constraint object when it\nappears in context of an $operator expression."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\AbstractConstraint","fromLink":"Tailors/PHPUnit/Values/AbstractConstraint.html","link":"Tailors/PHPUnit/Values/AbstractConstraint.html#method_matches","name":"Tailors\\PHPUnit\\Values\\AbstractConstraint::matches","doc":"Evaluates the constraint for parameter $other. Returns true if the\nconstraint is met, false otherwise."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\AbstractConstraint","fromLink":"Tailors/PHPUnit/Values/AbstractConstraint.html","link":"Tailors/PHPUnit/Values/AbstractConstraint.html#method_exporter","name":"Tailors\\PHPUnit\\Values\\AbstractConstraint::exporter","doc":null},
-            
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit\\Values","fromLink":"Tailors/PHPUnit/Values.html","link":"Tailors/PHPUnit/Values/AbstractPropertySelector.html","name":"Tailors\\PHPUnit\\Values\\AbstractPropertySelector","doc":""},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\AbstractPropertySelector","fromLink":"Tailors/PHPUnit/Values/AbstractPropertySelector.html","link":"Tailors/PHPUnit/Values/AbstractPropertySelector.html#method_selectable","name":"Tailors\\PHPUnit\\Values\\AbstractPropertySelector::selectable","doc":"A name for the values being selected from subject (in plural,\ne.g. \"values\" or \"properties\")."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\AbstractPropertySelector","fromLink":"Tailors/PHPUnit/Values/AbstractPropertySelector.html","link":"Tailors/PHPUnit/Values/AbstractPropertySelector.html#method_selectFromSupported","name":"Tailors\\PHPUnit\\Values\\AbstractPropertySelector::selectFromSupported","doc":""},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\AbstractPropertySelector","fromLink":"Tailors/PHPUnit/Values/AbstractPropertySelector.html","link":"Tailors/PHPUnit/Values/AbstractPropertySelector.html#method_getSubjectAttribute","name":"Tailors\\PHPUnit\\Values\\AbstractPropertySelector::getSubjectAttribute","doc":""},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\AbstractPropertySelector","fromLink":"Tailors/PHPUnit/Values/AbstractPropertySelector.html","link":"Tailors/PHPUnit/Values/AbstractPropertySelector.html#method_selectWithMethod","name":"Tailors\\PHPUnit\\Values\\AbstractPropertySelector::selectWithMethod","doc":""},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\AbstractPropertySelector","fromLink":"Tailors/PHPUnit/Values/AbstractPropertySelector.html","link":"Tailors/PHPUnit/Values/AbstractPropertySelector.html#method_selectWithAttribute","name":"Tailors\\PHPUnit\\Values\\AbstractPropertySelector::selectWithAttribute","doc":""},
-            
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit\\Values","fromLink":"Tailors/PHPUnit/Values.html","link":"Tailors/PHPUnit/Values/AbstractValueSelector.html","name":"Tailors\\PHPUnit\\Values\\AbstractValueSelector","doc":""},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\AbstractValueSelector","fromLink":"Tailors/PHPUnit/Values/AbstractValueSelector.html","link":"Tailors/PHPUnit/Values/AbstractValueSelector.html#method_select","name":"Tailors\\PHPUnit\\Values\\AbstractValueSelector::select","doc":""},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\AbstractValueSelector","fromLink":"Tailors/PHPUnit/Values/AbstractValueSelector.html","link":"Tailors/PHPUnit/Values/AbstractValueSelector.html#method_selectFromSupported","name":"Tailors\\PHPUnit\\Values\\AbstractValueSelector::selectFromSupported","doc":""},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\AbstractValueSelector","fromLink":"Tailors/PHPUnit/Values/AbstractValueSelector.html","link":"Tailors/PHPUnit/Values/AbstractValueSelector.html#method_assertSupports","name":"Tailors\\PHPUnit\\Values\\AbstractValueSelector::assertSupports","doc":""},
-            
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit\\Values","fromLink":"Tailors/PHPUnit/Values.html","link":"Tailors/PHPUnit/Values/AbstractValues.html","name":"Tailors\\PHPUnit\\Values\\AbstractValues","doc":"An array of expected values."},
-                
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit\\Values","fromLink":"Tailors/PHPUnit/Values.html","link":"Tailors/PHPUnit/Values/ActualValues.html","name":"Tailors\\PHPUnit\\Values\\ActualValues","doc":"An array of actual values."},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\ActualValues","fromLink":"Tailors/PHPUnit/Values/ActualValues.html","link":"Tailors/PHPUnit/Values/ActualValues.html#method_actual","name":"Tailors\\PHPUnit\\Values\\ActualValues::actual","doc":""},
-            
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit\\Values","fromLink":"Tailors/PHPUnit/Values.html","link":"Tailors/PHPUnit/Values/ArrayValueSelector.html","name":"Tailors\\PHPUnit\\Values\\ArrayValueSelector","doc":""},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\ArrayValueSelector","fromLink":"Tailors/PHPUnit/Values/ArrayValueSelector.html","link":"Tailors/PHPUnit/Values/ArrayValueSelector.html#method_supports","name":"Tailors\\PHPUnit\\Values\\ArrayValueSelector::supports","doc":""},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\ArrayValueSelector","fromLink":"Tailors/PHPUnit/Values/ArrayValueSelector.html","link":"Tailors/PHPUnit/Values/ArrayValueSelector.html#method_subject","name":"Tailors\\PHPUnit\\Values\\ArrayValueSelector::subject","doc":"Returns short string explaining the type(s) of subjects the selector\nsupports."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\ArrayValueSelector","fromLink":"Tailors/PHPUnit/Values/ArrayValueSelector.html","link":"Tailors/PHPUnit/Values/ArrayValueSelector.html#method_selectable","name":"Tailors\\PHPUnit\\Values\\ArrayValueSelector::selectable","doc":"A name for the values being selected from subject."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\ArrayValueSelector","fromLink":"Tailors/PHPUnit/Values/ArrayValueSelector.html","link":"Tailors/PHPUnit/Values/ArrayValueSelector.html#method_selectFromSupported","name":"Tailors\\PHPUnit\\Values\\ArrayValueSelector::selectFromSupported","doc":""},
-            
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit\\Values","fromLink":"Tailors/PHPUnit/Values.html","link":"Tailors/PHPUnit/Values/ClassPropertySelector.html","name":"Tailors\\PHPUnit\\Values\\ClassPropertySelector","doc":""},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\ClassPropertySelector","fromLink":"Tailors/PHPUnit/Values/ClassPropertySelector.html","link":"Tailors/PHPUnit/Values/ClassPropertySelector.html#method_supports","name":"Tailors\\PHPUnit\\Values\\ClassPropertySelector::supports","doc":""},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\ClassPropertySelector","fromLink":"Tailors/PHPUnit/Values/ClassPropertySelector.html","link":"Tailors/PHPUnit/Values/ClassPropertySelector.html#method_subject","name":"Tailors\\PHPUnit\\Values\\ClassPropertySelector::subject","doc":"A short string naming the subject type supported by this selector."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\ClassPropertySelector","fromLink":"Tailors/PHPUnit/Values/ClassPropertySelector.html","link":"Tailors/PHPUnit/Values/ClassPropertySelector.html#method_getSubjectAttribute","name":"Tailors\\PHPUnit\\Values\\ClassPropertySelector::getSubjectAttribute","doc":""},
-            
-                                                {"type":"Trait","fromName":"Tailors\\PHPUnit\\Values","fromLink":"Tailors/PHPUnit/Values.html","link":"Tailors/PHPUnit/Values/ConstraintImplementationTrait.html","name":"Tailors\\PHPUnit\\Values\\ConstraintImplementationTrait","doc":""},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\ConstraintImplementationTrait","fromLink":"Tailors/PHPUnit/Values/ConstraintImplementationTrait.html","link":"Tailors/PHPUnit/Values/ConstraintImplementationTrait.html#method_create","name":"Tailors\\PHPUnit\\Values\\ConstraintImplementationTrait::create","doc":""},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\ConstraintImplementationTrait","fromLink":"Tailors/PHPUnit/Values/ConstraintImplementationTrait.html","link":"Tailors/PHPUnit/Values/ConstraintImplementationTrait.html#method_validateExpectations","name":"Tailors\\PHPUnit\\Values\\ConstraintImplementationTrait::validateExpectations","doc":""},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\ConstraintImplementationTrait","fromLink":"Tailors/PHPUnit/Values/ConstraintImplementationTrait.html","link":"Tailors/PHPUnit/Values/ConstraintImplementationTrait.html#method_makeSelector","name":"Tailors\\PHPUnit\\Values\\ConstraintImplementationTrait::makeSelector","doc":"Creates instance of ValueSelectorInterface."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\ConstraintImplementationTrait","fromLink":"Tailors/PHPUnit/Values/ConstraintImplementationTrait.html","link":"Tailors/PHPUnit/Values/ConstraintImplementationTrait.html#method_makeComparator","name":"Tailors\\PHPUnit\\Values\\ConstraintImplementationTrait::makeComparator","doc":"Creates instance of ComparatorInterface."},
-            
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit\\Values","fromLink":"Tailors/PHPUnit/Values.html","link":"Tailors/PHPUnit/Values/ConstraintTestCase.html","name":"Tailors\\PHPUnit\\Values\\ConstraintTestCase","doc":""},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\ConstraintTestCase","fromLink":"Tailors/PHPUnit/Values/ConstraintTestCase.html","link":"Tailors/PHPUnit/Values/ConstraintTestCase.html#method_subject","name":"Tailors\\PHPUnit\\Values\\ConstraintTestCase::subject","doc":null},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\ConstraintTestCase","fromLink":"Tailors/PHPUnit/Values/ConstraintTestCase.html","link":"Tailors/PHPUnit/Values/ConstraintTestCase.html#method_selectable","name":"Tailors\\PHPUnit\\Values\\ConstraintTestCase::selectable","doc":null},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\ConstraintTestCase","fromLink":"Tailors/PHPUnit/Values/ConstraintTestCase.html","link":"Tailors/PHPUnit/Values/ConstraintTestCase.html#method_adjective","name":"Tailors\\PHPUnit\\Values\\ConstraintTestCase::adjective","doc":null},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\ConstraintTestCase","fromLink":"Tailors/PHPUnit/Values/ConstraintTestCase.html","link":"Tailors/PHPUnit/Values/ConstraintTestCase.html#method_provCreateConstraint","name":"Tailors\\PHPUnit\\Values\\ConstraintTestCase::provCreateConstraint","doc":null},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\ConstraintTestCase","fromLink":"Tailors/PHPUnit/Values/ConstraintTestCase.html","link":"Tailors/PHPUnit/Values/ConstraintTestCase.html#method_testCreateConstraint","name":"Tailors\\PHPUnit\\Values\\ConstraintTestCase::testCreateConstraint","doc":""},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\ConstraintTestCase","fromLink":"Tailors/PHPUnit/Values/ConstraintTestCase.html","link":"Tailors/PHPUnit/Values/ConstraintTestCase.html#method_testConstraintUnaryOperatorFailure","name":"Tailors\\PHPUnit\\Values\\ConstraintTestCase::testConstraintUnaryOperatorFailure","doc":""},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\ConstraintTestCase","fromLink":"Tailors/PHPUnit/Values/ConstraintTestCase.html","link":"Tailors/PHPUnit/Values/ConstraintTestCase.html#method_examineValuesMatchSucceeds","name":"Tailors\\PHPUnit\\Values\\ConstraintTestCase::examineValuesMatchSucceeds","doc":""},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\ConstraintTestCase","fromLink":"Tailors/PHPUnit/Values/ConstraintTestCase.html","link":"Tailors/PHPUnit/Values/ConstraintTestCase.html#method_examineValuesMatchFails","name":"Tailors\\PHPUnit\\Values\\ConstraintTestCase::examineValuesMatchFails","doc":""},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\ConstraintTestCase","fromLink":"Tailors/PHPUnit/Values/ConstraintTestCase.html","link":"Tailors/PHPUnit/Values/ConstraintTestCase.html#method_examineNotValuesMatchSucceeds","name":"Tailors\\PHPUnit\\Values\\ConstraintTestCase::examineNotValuesMatchSucceeds","doc":""},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\ConstraintTestCase","fromLink":"Tailors/PHPUnit/Values/ConstraintTestCase.html","link":"Tailors/PHPUnit/Values/ConstraintTestCase.html#method_examineNotValuesMatchFails","name":"Tailors\\PHPUnit\\Values\\ConstraintTestCase::examineNotValuesMatchFails","doc":""},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\ConstraintTestCase","fromLink":"Tailors/PHPUnit/Values/ConstraintTestCase.html","link":"Tailors/PHPUnit/Values/ConstraintTestCase.html#method_message","name":"Tailors\\PHPUnit\\Values\\ConstraintTestCase::message","doc":"Assembles expected failure message out of pieces."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\ConstraintTestCase","fromLink":"Tailors/PHPUnit/Values/ConstraintTestCase.html","link":"Tailors/PHPUnit/Values/ConstraintTestCase.html#method_statement","name":"Tailors\\PHPUnit\\Values\\ConstraintTestCase::statement","doc":"Assembles a statement which is a part of failure message."},
-            
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit\\Values","fromLink":"Tailors/PHPUnit/Values.html","link":"Tailors/PHPUnit/Values/ExpectedValues.html","name":"Tailors\\PHPUnit\\Values\\ExpectedValues","doc":"An array of expected values."},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\ExpectedValues","fromLink":"Tailors/PHPUnit/Values/ExpectedValues.html","link":"Tailors/PHPUnit/Values/ExpectedValues.html#method_actual","name":"Tailors\\PHPUnit\\Values\\ExpectedValues::actual","doc":""},
-            
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit\\Values","fromLink":"Tailors/PHPUnit/Values.html","link":"Tailors/PHPUnit/Values/ObjectPropertySelector.html","name":"Tailors\\PHPUnit\\Values\\ObjectPropertySelector","doc":""},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\ObjectPropertySelector","fromLink":"Tailors/PHPUnit/Values/ObjectPropertySelector.html","link":"Tailors/PHPUnit/Values/ObjectPropertySelector.html#method_supports","name":"Tailors\\PHPUnit\\Values\\ObjectPropertySelector::supports","doc":""},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\ObjectPropertySelector","fromLink":"Tailors/PHPUnit/Values/ObjectPropertySelector.html","link":"Tailors/PHPUnit/Values/ObjectPropertySelector.html#method_subject","name":"Tailors\\PHPUnit\\Values\\ObjectPropertySelector::subject","doc":"A short string naming the subject type supported by this selector."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\ObjectPropertySelector","fromLink":"Tailors/PHPUnit/Values/ObjectPropertySelector.html","link":"Tailors/PHPUnit/Values/ObjectPropertySelector.html#method_getSubjectAttribute","name":"Tailors\\PHPUnit\\Values\\ObjectPropertySelector::getSubjectAttribute","doc":""},
-            
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit\\Values","fromLink":"Tailors/PHPUnit/Values.html","link":"Tailors/PHPUnit/Values/RecursiveComparatorValidator.html","name":"Tailors\\PHPUnit\\Values\\RecursiveComparatorValidator","doc":"Given an array of expectations, searches it recursivelly for constraints of\nincompatible type."},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\RecursiveComparatorValidator","fromLink":"Tailors/PHPUnit/Values/RecursiveComparatorValidator.html","link":"Tailors/PHPUnit/Values/RecursiveComparatorValidator.html#method___construct","name":"Tailors\\PHPUnit\\Values\\RecursiveComparatorValidator::__construct","doc":null},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\RecursiveComparatorValidator","fromLink":"Tailors/PHPUnit/Values/RecursiveComparatorValidator.html","link":"Tailors/PHPUnit/Values/RecursiveComparatorValidator.html#method_validate","name":"Tailors\\PHPUnit\\Values\\RecursiveComparatorValidator::validate","doc":""},
-            
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit\\Values","fromLink":"Tailors/PHPUnit/Values.html","link":"Tailors/PHPUnit/Values/RecursiveSelector.html","name":"Tailors\\PHPUnit\\Values\\RecursiveSelector","doc":"Selects actual values from a $subject according to expected values."},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\RecursiveSelector","fromLink":"Tailors/PHPUnit/Values/RecursiveSelector.html","link":"Tailors/PHPUnit/Values/RecursiveSelector.html#method___construct","name":"Tailors\\PHPUnit\\Values\\RecursiveSelector::__construct","doc":null},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\RecursiveSelector","fromLink":"Tailors/PHPUnit/Values/RecursiveSelector.html","link":"Tailors/PHPUnit/Values/RecursiveSelector.html#method_select","name":"Tailors\\PHPUnit\\Values\\RecursiveSelector::select","doc":"Select an array of values from $subject."},
-            
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit\\Values","fromLink":"Tailors/PHPUnit/Values.html","link":"Tailors/PHPUnit/Values/RecursiveSelectorInterface.html","name":"Tailors\\PHPUnit\\Values\\RecursiveSelectorInterface","doc":""},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\RecursiveSelectorInterface","fromLink":"Tailors/PHPUnit/Values/RecursiveSelectorInterface.html","link":"Tailors/PHPUnit/Values/RecursiveSelectorInterface.html#method_select","name":"Tailors\\PHPUnit\\Values\\RecursiveSelectorInterface::select","doc":"Select an array of values from $subject."},
-            
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit\\Values","fromLink":"Tailors/PHPUnit/Values.html","link":"Tailors/PHPUnit/Values/RecursiveUnwrapper.html","name":"Tailors\\PHPUnit\\Values\\RecursiveUnwrapper","doc":""},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\RecursiveUnwrapper","fromLink":"Tailors/PHPUnit/Values/RecursiveUnwrapper.html","link":"Tailors/PHPUnit/Values/RecursiveUnwrapper.html#method___construct","name":"Tailors\\PHPUnit\\Values\\RecursiveUnwrapper::__construct","doc":"Initializes the object."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\RecursiveUnwrapper","fromLink":"Tailors/PHPUnit/Values/RecursiveUnwrapper.html","link":"Tailors/PHPUnit/Values/RecursiveUnwrapper.html#method_unwrap","name":"Tailors\\PHPUnit\\Values\\RecursiveUnwrapper::unwrap","doc":"Walk recursively through $values and unwrap nested instances of\nValuesInterface when suitable."},
-            
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit\\Values","fromLink":"Tailors/PHPUnit/Values.html","link":"Tailors/PHPUnit/Values/RecursiveUnwrapperInterface.html","name":"Tailors\\PHPUnit\\Values\\RecursiveUnwrapperInterface","doc":""},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\RecursiveUnwrapperInterface","fromLink":"Tailors/PHPUnit/Values/RecursiveUnwrapperInterface.html","link":"Tailors/PHPUnit/Values/RecursiveUnwrapperInterface.html#method_unwrap","name":"Tailors\\PHPUnit\\Values\\RecursiveUnwrapperInterface::unwrap","doc":null},
-            
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit\\Values","fromLink":"Tailors/PHPUnit/Values.html","link":"Tailors/PHPUnit/Values/Selection.html","name":"Tailors\\PHPUnit\\Values\\Selection","doc":""},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\Selection","fromLink":"Tailors/PHPUnit/Values/Selection.html","link":"Tailors/PHPUnit/Values/Selection.html#method___construct","name":"Tailors\\PHPUnit\\Values\\Selection::__construct","doc":""},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\Selection","fromLink":"Tailors/PHPUnit/Values/Selection.html","link":"Tailors/PHPUnit/Values/Selection.html#method_getSelector","name":"Tailors\\PHPUnit\\Values\\Selection::getSelector","doc":""},
-            
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit\\Values","fromLink":"Tailors/PHPUnit/Values.html","link":"Tailors/PHPUnit/Values/SelectionInterface.html","name":"Tailors\\PHPUnit\\Values\\SelectionInterface","doc":""},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\SelectionInterface","fromLink":"Tailors/PHPUnit/Values/SelectionInterface.html","link":"Tailors/PHPUnit/Values/SelectionInterface.html#method_getSelector","name":"Tailors\\PHPUnit\\Values\\SelectionInterface::getSelector","doc":null},
-            
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit\\Values","fromLink":"Tailors/PHPUnit/Values.html","link":"Tailors/PHPUnit/Values/SelectionWrapperInterface.html","name":"Tailors\\PHPUnit\\Values\\SelectionWrapperInterface","doc":""},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\SelectionWrapperInterface","fromLink":"Tailors/PHPUnit/Values/SelectionWrapperInterface.html","link":"Tailors/PHPUnit/Values/SelectionWrapperInterface.html#method_getSelection","name":"Tailors\\PHPUnit\\Values\\SelectionWrapperInterface::getSelection","doc":"Returns an instance of SelectionInterface."},
-            
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit\\Values","fromLink":"Tailors/PHPUnit/Values.html","link":"Tailors/PHPUnit/Values/ValueSelectorInterface.html","name":"Tailors\\PHPUnit\\Values\\ValueSelectorInterface","doc":""},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\ValueSelectorInterface","fromLink":"Tailors/PHPUnit/Values/ValueSelectorInterface.html","link":"Tailors/PHPUnit/Values/ValueSelectorInterface.html#method_supports","name":"Tailors\\PHPUnit\\Values\\ValueSelectorInterface::supports","doc":""},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\ValueSelectorInterface","fromLink":"Tailors/PHPUnit/Values/ValueSelectorInterface.html","link":"Tailors/PHPUnit/Values/ValueSelectorInterface.html#method_select","name":"Tailors\\PHPUnit\\Values\\ValueSelectorInterface::select","doc":""},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\ValueSelectorInterface","fromLink":"Tailors/PHPUnit/Values/ValueSelectorInterface.html","link":"Tailors/PHPUnit/Values/ValueSelectorInterface.html#method_subject","name":"Tailors\\PHPUnit\\Values\\ValueSelectorInterface::subject","doc":"A short string naming the subject type(s) supported by this selector\n(e.g. \"an array\", \"an object\", \"a class\", etc.)."},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\ValueSelectorInterface","fromLink":"Tailors/PHPUnit/Values/ValueSelectorInterface.html","link":"Tailors/PHPUnit/Values/ValueSelectorInterface.html#method_selectable","name":"Tailors\\PHPUnit\\Values\\ValueSelectorInterface::selectable","doc":"A name for the values being selected from subject (in plural,\ne.g. \"values\" or \"properties\")."},
-            
-                                                {"type":"Class","fromName":"Tailors\\PHPUnit\\Values","fromLink":"Tailors/PHPUnit/Values.html","link":"Tailors/PHPUnit/Values/ValuesInterface.html","name":"Tailors\\PHPUnit\\Values\\ValuesInterface","doc":"An array of actual or expected values."},
-                                {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\ValuesInterface","fromLink":"Tailors/PHPUnit/Values/ValuesInterface.html","link":"Tailors/PHPUnit/Values/ValuesInterface.html#method_getArrayCopy","name":"Tailors\\PHPUnit\\Values\\ValuesInterface::getArrayCopy","doc":""},
-        {"type":"Method","fromName":"Tailors\\PHPUnit\\Values\\ValuesInterface","fromLink":"Tailors/PHPUnit/Values/ValuesInterface.html","link":"Tailors/PHPUnit/Values/ValuesInterface.html#method_actual","name":"Tailors\\PHPUnit\\Values\\ValuesInterface::actual","doc":"Returns true if this object represents actual values (as opposite to expected values)."},
-            
-                                // Fix trailing commas in the index
-        {}
-    ];
-
-    /** Tokenizes strings by namespaces and functions */
-    function tokenizer(term) {
-        if (!term) {
-            return [];
-        }
-
-        var tokens = [term];
-        var meth = term.indexOf('::');
-
-        // Split tokens into methods if "::" is found.
-        if (meth > -1) {
-            tokens.push(term.substr(meth + 2));
-            term = term.substr(0, meth - 2);
-        }
-
-        // Split by namespace or fake namespace.
-        if (term.indexOf('\\') > -1) {
-            tokens = tokens.concat(term.split('\\'));
-        } else if (term.indexOf('_') > 0) {
-            tokens = tokens.concat(term.split('_'));
-        }
-
-        // Merge in splitting the string by case and return
-        tokens = tokens.concat(term.match(/(([A-Z]?[^A-Z]*)|([a-z]?[^a-z]*))/g).slice(0,-1));
-
-        return tokens;
-    };
-
-    root.Doctum = {
-        /**
-         * Cleans the provided term. If no term is provided, then one is
-         * grabbed from the query string "search" parameter.
-         */
-        cleanSearchTerm: function(term) {
-            // Grab from the query string
-            if (typeof term === 'undefined') {
-                var name = 'search';
-                var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
-                var results = regex.exec(location.search);
-                if (results === null) {
-                    return null;
+            // Create the node that will have the text
+            var divHd = document.createElement('div');
+            var levelCss = child.l - 1;
+            divHd.className = hasChildren ? 'hd' : 'hd leaf';
+            divHd.style.paddingLeft = (hasChildren ? (levelCss * 18) : (8 + (levelCss * 18))) + 'px';
+            if (hasChildren) {
+                if (child.l <= treeOpenLevel) {
+                    liClass.className = 'opened';
                 }
-                term = decodeURIComponent(results[1].replace(/\+/g, " "));
+                var spanIcon = document.createElement('span');
+                spanIcon.className = 'icon icon-play';
+                divHd.appendChild(spanIcon);
             }
+            var aLink = document.createElement('a');
 
-            return term.replace(/<(?:.|\n)*?>/gm, '');
-        },
+            // Edit the HTML link to work correctly based on the current depth
+            aLink.href = Doctum.rootPath + child.p + '.html';
+            aLink.innerText = child.n;
+            divHd.appendChild(aLink);
+            liClass.appendChild(divHd);
 
-        /** Searches through the index for a given term */
-        search: function(term) {
-            // Create a new search index if needed
-            if (!bhIndex) {
-                bhIndex = new Bloodhound({
-                    limit: 500,
-                    local: searchIndex,
-                    datumTokenizer: function (d) {
-                        return tokenizer(d.name);
-                    },
-                    queryTokenizer: Bloodhound.tokenizers.whitespace
-                });
-                bhIndex.initialize();
+            // It has children
+            if (hasChildren) {
+                var divBd = document.createElement('div');
+                divBd.className = 'bd';
+                Doctum.buildTreeNode(child, divBd, treeOpenLevel);
+                liClass.appendChild(divBd);
             }
-
-            results = [];
-            bhIndex.get(term, function(matches) {
-                results = matches;
-            });
-
-            if (!rootPath) {
-                return results;
-            }
-
-            // Fix the element links based on the current page depth.
-            return $.map(results, function(ele) {
-                if (ele.link.indexOf('..') > -1) {
-                    return ele;
-                }
-                ele.link = rootPath + ele.link;
-                if (ele.fromLink) {
-                    ele.fromLink = rootPath + ele.fromLink;
-                }
-                return ele;
-            });
-        },
-
-        /** Get a search class for a specific type */
-        getSearchClass: function(type) {
-            return searchTypeClasses[type] || searchTypeClasses['_'];
-        },
-
-        /** Add the left-nav tree to the site */
-        injectApiTree: function(ele) {
-            ele.html(treeHtml);
+            ulNode.appendChild(liClass);
         }
-    };
+        htmlNode.appendChild(ulNode);
+    },
+    initListeners: function () {
+        if (Doctum.listenersRegistered) {
+            // Quick exit, already registered
+            return;
+        }
+                Doctum.listenersRegistered = true;
+    },
+    loadTree: function () {
+        if (Doctum.treeLoaded) {
+            // Quick exit, already registered
+            return;
+        }
+        Doctum.rootPath = document.body.getAttribute('data-root-path');
+        Doctum.buildTreeNode(Doctum.treeJson.tree, document.getElementById('api-tree'), Doctum.treeJson.treeOpenLevel);
 
-    $(function() {
-        // Modify the HTML to work correctly based on the current depth
-        rootPath = $('body').attr('data-root-path');
-        treeHtml = treeHtml.replace(/href="/g, 'href="' + rootPath);
-        Doctum.injectApiTree($('#api-tree'));
-    });
-
-    return root.Doctum;
-})(window);
-
-$(function() {
-
-    
-    
         // Toggle left-nav divs on click
-        $('#api-tree .hd span').on('click', function() {
+        $('#api-tree .hd span').on('click', function () {
             $(this).parent().parent().toggleClass('opened');
         });
 
@@ -503,36 +102,215 @@ $(function() {
                 container.scrollTop(scrollPos);
             }
         }
-
-    
-    
-        var form = $('#search-form .typeahead');
-        form.typeahead({
-            hint: true,
-            highlight: true,
-            minLength: 1
-        }, {
-            name: 'search',
-            displayKey: 'name',
-            source: function (q, cb) {
-                cb(Doctum.search(q));
+        Doctum.treeLoaded = true;
+    },
+    pagePartiallyLoaded: function (event) {
+        Doctum.initListeners();
+        Doctum.loadTree();
+        Doctum.loadAutoComplete();
+    },
+    pageFullyLoaded: function (event) {
+        // it may not have received DOMContentLoaded event
+        Doctum.initListeners();
+        Doctum.loadTree();
+        Doctum.loadAutoComplete();
+        // Fire the event in the search page too
+        if (typeof DoctumSearch === 'object') {
+            DoctumSearch.pageFullyLoaded();
+        }
+    },
+    loadAutoComplete: function () {
+        if (Doctum.autoCompleteLoaded) {
+            // Quick exit, already loaded
+            return;
+        }
+        Doctum.autoCompleteDataUrl = document.body.getAttribute('data-search-index-url');
+        Doctum.doctumSearchAutoComplete = document.getElementById('doctum-search-auto-complete');
+        Doctum.doctumSearchAutoCompleteProgressBarContainer = document.getElementById('search-progress-bar-container');
+        Doctum.doctumSearchAutoCompleteProgressBar = document.getElementById('search-progress-bar');
+        if (Doctum.doctumSearchAutoComplete !== null) {
+            // Wait for it to be loaded
+            Doctum.doctumSearchAutoComplete.addEventListener('init', function (_) {
+                Doctum.autoCompleteLoaded = true;
+                Doctum.doctumSearchAutoComplete.addEventListener('selection', function (event) {
+                    // Go to selection page
+                    window.location = Doctum.rootPath + event.detail.selection.value.p;
+                });
+                Doctum.doctumSearchAutoComplete.addEventListener('navigate', function (event) {
+                    // Set selection in text box
+                    if (typeof event.detail.selection.value === 'object') {
+                        Doctum.doctumSearchAutoComplete.value = event.detail.selection.value.n;
+                    }
+                });
+                Doctum.doctumSearchAutoComplete.addEventListener('results', function (event) {
+                    Doctum.markProgressFinished();
+                });
+            });
+        }
+        // Check if the lib is loaded
+        if (typeof autoComplete === 'function') {
+            Doctum.bootAutoComplete();
+        }
+    },
+    markInProgress: function () {
+            Doctum.doctumSearchAutoCompleteProgressBarContainer.className = 'search-bar';
+            Doctum.doctumSearchAutoCompleteProgressBar.className = 'progress-bar indeterminate';
+            if (typeof DoctumSearch === 'object' && DoctumSearch.pageFullyLoaded) {
+                DoctumSearch.doctumSearchPageAutoCompleteProgressBarContainer.className = 'search-bar';
+                DoctumSearch.doctumSearchPageAutoCompleteProgressBar.className = 'progress-bar indeterminate';
             }
-        });
-
-        // The selection is direct-linked when the user selects a suggestion.
-        form.on('typeahead:selected', function(e, suggestion) {
-            window.location = suggestion.link;
-        });
-
-        // The form is submitted when the user hits enter.
-        form.keypress(function (e) {
-            if (e.which == 13) {
-                $('#search-form').submit();
-                return true;
+    },
+    markProgressFinished: function () {
+        Doctum.doctumSearchAutoCompleteProgressBarContainer.className = 'search-bar hidden';
+        Doctum.doctumSearchAutoCompleteProgressBar.className = 'progress-bar';
+        if (typeof DoctumSearch === 'object' && DoctumSearch.pageFullyLoaded) {
+            DoctumSearch.doctumSearchPageAutoCompleteProgressBarContainer.className = 'search-bar hidden';
+            DoctumSearch.doctumSearchPageAutoCompleteProgressBar.className = 'progress-bar';
+        }
+    },
+    makeProgess: function () {
+        Doctum.makeProgressOnProgressBar(
+            Doctum.doctumSearchAutoCompleteProgressBarPercent,
+            Doctum.doctumSearchAutoCompleteProgressBar
+        );
+        if (typeof DoctumSearch === 'object' && DoctumSearch.pageFullyLoaded) {
+            Doctum.makeProgressOnProgressBar(
+                Doctum.doctumSearchAutoCompleteProgressBarPercent,
+                DoctumSearch.doctumSearchPageAutoCompleteProgressBar
+            );
+        }
+    },
+    loadAutoCompleteData: function (query) {
+        return new Promise(function (resolve, reject) {
+            if (Doctum.autoCompleteData !== null) {
+                resolve(Doctum.autoCompleteData);
+                return;
             }
+            Doctum.markInProgress();
+            function reqListener() {
+                Doctum.autoCompleteLoading = false;
+                Doctum.autoCompleteData = JSON.parse(this.responseText).items;
+                Doctum.markProgressFinished();
+
+                setTimeout(function () {
+                    resolve(Doctum.autoCompleteData);
+                }, 50);// Let the UI render once before sending the results for processing. This gives time to the progress bar to hide
+            }
+            function reqError(err) {
+                Doctum.autoCompleteLoading = false;
+                Doctum.autoCompleteData = null;
+                console.error(err);
+                reject(err);
+            }
+
+            var oReq = new XMLHttpRequest();
+            oReq.onload = reqListener;
+            oReq.onerror = reqError;
+            oReq.onprogress = function (pe) {
+                if (pe.lengthComputable) {
+                    Doctum.doctumSearchAutoCompleteProgressBarPercent = parseInt(pe.loaded / pe.total * 100, 10);
+                    Doctum.makeProgess();
+                }
+            };
+            oReq.onloadend = function (_) {
+                Doctum.markProgressFinished();
+            };
+            oReq.open('get', Doctum.autoCompleteDataUrl, true);
+            oReq.send();
+        });
+    },
+    /**
+     * Make some progress on a progress bar
+     *
+     * @param number percentage
+     * @param HTMLElement progressBar
+     * @return void
+     */
+    makeProgressOnProgressBar: function(percentage, progressBar) {
+        progressBar.className = 'progress-bar';
+        progressBar.style.width = percentage + '%';
+        progressBar.setAttribute(
+            'aria-valuenow', percentage
+        );
+    },
+    searchEngine: function (query, record) {
+        if (typeof query !== 'string') {
+            return '';
+        }
+        // replace all (mode = g) spaces and non breaking spaces (\s) by pipes
+        // g = global mode to mark also the second word searched
+        // i = case insensitive
+        // how this function works:
+        // First: search if the query has the keywords in sequence
+        // Second: replace the keywords by a mark and leave all the text in between non marked
+        
+        if (record.match(new RegExp('(' + query.replace(/\s/g, ').*(') + ')', 'gi')) === null) {
+            return '';// Does not match
+        }
+
+        var replacedRecord = record.replace(new RegExp('(' + query.replace(/\s/g, '|') + ')', 'gi'), function (group) {
+            return '<mark class="auto-complete-highlight">' + group + '</mark>';
         });
 
-    
-});
+        if (replacedRecord !== record) {
+            return replacedRecord;// This should not happen but just in case there was no match done
+        }
+
+        return '';
+    },
+    /**
+     * Clean the search query
+     *
+     * @param string query
+     * @return string
+     */
+    cleanSearchQuery: function (query) {
+        // replace any chars that could lead to injecting code in our regex
+        // remove start or end spaces
+        // replace backslashes by an escaped version, use case in search: \myRootFunction
+        return query.replace(Doctum.querySearchSecurityRegex, '').trim().replace(/\\/g, '\\\\');
+    },
+    bootAutoComplete: function () {
+        Doctum.autoCompleteJS = new autoComplete(
+            {
+                selector: '#doctum-search-auto-complete',
+                searchEngine: function (query, record) {
+                    return Doctum.searchEngine(query, record);
+                },
+                submit: true,
+                data: {
+                    src: function (q) {
+                        Doctum.markInProgress();
+                        return Doctum.loadAutoCompleteData(q);
+                    },
+                    keys: ['n'],// Data 'Object' key to be searched
+                    cache: false, // Is not compatible with async fetch of data
+                },
+                query: (input) => {
+                    return Doctum.cleanSearchQuery(input);
+                },
+                trigger: (query) => {
+                    return Doctum.cleanSearchQuery(query).length > 0;
+                },
+                resultsList: {
+                    tag: 'ul',
+                    class: 'auto-complete-dropdown-menu',
+                    destination: '#auto-complete-results',
+                    position: 'afterbegin',
+                    maxResults: 500,
+                    noResults: false,
+                },
+                resultItem: {
+                    tag: 'li',
+                    class: 'auto-complete-result',
+                    highlight: 'auto-complete-highlight',
+                    selected: 'auto-complete-selected'
+                },
+            }
+        );
+    }
+};
 
 
+document.addEventListener('DOMContentLoaded', Doctum.pagePartiallyLoaded, false);
+window.addEventListener('load', Doctum.pageFullyLoaded, false);
