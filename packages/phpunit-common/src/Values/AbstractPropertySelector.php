@@ -12,8 +12,11 @@ namespace Tailors\PHPUnit\Values;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
+ *
  * @psalm-template SubjectType of object|class-string
+ *
  * @template-extends AbstractValueSelector<SubjectType>
  */
 abstract class AbstractPropertySelector extends AbstractValueSelector
@@ -62,6 +65,7 @@ abstract class AbstractPropertySelector extends AbstractValueSelector
      * @param mixed  $retval
      *
      * @psalm-param object|class-string $subject
+     *
      * @param-out mixed $retval
      */
     final protected function selectWithMethod($subject, string $method, &$retval = null): bool
@@ -69,6 +73,7 @@ abstract class AbstractPropertySelector extends AbstractValueSelector
         if (!method_exists($subject, $method)) {
             return false;
         }
+
         /** @psalm-var mixed */
         $retval = call_user_func([$subject, $method]);
 
@@ -81,6 +86,7 @@ abstract class AbstractPropertySelector extends AbstractValueSelector
      * @param mixed $retval
      *
      * @param-out mixed $retval
+     *
      * @psalm-param SubjectType $subject
      * @psalm-param array-key $key
      */
@@ -90,6 +96,7 @@ abstract class AbstractPropertySelector extends AbstractValueSelector
         if (!property_exists($subject, $key)) {
             return false;
         }
+
         /** @psalm-var mixed */
         $retval = $this->getSubjectAttribute($subject, $key);
 

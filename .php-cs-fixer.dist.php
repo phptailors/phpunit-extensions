@@ -15,7 +15,9 @@ $finder = PhpCsFixer\Finder::create()
     ->name('*.php')
 ;
 
-return PhpCsFixer\Config::create()
+$config = new PhpCsFixer\Config();
+
+return $config
     ->setFinder($finder)
     ->setRiskyAllowed(true)
     ->setRules([
@@ -29,7 +31,7 @@ return PhpCsFixer\Config::create()
             'location' => 'after_declare_strict',
         ],
         'array_syntax' => ['syntax' => 'short'],
-        'psr4' => true,
+        'psr_autoloading' => true,
         'binary_operator_spaces' => [
             'operators' => [
                 '=>' => 'align_single_space_minimal',

@@ -15,9 +15,11 @@ use Tailors\PHPUnit\Comparator\IdentityComparator;
 
 /**
  * @small
+ *
  * @covers \Tailors\PHPUnit\Values\ConstraintImplementationTrait
  *
  * @internal This class is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 final class DummyConstraintImplementation
@@ -42,17 +44,17 @@ final class DummyConstraintImplementation
     /**
      * @var null|ValueSelectorInterface
      */
-    public static $makeSelector = null;
+    public static $makeSelector;
 
     /**
      * @var null|ComparatorInterface
      */
-    public static $makeComparator = null;
+    public static $makeComparator;
 
     /**
      * @var null|array
      */
-    public static $validateExpectations = null;
+    public static $validateExpectations;
 
     protected function __construct(
         ComparatorInterface $comparator,

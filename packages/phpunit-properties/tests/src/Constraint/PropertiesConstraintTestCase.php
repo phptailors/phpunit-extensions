@@ -15,6 +15,7 @@ use Tailors\PHPUnit\Values\ConstraintTestCase;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 abstract class PropertiesConstraintTestCase extends ConstraintTestCase

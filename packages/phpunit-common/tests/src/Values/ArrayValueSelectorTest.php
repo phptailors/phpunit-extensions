@@ -15,10 +15,12 @@ use Tailors\PHPUnit\InvalidArgumentException;
 
 /**
  * @small
+ *
  * @covers \Tailors\PHPUnit\Values\AbstractValueSelector
  * @covers \Tailors\PHPUnit\Values\ArrayValueSelector
  *
  * @internal This class is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 final class ArrayValueSelectorTest extends TestCase
@@ -65,7 +67,7 @@ final class ArrayValueSelectorTest extends TestCase
             'ArrayValueSelectorTest.php:'.__LINE__ => [
                 'subject' => new class() {
                 },
-                'expect' => false,
+                'expect'  => false,
             ],
 
             'ArrayValueSelectorTest.php:'.__LINE__ => [
@@ -106,13 +108,20 @@ final class ArrayValueSelectorTest extends TestCase
     public static function provSelect(): array
     {
         $arrayAccessFoo = new class() implements \ArrayAccess {
-            private $foo = 'FOO';
+            /** @var string */
+            private $foo;
+
+            public function __construct()
+            {
+                $this->foo = 'FOO';
+            }
 
             public function offsetExists($offset): bool
             {
                 return 'foo' === $offset;
             }
 
+            #[\ReturnTypeWillChange]
             public function offsetGet($offset)
             {
                 return $this->foo;
@@ -132,36 +141,36 @@ final class ArrayValueSelectorTest extends TestCase
                 'subject' => [
                     'foo' => 'FOO',
                 ],
-                'key'    => 'foo',
-                'return' => true,
-                'expect' => 'FOO',
+                'key'     => 'foo',
+                'return'  => true,
+                'expect'  => 'FOO',
             ],
 
             'ArrayValueSelectorTest.php:'.__LINE__ => [
                 'subject' => [
                     'foo' => 'FOO',
                 ],
-                'key'    => 'bar',
-                'return' => false,
-                'expect' => null,
+                'key'     => 'bar',
+                'return'  => false,
+                'expect'  => null,
             ],
 
             'ArrayValueSelectorTest.php:'.__LINE__ => [
                 'subject' => new \ArrayObject([
                     'foo' => 'FOO',
                 ]),
-                'key'    => 'foo',
-                'return' => true,
-                'expect' => 'FOO',
+                'key'     => 'foo',
+                'return'  => true,
+                'expect'  => 'FOO',
             ],
 
             'ArrayValueSelectorTest.php:'.__LINE__ => [
                 'subject' => new \ArrayObject([
                     'foo' => 'FOO',
                 ]),
-                'key'    => 'bar',
-                'return' => false,
-                'expect' => null,
+                'key'     => 'bar',
+                'return'  => false,
+                'expect'  => null,
             ],
 
             'ArrayValueSelectorTest.php:'.__LINE__ => [

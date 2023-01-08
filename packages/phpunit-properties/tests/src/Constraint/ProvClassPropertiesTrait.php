@@ -12,6 +12,7 @@ namespace Tailors\PHPUnit\Constraint;
 
 /**
  * @internal This trait is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 trait ProvClassPropertiesTrait

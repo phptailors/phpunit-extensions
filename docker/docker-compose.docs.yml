@@ -2,7 +2,7 @@ version: '3.2'
 services:
   sphinx:
     build:
-      context: default
+      context: contexts/default
       args:
         TLR_IMG: "korowai/sphinx:${TLR_SPHINX_TAG:-latest}"
         TLR_UID: "${TLR_UID:-6789}"
@@ -19,7 +19,7 @@ services:
 
   doctum:
     build:
-      context: default
+      context: contexts/default
       args:
         TLR_IMG: "phptailors/doctum:${TLR_DOCTUM_TAG:-latest}"
         TLR_UID: "${TLR_UID:-6789}"

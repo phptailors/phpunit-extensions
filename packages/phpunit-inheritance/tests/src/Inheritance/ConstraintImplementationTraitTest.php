@@ -15,9 +15,11 @@ use Tailors\PHPUnit\InvalidReturnValueException;
 
 /**
  * @small
+ *
  * @covers \Tailors\PHPUnit\Inheritance\ConstraintImplementationTrait
  *
  * @internal This class is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 final class ConstraintImplementationTraitTest extends TestCase

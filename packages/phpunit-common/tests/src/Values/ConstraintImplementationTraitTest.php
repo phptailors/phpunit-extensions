@@ -14,10 +14,12 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @small
+ *
  * @covers \Tailors\PHPUnit\Values\ConstraintImplementationTrait
  * @covers \Tailors\PHPUnit\Values\DummyConstraintImplementation
  *
  * @internal This class is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 final class ConstraintImplementationTraitTest extends TestCase

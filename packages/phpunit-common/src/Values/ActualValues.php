@@ -14,6 +14,7 @@ namespace Tailors\PHPUnit\Values;
  * An array of actual values.
  *
  * @internal This class is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 class ActualValues extends AbstractValues

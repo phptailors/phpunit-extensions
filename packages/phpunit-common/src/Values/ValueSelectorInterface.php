@@ -12,6 +12,7 @@ namespace Tailors\PHPUnit\Values;
 
 /**
  * @internal This interface is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 interface ValueSelectorInterface
@@ -27,11 +28,12 @@ interface ValueSelectorInterface
      * @param mixed $retval
      *
      * @psalm-param array-key $key
+     *
      * @param-out mixed $retval
      *
      * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
-    public function select($subject, $key, &$retval = null): bool;
+    public function select($subject, $key, &$retval): bool;
 
     /**
      * A short string naming the subject type(s) supported by this selector

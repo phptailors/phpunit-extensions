@@ -17,6 +17,7 @@ use Tailors\PHPUnit\Comparator\IdentityComparator;
  * Example constraint class that extends the AbstractConstraint.
  *
  * @internal This class is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 class ExampleConstraint extends AbstractConstraint

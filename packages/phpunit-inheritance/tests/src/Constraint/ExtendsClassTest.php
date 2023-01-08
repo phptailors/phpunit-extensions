@@ -10,23 +10,21 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
-use Error;
-use ErrorException;
-use Exception;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Examples\Inheritance\ExampleTrait;
 use Tailors\PHPUnit\InvalidArgumentException;
-use Throwable;
 
 /**
  * @small
+ *
  * @covers \Tailors\PHPUnit\Constraint\ExtendsClass
  * @covers \Tailors\PHPUnit\Constraint\InheritanceConstraintTestTrait
  * @covers \Tailors\PHPUnit\Inheritance\AbstractConstraint
  * @covers \Tailors\PHPUnit\Inheritance\ConstraintImplementationTrait
  *
  * @internal This class is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 final class ExtendsClassTest extends TestCase
@@ -38,8 +36,8 @@ final class ExtendsClassTest extends TestCase
     {
         return [
             'ExtendsClassTest.php:'.__LINE__ => [
-                'constraint' => ExtendsClass::create(ErrorException::class),
-                'subject'    => Exception::class,
+                'constraint' => ExtendsClass::create(\ErrorException::class),
+                'subject'    => \Exception::class,
                 'expect'     => [
                     'exception' => ExpectationFailedException::class,
                     'message'   => '/Exception extends class ErrorException/',
@@ -53,8 +51,8 @@ final class ExtendsClassTest extends TestCase
     {
         return [
             'ExtendsClassTest.php:'.__LINE__ => [
-                'constraint' => ExtendsClass::create(Exception::class),
-                'subject'    => ErrorException::class,
+                'constraint' => ExtendsClass::create(\Exception::class),
+                'subject'    => \ErrorException::class,
                 'expect'     => [
                     'exception' => ExpectationFailedException::class,
                     'message'   => '/ErrorException does not extend class Exception/',
@@ -68,14 +66,14 @@ final class ExtendsClassTest extends TestCase
         return [
             // class extends class
             'ExtendsClassTest.php:'.__LINE__ => [
-                'class'   => Exception::class,
-                'subject' => ErrorException::class,
+                'class'   => \Exception::class,
+                'subject' => \ErrorException::class,
             ],
 
             // object of class that extends class
             'ExtendsClassTest.php:'.__LINE__ => [
-                'class'   => Exception::class,
-                'subject' => new ErrorException(),
+                'class'   => \Exception::class,
+                'subject' => new \ErrorException(),
             ],
         ];
     }
@@ -86,24 +84,24 @@ final class ExtendsClassTest extends TestCase
 
         return [
             'ExtendsClassTest.php:'.__LINE__ => [
-                'class'   => Error::class,
-                'subject' => ErrorException::class,
-                'message' => sprintf($template, ErrorException::class, Error::class),
+                'class'   => \Error::class,
+                'subject' => \ErrorException::class,
+                'message' => sprintf($template, \ErrorException::class, \Error::class),
             ],
             'ExtendsClassTest.php:'.__LINE__ => [
-                'class'   => Error::class,
-                'subject' => new ErrorException(),
-                'message' => sprintf($template, 'object '.ErrorException::class, Error::class),
+                'class'   => \Error::class,
+                'subject' => new \ErrorException(),
+                'message' => sprintf($template, 'object '.\ErrorException::class, \Error::class),
             ],
             'ExtendsClassTest.php:'.__LINE__ => [
-                'class'   => Error::class,
+                'class'   => \Error::class,
                 'subject' => 'lorem ipsum',
-                'message' => sprintf($template, "'lorem ipsum'", Error::class),
+                'message' => sprintf($template, "'lorem ipsum'", \Error::class),
             ],
             'ExtendsClassTest.php:'.__LINE__ => [
-                'class'   => Error::class,
+                'class'   => \Error::class,
                 'subject' => 123,
-                'message' => sprintf($template, '123', Error::class),
+                'message' => sprintf($template, '123', \Error::class),
             ],
         ];
     }
@@ -119,7 +117,7 @@ final class ExtendsClassTest extends TestCase
             ],
 
             'ExtendsClassTest.php:'.__LINE__ => [
-                'argument' => Throwable::class,
+                'argument' => \Throwable::class,
                 'messsage' => $message,
             ],
 

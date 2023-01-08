@@ -17,9 +17,11 @@ use Tailors\PHPUnit\Values\ExpectedValues;
 
 /**
  * @small
+ *
  * @covers \Tailors\PHPUnit\Exporter\Exporter
  *
  * @internal This class is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 final class ExporterTest extends TestCase
@@ -74,7 +76,7 @@ final class ExporterTest extends TestCase
             'arguments' => new ActualValues([
                 'foo' => 'FOO',
             ]),
-            'expected' => "values (\n".
+            'expected'  => "values (\n".
                           "    'foo' => 'FOO'\n".
                           ')',
         ];
@@ -83,7 +85,7 @@ final class ExporterTest extends TestCase
             'arguments' => new ExpectedValues([
                 'foo' => 'FOO',
             ]),
-            'expected' => "values (\n".
+            'expected'  => "values (\n".
                           "    'foo' => 'FOO'\n".
                           ')',
         ];
@@ -125,7 +127,7 @@ final class ExporterTest extends TestCase
             null,               // #0
             'abc',              // #1
             123,                // #2
-            new \StdClass(),    // #3
+            new \stdClass(),    // #3
         ];
 
         $cases = [];
@@ -151,14 +153,14 @@ final class ExporterTest extends TestCase
             'arguments' => new ActualValues([
                 'foo' => 'FOO',
             ]),
-            'expected' => 'values (...)',
+            'expected'  => 'values (...)',
         ];
 
         $cases['ExporterTest.php:'.__LINE__] = [
             'arguments' => new ExpectedValues([
                 'foo' => 'FOO',
             ]),
-            'expected' => 'values (...)',
+            'expected'  => 'values (...)',
         ];
 
         return $cases;

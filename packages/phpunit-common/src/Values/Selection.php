@@ -12,6 +12,7 @@ namespace Tailors\PHPUnit\Values;
 
 /**
  * @internal This interface is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 class Selection extends ExpectedValues implements SelectionInterface
@@ -24,12 +25,19 @@ class Selection extends ExpectedValues implements SelectionInterface
     /**
      * @param ValueSelectorInterface $selector
      * @param mixed                  $input
-     * @psalm-param array|null|object $input
+     *
+     * @psalm-param array|object     $input
      */
     public function __construct(ValueSelectorInterface $selector, $input = [])
     {
         $this->selector = $selector;
-        parent::__construct($input);
+        // The folowing if-else is only to make psalm 5.4.0 happy
+        // See: https://github.com/vimeo/psalm/issues/9082
+        if (is_array($input)) {
+            parent::__construct($input);
+        } else {
+            parent::__construct($input);
+        }
     }
 
     /**

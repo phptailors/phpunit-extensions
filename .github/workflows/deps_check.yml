@@ -13,7 +13,7 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: shivammathur/setup-php@v2
         with:
           php-version: 7.4
@@ -41,7 +41,7 @@ jobs:
 
     name: phpunit-extensions (${{ matrix.os }}:PHP-${{ matrix.php-version }}:${{ matrix.dependencies }})
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-version }}
@@ -81,7 +81,7 @@ jobs:
     name: ${{ matrix.package }} (${{ matrix.os }}:PHP-${{ matrix.php-version }}:${{ matrix.dependencies }})
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-version }}

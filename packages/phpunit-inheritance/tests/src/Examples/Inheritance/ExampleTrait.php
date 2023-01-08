@@ -14,6 +14,7 @@ namespace Tailors\PHPUnit\Examples\Inheritance;
  * Example trait for testing purposes.
  *
  * @internal This trait is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 trait ExampleTrait

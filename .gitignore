@@ -23,8 +23,9 @@
 /.env
 /docker/.env
 
-# composer.lock
+# composer stuff
 composer.lock
+vendor/
 
 # phpunit (we only commit phpunit.xml.dist)
 /phpunit.xml
@@ -66,7 +67,6 @@ composer.lock
 /storage/logs/
 
 # Others
-/vendor
 /.vagrant
 /core
 Homestead.json

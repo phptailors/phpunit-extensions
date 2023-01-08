@@ -15,11 +15,13 @@ use Tailors\PHPUnit\Values\ConstraintTestCase;
 
 /**
  * @small
+ *
  * @covers \Tailors\PHPUnit\Constraint\ArrayValuesIdenticalTo
  * @covers \Tailors\PHPUnit\Constraint\ProvArrayValuesTrait
  * @covers \Tailors\PHPUnit\Values\ConstraintTestCase
  *
  * @internal This class is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 final class ArrayValuesIdenticalToTest extends ConstraintTestCase
@@ -75,7 +77,9 @@ final class ArrayValuesIdenticalToTest extends ConstraintTestCase
 
     /**
      * @dataProvider provArrayValuesNotEqualTo
+     *
      * @dateProvider provArrayValuesEqualButNotIdenticalTo
+     *
      * @dataProvider provArrayValuesNotEqualToNonArray
      *
      * @param mixed $actual

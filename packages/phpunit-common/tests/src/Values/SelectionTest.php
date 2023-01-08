@@ -14,9 +14,11 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @small
+ *
  * @covers \Tailors\PHPUnit\Values\Selection
  *
  * @internal This class is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 final class SelectionTest extends TestCase
@@ -42,6 +44,7 @@ final class SelectionTest extends TestCase
     public function provConstruct(): array
     {
         $selector = $this->createMock(ValueSelectorInterface::class);
+        $arrayObject = new \ArrayObject(['foo', 'bar']);
 
         return [
             'SelectionTest.php:'.__LINE__ => [
@@ -54,6 +57,14 @@ final class SelectionTest extends TestCase
 
             'SelectionTest.php:'.__LINE__ => [
                 'args'   => [$selector, ['foo', 'bar']],
+                'expect' => [
+                    'selector' => $selector,
+                    'array'    => ['foo', 'bar'],
+                ],
+            ],
+
+            'SelectionTest.php:'.__LINE__ => [
+                'args'   => [$selector, $arrayObject],
                 'expect' => [
                     'selector' => $selector,
                     'array'    => ['foo', 'bar'],
