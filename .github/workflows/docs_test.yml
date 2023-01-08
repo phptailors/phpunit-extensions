@@ -49,14 +49,11 @@ jobs:
           php-version: 8.1
           coverage: none
 
-      - name: Display settings
-        run: |
-          id
+      - name: Initialize Docker environment
+        run: php docker/initialize
 
       - name: Build API docs
-        run: |
-          php docker/initialize
-          docker/docs run --rm doctum build
+        run: docker/docs run --rm doctum build
 
       - name: Build user docs
         run: docker/docs run --rm sphinx build

@@ -47,13 +47,14 @@ jobs:
       - uses: actions/checkout@v3
       - uses: shivammathur/setup-php@v2
         with:
-          php-version: 7.4
+          php-version: 8.1
           coverage: none
 
+      - name: Initialize Docker environment
+        run: php docker/initialize
+
       - name: Build API docs
-        run: |
-          php docker/initialize
-          docker/docs run --rm doctum build
+        run: docker/docs run --rm doctum build
 
       - name: Build user docs
         run: |
@@ -61,7 +62,7 @@ jobs:
           rm -rf docs/build/html/.doctrees docs/build/html/.buildinfo
 
       - name: Deploy to gh-pages
-        uses: peaceiris/actions-gh-pages@v3.7.0-8
+        uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs/build/html
