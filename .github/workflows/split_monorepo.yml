@@ -1,13 +1,16 @@
-name: Split Monorepo Dev-Master
+name: Monorepo Split
 
 on:
   push:
     branches:
       - master
-
-        # see https://github.community/t/how-to-run-github-actions-workflow-only-for-new-tags/16075/10?u=tomasvotruba
     tags:
-      - '*'
+      - '[0-9]+.[0-9]+'
+      - '[0-9]+.[0-9]+.[0-9]+'
+  pull_request:
+
+env:
+  GITHUB_TOKEN: ${{ secrets.MONOREPO_SPLIT_TOKEN }}
 
 jobs:
   provide_packages_json:
@@ -35,6 +38,7 @@ jobs:
       matrix: ${{ steps.output_data.outputs.matrix }}
 
   split_monorepo:
+
     needs: provide_packages_json
 
     name: ${{ matrix.package }}
@@ -48,14 +52,24 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      -
-        # Uses an action in the root directory
-        name: Monorepo Split of ${{ matrix.package }}
+      # no tag
+      - name: Split out ${{ matrix.package }} (branch)
+        if: ${{ github.ref_type == 'branch' }}
         uses: symplify/github-action-monorepo-split@2.1
-        env:
-          PAT: ${{ secrets.MONOREPO_SPLIT_TOKEN }}
         with:
-          branch: "master"
+          tag: "${{ github.ref_name }}"
+          package_directory: 'packages/${{ matrix.package }}'
+          repository_organization: 'phptailors'
+          repository_name: '${{ matrix.package }}'
+          user_name: "ptomulik"
+          user_email: "ptomulik@meil.pw.edu.pl"
+
+      # with tag
+      - name: Split out ${{ matrix.package }} (tag)
+        if: ${{ github.ref_type == 'tag' }}
+        uses: symplify/github-action-monorepo-split@2.1
+        with:
+          tag: "${{ github.ref_name }}"
           package_directory: 'packages/${{ matrix.package }}'
           repository_organization: 'phptailors'
           repository_name: '${{ matrix.package }}'
