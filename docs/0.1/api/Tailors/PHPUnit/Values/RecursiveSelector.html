@@ -10,24 +10,37 @@
         <link rel="stylesheet" type="text/css" href="../../../css/doctum.css">
         <link rel="stylesheet" type="text/css" href="../../../fonts/doctum-font.css">
         <script src="../../../js/jquery-3.5.1.slim.min.js"></script>
+        <script async defer src="../../../doctum.js"></script>
         <script async defer src="../../../js/bootstrap.min.js"></script>
-        <script src="../../../js/typeahead.min.js"></script>
-        <script src="../../../doctum.js"></script>
+        <script async defer src="../../../js/autocomplete.min.js"></script>
         <meta name="MobileOptimized" content="width">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+
     </head>
 
-    <body id="class" data-name="class:Tailors_PHPUnit_Values_RecursiveSelector" data-root-path="../../../">
+    <body id="class" data-name="class:Tailors_PHPUnit_Values_RecursiveSelector" data-root-path="../../../" data-search-index-url="../../../doctum-search.json">
             <div id="content">
         <div id="left-column">
                 <div id="control-panel">
-                <form id="search-form" action="../../../search.html">
+                <div class="search-bar hidden" id="search-progress-bar-container">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" id="search-progress-bar"
+                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+            </div>
+        </div>
+        <form id="search-form" action="../../../search.html">
             <span class="icon icon-search"></span>
             <input name="search"
+                   id="doctum-search-auto-complete"
                    class="typeahead form-control"
                    type="search"
-                   placeholder="Search">
+                   placeholder="Search"
+                   spellcheck="false"
+                   autocorrect="off"
+                   autocomplete="off"
+                   autocapitalize="off">
+            <div class="auto-complete-results" id="auto-complete-results"></div>
         </form>
     </div>
 
@@ -66,26 +79,31 @@
             </ol>
         </div>
                 <div id="page-content">
-                
     <div class="page-header">
-        <h1>
-            RecursiveSelector
-                
-        </h1>
+        <h1>RecursiveSelector    
+            </h1>
     </div>
 
-    <p>    class
-    <strong>RecursiveSelector</strong>        implements
-        <a href="../../../Tailors/PHPUnit/Values/RecursiveSelectorInterface.html"><abbr title="Tailors\PHPUnit\Values\RecursiveSelectorInterface">RecursiveSelectorInterface</abbr></a>
+    
+    <p>final         class
+    <strong>RecursiveSelector</strong>        implements        <a href="../../../Tailors/PHPUnit/Values/RecursiveSelectorInterface.html"><abbr title="Tailors\PHPUnit\Values\RecursiveSelectorInterface">RecursiveSelectorInterface</abbr></a>
 </p>
 
         
     
+                        <table>
+            <tr>
+                <td><span class="label label-warning">internal</span></td>
+                <td>&nbsp;This class is not covered by the backward compatibility promise</td>
+            </tr>
+        </table>
+                &nbsp;
+    
 
             <div class="description">
-            <p>Selects actual values from a $subject according to expected values.</p>                                </div>
-    
-    
+            <p><p>Selects actual values from a $subject according to expected values.</p></p>                    </div>
+            
+        
     
     
             <h2>Methods</h2>
@@ -95,7 +113,7 @@
                 <div class="col-md-2 type">
                     
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method___construct">__construct</a>(<a href="../../../Tailors/PHPUnit/Values/SelectionInterface.html"><abbr title="Tailors\PHPUnit\Values\SelectionInterface">SelectionInterface</abbr></a> $selection)
         
                                             <p class="no-description">No description</p>
@@ -106,10 +124,10 @@
                 <div class="col-md-2 type">
                     <a href="../../../Tailors/PHPUnit/Values/ValuesInterface.html"><abbr title="Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr></a>
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_select">select</a>(mixed $subject)
         
-                                            <p>Select an array of values from $subject.</p>                </div>
+                                            <p><p>Select an array of values from $subject.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -120,16 +138,20 @@
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method___construct">
-        <div class="location">at line 26</div>
+        <div class="location">at line 27</div>
         <code>                    
     <strong>__construct</strong>(<a href="../../../Tailors/PHPUnit/Values/SelectionInterface.html"><abbr title="Tailors\PHPUnit\Values\SelectionInterface">SelectionInterface</abbr></a> $selection)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                <div class="tags">
+        <div class="method-description">
+                            <p class="no-description">No description</p>
+                    
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
@@ -143,24 +165,26 @@
             
             
             
+            
                     </div>
     </div>
 
             </div>
                     <div class="method-item">
                     <h3 id="method_select">
-        <div class="location">at line 36</div>
+        <div class="location">at line 37</div>
         <code>                    <a href="../../../Tailors/PHPUnit/Values/ValuesInterface.html"><abbr title="Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr></a>
     <strong>select</strong>(mixed $subject)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>Select an array of values from $subject.</p>                                                </div>
-                <div class="tags">
+        <div class="method-description">
+                            <p><p>Select an array of values from $subject.</p></p>                        
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
@@ -183,6 +207,7 @@
 
             
             
+            
                     </div>
     </div>
 
@@ -190,9 +215,8 @@
             </div>
 
     
-            </div><div id="footer">
-        Generated by <a href="https://github.com/code-lts/doctum">Doctum, a API Documentation generator and fork of Sami</a>.
-    </div></div>
+</div><div id="footer">
+        Generated by <a href="https://github.com/code-lts/doctum">Doctum, a API Documentation generator and fork of Sami</a>.</div></div>
     </div>
     </body>
 

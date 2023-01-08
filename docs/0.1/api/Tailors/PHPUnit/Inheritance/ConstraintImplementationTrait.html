@@ -10,24 +10,37 @@
         <link rel="stylesheet" type="text/css" href="../../../css/doctum.css">
         <link rel="stylesheet" type="text/css" href="../../../fonts/doctum-font.css">
         <script src="../../../js/jquery-3.5.1.slim.min.js"></script>
+        <script async defer src="../../../doctum.js"></script>
         <script async defer src="../../../js/bootstrap.min.js"></script>
-        <script src="../../../js/typeahead.min.js"></script>
-        <script src="../../../doctum.js"></script>
+        <script async defer src="../../../js/autocomplete.min.js"></script>
         <meta name="MobileOptimized" content="width">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+
     </head>
 
-    <body id="class" data-name="class:Tailors_PHPUnit_Inheritance_ConstraintImplementationTrait" data-root-path="../../../">
+    <body id="class" data-name="class:Tailors_PHPUnit_Inheritance_ConstraintImplementationTrait" data-root-path="../../../" data-search-index-url="../../../doctum-search.json">
             <div id="content">
         <div id="left-column">
                 <div id="control-panel">
-                <form id="search-form" action="../../../search.html">
+                <div class="search-bar hidden" id="search-progress-bar-container">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" id="search-progress-bar"
+                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+            </div>
+        </div>
+        <form id="search-form" action="../../../search.html">
             <span class="icon icon-search"></span>
             <input name="search"
+                   id="doctum-search-auto-complete"
                    class="typeahead form-control"
                    type="search"
-                   placeholder="Search">
+                   placeholder="Search"
+                   spellcheck="false"
+                   autocorrect="off"
+                   autocomplete="off"
+                   autocapitalize="off">
+            <div class="auto-complete-results" id="auto-complete-results"></div>
         </form>
     </div>
 
@@ -66,31 +79,36 @@
             </ol>
         </div>
                 <div id="page-content">
-                
     <div class="page-header">
-        <h1>
-            ConstraintImplementationTrait
-                
-        </h1>
+        <h1>ConstraintImplementationTrait    
+            </h1>
     </div>
 
-    <p>    trait
+    
+    <p>        trait
     <strong>ConstraintImplementationTrait</strong>
 </p>
 
         
     
+                        <table>
+            <tr>
+                <td><span class="label label-warning">internal</span></td>
+                <td>&nbsp;This trait is not covered by the backward compatibility promise</td>
+            </tr>
+        </table>
+                &nbsp;
+    
 
             <div class="description">
-            <p>Implementation of an inheritance constraint class.</p>            <p>The trait expects the following static attributes to be defined::</p>
-
+            <p><p>Implementation of an inheritance constraint class.</p></p>            <p><p>The trait expects the following static attributes to be defined::</p>
 <p>private static $verb;           // for example $verb = 'extends class';
 private static $negatedVerb;    // for example $negatedVerb = 'does not extend class';
 private static $validation;     // for example $validation = ['class_exists', 'a class-string'];
 private static $inheritance;    // for example $validation = 'class_parents';
-private static $supports;       // for example $supports = ['class_exists'];</p>                    </div>
-    
-    
+private static $supports;       // for example $supports = ['class_exists'];</p></p>        </div>
+            
+        
     
     
             <h2>Methods</h2>
@@ -100,7 +118,7 @@ private static $supports;       // for example $supports = ['class_exists'];</p>
                 <div class="col-md-2 type">
                     static&nbsp;<a href="../../../Tailors/PHPUnit/Inheritance/ConstraintImplementationTrait.html"><abbr title="Tailors\PHPUnit\Inheritance\ConstraintImplementationTrait">ConstraintImplementationTrait</abbr></a>
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_create">create</a>(string $expected)
         
                                             <p class="no-description">No description</p>
@@ -111,27 +129,27 @@ private static $supports;       // for example $supports = ['class_exists'];</p>
                 <div class="col-md-2 type">
                     string
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_verb">verb</a>()
         
-                                            <p>Returns short description of what we examine, e.g. <code>'impements interface'</code>.</p>                </div>
+                                            <p><p>Returns short description of what we examine, e.g. <code>'impements interface'</code>.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
                     string
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_negatedVerb">negatedVerb</a>()
         
-                                            <p>Returns short negated description of what we examine, e.g. <code>'does not impement interface'</code>.</p>                </div>
+                                            <p><p>Returns short negated description of what we examine, e.g. <code>'does not impement interface'</code>.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
                     array
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_inheritance">inheritance</a>(string $class)
         
                                             <p class="no-description">No description</p>
@@ -142,10 +160,10 @@ private static $supports;       // for example $supports = ['class_exists'];</p>
                 <div class="col-md-2 type">
                     bool
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_supports">supports</a>(string $subject)
         
-                                            <p>Checks if <em>$subject</em> may be used as an argument to inheritance().</p>                </div>
+                                            <p><p>Checks if <em>$subject</em> may be used as an argument to inheritance().</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -156,16 +174,20 @@ private static $supports;       // for example $supports = ['class_exists'];</p>
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method_create">
-        <div class="location">at line 37</div>
+        <div class="location">at line 38</div>
         <code>        static            <a href="../../../Tailors/PHPUnit/Inheritance/ConstraintImplementationTrait.html"><abbr title="Tailors\PHPUnit\Inheritance\ConstraintImplementationTrait">ConstraintImplementationTrait</abbr></a>
     <strong>create</strong>(string $expected)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                <div class="tags">
+        <div class="method-description">
+                            <p class="no-description">No description</p>
+                    
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
@@ -197,24 +219,26 @@ private static $supports;       // for example $supports = ['class_exists'];</p>
             </table>
 
             
+            
                     </div>
     </div>
 
             </div>
                     <div class="method-item">
                     <h3 id="method_verb">
-        <div class="location">at line 47</div>
+        <div class="location">at line 48</div>
         <code>            protected        string
     <strong>verb</strong>()
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>Returns short description of what we examine, e.g. <code>'impements interface'</code>.</p>                                                </div>
-                <div class="tags">
+        <div class="method-description">
+                            <p><p>Returns short description of what we examine, e.g. <code>'impements interface'</code>.</p></p>                        
+        </div>
+        <div class="tags">
             
                             <h4>Return Value</h4>
 
@@ -225,6 +249,7 @@ private static $supports;       // for example $supports = ['class_exists'];</p>
         </tr>
     </table>
 
+            
             
             
                     </div>
@@ -233,18 +258,19 @@ private static $supports;       // for example $supports = ['class_exists'];</p>
             </div>
                     <div class="method-item">
                     <h3 id="method_negatedVerb">
-        <div class="location">at line 55</div>
+        <div class="location">at line 56</div>
         <code>            protected        string
     <strong>negatedVerb</strong>()
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>Returns short negated description of what we examine, e.g. <code>'does not impement interface'</code>.</p>                                                </div>
-                <div class="tags">
+        <div class="method-description">
+                            <p><p>Returns short negated description of what we examine, e.g. <code>'does not impement interface'</code>.</p></p>                        
+        </div>
+        <div class="tags">
             
                             <h4>Return Value</h4>
 
@@ -257,22 +283,27 @@ private static $supports;       // for example $supports = ['class_exists'];</p>
 
             
             
+            
                     </div>
     </div>
 
             </div>
                     <div class="method-item">
                     <h3 id="method_inheritance">
-        <div class="location">at line 63</div>
+        <div class="location">at line 64</div>
         <code>            protected        array
     <strong>inheritance</strong>(string $class)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                <div class="tags">
+        <div class="method-description">
+                            <p class="no-description">No description</p>
+                    
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
@@ -298,11 +329,12 @@ private static $supports;       // for example $supports = ['class_exists'];</p>
 
                     <table class="table table-condensed">
                     <tr>
-                <td>InvalidReturnValueException</td>
+                <td><a href="../../../Tailors/PHPUnit/InvalidReturnValueException.html"><abbr title="Tailors\PHPUnit\InvalidReturnValueException">InvalidReturnValueException</abbr></a></td>
                 <td></td>
             </tr>
             </table>
 
+            
             
                     </div>
     </div>
@@ -310,18 +342,19 @@ private static $supports;       // for example $supports = ['class_exists'];</p>
             </div>
                     <div class="method-item">
                     <h3 id="method_supports">
-        <div class="location">at line 74</div>
+        <div class="location">at line 75</div>
         <code>            protected        bool
     <strong>supports</strong>(string $subject)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>Checks if <em>$subject</em> may be used as an argument to inheritance().</p>                                                </div>
-                <div class="tags">
+        <div class="method-description">
+                            <p><p>Checks if <em>$subject</em> may be used as an argument to inheritance().</p></p>                        
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
@@ -344,6 +377,7 @@ private static $supports;       // for example $supports = ['class_exists'];</p>
 
             
             
+            
                     </div>
     </div>
 
@@ -351,9 +385,8 @@ private static $supports;       // for example $supports = ['class_exists'];</p>
             </div>
 
     
-            </div><div id="footer">
-        Generated by <a href="https://github.com/code-lts/doctum">Doctum, a API Documentation generator and fork of Sami</a>.
-    </div></div>
+</div><div id="footer">
+        Generated by <a href="https://github.com/code-lts/doctum">Doctum, a API Documentation generator and fork of Sami</a>.</div></div>
     </div>
     </body>
 

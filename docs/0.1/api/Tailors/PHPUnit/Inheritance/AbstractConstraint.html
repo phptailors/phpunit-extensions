@@ -10,24 +10,37 @@
         <link rel="stylesheet" type="text/css" href="../../../css/doctum.css">
         <link rel="stylesheet" type="text/css" href="../../../fonts/doctum-font.css">
         <script src="../../../js/jquery-3.5.1.slim.min.js"></script>
+        <script async defer src="../../../doctum.js"></script>
         <script async defer src="../../../js/bootstrap.min.js"></script>
-        <script src="../../../js/typeahead.min.js"></script>
-        <script src="../../../doctum.js"></script>
+        <script async defer src="../../../js/autocomplete.min.js"></script>
         <meta name="MobileOptimized" content="width">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+
     </head>
 
-    <body id="class" data-name="class:Tailors_PHPUnit_Inheritance_AbstractConstraint" data-root-path="../../../">
+    <body id="class" data-name="class:Tailors_PHPUnit_Inheritance_AbstractConstraint" data-root-path="../../../" data-search-index-url="../../../doctum-search.json">
             <div id="content">
         <div id="left-column">
                 <div id="control-panel">
-                <form id="search-form" action="../../../search.html">
+                <div class="search-bar hidden" id="search-progress-bar-container">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" id="search-progress-bar"
+                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+            </div>
+        </div>
+        <form id="search-form" action="../../../search.html">
             <span class="icon icon-search"></span>
             <input name="search"
+                   id="doctum-search-auto-complete"
                    class="typeahead form-control"
                    type="search"
-                   placeholder="Search">
+                   placeholder="Search"
+                   spellcheck="false"
+                   autocorrect="off"
+                   autocomplete="off"
+                   autocapitalize="off">
+            <div class="auto-complete-results" id="auto-complete-results"></div>
         </form>
     </div>
 
@@ -66,26 +79,32 @@
             </ol>
         </div>
                 <div id="page-content">
-                
     <div class="page-header">
-        <h1>
-            AbstractConstraint
-                
-        </h1>
+        <h1>AbstractConstraint    
+            </h1>
     </div>
 
-    <p>abstract     class
+    
+    <p>    abstract     class
     <strong>AbstractConstraint</strong>        extends <abbr title="PHPUnit\Framework\Constraint\Constraint">Constraint</abbr>
 </p>
 
         
     
+                        <table>
+            <tr>
+                <td><span class="label label-warning">internal</span></td>
+                <td>&nbsp;This class is not covered by the backward compatibility promise</td>
+            </tr>
+        </table>
+                &nbsp;
+    
 
             <div class="description">
-            <p>Abstract base class for inheritance constraints (ExtendsClass,
-ImplementsInterface, UsesTrait, etc.).</p>                                </div>
-    
-    
+            <p><p>Abstract base class for inheritance constraints (ExtendsClass,
+ImplementsInterface, UsesTrait, etc.).</p></p>                    </div>
+            
+        
     
     
             <h2>Methods</h2>
@@ -95,105 +114,105 @@ ImplementsInterface, UsesTrait, etc.).</p>                                </div>
                 <div class="col-md-2 type">
                     
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method___construct">__construct</a>(string $expected)
         
-                                            <p>Initializes the constraint.</p>                </div>
+                                            <p><p>Initializes the constraint.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
                     string
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_toString">toString</a>()
         
-                                            <p>Returns a string representation of the constraint.</p>                </div>
+                                            <p><p>Returns a string representation of the constraint.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
                     bool
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_matches">matches</a>(mixed $other)
         
-                                            <p>Evaluates the constraint for parameter $other. Returns true if the
-constraint is met, false otherwise.</p>                </div>
+                                            <p><p>Evaluates the constraint for parameter $other. Returns true if the
+constraint is met, false otherwise.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
                     string
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_failureDescription">failureDescription</a>(mixed $other)
         
-                                            <p>Returns the description of the failure.</p>                </div>
+                                            <p><p>Returns the description of the failure.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
                     string
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_verb">verb</a>()
         
-                                            <p>Returns short description of what we examine, e.g. <code>'impements interface'</code>.</p>                </div>
+                                            <p><p>Returns short description of what we examine, e.g. <code>'impements interface'</code>.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
                     string
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_negatedVerb">negatedVerb</a>()
         
-                                            <p>Returns short negated description of what we examine, e.g. <code>'does not impement interface'</code>.</p>                </div>
+                                            <p><p>Returns short negated description of what we examine, e.g. <code>'does not impement interface'</code>.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
                     array
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_inheritance">inheritance</a>(string $class)
         
-                                            <p>Returns an array of "inherited classes" -- eiher interfaces <em>$class</em>
+                                            <p><p>Returns an array of &quot;inherited classes&quot; -- eiher interfaces <em>$class</em>
 implements, parent classes it extends or traits it uses, depending on
-the actual implementation of this constraint.</p>                </div>
+the actual implementation of this constraint.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
                     bool
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_supports">supports</a>(string $subject)
         
-                                            <p>Checks if <em>$subject</em> may be used as an argument to <code>inheritance()</code>.</p>                </div>
+                                            <p><p>Checks if <em>$subject</em> may be used as an argument to <code>inheritance()</code>.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
                     string
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_toStringInContext">toStringInContext</a>(<abbr title="PHPUnit\Framework\Constraint\Operator">Operator</abbr> $operator, mixed $role)
         
-                                            <p>Returns a custom string representation of the constraint object when it
-appears in context of an $operator expression.</p>                </div>
+                                            <p><p>Returns a custom string representation of the constraint object when it
+appears in context of an $operator expression.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
                     string
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_failureDescriptionInContext">failureDescriptionInContext</a>(<abbr title="PHPUnit\Framework\Constraint\Operator">Operator</abbr> $operator, mixed $role, mixed $other)
         
-                                            <p>Returns the description of the failure when this constraint appears in
-context of an $operator expression.</p>                </div>
+                                            <p><p>Returns the description of the failure when this constraint appears in
+context of an $operator expression.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -204,18 +223,19 @@ context of an $operator expression.</p>                </div>
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method___construct">
-        <div class="location">at line 35</div>
+        <div class="location">at line 37</div>
         <code>            protected        
     <strong>__construct</strong>(string $expected)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>Initializes the constraint.</p>                                                </div>
-                <div class="tags">
+        <div class="method-description">
+                            <p><p>Initializes the constraint.</p></p>                        
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
@@ -229,24 +249,26 @@ context of an $operator expression.</p>                </div>
             
             
             
+            
                     </div>
     </div>
 
             </div>
                     <div class="method-item">
                     <h3 id="method_toString">
-        <div class="location">at line 43</div>
+        <div class="location">at line 45</div>
         <code>final                    string
     <strong>toString</strong>()
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>Returns a string representation of the constraint.</p>                                                </div>
-                <div class="tags">
+        <div class="method-description">
+                            <p><p>Returns a string representation of the constraint.</p></p>                        
+        </div>
+        <div class="tags">
             
                             <h4>Return Value</h4>
 
@@ -259,32 +281,34 @@ context of an $operator expression.</p>                </div>
 
             
             
+            
                     </div>
     </div>
 
             </div>
                     <div class="method-item">
                     <h3 id="method_matches">
-        <div class="location">at line 54</div>
+        <div class="location">at line 56</div>
         <code>final                    bool
     <strong>matches</strong>(mixed $other)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>Evaluates the constraint for parameter $other. Returns true if the
-constraint is met, false otherwise.</p>                                                </div>
-                <div class="tags">
+        <div class="method-description">
+                            <p><p>Evaluates the constraint for parameter $other. Returns true if the
+constraint is met, false otherwise.</p></p>                        
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
                 <td>mixed</td>
                 <td>$other</td>
-                <td>value or object to evaluate</td>
+                <td><p>value or object to evaluate</p></td>
             </tr>
             </table>
 
@@ -300,32 +324,34 @@ constraint is met, false otherwise.</p>                                         
 
             
             
+            
                     </div>
     </div>
 
             </div>
                     <div class="method-item">
                     <h3 id="method_failureDescription">
-        <div class="location">at line 74</div>
+        <div class="location">at line 76</div>
         <code>final                    string
     <strong>failureDescription</strong>(mixed $other)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>Returns the description of the failure.</p>                    <p>The beginning of failure messages is "Failed asserting that" in most
-cases. This method should return the second part of that sentence.</p>                            </div>
-                <div class="tags">
+        <div class="method-description">
+                            <p><p>Returns the description of the failure.</p></p>                <p><p>The beginning of failure messages is &quot;Failed asserting that&quot; in most
+cases. This method should return the second part of that sentence.</p></p>        
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
                 <td>mixed</td>
                 <td>$other</td>
-                <td>evaluated value or object</td>
+                <td><p>evaluated value or object</p></td>
             </tr>
             </table>
 
@@ -341,24 +367,26 @@ cases. This method should return the second part of that sentence.</p>          
 
             
             
+            
                     </div>
     </div>
 
             </div>
                     <div class="method-item">
                     <h3 id="method_verb">
-        <div class="location">at line 82</div>
+        <div class="location">at line 84</div>
         <code>    abstract        protected        string
     <strong>verb</strong>()
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>Returns short description of what we examine, e.g. <code>'impements interface'</code>.</p>                                                </div>
-                <div class="tags">
+        <div class="method-description">
+                            <p><p>Returns short description of what we examine, e.g. <code>'impements interface'</code>.</p></p>                        
+        </div>
+        <div class="tags">
             
                             <h4>Return Value</h4>
 
@@ -369,6 +397,7 @@ cases. This method should return the second part of that sentence.</p>          
         </tr>
     </table>
 
+            
             
             
                     </div>
@@ -377,18 +406,19 @@ cases. This method should return the second part of that sentence.</p>          
             </div>
                     <div class="method-item">
                     <h3 id="method_negatedVerb">
-        <div class="location">at line 87</div>
+        <div class="location">at line 89</div>
         <code>    abstract        protected        string
     <strong>negatedVerb</strong>()
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>Returns short negated description of what we examine, e.g. <code>'does not impement interface'</code>.</p>                                                </div>
-                <div class="tags">
+        <div class="method-description">
+                            <p><p>Returns short negated description of what we examine, e.g. <code>'does not impement interface'</code>.</p></p>                        
+        </div>
+        <div class="tags">
             
                             <h4>Return Value</h4>
 
@@ -401,26 +431,28 @@ cases. This method should return the second part of that sentence.</p>          
 
             
             
+            
                     </div>
     </div>
 
             </div>
                     <div class="method-item">
                     <h3 id="method_inheritance">
-        <div class="location">at line 94</div>
+        <div class="location">at line 96</div>
         <code>    abstract        protected        array
     <strong>inheritance</strong>(string $class)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>Returns an array of "inherited classes" -- eiher interfaces <em>$class</em>
+        <div class="method-description">
+                            <p><p>Returns an array of &quot;inherited classes&quot; -- eiher interfaces <em>$class</em>
 implements, parent classes it extends or traits it uses, depending on
-the actual implementation of this constraint.</p>                                                </div>
-                <div class="tags">
+the actual implementation of this constraint.</p></p>                        
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
@@ -443,24 +475,26 @@ the actual implementation of this constraint.</p>                               
 
             
             
+            
                     </div>
     </div>
 
             </div>
                     <div class="method-item">
                     <h3 id="method_supports">
-        <div class="location">at line 99</div>
+        <div class="location">at line 101</div>
         <code>    abstract        protected        bool
     <strong>supports</strong>(string $subject)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>Checks if <em>$subject</em> may be used as an argument to <code>inheritance()</code>.</p>                                                </div>
-                <div class="tags">
+        <div class="method-description">
+                            <p><p>Checks if <em>$subject</em> may be used as an argument to <code>inheritance()</code>.</p></p>                        
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
@@ -483,43 +517,44 @@ the actual implementation of this constraint.</p>                               
 
             
             
+            
                     </div>
     </div>
 
             </div>
                     <div class="method-item">
                     <h3 id="method_toStringInContext">
-        <div class="location">at line 116</div>
+        <div class="location">at line 118</div>
         <code>final            protected        string
     <strong>toStringInContext</strong>(<abbr title="PHPUnit\Framework\Constraint\Operator">Operator</abbr> $operator, mixed $role)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>Returns a custom string representation of the constraint object when it
-appears in context of an $operator expression.</p>                    <p>The purpose of this method is to provide meaningful descriptive string
+        <div class="method-description">
+                            <p><p>Returns a custom string representation of the constraint object when it
+appears in context of an $operator expression.</p></p>                <p><p>The purpose of this method is to provide meaningful descriptive string
 in context of operators such as LogicalNot. Native PHPUnit constraints
 are supported out of the box by LogicalNot, but externally developed
 ones had no way to provide correct strings in this context.</p>
-
 <p>The method shall return empty string, when it does not handle
-customization by itself.</p>                            </div>
-                <div class="tags">
+customization by itself.</p></p>        
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
                 <td><abbr title="PHPUnit\Framework\Constraint\Operator">Operator</abbr></td>
                 <td>$operator</td>
-                <td>the $operator of the expression</td>
+                <td><p>the $operator of the expression</p></td>
             </tr>
                     <tr>
                 <td>mixed</td>
                 <td>$role</td>
-                <td>role of $this constraint in the $operator expression</td>
+                <td><p>role of $this constraint in the $operator expression</p></td>
             </tr>
             </table>
 
@@ -533,6 +568,7 @@ customization by itself.</p>                            </div>
         </tr>
     </table>
 
+            
             
             
                     </div>
@@ -541,42 +577,42 @@ customization by itself.</p>                            </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_failureDescriptionInContext">
-        <div class="location">at line 141</div>
+        <div class="location">at line 143</div>
         <code>final            protected        string
     <strong>failureDescriptionInContext</strong>(<abbr title="PHPUnit\Framework\Constraint\Operator">Operator</abbr> $operator, mixed $role, mixed $other)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>Returns the description of the failure when this constraint appears in
-context of an $operator expression.</p>                    <p>The purpose of this method is to provide meaningful failue description
+        <div class="method-description">
+                            <p><p>Returns the description of the failure when this constraint appears in
+context of an $operator expression.</p></p>                <p><p>The purpose of this method is to provide meaningful failue description
 in context of operators such as LogicalNot. Native PHPUnit constraints
 are supported out of the box by LogicalNot, but externally developed
 ones had no way to provide correct messages in this context.</p>
-
 <p>The method shall return empty string, when it does not handle
-customization by itself.</p>                            </div>
-                <div class="tags">
+customization by itself.</p></p>        
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
                 <td><abbr title="PHPUnit\Framework\Constraint\Operator">Operator</abbr></td>
                 <td>$operator</td>
-                <td>the $operator of the expression</td>
+                <td><p>the $operator of the expression</p></td>
             </tr>
                     <tr>
                 <td>mixed</td>
                 <td>$role</td>
-                <td>role of $this constraint in the $operator expression</td>
+                <td><p>role of $this constraint in the $operator expression</p></td>
             </tr>
                     <tr>
                 <td>mixed</td>
                 <td>$other</td>
-                <td>evaluated value or object</td>
+                <td><p>evaluated value or object</p></td>
             </tr>
             </table>
 
@@ -592,6 +628,7 @@ customization by itself.</p>                            </div>
 
             
             
+            
                     </div>
     </div>
 
@@ -599,9 +636,8 @@ customization by itself.</p>                            </div>
             </div>
 
     
-            </div><div id="footer">
-        Generated by <a href="https://github.com/code-lts/doctum">Doctum, a API Documentation generator and fork of Sami</a>.
-    </div></div>
+</div><div id="footer">
+        Generated by <a href="https://github.com/code-lts/doctum">Doctum, a API Documentation generator and fork of Sami</a>.</div></div>
     </div>
     </body>
 

@@ -10,24 +10,37 @@
         <link rel="stylesheet" type="text/css" href="../../../css/doctum.css">
         <link rel="stylesheet" type="text/css" href="../../../fonts/doctum-font.css">
         <script src="../../../js/jquery-3.5.1.slim.min.js"></script>
+        <script async defer src="../../../doctum.js"></script>
         <script async defer src="../../../js/bootstrap.min.js"></script>
-        <script src="../../../js/typeahead.min.js"></script>
-        <script src="../../../doctum.js"></script>
+        <script async defer src="../../../js/autocomplete.min.js"></script>
         <meta name="MobileOptimized" content="width">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+
     </head>
 
-    <body id="class" data-name="class:Tailors_PHPUnit_Values_AbstractPropertySelector" data-root-path="../../../">
+    <body id="class" data-name="class:Tailors_PHPUnit_Values_AbstractPropertySelector" data-root-path="../../../" data-search-index-url="../../../doctum-search.json">
             <div id="content">
         <div id="left-column">
                 <div id="control-panel">
-                <form id="search-form" action="../../../search.html">
+                <div class="search-bar hidden" id="search-progress-bar-container">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" id="search-progress-bar"
+                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+            </div>
+        </div>
+        <form id="search-form" action="../../../search.html">
             <span class="icon icon-search"></span>
             <input name="search"
+                   id="doctum-search-auto-complete"
                    class="typeahead form-control"
                    type="search"
-                   placeholder="Search">
+                   placeholder="Search"
+                   spellcheck="false"
+                   autocorrect="off"
+                   autocomplete="off"
+                   autocapitalize="off">
+            <div class="auto-complete-results" id="auto-complete-results"></div>
         </form>
     </div>
 
@@ -66,23 +79,29 @@
             </ol>
         </div>
                 <div id="page-content">
-                
     <div class="page-header">
-        <h1>
-            AbstractPropertySelector
-                
-        </h1>
+        <h1>AbstractPropertySelector    
+            </h1>
     </div>
 
-    <p>abstract     class
+    
+    <p>    abstract     class
     <strong>AbstractPropertySelector</strong>        extends <a href="../../../Tailors/PHPUnit/Values/AbstractValueSelector.html"><abbr title="Tailors\PHPUnit\Values\AbstractValueSelector">AbstractValueSelector</abbr></a>
 </p>
 
         
     
+                        <table>
+            <tr>
+                <td><span class="label label-warning">internal</span></td>
+                <td>&nbsp;This class is not covered by the backward compatibility promise</td>
+            </tr>
+        </table>
+                &nbsp;
+    
 
-    
-    
+            
+        
     
     
             <h2>Methods</h2>
@@ -92,7 +111,7 @@
                 <div class="col-md-2 type">
                     bool
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_select">select</a>(mixed $subject, mixed $key, mixed $retval = null)
         
                                             <p class="no-description">No description</p>
@@ -104,7 +123,7 @@
                 <div class="col-md-2 type">
                     bool
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_selectFromSupported">selectFromSupported</a>(mixed $subject, mixed $key, mixed $retval = null)
         
                                             <p class="no-description">No description</p>
@@ -115,7 +134,7 @@
                 <div class="col-md-2 type">
                     void
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_assertSupports">assertSupports</a>(mixed $subject, int $argument, int $distance = 1)
         
                                             <p class="no-description">No description</p>
@@ -127,18 +146,18 @@
                 <div class="col-md-2 type">
                     string
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_selectable">selectable</a>()
         
-                                            <p>A name for the values being selected from subject (in plural,
-e.g. "values" or "properties").</p>                </div>
+                                            <p><p>A name for the values being selected from subject (in plural,
+e.g. &quot;values&quot; or &quot;properties&quot;).</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
                     mixed
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_getSubjectAttribute">getSubjectAttribute</a>(mixed $subject, mixed $key)
         
                                             <p class="no-description">No description</p>
@@ -149,7 +168,7 @@ e.g. "values" or "properties").</p>                </div>
                 <div class="col-md-2 type">
                     bool
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_selectWithMethod">selectWithMethod</a>(mixed $subject, string $method, mixed $retval = null)
         
                                             <p class="no-description">No description</p>
@@ -160,7 +179,7 @@ e.g. "values" or "properties").</p>                </div>
                 <div class="col-md-2 type">
                     bool
                 </div>
-                <div class="col-md-8 type">
+                <div class="col-md-8">
                     <a href="#method_selectWithAttribute">selectWithAttribute</a>(mixed $subject, mixed $key, mixed $retval = null)
         
                                             <p class="no-description">No description</p>
@@ -176,16 +195,20 @@ e.g. "values" or "properties").</p>                </div>
                     <div class="method-item">
                     <h3 id="method_select">
         <div class="location">in <a href="../../../Tailors/PHPUnit/Values/AbstractValueSelector.html#method_select">
-<abbr title="Tailors\PHPUnit\Values\AbstractValueSelector">AbstractValueSelector</abbr></a> at line 31</div>
+<abbr title="Tailors\PHPUnit\Values\AbstractValueSelector">AbstractValueSelector</abbr></a> at line 33</div>
         <code>final                    bool
     <strong>select</strong>(mixed $subject, mixed $key, mixed $retval = null)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                <div class="tags">
+        <div class="method-description">
+                            <p class="no-description">No description</p>
+                    
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
@@ -221,11 +244,12 @@ e.g. "values" or "properties").</p>                </div>
 
                     <table class="table table-condensed">
                     <tr>
-                <td><a target="_blank" rel="noopener" href="https://www.php.net/InvalidArgumentException">InvalidArgumentException</a></td>
+                <td><a href="../../../Tailors/PHPUnit/InvalidArgumentException.html"><abbr title="Tailors\PHPUnit\InvalidArgumentException">InvalidArgumentException</abbr></a></td>
                 <td></td>
             </tr>
             </table>
 
+            
             
                     </div>
     </div>
@@ -233,16 +257,20 @@ e.g. "values" or "properties").</p>                </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_selectFromSupported">
-        <div class="location">at line 38</div>
+        <div class="location">at line 41</div>
         <code>final            protected        bool
     <strong>selectFromSupported</strong>(mixed $subject, mixed $key, mixed $retval = null)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                <div class="tags">
+        <div class="method-description">
+                            <p class="no-description">No description</p>
+                    
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
@@ -275,6 +303,7 @@ e.g. "values" or "properties").</p>                </div>
 
             
             
+            
                     </div>
     </div>
 
@@ -282,16 +311,20 @@ e.g. "values" or "properties").</p>                </div>
                     <div class="method-item">
                     <h3 id="method_assertSupports">
         <div class="location">in <a href="../../../Tailors/PHPUnit/Values/AbstractValueSelector.html#method_assertSupports">
-<abbr title="Tailors\PHPUnit\Values\AbstractValueSelector">AbstractValueSelector</abbr></a> at line 56</div>
+<abbr title="Tailors\PHPUnit\Values\AbstractValueSelector">AbstractValueSelector</abbr></a> at line 59</div>
         <code>final            protected        void
     <strong>assertSupports</strong>(mixed $subject, int $argument, int $distance = 1)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                <div class="tags">
+        <div class="method-description">
+                            <p class="no-description">No description</p>
+                    
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
@@ -327,11 +360,12 @@ e.g. "values" or "properties").</p>                </div>
 
                     <table class="table table-condensed">
                     <tr>
-                <td><a target="_blank" rel="noopener" href="https://www.php.net/InvalidArgumentException">InvalidArgumentException</a></td>
+                <td><a href="../../../Tailors/PHPUnit/InvalidArgumentException.html"><abbr title="Tailors\PHPUnit\InvalidArgumentException">InvalidArgumentException</abbr></a></td>
                 <td></td>
             </tr>
             </table>
 
+            
             
                     </div>
     </div>
@@ -339,19 +373,20 @@ e.g. "values" or "properties").</p>                </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_selectable">
-        <div class="location">at line 25</div>
+        <div class="location">at line 28</div>
         <code>                    string
     <strong>selectable</strong>()
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                    <div class="method-description">
-                                    <p>A name for the values being selected from subject (in plural,
-e.g. "values" or "properties").</p>                                                </div>
-                <div class="tags">
+        <div class="method-description">
+                            <p><p>A name for the values being selected from subject (in plural,
+e.g. &quot;values&quot; or &quot;properties&quot;).</p></p>                        
+        </div>
+        <div class="tags">
             
                             <h4>Return Value</h4>
 
@@ -364,22 +399,27 @@ e.g. "values" or "properties").</p>                                             
 
             
             
+            
                     </div>
     </div>
 
             </div>
                     <div class="method-item">
                     <h3 id="method_getSubjectAttribute">
-        <div class="location">at line 57</div>
+        <div class="location">at line 60</div>
         <code>    abstract        protected        mixed
     <strong>getSubjectAttribute</strong>(mixed $subject, mixed $key)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                <div class="tags">
+        <div class="method-description">
+                            <p class="no-description">No description</p>
+                    
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
@@ -407,22 +447,27 @@ e.g. "values" or "properties").</p>                                             
 
             
             
+            
                     </div>
     </div>
 
             </div>
                     <div class="method-item">
                     <h3 id="method_selectWithMethod">
-        <div class="location">at line 67</div>
+        <div class="location">at line 71</div>
         <code>final            protected        bool
     <strong>selectWithMethod</strong>(mixed $subject, string $method, mixed $retval = null)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                <div class="tags">
+        <div class="method-description">
+                            <p class="no-description">No description</p>
+                    
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
@@ -455,22 +500,27 @@ e.g. "values" or "properties").</p>                                             
 
             
             
+            
                     </div>
     </div>
 
             </div>
                     <div class="method-item">
                     <h3 id="method_selectWithAttribute">
-        <div class="location">at line 87</div>
+        <div class="location">at line 93</div>
         <code>final            protected        bool
     <strong>selectWithAttribute</strong>(mixed $subject, mixed $key, mixed $retval = null)
         </code>
     </h3>
-    <div class="details">
-            
+    <div class="details">    
     
+            
 
-                <div class="tags">
+        <div class="method-description">
+                            <p class="no-description">No description</p>
+                    
+        </div>
+        <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
@@ -503,6 +553,7 @@ e.g. "values" or "properties").</p>                                             
 
             
             
+            
                     </div>
     </div>
 
@@ -510,9 +561,8 @@ e.g. "values" or "properties").</p>                                             
             </div>
 
     
-            </div><div id="footer">
-        Generated by <a href="https://github.com/code-lts/doctum">Doctum, a API Documentation generator and fork of Sami</a>.
-    </div></div>
+</div><div id="footer">
+        Generated by <a href="https://github.com/code-lts/doctum">Doctum, a API Documentation generator and fork of Sami</a>.</div></div>
     </div>
     </body>
 

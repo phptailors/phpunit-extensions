@@ -333,6 +333,59 @@ is the inverse of this.
    :language: none
 
 
+.. _assertions.assertImplementsInterface:
+
+assertImplementsInterface()
+---------------------------
+
+.. list-table:: Prerequisites for assertImplementsInterface()
+   :width: 100%
+   :widths: 25 75
+   :header-rows: 0
+
+   * - Package
+     - phptailors/phpunit-inheritance
+   * - Trait
+     - :class:`Tailors\\PHPUnit\\ImplementsInterfaceTrait`
+
+Synopsis:
+
+.. code:: php
+
+  function assertImplementsInterface(string $interface, mixed $subject[, string $message = ''])
+
+Reports an error identified by ``$message`` if ``$subject`` does not implement
+the ``$interface``. The ``$subject`` may be an ``object`` or a class/interface
+name as ``string``:
+
+- if ``$subject`` is an ``object``, then its class, as returned by
+  ``get_class($subject)``, is examined against ``$interface``, the assertion
+  succeeds only if the class implements the ``$interface``,
+- otherwise, the necessary conditions for the assertion to succeed are that
+
+  - ``$subject`` is a string,
+  - ``class_exists($subject)`` is ``true`` or ``interface_exists($subject)`` is
+    ``true``, and
+  - the ``$subject`` implements the ``$interface``.
+
+The method
+
+.. code:: php
+
+  function assertNotImplementsInterface(string $interface, mixed $subject[, string $message = ''])
+
+is the inverse of this.
+
+.. literalinclude:: examples/AssertImplementsInterfaceTest.php
+   :linenos:
+   :caption: Usage of assertImplementsInterface()
+   :name: assertions.assertImplementsInterface.example
+
+.. literalinclude:: examples/AssertImplementsInterfaceTest.stdout
+   :linenos:
+   :language: none
+
+
 .. _assertions.assertKsortedArrayEqualTo:
 
 assertKsortedArrayEqualTo()
@@ -427,59 +480,6 @@ is the inverse of this.
    :name: assertions.assertKsortedArrayIdenticalTo.example
 
 .. literalinclude:: examples/AssertKsortedArrayIdenticalToTest.stdout
-   :linenos:
-   :language: none
-
-
-.. _assertions.assertImplementsInterface:
-
-assertImplementsInterface()
----------------------------
-
-.. list-table:: Prerequisites for assertImplementsInterface()
-   :width: 100%
-   :widths: 25 75
-   :header-rows: 0
-
-   * - Package
-     - phptailors/phpunit-inheritance
-   * - Trait
-     - :class:`Tailors\\PHPUnit\\ImplementsInterfaceTrait`
-
-Synopsis:
-
-.. code:: php
-
-  function assertImplementsInterface(string $interface, mixed $subject[, string $message = ''])
-
-Reports an error identified by ``$message`` if ``$subject`` does not implement
-the ``$interface``. The ``$subject`` may be an ``object`` or a class/interface
-name as ``string``:
-
-- if ``$subject`` is an ``object``, then its class, as returned by
-  ``get_class($subject)``, is examined against ``$interface``, the assertion
-  succeeds only if the class implements the ``$interface``,
-- otherwise, the necessary conditions for the assertion to succeed are that
-
-  - ``$subject`` is a string,
-  - ``class_exists($subject)`` is ``true`` or ``interface_exists($subject)`` is
-    ``true``, and
-  - the ``$subject`` implements the ``$interface``.
-
-The method
-
-.. code:: php
-
-  function assertNotImplementsInterface(string $interface, mixed $subject[, string $message = ''])
-
-is the inverse of this.
-
-.. literalinclude:: examples/AssertImplementsInterfaceTest.php
-   :linenos:
-   :caption: Usage of assertImplementsInterface()
-   :name: assertions.assertImplementsInterface.example
-
-.. literalinclude:: examples/AssertImplementsInterfaceTest.stdout
    :linenos:
    :language: none
 
