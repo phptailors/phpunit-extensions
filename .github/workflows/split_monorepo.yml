@@ -55,8 +55,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.MONOREPO_SPLIT_TOKEN }}
         with:
-          package_directory: 'packages/${{ matrix.package.local_path }}'
+          branch: "master"
+          package_directory: 'packages/${{ matrix.package }}'
           repository_organization: 'phptailors'
-          repository_name: '${{ matrix.package.split_repository }}'
+          repository_name: '${{ matrix.package }}'
           user_name: "ptomulik"
           user_email: "ptomulik@meil.pw.edu.pl"
