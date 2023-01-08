@@ -56,7 +56,6 @@ jobs:
           PAT: ${{ secrets.MONOREPO_SPLIT_TOKEN }}
         uses: symplify/github-action-monorepo-split@2.1
         with:
-          tag: "${{ github.ref_name }}"
           package_directory: 'packages/${{ matrix.package }}'
           repository_organization: 'phptailors'
           repository_name: '${{ matrix.package }}'
