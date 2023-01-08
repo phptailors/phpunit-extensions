@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-
+use Symplify\MonorepoBuilder\ComposerJsonManipulator\ValueObject\ComposerJsonSection;
+use Symplify\MonorepoBuilder\Config\MBConfig;
 use Symplify\MonorepoBuilder\ValueObject\Option;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -24,60 +24,38 @@ use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigura
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 return
-static function (ContainerConfigurator $container) : void {
-    $parameters = $container->parameters();
-
-    $parameters->set(Option::PACKAGE_DIRECTORIES, [
-        __dir__.'/packages',
+static function (MBConfig $mbConfig) : void {
+    $mbConfig->packageDirectories([
+        __dir__ . '/packages'
     ]);
 
-    $parameters->set(Option::PACKAGE_DIRECTORIES_EXCLUDES, [
-        'vendor-bin',
+    $mbConfig->packageDirectoriesExcludes([
+        'vendor-bin'
     ]);
 
-    $parameters->set(Option::SECTION_ORDER, [
-        'name',
-        'type',
-        'description',
-        'license',
-        'keywords',
-        'homepage',
-        'support',
-        'authors',
-        'minimum-stability',
-        'prefer-stable',
-        'bin',
-        'require',
-        'require-dev',
-        'autoload',
-        'autoload-dev',
-        'repositories',
-        'conflict',
-        'replace',
-        'provide',
-        'scripts',
-        'suggest',
-        'config',
-        'extra',
-    ]);
-
-
-    $parameters->set(Option::DATA_TO_APPEND, [
-        'require-dev' => [
+    // for "merge" command
+    $mbConfig->dataToAppend([
+        ComposerJsonSection::REQUIRE_DEV => [
             'bamarni/composer-bin-plugin' => '^1.8',
-            'symplify/monorepo-builder' => '^9.0.11',
+            'symplify/monorepo-builder' => '^11.1',
         ],
-        'autoload-dev' => [
+        ComposerJsonSection::AUTOLOAD_DEV => [
             'psr-4' => [
                 'Tailors\\PHPUnit\\Docs\\Behat\\' => 'docs/sphinx/behat/',
             ],
         ],
-        'extra' => [
+        ComposerJsonSection::EXTRA => [
             'bamarni-bin' => [
                 'bin-links' => true,
                 'target-directory' => 'vendor-bin',
-                'forward-command' => false
+                'forward-command' => false,
             ],
+        ],
+        // not handled by monorepo-builder, just for reference
+        ComposerJsonSection::CONFIG => [
+            "allow-plugins" => [
+                "bamarni/composer-bin-plugin" => true,
+            ]
         ],
     ]);
 };
