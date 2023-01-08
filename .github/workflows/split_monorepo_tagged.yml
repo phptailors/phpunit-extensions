@@ -51,12 +51,12 @@ jobs:
 
         # see https://github.com/WyriHaximus/github-action-get-previous-tag
       - id: previous_tag
-        uses: "WyriHaximus/github-action-get-previous-tag@master"
+        uses: "WyriHaximus/github-action-get-previous-tag@v1"
 
       -
         # Uses an action in the root directory
         name: Monorepo Split of ${{ matrix.package }}
-        uses: symplify/github-action-monorepo-split@master
+        uses: symplify/github-action-monorepo-split@v2
         env:
           GITHUB_TOKEN: ${{ secrets.MONOREPO_SPLIT_TOKEN }}
         with:
