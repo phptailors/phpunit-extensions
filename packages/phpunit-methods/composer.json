@@ -1,0 +1,47 @@
+{
+    "name": "phptailors/phpunit-methods",
+    "description": "Assertions on object methods for PHPUnit-based tests",
+    "type": "library",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "support": {
+      "issues": "https://github.com/phptailors/phpunit-extensions/issues",
+      "source": "https://github.com/phptailors/phpunit-extensions"
+    },
+    "authors": [
+        {
+            "name": "Paweł Tomulik",
+            "email": "ptomulik@meil.pw.edu.pl"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "phptailors/phpunit-common": "*"
+    },
+    "require-dev": {
+        "bamarni/composer-bin-plugin": "^1.8"
+    },
+    "autoload": {
+      "psr-4" : {
+        "Tailors\\PHPUnit\\" : "src/"
+      }
+    },
+    "autoload-dev": {
+      "psr-4" : {
+        "Tailors\\PHPUnit\\" : "tests/src/"
+      }
+    },
+    "config": {
+        "allow-plugins": {
+            "bamarni/composer-bin-plugin": true
+        }
+    },
+    "extra": {
+        "bamarni-bin": {
+            "bin-links": true,
+            "target-directory": "vendor-bin",
+            "forward-command": false
+        }
+    }
+}

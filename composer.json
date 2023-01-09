@@ -12,6 +12,7 @@
                 "packages/phpunit-arrays/src/",
                 "packages/phpunit-common/src/",
                 "packages/phpunit-inheritance/src/",
+                "packages/phpunit-methods/src/",
                 "packages/phpunit-properties/src/",
                 "packages/phpunit-regexp/src/"
             ]
@@ -23,6 +24,7 @@
                 "packages/phpunit-arrays/tests/src/",
                 "packages/phpunit-common/tests/src/",
                 "packages/phpunit-inheritance/tests/src/",
+                "packages/phpunit-methods/tests/src/",
                 "packages/phpunit-properties/tests/src/",
                 "packages/phpunit-regexp/tests/src/"
             ],
@@ -51,6 +53,7 @@
         "phptailors/phpunit-arrays": "self.version",
         "phptailors/phpunit-common": "self.version",
         "phptailors/phpunit-inheritance": "self.version",
+        "phptailors/phpunit-methods": "self.version",
         "phptailors/phpunit-properties": "self.version",
         "phptailors/phpunit-regexp": "self.version"
     },
