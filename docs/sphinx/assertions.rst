@@ -273,6 +273,91 @@ is the inverse of this.
    :language: none
 
 
+.. _assertions.assertHasMethod:
+
+assertHasMethod()
+-----------------------
+
+.. list-table:: Prerequisites for assertHasMethod()
+   :width: 100%
+   :widths: 25 75
+   :header-rows: 0
+
+   * - Package
+     - phptailors/phpunit-methods
+   * - Trait
+     - :class:`Tailors\\PHPUnit\\HasMethodTrait`
+
+Synopsis:
+
+.. code:: php
+
+  function assertHasMethod(array $methodSpec, mixed $subject[, string $message = ''])
+
+Reports an error identified by ``$message`` if ``$subject`` has no method
+that matches ``$methodSpec``. The ``$methodSpec`` specifies matching method
+via its name and modifiers (optional).
+
+.. note::
+
+    The assertion can only be successfull for ``$subject`` being an object,
+    class, trait or interface. For any other values it always fails.
+
+The syntax for ``$methodSpec`` string is the following
+
+.. code:: abnf
+
+    methodSpec  :=  [modifiers "function"] name
+                |   name
+
+    name        :=  [_a-zA-Z][_0-9a-zA-Z]*
+
+    modifiers   :=  [abstract] [final] [access] [static]    ; order arbitrary
+
+    abstract    :=  "abstract"
+                |   "!abstract"
+
+    final       :=  "final"
+                |   "!final"
+
+    access      :=  "public"
+                |   "!public"
+                |   "protected"
+                |   "!protected"
+
+    static      :=  "static"
+                |   "!static"
+
+The only allowed combination of ``abstract`` and ``static`` is ``"!abstract"``
++ ``"!static"``. All other combinations are treated as syntax error.
+
+Presence of a modifier (such as ``"final"``) requires the modifier to be
+present in a matched method. Presence of negated modifier (such as
+``"!final"``) requires the modifier to be absent in a matched method. Absence
+of a modifier in ``$methodSpec`` means that it may be either present or absent
+in a matched method.
+
+
+The method
+
+.. code:: php
+
+  function assertNotHasMethod(array $expected, array $matches[, string $message = ''])
+
+is the inverse of this.
+
+.. literalinclude:: examples/AssertHasMethodTest.php
+   :linenos:
+   :caption: Usage of assertHasMethod()
+   :name: assertions.assertHasMethod.example
+
+.. literalinclude:: examples/AssertHasMethodTest.stdout
+   :linenos:
+   :language: none
+
+
+
+
 .. _assertions.assertHasPregCaptures:
 
 assertHasPregCaptures()

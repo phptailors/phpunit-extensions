@@ -33,6 +33,18 @@ Feature: Examples
       | "implementsInterfaceTest.php"       | "implementsInterfaceTest.stdout"       | "implementsInterfaceTest.stderr"       | 1         |
       | "usesTraitTest.php"                 | "usesTraitTest.stdout"                 | "usesTraitTest.stderr"                 | 1         |
 
+  @phpunit-methods
+  Scenario Outline: Examples for phptailors/phpunit-methods
+    Given I tested <example_file> with PHPUnit
+    Then I should see PHPUnit stdout from <stdout_file>
+    And I should see stderr from <stderr_file>
+    And I should see exit code <exit_code>
+
+    Examples:
+      | example_file                     | stdout_file                        | stderr_file                        | exit_code |
+      | "AssertHasMethodTest.php"        | "AssertHasMethodTest.stdout"       | "AssertHasMethodTest.stderr"       | 1         |
+      | "hasMethodTest.php"              | "hasMethodTest.stdout"             | "hasMethodTest.stderr"             | 1         |
+
   @phpunit-regexp
   Scenario Outline: Examples for phptailors/phpunit-regexp
     Given I tested <example_file> with PHPUnit

@@ -11,6 +11,10 @@
 namespace Tailors\PHPUnit\Constraint;
 
 use PHPUnit\Framework\Constraint\Constraint;
+use Tailors\PHPUnit\InvalidArgumentException;
+use Tailors\PHPUnit\Methods\MethodSpecFactory;
+use Tailors\PHPUnit\Methods\MethodSpecInterface;
+use Tailors\PHPUnit\Methods\MethodSpecSyntaxError;
 
 /**
  * Constraint that accepts objects, classes, traits and interfaces having given method.
@@ -18,15 +22,31 @@ use PHPUnit\Framework\Constraint\Constraint;
 final class HasMethod extends Constraint
 {
     /**
-     * @var string
-     *
-     * @psalm-readonly
+     * @var MethodSpecInterface
      */
-    private $method;
+    private $methodSpec;
 
-    public function __construct(string $method)
+    public function __construct(MethodSpecInterface $methodSpec)
     {
-        $this->method = $method;
+        $this->methodSpec = $methodSpec;
+    }
+
+    /**
+     * @throws InvalidArgumentException
+     */
+    public static function create(string $methodSpecString): self
+    {
+        $factory = new MethodSpecFactory();
+
+        try {
+            $methodSpec = $factory->fromString($methodSpecString);
+        } catch (MethodSpecSyntaxError $error) {
+            $actual = sprintf('%s (%s)', var_export($methodSpecString, true), $error->getMessage());
+
+            throw InvalidArgumentException::fromBacktrace(1, 'method specification', $actual, 1);
+        }
+
+        return new self($methodSpec);
     }
 
     /**
@@ -34,11 +54,13 @@ final class HasMethod extends Constraint
      */
     public function toString(): string
     {
-        return sprintf('has method \'%s()\'', $this->method);
+        return sprintf('has %s()', $this->methodSpec->toString());
     }
 
     /**
      * @param mixed $other
+     *
+     * @assert-if-true object|class-string|trait-string|interface-string $other
      */
     final protected function matches($other): bool
     {
@@ -46,15 +68,19 @@ final class HasMethod extends Constraint
             return false;
         }
 
-        $class = new \ReflectionClass($other);
+        try {
+            $method = new \ReflectionMethod($other, $this->methodSpec->getName());
+        } catch (\ReflectionException $exception) {
+            return false;
+        }
 
-        return $class->hasMethod($this->method);
+        return $this->methodSpec->matches($method);
     }
 
     /**
-     * @psalm-assert-if-true object|class-string|trait-string|interface-string $other
-     *
      * @param mixed $other
+     *
+     * @psalm-assert-if-true object|class-string|trait-string|interface-string $other
      */
     private function ensureCanReflectAsClass($other): bool
     {

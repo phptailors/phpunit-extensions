@@ -208,6 +208,84 @@ examined ``$subject`` may be an ``object`` or a class name as ``string``:
   :linenos:
   :language: none
 
+.. _constraints.hasMethod:
+
+hasMethod
+---------------
+
+.. list-table:: Prerequisites for hasMethod()
+   :width: 100%
+   :widths: 25 75
+   :header-rows: 0
+
+   * - Package
+     - phptailors/phpunit-methods
+   * - Trait
+     - :class:`Tailors\\PHPUnit\\HasMethodTrait`
+
+Synopsis:
+
+.. code:: php
+
+  function hasMethod(array $methodSpec)
+
+Creates :class:`Tailors\\PHPUnit\\Constraint\\HasMethod` constraint.
+
+The constraint accepts values having a method that matches ``$methodSpec``.
+The ``$methodSpec`` specifies matching method via its name and modifiers
+(optional).
+
+.. note::
+
+    The constraint only metches a value being an object, class, trait or
+    interface. For any other values it always returns false.
+
+The syntax for ``$methodSpec`` string is the following
+
+.. code:: abnf
+
+    methodSpec  :=  [modifiers "function"] name
+                |   name
+
+    name        :=  [_a-zA-Z][_0-9a-zA-Z]*
+
+    modifiers   :=  [abstract] [final] [access] [static]    ; order arbitrary
+
+    abstract    :=  "abstract"
+                |   "!abstract"
+
+    final       :=  "final"
+                |   "!final"
+
+    access      :=  "public"
+                |   "!public"
+                |   "protected"
+                |   "!protected"
+
+    static      :=  "static"
+                |   "!static"
+
+
+The only allowed combination of ``abstract`` and ``static`` is ``"!abstract"``
++ ``"!static"``. All other combinations are treated as syntax error.
+
+Presence of a modifier (such as ``"final"``) requires the modifier to be
+present in a matched method. Presence of negated modifier (such as
+``"!final"``) requires the modifier to be absent in a matched method. Absence
+of a modifier in ``$methodSpec`` means that it may be either present or absent
+in a matched method.
+
+.. literalinclude:: examples/hasMethodTest.php
+   :linenos:
+   :caption: Usage of hasMethod()
+   :name: constraints.hasMethod.example
+
+.. literalinclude:: examples/hasMethodTest.stdout
+  :linenos:
+  :language: none
+
+
+
 .. _constraints.hasPregCaptures:
 
 hasPregCaptures

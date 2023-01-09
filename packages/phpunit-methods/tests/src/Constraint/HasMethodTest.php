@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\Constraint;
 
 use PHPUnit\Framework\Constraint\Constraint;
+use Tailors\PHPUnit\InvalidArgumentException;
 
 /**
  * @small
@@ -25,26 +26,32 @@ final class HasMethodTest extends TestCase
 {
     use ProvHasMethodTrait;
 
+    /**
+     * @param mixed $args
+     */
+    public function createConstraint(...$args): Constraint
+    {
+        return HasMethod::create(...$args);
+    }
+
+    /**
+     * Returns constraint's class name.
+     *
+     * @psalm-return class-string<ConstraintClass>
+     *
+     * @psalm-pure
+     */
     public static function getConstraintClass(): string
     {
         return HasMethod::class;
     }
 
-    public function createConstraint(...$args): Constraint
-    {
-        return new HasMethod(...$args);
-    }
-
-    public function testCreateConstraint(): void
-    {
-        $this->examineCreateConstraint(['foo']);
-    }
-
     /**
      * @dataProvider provHasMethodSucceeds
      *
-     * @param mixed $actual
      * @param mixed $subject
+     *
+     * @psalm-param non-empty-string $method
      */
     public function testHasMethodMatchSucceeds(string $method, $subject): void
     {
@@ -54,8 +61,9 @@ final class HasMethodTest extends TestCase
     /**
      * @dataProvider provHasMethodSucceeds
      *
-     * @param mixed $actual
      * @param mixed $subject
+     *
+     * @psalm-param non-empty-string $method
      */
     public function testNotHasMethodMatchFails(string $method, $subject, string $string): void
     {
@@ -65,8 +73,9 @@ final class HasMethodTest extends TestCase
     /**
      * @dataProvider provHasMethodFails
      *
-     * @param mixed $actual
      * @param mixed $subject
+     *
+     * @psalm-param non-empty-string $method
      */
     public function testHasMethodMatchFails(string $method, $subject, string $string): void
     {
@@ -76,12 +85,24 @@ final class HasMethodTest extends TestCase
     /**
      * @dataProvider provHasMethodFails
      *
-     * @param mixed $actual
      * @param mixed $subject
+     *
+     * @psalm-param non-empty-string $method
      */
     public function testNotHasMethodMatchSucceeds(string $method, $subject): void
     {
         parent::examineNotConstraintMatchSucceeds([$method], $subject);
+    }
+
+    public function testCreateThrowsInvalidArgumentException(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage(
+            'Argument 1 passed to '.HasMethod::class.'::create() must be method specification,'.
+            ' \'public function foo??\' (syntax error at "??") given.'
+        );
+
+        HasMethod::create('public function foo??');
     }
 }
 

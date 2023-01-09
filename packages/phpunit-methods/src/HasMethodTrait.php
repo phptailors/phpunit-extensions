@@ -25,6 +25,7 @@ trait HasMethodTrait
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     abstract public static function assertThat($value, Constraint $constraint, string $message = ''): void;
 
@@ -40,6 +41,9 @@ trait HasMethodTrait
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws \Tailors\PHPUnit\InvalidArgumentException
+     *
+     * @psalm-param non-empty-string $method
      */
     public static function assertHasMethod(
         string $method,
@@ -61,6 +65,9 @@ trait HasMethodTrait
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws \Tailors\PHPUnit\InvalidArgumentException
+     *
+     * @psalm-param non-empty-string $method
      */
     public static function assertNotHasMethod(
         string $method,
@@ -75,10 +82,14 @@ trait HasMethodTrait
      *
      * @param string $method
      *                       Name of the method to be expected
+     *
+     * @throws \Tailors\PHPUnit\InvalidArgumentException
+     *
+     * @psalm-param non-empty-string $method
      */
     public static function hasMethod(string $method): HasMethod
     {
-        return new HasMethod($method);
+        return HasMethod::create($method);
     }
 }
 

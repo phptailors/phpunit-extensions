@@ -43,7 +43,7 @@ trait ProvHasMethodTrait
     // @codeCoverageIgnoreStart
 
     /**
-     * @psalm-return array<array{0:string,1:mixed,2:string}>
+     * @psalm-return array<array{0:non-empty-string,1:mixed,2:string}>
      */
     public function provHasMethodSucceeds(): array
     {
@@ -51,17 +51,22 @@ trait ProvHasMethodTrait
             [
                 'foo',
                 InterfaceWithMethodFooV4C0Z::class,
-                "Failed asserting that '".InterfaceWithMethodFooV4C0Z::class."' does not have method 'foo()'.",
+                "Failed asserting that '".InterfaceWithMethodFooV4C0Z::class."' does not have method foo().",
             ],
             [
                 'foo',
                 ClassWithMethodFooV4C0Z::class,
-                "Failed asserting that '".ClassWithMethodFooV4C0Z::class."' does not have method 'foo()'.",
+                "Failed asserting that '".ClassWithMethodFooV4C0Z::class."' does not have method foo().",
             ],
             [
                 'foo',
                 TraitWithMethodFooV4C0Z::class,
-                "Failed asserting that '".TraitWithMethodFooV4C0Z::class."' does not have method 'foo()'.",
+                "Failed asserting that '".TraitWithMethodFooV4C0Z::class."' does not have method foo().",
+            ],
+            [
+                'public function foo',
+                TraitWithMethodFooV4C0Z::class,
+                "Failed asserting that '".TraitWithMethodFooV4C0Z::class."' does not have public method foo().",
             ],
             [
                 'foo',
@@ -72,7 +77,7 @@ trait ProvHasMethodTrait
     }
 
     /**
-     * @psalm-return array<array{0:string,1:mixed,2:string}>
+     * @psalm-return array<array{0:non-empty-string,1:mixed,2:string}>
      */
     public function provHasMethodFails(): array
     {
@@ -80,15 +85,19 @@ trait ProvHasMethodTrait
             [
                 'bar',
                 InterfaceWithMethodFooV4C0Z::class,
-                "Failed asserting that '".InterfaceWithMethodFooV4C0Z::class."' has method 'bar()'.",
+                "Failed asserting that '".InterfaceWithMethodFooV4C0Z::class."' has method bar().",
             ],
             [
                 'bar', ClassWithMethodFooV4C0Z::class,
-                "Failed asserting that '".ClassWithMethodFooV4C0Z::class."' has method 'bar()'.",
+                "Failed asserting that '".ClassWithMethodFooV4C0Z::class."' has method bar().",
             ],
             [
                 'bar', TraitWithMethodFooV4C0Z::class,
-                "Failed asserting that '".TraitWithMethodFooV4C0Z::class."' has method 'bar()'.",
+                "Failed asserting that '".TraitWithMethodFooV4C0Z::class."' has method bar().",
+            ],
+            [
+                'private function foo', TraitWithMethodFooV4C0Z::class,
+                "Failed asserting that '".TraitWithMethodFooV4C0Z::class."' has private method foo().",
             ],
             [
                 'bar',
@@ -98,7 +107,7 @@ trait ProvHasMethodTrait
             [
                 'foo',
                 123,
-                "Failed asserting that 123 has method 'foo()'",
+                'Failed asserting that 123 has method foo()',
             ],
         ];
     }
