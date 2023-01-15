@@ -86,7 +86,7 @@ class DocExampleContext implements Context
             '/\r/',
             '/^(PHPUnit )(?:\$version|\d+(?:\.\w+)*)( by Sebastian Bergmann and contributors\.)$/m',
             '/^(Time: )(?:(?:\d+)(?::\d+)?(?:\.\d+)?(?: \w+)?)(, Memory: )(?:\d+(?:\.\d+)?(?: \d+)?( \w+)?)$/m',
-            '/^(?:'.$top.'\/)?(packages(?:\/[\w-]+)+\.php):\d+[\\r\\n]?/m',
+            '/^(?:'.$top.'\/)?((?:packages|vendor)(?:\/[\w-]+)+\.php):\d+[\\r\\n]?/m',
             '/^(?:'.$top.'\/)docs\/sphinx\/examples\/(?:[^\/]*\/)*([\w-]+\.php):(\d+)$/m',
         ];
         $replaces = [
