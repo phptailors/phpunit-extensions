@@ -15,4 +15,5 @@ The project is in initial phase. No releases yet!
 
 ## Online documentation
 
+- https://phptailors.github.io/phpunit-extensions
 - https://phptailors.github.io/phpunit-extensions/docs
