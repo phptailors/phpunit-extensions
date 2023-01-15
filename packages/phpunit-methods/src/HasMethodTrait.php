@@ -30,66 +30,66 @@ trait HasMethodTrait
     abstract public static function assertThat($value, Constraint $constraint, string $message = ''): void;
 
     /**
-     * Asserts that *$subject* has method named *$method*.
+     * Asserts that *$subject* has method specified with *$methodSpec*.
      *
-     * @param string $method
-     *                        Name of the method to be expected
+     * @param string $methodSpec
+     *                           Method specification (name and optionally specified modifiers)
      * @param mixed  $subject
-     *                        An object, or a name of class, trait or interface to be examined
+     *                           An object, or a name of class, trait or interface to be examined
      * @param string $message
-     *                        Optional failure message
+     *                           Optional failure message
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      * @throws \Tailors\PHPUnit\InvalidArgumentException
      *
-     * @psalm-param non-empty-string $method
+     * @psalm-param non-empty-string $methodSpec
      */
     public static function assertHasMethod(
-        string $method,
+        string $methodSpec,
         $subject,
         string $message = ''
     ): void {
-        self::assertThat($subject, self::hasMethod($method), $message);
+        self::assertThat($subject, self::hasMethod($methodSpec), $message);
     }
 
     /**
-     * Asserts that *$subject* has no method named *$method*.
+     * Asserts that *$subject* has no method specified with *$methodSpec*.
      *
-     * @param string $method
-     *                        Name of the method to be expected
+     * @param string $methodSpec
+     *                           Method specification (name and optionally specified modifiers)
      * @param mixed  $subject
-     *                        An object, or a name of class, trait or interface to be examined
+     *                           An object, or a name of class, trait or interface to be examined
      * @param string $message
-     *                        Optional failure message
+     *                           Optional failure message
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      * @throws \Tailors\PHPUnit\InvalidArgumentException
      *
-     * @psalm-param non-empty-string $method
+     * @psalm-param non-empty-string $methodSpec
      */
     public static function assertNotHasMethod(
-        string $method,
+        string $methodSpec,
         $subject,
         string $message = ''
     ): void {
-        self::assertThat($subject, new LogicalNot(self::hasMethod($method)), $message);
+        self::assertThat($subject, new LogicalNot(self::hasMethod($methodSpec)), $message);
     }
 
     /**
      * Checks if an object, class, trait or interface has given method.
      *
-     * @param string $method
-     *                       Name of the method to be expected
+     * @param string $methodSpec
+     *                           Method specification (name and optionally specified modifiers)
      *
      * @throws \Tailors\PHPUnit\InvalidArgumentException
      *
-     * @psalm-param non-empty-string $method
+     * @psalm-param non-empty-string $methodSpec
      */
-    public static function hasMethod(string $method): HasMethod
+    public static function hasMethod(string $methodSpec): HasMethod
     {
-        return HasMethod::create($method);
+        return HasMethod::create($methodSpec);
     }
 }
 
