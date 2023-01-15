@@ -89,6 +89,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#assertclasspropertiesequalto">assertClassPropertiesEqualTo()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#assertclasspropertiesidenticalto">assertClassPropertiesIdenticalTo()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#assertextendsclass">assertExtendsClass()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#asserthasmethod">assertHasMethod()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#asserthaspregcaptures">assertHasPregCaptures()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#assertimplementsinterface">assertImplementsInterface()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#assertksortedarrayequalto">assertKsortedArrayEqualTo()</a></li>
@@ -869,10 +870,176 @@ Tests: 2, Assertions: 3, Failures: 1.
 </pre></div>
 </td></tr></table></div>
 </div>
+<div class="section" id="asserthasmethod">
+<span id="assertions-asserthasmethod"></span><h2>assertHasMethod()<a class="headerlink" href="#asserthasmethod" title="Permalink to this headline">¶</a></h2>
+<table class="colwidths-given docutils align-default" id="id7" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for assertHasMethod()</span><a class="headerlink" href="#id7" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Package</p></td>
+<td><p>phptailors/phpunit-methods</p></td>
+</tr>
+<tr class="row-even"><td><p>Trait</p></td>
+<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/Tailors/PHPUnit/HasMethodTrait.html" title="Tailors\PHPUnit\HasMethodTrait"><span class="pre">HasMethodTrait</span></a></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Synopsis:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">assertHasMethod</span><span class="p">(</span><span class="k">array</span> <span class="nv">$methodSpec</span><span class="p">,</span> <span class="nx">mixed</span> <span class="nv">$subject</span><span class="p">[,</span> <span class="nx">string</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Reports an error identified by <code class="docutils literal notranslate"><span class="pre">$message</span></code> if <code class="docutils literal notranslate"><span class="pre">$subject</span></code> has no method
+that matches <code class="docutils literal notranslate"><span class="pre">$methodSpec</span></code>. The <code class="docutils literal notranslate"><span class="pre">$methodSpec</span></code> specifies matching method
+via its name and modifiers (optional).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The assertion can only be successfull for <code class="docutils literal notranslate"><span class="pre">$subject</span></code> being an object,
+class, trait or interface. For any other values it always fails.</p>
+</div>
+<p>The syntax for <code class="docutils literal notranslate"><span class="pre">$methodSpec</span></code> string is the following</p>
+<div class="highlight-abnf notranslate"><div class="highlight"><pre><span></span><span class="nc">methodSpec</span>  :<span class="o">=</span>  <span class="p">[</span><span class="nc">modifiers</span> <span class="l">&quot;function&quot;</span><span class="p">]</span> <span class="nc">name</span>
+            |   <span class="nc">name</span>
+
+<span class="nc">name</span>        :<span class="o">=</span>  <span class="p">[</span>_<span class="nc">a-zA-Z</span><span class="p">][</span>_0-<span class="o">9</span><span class="nc">a-zA-Z</span><span class="p">]</span><span class="o">*</span>
+
+<span class="nc">modifiers</span>   :<span class="o">=</span>  <span class="p">[</span><span class="nc">abstract</span><span class="p">]</span> <span class="p">[</span><span class="nc">final</span><span class="p">]</span> <span class="p">[</span><span class="nc">access</span><span class="p">]</span> <span class="p">[</span><span class="nc">static</span><span class="p">]</span>    <span class="c1">; order arbitrary</span>
+
+<span class="nc">abstract</span>    :<span class="o">=</span>  <span class="l">&quot;abstract&quot;</span>
+            |   <span class="l">&quot;!abstract&quot;</span>
+
+<span class="nc">final</span>       :<span class="o">=</span>  <span class="l">&quot;final&quot;</span>
+            |   <span class="l">&quot;!final&quot;</span>
+
+<span class="nc">access</span>      :<span class="o">=</span>  <span class="l">&quot;public&quot;</span>
+            |   <span class="l">&quot;!public&quot;</span>
+            |   <span class="l">&quot;protected&quot;</span>
+            |   <span class="l">&quot;!protected&quot;</span>
+
+<span class="nc">static</span>      :<span class="o">=</span>  <span class="l">&quot;static&quot;</span>
+            |   <span class="l">&quot;!static&quot;</span>
+</pre></div>
+</div>
+<p>The only allowed combination of <code class="docutils literal notranslate"><span class="pre">abstract</span></code> and <code class="docutils literal notranslate"><span class="pre">static</span></code> is <code class="docutils literal notranslate"><span class="pre">&quot;!abstract&quot;</span></code>
++ <code class="docutils literal notranslate"><span class="pre">&quot;!static&quot;</span></code>. All other combinations are treated as syntax error.</p>
+<p>Presence of a modifier (such as <code class="docutils literal notranslate"><span class="pre">&quot;final&quot;</span></code>) requires the modifier to be
+present in a matched method. Presence of negated modifier (such as
+<code class="docutils literal notranslate"><span class="pre">&quot;!final&quot;</span></code>) requires the modifier to be absent in a matched method. Absence
+of a modifier in <code class="docutils literal notranslate"><span class="pre">$methodSpec</span></code> means that it may be either present or absent
+in a matched method.</p>
+<p>The method</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">assertNotHasMethod</span><span class="p">(</span><span class="k">array</span> <span class="nv">$expected</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$matches</span><span class="p">[,</span> <span class="nx">string</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>is the inverse of this.</p>
+<div class="literal-block-wrapper docutils container" id="assertions-asserthasmethod-example">
+<div class="code-block-caption"><span class="caption-text">Usage of assertHasMethod()</span><a class="headerlink" href="#assertions-asserthasmethod-example" title="Permalink to this code">¶</a></div>
+<div class="highlight-php notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="k">abstract</span> <span class="k">class</span> <span class="nc">ClassWithSomeMethods</span>
+<span class="p">{</span>
+    <span class="k">abstract</span> <span class="k">protected</span> <span class="k">function</span> <span class="nf">abstractProtectedMethod</span><span class="p">();</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">publicMethod</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">final</span> <span class="k">class</span> <span class="nc">AssertHasMethodTest</span> <span class="k">extends</span> <span class="nx">PHPUnit\Framework\TestCase</span>
+<span class="p">{</span>
+    <span class="k">use</span> <span class="nx">\Tailors\PHPUnit\HasMethodTrait</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">testAssertHasMethod</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+    <span class="p">{</span>
+        <span class="c1">// ClassWithSomeMethods::publicMethod</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertHasMethod</span><span class="p">(</span><span class="s1">&#39;publicMethod&#39;</span><span class="p">,</span> <span class="nx">ClassWithSomeMethods</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertHasMethod</span><span class="p">(</span><span class="s1">&#39;public function publicMethod&#39;</span><span class="p">,</span> <span class="nx">ClassWithSomeMethods</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertHasMethod</span><span class="p">(</span><span class="s1">&#39;!abstract !final public function publicMethod&#39;</span><span class="p">,</span> <span class="nx">ClassWithSomeMethods</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+
+        <span class="c1">// ClassWithSomeMethods::abstractProtectedMethod</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertHasMethod</span><span class="p">(</span><span class="s1">&#39;protected function abstractProtectedMethod&#39;</span><span class="p">,</span> <span class="nx">ClassWithSomeMethods</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertHasMethod</span><span class="p">(</span><span class="s1">&#39;abstract function abstractProtectedMethod&#39;</span><span class="p">,</span> <span class="nx">ClassWithSomeMethods</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertHasMethod</span><span class="p">(</span><span class="s1">&#39;abstract protected function abstractProtectedMethod&#39;</span><span class="p">,</span> <span class="nx">ClassWithSomeMethods</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+
+
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertNotHasMethod</span><span class="p">(</span><span class="s1">&#39;!abstract function abstractProtectedMethod&#39;</span><span class="p">,</span> <span class="nx">ClassWithSomeMethods</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">testAssertHasMethodFailure</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertHasMethod</span><span class="p">(</span><span class="s1">&#39;!abstract function abstractProtectedMethod&#39;</span><span class="p">,</span> <span class="nx">ClassWithSomeMethods</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="highlight-none notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span></span>PHPUnit 9.5.27 by Sebastian Bergmann and contributors.
+
+.F                                                                  2 / 2 (100%)
+
+Time: 00:00.009, Memory: 6.00 MB
+
+There was 1 failure:
+
+1) AssertHasMethodTest::testAssertHasMethodFailure
+Failed asserting that &#39;ClassWithSomeMethods&#39; has !abstract method abstractProtectedMethod().
+
+AssertHasMethodTest.php:31
+
+FAILURES!
+Tests: 2, Assertions: 8, Failures: 1.
+</pre></div>
+</td></tr></table></div>
+</div>
 <div class="section" id="asserthaspregcaptures">
 <span id="assertions-asserthaspregcaptures"></span><h2>assertHasPregCaptures()<a class="headerlink" href="#asserthaspregcaptures" title="Permalink to this headline">¶</a></h2>
-<table class="colwidths-given docutils align-default" id="id7" style="width: 100%">
-<caption><span class="caption-text">Prerequisites for assertHasPregCaptures()</span><a class="headerlink" href="#id7" title="Permalink to this table">¶</a></caption>
+<table class="colwidths-given docutils align-default" id="id8" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for assertHasPregCaptures()</span><a class="headerlink" href="#id8" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 75%" />
@@ -1056,8 +1223,8 @@ Tests: 2, Assertions: 2, Failures: 1.
 </div>
 <div class="section" id="assertimplementsinterface">
 <span id="assertions-assertimplementsinterface"></span><h2>assertImplementsInterface()<a class="headerlink" href="#assertimplementsinterface" title="Permalink to this headline">¶</a></h2>
-<table class="colwidths-given docutils align-default" id="id8" style="width: 100%">
-<caption><span class="caption-text">Prerequisites for assertImplementsInterface()</span><a class="headerlink" href="#id8" title="Permalink to this table">¶</a></caption>
+<table class="colwidths-given docutils align-default" id="id9" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for assertImplementsInterface()</span><a class="headerlink" href="#id9" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 75%" />
@@ -1168,8 +1335,8 @@ Tests: 2, Assertions: 3, Failures: 1.
 </div>
 <div class="section" id="assertksortedarrayequalto">
 <span id="assertions-assertksortedarrayequalto"></span><h2>assertKsortedArrayEqualTo()<a class="headerlink" href="#assertksortedarrayequalto" title="Permalink to this headline">¶</a></h2>
-<table class="colwidths-given docutils align-default" id="id9" style="width: 100%">
-<caption><span class="caption-text">Prerequisites for assertKsortedArrayEqualTo()</span><a class="headerlink" href="#id9" title="Permalink to this table">¶</a></caption>
+<table class="colwidths-given docutils align-default" id="id10" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for assertKsortedArrayEqualTo()</span><a class="headerlink" href="#id10" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 75%" />
@@ -1301,8 +1468,8 @@ Tests: 2, Assertions: 2, Failures: 1.
 </div>
 <div class="section" id="assertksortedarrayidenticalto">
 <span id="assertions-assertksortedarrayidenticalto"></span><h2>assertKsortedArrayIdenticalTo()<a class="headerlink" href="#assertksortedarrayidenticalto" title="Permalink to this headline">¶</a></h2>
-<table class="colwidths-given docutils align-default" id="id10" style="width: 100%">
-<caption><span class="caption-text">Prerequisites for assertKsortedArrayIdenticalTo()</span><a class="headerlink" href="#id10" title="Permalink to this table">¶</a></caption>
+<table class="colwidths-given docutils align-default" id="id11" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for assertKsortedArrayIdenticalTo()</span><a class="headerlink" href="#id11" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 75%" />
@@ -1436,8 +1603,8 @@ Tests: 2, Assertions: 2, Failures: 1.
 </div>
 <div class="section" id="assertobjectpropertiesequalto">
 <span id="assertions-assertobjectpropertiesequalto"></span><h2>assertObjectPropertiesEqualTo()<a class="headerlink" href="#assertobjectpropertiesequalto" title="Permalink to this headline">¶</a></h2>
-<table class="colwidths-given docutils align-default" id="id11" style="width: 100%">
-<caption><span class="caption-text">Prerequisites for assertObjectPropertiesEqualTo()</span><a class="headerlink" href="#id11" title="Permalink to this table">¶</a></caption>
+<table class="colwidths-given docutils align-default" id="id12" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for assertObjectPropertiesEqualTo()</span><a class="headerlink" href="#id12" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 75%" />
@@ -1592,8 +1759,8 @@ Tests: 2, Assertions: 2, Failures: 1.
 </div>
 <div class="section" id="assertobjectpropertiesidenticalto">
 <span id="assertions-assertobjectpropertiesidenticalto"></span><h2>assertObjectPropertiesIdenticalTo()<a class="headerlink" href="#assertobjectpropertiesidenticalto" title="Permalink to this headline">¶</a></h2>
-<table class="colwidths-given docutils align-default" id="id12" style="width: 100%">
-<caption><span class="caption-text">Prerequisites for assertObjectPropertiesIdenticalTo()</span><a class="headerlink" href="#id12" title="Permalink to this table">¶</a></caption>
+<table class="colwidths-given docutils align-default" id="id13" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for assertObjectPropertiesIdenticalTo()</span><a class="headerlink" href="#id13" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 75%" />
@@ -1748,8 +1915,8 @@ Tests: 2, Assertions: 2, Failures: 1.
 </div>
 <div class="section" id="assertusestrait">
 <span id="assertions-assertusestrait"></span><h2>assertUsesTrait()<a class="headerlink" href="#assertusestrait" title="Permalink to this headline">¶</a></h2>
-<table class="colwidths-given docutils align-default" id="id13" style="width: 100%">
-<caption><span class="caption-text">Prerequisites for assertUsesTrait()</span><a class="headerlink" href="#id13" title="Permalink to this table">¶</a></caption>
+<table class="colwidths-given docutils align-default" id="id14" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for assertUsesTrait()</span><a class="headerlink" href="#id14" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 75%" />
