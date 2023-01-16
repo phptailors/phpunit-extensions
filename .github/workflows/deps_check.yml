@@ -19,10 +19,11 @@ jobs:
           php-version: 8.1
           coverage: none
       - run: composer install --no-interaction --no-progress --ansi
+      - run: composer bin monorepo-builder install --no-interaction --no-progress --ansi
 
       # get package json list
       - id: output_data
-        run: echo "matrix=$(vendor/bin/monorepo-builder packages-json)" >> $GITHUB_OUTPUT
+        run: echo "matrix=$(vendor-bin/monorepo-builder/vendor/bin/monorepo-builder packages-json)" >> $GITHUB_OUTPUT
     outputs:
       matrix: ${{ steps.output_data.outputs.matrix }}
 
@@ -39,7 +40,7 @@ jobs:
           - lowest
           - highest
 
-    name: phpunit-extensions (${{ matrix.os }}:PHP-${{ matrix.php-version }}:${{ matrix.dependencies }})
+    name: libraries (${{ matrix.os }}:PHP-${{ matrix.php-version }}:${{ matrix.dependencies }})
     steps:
       - uses: actions/checkout@v3
       - uses: shivammathur/setup-php@v2
@@ -49,16 +50,15 @@ jobs:
       - run: composer --version
 
       - if: matrix.dependencies == 'highest'
-        run: composer update --no-interaction --no-progress --no-ansi
+        run: composer update --no-interaction --no-progress --ansi
 
       - if: matrix.dependencies == 'lowest'
-        run: composer update --no-interaction --no-progress --no-ansi --prefer-lowest
+        run: composer update --no-interaction --no-progress --ansi --prefer-lowest
 
-      - name: Run composer-require-checker --config-file=.composer-require-checker.json
-        uses: docker://webfactory/composer-require-checker:latest
-        with:
-          args: --config-file=.composer-require-checker.json
+      - run: composer bin composer-require-checker update --no-progress --ansi
 
+      - name: Run composer-require-checker
+        run: vendor-bin/composer-require-checker/vendor/bin/composer-require-checker check
 
 
   after_split_testing:
@@ -87,9 +87,10 @@ jobs:
           php-version: ${{ matrix.php-version }}
           coverage: none
 
-      - run: composer update --no-interaction --no-progress --no-ansi
+      - run: composer install --no-interaction --no-progress --ansi
+      - run: composer bin monorepo-builder install --no-interaction --no-progress --ansi
 
-      - run: vendor/bin/monorepo-builder localize-composer-paths --ansi packages/${{ matrix.package }}/composer.json
+      - run: vendor-bin/monorepo-builder/vendor/bin/monorepo-builder localize-composer-paths --ansi packages/${{ matrix.package }}/composer.json
 
       - if: matrix.dependencies == 'highest'
         run: composer update --no-interaction --no-progress --ansi --working-dir packages/${{ matrix.package }}
@@ -97,8 +98,7 @@ jobs:
       - if: matrix.dependencies == 'lowest'
         run: composer update --no-interaction --no-progress --ansi --working-dir packages/${{ matrix.package }} --prefer-lowest
 
-      - name: Run composer-require-checker --config-file=.composer-require-checker.json
-        uses: docker://webfactory/composer-require-checker:latest
-        with:
-          args: --config-file=.composer-require-checker.json
-          volume: "./packages/${{ matrix.package }}:/app ./.composer-require-checker.json:/app/.composer-require-checker.json"
+      - run: composer bin composer-require-checker update --no-progress --ansi
+
+      - name: Run composer-require-checker
+        run: vendor-bin/composer-require-checker/vendor/bin/composer-require-checker check

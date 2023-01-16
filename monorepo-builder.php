@@ -36,8 +36,7 @@ static function (MBConfig $mbConfig) : void {
     // for "merge" command
     $mbConfig->dataToAppend([
         ComposerJsonSection::REQUIRE_DEV => [
-            'bamarni/composer-bin-plugin' => '^1.8',
-            'symplify/monorepo-builder' => '^11.1',
+            'bamarni/composer-bin-plugin' => '^1.8'
         ],
         ComposerJsonSection::AUTOLOAD_DEV => [
             'psr-4' => [
@@ -46,7 +45,7 @@ static function (MBConfig $mbConfig) : void {
         ],
         ComposerJsonSection::EXTRA => [
             'bamarni-bin' => [
-                'bin-links' => true,
+                'bin-links' => false,
                 'target-directory' => 'vendor-bin',
                 'forward-command' => false,
             ],

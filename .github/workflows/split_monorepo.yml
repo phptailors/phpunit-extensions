@@ -25,10 +25,11 @@ jobs:
           coverage: none
 
       - run: composer install --no-progress --ansi
+      - run: composer bin monorepo-builder install --no-progress --ansi
 
       # get package json list
       - id: output_data
-        run: echo "matrix=$(vendor/bin/monorepo-builder packages-json)" >> $GITHUB_OUTPUT
+        run: echo "matrix=$(vendor-bin/monorepo-builder/vendor/bin/monorepo-builder packages-json)" >> $GITHUB_OUTPUT
 
     # this step is needed, so the output gets to the next defined job
     outputs:

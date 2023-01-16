@@ -31,10 +31,10 @@ jobs:
           php-version: 8.1
           coverage: none
 
-      - run: composer update --no-interaction --no-progress --no-ansi
-      - run: composer bin behat update --no-interaction --no-progress --no-ansi
+      - run: composer update --no-interaction --no-progress --ansi
+      - run: composer bin behat update --no-interaction --no-progress --ansi
 
-      - run: vendor/bin/behat -c docs/behat.yml
+      - run: vendor-bin/behat/vendor/bin/behat -c docs/behat.yml
 
 
   build-docs:

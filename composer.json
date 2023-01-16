@@ -32,6 +32,9 @@
         }
     },
     "description": "Extensions to PHPUnit framework",
+    "conflict": {
+        "nikic/php-parser": "< 4.13.2"
+    },
     "require": {
         "php": ">=7.4",
         "sebastian/exporter": "^4.0",
@@ -40,13 +43,18 @@
     "license": "MIT",
     "require-dev": {
         "bamarni/composer-bin-plugin": "^1.8",
-        "symplify/monorepo-builder": "^11.1"
+        "phpunit/phpunit": "^9.5.10 || ^10"
     },
     "extra": {
         "bamarni-bin": {
-            "bin-links": true,
+            "bin-links": false,
             "target-directory": "vendor-bin",
             "forward-command": false
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "bamarni/composer-bin-plugin": true
         }
     },
     "replace": {
@@ -56,11 +64,6 @@
         "phptailors/phpunit-methods": "self.version",
         "phptailors/phpunit-properties": "self.version",
         "phptailors/phpunit-regexp": "self.version"
-    },
-    "config": {
-        "allow-plugins": {
-            "bamarni/composer-bin-plugin": true
-        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true

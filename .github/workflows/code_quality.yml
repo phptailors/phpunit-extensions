@@ -21,13 +21,13 @@ jobs:
           coverage: none
 
       - name: Update dependencies with composer
-        run: composer update --no-interaction --no-ansi --no-progress
+        run: composer update --no-interaction --ansi --no-progress
 
       - name: Install php-cs-fixer with composer
-        run: composer bin php-cs-fixer update --no-interaction --no-ansi --no-progress
+        run: composer bin php-cs-fixer update --no-interaction --ansi --no-progress
 
       - name: Run php-cs-fixer
-        run: vendor/bin/php-cs-fixer fix --diff --dry-run --show-progress=dots --using-cache=no --verbose
+        run: vendor-bin/php-cs-fixer/vendor/bin/php-cs-fixer fix --diff --dry-run --show-progress=dots --using-cache=no --verbose
 
   type-checker:
     name: Type Checker (vimeo/psalm)
@@ -46,10 +46,10 @@ jobs:
           tools: composer:v2
 
       - name: Update dependencies with composer
-        run: composer update --no-interaction --no-ansi --no-progress
+        run: composer update --no-interaction --ansi --no-progress
 
       - name: Install psalm with composer
-        run: composer bin psalm update --no-interaction --no-ansi --no-progress
+        run: composer bin psalm update --no-interaction --ansi --no-progress
 
       - name: Run vimeo/psalm on packages
-        run: vendor/bin/psalm --no-progress --shepherd --show-info=true --stats
+        run: vendor-bin/psalm/vendor/bin/psalm --no-progress --shepherd --show-info=true --stats
