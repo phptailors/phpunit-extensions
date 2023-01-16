@@ -18,8 +18,6 @@ class Assert extends \PHPUnit\Framework\Assert
 /**
  * @param mixed $subject
  *
- * @psalm-param non-empty-string $method
- *
  * @throws \PHPUnit\Framework\ExpectationFailedException
  * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
  * @throws \Tailors\PHPUnit\InvalidArgumentException

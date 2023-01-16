@@ -42,8 +42,6 @@ trait HasMethodTrait
      * @throws \PHPUnit\Framework\ExpectationFailedException
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      * @throws \Tailors\PHPUnit\InvalidArgumentException
-     *
-     * @psalm-param non-empty-string $methodSpec
      */
     public static function assertHasMethod(
         string $methodSpec,
@@ -66,8 +64,6 @@ trait HasMethodTrait
      * @throws \PHPUnit\Framework\ExpectationFailedException
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      * @throws \Tailors\PHPUnit\InvalidArgumentException
-     *
-     * @psalm-param non-empty-string $methodSpec
      */
     public static function assertNotHasMethod(
         string $methodSpec,
@@ -84,8 +80,6 @@ trait HasMethodTrait
      *                           Method specification (name and optionally specified modifiers)
      *
      * @throws \Tailors\PHPUnit\InvalidArgumentException
-     *
-     * @psalm-param non-empty-string $methodSpec
      */
     public static function hasMethod(string $methodSpec): HasMethod
     {

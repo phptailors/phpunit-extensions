@@ -43,7 +43,7 @@ trait ProvHasMethodTrait
     // @codeCoverageIgnoreStart
 
     /**
-     * @psalm-return array<array{0:non-empty-string,1:mixed,2:string}>
+     * @psalm-return array<array{0:string,1:mixed,2:string}>
      */
     public function provHasMethodSucceeds(): array
     {
@@ -77,7 +77,7 @@ trait ProvHasMethodTrait
     }
 
     /**
-     * @psalm-return array<array{0:non-empty-string,1:mixed,2:string}>
+     * @psalm-return array<array{0:string,1:mixed,2:string}>
      */
     public function provHasMethodFails(): array
     {

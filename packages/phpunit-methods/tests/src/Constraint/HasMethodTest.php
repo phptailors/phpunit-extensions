@@ -50,8 +50,6 @@ final class HasMethodTest extends TestCase
      * @dataProvider provHasMethodSucceeds
      *
      * @param mixed $subject
-     *
-     * @psalm-param non-empty-string $method
      */
     public function testHasMethodMatchSucceeds(string $method, $subject): void
     {
@@ -62,8 +60,6 @@ final class HasMethodTest extends TestCase
      * @dataProvider provHasMethodSucceeds
      *
      * @param mixed $subject
-     *
-     * @psalm-param non-empty-string $method
      */
     public function testNotHasMethodMatchFails(string $method, $subject, string $string): void
     {
@@ -74,8 +70,6 @@ final class HasMethodTest extends TestCase
      * @dataProvider provHasMethodFails
      *
      * @param mixed $subject
-     *
-     * @psalm-param non-empty-string $method
      */
     public function testHasMethodMatchFails(string $method, $subject, string $string): void
     {
@@ -86,8 +80,6 @@ final class HasMethodTest extends TestCase
      * @dataProvider provHasMethodFails
      *
      * @param mixed $subject
-     *
-     * @psalm-param non-empty-string $method
      */
     public function testNotHasMethodMatchSucceeds(string $method, $subject): void
     {
