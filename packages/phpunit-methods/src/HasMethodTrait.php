@@ -44,6 +44,7 @@ trait HasMethodTrait
      * @throws \Tailors\PHPUnit\InvalidArgumentException
      *
      * @psalm-template T
+     *
      * @psalm-param T $subject
      *
      * @psalm-assert-if-true (T is string ? class-string|trait-string|interface-string : object) $other

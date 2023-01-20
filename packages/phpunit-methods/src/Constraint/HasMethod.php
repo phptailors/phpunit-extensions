@@ -81,6 +81,7 @@ final class HasMethod extends Constraint
      * @param mixed $other
      *
      * @psalm-template T
+     *
      * @psalm-param T $other
      *
      * @psalm-assert-if-true (T is string ? class-string|trait-string|interface-string : object) $other
