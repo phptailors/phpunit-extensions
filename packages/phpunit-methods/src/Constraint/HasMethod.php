@@ -80,7 +80,10 @@ final class HasMethod extends Constraint
     /**
      * @param mixed $other
      *
-     * @psalm-assert-if-true object|class-string|trait-string|interface-string $other
+     * @psalm-template T
+     * @psalm-param T $other
+     *
+     * @psalm-assert-if-true (T is string ? class-string|trait-string|interface-string : object) $other
      */
     private function ensureCanReflectAsClass($other): bool
     {
