@@ -30,5 +30,5 @@ return new Doctum($iterator, array(
   'title'     => 'PHPUnit Extensions API',
   'build_dir' => __DIR__ . '/../build/%version%/html/api',
   'cache_dir' => __DIR__ . '/../cache/%version%/html/api',
-  'remote_repository' => new GithubRemoteRepository('korowai/framework')
+  'remote_repository' => new GithubRemoteRepository('phptailors/phpunit-extensions')
 ));

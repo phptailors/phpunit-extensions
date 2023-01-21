@@ -22,6 +22,6 @@ Indices and tables
 * :ref:`modindex`
 * :ref:`search`
 
-.. _Korowai: https://github.com/phptailors/phpunit-extensions
+.. _PhpunitExtensions: https://github.com/phptailors/phpunit-extensions
 
 .. <!--- vim: set syntax=rst spell: -->
