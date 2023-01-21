@@ -193,7 +193,7 @@ final class HasPregCaptures extends Constraint
     /**
      * @param mixed $value
      *
-     * @assert-if-true CaptureExpectation $value
+     * @psalm-assert-if-true CaptureExpectation $value
      */
     private static function isValidExpectation($value): bool
     {

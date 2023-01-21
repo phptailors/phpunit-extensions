@@ -68,7 +68,7 @@ final class CapturesFilter implements CapturesFilterInterface
     /**
      * @param mixed $value
      *
-     * @assert-if-true string|null $value
+     * @psalm-assert-if-true string|null $value
      */
     private function isScalarCapture($value): bool
     {
@@ -78,7 +78,7 @@ final class CapturesFilter implements CapturesFilterInterface
     /**
      * @param mixed $value
      *
-     * @assert-if-true array{0:string|null,1:int} $value
+     * @psalm-assert-if-true array{0:string|null,1:int} $value
      */
     private function isArrayCapture($value): bool
     {

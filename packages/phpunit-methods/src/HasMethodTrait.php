@@ -43,11 +43,7 @@ trait HasMethodTrait
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      * @throws \Tailors\PHPUnit\InvalidArgumentException
      *
-     * @psalm-template T
-     *
-     * @psalm-param T $subject
-     *
-     * @psalm-assert (T is string ? class-string|trait-string|interface-string : object) $subject
+     * @psalm-assert object|class-string|trait-string|interface-string $subject
      */
     public static function assertHasMethod(
         string $methodSpec,
