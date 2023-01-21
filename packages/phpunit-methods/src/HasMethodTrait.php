@@ -47,7 +47,7 @@ trait HasMethodTrait
      *
      * @psalm-param T $subject
      *
-     * @psalm-assert-if-true (T is string ? class-string|trait-string|interface-string : object) $other
+     * @psalm-assert (T is string ? class-string|trait-string|interface-string : object) $other
      */
     public static function assertHasMethod(
         string $methodSpec,
