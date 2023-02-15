@@ -139,7 +139,7 @@ final class RecursiveComparatorValidatorTest extends TestCase
                     [],
                     1,
                 ],
-                'expect'     => [
+                'expect' => [
                 ],
             ],
 
@@ -155,7 +155,7 @@ final class RecursiveComparatorValidatorTest extends TestCase
                     ],
                     1,
                 ],
-                'expect'     => [
+                'expect' => [
                 ],
             ],
 
@@ -167,7 +167,7 @@ final class RecursiveComparatorValidatorTest extends TestCase
                     ],
                     123,
                 ],
-                'expect'     => [
+                'expect' => [
                     'exception' => InvalidArgumentException::class,
                     'message'   => self::makeFailureMessage(123, __CLASS__.'::testValidate', 'EqualityComparator', 1),
                 ],
@@ -181,7 +181,7 @@ final class RecursiveComparatorValidatorTest extends TestCase
                     ],
                     123,
                 ],
-                'expect'     => [
+                'expect' => [
                     'exception' => InvalidArgumentException::class,
                     'message'   => self::makeFailureMessage(123, __CLASS__.'::testValidate', 'IdentityComparator', 1),
                 ],
@@ -196,11 +196,11 @@ final class RecursiveComparatorValidatorTest extends TestCase
                             'gez'  => 'GEZ',
                             'err2' => $identityWrapper,
                         ],
-                        'frd'  => $equalityWrapper,
+                        'frd' => $equalityWrapper,
                     ],
                     11,
                 ],
-                'expect'     => [
+                'expect' => [
                     'exception' => InvalidArgumentException::class,
                     'message'   => self::makeFailureMessage(11, __CLASS__.'::testValidate', 'EqualityComparator', 2),
                 ],
@@ -220,7 +220,7 @@ final class RecursiveComparatorValidatorTest extends TestCase
                     ],
                     123,
                 ],
-                'expect'     => [
+                'expect' => [
                     'exception' => InvalidArgumentException::class,
                     'message'   => self::makeFailureMessage(123, __CLASS__.'::testValidate', 'EqualityComparator', 2),
                 ],
@@ -235,7 +235,7 @@ final class RecursiveComparatorValidatorTest extends TestCase
                     ],
                     123,
                 ],
-                'expect'     => [
+                'expect' => [
                     'exception' => InvalidArgumentException::class,
                     'message'   => self::makeFailureMessage(123, __CLASS__.'::testValidate', 'EqualityComparator', 2),
                 ],

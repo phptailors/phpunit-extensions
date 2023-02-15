@@ -60,11 +60,13 @@ trait ConstraintImplementationTrait
 
     /**
      * @throws InvalidReturnValueException
+     *
+     * @psalm-return array<string>
      */
     protected function inheritance(string $class): array
     {
         $value = (self::$inheritance)($class);
-        self::assertReturnValueIsArray([self::class, '$inheritance'], $value);
+        self::assertReturnValueIsListOfStrings([self::class, '$inheritance'], $value);
 
         return $value;
     }
@@ -98,14 +100,20 @@ trait ConstraintImplementationTrait
      *
      * @param-out ValueType $value
      *
-     * @psalm-assert array $value
+     * @psalm-assert array<string> $value
      *
      * @throws InvalidReturnValueException
      */
-    private static function assertReturnValueIsArray($function, &$value): void
+    private static function assertReturnValueIsListOfStrings($function, &$value): void
     {
         if (!is_array($value)) {
             throw InvalidReturnValueException::fromExpectedTypeAndActualValue($function, 'array', $value);
+        }
+
+        $strings = array_filter($value, 'is_string');
+
+        if (count($strings) < count($value)) {
+            throw InvalidReturnValueException::fromExpectedTypeAndActualValue($function, 'array of strings', $value);
         }
     }
 }

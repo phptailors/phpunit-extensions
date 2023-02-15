@@ -76,7 +76,7 @@ final class ExporterTest extends TestCase
             'arguments' => new ActualValues([
                 'foo' => 'FOO',
             ]),
-            'expected'  => "values (\n".
+            'expected' => "values (\n".
                           "    'foo' => 'FOO'\n".
                           ')',
         ];
@@ -85,7 +85,7 @@ final class ExporterTest extends TestCase
             'arguments' => new ExpectedValues([
                 'foo' => 'FOO',
             ]),
-            'expected'  => "values (\n".
+            'expected' => "values (\n".
                           "    'foo' => 'FOO'\n".
                           ')',
         ];
@@ -153,14 +153,14 @@ final class ExporterTest extends TestCase
             'arguments' => new ActualValues([
                 'foo' => 'FOO',
             ]),
-            'expected'  => 'values (...)',
+            'expected' => 'values (...)',
         ];
 
         $cases['ExporterTest.php:'.__LINE__] = [
             'arguments' => new ExpectedValues([
                 'foo' => 'FOO',
             ]),
-            'expected'  => 'values (...)',
+            'expected' => 'values (...)',
         ];
 
         return $cases;

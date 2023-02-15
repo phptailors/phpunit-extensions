@@ -62,7 +62,7 @@ abstract class AbstractConstraint extends Constraint
             return false;
         }
 
-        return in_array($this->expected, $this->inheritance($other), true);
+        return in_array(strtolower($this->expected), array_map('strtolower', $this->inheritance($other)), true);
     }
 
     /**
@@ -92,6 +92,8 @@ abstract class AbstractConstraint extends Constraint
      * Returns an array of "inherited classes" -- eiher interfaces *$class*
      * implements, parent classes it extends or traits it uses, depending on
      * the actual implementation of this constraint.
+     *
+     * @psalm-return array<string>
      */
     abstract protected function inheritance(string $class): array;
 

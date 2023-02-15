@@ -89,8 +89,8 @@ final class RecursiveUnwrapperTest extends TestCase
                     ],
                 ]),
                 'expect' => [
-                    'foo'            => 'FOO',
-                    'bar'            => [
+                    'foo' => 'FOO',
+                    'bar' => [
                         'baz' => 'BAZ',
                         'qux' => 'QUX',
                     ],
@@ -107,8 +107,8 @@ final class RecursiveUnwrapperTest extends TestCase
                     ]),
                 ]),
                 'expect' => [
-                    'foo'            => 'FOO',
-                    'bar'            => [
+                    'foo' => 'FOO',
+                    'bar' => [
                         'baz'            => 'BAZ',
                         self::UNIQUE_TAG => true,
                     ],
@@ -125,8 +125,8 @@ final class RecursiveUnwrapperTest extends TestCase
                     ]),
                 ]),
                 'expect' => [
-                    'foo'            => 'FOO',
-                    'bar'            => [
+                    'foo' => 'FOO',
+                    'bar' => [
                         'baz'            => 'BAZ',
                         self::UNIQUE_TAG => true,
                     ],
@@ -144,13 +144,13 @@ final class RecursiveUnwrapperTest extends TestCase
                     ]),
                 ]),
                 'expect' => [
-                    'foo'            => 'FOO',
-                    'bar'            => [
-                        'qux'            => [
+                    'foo' => 'FOO',
+                    'bar' => [
+                        'qux' => [
                             'baz'            => 'BAZ',
                             self::UNIQUE_TAG => true,
                         ],
-                        0                => [
+                        0 => [
                             'fred'           => 'FRED',
                             self::UNIQUE_TAG => true,
                         ],
@@ -170,13 +170,13 @@ final class RecursiveUnwrapperTest extends TestCase
                     ]),
                 ]),
                 'expect' => [
-                    'foo'            => 'FOO',
-                    'bar'            => [
-                        'qux'            => [
+                    'foo' => 'FOO',
+                    'bar' => [
+                        'qux' => [
                             'baz'            => 'BAZ',
                             self::UNIQUE_TAG => true,
                         ],
-                        0                => [
+                        0 => [
                             'fred'           => 'FRED',
                             self::UNIQUE_TAG => true,
                         ],

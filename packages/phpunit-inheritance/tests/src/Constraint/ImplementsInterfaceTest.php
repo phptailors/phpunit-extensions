@@ -81,6 +81,24 @@ final class ImplementsInterfaceTest extends TestCase
                 'interface' => \Traversable::class,
                 'subject'   => \Iterator::class,
             ],
+
+            // class implements interface -- case insensitive match
+            'ImplementsInterfaceTest.php:'.__LINE__ => [
+                'interface' => 'tHrowAble',
+                'subject'   => 'eXceptiOn',
+            ],
+
+            // object of class that implements interface -- case insensitive match
+            'ImplementsInterfaceTest.php:'.__LINE__ => [
+                'interface' => 'tHrowAble',
+                'subject'   => new \Exception(),
+            ],
+
+            // interface that extends interface -- case insensitive match
+            'ImplementsInterfaceTest.php:'.__LINE__ => [
+                'interface' => 'tRaversAble',
+                'subject'   => 'iteRator',
+            ],
         ];
     }
 

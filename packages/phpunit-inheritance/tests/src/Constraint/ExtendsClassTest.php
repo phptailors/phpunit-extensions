@@ -75,6 +75,18 @@ final class ExtendsClassTest extends TestCase
                 'class'   => \Exception::class,
                 'subject' => new \ErrorException(),
             ],
+
+            // class extends class - case insensitive match
+            'ExtendsClassTest.php:'.__LINE__ => [
+                'class'   => 'eXceptiOn',
+                'subject' => 'errOreXceptiOn',
+            ],
+
+            // object of class that extends class -- case insensitive match
+            'ExtendsClassTest.php:'.__LINE__ => [
+                'class'   => 'eXceptiOn',
+                'subject' => new \ErrorException(),
+            ],
         ];
     }
 
