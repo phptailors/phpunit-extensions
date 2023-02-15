@@ -91,14 +91,14 @@ final class HasPregCapturesTest extends TestCase
 
         return [
             'HasPregCapturesTest.php:'.__LINE__ => [
-                'args'    => [[
+                'args' => [[
                     'foo' => new \stdClass(),
                 ]],
                 'message' => sprintf($template, 'expectation', 'key \'foo\''),
             ],
 
             'HasPregCapturesTest.php:'.__LINE__ => [
-                'args'    => [[
+                'args' => [[
                     0 => 123.456,
                     1 => false,
                     2 => ['', 1, ''],

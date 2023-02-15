@@ -100,7 +100,7 @@ final class FaultyConstraint2 extends AbstractConstraint
 
     public static function arrayWithStrlen(string $str): array
     {
-        return [ strlen($str) ];
+        return [strlen($str)];
     }
 }
 

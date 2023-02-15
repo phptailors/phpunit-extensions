@@ -51,27 +51,27 @@ final class ObjectPropertySelectorTest extends TestCase
     {
         return [
             // #0
-            'string'                     => [
+            'string' => [
                 'subject' => 'foo',
                 'expect'  => false,
             ],
 
             // #1
-            'array'                      => [
+            'array' => [
                 'subject' => [],
                 'expect'  => false,
             ],
 
-            'class'                      => [
+            'class' => [
                 'subject' => self::class,
                 'expect'  => false,
             ],
 
             // #2
-            'object'                     => [
+            'object' => [
                 'subject' => new class() {
                 },
-                'expect'  => true,
+                'expect' => true,
             ],
 
             // #3

@@ -67,7 +67,7 @@ final class ArrayValueSelectorTest extends TestCase
             'ArrayValueSelectorTest.php:'.__LINE__ => [
                 'subject' => new class() {
                 },
-                'expect'  => false,
+                'expect' => false,
             ],
 
             'ArrayValueSelectorTest.php:'.__LINE__ => [
@@ -141,36 +141,36 @@ final class ArrayValueSelectorTest extends TestCase
                 'subject' => [
                     'foo' => 'FOO',
                 ],
-                'key'     => 'foo',
-                'return'  => true,
-                'expect'  => 'FOO',
+                'key'    => 'foo',
+                'return' => true,
+                'expect' => 'FOO',
             ],
 
             'ArrayValueSelectorTest.php:'.__LINE__ => [
                 'subject' => [
                     'foo' => 'FOO',
                 ],
-                'key'     => 'bar',
-                'return'  => false,
-                'expect'  => null,
+                'key'    => 'bar',
+                'return' => false,
+                'expect' => null,
             ],
 
             'ArrayValueSelectorTest.php:'.__LINE__ => [
                 'subject' => new \ArrayObject([
                     'foo' => 'FOO',
                 ]),
-                'key'     => 'foo',
-                'return'  => true,
-                'expect'  => 'FOO',
+                'key'    => 'foo',
+                'return' => true,
+                'expect' => 'FOO',
             ],
 
             'ArrayValueSelectorTest.php:'.__LINE__ => [
                 'subject' => new \ArrayObject([
                     'foo' => 'FOO',
                 ]),
-                'key'     => 'bar',
-                'return'  => false,
-                'expect'  => null,
+                'key'    => 'bar',
+                'return' => false,
+                'expect' => null,
             ],
 
             'ArrayValueSelectorTest.php:'.__LINE__ => [

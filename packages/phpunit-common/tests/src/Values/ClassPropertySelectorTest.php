@@ -61,27 +61,27 @@ final class ClassPropertySelectorTest extends TestCase
     {
         return [
             // #0
-            'string'                    => [
+            'string' => [
                 'subject' => 'foo',
                 'expect'  => false,
             ],
 
             // #1
-            'array'                     => [
+            'array' => [
                 'subject' => [],
                 'expect'  => false,
             ],
 
-            'class'                     => [
+            'class' => [
                 'subject' => self::class,
                 'expect'  => true,
             ],
 
             // #2
-            'object'                    => [
+            'object' => [
                 'subject' => get_class(new class() {
                 }),
-                'expect'  => true,
+                'expect' => true,
             ],
 
             // #3
@@ -115,7 +115,7 @@ final class ClassPropertySelectorTest extends TestCase
         return [
             // #0
             [
-                'class'  => get_class(new class() {
+                'class' => get_class(new class() {
                     public static $foo = 'FOO';
                 }),
                 'key'    => 'foo',
@@ -125,7 +125,7 @@ final class ClassPropertySelectorTest extends TestCase
 
             // #1
             [
-                'class'  => get_class(new class() {
+                'class' => get_class(new class() {
                     public static $foo = 'FOO';
                 }),
                 'key'    => 'bar',
@@ -135,7 +135,7 @@ final class ClassPropertySelectorTest extends TestCase
 
             // #2
             [
-                'class'  => get_class(new class() {
+                'class' => get_class(new class() {
                     public static function foo()
                     {
                         return 'FOO';
@@ -148,7 +148,7 @@ final class ClassPropertySelectorTest extends TestCase
 
             // #3
             [
-                'class'  => get_class(new class() {
+                'class' => get_class(new class() {
                     public static function foo()
                     {
                         return 'FOO';
