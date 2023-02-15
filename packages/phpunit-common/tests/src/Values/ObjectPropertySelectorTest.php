@@ -226,10 +226,18 @@ final class ObjectPropertySelectorTest extends TestCase
         };
         $selector = new ObjectPropertySelector();
 
-        $this->expectError();
-        $this->expectErrorMessage('static property');
+        // Because expectError() is removed in phpunit 10.
+        try {
+            set_error_handler(static function (int $severity, string $message): void {
+                throw new \ErrorException($message, $severity);
+            });
+            $this->expectException(\ErrorException::class);
+            $this->expectExceptionMessage('static property');
 
-        $selector->select($object, 'foo');
+            $selector->select($object, 'foo');
+        } finally {
+            restore_error_handler();
+        }
 
         // @codeCoverageIgnoreStart
     }

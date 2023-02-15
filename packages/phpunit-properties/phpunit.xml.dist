@@ -8,7 +8,6 @@
     failOnRisky="true"
     failOnWarning="true"
     forceCoversAnnotation="true"
-    convertDeprecationsToExceptions="true"
 >
   <php>
     <ini name="error_reporting" value="-1"/>
