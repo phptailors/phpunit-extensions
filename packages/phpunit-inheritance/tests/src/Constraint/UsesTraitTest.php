@@ -83,6 +83,19 @@ final class UsesTraitTest extends TestCase
                 'trait'   => ExampleTrait::class,
                 'subject' => ExampleTraitUsingTrait::class,
             ],
+            // case-insensitive match
+            'UsesTraitTest.php:'.__LINE__ => [
+                'trait'   => 'tailors\\PhPunit\\eXamples\\inhEritance\eXampletRait',
+                'subject' => 'tailors\\PhPunit\\eXamples\\inhEritance\eXampleclAssuSingtRait',
+            ],
+            'UsesTraitTest.php:'.__LINE__ => [
+                'trait'   => 'tailors\\PhPunit\\eXamples\\inhEritance\eXampletRait',
+                'subject' => new ExampleClassUsingTrait(),
+            ],
+            'UsesTraitTest.php:'.__LINE__ => [
+                'trait'   => 'tailors\\PhPunit\\eXamples\\inhEritance\eXampletRait',
+                'subject' => 'tailors\\PhPunit\\eXamples\\inhEritance\eXampletRaituSingtRait',
+            ],
         ];
     }
 
