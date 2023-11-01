@@ -37,8 +37,8 @@
     },
     "require": {
         "php": ">=7.4",
-        "sebastian/exporter": "^4.0",
-        "sebastian/recursion-context": "^4.0.3"
+        "sebastian/exporter": "^4.0 || ^5",
+        "sebastian/recursion-context": "^4.0.3 || ^5"
     },
     "license": "MIT",
     "require-dev": {

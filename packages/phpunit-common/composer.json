@@ -20,8 +20,8 @@
     },
     "require": {
         "php": ">=7.4",
-        "sebastian/recursion-context": "^4.0.3",
-        "sebastian/exporter": "^4.0"
+        "sebastian/recursion-context": "^4.0.3 || ^5",
+        "sebastian/exporter": "^4.0 || ^5"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5.10 || ^10"
