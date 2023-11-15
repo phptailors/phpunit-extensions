@@ -13,13 +13,9 @@ use Composer\Semver\VersionParser;
 
 
 if (InstalledVersions::isInstalled('sebastian/exporter') && InstalledVersions::satisfies(new VersionParser, 'sebastian/exporter', '^4')) {
-
-    class_alias(\SebastianBergmann\Exporter\Exporter::class, \Tailors\PHPUnit\Exporter\AbstractExporter::class);
-
+    require_once __dir__ . '/compat/exporter4/AbstractExporter.php';
 } else {
-
-    class_alias(\Tailors\PHPUnit\Exporter\AbstractExporter5::class, \Tailors\PHPUnit\Exporter\AbstractExporter::class);
-
+    require_once __dir__ . '/compat/exporter5/AbstractExporter.php';
 }
 
 // vim: syntax=php sw=4 ts=4 et:

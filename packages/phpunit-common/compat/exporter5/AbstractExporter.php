@@ -13,7 +13,7 @@ namespace Tailors\PHPUnit\Exporter;
 use SebastianBergmann\RecursionContext\Context;
 use SplObjectStorage;
 
-abstract class AbstractExporter5
+abstract class AbstractExporter
 {
     /**
      * Exports a value as a string.
