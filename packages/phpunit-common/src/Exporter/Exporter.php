@@ -10,7 +10,6 @@
 
 namespace Tailors\PHPUnit\Exporter;
 
-use SebastianBergmann\Exporter\Exporter as SebastianBergmannExporter;
 use SebastianBergmann\RecursionContext\Context;
 use Tailors\PHPUnit\Values\ValuesInterface;
 
@@ -21,7 +20,7 @@ use Tailors\PHPUnit\Values\ValuesInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class Exporter extends SebastianBergmannExporter
+final class Exporter extends AbstractExporter
 {
     /**
      * Recursive implementation of export.
@@ -34,7 +33,7 @@ final class Exporter extends SebastianBergmannExporter
      *
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
-    public function recursiveExport(&$value, $indentation, $processed = null)
+    public function recursiveExport(&$value, $indentation, $processed = null): string
     {
         if ($value instanceof ValuesInterface) {
             return $this->exportValues($value, $indentation, $processed);
@@ -56,7 +55,7 @@ final class Exporter extends SebastianBergmannExporter
      *
      * @return string
      */
-    public function shortenedExport($value)
+    public function shortenedExport($value): string
     {
         if ($value instanceof ValuesInterface) {
             return sprintf('values (%s)', count($this->toArray($value)) > 0 ? '...' : '');

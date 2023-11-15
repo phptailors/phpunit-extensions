@@ -18,18 +18,14 @@ interface InterfaceWithMethodFooV4C0Z
 final class ClassWithMethodFooV4C0Z
 {
     // @codeCoverageIgnoreStart
-    public function foo(): void
-    {
-    }
+    public function foo(): void {}
     // @codeCoverageIgnoreEnd
 }
 
 trait TraitWithMethodFooV4C0Z
 {
     // @codeCoverageIgnoreStart
-    public function foo(): void
-    {
-    }
+    public function foo(): void {}
     // @codeCoverageIgnoreEnd
 }
 

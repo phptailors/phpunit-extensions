@@ -13,6 +13,7 @@ namespace Tailors\PHPUnit\Inheritance;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\LogicalNot;
 use PHPUnit\Framework\Constraint\Operator;
+use Tailors\PHPUnit\Exporter\Exporter;
 
 /**
  * Abstract base class for inheritance constraints (ExtendsClass,
@@ -163,7 +164,8 @@ abstract class AbstractConstraint extends Constraint
         if (is_object($subject)) {
             $subject = 'object '.get_class($subject);
         } elseif (!is_string($subject) || !$this->supports($subject)) {
-            $subject = $this->exporter()->export($subject);
+            $exporter = new Exporter();
+            $subject = $exporter->export($subject);
         }
 
         return $subject;

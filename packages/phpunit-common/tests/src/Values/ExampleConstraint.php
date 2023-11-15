@@ -27,9 +27,7 @@ class ExampleConstraint extends AbstractConstraint
     /**
      * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
-    protected static function validateExpectations(array $expected, int $argument, int $distance = 1): void
-    {
-    }
+    protected static function validateExpectations(array $expected, int $argument, int $distance = 1): void {}
 
     /**
      * Creates instance of ValueSelectorInterface.

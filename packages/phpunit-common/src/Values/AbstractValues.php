@@ -19,8 +19,6 @@ namespace Tailors\PHPUnit\Values;
  *
  * @template-extends \ArrayObject<array-key,mixed>
  */
-abstract class AbstractValues extends \ArrayObject implements ValuesInterface
-{
-}
+abstract class AbstractValues extends \ArrayObject implements ValuesInterface {}
 
 // vim: syntax=php sw=4 ts=4 et:

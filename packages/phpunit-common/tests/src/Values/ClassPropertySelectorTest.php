@@ -79,9 +79,8 @@ final class ClassPropertySelectorTest extends TestCase
 
             // #2
             'object' => [
-                'subject' => get_class(new class() {
-                }),
-                'expect' => true,
+                'subject' => get_class(new class() {}),
+                'expect'  => true,
             ],
 
             // #3

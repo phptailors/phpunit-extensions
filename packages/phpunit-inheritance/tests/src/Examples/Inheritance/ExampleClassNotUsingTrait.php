@@ -17,8 +17,6 @@ namespace Tailors\PHPUnit\Examples\Inheritance;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class ExampleClassNotUsingTrait
-{
-}
+final class ExampleClassNotUsingTrait {}
 
 // vim: syntax=php sw=4 ts=4 et:

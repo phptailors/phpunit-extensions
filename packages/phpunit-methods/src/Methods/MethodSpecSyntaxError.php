@@ -15,8 +15,6 @@ namespace Tailors\PHPUnit\Methods;
  *
  * @internal This class is not covered by the backward compatibility promise
  */
-final class MethodSpecSyntaxError extends \Exception
-{
-}
+final class MethodSpecSyntaxError extends \Exception {}
 
 // vim: syntax=php sw=4 ts=4 et:

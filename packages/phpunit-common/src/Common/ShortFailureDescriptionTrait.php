@@ -11,7 +11,7 @@
 namespace Tailors\PHPUnit\Common;
 
 use PHPUnit\Framework\Constraint\Operator;
-use SebastianBergmann\Exporter\Exporter;
+use Tailors\PHPUnit\Exporter\Exporter;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -82,8 +82,6 @@ trait ShortFailureDescriptionTrait
      */
     abstract protected function toStringInContext(Operator $operator, $role): string;
 
-    abstract protected function exporter(): Exporter;
-
     /**
      * Returns short representation of $subject for failureDescription().
      *
@@ -104,7 +102,7 @@ trait ShortFailureDescriptionTrait
             return $subject;
         }
 
-        return $this->exporter()->export($subject);
+        return (new Exporter())->export($subject);
     }
 }
 

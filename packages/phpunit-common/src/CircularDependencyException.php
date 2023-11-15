@@ -15,8 +15,6 @@ namespace Tailors\PHPUnit;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class CircularDependencyException extends \Exception
-{
-}
+final class CircularDependencyException extends \Exception {}
 
 // vim: syntax=php sw=4 ts=4 et:

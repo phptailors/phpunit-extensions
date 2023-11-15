@@ -32,9 +32,9 @@ final class ExporterTest extends TestCase
     //
     //
 
-    public function testExtendsSebastianBergmannExporter(): void
+    public function testExtendsAbstractExporter(): void
     {
-        self::assertInstanceOf(SebastianBergmannExporter::class, new Exporter());
+        self::assertInstanceOf(AbstractExporter::class, new Exporter());
     }
 
     //

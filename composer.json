@@ -7,6 +7,9 @@
         }
     ],
     "autoload": {
+        "files": [
+            "packages/phpunit-common/autoload.php"
+        ],
         "psr-4": {
             "Tailors\\PHPUnit\\": [
                 "packages/phpunit-arrays/src/",
@@ -36,6 +39,7 @@
         "nikic/php-parser": "< 4.13.2"
     },
     "require": {
+        "composer/semver": ">=3.0",
         "php": ">=7.4"
     },
     "license": "MIT",

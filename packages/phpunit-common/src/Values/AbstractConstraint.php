@@ -14,7 +14,6 @@ use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\LogicalNot;
 use PHPUnit\Framework\Constraint\Operator;
 use SebastianBergmann\Comparator\ComparisonFailure;
-use SebastianBergmann\Exporter\Exporter as SebastianBergmannExporter;
 use Tailors\PHPUnit\CircularDependencyException;
 use Tailors\PHPUnit\Common\ShortFailureDescriptionTrait;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
@@ -41,11 +40,6 @@ abstract class AbstractConstraint extends Constraint implements ComparatorWrappe
      * @var RecursiveUnwrapperInterface
      */
     private $unwrapper;
-
-    /**
-     * @var null|Exporter
-     */
-    private $exporter;
 
     /**
      * @var ComparatorInterface
@@ -125,8 +119,8 @@ abstract class AbstractConstraint extends Constraint implements ComparatorWrappe
                 $f = new ComparisonFailure(
                     $this->expected,
                     $other,
-                    $this->exporter()->export($this->expected),
-                    $this->exporter()->export($actual)
+                    (new Exporter())->export($this->expected),
+                    (new Exporter())->export($actual)
                 );
             }
 
@@ -180,15 +174,6 @@ abstract class AbstractConstraint extends Constraint implements ComparatorWrappe
         $expect = $this->unwrapper->unwrap($this->expected);
 
         return $this->comparator->compare($expect, $actual);
-    }
-
-    final protected function exporter(): SebastianBergmannExporter
-    {
-        if (null === $this->exporter) {
-            $this->exporter = new Exporter();
-        }
-
-        return $this->exporter;
     }
 
     /**

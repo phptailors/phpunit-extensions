@@ -69,9 +69,8 @@ final class ObjectPropertySelectorTest extends TestCase
 
             // #2
             'object' => [
-                'subject' => new class() {
-                },
-                'expect' => true,
+                'subject' => new class() {},
+                'expect'  => true,
             ],
 
             // #3

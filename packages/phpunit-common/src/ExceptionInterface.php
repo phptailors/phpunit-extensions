@@ -15,6 +15,4 @@ namespace Tailors\PHPUnit;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-interface ExceptionInterface extends \Throwable
-{
-}
+interface ExceptionInterface extends \Throwable {}

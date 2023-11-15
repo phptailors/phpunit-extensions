@@ -18,6 +18,7 @@ use Tailors\PHPUnit\CircularDependencyException;
 use Tailors\PHPUnit\Common\ShortFailureDescriptionTrait;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\ComparatorWrapperInterface;
+use Tailors\PHPUnit\Exporter\Exporter;
 
 /**
  * Abstract base class for constraints that compare key-sorted arrays.
@@ -96,12 +97,14 @@ abstract class AbstractKsortedConstraint extends Constraint implements Comparato
         if (!$success) {
             $f = null;
 
+            $exporter = new Exporter();
+
             if ($this->supports($other)) {
                 $f = new ComparisonFailure(
                     $this->expected,
                     $other,
-                    $this->exporter()->export($this->ksorted($this->expected)),
-                    $this->exporter()->export($this->ksorted($other))
+                    $exporter->export($this->ksorted($this->expected)),
+                    $exporter->export($this->ksorted($other))
                 );
             }
 
