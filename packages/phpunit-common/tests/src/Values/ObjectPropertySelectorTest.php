@@ -47,7 +47,7 @@ final class ObjectPropertySelectorTest extends TestCase
     //
 
     // @codeCoverageIgnoreStart
-    public function provSupports(): array
+    public static function provSupports(): array
     {
         return [
             // #0

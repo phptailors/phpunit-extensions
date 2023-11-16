@@ -22,11 +22,11 @@ trait ProvArrayValuesTrait
     /**
      * @param mixed $args
      */
-    abstract public function createConstraint(...$args): Constraint;
+    abstract public static function createConstraint(...$args): Constraint;
 
     // @codeCoverageIgnoreStart
 
-    public function provArrayValuesIdenticalTo(): array
+    public static function provArrayValuesIdenticalTo(): array
     {
         return [
             'ProvArrayValuesTrait.php:'.__LINE__ => [
@@ -69,7 +69,7 @@ trait ProvArrayValuesTrait
                 'expect' => [
                     'foo' => 'FOO',
                     'int' => 21,
-                    'arr' => $this->createConstraint([
+                    'arr' => static::createConstraint([
                         'bar' => 'BAR',
                         'int' => 20,
                     ]),
@@ -91,10 +91,10 @@ trait ProvArrayValuesTrait
                 'expect' => [
                     'foo' => 'FOO',
                     'int' => 21,
-                    'arr' => $this->createConstraint([
+                    'arr' => static::createConstraint([
                         'bar' => 'BAR',
                         'int' => 20,
-                        'arr' => $this->createConstraint([
+                        'arr' => static::createConstraint([
                             'frd' => 'FRD',
                         ]),
                     ]),
@@ -119,7 +119,7 @@ trait ProvArrayValuesTrait
             'ProvArrayValuesTrait.php:'.__LINE__ => [
                 'expect' => [
                     'arr' => [
-                        $this->createConstraint(['foo' => 'FOO']),
+                        static::createConstraint(['foo' => 'FOO']),
                     ],
                 ],
                 'actual' => [

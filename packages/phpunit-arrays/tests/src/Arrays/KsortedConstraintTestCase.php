@@ -24,7 +24,7 @@ abstract class KsortedConstraintTestCase extends TestCase
 
     abstract public static function getComparatorClass(): string;
 
-    public function createConstraint(...$args): Constraint
+    public static function createConstraint(...$args): Constraint
     {
         $class = static::getConstraintClass();
 

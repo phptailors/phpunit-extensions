@@ -26,7 +26,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     /**
      * @param mixed $args
      */
-    abstract public function createConstraint(...$args): Constraint;
+    abstract public static function createConstraint(...$args): Constraint;
 
     /**
      * Returns constraint's class name.

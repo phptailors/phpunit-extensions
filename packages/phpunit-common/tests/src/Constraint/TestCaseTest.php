@@ -24,7 +24,7 @@ use PHPUnit\Framework\Constraint\IsTrue;
  */
 final class TestCaseTest extends TestCase
 {
-    public function createConstraint(...$args): Constraint
+    public static function createConstraint(...$args): Constraint
     {
         return new IsTrue(...$args);
     }

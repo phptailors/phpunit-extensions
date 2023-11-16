@@ -48,7 +48,7 @@ final class ArrayValuesIdenticalToTest extends ConstraintTestCase
         return ArrayValuesIdenticalTo::class;
     }
 
-    public function createConstraint(...$args): Constraint
+    public static function createConstraint(...$args): Constraint
     {
         return ArrayValuesIdenticalTo::create(...$args);
     }

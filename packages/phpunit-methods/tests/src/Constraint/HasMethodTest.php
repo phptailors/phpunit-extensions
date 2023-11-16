@@ -29,7 +29,7 @@ final class HasMethodTest extends TestCase
     /**
      * @param mixed $args
      */
-    public function createConstraint(...$args): Constraint
+    public static function createConstraint(...$args): Constraint
     {
         return HasMethod::create(...$args);
     }

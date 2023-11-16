@@ -39,7 +39,7 @@ final class ConstraintTestCaseTest extends ConstraintTestCase
         return 'identical to';
     }
 
-    public function createConstraint(...$args): Constraint
+    public static function createConstraint(...$args): Constraint
     {
         return ExampleConstraint::create(...$args);
     }

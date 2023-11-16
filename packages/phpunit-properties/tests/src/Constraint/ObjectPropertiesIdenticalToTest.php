@@ -48,7 +48,7 @@ final class ObjectPropertiesIdenticalToTest extends PropertiesConstraintTestCase
         return ObjectPropertiesIdenticalTo::class;
     }
 
-    public function createConstraint(...$args): Constraint
+    public static function createConstraint(...$args): Constraint
     {
         return ObjectPropertiesIdenticalTo::create(...$args);
     }

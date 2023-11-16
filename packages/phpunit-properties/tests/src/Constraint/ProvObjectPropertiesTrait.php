@@ -22,11 +22,11 @@ trait ProvObjectPropertiesTrait
     /**
      * @param mixed $args
      */
-    abstract public function createConstraint(...$args): Constraint;
+    abstract public static function createConstraint(...$args): Constraint;
 
     // @codeCoverageIgnoreStart
 
-    public function provObjectPropertiesIdenticalTo(): array
+    public static function provObjectPropertiesIdenticalTo(): array
     {
         $esmith = new class() {
             public $name = 'Emily';
@@ -147,7 +147,7 @@ trait ProvObjectPropertiesTrait
                     'name' => 'John',
                     'last' => 'Smith',
                     'age'  => 21,
-                    'wife' => $this->createConstraint([
+                    'wife' => static::createConstraint([
                         'name'        => 'Emily',
                         'last'        => 'Smith',
                         'age'         => 20,
@@ -164,11 +164,11 @@ trait ProvObjectPropertiesTrait
                     'name' => 'John',
                     'last' => 'Smith',
                     'age'  => 21,
-                    'wife' => $this->createConstraint([
+                    'wife' => static::createConstraint([
                         'name'    => 'Emily',
                         'last'    => 'Smith',
                         'age'     => 20,
-                        'husband' => $this->createConstraint([
+                        'husband' => static::createConstraint([
                             'name'        => 'John',
                             'last'        => 'Smith',
                             'age'         => 21,
@@ -192,7 +192,7 @@ trait ProvObjectPropertiesTrait
             'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => [
                     'family' => [
-                        $this->createConstraint(['name' => 'Emily', 'last' => 'Smith']),
+                        static::createConstraint(['name' => 'Emily', 'last' => 'Smith']),
                     ],
                 ],
                 'actual' => $jsmith,
@@ -202,13 +202,13 @@ trait ProvObjectPropertiesTrait
             'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => [
                     'persons' => [
-                        $this->createConstraint(['name' => 'Emily', 'last' => 'Smith']),
-                        $this->createConstraint(['name' => 'John', 'last' => 'Smith']),
+                        static::createConstraint(['name' => 'Emily', 'last' => 'Smith']),
+                        static::createConstraint(['name' => 'John', 'last' => 'Smith']),
                     ],
                     'families' => [
                         'smith' => [
-                            $this->createConstraint(['name' => 'Emily', 'last' => 'Smith']),
-                            $this->createConstraint(['name' => 'John', 'last' => 'Smith']),
+                            static::createConstraint(['name' => 'Emily', 'last' => 'Smith']),
+                            static::createConstraint(['name' => 'John', 'last' => 'Smith']),
                         ],
                     ],
                 ],
@@ -260,7 +260,7 @@ trait ProvObjectPropertiesTrait
         ];
     }
 
-    public function provObjectPropertiesNotEqualTo(): array
+    public static function provObjectPropertiesNotEqualTo(): array
     {
         $hbrown = new class() {
             public $name = 'Helen';
@@ -433,7 +433,7 @@ trait ProvObjectPropertiesTrait
                         $jsmith,
                     ],
                     // the following must not match, as the 'families' property is an array, not an object.
-                    'families' => $this->createConstraint([
+                    'families' => static::createConstraint([
                         'smith' => [
                             $esmith,
                             $jsmith,

@@ -41,7 +41,7 @@ final class ArrayValueSelectorTest extends TestCase
     //
 
     // @codeCoverageIgnoreStart
-    public function provSupports(): array
+    public static function provSupports(): array
     {
         return [
             'ArrayValueSelectorTest.php:'.__LINE__ => [

@@ -32,7 +32,7 @@ final class ArrayValuesIdenticalToTraitTest extends TestCase
     /**
      * @param mixed $args
      */
-    public function createConstraint(...$args): ArrayValuesIdenticalTo
+    public static function createConstraint(...$args): ArrayValuesIdenticalTo
     {
         return ArrayValuesIdenticalTo::create(...$args);
     }

@@ -41,7 +41,7 @@ final class ExporterTest extends TestCase
     // export()
     //
 
-    public function provExport(): array
+    public static function provExport(): array
     {
         $sebastianExporter = new SebastianBergmannExporter();
         $sebastianHandles = [
@@ -120,7 +120,7 @@ final class ExporterTest extends TestCase
     // shortenedExport()
     //
 
-    public function provShortenedExport(): array
+    public static function provShortenedExport(): array
     {
         $sebastianExporter = new SebastianBergmannExporter();
         $sebastianHandles = [

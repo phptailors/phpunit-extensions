@@ -49,7 +49,7 @@ final class MethodSpecTest extends TestCase
      *  1: array{name:mixed, static:mixed, access:mixed, abstract:mixed, final:mixed}
      * }>
      */
-    public function provConstructor(): iterable
+    public static function provConstructor(): iterable
     {
         for ($n = 0; $n <= 4; ++$n) {
             $args = array_fill(0, $n, null);
@@ -193,14 +193,14 @@ final class MethodSpecTest extends TestCase
     /**
      * @psalm-return iterable<array-key,array{
      *  0: array{0:non-empty-string, 1?:?bool, 2?:?int, 3?:?bool, 4?:?bool},
-     *  1: \ReflectionMethod,
+     *  1: \Closure(TestCase):\ReflectionMethod,
      *  2: bool
      * }>
      */
-    public function provMatches(): iterable
+    public static function provMatches(): iterable
     {
         // just name
-        yield [['bar'], $this->makeMethod('foo'), false];
+        yield [['bar'], fn (TestCase $test) => self::makeMethod($test, 'foo'), false];
 
         $cases1 = [
             [],
@@ -217,7 +217,7 @@ final class MethodSpecTest extends TestCase
         ];
 
         foreach ($cases1 as $modifiers) {
-            yield [['foo'], $this->makeMethod('foo', ...$modifiers), true];
+            yield [['foo'], fn (TestCase $test) => self::makeMethod($test, 'foo', ...$modifiers), true];
         }
 
         // Test single boolean modifier (static, abstract, final)
@@ -235,13 +235,13 @@ final class MethodSpecTest extends TestCase
 
             yield [
                 ['foo', ...$args],
-                $this->makeMethod('foo', $modifier),
+                fn (TestCase $test) => self::makeMethod($test, 'foo', $modifier),
                 true,
             ];
 
             yield [
                 ['foo', ...$args],
-                $this->makeMethod('foo', self::MMASK & ~$modifier),
+                fn (TestCase $test) => self::makeMethod($test, 'foo', self::MMASK & ~$modifier),
                 false,
             ];
 
@@ -249,13 +249,13 @@ final class MethodSpecTest extends TestCase
 
             yield [
                 ['foo', ...$args],
-                $this->makeMethod('foo', $modifier),
+                fn (TestCase $test) => self::makeMethod($test, 'foo', $modifier),
                 false,
             ];
 
             yield [
                 ['foo', ...$args],
-                $this->makeMethod('foo', self::MMASK & ~$modifier),
+                fn (TestCase $test) => self::makeMethod($test, 'foo', self::MMASK & ~$modifier),
                 true,
             ];
         }
@@ -271,13 +271,13 @@ final class MethodSpecTest extends TestCase
         foreach ($cases3 as $modifier) {
             yield [
                 ['foo', null, $modifier],
-                $this->makeMethod('foo', $modifier),
+                fn (TestCase $test) => self::makeMethod($test, 'foo', $modifier),
                 true,
             ];
 
             yield [
                 ['foo', null, $modifier],
-                $this->makeMethod('foo', self::VMASK & ~$modifier),
+                fn (TestCase $test) => self::makeMethod($test, 'foo', self::VMASK & ~$modifier),
                 false,
             ];
         }
@@ -286,12 +286,12 @@ final class MethodSpecTest extends TestCase
     /**
      * @dataProvider provMatches
      *
-     * @param mixed $method
+     * @param \Closure(TestCase):mixed $method
      */
-    public function testMatches(array $args, $method, bool $expect): void
+    public function testMatches(array $args, \Closure $method, bool $expect): void
     {
         $spec = new MethodSpec(...$args);
-        $this->assertSame($expect, $spec->matches($method));
+        $this->assertSame($expect, $spec->matches($method($this)));
     }
 
     /**
@@ -300,7 +300,7 @@ final class MethodSpecTest extends TestCase
      *  1: string
      * }>
      */
-    public function provToString(): array
+    public static function provToString(): array
     {
         return [
             [
@@ -379,52 +379,52 @@ final class MethodSpecTest extends TestCase
         $this->assertSame($expect, $spec->toString());
     }
 
-    private function makeMethod(string $name, int $modifiers = self::IS_PUBLIC)
+    private static function makeMethod(TestCase $test, string $name, int $modifiers = self::IS_PUBLIC)
     {
-        $stub = $this->getMockBuilder(\stdClass::class)
+        $stub = $test->getMockBuilder(\stdClass::class)
             ->addMethods([$name])
             ->getMock()
         ;
-        $stub->expects($this->any())
+        $stub->expects($test->any())
             ->method($name)
         ;
 
-        $method = $this->getMockBuilder(\ReflectionMethod::class)
+        $method = $test->getMockBuilder(\ReflectionMethod::class)
             ->setConstructorArgs([$stub, $name])
             ->getMock()
         ;
 
-        $method->expects($this->any())
+        $method->expects($test->any())
             ->method('isStatic')
             ->willReturn(0 !== ($modifiers & self::IS_STATIC))
         ;
 
-        $method->expects($this->any())
+        $method->expects($test->any())
             ->method('isPublic')
             ->willReturn(0 !== ($modifiers & self::IS_PUBLIC))
         ;
 
-        $method->expects($this->any())
+        $method->expects($test->any())
             ->method('isProtected')
             ->willReturn(0 !== ($modifiers & self::IS_PROTECTED))
         ;
 
-        $method->expects($this->any())
+        $method->expects($test->any())
             ->method('isPrivate')
             ->willReturn(0 !== ($modifiers & self::IS_PRIVATE))
         ;
 
-        $method->expects($this->any())
+        $method->expects($test->any())
             ->method('isAbstract')
             ->willReturn(0 !== ($modifiers & self::IS_ABSTRACT))
         ;
 
-        $method->expects($this->any())
+        $method->expects($test->any())
             ->method('isFinal')
             ->willReturn(0 !== ($modifiers & self::IS_FINAL))
         ;
 
-        $method->expects($this->any())
+        $method->expects($test->any())
             ->method('getModifiers')
             ->willReturn($modifiers)
         ;

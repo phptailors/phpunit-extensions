@@ -241,7 +241,7 @@ trait ProvHasPregCapturesTrait
     /**
      * Suitable for both assertHasPregCaptures() and hasPregCaptures().
      */
-    public function provNotHasPregCaptures(): array
+    public static function provNotHasPregCaptures(): array
     {
         $defaultMessage = 'array has expected PCRE capture groups';
 
@@ -351,7 +351,7 @@ trait ProvHasPregCapturesTrait
     /**
      * Suitable only for hasPregCaptures().
      */
-    public function provNotHasPregCapturesNonArray(): array
+    public static function provNotHasPregCapturesNonArray(): array
     {
         return [
             'ProvHasPregCapturesTrait.php:'.__LINE__ => [

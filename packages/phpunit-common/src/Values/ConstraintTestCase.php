@@ -33,7 +33,7 @@ abstract class ConstraintTestCase extends TestCase
      *
      * @codeCoverageIgnoreStart
      */
-    public function provCreateConstraint(): array
+    public static function provCreateConstraint(): array
     {
         return [
             'ConstraintTestCase.php:'.__LINE__ => [

@@ -26,10 +26,10 @@ final class RecursiveUnwrapperTest extends TestCase
 {
     public const UNIQUE_TAG = RecursiveUnwrapper::UNIQUE_TAG;
 
-    public function createSelectionAggregate(...$args): SelectionWrapperInterface
+    public static function createSelectionAggregate(TestCase $test, ...$args): SelectionWrapperInterface
     {
-        $aggregate = $this->createMock(SelectionWrapperInterface::class);
-        $aggregate->expects($this->any())
+        $aggregate = $test->createMock(SelectionWrapperInterface::class);
+        $aggregate->expects($test->any())
             ->method('getSelection')
             ->willReturn(new Selection(new ArrayValueSelector(), new ExpectedValues(...$args)))
         ;
@@ -52,7 +52,7 @@ final class RecursiveUnwrapperTest extends TestCase
     // unwrap()
     //
 
-    public function provUnwrap(): array
+    public static function provUnwrap(): array
     {
         $actualValues['[baz => BAZ]'] = new ActualValues(['baz' => 'BAZ']);
         $expectValues['[baz => BAZ]'] = new ExpectedValues(['baz' => 'BAZ']);
@@ -61,7 +61,7 @@ final class RecursiveUnwrapperTest extends TestCase
         return [
             'RecursiveUnwrapperTest.php:'.__LINE__ => [
                 'args'   => [],
-                'values' => new ExpectedValues([
+                'values' => fn (TestCase $test) => new ExpectedValues([
                 ]),
                 'expect' => [
                     self::UNIQUE_TAG => true,
@@ -70,7 +70,7 @@ final class RecursiveUnwrapperTest extends TestCase
 
             'RecursiveUnwrapperTest.php:'.__LINE__ => [
                 'args'   => [],
-                'values' => new ExpectedValues([
+                'values' => fn (TestCase $test) => new ExpectedValues([
                     'foo' => 'FOO',
                 ]),
                 'expect' => [
@@ -81,7 +81,7 @@ final class RecursiveUnwrapperTest extends TestCase
 
             'RecursiveUnwrapperTest.php:'.__LINE__ => [
                 'args'   => [],
-                'values' => new ExpectedValues([
+                'values' => fn (TestCase $test) => new ExpectedValues([
                     'foo' => 'FOO',
                     'bar' => [
                         'baz' => 'BAZ',
@@ -100,7 +100,7 @@ final class RecursiveUnwrapperTest extends TestCase
 
             'RecursiveUnwrapperTest.php:'.__LINE__ => [
                 'args'   => [],
-                'values' => new ExpectedValues([
+                'values' => fn (TestCase $test) => new ExpectedValues([
                     'foo' => 'FOO',
                     'bar' => new ExpectedValues([
                         'baz' => 'BAZ',
@@ -118,9 +118,9 @@ final class RecursiveUnwrapperTest extends TestCase
 
             'RecursiveUnwrapperTest.php:'.__LINE__ => [
                 'args'   => [],
-                'values' => new ExpectedValues([
+                'values' => fn (TestCase $test) => new ExpectedValues([
                     'foo' => 'FOO',
-                    'bar' => $this->createSelectionAggregate([
+                    'bar' => self::createSelectionAggregate($test, [
                         'baz' => 'BAZ',
                     ]),
                 ]),
@@ -136,7 +136,7 @@ final class RecursiveUnwrapperTest extends TestCase
 
             'RecursiveUnwrapperTest.php:'.__LINE__ => [
                 'args'   => [],
-                'values' => new ExpectedValues([
+                'values' => fn (TestCase $test) => new ExpectedValues([
                     'foo' => 'FOO',
                     'bar' => new ExpectedValues([
                         'qux' => new ExpectedValues(['baz' => 'BAZ']),
@@ -162,10 +162,10 @@ final class RecursiveUnwrapperTest extends TestCase
 
             'RecursiveUnwrapperTest.php:'.__LINE__ => [
                 'args'   => [],
-                'values' => new ExpectedValues([
+                'values' => fn (TestCase $test) => new ExpectedValues([
                     'foo' => 'FOO',
-                    'bar' => $this->createSelectionAggregate([
-                        'qux' => $this->createSelectionAggregate(['baz' => 'BAZ']),
+                    'bar' => self::createSelectionAggregate($test, [
+                        'qux' => self::createSelectionAggregate($test, ['baz' => 'BAZ']),
                         new ExpectedValues(['fred' => 'FRED']),
                     ]),
                 ]),
@@ -188,7 +188,7 @@ final class RecursiveUnwrapperTest extends TestCase
 
             'RecursiveUnwrapperTest.php:'.__LINE__ => [
                 'args'   => [],
-                'values' => new ExpectedValues([
+                'values' => fn (TestCase $test) => new ExpectedValues([
                     'foo' => 'FOO',
                     'bar' => $actualValues['[baz => BAZ]'],
                 ]),
@@ -201,7 +201,7 @@ final class RecursiveUnwrapperTest extends TestCase
 
             'RecursiveUnwrapperTest.php:'.__LINE__ => [
                 'args'   => [],
-                'values' => new ActualValues([
+                'values' => fn (TestCase $test) => new ActualValues([
                     'foo' => 'FOO',
                     'bar' => $expectValues['[baz => BAZ]'],
                 ]),
@@ -214,7 +214,7 @@ final class RecursiveUnwrapperTest extends TestCase
 
             'RecursiveUnwrapperTest.php:'.__LINE__ => [
                 'args'   => [],
-                'values' => new ExpectedValues([
+                'values' => fn (TestCase $test) => new ExpectedValues([
                     'foo' => 'FOO',
                     'bar' => $arrayObject['[baz => BAZ]'],
                 ]),
@@ -227,7 +227,7 @@ final class RecursiveUnwrapperTest extends TestCase
 
             'RecursiveUnwrapperTest.php:'.__LINE__ => [
                 'args'   => [],
-                'values' => new ExpectedValues([
+                'values' => fn (TestCase $test) => new ExpectedValues([
                     'foo' => 'FOO',
                     'bar' => $arrayObject['[baz => BAZ]'],
                 ]),
@@ -240,7 +240,7 @@ final class RecursiveUnwrapperTest extends TestCase
 
             'RecursiveUnwrapperTest.php:'.__LINE__ => [
                 'args'   => [false], // no tagging
-                'values' => new ExpectedValues([
+                'values' => fn (TestCase $test) => new ExpectedValues([
                     'foo' => 'FOO',
                 ]),
                 'expect' => [
@@ -250,7 +250,7 @@ final class RecursiveUnwrapperTest extends TestCase
 
             'RecursiveUnwrapperTest.php:'.__LINE__ => [
                 'args'   => [false], // no tagging
-                'values' => new ExpectedValues([
+                'values' => fn (TestCase $test) => new ExpectedValues([
                     'foo' => 'FOO',
                     'bar' => new ExpectedValues([
                         'baz' => 'BAZ',
@@ -266,9 +266,9 @@ final class RecursiveUnwrapperTest extends TestCase
 
             'RecursiveUnwrapperTest.php:'.__LINE__ => [
                 'args'   => [false], // no tagging
-                'values' => new ExpectedValues([
+                'values' => fn (TestCase $test) => new ExpectedValues([
                     'foo' => 'FOO',
-                    'bar' => $this->createSelectionAggregate([
+                    'bar' => self::createSelectionAggregate($test, [
                         'baz' => 'BAZ',
                     ]),
                 ]),
@@ -284,14 +284,16 @@ final class RecursiveUnwrapperTest extends TestCase
 
     /**
      * @dataProvider provUnwrap
+     *
+     * @param \Closure(TestCase):ValuesInterface $values
      */
-    public function testUnwrap(array $args, ValuesInterface $values, array $expect): void
+    public function testUnwrap(array $args, \Closure $values, array $expect): void
     {
         $unwrapper = new RecursiveUnwrapper(...$args);
-        self::assertSame($expect, $unwrapper->unwrap($values));
+        self::assertSame($expect, $unwrapper->unwrap($values($this)));
     }
 
-    public function provUnwrapThrowsExceptionOnCircularDependency(): array
+    public static function provUnwrapThrowsExceptionOnCircularDependency(): array
     {
         $values['#0'] = new ActualValues([
             'foo' => [

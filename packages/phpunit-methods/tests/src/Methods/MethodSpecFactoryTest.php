@@ -53,7 +53,7 @@ final class MethodSpecFactoryTest extends TestCase
      *  1: array{name:mixed, static:mixed, access:mixed, abstract:mixed, final:mixed}
      * }>
      */
-    public function provFromString(): iterable
+    public static function provFromString(): iterable
     {
         function results(array $array = [], string $name = 'foo')
         {
@@ -154,7 +154,7 @@ final class MethodSpecFactoryTest extends TestCase
     /**
      * @psalm-return array<array-key, array{0: string, 1:string}>
      */
-    public function provFromStringSyntaxError(): iterable
+    public static function provFromStringSyntaxError(): iterable
     {
         yield ['', ''];
 

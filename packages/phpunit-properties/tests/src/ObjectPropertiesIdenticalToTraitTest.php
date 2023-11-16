@@ -29,7 +29,7 @@ final class ObjectPropertiesIdenticalToTraitTest extends TestCase
     use ObjectPropertiesIdenticalToTrait;
     use ProvObjectPropertiesTrait;
 
-    public function createConstraint(...$args): ObjectPropertiesIdenticalTo
+    public static function createConstraint(...$args): ObjectPropertiesIdenticalTo
     {
         return ObjectPropertiesIdenticalTo::create(...$args);
     }

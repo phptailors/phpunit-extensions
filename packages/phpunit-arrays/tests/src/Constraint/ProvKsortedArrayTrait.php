@@ -19,7 +19,7 @@ trait ProvKsortedArrayTrait
 {
     // @codeCoverageIgnoreStart
 
-    public function provKsortedArrayIdenticalTo(): array
+    public static function provKsortedArrayIdenticalTo(): array
     {
         return [
             'ProvKsortedArrayTrait.php:'.__LINE__ => [

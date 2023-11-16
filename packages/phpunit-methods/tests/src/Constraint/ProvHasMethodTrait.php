@@ -41,7 +41,7 @@ trait ProvHasMethodTrait
     /**
      * @psalm-return array<array{0:string,1:mixed,2:string}>
      */
-    public function provHasMethodSucceeds(): array
+    public static function provHasMethodSucceeds(): array
     {
         return [
             [
@@ -75,7 +75,7 @@ trait ProvHasMethodTrait
     /**
      * @psalm-return array<array{0:string,1:mixed,2:string}>
      */
-    public function provHasMethodFails(): array
+    public static function provHasMethodFails(): array
     {
         return [
             [

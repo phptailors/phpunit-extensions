@@ -41,33 +41,29 @@ final class SelectionTest extends TestCase
         self::assertInstanceOf(SelectionInterface::class, new Selection($selector));
     }
 
-    public function provConstruct(): array
+    public static function provConstruct(): array
     {
-        $selector = $this->createMock(ValueSelectorInterface::class);
         $arrayObject = new \ArrayObject(['foo', 'bar']);
 
         return [
             'SelectionTest.php:'.__LINE__ => [
-                'args'   => [$selector],
+                'args'   => fn (ValueSelectorInterface $selector) => [$selector],
                 'expect' => [
-                    'selector' => $selector,
-                    'array'    => [],
+                    'array' => [],
                 ],
             ],
 
             'SelectionTest.php:'.__LINE__ => [
-                'args'   => [$selector, ['foo', 'bar']],
+                'args'   => fn (ValueSelectorInterface $selector) => [$selector, ['foo', 'bar']],
                 'expect' => [
-                    'selector' => $selector,
-                    'array'    => ['foo', 'bar'],
+                    'array' => ['foo', 'bar'],
                 ],
             ],
 
             'SelectionTest.php:'.__LINE__ => [
-                'args'   => [$selector, $arrayObject],
+                'args'   => fn (ValueSelectorInterface $selector) => [$selector, $arrayObject],
                 'expect' => [
-                    'selector' => $selector,
-                    'array'    => ['foo', 'bar'],
+                    'array' => ['foo', 'bar'],
                 ],
             ],
         ];
@@ -75,11 +71,15 @@ final class SelectionTest extends TestCase
 
     /**
      * @dataProvider provConstruct
+     *
+     * @param \Closure(ValueSelectorInterface):array $args
      */
-    public function testConstruct(array $args, array $expect): void
+    public function testConstruct(\Closure $args, array $expect): void
     {
-        $selection = new Selection(...$args);
-        self::assertSame($expect['selector'], $selection->getSelector());
+        $selector = $this->createMock(ValueSelectorInterface::class);
+
+        $selection = new Selection(...$args($selector));
+        self::assertSame($selector, $selection->getSelector());
         self::assertSame($expect['array'], $selection->getArrayCopy());
     }
 }
