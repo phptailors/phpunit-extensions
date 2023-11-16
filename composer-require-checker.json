@@ -15,6 +15,8 @@
     "callable",
     "void",
     "object",
+    "apcu_add",
+    "apcu_fetch",
     "PHPUnit\\Framework\\Constraint\\Constraint",
     "PHPUnit\\Framework\\Constraint\\LogicalNot",
     "PHPUnit\\Framework\\Constraint\\Operator",
@@ -32,7 +34,12 @@
     "Phar",
     "Reflection",
     "SPL",
-    "standard"
+    "standard",
+    "filter"
   ],
-  "scan-files" : []
+  "scan-files" : [
+    "packages/phpunit-common/compat/exporter5/AbstractExporter.php",
+    "vendor/composer/InstalledVersions.php",
+    "vendor/composer/ClassLoader.php"
+  ]
 }

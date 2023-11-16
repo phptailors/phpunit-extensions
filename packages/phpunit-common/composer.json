@@ -20,6 +20,7 @@
     },
     "require": {
         "php": ">=7.4",
+        "ext-mbstring": "*",
         "composer/semver": ">=3.0"
     },
     "require-dev": {
