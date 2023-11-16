@@ -10,12 +10,17 @@
 
 use Composer\InstalledVersions;
 use Composer\Semver\VersionParser;
+use Composer\Autoload\ClassLoader;
 
+
+$loader = new ClassLoader();
 
 if (InstalledVersions::isInstalled('sebastian/exporter') && InstalledVersions::satisfies(new VersionParser, 'sebastian/exporter', '^4')) {
-    require_once __dir__ . '/compat/exporter4/AbstractExporter.php';
+    $loader->addPsr4('Tailors\\PHPUnit\\Exporter\\',  __dir__ . '/Exporter4/');
 } else {
-    require_once __dir__ . '/compat/exporter5/AbstractExporter.php';
+    $loader->addPsr4('Tailors\\PHPUnit\\Exporter\\', __dir__ . '/Exporter5/');
 }
+
+$loader->register();
 
 // vim: syntax=php sw=4 ts=4 et:

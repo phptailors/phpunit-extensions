@@ -31,7 +31,7 @@
         "Tailors\\PHPUnit\\" : "src/"
       },
       "files": [
-          "autoload.php"
+          "compat/autoload.php"
       ]
     },
     "autoload-dev": {

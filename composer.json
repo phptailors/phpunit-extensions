@@ -8,7 +8,7 @@
     ],
     "autoload": {
         "files": [
-            "packages/phpunit-common/autoload.php"
+            "packages/phpunit-common/compat/autoload.php"
         ],
         "psr-4": {
             "Tailors\\PHPUnit\\": [
