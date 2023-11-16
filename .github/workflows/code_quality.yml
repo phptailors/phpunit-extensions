@@ -30,10 +30,20 @@ jobs:
         run: vendor-bin/php-cs-fixer/vendor/bin/php-cs-fixer fix --diff --dry-run --show-progress=dots --using-cache=no --verbose
 
   type-checker:
-    name: Type Checker (vimeo/psalm)
-
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php-version:
+          - 7.4
+          - 8.0
+          - 8.1
+          - 8.2
+        dependencies:
+          - lowest
+          - highest
 
+    name: Type Check (PHP-${{ matrix.php-version }}:${{ matrix.dependencies }})
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -41,15 +51,18 @@ jobs:
       - name: Install PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.1
+          php-version: ${{ matrix.php-version }}
           coverage: none
           tools: composer:v2
 
-      - name: Update dependencies with composer
-        run: composer update --no-interaction --ansi --no-progress
+      - if: matrix.dependencies == 'highest'
+        run: composer update --no-interaction --no-progress --ansi
+
+      - if: matrix.dependencies == 'lowest'
+        run: composer update --no-interaction --no-progress --ansi --prefer-lowest
 
       - name: Install psalm with composer
         run: composer bin psalm update --no-interaction --ansi --no-progress
 
       - name: Run vimeo/psalm on packages
-        run: vendor-bin/psalm/vendor/bin/psalm --no-progress --shepherd --show-info=true --stats
+        run: vendor-bin/psalm/vendor/bin/psalm --php-version=${{ matrix.php-version }} --no-progress --shepherd --show-info=true --stats
