@@ -3,7 +3,7 @@
 /*
  * This file is part of phptailors/phpunit-extensions.
  *
- * Copyright (c) Paweł Tomulik <ptomulik@meil.pw.edu.pl>
+ * Copyright (c) Paweł Tomulik <pawel@tomulik.pl>
  *
  * View the LICENSE file for full copyright and license information.
  */
@@ -103,8 +103,8 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
      * @param string $message
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      * @throws \Tailors\PHPUnit\CircularDependencyException
+     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     final public function examineConstraintMatchFails(array $args, $actual, string $message): void
     {
@@ -154,7 +154,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     // @codeCoverageIgnoreEnd
 
     /**
-     * Returns $constraint wrapped with UnaryOperator mock.
+     * Returns $constraint wrapped with an UnaryOperator.
      *
      * @throws \PHPUnit\Framework\Exception
      * @throws \PHPUnit\Framework\MockObject\RuntimeException
@@ -165,21 +165,30 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         string $operator = 'noop',
         int $precedence = 1
     ): UnaryOperator {
-        $unary = $this->getMockBuilder(UnaryOperator::class)
-            ->setConstructorArgs([$constraint])
-            ->getMockForAbstractClass()
-        ;
+        return new class($constraint, $operator, $precedence) extends UnaryOperator {
+            /** @var string */
+            private $operator;
 
-        $unary->expects(self::any())
-            ->method('operator')
-            ->willReturn($operator)
-        ;
-        $unary->expects(self::any())
-            ->method('precedence')
-            ->willReturn($precedence)
-        ;
+            /** @var int */
+            private $precedence;
 
-        return $unary;
+            public function __construct(Constraint $constraint, string $operator, int $precedence)
+            {
+                $this->operator = $operator;
+                $this->precedence = $precedence;
+                parent::__construct($constraint);
+            }
+
+            public function operator(): string
+            {
+                return $this->operator;
+            }
+
+            public function precedence(): int
+            {
+                return $this->precedence;
+            }
+        };
     }
 }
 

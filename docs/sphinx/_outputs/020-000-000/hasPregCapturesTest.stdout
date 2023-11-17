@@ -1,0 +1,27 @@
+PHPUnit 9.3.0 by Sebastian Bergmann and contributors.
+
+.F                                                                  2 / 2 (100%)
+
+Time: 00:00.002, Memory: 6.00 MB
+
+There was 1 failure:
+
+1) hasPregCapturesTest::testHasPregCapturesFailure
+Failed asserting that array has expected PCRE capture groups.
+--- Expected
++++ Actual
+@@ @@
+ Array &0 (
+     'name' => 'John'
+-    'surname' => 'Brown'
+-    'age' => true
+-    'city' => false
++    'surname' => 'Smith'
++    'age' => null
++    'city' => 'London'
+ )
+
+hasPregCapturesTest.php:32
+
+FAILURES!
+Tests: 2, Assertions: 2, Failures: 1.

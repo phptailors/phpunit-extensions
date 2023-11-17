@@ -1,0 +1,18 @@
+PHPUnit 10.5.2 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.2.13
+Configuration: phpunit.xml
+
+.F                                                                  2 / 2 (100%)
+
+Time: 00:00.007, Memory: 8.00 MB
+
+There was 1 failure:
+
+1) AssertHasMethodTest::testAssertHasMethodFailure
+Failed asserting that 'ClassWithSomeMethods' has !abstract method abstractProtectedMethod().
+
+AssertHasMethodTest.php:31
+
+FAILURES!
+Tests: 2, Assertions: 8, Failures: 1.

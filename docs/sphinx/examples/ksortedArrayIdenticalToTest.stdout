@@ -1,8 +1,11 @@
-PHPUnit 9.5.0 by Sebastian Bergmann and contributors.
+PHPUnit 10.5.2 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.2.13
+Configuration: phpunit.xml
 
 .F                                                                  2 / 2 (100%)
 
-Time: 00:00.005, Memory: 6.00 MB
+Time: 00:00.014, Memory: 8.00 MB
 
 There was 1 failure:
 
@@ -11,14 +14,14 @@ Failed asserting that array is an array identical to specified one when ksorted.
 --- Expected
 +++ Actual
 @@ @@
- Array &0 (
-     'foo' => 'FOO'
-     'int' => 123
--    1 => null
-+    1 => ''
- )
+ Array &0 [
+-    1 => null,
++    1 => '',
+     'foo' => 'FOO',
+     'int' => 123,
+ ]
 
-ksortedArrayIdenticalToTest.php:17
+ksortedArrayIdenticalToTest.php:16
 
 FAILURES!
 Tests: 2, Assertions: 2, Failures: 1.

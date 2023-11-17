@@ -1,8 +1,11 @@
-PHPUnit 9.5.0 by Sebastian Bergmann and contributors.
+PHPUnit 10.5.2 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.2.13
+Configuration: phpunit.xml
 
 .F                                                                  2 / 2 (100%)
 
-Time: 00:00.005, Memory: 6.00 MB
+Time: 00:00.007, Memory: 8.00 MB
 
 There was 1 failure:
 

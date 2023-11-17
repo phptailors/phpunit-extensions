@@ -3,7 +3,7 @@
 /*
  * This file is part of phptailors/phpunit-extensions.
  *
- * Copyright (c) Paweł Tomulik <ptomulik@meil.pw.edu.pl>
+ * Copyright (c) Paweł Tomulik <pawel@tomulik.pl>
  *
  * View the LICENSE file for full copyright and license information.
  */
@@ -121,9 +121,17 @@ final class RecursiveComparatorValidatorTest extends TestCase
         $equalityComparator = new EqualityComparator();
         $identityComparator = new IdentityComparator();
 
-        $equalityWrapper = fn (TestCase $test) => self::createComparatorWrapperMock($test, new EqualityComparator());
-        $identityWrapper = fn (TestCase $test) => self::createComparatorWrapperMock($test, new IdentityComparator());
-        $emptySelection = fn (TestCase $test) => $test->createMock(SelectionInterface::class);
+        $equalityWrapper = function (TestCase $test) {
+            return self::createComparatorWrapperMock($test, new EqualityComparator());
+        };
+
+        $identityWrapper = function (TestCase $test) {
+            return self::createComparatorWrapperMock($test, new IdentityComparator());
+        };
+
+        $emptySelection = function (TestCase $test) {
+            return $test->createMock(SelectionInterface::class);
+        };
 
         $circularWrapper = function (TestCase $test) use ($equalityWrapper, $identityWrapper) {
             $circularWrapper = self::createSelectionWrapperMock($test);
@@ -142,38 +150,44 @@ final class RecursiveComparatorValidatorTest extends TestCase
         return [
             'RecursiveComparatorValidatorTest.php:'.__LINE__ => [
                 'comparator' => $equalityComparator,
-                'args'       => fn (TestCase $test) => [
-                    [],
-                    1,
-                ],
+                'args'       => function (TestCase $test) {
+                    return [
+                        [],
+                        1,
+                    ];
+                },
                 'expect' => [
                 ],
             ],
 
             'RecursiveComparatorValidatorTest.php:'.__LINE__ => [
                 'comparator' => $equalityComparator,
-                'args'       => fn (TestCase $test) => [
-                    [
-                        'foo' => 'FOO',
-                        'bar' => [
-                            'gez' => $equalityComparator,
-                            'qux' => 12,
+                'args'       => function (TestCase $test) use ($equalityComparator) {
+                    return [
+                        [
+                            'foo' => 'FOO',
+                            'bar' => [
+                                'gez' => $equalityComparator,
+                                'qux' => 12,
+                            ],
                         ],
-                    ],
-                    1,
-                ],
+                        1,
+                    ];
+                },
                 'expect' => [
                 ],
             ],
 
             'RecursiveComparatorValidatorTest.php:'.__LINE__ => [
                 'comparator' => $equalityComparator,
-                'args'       => fn (TestCase $test) => [
-                    [
-                        'foo' => $identityWrapper($test),
-                    ],
-                    123,
-                ],
+                'args'       => function (TestCase $test) use ($identityWrapper) {
+                    return [
+                        [
+                            'foo' => $identityWrapper($test),
+                        ],
+                        123,
+                    ];
+                },
                 'expect' => [
                     'exception' => InvalidArgumentException::class,
                     'message'   => self::makeFailureMessage(123, __CLASS__.'::testValidate', 'EqualityComparator', 1),
@@ -182,12 +196,14 @@ final class RecursiveComparatorValidatorTest extends TestCase
 
             'RecursiveComparatorValidatorTest.php:'.__LINE__ => [
                 'comparator' => $identityComparator,
-                'args'       => fn (TestCase $test) => [
-                    [
-                        'err' => $equalityWrapper($test),
-                    ],
-                    123,
-                ],
+                'args'       => function (TestCase $test) use ($equalityWrapper) {
+                    return [
+                        [
+                            'err' => $equalityWrapper($test),
+                        ],
+                        123,
+                    ];
+                },
                 'expect' => [
                     'exception' => InvalidArgumentException::class,
                     'message'   => self::makeFailureMessage(123, __CLASS__.'::testValidate', 'IdentityComparator', 1),
@@ -196,17 +212,19 @@ final class RecursiveComparatorValidatorTest extends TestCase
 
             'RecursiveComparatorValidatorTest.php:'.__LINE__ => [
                 'comparator' => $equalityComparator,
-                'args'       => fn (TestCase $test) => [
-                    [
-                        'err1' => $identityWrapper($test),
-                        'bar'  => [
-                            'gez'  => 'GEZ',
-                            'err2' => $identityWrapper($test),
+                'args'       => function (TestCase $test) use ($identityWrapper, $equalityWrapper) {
+                    return [
+                        [
+                            'err1' => $identityWrapper($test),
+                            'bar'  => [
+                                'gez'  => 'GEZ',
+                                'err2' => $identityWrapper($test),
+                            ],
+                            'frd' => $equalityWrapper($test),
                         ],
-                        'frd' => $equalityWrapper($test),
-                    ],
-                    11,
-                ],
+                        11,
+                    ];
+                },
                 'expect' => [
                     'exception' => InvalidArgumentException::class,
                     'message'   => self::makeFailureMessage(11, __CLASS__.'::testValidate', 'EqualityComparator', 2),
@@ -215,18 +233,20 @@ final class RecursiveComparatorValidatorTest extends TestCase
 
             'RecursiveComparatorValidatorTest.php:'.__LINE__ => [
                 'comparator' => $equalityComparator,
-                'args'       => fn (TestCase $test) => [
-                    [
-                        'foo' => self::createSelectionWrapperMock($test, [
-                            'bar'  => 'BAR',
-                            'err1' => $identityWrapper($test),
-                            'qux'  => self::createSelectionWrapperMock($test, [
-                                'err2' => $identityWrapper($test),
+                'args'       => function (TestCase $test) use ($identityWrapper) {
+                    return [
+                        [
+                            'foo' => self::createSelectionWrapperMock($test, [
+                                'bar'  => 'BAR',
+                                'err1' => $identityWrapper($test),
+                                'qux'  => self::createSelectionWrapperMock($test, [
+                                    'err2' => $identityWrapper($test),
+                                ]),
                             ]),
-                        ]),
-                    ],
-                    123,
-                ],
+                        ],
+                        123,
+                    ];
+                },
                 'expect' => [
                     'exception' => InvalidArgumentException::class,
                     'message'   => self::makeFailureMessage(123, __CLASS__.'::testValidate', 'EqualityComparator', 2),
@@ -235,13 +255,15 @@ final class RecursiveComparatorValidatorTest extends TestCase
 
             'RecursiveComparatorValidatorTest.php:'.__LINE__ => [
                 'comparator' => $equalityComparator,
-                'args'       => fn (TestCase $test) => [
-                    [
-                        'circular' => $circularWrapper($test),
-                        'identity' => $identityWrapper($test),
-                    ],
-                    123,
-                ],
+                'args'       => function (TestCase $test) use ($circularWrapper, $identityWrapper) {
+                    return [
+                        [
+                            'circular' => $circularWrapper($test),
+                            'identity' => $identityWrapper($test),
+                        ],
+                        123,
+                    ];
+                },
                 'expect' => [
                     'exception' => InvalidArgumentException::class,
                     'message'   => self::makeFailureMessage(123, __CLASS__.'::testValidate', 'EqualityComparator', 2),

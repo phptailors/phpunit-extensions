@@ -3,7 +3,7 @@
 /*
  * This file is part of phptailors/phpunit-extensions.
  *
- * Copyright (c) Paweł Tomulik <ptomulik@meil.pw.edu.pl>
+ * Copyright (c) Paweł Tomulik <pawel@tomulik.pl>
  *
  * View the LICENSE file for full copyright and license information.
  */
@@ -11,10 +11,9 @@
 namespace Tailors\PHPUnit\Common;
 
 use PHPUnit\Framework\Constraint\Operator;
-use Tailors\PHPUnit\Exporter\Exporter;
 
 /**
- * @internal This class is not covered by the backward compatibility promise
+ * @internal This trait is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
@@ -32,10 +31,12 @@ trait ShortFailureDescriptionTrait
      * cases. This method should return the second part of that sentence.
      *
      * @param mixed $other evaluated value or object
+     *
+     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     final public function failureDescription($other): string
     {
-        return $this->short($other).' '.$this->toString();
+        return $this->short($other, true).' '.$this->toString();
     }
 
     /**
@@ -53,6 +54,8 @@ trait ShortFailureDescriptionTrait
      * @param Operator $operator the $operator of the expression
      * @param mixed    $role     role of $this constraint in the $operator expression
      * @param mixed    $other    evaluated value or object
+     *
+     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     final public function failureDescriptionInContext(Operator $operator, $role, $other): string
     {
@@ -62,7 +65,7 @@ trait ShortFailureDescriptionTrait
             return '';
         }
 
-        return $this->short($other).' '.$string;
+        return $this->short($other, true).' '.$string;
     }
 
     /**
@@ -86,8 +89,10 @@ trait ShortFailureDescriptionTrait
      * Returns short representation of $subject for failureDescription().
      *
      * @param mixed $subject
+     *
+     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
-    private function short($subject): string
+    private function short($subject, bool $exportObjects = false): string
     {
         if (is_object($subject)) {
             return 'object '.get_class($subject);
@@ -102,7 +107,7 @@ trait ShortFailureDescriptionTrait
             return $subject;
         }
 
-        return (new Exporter())->export($subject);
+        return Exporter::export($subject, $exportObjects);
     }
 }
 

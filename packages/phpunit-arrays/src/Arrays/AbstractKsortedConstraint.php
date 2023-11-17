@@ -3,7 +3,7 @@
 /*
  * This file is part of phptailors/phpunit-extensions.
  *
- * Copyright (c) Paweł Tomulik <ptomulik@meil.pw.edu.pl>
+ * Copyright (c) Paweł Tomulik <pawel@tomulik.pl>
  *
  * View the LICENSE file for full copyright and license information.
  */
@@ -15,10 +15,10 @@ use PHPUnit\Framework\Constraint\LogicalNot;
 use PHPUnit\Framework\Constraint\Operator;
 use SebastianBergmann\Comparator\ComparisonFailure;
 use Tailors\PHPUnit\CircularDependencyException;
+use Tailors\PHPUnit\Common\Exporter;
 use Tailors\PHPUnit\Common\ShortFailureDescriptionTrait;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\ComparatorWrapperInterface;
-use Tailors\PHPUnit\Exporter\Exporter;
 
 /**
  * Abstract base class for constraints that compare key-sorted arrays.
@@ -97,14 +97,12 @@ abstract class AbstractKsortedConstraint extends Constraint implements Comparato
         if (!$success) {
             $f = null;
 
-            $exporter = new Exporter();
-
             if ($this->supports($other)) {
                 $f = new ComparisonFailure(
                     $this->expected,
                     $other,
-                    $exporter->export($this->ksorted($this->expected)),
-                    $exporter->export($this->ksorted($other))
+                    Exporter::export($this->ksorted($this->expected), true),
+                    Exporter::export($this->ksorted($other), true)
                 );
             }
 

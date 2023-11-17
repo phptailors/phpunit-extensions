@@ -15,8 +15,8 @@ final class AssertClassPropertiesIdenticalToTest extends \PHPUnit\Framework\Test
     {
         // assert that:
         $this->assertClassPropertiesIdenticalTo([
-            'attribute'  => 123,     // - self::$attribute is 123 (ok)
-            'getValue()' => 321,     // - self::getValue() is 321 (ok)
+            'attribute'  => 123,   // - self::$attribute is 123 (ok)
+            'getValue()' => 321,   // - self::getValue() is 321 (ok)
         ], self::class);
     }
 
@@ -24,8 +24,8 @@ final class AssertClassPropertiesIdenticalToTest extends \PHPUnit\Framework\Test
     {
         // assert that:
         $this->assertClassPropertiesIdenticalTo([
-            'attribute'  => '123',   // - self::$attribute is 123, not '123' (fail),
-            'getValue()' => null,    // - self::getValue() is 321, not null (fail)
+            'attribute'  => '123', // - self::$attribute is 123, not '123' (fail),
+            'getValue()' => null,  // - self::getValue() is 321, not null (fail)
         ], self::class);
     }
 }

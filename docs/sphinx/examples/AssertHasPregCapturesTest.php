@@ -21,7 +21,7 @@ final class AssertHasPregCapturesTest extends PHPUnit\Framework\TestCase
         $this->assertHasPregCaptures([
             'name'    => 'John',  // - name is 'John' (ok),
             'surname' => 'Smith', // - surname is 'Smith' (ok),
-            'age'     => false,  // - age is absent (ok),
+            'age'     => false,   // - age is absent (ok),
             'city'    => true,    // - city is present (ok).
         ], $this->matches);
     }
@@ -32,7 +32,7 @@ final class AssertHasPregCapturesTest extends PHPUnit\Framework\TestCase
         $this->assertHasPregCaptures([
             'name'    => 'John',  // - name is 'John' (ok),
             'surname' => 'Brown', // - surname is 'Brown' (fail),
-            'age'     => true,   // - age is present (fail),
+            'age'     => true,    // - age is present (fail),
             'city'    => false,   // - city is absent (fail).
         ], $this->matches);
     }

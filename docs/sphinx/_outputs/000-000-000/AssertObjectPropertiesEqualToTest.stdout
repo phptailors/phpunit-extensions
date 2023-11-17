@@ -1,0 +1,25 @@
+PHPUnit 9.3.0 by Sebastian Bergmann and contributors.
+
+.F                                                                  2 / 2 (100%)
+
+Time: 00:00.003, Memory: 6.00 MB
+
+There was 1 failure:
+
+1) AssertObjectPropertiesEqualToTest::testFailure
+Failed asserting that object AssertObjectPropertiesEqualToTest is an object with properties equal to specified.
+--- Expected
++++ Actual
+@@ @@
+-Tailors\PHPUnit\Values\ExpectedValuesSelection Object &000000000000014f0000000000000000 (
+-    'attribute' => '123'
+-    'getValue()' => null
++Tailors\PHPUnit\Values\ActualValues Object &00000000000001470000000000000000 (
++    'attribute' => 123
++    'getValue()' => 321
+ )
+
+AssertObjectPropertiesEqualToTest.php:27
+
+FAILURES!
+Tests: 2, Assertions: 2, Failures: 1.

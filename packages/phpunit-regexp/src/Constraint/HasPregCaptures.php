@@ -3,7 +3,7 @@
 /*
  * This file is part of phptailors/phpunit-extensions.
  *
- * Copyright (c) Paweł Tomulik <ptomulik@meil.pw.edu.pl>
+ * Copyright (c) Paweł Tomulik <pawel@tomulik.pl>
  *
  * View the LICENSE file for full copyright and license information.
  */
@@ -12,7 +12,7 @@ namespace Tailors\PHPUnit\Constraint;
 
 use PHPUnit\Framework\Constraint\Constraint;
 use SebastianBergmann\Comparator\ComparisonFailure;
-use Tailors\PHPUnit\Exporter\Exporter;
+use Tailors\PHPUnit\Common\Exporter;
 use Tailors\PHPUnit\InvalidArgumentException;
 use Tailors\PHPUnit\Preg\CapturesFilter;
 use Tailors\PHPUnit\Preg\CapturesFilterInterface;
@@ -109,15 +109,13 @@ final class HasPregCaptures extends Constraint
         if (!$success) {
             $f = null;
 
-            $exporter = new Exporter();
-
             if (is_array($other)) {
                 [$expected, $actual] = $this->getArraysForComparison($other);
                 $f = new ComparisonFailure(
                     $this->expected,
                     $other,
-                    $exporter->export($expected),
-                    $exporter->export($actual)
+                    Exporter::export($expected),
+                    Exporter::export($actual)
                 );
             }
 

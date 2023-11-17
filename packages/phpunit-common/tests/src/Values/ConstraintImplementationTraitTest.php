@@ -3,7 +3,7 @@
 /*
  * This file is part of phptailors/phpunit-extensions.
  *
- * Copyright (c) Paweł Tomulik <ptomulik@meil.pw.edu.pl>
+ * Copyright (c) Paweł Tomulik <pawel@tomulik.pl>
  *
  * View the LICENSE file for full copyright and license information.
  */
@@ -43,7 +43,7 @@ final class ConstraintImplementationTraitTest extends TestCase
         $this->assertSame([$expected, 1, 1], DummyConstraintImplementation::$validateExpectations);
 
         $this->assertSame(DummyConstraintImplementation::$makeComparator, $constraint->comparator);
-        $this->assertInstanceOf(Selection::class, $constraint->selection);
+        $this->assertInstanceOf(ExpectedValuesSelection::class, $constraint->selection);
         $this->assertInstanceOf(RecursiveUnwrapper::class, $constraint->unwrapper);
 
         $this->assertSame(DummyConstraintImplementation::$makeSelector, $constraint->selection->getSelector());

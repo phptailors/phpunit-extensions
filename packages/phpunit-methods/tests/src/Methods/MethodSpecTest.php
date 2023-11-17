@@ -3,7 +3,7 @@
 /*
  * This file is part of phptailors/phpunit-extensions.
  *
- * Copyright (c) Paweł Tomulik <ptomulik@meil.pw.edu.pl>
+ * Copyright (c) Paweł Tomulik <pawel@tomulik.pl>
  *
  * View the LICENSE file for full copyright and license information.
  */
@@ -55,7 +55,7 @@ final class MethodSpecTest extends TestCase
             $args = array_fill(0, $n, null);
 
             yield [
-                ['foo', ...$args],
+                array_merge(['foo'], $args),
                 [
                     'name'     => 'foo',
                     'static'   => null,
@@ -200,7 +200,7 @@ final class MethodSpecTest extends TestCase
     public static function provMatches(): iterable
     {
         // just name
-        yield [['bar'], fn (TestCase $test) => self::makeMethod($test, 'foo'), false];
+        yield [['bar'], function (TestCase $test) { return self::makeMethod($test, 'foo'); }, false];
 
         $cases1 = [
             [],
@@ -217,7 +217,13 @@ final class MethodSpecTest extends TestCase
         ];
 
         foreach ($cases1 as $modifiers) {
-            yield [['foo'], fn (TestCase $test) => self::makeMethod($test, 'foo', ...$modifiers), true];
+            yield [
+                ['foo'],
+                function (TestCase $test) use ($modifiers) {
+                    return self::makeMethod($test, 'foo', ...$modifiers);
+                },
+                true,
+            ];
         }
 
         // Test single boolean modifier (static, abstract, final)
@@ -234,28 +240,36 @@ final class MethodSpecTest extends TestCase
             $args[$n] = true;
 
             yield [
-                ['foo', ...$args],
-                fn (TestCase $test) => self::makeMethod($test, 'foo', $modifier),
+                array_merge(['foo'], $args),
+                function (TestCase $test) use ($modifier) {
+                    return self::makeMethod($test, 'foo', $modifier);
+                },
                 true,
             ];
 
             yield [
-                ['foo', ...$args],
-                fn (TestCase $test) => self::makeMethod($test, 'foo', self::MMASK & ~$modifier),
+                array_merge(['foo'], $args),
+                function (TestCase $test) use ($modifier) {
+                    return self::makeMethod($test, 'foo', self::MMASK & ~$modifier);
+                },
                 false,
             ];
 
             $args[$n] = false;
 
             yield [
-                ['foo', ...$args],
-                fn (TestCase $test) => self::makeMethod($test, 'foo', $modifier),
+                array_merge(['foo'], $args),
+                function (TestCase $test) use ($modifier) {
+                    return self::makeMethod($test, 'foo', $modifier);
+                },
                 false,
             ];
 
             yield [
-                ['foo', ...$args],
-                fn (TestCase $test) => self::makeMethod($test, 'foo', self::MMASK & ~$modifier),
+                array_merge(['foo'], $args),
+                function (TestCase $test) use ($modifier) {
+                    return self::makeMethod($test, 'foo', self::MMASK & ~$modifier);
+                },
                 true,
             ];
         }
@@ -271,13 +285,17 @@ final class MethodSpecTest extends TestCase
         foreach ($cases3 as $modifier) {
             yield [
                 ['foo', null, $modifier],
-                fn (TestCase $test) => self::makeMethod($test, 'foo', $modifier),
+                function (TestCase $test) use ($modifier) {
+                    return self::makeMethod($test, 'foo', $modifier);
+                },
                 true,
             ];
 
             yield [
                 ['foo', null, $modifier],
-                fn (TestCase $test) => self::makeMethod($test, 'foo', self::VMASK & ~$modifier),
+                function (TestCase $test) use ($modifier) {
+                    return self::makeMethod($test, 'foo', self::VMASK & ~$modifier);
+                },
                 false,
             ];
         }

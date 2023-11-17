@@ -1,0 +1,30 @@
+PHPUnit 10.5.2 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.1.26
+Configuration: phpunit.xml
+
+.F                                                                  2 / 2 (100%)
+
+Time: 00:00.005, Memory: 8.00 MB
+
+There was 1 failure:
+
+1) hasPregCapturesTest::testHasPregCapturesFailure
+Failed asserting that array has expected PCRE capture groups.
+--- Expected
++++ Actual
+@@ @@
+ Array &0 [
+     'name' => 'John',
+-    'surname' => 'Brown',
+-    'age' => true,
+-    'city' => false,
++    'surname' => 'Smith',
++    'age' => null,
++    'city' => 'London',
+ ]
+
+hasPregCapturesTest.php:33
+
+FAILURES!
+Tests: 2, Assertions: 2, Failures: 1.

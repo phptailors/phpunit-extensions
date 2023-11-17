@@ -12,26 +12,26 @@
     "authors": [
         {
             "name": "Paweł Tomulik",
-            "email": "ptomulik@meil.pw.edu.pl"
+            "email": "pawel@tomulik.pl"
         }
     ],
     "conflict": {
         "nikic/php-parser": "< 4.13.2"
     },
     "require": {
-        "php": ">=7.4",
-        "ext-mbstring": "*",
-        "composer/semver": ">=3.0"
+        "php": ">=7.3",
+        "ext-mbstring": "*"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.5.10 || ^10"
+        "phpunit/phpunit": "^9.5.5 || ^10",
+        "sebastian/exporter": "^4 || ^5",
+        "sebastian/recursion-context": "^4 || ^5"
     },
     "autoload": {
       "psr-4" : {
         "Tailors\\PHPUnit\\" : "src/"
       },
       "files": [
-          "compat/autoload.php"
       ]
     },
     "autoload-dev": {

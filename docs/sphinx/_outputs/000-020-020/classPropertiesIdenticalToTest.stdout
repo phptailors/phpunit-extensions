@@ -1,0 +1,28 @@
+PHPUnit 10.5.2 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.1.26
+Configuration: phpunit.xml
+
+.F                                                                  2 / 2 (100%)
+
+Time: 00:00.006, Memory: 8.00 MB
+
+There was 1 failure:
+
+1) classPropertiesIdenticalToTest::testFailure
+Failed asserting that classPropertiesIdenticalToTest is a class with properties identical to specified.
+--- Expected
++++ Actual
+@@ @@
+-Tailors\PHPUnit\Values\ExpectedValuesSelection Object #451 (
+-    'attribute' => '123',
+-    'getValue()' => null,
++Tailors\PHPUnit\Values\ActualValues Object #448 (
++    'attribute' => 123,
++    'getValue()' => 321,
+ )
+
+classPropertiesIdenticalToTest.php:27
+
+FAILURES!
+Tests: 2, Assertions: 2, Failures: 1.

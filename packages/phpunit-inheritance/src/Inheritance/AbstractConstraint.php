@@ -3,7 +3,7 @@
 /*
  * This file is part of phptailors/phpunit-extensions.
  *
- * Copyright (c) Paweł Tomulik <ptomulik@meil.pw.edu.pl>
+ * Copyright (c) Paweł Tomulik <pawel@tomulik.pl>
  *
  * View the LICENSE file for full copyright and license information.
  */
@@ -13,7 +13,7 @@ namespace Tailors\PHPUnit\Inheritance;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\LogicalNot;
 use PHPUnit\Framework\Constraint\Operator;
-use Tailors\PHPUnit\Exporter\Exporter;
+use Tailors\PHPUnit\Common\Exporter;
 
 /**
  * Abstract base class for inheritance constraints (ExtendsClass,
@@ -142,6 +142,8 @@ abstract class AbstractConstraint extends Constraint
      * @param Operator $operator the $operator of the expression
      * @param mixed    $role     role of $this constraint in the $operator expression
      * @param mixed    $other    evaluated value or object
+     *
+     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     final protected function failureDescriptionInContext(Operator $operator, $role, $other): string
     {
@@ -158,14 +160,15 @@ abstract class AbstractConstraint extends Constraint
      * Returns short representation of $subject for failureDescription().
      *
      * @param mixed $subject
+     *
+     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     private function short($subject): string
     {
         if (is_object($subject)) {
             $subject = 'object '.get_class($subject);
         } elseif (!is_string($subject) || !$this->supports($subject)) {
-            $exporter = new Exporter();
-            $subject = $exporter->export($subject);
+            $subject = Exporter::export($subject);
         }
 
         return $subject;

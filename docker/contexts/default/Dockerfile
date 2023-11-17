@@ -1,6 +1,6 @@
 ARG TLR_IMG
 FROM ${TLR_IMG}
-MAINTAINER Paweł Tomulik <ptomulik@meil.pw.edu.pl>
+MAINTAINER Paweł Tomulik <pawel@tomulik.pl>
 
 ARG TLR_USER='tailor'
 ARG TLR_GROUP='tailor'

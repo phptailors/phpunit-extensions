@@ -1,0 +1,108 @@
+#!/usr/bin/env php
+<?php declare(strict_types=1);
+
+require_once __DIR__.'/../../../vendor/autoload.php';
+
+use Tailors\PHPUnit\Docs\Behat\OutputDirResolver;
+use SebastianBergmann\CliParser\Parser as CliParser;
+use SebastianBergmann\CliParser\Exception as CliParserException;
+
+function help(): string
+{
+    return <<<END
+Usage:
+
+  get-output-path [OPTIONS] [NAME]
+
+Options:
+
+  --help,-h
+
+      Print this help screen.
+
+  --php=VERSION
+
+      Behave as if the version of used PHP was VERSION.
+
+  --unit=VERSION
+
+      Behave as if the version of used PHPUnit package was VERSION.
+
+  --exporter=VERSION
+
+      Behave as if the version of used 'sebastian/exporter' package was VERSION.
+
+  --relative[=PATH]
+
+      Return paths relative to PATH (or, to current working directory, if PATH not specified).
+
+END;
+}
+
+function handle_cli_parser_exception(CliParserException $exception)
+{
+    $stderr = fopen('php://stderr', 'w');
+    fprintf($stderr, "\nerror: %s\n\n", $exception->getMessage());
+    fprintf($stderr, "%s\n", help());
+    return 1;
+}
+
+function handle_cli_parsed_args(array $args, &$file = null, &$config = null)
+{
+    if (array_filter($args[0], function (array $opt): bool { return in_array($opt[0] ?? null, ['--help', 'h']); })) {
+        $stderr = fopen('php://stderr', 'w');
+        fprintf($stderr, "%s\n", help());
+        exit(0);
+    }
+
+    $file = $args[1][0] ?? null;
+    $config = ['versions' => [], 'relative' => true];
+
+    $options = $args[0];
+
+    if (get_option($options, '--php', $value)) {
+        $config['versions']['php'] = $value;
+    }
+
+    if (get_option($options, '--unit', $value)) {
+        $config['versions']['phpunit/phpunit'] = $value;
+    }
+
+    if (get_option($options, '--exporter', $value)) {
+        $config['versions']['sebastian/exporter'] = $value;
+    }
+
+    if (get_option($options, '--relative', $value, true)) {
+        $config['relative'] = $value;
+    }
+}
+
+function get_option(array $options, string $name, &$value = null, $default = null): bool
+{
+    $res = array_filter($options, function (array $opt) use ($name): bool {
+        return $opt[0] === $name;
+    });
+
+    if (!count($res)) {
+        return false;
+    }
+
+    $opt = reset($res);
+    $value = $opt[1] ?? $default;
+
+    return true;
+}
+
+$cliParser = new CliParser();
+
+try {
+    $args = $cliParser->parse($argv, "h", ['php=', 'unit=', 'exporter=', 'relative==', 'help']);
+} catch(CliParserException $exception) {
+    exit(handle_cli_parser_exception($exception));
+}
+
+handle_cli_parsed_args($args, $file, $config);
+
+printf("%s\n", (new OutputDirResolver($config))->path($file));
+
+// vim: ft=php:

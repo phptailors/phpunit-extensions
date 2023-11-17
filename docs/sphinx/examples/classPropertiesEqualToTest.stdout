@@ -1,8 +1,11 @@
-PHPUnit 9.5.0 by Sebastian Bergmann and contributors.
+PHPUnit 10.5.2 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.2.13
+Configuration: phpunit.xml
 
 .F                                                                  2 / 2 (100%)
 
-Time: 00:00.007, Memory: 6.00 MB
+Time: 00:00.007, Memory: 8.00 MB
 
 There was 1 failure:
 
@@ -11,14 +14,15 @@ Failed asserting that classPropertiesEqualToTest is a class with properties equa
 --- Expected
 +++ Actual
 @@ @@
- values (
--    'attribute' => '123'
--    'getValue()' => null
-+    'attribute' => 123
-+    'getValue()' => 321
+-Tailors\PHPUnit\Values\ExpectedValuesSelection Object #451 (
+-    'attribute' => '123',
+-    'getValue()' => null,
++Tailors\PHPUnit\Values\ActualValues Object #448 (
++    'attribute' => 123,
++    'getValue()' => 321,
  )
 
-classPropertiesEqualToTest.php:27
+classPropertiesEqualToTest.php:26
 
 FAILURES!
 Tests: 2, Assertions: 2, Failures: 1.

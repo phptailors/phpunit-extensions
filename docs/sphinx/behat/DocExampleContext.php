@@ -11,13 +11,36 @@ class DocExampleContext implements Context
     protected $stdout = null;
     protected $stderr = null;
     protected $status = null;
+    protected $outputDirResolver = null;
+
+    protected function getOutputDirResolver(): OutputDirResolver
+    {
+        if (null === $this->outputDirResolver) {
+            $this->outputDirResolver = new OutputDirResolver();
+        }
+        return $this->outputDirResolver;
+    }
+
+    protected function getOutputPath(string $file)
+    {
+        return $this->getOutputDirResolver()->path($file);
+    }
 
     protected function getExamplePath(string $file)
     {
         return realpath(__DIR__.'/../examples/'.$file);
     }
 
-    protected function getExampleFilePath(string $file)
+    protected function getExistingOutputPath(string $file)
+    {
+        $path = $this->getOutputPath($file);
+        if ($path === false) {
+            throw new \RuntimeException("output file does not exist: $file");
+        }
+        return $path;
+    }
+
+    protected function getExistingExamplePath(string $file)
     {
         $path = $this->getExamplePath($file);
         if ($path === false) {
@@ -31,10 +54,10 @@ class DocExampleContext implements Context
         return realpath(__DIR__.'/../../..'.($file ? '/'.$file : ''));
     }
 
-    protected function getExampleFileContents(string $file, $default = '')
+    protected function getOutputFileContents(string $file, $default = '')
     {
-        $path = $this->getExamplePath($file);
-        if($path === false || !file_exists($path)) {
+        $path = $this->getOutputPath($file);
+        if ($path === false || !file_exists($path)) {
             return $default;
         }
         return file_get_contents($path);
@@ -42,13 +65,13 @@ class DocExampleContext implements Context
 
     protected function getExampleCmd(string $file)
     {
-        $path = $this->getExampleFilePath($file);
+        $path = $this->getExistingExamplePath($file);
         return implode(" ", [PHP_BINARY, "-d auto_prepend_file=vendor/autoload.php", $path]);
     }
 
     protected function getPhpUnitCmd(string $file)
     {
-        $tst = $this->getExampleFilePath($file);
+        $tst = $this->getExistingExamplePath($file);
         $bin = $this->getTopPath('vendor/bin/phpunit');
         $xml = $this->getExamplePath('phpunit.xml');
         return implode(" ", [PHP_BINARY, $bin, '-c', $xml, '--colors=never', $tst]);
@@ -86,8 +109,11 @@ class DocExampleContext implements Context
             '/\r/',
             '/^(PHPUnit )(?:\$version|\d+(?:\.\w+)*)( by Sebastian Bergmann and contributors\.)$/m',
             '/^(Time: )(?:(?:\d+)(?::\d+)?(?:\.\d+)?(?: \w+)?)(, Memory: )(?:\d+(?:\.\d+)?(?: \d+)?( \w+)?)$/m',
-            '/^(?:'.$top.'\/)?((?:packages|vendor)(?:\/[\w-]+)+\.php):\d+[\\r\\n]?/m',
-            '/^(?:'.$top.'\/)docs\/sphinx\/examples\/(?:[^\/]*\/)*([\w-]+\.php):(\d+)$/m',
+            '/^(?:(?:phpvfscomposer:\/\/)?(?:'.$top.'\/))?((?:packages|vendor)(?:\/[\w-]+)+(?:\.php)?):\d+[\\r\\n]?/m',
+            '/^(?:(?:phpvfscomposer:\/\/)?(?:'.$top.'\/))docs\/sphinx\/examples\/(?:[^\/]*\/)*([\w-]+\.php):(\d+)$/m',
+            '/^(Configuration:\s*)((?:phpvfscomposer:\/\/)?(?:'.$top.'\/)?docs\/)?sphinx\/examples\/phpunit.xml$/m',
+            '/^(Runtime:\s*)(PHP\s*)(?:\$phpversion|\d+(?:\.\w+)*)(\s*)$/m',
+            '/(Tailors\\\\PHPUnit\\\\Values\\\\\\w+ Object)\\s+(?:(?:#\\d+)|(?:&[0-9a-fA-F]+))\\s*\\(/m',
         ];
         $replaces = [
             '',
@@ -95,6 +121,9 @@ class DocExampleContext implements Context
             '\1$time\2$memory',
             '',
             '\1:\2',
+            '\1phpunit.xml',
+            '\1\2$phpversion\3',
+            '\1 ('
         ];
         return preg_replace($patterns, $replaces, $string);
     }
@@ -157,7 +186,7 @@ class DocExampleContext implements Context
     {
         if (!is_null($file)) {
             Assert::assertSame(
-                $this->getExampleFileContents($file),
+                $this->getOutputFileContents($file),
                 $this->sanitizeOutput($this->stdout)
             );
         }
@@ -170,7 +199,7 @@ class DocExampleContext implements Context
     {
         if (!is_null($file)) {
             Assert::assertSame(
-                $this->getExampleFileContents($file),
+                $this->getOutputFileContents($file),
                 $this->sanitizeOutput($this->stderr)
             );
         }
@@ -190,7 +219,7 @@ class DocExampleContext implements Context
     public function iShouldSeePhpUnitStdoutFrom(?string $file = null)
     {
         if (!is_null($file)) {
-            $expect = $this->sanitizePhpUnitOutput($this->getExampleFileContents($file));
+            $expect = $this->sanitizePhpUnitOutput($this->getOutputFileContents($file));
             $actual = $this->sanitizePhpUnitOutput($this->stdout);
             Assert::assertSame($expect, $actual);
         }

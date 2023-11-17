@@ -36,7 +36,9 @@ static function (MBConfig $mbConfig) : void {
     // for "merge" command
     $mbConfig->dataToAppend([
         ComposerJsonSection::REQUIRE_DEV => [
-            'bamarni/composer-bin-plugin' => '^1.8'
+            'bamarni/composer-bin-plugin' => '^1.8',
+            'composer/semver' => '^3.0',
+            'sebastian/cli-parser' => '>=1.0',
         ],
         ComposerJsonSection::AUTOLOAD_DEV => [
             'psr-4' => [

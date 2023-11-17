@@ -1,0 +1,15 @@
+PHPUnit 9.3.0 by Sebastian Bergmann and contributors.
+
+.F                                                                  2 / 2 (100%)
+
+Time: 00:00.001, Memory: 4.00 MB
+
+There was 1 failure:
+
+1) AssertImplementsInterfaceTest::testAssertImplementsInterfaceFailure
+Failed asserting that AssertImplementsInterfaceTest implements interface Throwable.
+
+AssertImplementsInterfaceTest.php:15
+
+FAILURES!
+Tests: 2, Assertions: 3, Failures: 1.

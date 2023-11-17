@@ -1,0 +1,28 @@
+PHPUnit 10.5.2 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.1.26
+Configuration: phpunit.xml
+
+.F                                                                  2 / 2 (100%)
+
+Time: 00:00.006, Memory: 8.00 MB
+
+There was 1 failure:
+
+1) ksortedArrayEqualToTest::testFailure
+Failed asserting that array is an array equal to specified one when ksorted.
+--- Expected
++++ Actual
+@@ @@
+ Array &0 [
+-    'foo' => 'BAR',
+-    'int' => 123,
++    'foo' => 'FOO',
++    'int' => '123',
+     1 => '',
+ ]
+
+ksortedArrayEqualToTest.php:17
+
+FAILURES!
+Tests: 2, Assertions: 2, Failures: 1.

@@ -1,0 +1,25 @@
+PHPUnit 9.3.0 by Sebastian Bergmann and contributors.
+
+.F                                                                  2 / 2 (100%)
+
+Time: 00:00.002, Memory: 4.00 MB
+
+There was 1 failure:
+
+1) AssertKsortedArrayIdenticalToTest::testFailure
+Failed asserting that array is an array identical to specified one when ksorted.
+--- Expected
++++ Actual
+@@ @@
+ Array &0 (
+     'foo' => 'FOO'
+-    'int' => 123
+-    1 => null
++    'int' => '123'
++    1 => ''
+ )
+
+AssertKsortedArrayIdenticalToTest.php:19
+
+FAILURES!
+Tests: 2, Assertions: 2, Failures: 1.

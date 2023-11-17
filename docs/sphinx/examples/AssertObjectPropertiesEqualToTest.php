@@ -15,8 +15,8 @@ final class AssertObjectPropertiesEqualToTest extends PHPUnit\Framework\TestCase
     {
         // assert that:
         $this->assertObjectPropertiesEqualTo([
-            'attribute'  => '123',     // - $this->attribute equals '123' (ok)
-            'getValue()' => '321',     // - $this->getValue() equals '321' (ok)
+            'attribute'  => '123', // - $this->attribute equals '123' (ok)
+            'getValue()' => '321', // - $this->getValue() equals '321' (ok)
         ], $this);
     }
 
@@ -24,8 +24,8 @@ final class AssertObjectPropertiesEqualToTest extends PHPUnit\Framework\TestCase
     {
         // assert that:
         $this->assertObjectPropertiesEqualTo([
-            'attribute'  => '123',   // - $this->attribute equals '123' (ok),
-            'getValue()' => null,    // - $this->getValue() is 321, not equals null (fail)
+            'attribute'  => '123', // - $this->attribute equals '123' (ok),
+            'getValue()' => null,  // - $this->getValue() is 321, not equals null (fail)
         ], $this);
     }
 }

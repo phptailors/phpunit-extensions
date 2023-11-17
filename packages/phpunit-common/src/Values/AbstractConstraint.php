@@ -3,7 +3,7 @@
 /*
  * This file is part of phptailors/phpunit-extensions.
  *
- * Copyright (c) Paweł Tomulik <ptomulik@meil.pw.edu.pl>
+ * Copyright (c) Paweł Tomulik <pawel@tomulik.pl>
  *
  * View the LICENSE file for full copyright and license information.
  */
@@ -15,10 +15,10 @@ use PHPUnit\Framework\Constraint\LogicalNot;
 use PHPUnit\Framework\Constraint\Operator;
 use SebastianBergmann\Comparator\ComparisonFailure;
 use Tailors\PHPUnit\CircularDependencyException;
+use Tailors\PHPUnit\Common\Exporter;
 use Tailors\PHPUnit\Common\ShortFailureDescriptionTrait;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\ComparatorWrapperInterface;
-use Tailors\PHPUnit\Exporter\Exporter;
 
 /**
  * Abstract base for constraints that examine values.
@@ -119,8 +119,8 @@ abstract class AbstractConstraint extends Constraint implements ComparatorWrappe
                 $f = new ComparisonFailure(
                     $this->expected,
                     $other,
-                    (new Exporter())->export($this->expected),
-                    (new Exporter())->export($actual)
+                    Exporter::export($this->expected, true),
+                    Exporter::export($actual, true)
                 );
             }
 

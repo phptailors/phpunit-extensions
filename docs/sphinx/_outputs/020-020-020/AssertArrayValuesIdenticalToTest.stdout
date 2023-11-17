@@ -1,0 +1,28 @@
+PHPUnit 10.5.2 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.2.13
+Configuration: phpunit.xml
+
+.F                                                                  2 / 2 (100%)
+
+Time: 00:00.007, Memory: 8.00 MB
+
+There was 1 failure:
+
+1) AssertArrayValuesIdenticalToTest::testFailure
+Failed asserting that array is an array or ArrayAccess with values identical to specified.
+--- Expected
++++ Actual
+@@ @@
+-Tailors\PHPUnit\Values\ExpectedValuesSelection Object #447 (
+-    'int' => 123,
+-    1 => null,
++Tailors\PHPUnit\Values\ActualValues Object #444 (
++    'int' => '123',
++    1 => '',
+ )
+
+AssertArrayValuesIdenticalToTest.php:17
+
+FAILURES!
+Tests: 2, Assertions: 2, Failures: 1.
