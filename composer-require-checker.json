@@ -24,7 +24,6 @@
     "PHPUnit\\Framework\\ExpectationFailedException",
     "PHPUnit\\Framework\\TestCase",
     "SebastianBergmann\\Comparator\\ComparisonFailure",
-    "SebastianBergmann\\Exporter\\Exporter",
     "SebastianBergmann\\RecursionContext\\Context"
   ],
   "php-core-extensions" : [
@@ -38,7 +37,7 @@
     "filter"
   ],
   "scan-files" : [
-    "packages/phpunit-common/compat/exporter5/AbstractExporter.php",
+    "packages/phpunit-common/compat/Exporter5/AbstractExporter.php",
     "vendor/composer/InstalledVersions.php",
     "vendor/composer/ClassLoader.php"
   ]
