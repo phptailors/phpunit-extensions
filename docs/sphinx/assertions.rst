@@ -328,8 +328,8 @@ The syntax for ``$methodSpec`` string is the following
     static      :=  "static"
                 |   "!static"
 
-The only allowed combination of ``abstract`` and ``static`` is ``"!abstract"``
-+ ``"!static"``. All other combinations are treated as syntax error.
+The only allowed combination of ``abstract`` and ``final`` is ``"!abstract"``
++ ``"!final"``. All other combinations are treated as syntax error.
 
 Presence of a modifier (such as ``"final"``) requires the modifier to be
 present in a matched method. Presence of negated modifier (such as
