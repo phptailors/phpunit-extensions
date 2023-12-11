@@ -19,12 +19,12 @@ use PHPUnit\Framework\Constraint\Constraint;
  */
 trait ProvArrayValuesTrait
 {
+    // @codeCoverageIgnoreStart
+
     /**
      * @param mixed $args
      */
     abstract public static function createConstraint(...$args): Constraint;
-
-    // @codeCoverageIgnoreStart
 
     public static function provArrayValuesIdenticalTo(): array
     {
