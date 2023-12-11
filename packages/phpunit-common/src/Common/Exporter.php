@@ -25,6 +25,8 @@ final class Exporter
      */
     public static function export(mixed $value, bool $exportObjects = false): string
     {
+        // @codeCoverageIgnoreStart
+
         if (class_exists(\PHPUnit\Util\Exporter::class)) {
             /**
              * @psalm-suppress InternalClass
@@ -39,10 +41,13 @@ final class Exporter
         }
 
         return '{enable export of objects to see this value}';
+        // @codeCoverageIgnoreEnd
     }
 
     private static function isExportable(mixed &$value, Context $context = null): bool
     {
+        // @codeCoverageIgnoreStart
+
         if (is_scalar($value) || null === $value) {
             return true;
         }
@@ -69,6 +74,7 @@ final class Exporter
         }
 
         return true;
+        // @codeCoverageIgnoreEnd
     }
 }
 
