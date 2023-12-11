@@ -158,32 +158,36 @@ array nor <a class="reference external" href="https://www.php.net/manual/en/clas
 </pre></div>
 </div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 9.5.0 by Sebastian Bergmann and contributors.
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.2 by Sebastian Bergmann and contributors.
 <span class="linenos"> 2</span>
-<span class="linenos"> 3</span>.F                                                                  2 / 2 (100%)
-<span class="linenos"> 4</span>
-<span class="linenos"> 5</span>Time: 00:00.006, Memory: 6.00 MB
-<span class="linenos"> 6</span>
-<span class="linenos"> 7</span>There was 1 failure:
-<span class="linenos"> 8</span>
-<span class="linenos"> 9</span>1) AssertArrayValuesEqualToTest::testFailure
-<span class="linenos">10</span>Failed asserting that array is an array or ArrayAccess with values equal to specified.
-<span class="linenos">11</span>--- Expected
-<span class="linenos">12</span>+++ Actual
-<span class="linenos">13</span>@@ @@
-<span class="linenos">14</span> values (
-<span class="linenos">15</span>-    &#39;int&#39; =&gt; 123
-<span class="linenos">16</span>-    1 =&gt; null
-<span class="linenos">17</span>-    &#39;foo&#39; =&gt; &#39;BAR&#39;
-<span class="linenos">18</span>+    &#39;int&#39; =&gt; &#39;123&#39;
-<span class="linenos">19</span>+    1 =&gt; &#39;&#39;
-<span class="linenos">20</span>+    &#39;foo&#39; =&gt; &#39;FOO&#39;
-<span class="linenos">21</span> )
-<span class="linenos">22</span>
-<span class="linenos">23</span>AssertArrayValuesEqualToTest.php:19
-<span class="linenos">24</span>
-<span class="linenos">25</span>FAILURES!
-<span class="linenos">26</span>Tests: 2, Assertions: 2, Failures: 1.
+<span class="linenos"> 3</span>Runtime:       PHP 8.2.13
+<span class="linenos"> 4</span>Configuration: phpunit.xml
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>Time: 00:00.008, Memory: 8.00 MB
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>There was 1 failure:
+<span class="linenos">11</span>
+<span class="linenos">12</span>1) AssertArrayValuesEqualToTest::testFailure
+<span class="linenos">13</span>Failed asserting that array is an array or ArrayAccess with values equal to specified.
+<span class="linenos">14</span>--- Expected
+<span class="linenos">15</span>+++ Actual
+<span class="linenos">16</span>@@ @@
+<span class="linenos">17</span>-Tailors\PHPUnit\Values\ExpectedValuesSelection Object #447 (
+<span class="linenos">18</span>-    &#39;int&#39; =&gt; 123,
+<span class="linenos">19</span>-    1 =&gt; null,
+<span class="linenos">20</span>-    &#39;foo&#39; =&gt; &#39;BAR&#39;,
+<span class="linenos">21</span>+Tailors\PHPUnit\Values\ActualValues Object #444 (
+<span class="linenos">22</span>+    &#39;int&#39; =&gt; &#39;123&#39;,
+<span class="linenos">23</span>+    1 =&gt; &#39;&#39;,
+<span class="linenos">24</span>+    &#39;foo&#39; =&gt; &#39;FOO&#39;,
+<span class="linenos">25</span> )
+<span class="linenos">26</span>
+<span class="linenos">27</span>AssertArrayValuesEqualToTest.php:17
+<span class="linenos">28</span>
+<span class="linenos">29</span>FAILURES!
+<span class="linenos">30</span>Tests: 2, Assertions: 2, Failures: 1.
 </pre></div>
 </div>
 </section>
@@ -251,30 +255,34 @@ array nor an <a class="reference external" href="https://www.php.net/manual/en/c
 </pre></div>
 </div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 9.5.0 by Sebastian Bergmann and contributors.
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.2 by Sebastian Bergmann and contributors.
 <span class="linenos"> 2</span>
-<span class="linenos"> 3</span>.F                                                                  2 / 2 (100%)
-<span class="linenos"> 4</span>
-<span class="linenos"> 5</span>Time: 00:00.007, Memory: 6.00 MB
-<span class="linenos"> 6</span>
-<span class="linenos"> 7</span>There was 1 failure:
-<span class="linenos"> 8</span>
-<span class="linenos"> 9</span>1) AssertArrayValuesIdenticalToTest::testFailure
-<span class="linenos">10</span>Failed asserting that array is an array or ArrayAccess with values identical to specified.
-<span class="linenos">11</span>--- Expected
-<span class="linenos">12</span>+++ Actual
-<span class="linenos">13</span>@@ @@
-<span class="linenos">14</span> values (
-<span class="linenos">15</span>-    &#39;int&#39; =&gt; 123
-<span class="linenos">16</span>-    1 =&gt; null
-<span class="linenos">17</span>+    &#39;int&#39; =&gt; &#39;123&#39;
-<span class="linenos">18</span>+    1 =&gt; &#39;&#39;
-<span class="linenos">19</span> )
-<span class="linenos">20</span>
-<span class="linenos">21</span>AssertArrayValuesIdenticalToTest.php:19
-<span class="linenos">22</span>
-<span class="linenos">23</span>FAILURES!
-<span class="linenos">24</span>Tests: 2, Assertions: 2, Failures: 1.
+<span class="linenos"> 3</span>Runtime:       PHP 8.2.13
+<span class="linenos"> 4</span>Configuration: phpunit.xml
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>Time: 00:00.008, Memory: 8.00 MB
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>There was 1 failure:
+<span class="linenos">11</span>
+<span class="linenos">12</span>1) AssertArrayValuesIdenticalToTest::testFailure
+<span class="linenos">13</span>Failed asserting that array is an array or ArrayAccess with values identical to specified.
+<span class="linenos">14</span>--- Expected
+<span class="linenos">15</span>+++ Actual
+<span class="linenos">16</span>@@ @@
+<span class="linenos">17</span>-Tailors\PHPUnit\Values\ExpectedValuesSelection Object #447 (
+<span class="linenos">18</span>-    &#39;int&#39; =&gt; 123,
+<span class="linenos">19</span>-    1 =&gt; null,
+<span class="linenos">20</span>+Tailors\PHPUnit\Values\ActualValues Object #444 (
+<span class="linenos">21</span>+    &#39;int&#39; =&gt; &#39;123&#39;,
+<span class="linenos">22</span>+    1 =&gt; &#39;&#39;,
+<span class="linenos">23</span> )
+<span class="linenos">24</span>
+<span class="linenos">25</span>AssertArrayValuesIdenticalToTest.php:17
+<span class="linenos">26</span>
+<span class="linenos">27</span>FAILURES!
+<span class="linenos">28</span>Tests: 2, Assertions: 2, Failures: 1.
 </pre></div>
 </div>
 </section>
@@ -338,8 +346,8 @@ method <code class="docutils literal notranslate"><span class="pre">foo()</span>
 <span class="linenos">15</span>    <span class="p">{</span>
 <span class="linenos">16</span>        <span class="c1">// assert that:</span>
 <span class="linenos">17</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertClassPropertiesEqualTo</span><span class="p">([</span>
-<span class="linenos">18</span>            <span class="s1">&#39;attribute&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;123&#39;</span><span class="p">,</span>     <span class="c1">// - self::$attribute equals &#39;123&#39; (ok)</span>
-<span class="linenos">19</span>            <span class="s1">&#39;getValue()&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;321&#39;</span><span class="p">,</span>     <span class="c1">// - self::getValue() equals &#39;321&#39; (ok)</span>
+<span class="linenos">18</span>            <span class="s1">&#39;attribute&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;123&#39;</span><span class="p">,</span>  <span class="c1">// - self::$attribute equals &#39;123&#39; (ok)</span>
+<span class="linenos">19</span>            <span class="s1">&#39;getValue()&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;321&#39;</span><span class="p">,</span>  <span class="c1">// - self::getValue() equals &#39;321&#39; (ok)</span>
 <span class="linenos">20</span>        <span class="p">],</span> <span class="nx">self</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
 <span class="linenos">21</span>    <span class="p">}</span>
 <span class="linenos">22</span>
@@ -347,38 +355,42 @@ method <code class="docutils literal notranslate"><span class="pre">foo()</span>
 <span class="linenos">24</span>    <span class="p">{</span>
 <span class="linenos">25</span>        <span class="c1">// assert that:</span>
 <span class="linenos">26</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertClassPropertiesEqualTo</span><span class="p">([</span>
-<span class="linenos">27</span>            <span class="s1">&#39;attribute&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;123&#39;</span><span class="p">,</span>   <span class="c1">// - self::$attribute equals &#39;123&#39; (ok),</span>
-<span class="linenos">28</span>            <span class="s1">&#39;getValue()&#39;</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>    <span class="c1">// - self::$getValue() is 321, not equals null (fail)</span>
+<span class="linenos">27</span>            <span class="s1">&#39;attribute&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;123&#39;</span><span class="p">,</span>  <span class="c1">// - self::$attribute equals &#39;123&#39; (ok),</span>
+<span class="linenos">28</span>            <span class="s1">&#39;getValue()&#39;</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>   <span class="c1">// - self::$getValue() is 321, not equals null (fail)</span>
 <span class="linenos">29</span>        <span class="p">],</span> <span class="nx">self</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
 <span class="linenos">30</span>    <span class="p">}</span>
 <span class="linenos">31</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 9.5.0 by Sebastian Bergmann and contributors.
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.2 by Sebastian Bergmann and contributors.
 <span class="linenos"> 2</span>
-<span class="linenos"> 3</span>.F                                                                  2 / 2 (100%)
-<span class="linenos"> 4</span>
-<span class="linenos"> 5</span>Time: 00:00.007, Memory: 6.00 MB
-<span class="linenos"> 6</span>
-<span class="linenos"> 7</span>There was 1 failure:
-<span class="linenos"> 8</span>
-<span class="linenos"> 9</span>1) AssertClassPropertiesEqualToTest::testFailure
-<span class="linenos">10</span>Failed asserting that AssertClassPropertiesEqualToTest is a class with properties equal to specified.
-<span class="linenos">11</span>--- Expected
-<span class="linenos">12</span>+++ Actual
-<span class="linenos">13</span>@@ @@
-<span class="linenos">14</span> values (
-<span class="linenos">15</span>-    &#39;attribute&#39; =&gt; &#39;123&#39;
-<span class="linenos">16</span>-    &#39;getValue()&#39; =&gt; null
-<span class="linenos">17</span>+    &#39;attribute&#39; =&gt; 123
-<span class="linenos">18</span>+    &#39;getValue()&#39; =&gt; 321
-<span class="linenos">19</span> )
-<span class="linenos">20</span>
-<span class="linenos">21</span>AssertClassPropertiesEqualToTest.php:29
-<span class="linenos">22</span>
-<span class="linenos">23</span>FAILURES!
-<span class="linenos">24</span>Tests: 2, Assertions: 2, Failures: 1.
+<span class="linenos"> 3</span>Runtime:       PHP 8.2.13
+<span class="linenos"> 4</span>Configuration: phpunit.xml
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>Time: 00:00.007, Memory: 8.00 MB
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>There was 1 failure:
+<span class="linenos">11</span>
+<span class="linenos">12</span>1) AssertClassPropertiesEqualToTest::testFailure
+<span class="linenos">13</span>Failed asserting that AssertClassPropertiesEqualToTest is a class with properties equal to specified.
+<span class="linenos">14</span>--- Expected
+<span class="linenos">15</span>+++ Actual
+<span class="linenos">16</span>@@ @@
+<span class="linenos">17</span>-Tailors\PHPUnit\Values\ExpectedValuesSelection Object #451 (
+<span class="linenos">18</span>-    &#39;attribute&#39; =&gt; &#39;123&#39;,
+<span class="linenos">19</span>-    &#39;getValue()&#39; =&gt; null,
+<span class="linenos">20</span>+Tailors\PHPUnit\Values\ActualValues Object #448 (
+<span class="linenos">21</span>+    &#39;attribute&#39; =&gt; 123,
+<span class="linenos">22</span>+    &#39;getValue()&#39; =&gt; 321,
+<span class="linenos">23</span> )
+<span class="linenos">24</span>
+<span class="linenos">25</span>AssertClassPropertiesEqualToTest.php:26
+<span class="linenos">26</span>
+<span class="linenos">27</span>FAILURES!
+<span class="linenos">28</span>Tests: 2, Assertions: 2, Failures: 1.
 </pre></div>
 </div>
 </section>
@@ -443,8 +455,8 @@ method <code class="docutils literal notranslate"><span class="pre">foo()</span>
 <span class="linenos">15</span>    <span class="p">{</span>
 <span class="linenos">16</span>        <span class="c1">// assert that:</span>
 <span class="linenos">17</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertClassPropertiesIdenticalTo</span><span class="p">([</span>
-<span class="linenos">18</span>            <span class="s1">&#39;attribute&#39;</span>  <span class="o">=&gt;</span> <span class="mi">123</span><span class="p">,</span>     <span class="c1">// - self::$attribute is 123 (ok)</span>
-<span class="linenos">19</span>            <span class="s1">&#39;getValue()&#39;</span> <span class="o">=&gt;</span> <span class="mi">321</span><span class="p">,</span>     <span class="c1">// - self::getValue() is 321 (ok)</span>
+<span class="linenos">18</span>            <span class="s1">&#39;attribute&#39;</span>  <span class="o">=&gt;</span> <span class="mi">123</span><span class="p">,</span>   <span class="c1">// - self::$attribute is 123 (ok)</span>
+<span class="linenos">19</span>            <span class="s1">&#39;getValue()&#39;</span> <span class="o">=&gt;</span> <span class="mi">321</span><span class="p">,</span>   <span class="c1">// - self::getValue() is 321 (ok)</span>
 <span class="linenos">20</span>        <span class="p">],</span> <span class="nx">self</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
 <span class="linenos">21</span>    <span class="p">}</span>
 <span class="linenos">22</span>
@@ -452,38 +464,42 @@ method <code class="docutils literal notranslate"><span class="pre">foo()</span>
 <span class="linenos">24</span>    <span class="p">{</span>
 <span class="linenos">25</span>        <span class="c1">// assert that:</span>
 <span class="linenos">26</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertClassPropertiesIdenticalTo</span><span class="p">([</span>
-<span class="linenos">27</span>            <span class="s1">&#39;attribute&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;123&#39;</span><span class="p">,</span>   <span class="c1">// - self::$attribute is 123, not &#39;123&#39; (fail),</span>
-<span class="linenos">28</span>            <span class="s1">&#39;getValue()&#39;</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>    <span class="c1">// - self::getValue() is 321, not null (fail)</span>
+<span class="linenos">27</span>            <span class="s1">&#39;attribute&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;123&#39;</span><span class="p">,</span> <span class="c1">// - self::$attribute is 123, not &#39;123&#39; (fail),</span>
+<span class="linenos">28</span>            <span class="s1">&#39;getValue()&#39;</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>  <span class="c1">// - self::getValue() is 321, not null (fail)</span>
 <span class="linenos">29</span>        <span class="p">],</span> <span class="nx">self</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
 <span class="linenos">30</span>    <span class="p">}</span>
 <span class="linenos">31</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 9.5.0 by Sebastian Bergmann and contributors.
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.2 by Sebastian Bergmann and contributors.
 <span class="linenos"> 2</span>
-<span class="linenos"> 3</span>.F                                                                  2 / 2 (100%)
-<span class="linenos"> 4</span>
-<span class="linenos"> 5</span>Time: 00:00.007, Memory: 6.00 MB
-<span class="linenos"> 6</span>
-<span class="linenos"> 7</span>There was 1 failure:
-<span class="linenos"> 8</span>
-<span class="linenos"> 9</span>1) AssertClassPropertiesIdenticalToTest::testFailure
-<span class="linenos">10</span>Failed asserting that AssertClassPropertiesIdenticalToTest is a class with properties identical to specified.
-<span class="linenos">11</span>--- Expected
-<span class="linenos">12</span>+++ Actual
-<span class="linenos">13</span>@@ @@
-<span class="linenos">14</span> values (
-<span class="linenos">15</span>-    &#39;attribute&#39; =&gt; &#39;123&#39;
-<span class="linenos">16</span>-    &#39;getValue()&#39; =&gt; null
-<span class="linenos">17</span>+    &#39;attribute&#39; =&gt; 123
-<span class="linenos">18</span>+    &#39;getValue()&#39; =&gt; 321
-<span class="linenos">19</span> )
-<span class="linenos">20</span>
-<span class="linenos">21</span>AssertClassPropertiesIdenticalToTest.php:29
-<span class="linenos">22</span>
-<span class="linenos">23</span>FAILURES!
-<span class="linenos">24</span>Tests: 2, Assertions: 2, Failures: 1.
+<span class="linenos"> 3</span>Runtime:       PHP 8.2.13
+<span class="linenos"> 4</span>Configuration: phpunit.xml
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>Time: 00:00.007, Memory: 8.00 MB
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>There was 1 failure:
+<span class="linenos">11</span>
+<span class="linenos">12</span>1) AssertClassPropertiesIdenticalToTest::testFailure
+<span class="linenos">13</span>Failed asserting that AssertClassPropertiesIdenticalToTest is a class with properties identical to specified.
+<span class="linenos">14</span>--- Expected
+<span class="linenos">15</span>+++ Actual
+<span class="linenos">16</span>@@ @@
+<span class="linenos">17</span>-Tailors\PHPUnit\Values\ExpectedValuesSelection Object #451 (
+<span class="linenos">18</span>-    &#39;attribute&#39; =&gt; &#39;123&#39;,
+<span class="linenos">19</span>-    &#39;getValue()&#39; =&gt; null,
+<span class="linenos">20</span>+Tailors\PHPUnit\Values\ActualValues Object #448 (
+<span class="linenos">21</span>+    &#39;attribute&#39; =&gt; 123,
+<span class="linenos">22</span>+    &#39;getValue()&#39; =&gt; 321,
+<span class="linenos">23</span> )
+<span class="linenos">24</span>
+<span class="linenos">25</span>AssertClassPropertiesIdenticalToTest.php:26
+<span class="linenos">26</span>
+<span class="linenos">27</span>FAILURES!
+<span class="linenos">28</span>Tests: 2, Assertions: 2, Failures: 1.
 </pre></div>
 </div>
 </section>
@@ -550,21 +566,24 @@ succeeds only if the class extends the <code class="docutils literal notranslate
 </pre></div>
 </div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 9.5.0 by Sebastian Bergmann and contributors.
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.2 by Sebastian Bergmann and contributors.
 <span class="linenos"> 2</span>
-<span class="linenos"> 3</span>.F                                                                  2 / 2 (100%)
-<span class="linenos"> 4</span>
-<span class="linenos"> 5</span>Time: 00:00.005, Memory: 6.00 MB
-<span class="linenos"> 6</span>
-<span class="linenos"> 7</span>There was 1 failure:
-<span class="linenos"> 8</span>
-<span class="linenos"> 9</span>1) AssertExtendsClassTest::testAssertExtendsClassFailure
-<span class="linenos">10</span>Failed asserting that AssertExtendsClassTest extends class Exception.
+<span class="linenos"> 3</span>Runtime:       PHP 8.2.13
+<span class="linenos"> 4</span>Configuration: phpunit.xml
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>Time: 00:00.006, Memory: 8.00 MB
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>There was 1 failure:
 <span class="linenos">11</span>
-<span class="linenos">12</span>AssertExtendsClassTest.php:15
-<span class="linenos">13</span>
-<span class="linenos">14</span>FAILURES!
-<span class="linenos">15</span>Tests: 2, Assertions: 3, Failures: 1.
+<span class="linenos">12</span>1) AssertExtendsClassTest::testAssertExtendsClassFailure
+<span class="linenos">13</span>Failed asserting that AssertExtendsClassTest extends class Exception.
+<span class="linenos">14</span>
+<span class="linenos">15</span>AssertExtendsClassTest.php:15
+<span class="linenos">16</span>
+<span class="linenos">17</span>FAILURES!
+<span class="linenos">18</span>Tests: 2, Assertions: 3, Failures: 1.
 </pre></div>
 </div>
 </section>
@@ -670,21 +689,24 @@ in a matched method.</p>
 </pre></div>
 </div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 9.5.27 by Sebastian Bergmann and contributors.
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.2 by Sebastian Bergmann and contributors.
 <span class="linenos"> 2</span>
-<span class="linenos"> 3</span>.F                                                                  2 / 2 (100%)
-<span class="linenos"> 4</span>
-<span class="linenos"> 5</span>Time: 00:00.009, Memory: 6.00 MB
-<span class="linenos"> 6</span>
-<span class="linenos"> 7</span>There was 1 failure:
-<span class="linenos"> 8</span>
-<span class="linenos"> 9</span>1) AssertHasMethodTest::testAssertHasMethodFailure
-<span class="linenos">10</span>Failed asserting that &#39;ClassWithSomeMethods&#39; has !abstract method abstractProtectedMethod().
+<span class="linenos"> 3</span>Runtime:       PHP 8.2.13
+<span class="linenos"> 4</span>Configuration: phpunit.xml
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>Time: 00:00.006, Memory: 8.00 MB
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>There was 1 failure:
 <span class="linenos">11</span>
-<span class="linenos">12</span>AssertHasMethodTest.php:31
-<span class="linenos">13</span>
-<span class="linenos">14</span>FAILURES!
-<span class="linenos">15</span>Tests: 2, Assertions: 8, Failures: 1.
+<span class="linenos">12</span>1) AssertHasMethodTest::testAssertHasMethodFailure
+<span class="linenos">13</span>Failed asserting that &#39;ClassWithSomeMethods&#39; has !abstract method abstractProtectedMethod().
+<span class="linenos">14</span>
+<span class="linenos">15</span>AssertHasMethodTest.php:31
+<span class="linenos">16</span>
+<span class="linenos">17</span>FAILURES!
+<span class="linenos">18</span>Tests: 2, Assertions: 8, Failures: 1.
 </pre></div>
 </div>
 </section>
@@ -760,7 +782,7 @@ accepts any array of <code class="docutils literal notranslate"><span class="pre
 <span class="linenos">21</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertHasPregCaptures</span><span class="p">([</span>
 <span class="linenos">22</span>            <span class="s1">&#39;name&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;John&#39;</span><span class="p">,</span>  <span class="c1">// - name is &#39;John&#39; (ok),</span>
 <span class="linenos">23</span>            <span class="s1">&#39;surname&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Smith&#39;</span><span class="p">,</span> <span class="c1">// - surname is &#39;Smith&#39; (ok),</span>
-<span class="linenos">24</span>            <span class="s1">&#39;age&#39;</span>     <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>  <span class="c1">// - age is absent (ok),</span>
+<span class="linenos">24</span>            <span class="s1">&#39;age&#39;</span>     <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>   <span class="c1">// - age is absent (ok),</span>
 <span class="linenos">25</span>            <span class="s1">&#39;city&#39;</span>    <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>    <span class="c1">// - city is present (ok).</span>
 <span class="linenos">26</span>        <span class="p">],</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">matches</span><span class="p">);</span>
 <span class="linenos">27</span>    <span class="p">}</span>
@@ -771,7 +793,7 @@ accepts any array of <code class="docutils literal notranslate"><span class="pre
 <span class="linenos">32</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertHasPregCaptures</span><span class="p">([</span>
 <span class="linenos">33</span>            <span class="s1">&#39;name&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;John&#39;</span><span class="p">,</span>  <span class="c1">// - name is &#39;John&#39; (ok),</span>
 <span class="linenos">34</span>            <span class="s1">&#39;surname&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Brown&#39;</span><span class="p">,</span> <span class="c1">// - surname is &#39;Brown&#39; (fail),</span>
-<span class="linenos">35</span>            <span class="s1">&#39;age&#39;</span>     <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>   <span class="c1">// - age is present (fail),</span>
+<span class="linenos">35</span>            <span class="s1">&#39;age&#39;</span>     <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>    <span class="c1">// - age is present (fail),</span>
 <span class="linenos">36</span>            <span class="s1">&#39;city&#39;</span>    <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>   <span class="c1">// - city is absent (fail).</span>
 <span class="linenos">37</span>        <span class="p">],</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">matches</span><span class="p">);</span>
 <span class="linenos">38</span>    <span class="p">}</span>
@@ -779,33 +801,36 @@ accepts any array of <code class="docutils literal notranslate"><span class="pre
 </pre></div>
 </div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 9.5.0 by Sebastian Bergmann and contributors.
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.2 by Sebastian Bergmann and contributors.
 <span class="linenos"> 2</span>
-<span class="linenos"> 3</span>.F                                                                  2 / 2 (100%)
-<span class="linenos"> 4</span>
-<span class="linenos"> 5</span>Time: 00:00.005, Memory: 6.00 MB
-<span class="linenos"> 6</span>
-<span class="linenos"> 7</span>There was 1 failure:
-<span class="linenos"> 8</span>
-<span class="linenos"> 9</span>1) AssertHasPregCapturesTest::testAssertHasPregCapturesFailure
-<span class="linenos">10</span>Failed asserting that array has expected PCRE capture groups.
-<span class="linenos">11</span>--- Expected
-<span class="linenos">12</span>+++ Actual
-<span class="linenos">13</span>@@ @@
-<span class="linenos">14</span> Array &amp;0 (
-<span class="linenos">15</span>     &#39;name&#39; =&gt; &#39;John&#39;
-<span class="linenos">16</span>-    &#39;surname&#39; =&gt; &#39;Brown&#39;
-<span class="linenos">17</span>-    &#39;age&#39; =&gt; true
-<span class="linenos">18</span>-    &#39;city&#39; =&gt; false
-<span class="linenos">19</span>+    &#39;surname&#39; =&gt; &#39;Smith&#39;
-<span class="linenos">20</span>+    &#39;age&#39; =&gt; null
-<span class="linenos">21</span>+    &#39;city&#39; =&gt; &#39;London&#39;
-<span class="linenos">22</span> )
-<span class="linenos">23</span>
-<span class="linenos">24</span>AssertHasPregCapturesTest.php:37
-<span class="linenos">25</span>
-<span class="linenos">26</span>FAILURES!
-<span class="linenos">27</span>Tests: 2, Assertions: 2, Failures: 1.
+<span class="linenos"> 3</span>Runtime:       PHP 8.2.13
+<span class="linenos"> 4</span>Configuration: phpunit.xml
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>Time: 00:00.007, Memory: 8.00 MB
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>There was 1 failure:
+<span class="linenos">11</span>
+<span class="linenos">12</span>1) AssertHasPregCapturesTest::testAssertHasPregCapturesFailure
+<span class="linenos">13</span>Failed asserting that array has expected PCRE capture groups.
+<span class="linenos">14</span>--- Expected
+<span class="linenos">15</span>+++ Actual
+<span class="linenos">16</span>@@ @@
+<span class="linenos">17</span> Array &amp;0 [
+<span class="linenos">18</span>     &#39;name&#39; =&gt; &#39;John&#39;,
+<span class="linenos">19</span>-    &#39;surname&#39; =&gt; &#39;Brown&#39;,
+<span class="linenos">20</span>-    &#39;age&#39; =&gt; true,
+<span class="linenos">21</span>-    &#39;city&#39; =&gt; false,
+<span class="linenos">22</span>+    &#39;surname&#39; =&gt; &#39;Smith&#39;,
+<span class="linenos">23</span>+    &#39;age&#39; =&gt; null,
+<span class="linenos">24</span>+    &#39;city&#39; =&gt; &#39;London&#39;,
+<span class="linenos">25</span> ]
+<span class="linenos">26</span>
+<span class="linenos">27</span>AssertHasPregCapturesTest.php:32
+<span class="linenos">28</span>
+<span class="linenos">29</span>FAILURES!
+<span class="linenos">30</span>Tests: 2, Assertions: 2, Failures: 1.
 </pre></div>
 </div>
 </section>
@@ -873,21 +898,24 @@ succeeds only if the class implements the <code class="docutils literal notransl
 </pre></div>
 </div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 9.5.0 by Sebastian Bergmann and contributors.
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.2 by Sebastian Bergmann and contributors.
 <span class="linenos"> 2</span>
-<span class="linenos"> 3</span>.F                                                                  2 / 2 (100%)
-<span class="linenos"> 4</span>
-<span class="linenos"> 5</span>Time: 00:00.005, Memory: 6.00 MB
-<span class="linenos"> 6</span>
-<span class="linenos"> 7</span>There was 1 failure:
-<span class="linenos"> 8</span>
-<span class="linenos"> 9</span>1) AssertImplementsInterfaceTest::testAssertImplementsInterfaceFailure
-<span class="linenos">10</span>Failed asserting that AssertImplementsInterfaceTest implements interface Throwable.
+<span class="linenos"> 3</span>Runtime:       PHP 8.2.13
+<span class="linenos"> 4</span>Configuration: phpunit.xml
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>Time: 00:00.007, Memory: 8.00 MB
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>There was 1 failure:
 <span class="linenos">11</span>
-<span class="linenos">12</span>AssertImplementsInterfaceTest.php:15
-<span class="linenos">13</span>
-<span class="linenos">14</span>FAILURES!
-<span class="linenos">15</span>Tests: 2, Assertions: 3, Failures: 1.
+<span class="linenos">12</span>1) AssertImplementsInterfaceTest::testAssertImplementsInterfaceFailure
+<span class="linenos">13</span>Failed asserting that AssertImplementsInterfaceTest implements interface Throwable.
+<span class="linenos">14</span>
+<span class="linenos">15</span>AssertImplementsInterfaceTest.php:15
+<span class="linenos">16</span>
+<span class="linenos">17</span>FAILURES!
+<span class="linenos">18</span>Tests: 2, Assertions: 3, Failures: 1.
 </pre></div>
 </div>
 </section>
@@ -953,30 +981,33 @@ is not an array, the constraint fails.</p>
 </pre></div>
 </div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 9.5.0 by Sebastian Bergmann and contributors.
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.2 by Sebastian Bergmann and contributors.
 <span class="linenos"> 2</span>
-<span class="linenos"> 3</span>.F                                                                  2 / 2 (100%)
-<span class="linenos"> 4</span>
-<span class="linenos"> 5</span>Time: 00:00.005, Memory: 6.00 MB
-<span class="linenos"> 6</span>
-<span class="linenos"> 7</span>There was 1 failure:
-<span class="linenos"> 8</span>
-<span class="linenos"> 9</span>1) AssertKsortedArrayEqualToTest::testFailure
-<span class="linenos">10</span>Failed asserting that array is an array equal to specified one when ksorted.
-<span class="linenos">11</span>--- Expected
-<span class="linenos">12</span>+++ Actual
-<span class="linenos">13</span>@@ @@
-<span class="linenos">14</span> Array &amp;0 (
-<span class="linenos">15</span>-    &#39;foo&#39; =&gt; &#39;BAR&#39;
-<span class="linenos">16</span>+    &#39;foo&#39; =&gt; &#39;FOO&#39;
-<span class="linenos">17</span>     &#39;int&#39; =&gt; 123
-<span class="linenos">18</span>     1 =&gt; &#39;&#39;
-<span class="linenos">19</span> )
-<span class="linenos">20</span>
-<span class="linenos">21</span>AssertKsortedArrayEqualToTest.php:19
-<span class="linenos">22</span>
-<span class="linenos">23</span>FAILURES!
-<span class="linenos">24</span>Tests: 2, Assertions: 2, Failures: 1.
+<span class="linenos"> 3</span>Runtime:       PHP 8.2.13
+<span class="linenos"> 4</span>Configuration: phpunit.xml
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>Time: 00:00.006, Memory: 8.00 MB
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>There was 1 failure:
+<span class="linenos">11</span>
+<span class="linenos">12</span>1) AssertKsortedArrayEqualToTest::testFailure
+<span class="linenos">13</span>Failed asserting that array is an array equal to specified one when ksorted.
+<span class="linenos">14</span>--- Expected
+<span class="linenos">15</span>+++ Actual
+<span class="linenos">16</span>@@ @@
+<span class="linenos">17</span> Array &amp;0 [
+<span class="linenos">18</span>     1 =&gt; &#39;&#39;,
+<span class="linenos">19</span>-    &#39;foo&#39; =&gt; &#39;BAR&#39;,
+<span class="linenos">20</span>+    &#39;foo&#39; =&gt; &#39;FOO&#39;,
+<span class="linenos">21</span>     &#39;int&#39; =&gt; 123,
+<span class="linenos">22</span> ]
+<span class="linenos">23</span>
+<span class="linenos">24</span>AssertKsortedArrayEqualToTest.php:17
+<span class="linenos">25</span>
+<span class="linenos">26</span>FAILURES!
+<span class="linenos">27</span>Tests: 2, Assertions: 2, Failures: 1.
 </pre></div>
 </div>
 </section>
@@ -1042,31 +1073,34 @@ is not an array, the constraint fails.</p>
 </pre></div>
 </div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 9.5.0 by Sebastian Bergmann and contributors.
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.2 by Sebastian Bergmann and contributors.
 <span class="linenos"> 2</span>
-<span class="linenos"> 3</span>.F                                                                  2 / 2 (100%)
-<span class="linenos"> 4</span>
-<span class="linenos"> 5</span>Time: 00:00.005, Memory: 6.00 MB
-<span class="linenos"> 6</span>
-<span class="linenos"> 7</span>There was 1 failure:
-<span class="linenos"> 8</span>
-<span class="linenos"> 9</span>1) AssertKsortedArrayIdenticalToTest::testFailure
-<span class="linenos">10</span>Failed asserting that array is an array identical to specified one when ksorted.
-<span class="linenos">11</span>--- Expected
-<span class="linenos">12</span>+++ Actual
-<span class="linenos">13</span>@@ @@
-<span class="linenos">14</span> Array &amp;0 (
-<span class="linenos">15</span>     &#39;foo&#39; =&gt; &#39;FOO&#39;
-<span class="linenos">16</span>-    &#39;int&#39; =&gt; 123
-<span class="linenos">17</span>-    1 =&gt; null
-<span class="linenos">18</span>+    &#39;int&#39; =&gt; &#39;123&#39;
-<span class="linenos">19</span>+    1 =&gt; &#39;&#39;
-<span class="linenos">20</span> )
-<span class="linenos">21</span>
-<span class="linenos">22</span>AssertKsortedArrayIdenticalToTest.php:19
-<span class="linenos">23</span>
-<span class="linenos">24</span>FAILURES!
-<span class="linenos">25</span>Tests: 2, Assertions: 2, Failures: 1.
+<span class="linenos"> 3</span>Runtime:       PHP 8.2.13
+<span class="linenos"> 4</span>Configuration: phpunit.xml
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>Time: 00:00.006, Memory: 8.00 MB
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>There was 1 failure:
+<span class="linenos">11</span>
+<span class="linenos">12</span>1) AssertKsortedArrayIdenticalToTest::testFailure
+<span class="linenos">13</span>Failed asserting that array is an array identical to specified one when ksorted.
+<span class="linenos">14</span>--- Expected
+<span class="linenos">15</span>+++ Actual
+<span class="linenos">16</span>@@ @@
+<span class="linenos">17</span> Array &amp;0 [
+<span class="linenos">18</span>-    1 =&gt; null,
+<span class="linenos">19</span>+    1 =&gt; &#39;&#39;,
+<span class="linenos">20</span>     &#39;foo&#39; =&gt; &#39;FOO&#39;,
+<span class="linenos">21</span>-    &#39;int&#39; =&gt; 123,
+<span class="linenos">22</span>+    &#39;int&#39; =&gt; &#39;123&#39;,
+<span class="linenos">23</span> ]
+<span class="linenos">24</span>
+<span class="linenos">25</span>AssertKsortedArrayIdenticalToTest.php:17
+<span class="linenos">26</span>
+<span class="linenos">27</span>FAILURES!
+<span class="linenos">28</span>Tests: 2, Assertions: 2, Failures: 1.
 </pre></div>
 </div>
 </section>
@@ -1129,8 +1163,8 @@ method <code class="docutils literal notranslate"><span class="pre">foo()</span>
 <span class="linenos">15</span>    <span class="p">{</span>
 <span class="linenos">16</span>        <span class="c1">// assert that:</span>
 <span class="linenos">17</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertObjectPropertiesEqualTo</span><span class="p">([</span>
-<span class="linenos">18</span>            <span class="s1">&#39;attribute&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;123&#39;</span><span class="p">,</span>     <span class="c1">// - $this-&gt;attribute equals &#39;123&#39; (ok)</span>
-<span class="linenos">19</span>            <span class="s1">&#39;getValue()&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;321&#39;</span><span class="p">,</span>     <span class="c1">// - $this-&gt;getValue() equals &#39;321&#39; (ok)</span>
+<span class="linenos">18</span>            <span class="s1">&#39;attribute&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;123&#39;</span><span class="p">,</span> <span class="c1">// - $this-&gt;attribute equals &#39;123&#39; (ok)</span>
+<span class="linenos">19</span>            <span class="s1">&#39;getValue()&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;321&#39;</span><span class="p">,</span> <span class="c1">// - $this-&gt;getValue() equals &#39;321&#39; (ok)</span>
 <span class="linenos">20</span>        <span class="p">],</span> <span class="nv">$this</span><span class="p">);</span>
 <span class="linenos">21</span>    <span class="p">}</span>
 <span class="linenos">22</span>
@@ -1138,38 +1172,42 @@ method <code class="docutils literal notranslate"><span class="pre">foo()</span>
 <span class="linenos">24</span>    <span class="p">{</span>
 <span class="linenos">25</span>        <span class="c1">// assert that:</span>
 <span class="linenos">26</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertObjectPropertiesEqualTo</span><span class="p">([</span>
-<span class="linenos">27</span>            <span class="s1">&#39;attribute&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;123&#39;</span><span class="p">,</span>   <span class="c1">// - $this-&gt;attribute equals &#39;123&#39; (ok),</span>
-<span class="linenos">28</span>            <span class="s1">&#39;getValue()&#39;</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>    <span class="c1">// - $this-&gt;getValue() is 321, not equals null (fail)</span>
+<span class="linenos">27</span>            <span class="s1">&#39;attribute&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;123&#39;</span><span class="p">,</span> <span class="c1">// - $this-&gt;attribute equals &#39;123&#39; (ok),</span>
+<span class="linenos">28</span>            <span class="s1">&#39;getValue()&#39;</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>  <span class="c1">// - $this-&gt;getValue() is 321, not equals null (fail)</span>
 <span class="linenos">29</span>        <span class="p">],</span> <span class="nv">$this</span><span class="p">);</span>
 <span class="linenos">30</span>    <span class="p">}</span>
 <span class="linenos">31</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 9.5.0 by Sebastian Bergmann and contributors.
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.2 by Sebastian Bergmann and contributors.
 <span class="linenos"> 2</span>
-<span class="linenos"> 3</span>.F                                                                  2 / 2 (100%)
-<span class="linenos"> 4</span>
-<span class="linenos"> 5</span>Time: 00:00.008, Memory: 6.00 MB
-<span class="linenos"> 6</span>
-<span class="linenos"> 7</span>There was 1 failure:
-<span class="linenos"> 8</span>
-<span class="linenos"> 9</span>1) AssertObjectPropertiesEqualToTest::testFailure
-<span class="linenos">10</span>Failed asserting that object AssertObjectPropertiesEqualToTest is an object with properties equal to specified.
-<span class="linenos">11</span>--- Expected
-<span class="linenos">12</span>+++ Actual
-<span class="linenos">13</span>@@ @@
-<span class="linenos">14</span> values (
-<span class="linenos">15</span>-    &#39;attribute&#39; =&gt; &#39;123&#39;
-<span class="linenos">16</span>-    &#39;getValue()&#39; =&gt; null
-<span class="linenos">17</span>+    &#39;attribute&#39; =&gt; 123
-<span class="linenos">18</span>+    &#39;getValue()&#39; =&gt; 321
-<span class="linenos">19</span> )
-<span class="linenos">20</span>
-<span class="linenos">21</span>AssertObjectPropertiesEqualToTest.php:27
-<span class="linenos">22</span>
-<span class="linenos">23</span>FAILURES!
-<span class="linenos">24</span>Tests: 2, Assertions: 2, Failures: 1.
+<span class="linenos"> 3</span>Runtime:       PHP 8.2.13
+<span class="linenos"> 4</span>Configuration: phpunit.xml
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>Time: 00:00.007, Memory: 8.00 MB
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>There was 1 failure:
+<span class="linenos">11</span>
+<span class="linenos">12</span>1) AssertObjectPropertiesEqualToTest::testFailure
+<span class="linenos">13</span>Failed asserting that object AssertObjectPropertiesEqualToTest is an object with properties equal to specified.
+<span class="linenos">14</span>--- Expected
+<span class="linenos">15</span>+++ Actual
+<span class="linenos">16</span>@@ @@
+<span class="linenos">17</span>-Tailors\PHPUnit\Values\ExpectedValuesSelection Object #451 (
+<span class="linenos">18</span>-    &#39;attribute&#39; =&gt; &#39;123&#39;,
+<span class="linenos">19</span>-    &#39;getValue()&#39; =&gt; null,
+<span class="linenos">20</span>+Tailors\PHPUnit\Values\ActualValues Object #448 (
+<span class="linenos">21</span>+    &#39;attribute&#39; =&gt; 123,
+<span class="linenos">22</span>+    &#39;getValue()&#39; =&gt; 321,
+<span class="linenos">23</span> )
+<span class="linenos">24</span>
+<span class="linenos">25</span>AssertObjectPropertiesEqualToTest.php:26
+<span class="linenos">26</span>
+<span class="linenos">27</span>FAILURES!
+<span class="linenos">28</span>Tests: 2, Assertions: 2, Failures: 1.
 </pre></div>
 </div>
 </section>
@@ -1232,8 +1270,8 @@ method <code class="docutils literal notranslate"><span class="pre">foo()</span>
 <span class="linenos">15</span>    <span class="p">{</span>
 <span class="linenos">16</span>        <span class="c1">// assert that:</span>
 <span class="linenos">17</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertObjectPropertiesIdenticalTo</span><span class="p">([</span>
-<span class="linenos">18</span>            <span class="s1">&#39;attribute&#39;</span>  <span class="o">=&gt;</span> <span class="mi">123</span><span class="p">,</span>     <span class="c1">// - $this-&gt;attribute is 123 (ok)</span>
-<span class="linenos">19</span>            <span class="s1">&#39;getValue()&#39;</span> <span class="o">=&gt;</span> <span class="mi">321</span><span class="p">,</span>     <span class="c1">// - $this-&gt;getValue() is 321 (ok)</span>
+<span class="linenos">18</span>            <span class="s1">&#39;attribute&#39;</span>  <span class="o">=&gt;</span> <span class="mi">123</span><span class="p">,</span>   <span class="c1">// - $this-&gt;attribute is 123 (ok)</span>
+<span class="linenos">19</span>            <span class="s1">&#39;getValue()&#39;</span> <span class="o">=&gt;</span> <span class="mi">321</span><span class="p">,</span>   <span class="c1">// - $this-&gt;getValue() is 321 (ok)</span>
 <span class="linenos">20</span>        <span class="p">],</span> <span class="nv">$this</span><span class="p">);</span>
 <span class="linenos">21</span>    <span class="p">}</span>
 <span class="linenos">22</span>
@@ -1241,38 +1279,42 @@ method <code class="docutils literal notranslate"><span class="pre">foo()</span>
 <span class="linenos">24</span>    <span class="p">{</span>
 <span class="linenos">25</span>        <span class="c1">// assert that:</span>
 <span class="linenos">26</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertObjectPropertiesIdenticalTo</span><span class="p">([</span>
-<span class="linenos">27</span>            <span class="s1">&#39;attribute&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;123&#39;</span><span class="p">,</span>   <span class="c1">// - $this-&gt;attribute is 123, not &#39;123&#39; (fail),</span>
-<span class="linenos">28</span>            <span class="s1">&#39;getValue()&#39;</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>    <span class="c1">// - $this-&gt;getValue() is 321, not null (fail)</span>
+<span class="linenos">27</span>            <span class="s1">&#39;attribute&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;123&#39;</span><span class="p">,</span> <span class="c1">// - $this-&gt;attribute is 123, not &#39;123&#39; (fail),</span>
+<span class="linenos">28</span>            <span class="s1">&#39;getValue()&#39;</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>  <span class="c1">// - $this-&gt;getValue() is 321, not null (fail)</span>
 <span class="linenos">29</span>        <span class="p">],</span> <span class="nv">$this</span><span class="p">);</span>
 <span class="linenos">30</span>    <span class="p">}</span>
 <span class="linenos">31</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 9.5.0 by Sebastian Bergmann and contributors.
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.2 by Sebastian Bergmann and contributors.
 <span class="linenos"> 2</span>
-<span class="linenos"> 3</span>.F                                                                  2 / 2 (100%)
-<span class="linenos"> 4</span>
-<span class="linenos"> 5</span>Time: 00:00.023, Memory: 6.00 MB
-<span class="linenos"> 6</span>
-<span class="linenos"> 7</span>There was 1 failure:
-<span class="linenos"> 8</span>
-<span class="linenos"> 9</span>1) AssertObjectPropertiesIdenticalToTest::testFailure
-<span class="linenos">10</span>Failed asserting that object AssertObjectPropertiesIdenticalToTest is an object with properties identical to specified.
-<span class="linenos">11</span>--- Expected
-<span class="linenos">12</span>+++ Actual
-<span class="linenos">13</span>@@ @@
-<span class="linenos">14</span> values (
-<span class="linenos">15</span>-    &#39;attribute&#39; =&gt; &#39;123&#39;
-<span class="linenos">16</span>-    &#39;getValue()&#39; =&gt; null
-<span class="linenos">17</span>+    &#39;attribute&#39; =&gt; 123
-<span class="linenos">18</span>+    &#39;getValue()&#39; =&gt; 321
-<span class="linenos">19</span> )
-<span class="linenos">20</span>
-<span class="linenos">21</span>AssertObjectPropertiesIdenticalToTest.php:27
-<span class="linenos">22</span>
-<span class="linenos">23</span>FAILURES!
-<span class="linenos">24</span>Tests: 2, Assertions: 2, Failures: 1.
+<span class="linenos"> 3</span>Runtime:       PHP 8.2.13
+<span class="linenos"> 4</span>Configuration: phpunit.xml
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>Time: 00:00.007, Memory: 8.00 MB
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>There was 1 failure:
+<span class="linenos">11</span>
+<span class="linenos">12</span>1) AssertObjectPropertiesIdenticalToTest::testFailure
+<span class="linenos">13</span>Failed asserting that object AssertObjectPropertiesIdenticalToTest is an object with properties identical to specified.
+<span class="linenos">14</span>--- Expected
+<span class="linenos">15</span>+++ Actual
+<span class="linenos">16</span>@@ @@
+<span class="linenos">17</span>-Tailors\PHPUnit\Values\ExpectedValuesSelection Object #451 (
+<span class="linenos">18</span>-    &#39;attribute&#39; =&gt; &#39;123&#39;,
+<span class="linenos">19</span>-    &#39;getValue()&#39; =&gt; null,
+<span class="linenos">20</span>+Tailors\PHPUnit\Values\ActualValues Object #448 (
+<span class="linenos">21</span>+    &#39;attribute&#39; =&gt; 123,
+<span class="linenos">22</span>+    &#39;getValue()&#39; =&gt; 321,
+<span class="linenos">23</span> )
+<span class="linenos">24</span>
+<span class="linenos">25</span>AssertObjectPropertiesIdenticalToTest.php:26
+<span class="linenos">26</span>
+<span class="linenos">27</span>FAILURES!
+<span class="linenos">28</span>Tests: 2, Assertions: 2, Failures: 1.
 </pre></div>
 </div>
 </section>
@@ -1343,21 +1385,24 @@ succeeds only if the class uses the <code class="docutils literal notranslate"><
 </pre></div>
 </div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 9.5.0 by Sebastian Bergmann and contributors.
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.2 by Sebastian Bergmann and contributors.
 <span class="linenos"> 2</span>
-<span class="linenos"> 3</span>.F                                                                  2 / 2 (100%)
-<span class="linenos"> 4</span>
-<span class="linenos"> 5</span>Time: 00:00.005, Memory: 6.00 MB
-<span class="linenos"> 6</span>
-<span class="linenos"> 7</span>There was 1 failure:
-<span class="linenos"> 8</span>
-<span class="linenos"> 9</span>1) AssertUsesTraitTest::testAssertUsesTraitFailure
-<span class="linenos">10</span>Failed asserting that RuntimeException uses trait ExampleTraitForAssertUsesTraitTest.
+<span class="linenos"> 3</span>Runtime:       PHP 8.2.13
+<span class="linenos"> 4</span>Configuration: phpunit.xml
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>Time: 00:00.006, Memory: 8.00 MB
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>There was 1 failure:
 <span class="linenos">11</span>
-<span class="linenos">12</span>AssertUsesTraitTest.php:20
-<span class="linenos">13</span>
-<span class="linenos">14</span>FAILURES!
-<span class="linenos">15</span>Tests: 2, Assertions: 3, Failures: 1.
+<span class="linenos">12</span>1) AssertUsesTraitTest::testAssertUsesTraitFailure
+<span class="linenos">13</span>Failed asserting that RuntimeException uses trait ExampleTraitForAssertUsesTraitTest.
+<span class="linenos">14</span>
+<span class="linenos">15</span>AssertUsesTraitTest.php:20
+<span class="linenos">16</span>
+<span class="linenos">17</span>FAILURES!
+<span class="linenos">18</span>Tests: 2, Assertions: 3, Failures: 1.
 </pre></div>
 </div>
 </section>

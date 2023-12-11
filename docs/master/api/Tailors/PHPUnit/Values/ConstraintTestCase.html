@@ -109,7 +109,7 @@
             <div class="container-fluid underlined">
                     <div class="row">
                 <div class="col-md-2 type">
-                    <abbr title="PHPUnit\Framework\Constraint\Constraint">Constraint</abbr>
+                    static&nbsp;<abbr title="PHPUnit\Framework\Constraint\Constraint">Constraint</abbr>
                 </div>
                 <div class="col-md-8">
                     <a href="#method_createConstraint">createConstraint</a>(mixed ...$args)
@@ -209,8 +209,44 @@ message when wrapped with an unary operator.</p></p>                </div>
                 <div class="col-md-8">
                     <a href="#method_wrapWithUnaryOperator">wrapWithUnaryOperator</a>(<abbr title="PHPUnit\Framework\Constraint\Constraint">Constraint</abbr> $constraint, string $operator = &#039;noop&#039;, int $precedence = 1)
         
-                                            <p><p>Returns $constraint wrapped with UnaryOperator mock.</p></p>                </div>
+                                            <p><p>Returns $constraint wrapped with an UnaryOperator.</p></p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Constraint/TestCase.html#method_wrapWithUnaryOperator">
+<abbr title="Tailors\PHPUnit\Constraint\TestCase">TestCase</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8">
+                    <a href="#method___construct">__construct</a>(<abbr title="PHPUnit\Framework\Constraint\Constraint">Constraint</abbr> $constraint, string $operator, int $precedence)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Constraint/TestCase.html#method___construct">
+<abbr title="Tailors\PHPUnit\Constraint\TestCase">TestCase</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_operator">operator</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Constraint/TestCase.html#method_operator">
+<abbr title="Tailors\PHPUnit\Constraint\TestCase">TestCase</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    int
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_precedence">precedence</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Constraint/TestCase.html#method_precedence">
 <abbr title="Tailors\PHPUnit\Constraint\TestCase">TestCase</abbr></a></small></div>
             </div>
                     <div class="row">
@@ -248,7 +284,7 @@ message when wrapped with an unary operator.</p></p>                </div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    array
+                    static&nbsp;array
                 </div>
                 <div class="col-md-8">
                     <a href="#method_provCreateConstraint">provCreateConstraint</a>()
@@ -353,7 +389,7 @@ message when wrapped with an unary operator.</p></p>                </div>
                     <h3 id="method_createConstraint">
         <div class="location">in <a href="../../../Tailors/PHPUnit/Constraint/TestCase.html#method_createConstraint">
 <abbr title="Tailors\PHPUnit\Constraint\TestCase">TestCase</abbr></a> at line 29</div>
-        <code>    abstract                <abbr title="PHPUnit\Framework\Constraint\Constraint">Constraint</abbr>
+        <code>    abstract    static            <abbr title="PHPUnit\Framework\Constraint\Constraint">Constraint</abbr>
     <strong>createConstraint</strong>(mixed ...$args)
         </code>
     </h3>
@@ -429,7 +465,7 @@ message when wrapped with an unary operator.</p></p>                </div>
                     <div class="method-item">
                     <h3 id="method_examineCreateConstraint">
         <div class="location">in <a href="../../../Tailors/PHPUnit/Constraint/TestCase.html#method_examineCreateConstraint">
-<abbr title="Tailors\PHPUnit\Constraint\TestCase">TestCase</abbr></a> at line 49</div>
+<abbr title="Tailors\PHPUnit\Constraint\TestCase">TestCase</abbr></a> at line 48</div>
         <code>final                    <abbr title="PHPUnit\Framework\Constraint\Constraint">Constraint</abbr>
     <strong>examineCreateConstraint</strong>(array $args)
         </code>
@@ -475,10 +511,6 @@ message when wrapped with an unary operator.</p></p>                </div>
                 <td><abbr title="PHPUnit\Framework\ExpectationFailedException">ExpectationFailedException</abbr></td>
                 <td></td>
             </tr>
-                    <tr>
-                <td><abbr title="SebastianBergmann\RecursionContext\InvalidArgumentException">InvalidArgumentException</abbr></td>
-                <td></td>
-            </tr>
             </table>
 
             
@@ -490,7 +522,7 @@ message when wrapped with an unary operator.</p></p>                </div>
                     <div class="method-item">
                     <h3 id="method_examineConstraintUnaryOperatorFailure">
         <div class="location">in <a href="../../../Tailors/PHPUnit/Constraint/TestCase.html#method_examineConstraintUnaryOperatorFailure">
-<abbr title="Tailors\PHPUnit\Constraint\TestCase">TestCase</abbr></a> at line 71</div>
+<abbr title="Tailors\PHPUnit\Constraint\TestCase">TestCase</abbr></a> at line 69</div>
         <code>final                    void
     <strong>examineConstraintUnaryOperatorFailure</strong>(array $args, mixed $actual, string $message)
         </code>
@@ -554,10 +586,6 @@ message when wrapped with an unary operator.</p></p>
                 <td><abbr title="PHPUnit\Framework\MockObject\RuntimeException">RuntimeException</abbr></td>
                 <td></td>
             </tr>
-                    <tr>
-                <td><abbr title="SebastianBergmann\RecursionContext\InvalidArgumentException">InvalidArgumentException</abbr></td>
-                <td></td>
-            </tr>
             </table>
 
             
@@ -569,7 +597,7 @@ message when wrapped with an unary operator.</p></p>
                     <div class="method-item">
                     <h3 id="method_examineConstraintMatchSucceeds">
         <div class="location">in <a href="../../../Tailors/PHPUnit/Constraint/TestCase.html#method_examineConstraintMatchSucceeds">
-<abbr title="Tailors\PHPUnit\Constraint\TestCase">TestCase</abbr></a> at line 94</div>
+<abbr title="Tailors\PHPUnit\Constraint\TestCase">TestCase</abbr></a> at line 91</div>
         <code>final                    void
     <strong>examineConstraintMatchSucceeds</strong>(array $args, mixed $actual)
         </code>
@@ -616,10 +644,6 @@ message when wrapped with an unary operator.</p></p>
                 <td><abbr title="PHPUnit\Framework\ExpectationFailedException">ExpectationFailedException</abbr></td>
                 <td></td>
             </tr>
-                    <tr>
-                <td><abbr title="SebastianBergmann\RecursionContext\InvalidArgumentException">InvalidArgumentException</abbr></td>
-                <td></td>
-            </tr>
             </table>
 
             
@@ -631,7 +655,7 @@ message when wrapped with an unary operator.</p></p>
                     <div class="method-item">
                     <h3 id="method_examineConstraintMatchFails">
         <div class="location">in <a href="../../../Tailors/PHPUnit/Constraint/TestCase.html#method_examineConstraintMatchFails">
-<abbr title="Tailors\PHPUnit\Constraint\TestCase">TestCase</abbr></a> at line 109</div>
+<abbr title="Tailors\PHPUnit\Constraint\TestCase">TestCase</abbr></a> at line 105</div>
         <code>final                    void
     <strong>examineConstraintMatchFails</strong>(array $args, mixed $actual, string $message)
         </code>
@@ -684,10 +708,6 @@ message when wrapped with an unary operator.</p></p>
                 <td></td>
             </tr>
                     <tr>
-                <td><abbr title="SebastianBergmann\RecursionContext\InvalidArgumentException">InvalidArgumentException</abbr></td>
-                <td></td>
-            </tr>
-                    <tr>
                 <td><a href="../../../Tailors/PHPUnit/CircularDependencyException.html"><abbr title="Tailors\PHPUnit\CircularDependencyException">CircularDependencyException</abbr></a></td>
                 <td></td>
             </tr>
@@ -702,7 +722,7 @@ message when wrapped with an unary operator.</p></p>
                     <div class="method-item">
                     <h3 id="method_examineNotConstraintMatchSucceeds">
         <div class="location">in <a href="../../../Tailors/PHPUnit/Constraint/TestCase.html#method_examineNotConstraintMatchSucceeds">
-<abbr title="Tailors\PHPUnit\Constraint\TestCase">TestCase</abbr></a> at line 129</div>
+<abbr title="Tailors\PHPUnit\Constraint\TestCase">TestCase</abbr></a> at line 124</div>
         <code>final                    void
     <strong>examineNotConstraintMatchSucceeds</strong>(array $args, mixed $actual)
         </code>
@@ -749,10 +769,6 @@ message when wrapped with an unary operator.</p></p>
                 <td><abbr title="PHPUnit\Framework\ExpectationFailedException">ExpectationFailedException</abbr></td>
                 <td></td>
             </tr>
-                    <tr>
-                <td><abbr title="SebastianBergmann\RecursionContext\InvalidArgumentException">InvalidArgumentException</abbr></td>
-                <td></td>
-            </tr>
             </table>
 
             
@@ -764,7 +780,7 @@ message when wrapped with an unary operator.</p></p>
                     <div class="method-item">
                     <h3 id="method_examineNotConstraintMatchFails">
         <div class="location">in <a href="../../../Tailors/PHPUnit/Constraint/TestCase.html#method_examineNotConstraintMatchFails">
-<abbr title="Tailors\PHPUnit\Constraint\TestCase">TestCase</abbr></a> at line 143</div>
+<abbr title="Tailors\PHPUnit\Constraint\TestCase">TestCase</abbr></a> at line 137</div>
         <code>final                    void
     <strong>examineNotConstraintMatchFails</strong>(array $args, mixed $actual, string $message)
         </code>
@@ -816,10 +832,6 @@ message when wrapped with an unary operator.</p></p>
                 <td><abbr title="PHPUnit\Framework\ExpectationFailedException">ExpectationFailedException</abbr></td>
                 <td></td>
             </tr>
-                    <tr>
-                <td><abbr title="SebastianBergmann\RecursionContext\InvalidArgumentException">InvalidArgumentException</abbr></td>
-                <td></td>
-            </tr>
             </table>
 
             
@@ -831,7 +843,7 @@ message when wrapped with an unary operator.</p></p>
                     <div class="method-item">
                     <h3 id="method_wrapWithUnaryOperator">
         <div class="location">in <a href="../../../Tailors/PHPUnit/Constraint/TestCase.html#method_wrapWithUnaryOperator">
-<abbr title="Tailors\PHPUnit\Constraint\TestCase">TestCase</abbr></a> at line 163</div>
+<abbr title="Tailors\PHPUnit\Constraint\TestCase">TestCase</abbr></a> at line 157</div>
         <code>final            protected        <abbr title="PHPUnit\Framework\Constraint\UnaryOperator">UnaryOperator</abbr>
     <strong>wrapWithUnaryOperator</strong>(<abbr title="PHPUnit\Framework\Constraint\Constraint">Constraint</abbr> $constraint, string $operator = &#039;noop&#039;, int $precedence = 1)
         </code>
@@ -841,7 +853,7 @@ message when wrapped with an unary operator.</p></p>
             
 
         <div class="method-description">
-                            <p><p>Returns $constraint wrapped with UnaryOperator mock.</p></p>                        
+                            <p><p>Returns $constraint wrapped with an UnaryOperator.</p></p>                        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>
@@ -892,6 +904,119 @@ message when wrapped with an unary operator.</p></p>
             </tr>
             </table>
 
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method___construct">
+        <div class="location">in <a href="../../../Tailors/PHPUnit/Constraint/TestCase.html#method___construct">
+<abbr title="Tailors\PHPUnit\Constraint\TestCase">TestCase</abbr></a> at line 163</div>
+        <code>                    
+    <strong>__construct</strong>(<abbr title="PHPUnit\Framework\Constraint\Constraint">Constraint</abbr> $constraint, string $operator, int $precedence)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p class="no-description">No description</p>
+                    
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="PHPUnit\Framework\Constraint\Constraint">Constraint</abbr></td>
+                <td>$constraint</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$operator</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$precedence</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_operator">
+        <div class="location">in <a href="../../../Tailors/PHPUnit/Constraint/TestCase.html#method_operator">
+<abbr title="Tailors\PHPUnit\Constraint\TestCase">TestCase</abbr></a> at line 168</div>
+        <code>                    string
+    <strong>operator</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p class="no-description">No description</p>
+                    
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_precedence">
+        <div class="location">in <a href="../../../Tailors/PHPUnit/Constraint/TestCase.html#method_precedence">
+<abbr title="Tailors\PHPUnit\Constraint\TestCase">TestCase</abbr></a> at line 173</div>
+        <code>                    int
+    <strong>precedence</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p class="no-description">No description</p>
+                    
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>int</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
             
             
                     </div>
@@ -1000,7 +1125,7 @@ message when wrapped with an unary operator.</p></p>
                     <div class="method-item">
                     <h3 id="method_provCreateConstraint">
         <div class="location">at line 36</div>
-        <code>                    array
+        <code>        static            array
     <strong>provCreateConstraint</strong>()
         </code>
     </h3>
@@ -1032,7 +1157,7 @@ message when wrapped with an unary operator.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_testCreateConstraint">
-        <div class="location">at line 59</div>
+        <div class="location">at line 58</div>
         <code>final                    void
     <strong>testCreateConstraint</strong>(array $args, array $expect)
         </code>
@@ -1083,10 +1208,6 @@ message when wrapped with an unary operator.</p></p>
                 <td><abbr title="PHPUnit\Framework\ExpectationFailedException">ExpectationFailedException</abbr></td>
                 <td></td>
             </tr>
-                    <tr>
-                <td><abbr title="SebastianBergmann\RecursionContext\InvalidArgumentException">InvalidArgumentException</abbr></td>
-                <td></td>
-            </tr>
             </table>
 
             
@@ -1097,7 +1218,7 @@ message when wrapped with an unary operator.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_testConstraintUnaryOperatorFailure">
-        <div class="location">at line 72</div>
+        <div class="location">at line 70</div>
         <code>final                    void
     <strong>testConstraintUnaryOperatorFailure</strong>()
         </code>
@@ -1141,10 +1262,6 @@ message when wrapped with an unary operator.</p></p>
                 <td><abbr title="PHPUnit\Framework\MockObject\RuntimeException">RuntimeException</abbr></td>
                 <td></td>
             </tr>
-                    <tr>
-                <td><abbr title="SebastianBergmann\RecursionContext\InvalidArgumentException">InvalidArgumentException</abbr></td>
-                <td></td>
-            </tr>
             </table>
 
             
@@ -1155,7 +1272,7 @@ message when wrapped with an unary operator.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_examineValuesMatchSucceeds">
-        <div class="location">at line 88</div>
+        <div class="location">at line 85</div>
         <code>final                    void
     <strong>examineValuesMatchSucceeds</strong>(array $expect, mixed $actual)
         </code>
@@ -1202,10 +1319,6 @@ message when wrapped with an unary operator.</p></p>
                 <td><abbr title="PHPUnit\Framework\ExpectationFailedException">ExpectationFailedException</abbr></td>
                 <td></td>
             </tr>
-                    <tr>
-                <td><abbr title="SebastianBergmann\RecursionContext\InvalidArgumentException">InvalidArgumentException</abbr></td>
-                <td></td>
-            </tr>
             </table>
 
             
@@ -1216,7 +1329,7 @@ message when wrapped with an unary operator.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_examineValuesMatchFails">
-        <div class="location">at line 102</div>
+        <div class="location">at line 98</div>
         <code>final                    void
     <strong>examineValuesMatchFails</strong>(array $expect, mixed $actual, string $string)
         </code>
@@ -1269,10 +1382,6 @@ message when wrapped with an unary operator.</p></p>
                 <td></td>
             </tr>
                     <tr>
-                <td><abbr title="SebastianBergmann\RecursionContext\InvalidArgumentException">InvalidArgumentException</abbr></td>
-                <td></td>
-            </tr>
-                    <tr>
                 <td><a href="../../../Tailors/PHPUnit/CircularDependencyException.html"><abbr title="Tailors\PHPUnit\CircularDependencyException">CircularDependencyException</abbr></a></td>
                 <td></td>
             </tr>
@@ -1286,7 +1395,7 @@ message when wrapped with an unary operator.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_examineNotValuesMatchSucceeds">
-        <div class="location">at line 118</div>
+        <div class="location">at line 113</div>
         <code>final                    void
     <strong>examineNotValuesMatchSucceeds</strong>(array $expect, mixed $actual)
         </code>
@@ -1333,10 +1442,6 @@ message when wrapped with an unary operator.</p></p>
                 <td><abbr title="PHPUnit\Framework\ExpectationFailedException">ExpectationFailedException</abbr></td>
                 <td></td>
             </tr>
-                    <tr>
-                <td><abbr title="SebastianBergmann\RecursionContext\InvalidArgumentException">InvalidArgumentException</abbr></td>
-                <td></td>
-            </tr>
             </table>
 
             
@@ -1347,7 +1452,7 @@ message when wrapped with an unary operator.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_examineNotValuesMatchFails">
-        <div class="location">at line 131</div>
+        <div class="location">at line 125</div>
         <code>final                    void
     <strong>examineNotValuesMatchFails</strong>(array $expect, mixed $actual, string $string)
         </code>
@@ -1399,10 +1504,6 @@ message when wrapped with an unary operator.</p></p>
                 <td><abbr title="PHPUnit\Framework\ExpectationFailedException">ExpectationFailedException</abbr></td>
                 <td></td>
             </tr>
-                    <tr>
-                <td><abbr title="SebastianBergmann\RecursionContext\InvalidArgumentException">InvalidArgumentException</abbr></td>
-                <td></td>
-            </tr>
             </table>
 
             
@@ -1413,7 +1514,7 @@ message when wrapped with an unary operator.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_message">
-        <div class="location">at line 149</div>
+        <div class="location">at line 143</div>
         <code>final        static    protected        string
     <strong>message</strong>(string $export, bool $negative = false)
         </code>
@@ -1463,7 +1564,7 @@ with LogicalNot (true)</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_statement">
-        <div class="location">at line 164</div>
+        <div class="location">at line 158</div>
         <code>final        static    protected        string
     <strong>statement</strong>(string $export, bool $negative = false)
         </code>

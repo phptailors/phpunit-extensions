@@ -237,7 +237,7 @@ The ``$methodSpec`` specifies matching method via its name and modifiers
 
 .. note::
 
-    The constraint only metches a value being an object, class, trait or
+    The constraint only matches a value being an object, class, trait or
     interface. For any other values it always returns false.
 
 The syntax for ``$methodSpec`` string is the following
