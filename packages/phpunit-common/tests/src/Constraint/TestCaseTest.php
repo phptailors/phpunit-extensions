@@ -12,6 +12,7 @@ namespace Tailors\PHPUnit\Constraint;
 
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\IsTrue;
+use PHPUnit\Framework\Constraint\LogicalOr;
 
 /**
  * @small
@@ -26,12 +27,12 @@ final class TestCaseTest extends TestCase
 {
     public static function createConstraint(...$args): Constraint
     {
-        return new IsTrue(...$args);
+        return LogicalOr::fromConstraints(new IsTrue(...$args), new IsTrue(...$args));
     }
 
     public static function getConstraintClass(): string
     {
-        return IsTrue::class;
+        return LogicalOr::class;
     }
 
     public function testCreateConstraint(): void
@@ -42,7 +43,7 @@ final class TestCaseTest extends TestCase
 
     public function testConstraintUnaryOperatorFailure(): void
     {
-        $this->examineConstraintUnaryOperatorFailure([], false, 'Failed asserting that false is true');
+        $this->examineConstraintUnaryOperatorFailure([], false, 'Failed asserting that noop( false is true or is true )');
     }
 
     public function testConstraintMatchSucceeds(): void
@@ -52,7 +53,7 @@ final class TestCaseTest extends TestCase
 
     public function testConstraintMatchFails(): void
     {
-        $this->examineConstraintMatchFails([], false, 'Failed asserting that false is true');
+        $this->examineConstraintMatchFails([], false, 'Failed asserting that false is true or is true.');
     }
 
     public function testNotConstraintMatchSucceeds(): void
@@ -62,7 +63,7 @@ final class TestCaseTest extends TestCase
 
     public function testNotConstraintMatchFails(): void
     {
-        $this->examineNotConstraintMatchFails([], true, 'Failed asserting that true is not true');
+        $this->examineNotConstraintMatchFails([], true, 'Failed asserting that not( true is true or is true )');
     }
 }
 // vim: syntax=php sw=4 ts=4 et:
