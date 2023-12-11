@@ -24,7 +24,6 @@ trait HasMethodTrait
      * @param string     $message
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     abstract public static function assertThat($value, Constraint $constraint, string $message = ''): void;
@@ -40,7 +39,6 @@ trait HasMethodTrait
      *                           Optional failure message
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      * @throws \Tailors\PHPUnit\InvalidArgumentException
      *
      * // due to psalm bug #9151 we can't use this:
@@ -65,7 +63,6 @@ trait HasMethodTrait
      *                           Optional failure message
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertNotHasMethod(

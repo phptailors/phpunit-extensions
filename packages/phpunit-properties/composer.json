@@ -19,7 +19,7 @@
         "nikic/php-parser": "< 4.13.2"
     },
     "require": {
-        "php": ">=7.3",
+        "php": ">=8.1",
         "phptailors/phpunit-common": "*"
     },
     "require-dev": {

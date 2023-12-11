@@ -83,7 +83,6 @@ abstract class AbstractKsortedConstraint extends Constraint implements Comparato
      * @param bool   $returnResult
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      * @throws CircularDependencyException
      */
     final public function evaluate($other, string $description = '', bool $returnResult = false): ?bool

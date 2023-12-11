@@ -44,7 +44,6 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
      *
      * @throws \PHPUnit\Framework\Exception
      * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     final public function examineCreateConstraint(array $args): Constraint
     {
@@ -66,7 +65,6 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
      * @throws \PHPUnit\Framework\ExpectationFailedException
      * @throws \PHPUnit\Framework\MockObject\ReflectionException
      * @throws \PHPUnit\Framework\MockObject\RuntimeException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     final public function examineConstraintUnaryOperatorFailure(array $args, $actual, string $message): void
     {
@@ -89,7 +87,6 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
      * @param mixed $actual actual value
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     final public function examineConstraintMatchSucceeds(array $args, $actual): void
     {
@@ -104,7 +101,6 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
      * @throws \Tailors\PHPUnit\CircularDependencyException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     final public function examineConstraintMatchFails(array $args, $actual, string $message): void
     {
@@ -124,7 +120,6 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
      * @param mixed $actual
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     final public function examineNotConstraintMatchSucceeds(array $args, $actual): void
     {
@@ -138,7 +133,6 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
      * @param string $message
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     final public function examineNotConstraintMatchFails(array $args, $actual, string $message): void
     {
@@ -166,16 +160,8 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         int $precedence = 1
     ): UnaryOperator {
         return new class($constraint, $operator, $precedence) extends UnaryOperator {
-            /** @var string */
-            private $operator;
-
-            /** @var int */
-            private $precedence;
-
-            public function __construct(Constraint $constraint, string $operator, int $precedence)
+            public function __construct(Constraint $constraint, private string $operator, private int $precedence)
             {
-                $this->operator = $operator;
-                $this->precedence = $precedence;
                 parent::__construct($constraint);
             }
 

@@ -17,7 +17,6 @@ class Assert extends \PHPUnit\Framework\Assert
 
 /**
  * @throws \PHPUnit\Framework\ExpectationFailedException
- * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
  * @throws \Tailors\PHPUnit\InvalidArgumentException
  */
 function consume(string $expected, string $actual): string

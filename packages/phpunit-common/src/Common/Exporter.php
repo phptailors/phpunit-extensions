@@ -21,15 +21,9 @@ use SebastianBergmann\RecursionContext\Context;
 final class Exporter
 {
     /**
-     * @psalm-param mixed $value
-     *
      * @psalm-suppress MixedInferredReturnType
-     *
-     * @param mixed $value
-     *
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
-    public static function export($value, bool $exportObjects = false): string
+    public static function export(mixed $value, bool $exportObjects = false): string
     {
         if (class_exists(\PHPUnit\Util\Exporter::class)) {
             /**
@@ -47,14 +41,7 @@ final class Exporter
         return '{enable export of objects to see this value}';
     }
 
-    /**
-     * @psalm-param mixed $value
-     *
-     * @param mixed $value
-     *
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
-     */
-    private static function isExportable(&$value, Context $context = null): bool
+    private static function isExportable(mixed &$value, Context $context = null): bool
     {
         if (is_scalar($value) || null === $value) {
             return true;

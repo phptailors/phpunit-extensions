@@ -142,8 +142,6 @@ abstract class AbstractConstraint extends Constraint
      * @param Operator $operator the $operator of the expression
      * @param mixed    $role     role of $this constraint in the $operator expression
      * @param mixed    $other    evaluated value or object
-     *
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     final protected function failureDescriptionInContext(Operator $operator, $role, $other): string
     {
@@ -160,8 +158,6 @@ abstract class AbstractConstraint extends Constraint
      * Returns short representation of $subject for failureDescription().
      *
      * @param mixed $subject
-     *
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     private function short($subject): string
     {

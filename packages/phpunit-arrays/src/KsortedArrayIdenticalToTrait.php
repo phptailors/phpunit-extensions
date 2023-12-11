@@ -24,7 +24,6 @@ trait KsortedArrayIdenticalToTrait
      * @param string     $message
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     abstract public static function assertThat($value, Constraint $constraint, string $message = ''): void;
 
@@ -36,7 +35,6 @@ trait KsortedArrayIdenticalToTrait
      * @param string $message  ofailure message
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertKsortedArrayIdenticalTo(
@@ -55,7 +53,6 @@ trait KsortedArrayIdenticalToTrait
      * @param string $message  ofailure message
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertNotKsortedArrayIdenticalTo(

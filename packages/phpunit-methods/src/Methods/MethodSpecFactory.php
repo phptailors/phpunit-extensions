@@ -37,7 +37,7 @@ final class MethodSpecFactory implements MethodSpecFactoryInterface
      *
      * @throws MethodSpecSyntaxError
      */
-    public function fromString(string $string): MethodSpecInterface
+    public function fromString(string $string): MethodSpec
     {
         if (preg_match('/^'.self::RE_NAME.'$/', $string, $matches)) {
             /** @psalm-var non-empty-string */

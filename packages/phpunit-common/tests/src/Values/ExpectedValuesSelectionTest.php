@@ -47,23 +47,21 @@ final class ExpectedValuesSelectionTest extends TestCase
 
         return [
             'ExpectedValuesSelectionTest.php:'.__LINE__ => [
-                'args'   => function (ValueSelectorInterface $selector) { return [$selector]; },
+                'args'   => fn (ValueSelectorInterface $selector) => [$selector],
                 'expect' => [
                     'array' => [],
                 ],
             ],
 
             'ExpectedValuesSelectionTest.php:'.__LINE__ => [
-                'args'   => function (ValueSelectorInterface $selector) { return [$selector, ['foo', 'bar']]; },
+                'args'   => fn (ValueSelectorInterface $selector) => [$selector, ['foo', 'bar']],
                 'expect' => [
                     'array' => ['foo', 'bar'],
                 ],
             ],
 
             'ExpectedValuesSelectionTest.php:'.__LINE__ => [
-                'args' => function (ValueSelectorInterface $selector) use ($arrayObject) {
-                    return [$selector, $arrayObject];
-                },
+                'args'   => fn (ValueSelectorInterface $selector) => [$selector, $arrayObject],
                 'expect' => [
                     'array' => ['foo', 'bar'],
                 ],

@@ -172,16 +172,12 @@ final class AbstractConstraintTest extends TestCase
 
         return [
             'AbstractConstraintTest.php:'.__LINE__ => [
-                'operator' => function (TestCase $test) use ($constraint): Operator {
-                    return self::logicalNot($constraint($test));
-                },
-                'expect' => 'fails to be a tree with apples having colors specified',
+                'operator' => fn (TestCase $test): Operator => self::logicalNot($constraint($test)),
+                'expect'   => 'fails to be a tree with apples having colors specified',
             ],
             'AbstractConstraintTest.php:'.__LINE__ => [
-                'operator' => function (TestCase $test) use ($constraint): Operator {
-                    return self::logicalOr($constraint($test));
-                },
-                'expect' => 'is a tree with apples having colors specified',
+                'operator' => fn (TestCase $test): Operator => self::logicalOr($constraint($test)),
+                'expect'   => 'is a tree with apples having colors specified',
             ],
         ];
     }
@@ -198,20 +194,14 @@ final class AbstractConstraintTest extends TestCase
 
     public static function provEvaluate(): array
     {
-        $fooFOO = function (TestCase $test) {
-            return self::createArrayValuesIdentityConstraint($test, ['foo' => 'FOO']);
-        };
-        $gezGEZ = function (TestCase $test) {
-            return self::createArrayValuesIdentityConstraint($test, ['gez' => 'GEZ']);
-        };
+        $fooFOO = fn (TestCase $test) => self::createArrayValuesIdentityConstraint($test, ['foo' => 'FOO']);
+        $gezGEZ = fn (TestCase $test) => self::createArrayValuesIdentityConstraint($test, ['gez' => 'GEZ']);
 
         // an unary constraint, always false
-        $unaryOp = function (TestCase $test) use ($fooFOO) {
-            return $test->getMockBuilder(UnaryOperator::class)
-                ->setConstructorArgs([$fooFOO($test)])
-                ->getMockForAbstractClass()
-            ;
-        };
+        $unaryOp = fn (TestCase $test) => $test->getMockBuilder(UnaryOperator::class)
+            ->setConstructorArgs([$fooFOO($test)])
+            ->getMockForAbstractClass()
+        ;
 
         return [
             'AbstractConstraintTest.php:'.__LINE__ => [
@@ -284,11 +274,9 @@ final class AbstractConstraintTest extends TestCase
             ],
 
             'AbstractConstraintTest.php:'.__LINE__ => [
-                'constraint' => function (TestCase $test) use ($fooFOO): Constraint {
-                    return self::logicalNot($fooFOO($test));
-                },
-                'args'   => [['foo' => 'FOO', 'bar' => 'BAR']],
-                'expect' => [
+                'constraint' => fn (TestCase $test): Constraint => self::logicalNot($fooFOO($test)),
+                'args'       => [['foo' => 'FOO', 'bar' => 'BAR']],
+                'expect'     => [
                     'exception' => ExpectationFailedException::class,
                     'message'   => 'array fails to be an array or ArrayAccess with values identical to specified',
                 ],

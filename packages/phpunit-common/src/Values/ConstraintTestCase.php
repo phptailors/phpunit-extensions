@@ -52,7 +52,6 @@ abstract class ConstraintTestCase extends TestCase
      *
      * @throws \PHPUnit\Framework\Exception
      * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      *
      * @psalm-param array{values:\PHPUnit\Framework\Constraint\Constraint} $expect
      */
@@ -67,7 +66,6 @@ abstract class ConstraintTestCase extends TestCase
      * @throws \PHPUnit\Framework\ExpectationFailedException
      * @throws \PHPUnit\Framework\MockObject\ReflectionException
      * @throws \PHPUnit\Framework\MockObject\RuntimeException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     final public function testConstraintUnaryOperatorFailure(): void
     {
@@ -83,7 +81,6 @@ abstract class ConstraintTestCase extends TestCase
      * @param mixed $actual
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     final public function examineValuesMatchSucceeds(array $expect, $actual): void
     {
@@ -96,7 +93,6 @@ abstract class ConstraintTestCase extends TestCase
      * @param string $string
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      * @throws \Tailors\PHPUnit\CircularDependencyException
      */
     final public function examineValuesMatchFails(array $expect, $actual, string $string): void
@@ -113,7 +109,6 @@ abstract class ConstraintTestCase extends TestCase
      * @param mixed $actual
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     final public function examineNotValuesMatchSucceeds(array $expect, $actual): void
     {
@@ -126,7 +121,6 @@ abstract class ConstraintTestCase extends TestCase
      * @param string $string
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     final public function examineNotValuesMatchFails(array $expect, $actual, string $string): void
     {

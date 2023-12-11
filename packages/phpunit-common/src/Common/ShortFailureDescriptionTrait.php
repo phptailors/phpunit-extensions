@@ -31,8 +31,6 @@ trait ShortFailureDescriptionTrait
      * cases. This method should return the second part of that sentence.
      *
      * @param mixed $other evaluated value or object
-     *
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     final public function failureDescription($other): string
     {
@@ -54,8 +52,6 @@ trait ShortFailureDescriptionTrait
      * @param Operator $operator the $operator of the expression
      * @param mixed    $role     role of $this constraint in the $operator expression
      * @param mixed    $other    evaluated value or object
-     *
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     final public function failureDescriptionInContext(Operator $operator, $role, $other): string
     {
@@ -89,8 +85,6 @@ trait ShortFailureDescriptionTrait
      * Returns short representation of $subject for failureDescription().
      *
      * @param mixed $subject
-     *
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     private function short($subject, bool $exportObjects = false): string
     {

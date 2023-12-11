@@ -24,7 +24,6 @@ trait UsesTraitTrait
      * @param string     $message
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     abstract public static function assertThat($value, Constraint $constraint, string $message = ''): void;
 
@@ -36,7 +35,6 @@ trait UsesTraitTrait
      * @param string $message custom message
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertUsesTrait(string $trait, $subject, string $message = ''): void
@@ -52,7 +50,6 @@ trait UsesTraitTrait
      * @param string $message custom message
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertNotUsesTrait(string $trait, $subject, string $message = ''): void

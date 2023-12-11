@@ -96,7 +96,6 @@ final class HasPregCaptures extends Constraint
      * @param bool   $returnResult
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     public function evaluate($other, string $description = '', bool $returnResult = false): ?bool
     {

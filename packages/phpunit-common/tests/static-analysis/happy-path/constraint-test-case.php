@@ -17,7 +17,6 @@ use Tailors\PHPUnit\Constraint\TestCase;
  * @throws \PHPUnit\Framework\ExpectationFailedException
  * @throws \PHPUnit\Framework\MockObject\ReflectionException
  * @throws \PHPUnit\Framework\MockObject\RuntimeException
- * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
  * @throws \Tailors\PHPUnit\CircularDependencyException
  * @throws \Tailors\PHPUnit\InvalidArgumentException
  */

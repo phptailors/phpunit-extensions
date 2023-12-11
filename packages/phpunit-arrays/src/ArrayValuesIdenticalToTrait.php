@@ -24,7 +24,6 @@ trait ArrayValuesIdenticalToTrait
      * @param string     $message
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     abstract public static function assertThat($value, Constraint $constraint, string $message = ''): void;
 
@@ -36,7 +35,6 @@ trait ArrayValuesIdenticalToTrait
      * @param string $message  optional failure message
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertArrayValuesIdenticalTo(
@@ -55,7 +53,6 @@ trait ArrayValuesIdenticalToTrait
      * @param string $message  optional failure message
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertNotArrayValuesIdenticalTo(
