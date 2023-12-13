@@ -4,7 +4,7 @@ set -e
 
 help() {
     cat <<'!'
-Usage: update-sphinx-examples.sh [OPTIONS]
+Usage: update-sphinx-examples.sh [OPTIONS] [--all | EXAMPLE1 [ EXAMPLE2 ...]]
 
     Run examples under docs/sphinx/examples and store their outputs in an
     output directory. The output directory is determined automatically and
@@ -12,6 +12,10 @@ Usage: update-sphinx-examples.sh [OPTIONS]
     ('phpunit/phpunit', 'sebastian/exporter', ...).
 
 Options:
+
+  --all
+
+        Update all examples, instead of specific ones.
 
   --php EXE
 
@@ -28,7 +32,7 @@ Options:
 
 Example:
 
-        util/update-sphinx-examples.sh /usr/bin/php8.1
+        util/update-sphinx-examples.sh --php /usr/bin/php8.1 --all
 
 !
 }
@@ -38,11 +42,12 @@ here="`dirname $0`";
 top="$here/..";
 abstop="`readlink -f $top`";
 
-if ! options=$(getopt -o h -l php:,tests,help -- "$@"); then
+if ! options=$(getopt -o h -l php:,tests,all,help -- "$@"); then
   exit 1
 fi
 
 opt_php=
+opt_all=false
 opt_tests=false
 
 while [ $# -gt 0 ]; do
@@ -51,6 +56,8 @@ while [ $# -gt 0 ]; do
       opt_php="$2"; shift 2;;
     --tests)
       opt_tests=true; shift;;
+    --all)
+      opt_all=true; shift;;
     -h|--help)
       help; exit 0;;
     --)
@@ -78,9 +85,20 @@ else
     php_exe='php'
 fi
 
-if ! [ $# -eq 0 ]; then
+if ! $opt_all && [ $# -lt 1 ]; then
+  echo "" >&2
+  echo "error: you must either specify a list of examples or use '--all'" >&2
+  echo "" >&2
   help >&2;
   exit 1
+fi
+
+if $opt_all; then
+    pushd "$top/docs" > /dev/null
+        readarray -d '' examples < <(find sphinx/examples -name "*Test.php" -print0)
+    popd > /dev/null
+else
+    readarray -t examples < <(readlink -f "$@" | xargs -I{} realpath --relative-to="$top/docs" '{}')
 fi
 
 pushd $top/docs > /dev/null
