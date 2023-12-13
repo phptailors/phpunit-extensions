@@ -7,9 +7,11 @@ help() {
 Usage: update-sphinx-examples.sh [OPTIONS] [--all | EXAMPLE1 [ EXAMPLE2 ...]]
 
     Run examples under docs/sphinx/examples and store their outputs in an
-    output directory. The output directory is determined automatically and
-    it depends on versions of PHP used and certain composer packages installed
-    ('phpunit/phpunit', 'sebastian/exporter', ...).
+    output directory. The default output directory is docs/sphinx/examples.
+    If the --tests flag is specified, then the output directory changes to
+    docs/sphinx/_output/{slug}, where {slug} depends on current version of PHP
+    and other packages installed with composer ('phpunit/phpunit',
+    'sebastian/exporter', ...).
 
 Options:
 
