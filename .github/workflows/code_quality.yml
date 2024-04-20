@@ -17,7 +17,7 @@ jobs:
       - name: Instal PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: "8.2"
+          php-version: "8.3"
           coverage: none
 
       - name: Update dependencies with composer
@@ -35,8 +35,8 @@ jobs:
       fail-fast: false
       matrix:
         php-version:
-          - "8.1"
           - "8.2"
+          - "8.3"
         dependencies:
           - lowest
           - highest
@@ -57,7 +57,7 @@ jobs:
         run: composer update --no-interaction --no-progress --ansi
 
       - if: matrix.dependencies == 'lowest'
-        run: composer update --no-interaction --no-progress --ansi --prefer-lowest --with='sebastian/recursion-context:5.0.0'
+        run: composer update --no-interaction --no-progress --ansi --prefer-lowest
 
       - name: Install psalm with composer
         run: composer bin psalm update --no-interaction --ansi --no-progress

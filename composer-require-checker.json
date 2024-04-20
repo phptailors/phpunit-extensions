@@ -17,6 +17,7 @@
     "object",
     "apcu_add",
     "apcu_fetch",
+    "PHPUnit\\Framework\\Attributes\\DataProvider",
     "PHPUnit\\Framework\\Constraint\\Constraint",
     "PHPUnit\\Framework\\Constraint\\LogicalNot",
     "PHPUnit\\Framework\\Constraint\\Operator",

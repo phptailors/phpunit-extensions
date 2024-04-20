@@ -10,17 +10,20 @@
 
 namespace Tailors\PHPUnit\Methods;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Methods\MethodSpecFactory
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @coversNothing
  */
+#[CoversClass(MethodSpecFactory::class)]
 final class MethodSpecFactoryTest extends TestCase
 {
     public const IS_STATIC = MethodSpec::IS_STATIC;
@@ -137,9 +140,7 @@ final class MethodSpecFactoryTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider provFromString
-     */
+    #[DataProvider('provFromString')]
     public function testFromString(string $string, array $expect): void
     {
         $factory = new MethodSpecFactory();
@@ -277,9 +278,7 @@ final class MethodSpecFactoryTest extends TestCase
         yield ['abstract static final function foo', 'final function foo'];
     }
 
-    /**
-     * @dataProvider provFromStringSyntaxError
-     */
+    #[DataProvider('provFromStringSyntaxError')]
     public function testFromStringSyntaxError(string $string, string $at): void
     {
         $factory = new MethodSpecFactory();

@@ -10,20 +10,24 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Constraint\Constraint;
+use Tailors\PHPUnit\Values\ConstraintTestCase;
 
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Constraint\ClassPropertiesIdenticalTo
- * @covers \Tailors\PHPUnit\Constraint\PropertiesConstraintTestCase
- * @covers \Tailors\PHPUnit\Constraint\ProvClassPropertiesTrait
- * @covers \Tailors\PHPUnit\Values\ConstraintTestCase
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @coversNothing
  */
+#[CoversClass(ClassPropertiesIdenticalTo::class)]
+#[CoversClass(PropertiesConstraintTestCase::class)]
+#[CoversClass(ProvClassPropertiesTrait::class)]
+#[CoversClass(ConstraintTestCase::class)]
 final class ClassPropertiesIdenticalToTest extends PropertiesConstraintTestCase
 {
     use ProvClassPropertiesTrait;
@@ -54,44 +58,40 @@ final class ClassPropertiesIdenticalToTest extends PropertiesConstraintTestCase
     }
 
     /**
-     * @dataProvider provClassPropertiesIdenticalTo
-     *
      * @param mixed $actual
      */
-    public function testClassPropertiesIdenticalToSucceeds(array $expect, $actual): void
+    #[DataProvider('provClassPropertiesIdenticalTo')]
+    public function testClassPropertiesIdenticalToSucceeds(array $expect, $actual, string $string): void
     {
         parent::examineValuesMatchSucceeds($expect, $actual);
     }
 
     /**
-     * @dataProvider provClassPropertiesNotEqualTo
-     * @dataProvider provClassPropertiesNotEqualToNonClass
-     * @dataProvider provClassPropertiesEqualButNotIdenticalTo
-     *
      * @param mixed $actual
      */
+    #[DataProvider('provClassPropertiesNotEqualTo')]
+    #[DataProvider('provClassPropertiesNotEqualToNonClass')]
+    #[DataProvider('provClassPropertiesEqualButNotIdenticalTo')]
     public function testClassPropertiesIdenticalToFails(array $expect, $actual, string $string): void
     {
         parent::examineValuesMatchFails($expect, $actual, $string);
     }
 
     /**
-     * @dataProvider provClassPropertiesNotEqualTo
-     * @dataProvider provClassPropertiesNotEqualToNonClass
-     * @dataProvider provClassPropertiesEqualButNotIdenticalTo
-     *
      * @param mixed $actual
      */
-    public function testNotClassPropertiesIdenticalToSucceeds(array $expect, $actual): void
+    #[DataProvider('provClassPropertiesNotEqualTo')]
+    #[DataProvider('provClassPropertiesNotEqualToNonClass')]
+    #[DataProvider('provClassPropertiesEqualButNotIdenticalTo')]
+    public function testNotClassPropertiesIdenticalToSucceeds(array $expect, $actual, string $string): void
     {
         parent::examineNotValuesMatchSucceeds($expect, $actual);
     }
 
     /**
-     * @dataProvider provClassPropertiesIdenticalTo
-     *
      * @param mixed $actual
      */
+    #[DataProvider('provClassPropertiesIdenticalTo')]
     public function testNotClassPropertiesIdenticalToFails(array $expect, $actual, string $string): void
     {
         parent::examineNotValuesMatchFails($expect, $actual, $string);

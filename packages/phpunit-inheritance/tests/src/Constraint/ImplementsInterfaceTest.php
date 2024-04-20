@@ -10,23 +10,28 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Examples\Inheritance\ExampleTrait;
+use Tailors\PHPUnit\Inheritance\AbstractConstraint;
+use Tailors\PHPUnit\Inheritance\ConstraintImplementationTrait;
 use Tailors\PHPUnit\InvalidArgumentException;
 
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Constraint\ImplementsInterface
- * @covers \Tailors\PHPUnit\Constraint\InheritanceConstraintTestTrait
- * @covers \Tailors\PHPUnit\Inheritance\AbstractConstraint
- * @covers \Tailors\PHPUnit\Inheritance\ConstraintImplementationTrait
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @coversNothing
  */
+#[CoversClass(ImplementsInterface::class)]
+#[CoversClass(InheritanceConstraintTestTrait::class)]
+#[CoversClass(AbstractConstraint::class)]
+#[CoversClass(ConstraintImplementationTrait::class)]
 final class ImplementsInterfaceTest extends TestCase
 {
     use InheritanceConstraintTestTrait;
@@ -137,26 +142,25 @@ final class ImplementsInterfaceTest extends TestCase
         return [
             'ImplementsInterfaceTest.php:'.__LINE__ => [
                 'argument' => 'non-interface string',
-                'messsage' => $message,
+                'message'  => $message,
             ],
 
             'ImplementsInterfaceTest.php:'.__LINE__ => [
                 'argument' => \Exception::class,
-                'messsage' => $message,
+                'message'  => $message,
             ],
 
             'ImplementsInterfaceTest.php:'.__LINE__ => [
                 'argument' => ExampleTrait::class,
-                'messsage' => $message,
+                'message'  => $message,
             ],
         ];
     }
 
     /**
-     * @dataProvider provImplementsInterface
-     *
      * @param mixed $subject
      */
+    #[DataProvider('provImplementsInterface')]
     public function testConstraintSucceeds(string $interface, $subject): void
     {
         $constraint = ImplementsInterface::create($interface);
@@ -165,10 +169,9 @@ final class ImplementsInterfaceTest extends TestCase
     }
 
     /**
-     * @dataProvider provNotImplementsInterface
-     *
      * @param mixed $subject
      */
+    #[DataProvider('provNotImplementsInterface')]
     public function testConstraintFails(string $interface, $subject, string $message): void
     {
         $constraint = ImplementsInterface::create($interface);
@@ -179,9 +182,7 @@ final class ImplementsInterfaceTest extends TestCase
         $constraint->evaluate($subject);
     }
 
-    /**
-     * @dataProvider provConstraintThrowsInvalidArgumentException
-     */
+    #[DataProvider('provConstraintThrowsInvalidArgumentException')]
     public function testConstraintThrowsInvalidArgumentException(string $argument, string $message): void
     {
         self::expectException(InvalidArgumentException::class);

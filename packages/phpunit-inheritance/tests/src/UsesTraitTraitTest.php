@@ -10,6 +10,8 @@
 
 namespace Tailors\PHPUnit;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Constraint\UsesTrait;
@@ -21,12 +23,13 @@ use Tailors\PHPUnit\Examples\Inheritance\ExampleTraitUsingTrait;
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\UsesTraitTrait
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @coversNothing
  */
+#[CoversClass(UsesTraitTrait::class)]
 final class UsesTraitTraitTest extends TestCase
 {
     use UsesTraitTrait;
@@ -83,20 +86,18 @@ final class UsesTraitTraitTest extends TestCase
     }
 
     /**
-     * @dataProvider provUsesTrait
-     *
      * @param mixed $subject
      */
-    public function testAssertUsesTraitSucceeds(string $trait, $subject): void
+    #[DataProvider('provUsesTrait')]
+    public function testAssertUsesTraitSucceeds(string $trait, $subject, string $message): void
     {
         self::assertUsesTrait($trait, $subject);
     }
 
     /**
-     * @dataProvider provNotUsesTrait
-     *
      * @param mixed $subject
      */
+    #[DataProvider('provNotUsesTrait')]
     public function testAssertUsesTraitFails(string $trait, $subject, string $message): void
     {
         self::expectException(ExpectationFailedException::class);
@@ -106,20 +107,18 @@ final class UsesTraitTraitTest extends TestCase
     }
 
     /**
-     * @dataProvider provNotUsesTrait
-     *
      * @param mixed $subject
      */
-    public function testAssertNotUsesTraitSucceeds(string $trait, $subject): void
+    #[DataProvider('provNotUsesTrait')]
+    public function testAssertNotUsesTraitSucceeds(string $trait, $subject, string $message): void
     {
         self::assertNotUsesTrait($trait, $subject);
     }
 
     /**
-     * @dataProvider provUsesTrait
-     *
      * @param mixed $subject
      */
+    #[DataProvider('provUsesTrait')]
     public function testAssertNotUsesTraitFails(string $trait, $subject, string $message): void
     {
         self::expectException(ExpectationFailedException::class);
@@ -129,21 +128,19 @@ final class UsesTraitTraitTest extends TestCase
     }
 
     /**
-     * @dataProvider provUsesTrait
-     *
      * @param mixed $subject
      */
-    public function testUsesTrait(string $trait, $subject): void
+    #[DataProvider('provUsesTrait')]
+    public function testUsesTrait(string $trait, $subject, string $message): void
     {
         self::assertThat($subject, self::usesTrait($trait));
     }
 
     /**
-     * @dataProvider provNotUsesTrait
-     *
      * @param mixed $subject
      */
-    public function testNotUsesTrait(string $trait, $subject): void
+    #[DataProvider('provNotUsesTrait')]
+    public function testNotUsesTrait(string $trait, $subject, string $message): void
     {
         self::assertThat($subject, self::logicalNot(self::usesTrait($trait)));
     }
@@ -170,9 +167,7 @@ final class UsesTraitTraitTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider provUsesTraitThrowsInvalidArgumentException
-     */
+    #[DataProvider('provUsesTraitThrowsInvalidArgumentException')]
     public function testUsesTraitThrowsInvalidArgumentException(string $argument, string $message): void
     {
         self::expectException(InvalidArgumentException::class);

@@ -10,6 +10,8 @@
 
 namespace Tailors\PHPUnit\Inheritance;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\InvalidReturnValueException;
 
@@ -107,17 +109,16 @@ final class FaultyConstraint2 extends AbstractConstraint
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Inheritance\ConstraintImplementationTrait
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @coversNothing
  */
+#[CoversClass(ConstraintImplementationTrait::class)]
 final class ConstraintImplementationTraitTest extends TestCase
 {
-    /**
-     * @runInSeparateProcess
-     */
+    #[RunInSeparateProcess]
     public function testInheritanceThrowsInvalidReturnValueException(): void
     {
         $constraint = FaultyConstraint1::create('stdClass');
@@ -133,9 +134,7 @@ final class ConstraintImplementationTraitTest extends TestCase
         $constraint->inheritance('');
     }
 
-    /**
-     * @runInSeparateProcess
-     */
+    #[RunInSeparateProcess]
     public function testInheritanceThrowsInvalidReturnValueException2(): void
     {
         $constraint = FaultyConstraint2::create('stdClass');

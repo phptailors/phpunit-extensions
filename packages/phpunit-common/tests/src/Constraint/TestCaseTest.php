@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\IsTrue;
 use PHPUnit\Framework\Constraint\LogicalOr;
@@ -17,12 +18,13 @@ use PHPUnit\Framework\Constraint\LogicalOr;
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Constraint\TestCase
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @coversNothing
  */
+#[CoversClass(TestCase::class)]
 final class TestCaseTest extends TestCase
 {
     public static function createConstraint(...$args): Constraint

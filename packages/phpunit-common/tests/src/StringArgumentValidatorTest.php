@@ -10,17 +10,19 @@
 
 namespace Tailors\PHPUnit;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\StringArgumentValidator
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @coversNothing
  */
+#[CoversClass(StringArgumentValidator::class)]
 final class StringArgumentValidatorTest extends TestCase
 {
     public function testValidateSucceeds(): void

@@ -10,17 +10,22 @@
 
 namespace Tailors\PHPUnit\Methods;
 
+use Closure;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
+use ReflectionMethod;
 
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Methods\MethodSpec
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @coversNothing
  */
+#[CoversClass(MethodSpec::class)]
 final class MethodSpecTest extends TestCase
 {
     public const IS_STATIC = MethodSpec::IS_STATIC;
@@ -177,9 +182,7 @@ final class MethodSpecTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider provConstructor
-     */
+    #[DataProvider('provConstructor')]
     public function testConstructor(array $args, array $expect): void
     {
         $spec = new MethodSpec(...$args);
@@ -191,11 +194,7 @@ final class MethodSpecTest extends TestCase
     }
 
     /**
-     * @psalm-return iterable<array-key,array{
-     *  0: array{0:non-empty-string, 1?:?bool, 2?:?int, 3?:?bool, 4?:?bool},
-     *  1: \Closure(TestCase):\ReflectionMethod,
-     *  2: bool
-     * }>
+     * @psalm-return iterable<array-key, array{0: array{0: non-empty-string, 1?: ?bool, 2?: ?int, 3?: ?bool, 4?: ?bool}, 1: Closure(TestCase):ReflectionMethod, 2: bool}>
      */
     public static function provMatches(): iterable
     {
@@ -284,10 +283,9 @@ final class MethodSpecTest extends TestCase
     }
 
     /**
-     * @dataProvider provMatches
-     *
      * @param \Closure(TestCase):mixed $method
      */
+    #[DataProvider('provMatches')]
     public function testMatches(array $args, \Closure $method, bool $expect): void
     {
         $spec = new MethodSpec(...$args);
@@ -370,9 +368,7 @@ final class MethodSpecTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider provToString
-     */
+    #[DataProvider('provToString')]
     public function testToString(array $args, string $expect): void
     {
         $spec = new MethodSpec(...$args);
@@ -381,8 +377,7 @@ final class MethodSpecTest extends TestCase
 
     private static function makeMethod(TestCase $test, string $name, int $modifiers = self::IS_PUBLIC)
     {
-        $stub = $test->getMockBuilder(\stdClass::class)
-            ->addMethods([$name])
+        $stub = $test->getMockBuilder(DummyClassWithMethodFoo::class)
             ->getMock()
         ;
         $stub->expects($test->any())

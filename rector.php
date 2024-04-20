@@ -9,5 +9,7 @@ return RectorConfig::configure()
         __DIR__.'/packages/*/tests/src/',
     ])
     ->withRules([
+        CoversAnnotationWithValueToAttributeRector::class,
+        DataProviderAnnotationToAttributeRector::class,
     ])
 ;

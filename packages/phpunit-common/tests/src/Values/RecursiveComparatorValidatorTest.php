@@ -10,6 +10,8 @@
 
 namespace Tailors\PHPUnit\Values;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
@@ -21,12 +23,13 @@ use Tailors\PHPUnit\InvalidArgumentException;
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Values\RecursiveComparatorValidator
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @coversNothing
  */
+#[CoversClass(RecursiveComparatorValidator::class)]
 final class RecursiveComparatorValidatorTest extends TestCase
 {
     public static function createSelectionMock(TestCase $test, array $array): MockObject
@@ -252,9 +255,8 @@ final class RecursiveComparatorValidatorTest extends TestCase
 
     /**
      * @param \Closure(TestCase):array $args
-     *
-     * @dataProvider provValidate
      */
+    #[DataProvider('provValidate')]
     public function testValidate(ComparatorInterface $comparator, \Closure $args, array $expect = []): void
     {
         $validator = new RecursiveComparatorValidator($comparator);

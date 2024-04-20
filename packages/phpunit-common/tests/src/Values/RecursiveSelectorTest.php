@@ -10,17 +10,20 @@
 
 namespace Tailors\PHPUnit\Values;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Values\RecursiveSelector
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @coversNothing
  */
+#[CoversClass(RecursiveSelector::class)]
 final class RecursiveSelectorTest extends TestCase
 {
     public const UNIQUE_TAG = RecursiveUnwrapper::UNIQUE_TAG;
@@ -292,11 +295,10 @@ final class RecursiveSelectorTest extends TestCase
     }
 
     /**
-     * @dataProvider provSelectProperties
-     *
      * @param \Closure(TestCase):ExpectedValuesSelection $selection
      * @param mixed                                      $subject
      */
+    #[DataProvider('provSelectProperties')]
     public function testSelectProperties(\Closure $selection, $subject, array $expect): void
     {
         $selector = new RecursiveSelector($selection($this));

@@ -37,16 +37,14 @@
     },
     "require": {
         "ext-mbstring": "*",
-        "php": ">=8.1"
+        "php": ">=8.2"
     },
     "license": "MIT",
     "require-dev": {
         "bamarni/composer-bin-plugin": "^1.8",
         "composer/semver": "^3.0",
-        "phpunit/phpunit": "^9.5.5 || ^10",
-        "sebastian/cli-parser": ">=1.0",
-        "sebastian/exporter": "^4 || ^5",
-        "sebastian/recursion-context": "^4 || ^5"
+        "phpunit/phpunit": "^11.0.1",
+        "sebastian/cli-parser": ">=1.0"
     },
     "extra": {
         "bamarni-bin": {

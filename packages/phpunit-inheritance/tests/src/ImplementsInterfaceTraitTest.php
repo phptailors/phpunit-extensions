@@ -10,6 +10,8 @@
 
 namespace Tailors\PHPUnit;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Constraint\ImplementsInterface;
@@ -18,12 +20,13 @@ use Tailors\PHPUnit\Examples\Inheritance\ExampleTrait;
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\ImplementsInterfaceTrait
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @coversNothing
  */
+#[CoversClass(ImplementsInterfaceTrait::class)]
 final class ImplementsInterfaceTraitTest extends TestCase
 {
     use ImplementsInterfaceTrait;
@@ -80,20 +83,18 @@ final class ImplementsInterfaceTraitTest extends TestCase
     }
 
     /**
-     * @dataProvider provImplementsInterface
-     *
      * @param object|string $subject
      */
-    public function testAssertImplementsInterfaceSucceeds(string $interface, $subject): void
+    #[DataProvider('provImplementsInterface')]
+    public function testAssertImplementsInterfaceSucceeds(string $interface, $subject, string $message): void
     {
         self::assertImplementsInterface($interface, $subject);
     }
 
     /**
-     * @dataProvider provNotImplementsInterface
-     *
      * @param mixed $subject
      */
+    #[DataProvider('provNotImplementsInterface')]
     public function testAssertImplementsInterfaceFails(string $interface, $subject, string $message): void
     {
         self::expectException(ExpectationFailedException::class);
@@ -103,20 +104,18 @@ final class ImplementsInterfaceTraitTest extends TestCase
     }
 
     /**
-     * @dataProvider provNotImplementsInterface
-     *
      * @param mixed $subject
      */
-    public function testAssertNotImplementsInterfaceSucceeds(string $interface, $subject): void
+    #[DataProvider('provNotImplementsInterface')]
+    public function testAssertNotImplementsInterfaceSucceeds(string $interface, $subject, string $message): void
     {
         self::assertNotImplementsInterface($interface, $subject);
     }
 
     /**
-     * @dataProvider provImplementsInterface
-     *
      * @param mixed $subject
      */
+    #[DataProvider('provImplementsInterface')]
     public function testAssertNotImplementsInterfaceFails(string $interface, $subject, string $message): void
     {
         self::expectException(ExpectationFailedException::class);
@@ -126,11 +125,10 @@ final class ImplementsInterfaceTraitTest extends TestCase
     }
 
     /**
-     * @dataProvider provNotImplementsInterface
-     *
      * @param mixed $subject
      */
-    public function testImplementsInterfaceFails(string $interface, $subject): void
+    #[DataProvider('provNotImplementsInterface')]
+    public function testImplementsInterfaceFails(string $interface, $subject, string $message): void
     {
         self::assertThat($subject, self::logicalNot(self::implementsInterface($interface)));
     }
@@ -157,9 +155,7 @@ final class ImplementsInterfaceTraitTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider provImplementsInterfaceThrowsInvalidArgumentException
-     */
+    #[DataProvider('provImplementsInterfaceThrowsInvalidArgumentException')]
     public function testImplementsInterfaceThrowsInvalidArgumentException(string $argument, string $message): void
     {
         self::expectException(InvalidArgumentException::class);

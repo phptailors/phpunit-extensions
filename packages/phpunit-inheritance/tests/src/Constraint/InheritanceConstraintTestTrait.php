@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\LogicalNot;
 use PHPUnit\Framework\Constraint\UnaryOperator;
@@ -33,32 +34,29 @@ trait InheritanceConstraintTestTrait
 
     abstract public function getMockBuilder(string $className): MockBuilder;
 
-    abstract public static function any(): AnyInvokedCount;
+    abstract public function any(): AnyInvokedCount;
 
     abstract public static function assertThat($value, Constraint $constraint, string $message = ''): void;
 
     abstract public static function logicalNot(Constraint $constraint): LogicalNot;
 
     /**
-     * @dataProvider provFailureDescriptionOfCustomUnaryOperator
-     *
      * @param mixed $subject
      */
+    #[DataProvider('provFailureDescriptionOfCustomUnaryOperator')]
     public function testFailureDescriptionOfCustomUnaryOperator(Constraint $constraint, $subject, array $expect): void
     {
-        $noop = $this->getMockBuilder(UnaryOperator::class)
-            ->setConstructorArgs([$constraint])
-            ->getMockForAbstractClass()
-        ;
+        $noop = new class($constraint) extends UnaryOperator {
+            public function operator(): string
+            {
+                return 'noop';
+            }
 
-        $noop->expects(self::any())
-            ->method('operator')
-            ->willReturn('noop')
-        ;
-        $noop->expects(self::any())
-            ->method('precedence')
-            ->willReturn(1)
-        ;
+            public function precedence(): int
+            {
+                return 1;
+            }
+        };
 
         $regexp = '/Iterator implements interface Throwable/';
 
@@ -73,10 +71,9 @@ trait InheritanceConstraintTestTrait
     // @codeCoverageIgnoreEnd
 
     /**
-     * @dataProvider provFailureDescriptionOfLogicalNotOperator
-     *
      * @param mixed $subject
      */
+    #[DataProvider('provFailureDescriptionOfLogicalNotOperator')]
     public function testFailureDescriptionOfLogicalNotOperator(Constraint $constraint, $subject, array $expect): void
     {
         $not = self::logicalNot($constraint);

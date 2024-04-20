@@ -29,7 +29,9 @@ use Tailors\PHPUnit\Values\ConstraintTestCase;
  */
 function consume(ConstraintTestCase $test): ConstraintTestCase
 {
-    $test->provCreateConstraint();
+    if ([] === $test->provCreateConstraint()) {
+        return $test;
+    }
     $test->testCreateConstraint([], ['values' => TestCase::identicalTo([])]);
 
     $test->testConstraintUnaryOperatorFailure();

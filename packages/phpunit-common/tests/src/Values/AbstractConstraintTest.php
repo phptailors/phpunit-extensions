@@ -10,6 +10,8 @@
 
 namespace Tailors\PHPUnit\Values;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\Operator;
 use PHPUnit\Framework\Constraint\UnaryOperator;
@@ -22,15 +24,16 @@ use Tailors\PHPUnit\Comparator\IdentityComparator;
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Values\AbstractConstraint
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @coversNothing
  */
+#[CoversClass(AbstractConstraint::class)]
 final class AbstractConstraintTest extends TestCase
 {
-    public static function createConstraintMock(
+    public static function createDummyConstraint(
         TestCase $test,
         ?ComparatorInterface $comparator = null,
         ?SelectionInterface $expected = null,
@@ -48,23 +51,12 @@ final class AbstractConstraintTest extends TestCase
             $unwrapper = $test->createMock(RecursiveUnwrapperInterface::class);
         }
 
-        $mock = $test->getMockBuilder(AbstractConstraint::class)
-            ->disableOriginalConstructor()
-            ->getMockForAbstractClass()
-        ;
-
-        // AbstractConstraint::__construct() is protected, but we need it
-        $class = new \ReflectionClass(AbstractConstraint::class);
-        $construct = $class->getMethod('__construct');
-        $construct->setAccessible(true);
-        $construct->invokeArgs($mock, [$comparator, $expected, $unwrapper]);
-
-        return $mock;
+        return DummyAbstractConstraint::create($comparator, $expected, $unwrapper);
     }
 
     public static function createArrayValuesIdentityConstraint(TestCase $test, array $expected)
     {
-        return self::createConstraintMock(
+        return self::createDummyConstraint(
             $test,
             new IdentityComparator(),
             new ExpectedValuesSelection(new ArrayValueSelector(), $expected),
@@ -80,19 +72,19 @@ final class AbstractConstraintTest extends TestCase
 
     public function testExtendsConstraint(): void
     {
-        $constraint = self::createConstraintMock($this);
+        $constraint = self::createDummyConstraint($this);
         $this->assertInstanceOf(Constraint::class, $constraint);
     }
 
     public function testImplementsComparatorWrapperInterface(): void
     {
-        $constraint = self::createConstraintMock($this);
+        $constraint = self::createDummyConstraint($this);
         $this->assertInstanceOf(ComparatorWrapperInterface::class, $constraint);
     }
 
     public function testImplementsSelectionWrapperInterface(): void
     {
-        $constraint = self::createConstraintMock($this);
+        $constraint = self::createDummyConstraint($this);
         $this->assertInstanceOf(SelectionWrapperInterface::class, $constraint);
     }
 
@@ -101,7 +93,7 @@ final class AbstractConstraintTest extends TestCase
         $comparator = $this->createMock(ComparatorInterface::class);
         $expected = $this->createMock(SelectionInterface::class);
 
-        $constraint = self::createConstraintMock($this, $comparator, $expected);
+        $constraint = self::createDummyConstraint($this, $comparator, $expected);
 
         $this->assertSame($comparator, $constraint->getComparator());
         $this->assertSame($expected, $constraint->getSelection());
@@ -134,7 +126,7 @@ final class AbstractConstraintTest extends TestCase
             ->willReturn('having colors')
         ;
 
-        $constraint = self::createConstraintMock($this, $comparator, $expected);
+        $constraint = self::createDummyConstraint($this, $comparator, $expected);
 
         $this->assertSame('is a tree with apples having colors specified', $constraint->toString());
     }
@@ -167,7 +159,7 @@ final class AbstractConstraintTest extends TestCase
                 ->willReturn('having colors')
             ;
 
-            return static::createConstraintMock($test, $comparator, $expected);
+            return static::createDummyConstraint($test, $comparator, $expected);
         };
 
         return [
@@ -184,9 +176,8 @@ final class AbstractConstraintTest extends TestCase
 
     /**
      * @param \Closure(TestCase $test): Operator
-     *
-     * @dataProvider provToStringInContext
      */
+    #[DataProvider('provToStringInContext')]
     public function testToStringInContext(\Closure $operator, string $expect): void
     {
         $this->assertSame($expect, $operator($this)->toString());
@@ -197,11 +188,18 @@ final class AbstractConstraintTest extends TestCase
         $fooFOO = fn (TestCase $test) => self::createArrayValuesIdentityConstraint($test, ['foo' => 'FOO']);
         $gezGEZ = fn (TestCase $test) => self::createArrayValuesIdentityConstraint($test, ['gez' => 'GEZ']);
 
-        // an unary constraint, always false
-        $unaryOp = fn (TestCase $test) => $test->getMockBuilder(UnaryOperator::class)
-            ->setConstructorArgs([$fooFOO($test)])
-            ->getMockForAbstractClass()
-        ;
+        // an unary constraint, always false, but produces exception message
+        $unaryOp = fn (TestCase $test) => new class($fooFOO($test)) extends UnaryOperator {
+            public function operator(): string
+            {
+                return 'noop';
+            }
+
+            public function precedence(): int
+            {
+                return 1;
+            }
+        };
 
         return [
             'AbstractConstraintTest.php:'.__LINE__ => [
@@ -294,11 +292,10 @@ final class AbstractConstraintTest extends TestCase
     }
 
     /**
-     * @dataProvider provEvaluate
-     *
      * @param \Closure(TestCase):Constraint $constraint
      * @param mixed                         $expect
      */
+    #[DataProvider('provEvaluate')]
     public function testEvaluate(\Closure $constraint, array $args, $expect): void
     {
         if (is_array($expect)) {

@@ -10,20 +10,23 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Constraint\Constraint;
 use Tailors\PHPUnit\Values\ConstraintTestCase;
 
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Constraint\ArrayValuesIdenticalTo
- * @covers \Tailors\PHPUnit\Constraint\ProvArrayValuesTrait
- * @covers \Tailors\PHPUnit\Values\ConstraintTestCase
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @coversNothing
  */
+#[CoversClass(ArrayValuesIdenticalTo::class)]
+#[CoversClass(ProvArrayValuesTrait::class)]
+#[CoversClass(ConstraintTestCase::class)]
 final class ArrayValuesIdenticalToTest extends ConstraintTestCase
 {
     use ProvArrayValuesTrait;
@@ -54,46 +57,41 @@ final class ArrayValuesIdenticalToTest extends ConstraintTestCase
     }
 
     /**
-     * @dataProvider provArrayValuesIdenticalTo
-     *
      * @param mixed $actual
      */
-    public function testArrayValuesIdenticalToSucceeds(array $expect, $actual): void
+    #[DataProvider('provArrayValuesIdenticalTo')]
+    public function testArrayValuesIdenticalToSucceeds(array $expect, $actual, string $string): void
     {
         parent::examineValuesMatchSucceeds($expect, $actual);
     }
 
     /**
-     * @dataProvider provArrayValuesNotEqualTo
-     * @dataProvider provArrayValuesEqualButNotIdenticalTo
-     * @dataProvider provArrayValuesNotEqualToNonArray
-     *
      * @param mixed $actual
      */
+    #[DataProvider('provArrayValuesNotEqualTo')]
+    #[DataProvider('provArrayValuesEqualButNotIdenticalTo')]
+    #[DataProvider('provArrayValuesNotEqualToNonArray')]
     public function testArrayValuesIdenticalToFails(array $expect, $actual, string $string): void
     {
         parent::examineValuesMatchFails($expect, $actual, $string);
     }
 
     /**
-     * @dataProvider provArrayValuesNotEqualTo
-     *
      * @dateProvider provArrayValuesEqualButNotIdenticalTo
-     *
-     * @dataProvider provArrayValuesNotEqualToNonArray
      *
      * @param mixed $actual
      */
-    public function testNotArrayValuesIdenticalToSucceeds(array $expect, $actual): void
+    #[DataProvider('provArrayValuesNotEqualTo')]
+    #[DataProvider('provArrayValuesNotEqualToNonArray')]
+    public function testNotArrayValuesIdenticalToSucceeds(array $expect, $actual, string $string): void
     {
         parent::examineNotValuesMatchSucceeds($expect, $actual);
     }
 
     /**
-     * @dataProvider provArrayValuesIdenticalTo
-     *
      * @param mixed $actual
      */
+    #[DataProvider('provArrayValuesIdenticalTo')]
     public function testNotArrayValuesIdenticalToFails(array $expect, $actual, string $string): void
     {
         parent::examineNotValuesMatchFails($expect, $actual, $string);

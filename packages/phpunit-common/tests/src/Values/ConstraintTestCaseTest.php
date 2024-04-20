@@ -10,18 +10,21 @@
 
 namespace Tailors\PHPUnit\Values;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Constraint\Constraint;
 
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Values\ConstraintTestCase
- * @covers \Tailors\PHPUnit\Values\ExampleConstraint
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @coversNothing
  */
+#[CoversClass(ConstraintTestCase::class)]
+#[CoversClass(ExampleConstraint::class)]
 final class ConstraintTestCaseTest extends ConstraintTestCase
 {
     public static function subject(): string
@@ -94,9 +97,8 @@ final class ConstraintTestCaseTest extends ConstraintTestCase
 
     /**
      * @param mixed $actual
-     *
-     * @dataProvider provArrayValuesIdenticalTo
      */
+    #[DataProvider('provArrayValuesIdenticalTo')]
     public function testValuesMatchSucceeds(array $expect, $actual): void
     {
         $this->examineValuesMatchSucceeds($expect, $actual);
@@ -104,10 +106,9 @@ final class ConstraintTestCaseTest extends ConstraintTestCase
 
     /**
      * @param mixed $actual
-     *
-     * @dataProvider provArrayValuesEqualButNotIdenticalTo
-     * @dataProvider provArrayValuesNotEqualTo
      */
+    #[DataProvider('provArrayValuesEqualButNotIdenticalTo')]
+    #[DataProvider('provArrayValuesNotEqualTo')]
     public function testValuesMatchFails(array $expect, $actual): void
     {
         $this->examineValuesMatchFails($expect, $actual, 'array');
@@ -115,10 +116,9 @@ final class ConstraintTestCaseTest extends ConstraintTestCase
 
     /**
      * @param mixed $actual
-     *
-     * @dataProvider provArrayValuesEqualButNotIdenticalTo
-     * @dataProvider provArrayValuesNotEqualTo
      */
+    #[DataProvider('provArrayValuesEqualButNotIdenticalTo')]
+    #[DataProvider('provArrayValuesNotEqualTo')]
     public function testNotValuesMatchSucceeds(array $expect, $actual): void
     {
         $this->examineNotValuesMatchSucceeds($expect, $actual);
@@ -126,9 +126,8 @@ final class ConstraintTestCaseTest extends ConstraintTestCase
 
     /**
      * @param mixed $actual
-     *
-     * @dataProvider provArrayValuesIdenticalTo
      */
+    #[DataProvider('provArrayValuesIdenticalTo')]
     public function testNotValuesMatchFails(array $expect, $actual): void
     {
         $this->examineNotValuesMatchFails($expect, $actual, 'array');

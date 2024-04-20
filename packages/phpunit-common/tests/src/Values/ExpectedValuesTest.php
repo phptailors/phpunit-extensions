@@ -10,18 +10,20 @@
 
 namespace Tailors\PHPUnit\Values;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Values\ExpectedValues
- * @covers \Tailors\PHPUnit\Values\ValuesTestTrait
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @coversNothing
  */
+#[CoversClass(ExpectedValues::class)]
+#[CoversClass(ValuesTestTrait::class)]
 final class ExpectedValuesTest extends TestCase
 {
     use ValuesTestTrait;

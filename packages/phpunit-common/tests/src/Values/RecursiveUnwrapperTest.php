@@ -10,18 +10,21 @@
 
 namespace Tailors\PHPUnit\Values;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\CircularDependencyException;
 
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Values\RecursiveUnwrapper
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @coversNothing
  */
+#[CoversClass(RecursiveUnwrapper::class)]
 final class RecursiveUnwrapperTest extends TestCase
 {
     public const UNIQUE_TAG = RecursiveUnwrapper::UNIQUE_TAG;
@@ -283,10 +286,9 @@ final class RecursiveUnwrapperTest extends TestCase
     }
 
     /**
-     * @dataProvider provUnwrap
-     *
      * @param \Closure(TestCase):ValuesInterface $values
      */
+    #[DataProvider('provUnwrap')]
     public function testUnwrap(array $args, \Closure $values, array $expect): void
     {
         $unwrapper = new RecursiveUnwrapper(...$args);
@@ -351,10 +353,9 @@ final class RecursiveUnwrapperTest extends TestCase
     }
 
     /**
-     * @dataProvider provUnwrapThrowsExceptionOnCircularDependency
-     *
      * @param mixed $key
      */
+    #[DataProvider('provUnwrapThrowsExceptionOnCircularDependency')]
     public function testUnwrapThrowsExceptionOnCircularDependency(ValuesInterface $values, $key): void
     {
         $id = is_string($key) ? "'".addslashes($key)."'" : $key;

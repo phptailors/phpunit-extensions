@@ -10,18 +10,21 @@
 
 namespace Tailors\PHPUnit\Common;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use SebastianBergmann\Exporter\Exporter as SebastianExporter;
 
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Common\Exporter
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @coversNothing
  */
+#[CoversClass(Exporter::class)]
 final class ExporterTest extends TestCase
 {
     public static function provExport(): iterable
@@ -37,9 +40,7 @@ final class ExporterTest extends TestCase
         yield [[new \stdClass(), true], 'stdClass Object %s'];
     }
 
-    /**
-     * @dataProvider provExport
-     */
+    #[DataProvider('provExport')]
     public function testExport(array $args, string $format): void
     {
         $this->assertStringMatchesFormat($format, Exporter::export(...$args));

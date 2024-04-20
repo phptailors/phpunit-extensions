@@ -11,6 +11,8 @@
 namespace Tailors\PHPUnit;
 
 use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 if (!function_exists('Tailors\\PHPUnit\\testInvalidArgumentExceptionFromBackTrace')) {
@@ -37,12 +39,13 @@ if (!function_exists('Tailors\\PHPUnit\\testInvalidArgumentExceptionFromBackTrac
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\InvalidArgumentException
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @coversNothing
  */
+#[CoversClass(InvalidArgumentException::class)]
 final class InvalidArgumentExceptionTest extends TestCase
 {
     public static function provFromBackTrace(): array
@@ -54,9 +57,7 @@ final class InvalidArgumentExceptionTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider provFromBackTrace
-     */
+    #[DataProvider('provFromBackTrace')]
     public function testFromBackTrace(int $argument, string $expected, string $provided): void
     {
         $message = sprintf(
@@ -71,9 +72,7 @@ final class InvalidArgumentExceptionTest extends TestCase
         self::assertSame($message, $exception->getMessage());
     }
 
-    /**
-     * @dataProvider provFromBackTrace
-     */
+    #[DataProvider('provFromBackTrace')]
     public function testFromBackTraceFromFunction(int $argument, string $expected, string $provided): void
     {
         $message = sprintf(

@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit\Values;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Exception;
 use PHPUnit\Framework\ExpectationFailedException;
@@ -53,13 +54,12 @@ abstract class ConstraintTestCase extends TestCase
     // @codeCoverageIgnoreEnd
 
     /**
-     * @dataProvider provCreateConstraint
-     *
      * @throws Exception
      * @throws ExpectationFailedException
      *
      * @psalm-param array{values:\PHPUnit\Framework\Constraint\Constraint} $expect
      */
+    #[DataProvider('provCreateConstraint')]
     final public function testCreateConstraint(array $args, array $expect): void
     {
         $constraint = $this->examineCreateConstraint($args);
