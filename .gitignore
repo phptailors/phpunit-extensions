@@ -9,8 +9,6 @@
 /tests/cache
 /tools
 *.phar
-/bin/*
-!/bin/phive
 
 # Files generated locally
 /build/
