@@ -11,7 +11,6 @@
 namespace Tailors\PHPUnit\StaticAnalysis\HappyPath\AssertHasMethod;
 
 use PHPUnit\Framework\ExpectationFailedException;
-use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use Tailors\PHPUnit\HasMethodTrait;
 
 class Assert extends \PHPUnit\Framework\Assert

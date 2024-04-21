@@ -12,7 +12,6 @@ namespace Tailors\PHPUnit\Common;
 
 use SebastianBergmann\Exporter\Exporter as SebastianExporter;
 use SebastianBergmann\RecursionContext\Context;
-use SebastianBergmann\RecursionContext\InvalidArgumentException;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -45,7 +44,7 @@ final class Exporter
         // @codeCoverageIgnoreEnd
     }
 
-    private static function isExportable(mixed &$value, Context $context = null): bool
+    private static function isExportable(mixed &$value, ?Context $context = null): bool
     {
         // @codeCoverageIgnoreStart
 

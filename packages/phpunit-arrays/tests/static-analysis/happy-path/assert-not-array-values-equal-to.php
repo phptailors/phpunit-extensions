@@ -11,7 +11,6 @@
 namespace Tailors\PHPUnit\StaticAnalysis\HappyPath\AssertNotArrayValuesEqualTo;
 
 use PHPUnit\Framework\ExpectationFailedException;
-use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use Tailors\PHPUnit\ArrayValuesEqualToTrait;
 
 class Assert extends \PHPUnit\Framework\Assert

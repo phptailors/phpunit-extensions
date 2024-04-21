@@ -11,7 +11,6 @@
 namespace Tailors\PHPUnit\StaticAnalysis\HappyPath\AssertKsortedArrayEqualTo;
 
 use PHPUnit\Framework\ExpectationFailedException;
-use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use Tailors\PHPUnit\KsortedArrayEqualToTrait;
 
 class Assert extends \PHPUnit\Framework\Assert

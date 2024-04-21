@@ -11,7 +11,6 @@
 namespace Tailors\PHPUnit\StaticAnalysis\HappyPath\AssertNotClassPropertiesIdenticalTo;
 
 use PHPUnit\Framework\ExpectationFailedException;
-use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use Tailors\PHPUnit\ClassPropertiesIdenticalToTrait;
 
 class Assert extends \PHPUnit\Framework\Assert

@@ -15,7 +15,6 @@ use PHPUnit\Framework\Constraint\LogicalNot;
 use PHPUnit\Framework\Constraint\Operator;
 use PHPUnit\Framework\ExpectationFailedException;
 use SebastianBergmann\Comparator\ComparisonFailure;
-use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use Tailors\PHPUnit\CircularDependencyException;
 use Tailors\PHPUnit\Common\Exporter;
 use Tailors\PHPUnit\Common\ShortFailureDescriptionTrait;

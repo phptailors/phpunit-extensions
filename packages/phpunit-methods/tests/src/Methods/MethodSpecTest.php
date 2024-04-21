@@ -241,7 +241,7 @@ final class MethodSpecTest extends TestCase
 
             yield [
                 ['foo', ...$args],
-                fn (TestCase $test) => self::makeMethod($test, 'foo', self::MMASK &~$modifier),
+                fn (TestCase $test) => self::makeMethod($test, 'foo', self::MMASK & ~$modifier),
                 false,
             ];
 
@@ -255,7 +255,7 @@ final class MethodSpecTest extends TestCase
 
             yield [
                 ['foo', ...$args],
-                fn (TestCase $test) => self::makeMethod($test, 'foo', self::MMASK &~$modifier),
+                fn (TestCase $test) => self::makeMethod($test, 'foo', self::MMASK & ~$modifier),
                 true,
             ];
         }
@@ -277,7 +277,7 @@ final class MethodSpecTest extends TestCase
 
             yield [
                 ['foo', null, $modifier],
-                fn (TestCase $test) => self::makeMethod($test, 'foo', self::VMASK &~$modifier),
+                fn (TestCase $test) => self::makeMethod($test, 'foo', self::VMASK & ~$modifier),
                 false,
             ];
         }

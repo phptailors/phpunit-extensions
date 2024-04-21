@@ -16,7 +16,6 @@ use PHPUnit\Framework\Exception;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\MockObject\ReflectionException;
 use PHPUnit\Framework\MockObject\RuntimeException;
-use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use Tailors\PHPUnit\CircularDependencyException;
 
 /**
