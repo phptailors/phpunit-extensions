@@ -27,11 +27,13 @@ final class Exporter
     {
         // @codeCoverageIgnoreStart
 
+        /** @psalm-suppress DeprecatedClass */
         if (class_exists(\PHPUnit\Util\Exporter::class)) {
             /**
              * @psalm-suppress InternalClass
              * @psalm-suppress InternalMethod
              * @psalm-suppress MixedReturnStatement
+             * @psalm-suppress DeprecatedClass
              */
             return \PHPUnit\Util\Exporter::export($value, $exportObjects);
         }
