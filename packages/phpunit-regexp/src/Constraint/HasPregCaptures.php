@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\Constraint;
 
 use PHPUnit\Framework\Constraint\Constraint;
+use PHPUnit\Framework\ExpectationFailedException;
 use SebastianBergmann\Comparator\ComparisonFailure;
 use Tailors\PHPUnit\Common\Exporter;
 use Tailors\PHPUnit\InvalidArgumentException;
@@ -95,7 +96,7 @@ final class HasPregCaptures extends Constraint
      * @param string $description
      * @param bool   $returnResult
      *
-     * @throws \PHPUnit\Framework\ExpectationFailedException
+     * @throws ExpectationFailedException
      */
     public function evaluate($other, string $description = '', bool $returnResult = false): ?bool
     {

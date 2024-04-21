@@ -10,13 +10,17 @@
 
 namespace Tailors\PHPUnit\StaticAnalysis\HappyPath\AssertArrayValuesIdenticalTo;
 
+use PHPUnit\Framework\ExpectationFailedException;
+use SebastianBergmann\RecursionContext\InvalidArgumentException;
+use Tailors\PHPUnit\ArrayValuesIdenticalToTrait;
+
 class Assert extends \PHPUnit\Framework\Assert
 {
-    use \Tailors\PHPUnit\ArrayValuesIdenticalToTrait;
+    use ArrayValuesIdenticalToTrait;
 }
 
 /**
- * @throws \PHPUnit\Framework\ExpectationFailedException
+ * @throws ExpectationFailedException
  * @throws \Tailors\PHPUnit\InvalidArgumentException
  */
 function consume(array $expected, string $class): string

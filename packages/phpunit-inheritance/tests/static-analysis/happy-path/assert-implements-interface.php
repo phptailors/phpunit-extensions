@@ -10,13 +10,17 @@
 
 namespace Tailors\PHPUnit\StaticAnalysis\HappyPath\AssertImplementsInterface;
 
+use PHPUnit\Framework\ExpectationFailedException;
+use SebastianBergmann\RecursionContext\InvalidArgumentException;
+use Tailors\PHPUnit\ImplementsInterfaceTrait;
+
 class Assert extends \PHPUnit\Framework\Assert
 {
-    use \Tailors\PHPUnit\ImplementsInterfaceTrait;
+    use ImplementsInterfaceTrait;
 }
 
 /**
- * @throws \PHPUnit\Framework\ExpectationFailedException
+ * @throws ExpectationFailedException
  * @throws \Tailors\PHPUnit\InvalidArgumentException
  */
 function consume(string $expected, string $actual): string

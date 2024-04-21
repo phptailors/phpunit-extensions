@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\Common;
 
 use PHPUnit\Framework\Constraint\Operator;
+use SebastianBergmann\RecursionContext\InvalidArgumentException;
 
 /**
  * @internal This trait is not covered by the backward compatibility promise

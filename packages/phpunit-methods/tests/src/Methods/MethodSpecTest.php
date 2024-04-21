@@ -31,7 +31,7 @@ final class MethodSpecTest extends TestCase
     public const IS_FINAL = MethodSpec::IS_FINAL;
 
     public const MMASK =
-          self::IS_STATIC
+        self::IS_STATIC
         | self::IS_PUBLIC
         | self::IS_PROTECTED
         | self::IS_PRIVATE
@@ -39,7 +39,7 @@ final class MethodSpecTest extends TestCase
         | self::IS_FINAL;
 
     public const VMASK =
-          self::IS_PUBLIC
+        self::IS_PUBLIC
         | self::IS_PROTECTED
         | self::IS_PRIVATE;
 

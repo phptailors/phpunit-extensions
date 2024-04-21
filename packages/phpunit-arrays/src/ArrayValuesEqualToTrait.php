@@ -12,6 +12,8 @@ namespace Tailors\PHPUnit;
 
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\LogicalNot;
+use PHPUnit\Framework\ExpectationFailedException;
+use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use Tailors\PHPUnit\Constraint\ArrayValuesEqualTo;
 
 trait ArrayValuesEqualToTrait
@@ -23,7 +25,7 @@ trait ArrayValuesEqualToTrait
      * @param Constraint $constraint
      * @param string     $message
      *
-     * @throws \PHPUnit\Framework\ExpectationFailedException
+     * @throws ExpectationFailedException
      */
     abstract public static function assertThat($value, Constraint $constraint, string $message = ''): void;
 
@@ -34,7 +36,7 @@ trait ArrayValuesEqualToTrait
      * @param mixed  $actual   a name of a class to be examined
      * @param string $message  optional failure message
      *
-     * @throws \PHPUnit\Framework\ExpectationFailedException
+     * @throws ExpectationFailedException
      * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertArrayValuesEqualTo(
@@ -52,7 +54,7 @@ trait ArrayValuesEqualToTrait
      * @param mixed  $actual   a name of a class to be examined
      * @param string $message  optional failure message
      *
-     * @throws \PHPUnit\Framework\ExpectationFailedException
+     * @throws ExpectationFailedException
      * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertNotArrayValuesEqualTo(

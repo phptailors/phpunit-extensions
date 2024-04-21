@@ -12,6 +12,8 @@ namespace Tailors\PHPUnit;
 
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\LogicalNot;
+use PHPUnit\Framework\ExpectationFailedException;
+use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use Tailors\PHPUnit\Constraint\HasPregCaptures;
 
 trait HasPregCapturesTrait
@@ -23,7 +25,7 @@ trait HasPregCapturesTrait
      * @param Constraint $constraint
      * @param string     $message
      *
-     * @throws \PHPUnit\Framework\ExpectationFailedException
+     * @throws ExpectationFailedException
      */
     abstract public static function assertThat($value, Constraint $constraint, string $message = ''): void;
 
@@ -49,7 +51,7 @@ trait HasPregCapturesTrait
      * @param string $message
      *                         Additional message
      *
-     * @throws \PHPUnit\Framework\ExpectationFailedException
+     * @throws ExpectationFailedException
      * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertHasPregCaptures(array $expected, array $matches, string $message = ''): void
@@ -67,7 +69,7 @@ trait HasPregCapturesTrait
      * @param string $message
      *                         Additional message
      *
-     * @throws \PHPUnit\Framework\ExpectationFailedException
+     * @throws ExpectationFailedException
      * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertNotHasPregCaptures(array $expected, array $matches, string $message = ''): void

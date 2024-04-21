@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit\Inheritance;
 
+use Tailors\PHPUnit\InvalidArgumentException;
 use Tailors\PHPUnit\InvalidReturnValueException;
 use Tailors\PHPUnit\StringArgumentValidator;
 
@@ -31,7 +32,7 @@ use Tailors\PHPUnit\StringArgumentValidator;
 trait ConstraintImplementationTrait
 {
     /**
-     * @throws \Tailors\PHPUnit\InvalidArgumentException
+     * @throws InvalidArgumentException
      *
      * @psalm-assert class-string $expected
      */

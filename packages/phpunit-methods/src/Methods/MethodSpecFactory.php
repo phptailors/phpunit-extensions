@@ -87,7 +87,7 @@ final class MethodSpecFactory implements MethodSpecFactoryInterface
      *
      * @psalm-param-out array<string> $matches
      */
-    private function lookahead(array &$expressions, string &$string, array &$matches = null): bool
+    private function lookahead(array &$expressions, string &$string, ?array &$matches = null): bool
     {
         foreach ($expressions as $offset => $expression) {
             if (preg_match('/^'.$expression.'\b/', $string, $matches)) {

@@ -12,6 +12,8 @@ namespace Tailors\PHPUnit;
 
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\LogicalNot;
+use PHPUnit\Framework\ExpectationFailedException;
+use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use Tailors\PHPUnit\Constraint\UsesTrait;
 
 trait UsesTraitTrait
@@ -23,7 +25,7 @@ trait UsesTraitTrait
      * @param Constraint $constraint
      * @param string     $message
      *
-     * @throws \PHPUnit\Framework\ExpectationFailedException
+     * @throws ExpectationFailedException
      */
     abstract public static function assertThat($value, Constraint $constraint, string $message = ''): void;
 
@@ -34,7 +36,7 @@ trait UsesTraitTrait
      * @param mixed  $subject an object or a class name that is being examined
      * @param string $message custom message
      *
-     * @throws \PHPUnit\Framework\ExpectationFailedException
+     * @throws ExpectationFailedException
      * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertUsesTrait(string $trait, $subject, string $message = ''): void
@@ -49,7 +51,7 @@ trait UsesTraitTrait
      * @param mixed  $subject an object or a class name that is being examined
      * @param string $message custom message
      *
-     * @throws \PHPUnit\Framework\ExpectationFailedException
+     * @throws ExpectationFailedException
      * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertNotUsesTrait(string $trait, $subject, string $message = ''): void

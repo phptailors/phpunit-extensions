@@ -12,6 +12,8 @@ namespace Tailors\PHPUnit;
 
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\LogicalNot;
+use PHPUnit\Framework\ExpectationFailedException;
+use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use Tailors\PHPUnit\Constraint\ExtendsClass;
 
 trait ExtendsClassTrait
@@ -23,7 +25,7 @@ trait ExtendsClassTrait
      * @param Constraint $constraint
      * @param string     $message
      *
-     * @throws \PHPUnit\Framework\ExpectationFailedException
+     * @throws ExpectationFailedException
      */
     abstract public static function assertThat($value, Constraint $constraint, string $message = ''): void;
 
@@ -34,7 +36,7 @@ trait ExtendsClassTrait
      * @param mixed  $subject an object or a class name that is being examined
      * @param string $message custom message
      *
-     * @throws \PHPUnit\Framework\ExpectationFailedException
+     * @throws ExpectationFailedException
      * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertExtendsClass(string $parent, $subject, string $message = ''): void
@@ -49,7 +51,7 @@ trait ExtendsClassTrait
      * @param mixed  $subject an object or a class name that is being examined
      * @param string $message custom message
      *
-     * @throws \PHPUnit\Framework\ExpectationFailedException
+     * @throws ExpectationFailedException
      * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertNotExtendsClass(string $parent, $subject, string $message = ''): void

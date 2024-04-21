@@ -20,7 +20,7 @@ use Tailors\PHPUnit\InvalidArgumentException;
 trait ValidateExpectationsTrait
 {
     /**
-     * @throws \Tailors\PHPUnit\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     protected static function validateExpectations(array $expected, int $argument, int $distance = 1): void
     {

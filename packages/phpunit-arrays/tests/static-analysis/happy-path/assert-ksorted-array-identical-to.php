@@ -10,13 +10,17 @@
 
 namespace Tailors\PHPUnit\StaticAnalysis\HappyPath\AssertKsortedArrayIdenticalTo;
 
+use PHPUnit\Framework\ExpectationFailedException;
+use SebastianBergmann\RecursionContext\InvalidArgumentException;
+use Tailors\PHPUnit\KsortedArrayIdenticalToTrait;
+
 class Assert extends \PHPUnit\Framework\Assert
 {
-    use \Tailors\PHPUnit\KsortedArrayIdenticalToTrait;
+    use KsortedArrayIdenticalToTrait;
 }
 
 /**
- * @throws \PHPUnit\Framework\ExpectationFailedException
+ * @throws ExpectationFailedException
  * @throws \Tailors\PHPUnit\InvalidArgumentException
  */
 function consume(array $expected, array $actual): array
