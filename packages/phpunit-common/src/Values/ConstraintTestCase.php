@@ -11,6 +11,12 @@
 namespace Tailors\PHPUnit\Values;
 
 use PHPUnit\Framework\Constraint\Constraint;
+use PHPUnit\Framework\Exception;
+use PHPUnit\Framework\ExpectationFailedException;
+use PHPUnit\Framework\MockObject\ReflectionException;
+use PHPUnit\Framework\MockObject\RuntimeException;
+use SebastianBergmann\RecursionContext\InvalidArgumentException;
+use Tailors\PHPUnit\CircularDependencyException;
 use Tailors\PHPUnit\Constraint\TestCase;
 
 /**
@@ -50,9 +56,9 @@ abstract class ConstraintTestCase extends TestCase
     /**
      * @dataProvider provCreateConstraint
      *
-     * @throws \PHPUnit\Framework\Exception
-     * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws Exception
+     * @throws ExpectationFailedException
+     * @throws InvalidArgumentException
      *
      * @psalm-param array{values:\PHPUnit\Framework\Constraint\Constraint} $expect
      */
@@ -63,11 +69,11 @@ abstract class ConstraintTestCase extends TestCase
     }
 
     /**
-     * @throws \PHPUnit\Framework\Exception
-     * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \PHPUnit\Framework\MockObject\ReflectionException
-     * @throws \PHPUnit\Framework\MockObject\RuntimeException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws Exception
+     * @throws ExpectationFailedException
+     * @throws ReflectionException
+     * @throws RuntimeException
+     * @throws InvalidArgumentException
      */
     final public function testConstraintUnaryOperatorFailure(): void
     {
@@ -82,8 +88,8 @@ abstract class ConstraintTestCase extends TestCase
      * @param array $expect
      * @param mixed $actual
      *
-     * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws ExpectationFailedException
+     * @throws InvalidArgumentException
      */
     final public function examineValuesMatchSucceeds(array $expect, $actual): void
     {
@@ -95,9 +101,9 @@ abstract class ConstraintTestCase extends TestCase
      * @param mixed  $actual
      * @param string $string
      *
-     * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
-     * @throws \Tailors\PHPUnit\CircularDependencyException
+     * @throws ExpectationFailedException
+     * @throws InvalidArgumentException
+     * @throws CircularDependencyException
      */
     final public function examineValuesMatchFails(array $expect, $actual, string $string): void
     {
@@ -112,8 +118,8 @@ abstract class ConstraintTestCase extends TestCase
      * @param array $expect
      * @param mixed $actual
      *
-     * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws ExpectationFailedException
+     * @throws InvalidArgumentException
      */
     final public function examineNotValuesMatchSucceeds(array $expect, $actual): void
     {
@@ -125,8 +131,8 @@ abstract class ConstraintTestCase extends TestCase
      * @param mixed  $actual
      * @param string $string
      *
-     * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws ExpectationFailedException
+     * @throws InvalidArgumentException
      */
     final public function examineNotValuesMatchFails(array $expect, $actual, string $string): void
     {

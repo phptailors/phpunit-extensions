@@ -10,14 +10,18 @@
 
 namespace Tailors\PHPUnit\StaticAnalysis\HappyPath\AssertNotKsortedArrayEqualTo;
 
+use PHPUnit\Framework\ExpectationFailedException;
+use SebastianBergmann\RecursionContext\InvalidArgumentException;
+use Tailors\PHPUnit\KsortedArrayEqualToTrait;
+
 class Assert extends \PHPUnit\Framework\Assert
 {
-    use \Tailors\PHPUnit\KsortedArrayEqualToTrait;
+    use KsortedArrayEqualToTrait;
 }
 
 /**
- * @throws \PHPUnit\Framework\ExpectationFailedException
- * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+ * @throws ExpectationFailedException
+ * @throws InvalidArgumentException
  * @throws \Tailors\PHPUnit\InvalidArgumentException
  */
 function consume(array $expected, array $actual): array

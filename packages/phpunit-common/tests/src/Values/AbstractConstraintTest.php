@@ -32,9 +32,9 @@ final class AbstractConstraintTest extends TestCase
 {
     public static function createConstraintMock(
         TestCase $test,
-        ComparatorInterface $comparator = null,
-        SelectionInterface $expected = null,
-        RecursiveUnwrapperInterface $unwrapper = null
+        ?ComparatorInterface $comparator = null,
+        ?SelectionInterface $expected = null,
+        ?RecursiveUnwrapperInterface $unwrapper = null
     ) {
         if (null === $comparator) {
             $comparator = $test->createMock(ComparatorInterface::class);

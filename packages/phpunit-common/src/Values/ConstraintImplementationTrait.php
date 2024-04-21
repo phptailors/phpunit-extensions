@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\Values;
 
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
+use Tailors\PHPUnit\InvalidArgumentException;
 
 /**
  * @internal This trait is not covered by the backward compatibility promise
@@ -20,7 +21,7 @@ use Tailors\PHPUnit\Comparator\ComparatorInterface;
 trait ConstraintImplementationTrait
 {
     /**
-     * @throws \Tailors\PHPUnit\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public static function create(array $expected): self
     {
@@ -35,7 +36,7 @@ trait ConstraintImplementationTrait
     }
 
     /**
-     * @throws \Tailors\PHPUnit\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     abstract protected static function validateExpectations(array $expected, int $argument, int $distance = 1): void;
 

@@ -12,6 +12,8 @@ namespace Tailors\PHPUnit;
 
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\LogicalNot;
+use PHPUnit\Framework\ExpectationFailedException;
+use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use Tailors\PHPUnit\Constraint\ImplementsInterface;
 
 trait ImplementsInterfaceTrait
@@ -23,8 +25,8 @@ trait ImplementsInterfaceTrait
      * @param Constraint $constraint
      * @param string     $message
      *
-     * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws ExpectationFailedException
+     * @throws InvalidArgumentException
      */
     abstract public static function assertThat($value, Constraint $constraint, string $message = ''): void;
 
@@ -35,8 +37,8 @@ trait ImplementsInterfaceTrait
      * @param mixed  $subject   an object or a class name that is being examined
      * @param string $message   custom message
      *
-     * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws ExpectationFailedException
+     * @throws InvalidArgumentException
      * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertImplementsInterface(string $interface, $subject, string $message = ''): void
@@ -51,8 +53,8 @@ trait ImplementsInterfaceTrait
      * @param mixed  $subject   an object or a class name that is being examined
      * @param string $message   custom message
      *
-     * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws ExpectationFailedException
+     * @throws InvalidArgumentException
      * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertNotImplementsInterface(string $interface, $subject, string $message = ''): void

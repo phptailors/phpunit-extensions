@@ -12,6 +12,8 @@ namespace Tailors\PHPUnit;
 
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\LogicalNot;
+use PHPUnit\Framework\ExpectationFailedException;
+use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use Tailors\PHPUnit\Constraint\ClassPropertiesEqualTo;
 
 trait ClassPropertiesEqualToTrait
@@ -23,8 +25,8 @@ trait ClassPropertiesEqualToTrait
      * @param Constraint $constraint
      * @param string     $message
      *
-     * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws ExpectationFailedException
+     * @throws InvalidArgumentException
      */
     abstract public static function assertThat($value, Constraint $constraint, string $message = ''): void;
 
@@ -39,8 +41,8 @@ trait ClassPropertiesEqualToTrait
      * @param string $message
      *                         Optional failure message
      *
-     * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws ExpectationFailedException
+     * @throws InvalidArgumentException
      * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertClassPropertiesEqualTo(
@@ -62,8 +64,8 @@ trait ClassPropertiesEqualToTrait
      * @param string $message
      *                         Optional failure message
      *
-     * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws ExpectationFailedException
+     * @throws InvalidArgumentException
      * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertNotClassPropertiesEqualTo(

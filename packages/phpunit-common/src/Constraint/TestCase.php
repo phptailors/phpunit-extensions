@@ -12,7 +12,12 @@ namespace Tailors\PHPUnit\Constraint;
 
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\UnaryOperator;
+use PHPUnit\Framework\Exception;
 use PHPUnit\Framework\ExpectationFailedException;
+use PHPUnit\Framework\MockObject\ReflectionException;
+use PHPUnit\Framework\MockObject\RuntimeException;
+use SebastianBergmann\RecursionContext\InvalidArgumentException;
+use Tailors\PHPUnit\CircularDependencyException;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -42,9 +47,9 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
      *
      * @psalm-return ConstraintClass
      *
-     * @throws \PHPUnit\Framework\Exception
-     * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws Exception
+     * @throws ExpectationFailedException
+     * @throws InvalidArgumentException
      */
     final public function examineCreateConstraint(array $args): Constraint
     {
@@ -62,11 +67,11 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
      * @param mixed  $actual  actual value that shall cause the constraint to fail
      * @param string $message expected exception message
      *
-     * @throws \PHPUnit\Framework\Exception
-     * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \PHPUnit\Framework\MockObject\ReflectionException
-     * @throws \PHPUnit\Framework\MockObject\RuntimeException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws Exception
+     * @throws ExpectationFailedException
+     * @throws ReflectionException
+     * @throws RuntimeException
+     * @throws InvalidArgumentException
      */
     final public function examineConstraintUnaryOperatorFailure(array $args, $actual, string $message): void
     {
@@ -88,8 +93,8 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
      * @param array $args   arguments passed to createConstraint()
      * @param mixed $actual actual value
      *
-     * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws ExpectationFailedException
+     * @throws InvalidArgumentException
      */
     final public function examineConstraintMatchSucceeds(array $args, $actual): void
     {
@@ -102,9 +107,9 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
      * @param mixed  $actual
      * @param string $message
      *
-     * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \Tailors\PHPUnit\CircularDependencyException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws ExpectationFailedException
+     * @throws CircularDependencyException
+     * @throws InvalidArgumentException
      */
     final public function examineConstraintMatchFails(array $args, $actual, string $message): void
     {
@@ -123,8 +128,8 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
      * @param array $args   arguments passed to createConstraint()
      * @param mixed $actual
      *
-     * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws ExpectationFailedException
+     * @throws InvalidArgumentException
      */
     final public function examineNotConstraintMatchSucceeds(array $args, $actual): void
     {
@@ -137,8 +142,8 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
      * @param mixed  $actual
      * @param string $message
      *
-     * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws ExpectationFailedException
+     * @throws InvalidArgumentException
      */
     final public function examineNotConstraintMatchFails(array $args, $actual, string $message): void
     {
@@ -156,9 +161,9 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     /**
      * Returns $constraint wrapped with an UnaryOperator.
      *
-     * @throws \PHPUnit\Framework\Exception
-     * @throws \PHPUnit\Framework\MockObject\RuntimeException
-     * @throws \PHPUnit\Framework\MockObject\ReflectionException
+     * @throws Exception
+     * @throws RuntimeException
+     * @throws ReflectionException
      */
     final protected function wrapWithUnaryOperator(
         Constraint $constraint,

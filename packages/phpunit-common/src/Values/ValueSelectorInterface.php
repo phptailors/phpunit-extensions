@@ -10,6 +10,8 @@
 
 namespace Tailors\PHPUnit\Values;
 
+use Tailors\PHPUnit\InvalidArgumentException;
+
 /**
  * @internal This interface is not covered by the backward compatibility promise
  *
@@ -31,7 +33,7 @@ interface ValueSelectorInterface
      *
      * @param-out mixed $retval
      *
-     * @throws \Tailors\PHPUnit\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function select($subject, $key, &$retval): bool;
 

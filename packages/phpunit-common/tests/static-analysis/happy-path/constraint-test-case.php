@@ -10,15 +10,21 @@
 
 namespace Tailors\PHPUnit\StaticAnalysis\HappyPath\ConstraintTestCase;
 
+use PHPUnit\Framework\Exception;
+use PHPUnit\Framework\ExpectationFailedException;
+use PHPUnit\Framework\MockObject\ReflectionException;
+use PHPUnit\Framework\MockObject\RuntimeException;
+use SebastianBergmann\RecursionContext\InvalidArgumentException;
+use Tailors\PHPUnit\CircularDependencyException;
 use Tailors\PHPUnit\Constraint\TestCase;
 
 /**
- * @throws \PHPUnit\Framework\Exception
- * @throws \PHPUnit\Framework\ExpectationFailedException
- * @throws \PHPUnit\Framework\MockObject\ReflectionException
- * @throws \PHPUnit\Framework\MockObject\RuntimeException
- * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
- * @throws \Tailors\PHPUnit\CircularDependencyException
+ * @throws Exception
+ * @throws ExpectationFailedException
+ * @throws ReflectionException
+ * @throws RuntimeException
+ * @throws InvalidArgumentException
+ * @throws CircularDependencyException
  * @throws \Tailors\PHPUnit\InvalidArgumentException
  */
 function consume(TestCase $test): TestCase

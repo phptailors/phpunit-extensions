@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\Common;
 
 use PHPUnit\Framework\Constraint\Operator;
+use SebastianBergmann\RecursionContext\InvalidArgumentException;
 
 /**
  * @internal This trait is not covered by the backward compatibility promise
@@ -32,7 +33,7 @@ trait ShortFailureDescriptionTrait
      *
      * @param mixed $other evaluated value or object
      *
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     final public function failureDescription($other): string
     {
@@ -55,7 +56,7 @@ trait ShortFailureDescriptionTrait
      * @param mixed    $role     role of $this constraint in the $operator expression
      * @param mixed    $other    evaluated value or object
      *
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     final public function failureDescriptionInContext(Operator $operator, $role, $other): string
     {
@@ -90,7 +91,7 @@ trait ShortFailureDescriptionTrait
      *
      * @param mixed $subject
      *
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     private function short($subject, bool $exportObjects = false): string
     {
