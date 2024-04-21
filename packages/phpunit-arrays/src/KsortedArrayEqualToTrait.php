@@ -36,7 +36,7 @@ trait KsortedArrayEqualToTrait
      * @param string $message  optional failure message
      *
      * @throws ExpectationFailedException
-     * @throws \Tailors\PHPUnit\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public static function assertKsortedArrayEqualTo(
         array $expected,
@@ -54,7 +54,7 @@ trait KsortedArrayEqualToTrait
      * @param string $message  optional failure message
      *
      * @throws ExpectationFailedException
-     * @throws \Tailors\PHPUnit\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public static function assertNotKsortedArrayEqualTo(
         array $expected,
@@ -69,7 +69,7 @@ trait KsortedArrayEqualToTrait
      *
      * @param array $expected expected array
      *
-     * @throws \Tailors\PHPUnit\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public static function ksortedArrayEqualTo(array $expected): KsortedArrayEqualTo
     {

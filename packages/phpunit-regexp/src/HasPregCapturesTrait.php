@@ -51,7 +51,7 @@ trait HasPregCapturesTrait
      *                         Additional message
      *
      * @throws ExpectationFailedException
-     * @throws \Tailors\PHPUnit\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public static function assertHasPregCaptures(array $expected, array $matches, string $message = ''): void
     {
@@ -69,7 +69,7 @@ trait HasPregCapturesTrait
      *                         Additional message
      *
      * @throws ExpectationFailedException
-     * @throws \Tailors\PHPUnit\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public static function assertNotHasPregCaptures(array $expected, array $matches, string $message = ''): void
     {
@@ -91,7 +91,7 @@ trait HasPregCapturesTrait
      * properly only with arrays obtained from ``preg_match()`` invoked with
      * ``PREG_UNMATCHED_AS_NULL`` flag.
      *
-     * @throws \Tailors\PHPUnit\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public static function hasPregCaptures(array $expected): HasPregCaptures
     {

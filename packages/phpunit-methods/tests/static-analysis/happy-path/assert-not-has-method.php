@@ -12,6 +12,7 @@ namespace Tailors\PHPUnit\StaticAnalysis\HappyPath\AssertNotHasMethod;
 
 use PHPUnit\Framework\ExpectationFailedException;
 use Tailors\PHPUnit\HasMethodTrait;
+use Tailors\PHPUnit\InvalidArgumentException;
 
 class Assert extends \PHPUnit\Framework\Assert
 {
@@ -22,7 +23,7 @@ class Assert extends \PHPUnit\Framework\Assert
  * @param mixed $subject
  *
  * @throws ExpectationFailedException
- * @throws \Tailors\PHPUnit\InvalidArgumentException
+ * @throws InvalidArgumentException
  */
 function consume(string $method, $subject, string $message): void
 {

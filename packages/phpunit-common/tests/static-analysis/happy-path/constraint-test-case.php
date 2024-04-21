@@ -16,6 +16,7 @@ use PHPUnit\Framework\MockObject\ReflectionException;
 use PHPUnit\Framework\MockObject\RuntimeException;
 use Tailors\PHPUnit\CircularDependencyException;
 use Tailors\PHPUnit\Constraint\TestCase;
+use Tailors\PHPUnit\InvalidArgumentException;
 
 /**
  * @throws Exception
@@ -23,7 +24,7 @@ use Tailors\PHPUnit\Constraint\TestCase;
  * @throws ReflectionException
  * @throws RuntimeException
  * @throws CircularDependencyException
- * @throws \Tailors\PHPUnit\InvalidArgumentException
+ * @throws InvalidArgumentException
  */
 function consume(TestCase $test): TestCase
 {

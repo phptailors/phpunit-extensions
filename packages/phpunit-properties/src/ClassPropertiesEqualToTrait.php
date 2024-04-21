@@ -40,7 +40,7 @@ trait ClassPropertiesEqualToTrait
      *                         Optional failure message
      *
      * @throws ExpectationFailedException
-     * @throws \Tailors\PHPUnit\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public static function assertClassPropertiesEqualTo(
         array $expected,
@@ -62,7 +62,7 @@ trait ClassPropertiesEqualToTrait
      *                         Optional failure message
      *
      * @throws ExpectationFailedException
-     * @throws \Tailors\PHPUnit\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public static function assertNotClassPropertiesEqualTo(
         array $expected,
@@ -78,7 +78,7 @@ trait ClassPropertiesEqualToTrait
      * @param array $expected
      *                        An array of key => value pairs with expected values of attributes
      *
-     * @throws \Tailors\PHPUnit\InvalidArgumentException when non-string keys are found in *$expected*
+     * @throws InvalidArgumentException when non-string keys are found in *$expected*
      */
     public static function classPropertiesEqualTo(array $expected): ClassPropertiesEqualTo
     {

@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\StaticAnalysis\HappyPath\AssertNotObjectPropertiesIdenticalTo;
 
 use PHPUnit\Framework\ExpectationFailedException;
+use Tailors\PHPUnit\InvalidArgumentException;
 use Tailors\PHPUnit\ObjectPropertiesIdenticalToTrait;
 
 class Assert extends \PHPUnit\Framework\Assert
@@ -20,7 +21,7 @@ class Assert extends \PHPUnit\Framework\Assert
 
 /**
  * @throws ExpectationFailedException
- * @throws \Tailors\PHPUnit\InvalidArgumentException
+ * @throws InvalidArgumentException
  */
 function consume(array $expected, object $object): object
 {

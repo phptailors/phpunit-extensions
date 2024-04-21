@@ -40,7 +40,7 @@ trait ObjectPropertiesIdenticalToTrait
      *                         Optional failure message
      *
      * @throws ExpectationFailedException
-     * @throws \Tailors\PHPUnit\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public static function assertObjectPropertiesIdenticalTo(
         array $expected,
@@ -62,7 +62,7 @@ trait ObjectPropertiesIdenticalToTrait
      *                         Optional failure message
      *
      * @throws ExpectationFailedException
-     * @throws \Tailors\PHPUnit\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public static function assertNotObjectPropertiesIdenticalTo(
         array $expected,
@@ -78,7 +78,7 @@ trait ObjectPropertiesIdenticalToTrait
      * @param array $expected
      *                        An array of key => value pairs with expected values of attributes
      *
-     * @throws \Tailors\PHPUnit\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public static function objectPropertiesIdenticalTo(array $expected): ObjectPropertiesIdenticalTo
     {

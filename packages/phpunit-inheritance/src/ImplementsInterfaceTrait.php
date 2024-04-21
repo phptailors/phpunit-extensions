@@ -36,7 +36,7 @@ trait ImplementsInterfaceTrait
      * @param string $message   custom message
      *
      * @throws ExpectationFailedException
-     * @throws \Tailors\PHPUnit\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public static function assertImplementsInterface(string $interface, $subject, string $message = ''): void
     {
@@ -51,7 +51,7 @@ trait ImplementsInterfaceTrait
      * @param string $message   custom message
      *
      * @throws ExpectationFailedException
-     * @throws \Tailors\PHPUnit\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public static function assertNotImplementsInterface(string $interface, $subject, string $message = ''): void
     {
@@ -63,7 +63,7 @@ trait ImplementsInterfaceTrait
      *
      * @param string $interface name of the interface that is expected to be implemented
      *
-     * @throws \Tailors\PHPUnit\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public static function implementsInterface(string $interface): ImplementsInterface
     {

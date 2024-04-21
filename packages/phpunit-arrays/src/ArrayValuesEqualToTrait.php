@@ -36,7 +36,7 @@ trait ArrayValuesEqualToTrait
      * @param string $message  optional failure message
      *
      * @throws ExpectationFailedException
-     * @throws \Tailors\PHPUnit\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public static function assertArrayValuesEqualTo(
         array $expected,
@@ -54,7 +54,7 @@ trait ArrayValuesEqualToTrait
      * @param string $message  optional failure message
      *
      * @throws ExpectationFailedException
-     * @throws \Tailors\PHPUnit\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public static function assertNotArrayValuesEqualTo(
         array $expected,
@@ -69,7 +69,7 @@ trait ArrayValuesEqualToTrait
      *
      * @param array $expected an array of expected values
      *
-     * @throws \Tailors\PHPUnit\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public static function arrayValuesEqualTo(array $expected): ArrayValuesEqualTo
     {

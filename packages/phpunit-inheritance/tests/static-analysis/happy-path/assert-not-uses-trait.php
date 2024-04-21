@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\StaticAnalysis\HappyPath\AssertNotUsesTrait;
 
 use PHPUnit\Framework\ExpectationFailedException;
+use Tailors\PHPUnit\InvalidArgumentException;
 use Tailors\PHPUnit\UsesTraitTrait;
 
 class Assert extends \PHPUnit\Framework\Assert
@@ -20,7 +21,7 @@ class Assert extends \PHPUnit\Framework\Assert
 
 /**
  * @throws ExpectationFailedException
- * @throws \Tailors\PHPUnit\InvalidArgumentException
+ * @throws InvalidArgumentException
  */
 function consume(string $expected, string $actual): string
 {

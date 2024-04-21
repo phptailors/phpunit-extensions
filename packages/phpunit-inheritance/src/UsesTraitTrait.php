@@ -36,7 +36,7 @@ trait UsesTraitTrait
      * @param string $message custom message
      *
      * @throws ExpectationFailedException
-     * @throws \Tailors\PHPUnit\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public static function assertUsesTrait(string $trait, $subject, string $message = ''): void
     {
@@ -51,7 +51,7 @@ trait UsesTraitTrait
      * @param string $message custom message
      *
      * @throws ExpectationFailedException
-     * @throws \Tailors\PHPUnit\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public static function assertNotUsesTrait(string $trait, $subject, string $message = ''): void
     {
@@ -63,7 +63,7 @@ trait UsesTraitTrait
      *
      * @param string $trait name of the trait that is expected to be included
      *
-     * @throws \Tailors\PHPUnit\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public static function usesTrait(string $trait): UsesTrait
     {

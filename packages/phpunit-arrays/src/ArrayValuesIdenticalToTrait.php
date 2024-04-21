@@ -36,7 +36,7 @@ trait ArrayValuesIdenticalToTrait
      * @param string $message  optional failure message
      *
      * @throws ExpectationFailedException
-     * @throws \Tailors\PHPUnit\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public static function assertArrayValuesIdenticalTo(
         array $expected,
@@ -54,7 +54,7 @@ trait ArrayValuesIdenticalToTrait
      * @param string $message  optional failure message
      *
      * @throws ExpectationFailedException
-     * @throws \Tailors\PHPUnit\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public static function assertNotArrayValuesIdenticalTo(
         array $expected,
@@ -69,7 +69,7 @@ trait ArrayValuesIdenticalToTrait
      *
      * @param array $expected an array of expected values
      *
-     * @throws \Tailors\PHPUnit\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public static function arrayValuesIdenticalTo(array $expected): ArrayValuesIdenticalTo
     {
