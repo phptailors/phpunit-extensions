@@ -42,7 +42,7 @@ final class KsortedArrayIdenticalToTraitTest extends TestCase
      *
      * @param mixed $actual
      */
-    public function testKsortedArrayIdenticalToSucceeds(array $expect, $actual)
+    public function testKsortedArrayIdenticalToSucceeds(array $expect, $actual, string $string)
     {
         self::assertThat($actual, self::ksortedArrayIdenticalTo($expect));
     }
@@ -52,7 +52,7 @@ final class KsortedArrayIdenticalToTraitTest extends TestCase
      *
      * @param mixed $actual
      */
-    public function testAssertKsortedArrayIdenticalToSucceeds(array $expect, $actual)
+    public function testAssertKsortedArrayIdenticalToSucceeds(array $expect, $actual, string $string)
     {
         self::assertKsortedArrayIdenticalTo($expect, $actual);
     }
@@ -63,7 +63,7 @@ final class KsortedArrayIdenticalToTraitTest extends TestCase
      *
      * @param mixed $actual
      */
-    public function testAssertKsortedArrayIdenticalToFails(array $expect, $actual)
+    public function testAssertKsortedArrayIdenticalToFails(array $expect, $actual, string $string)
     {
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that .+ is an array '.
@@ -79,7 +79,7 @@ final class KsortedArrayIdenticalToTraitTest extends TestCase
      *
      * @param mixed $actual
      */
-    public function testNotKsortedArrayIdenticalToSucceeds(array $expect, $actual)
+    public function testNotKsortedArrayIdenticalToSucceeds(array $expect, $actual, string $string)
     {
         self::assertThat($actual, self::logicalNot(self::ksortedArrayIdenticalTo($expect)));
     }
@@ -90,7 +90,7 @@ final class KsortedArrayIdenticalToTraitTest extends TestCase
      *
      * @param mixed $actual
      */
-    public function testAssertNotKsortedArrayIdenticalToSucceeds(array $expect, $actual)
+    public function testAssertNotKsortedArrayIdenticalToSucceeds(array $expect, $actual, string $string)
     {
         self::assertNotKsortedArrayIdenticalTo($expect, $actual);
     }
@@ -100,7 +100,7 @@ final class KsortedArrayIdenticalToTraitTest extends TestCase
      *
      * @param mixed $actual
      */
-    public function testAssertNotKsortedArrayIdenticalToFails(array $expect, $actual)
+    public function testAssertNotKsortedArrayIdenticalToFails(array $expect, $actual, string $string)
     {
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that .+ fails to be an array '.

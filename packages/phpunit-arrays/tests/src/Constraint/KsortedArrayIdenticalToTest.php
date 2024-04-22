@@ -49,7 +49,7 @@ final class KsortedArrayIdenticalToTest extends KsortedConstraintTestCase
      *
      * @param mixed $actual
      */
-    public function testKsortedArrayIdenticalToSucceeds(array $expect, $actual): void
+    public function testKsortedArrayIdenticalToSucceeds(array $expect, $actual, string $string): void
     {
         parent::examineConstraintMatchSucceeds([$expect], $actual);
     }
@@ -73,7 +73,7 @@ final class KsortedArrayIdenticalToTest extends KsortedConstraintTestCase
      *
      * @param mixed $actual
      */
-    public function testNotKsortedArrayIdenticalToSucceeds(array $expect, $actual): void
+    public function testNotKsortedArrayIdenticalToSucceeds(array $expect, $actual, string $string): void
     {
         parent::examineNotConstraintMatchSucceeds([$expect], $actual);
     }

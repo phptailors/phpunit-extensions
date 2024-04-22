@@ -43,7 +43,7 @@ final class ArrayValuesEqualToTraitTest extends TestCase
      *
      * @param mixed $actual
      */
-    public function testArrayValuesEqualToSucceeds(array $expect, $actual)
+    public function testArrayValuesEqualToSucceeds(array $expect, $actual, string $string)
     {
         self::assertThat($actual, self::arrayValuesEqualTo($expect));
     }
@@ -54,7 +54,7 @@ final class ArrayValuesEqualToTraitTest extends TestCase
      *
      * @param mixed $actual
      */
-    public function testAssertArrayValuesEqualToSucceeds(array $expect, $actual)
+    public function testAssertArrayValuesEqualToSucceeds(array $expect, $actual, string $string)
     {
         self::assertArrayValuesEqualTo($expect, $actual);
     }
@@ -64,7 +64,7 @@ final class ArrayValuesEqualToTraitTest extends TestCase
      *
      * @param mixed $actual
      */
-    public function testAssertArrayValuesEqualToFails(array $expect, $actual)
+    public function testAssertArrayValuesEqualToFails(array $expect, $actual, string $string)
     {
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that .+ is an array or ArrayAccess '.
@@ -80,7 +80,7 @@ final class ArrayValuesEqualToTraitTest extends TestCase
      *
      * @param mixed $actual
      */
-    public function testNotArrayValuesEqualToSucceeds(array $expect, $actual)
+    public function testNotArrayValuesEqualToSucceeds(array $expect, $actual, string $string)
     {
         self::assertThat($actual, self::logicalNot(self::arrayValuesEqualTo($expect)));
     }
@@ -90,7 +90,7 @@ final class ArrayValuesEqualToTraitTest extends TestCase
      *
      * @param mixed $actual
      */
-    public function testAssertNotArrayValuesEqualToSucceeds(array $expect, $actual)
+    public function testAssertNotArrayValuesEqualToSucceeds(array $expect, $actual, string $string)
     {
         self::assertNotArrayValuesEqualTo($expect, $actual);
     }
@@ -101,7 +101,7 @@ final class ArrayValuesEqualToTraitTest extends TestCase
      *
      * @param mixed $actual
      */
-    public function testAssertNotArrayValuesEqualToFails(array $expect, $actual)
+    public function testAssertNotArrayValuesEqualToFails(array $expect, $actual, string $string)
     {
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that .+ fails to be an array or ArrayAccess '.

@@ -59,7 +59,7 @@ final class ClassPropertiesEqualToTest extends PropertiesConstraintTestCase
      *
      * @param mixed $actual
      */
-    public function testPropertiesEqualToSucceeds(array $expect, $actual): void
+    public function testPropertiesEqualToSucceeds(array $expect, $actual, string $string): void
     {
         parent::examineValuesMatchSucceeds($expect, $actual);
     }
@@ -81,7 +81,7 @@ final class ClassPropertiesEqualToTest extends PropertiesConstraintTestCase
      *
      * @param mixed $actual
      */
-    public function testNotClassPropertiesEqualToSucceeds(array $expect, $actual): void
+    public function testNotClassPropertiesEqualToSucceeds(array $expect, $actual, string $string): void
     {
         parent::examineNotValuesMatchSucceeds($expect, $actual);
     }

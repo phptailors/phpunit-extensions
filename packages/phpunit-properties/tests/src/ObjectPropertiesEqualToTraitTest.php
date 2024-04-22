@@ -38,32 +38,32 @@ final class ObjectPropertiesEqualToTraitTest extends TestCase
      * @dataProvider provObjectPropertiesIdenticalTo
      * @dataProvider provObjectPropertiesEqualButNotIdenticalTo
      */
-    public function testObjectPropertiesEqualTo(array $expect, object $object)
+    public function testObjectPropertiesEqualTo(array $expect, object $actual, string $string)
     {
-        self::assertThat($object, self::objectPropertiesEqualTo($expect));
+        self::assertThat($actual, self::objectPropertiesEqualTo($expect));
     }
 
     /**
      * @dataProvider provObjectPropertiesNotEqualTo
      */
-    public function testLogicalNotObjectPropertiesEqualTo(array $expect, object $object)
+    public function testLogicalNotObjectPropertiesEqualTo(array $expect, object $actual, string $string)
     {
-        self::assertThat($object, self::logicalNot(self::objectPropertiesEqualTo($expect)));
+        self::assertThat($actual, self::logicalNot(self::objectPropertiesEqualTo($expect)));
     }
 
     /**
      * @dataProvider provObjectPropertiesIdenticalTo
      * @dataProvider provObjectPropertiesEqualButNotIdenticalTo
      */
-    public function testAssertObjectPropertiesEqualTo(array $expect, object $object)
+    public function testAssertObjectPropertiesEqualTo(array $expect, object $actual, string $string)
     {
-        self::assertObjectPropertiesEqualTo($expect, $object);
+        self::assertObjectPropertiesEqualTo($expect, $actual);
     }
 
     /**
      * @dataProvider provObjectPropertiesNotEqualTo
      */
-    public function testAssertObjectPropertiesEqualToFails(array $expect, object $object)
+    public function testAssertObjectPropertiesEqualToFails(array $expect, object $actual, string $string)
     {
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that object class\@.+ is an object '.
@@ -71,22 +71,22 @@ final class ObjectPropertiesEqualToTraitTest extends TestCase
         self::expectException(ExpectationFailedException::class);
         self::expectExceptionMessageMatches($regexp);
 
-        self::assertObjectPropertiesEqualTo($expect, $object, 'Lorem ipsum.');
+        self::assertObjectPropertiesEqualTo($expect, $actual, 'Lorem ipsum.');
     }
 
     /**
      * @dataProvider provObjectPropertiesNotEqualTo
      */
-    public function testAssertNotObjectPropertiesEqualTo(array $expect, object $object)
+    public function testAssertNotObjectPropertiesEqualTo(array $expect, object $actual, string $string)
     {
-        self::assertNotObjectPropertiesEqualTo($expect, $object);
+        self::assertNotObjectPropertiesEqualTo($expect, $actual);
     }
 
     /**
      * @dataProvider provObjectPropertiesIdenticalTo
      * @dataProvider provObjectPropertiesEqualButNotIdenticalTo
      */
-    public function testAssertNotObjectPropertiesEqualToFails(array $expect, object $object)
+    public function testAssertNotObjectPropertiesEqualToFails(array $expect, object $actual, string $string)
     {
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that object class@.+ fails to be an object '.
@@ -94,7 +94,7 @@ final class ObjectPropertiesEqualToTraitTest extends TestCase
         self::expectException(ExpectationFailedException::class);
         self::expectExceptionMessageMatches($regexp);
 
-        self::assertNotObjectPropertiesEqualTo($expect, $object, 'Lorem ipsum.');
+        self::assertNotObjectPropertiesEqualTo($expect, $actual, 'Lorem ipsum.');
     }
 }
 

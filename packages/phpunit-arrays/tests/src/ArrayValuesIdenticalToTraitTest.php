@@ -42,7 +42,7 @@ final class ArrayValuesIdenticalToTraitTest extends TestCase
      *
      * @param mixed $actual
      */
-    public function testArrayValuesIdenticalTo(array $expect, $actual)
+    public function testArrayValuesIdenticalTo(array $expect, $actual, string $string)
     {
         self::assertThat($actual, self::arrayValuesIdenticalTo($expect));
     }
@@ -53,7 +53,7 @@ final class ArrayValuesIdenticalToTraitTest extends TestCase
      *
      * @param mixed $actual
      */
-    public function testLogicalNotArrayValuesIdenticalTo(array $expect, $actual)
+    public function testLogicalNotArrayValuesIdenticalTo(array $expect, $actual, string $string)
     {
         self::assertThat($actual, self::logicalNot(self::arrayValuesIdenticalTo($expect)));
     }
@@ -63,7 +63,7 @@ final class ArrayValuesIdenticalToTraitTest extends TestCase
      *
      * @param mixed $actual
      */
-    public function testAssertArrayValuesIdenticalTo(array $expect, $actual)
+    public function testAssertArrayValuesIdenticalTo(array $expect, $actual, string $string)
     {
         self::assertArrayValuesIdenticalTo($expect, $actual);
     }
@@ -74,7 +74,7 @@ final class ArrayValuesIdenticalToTraitTest extends TestCase
      *
      * @param mixed $actual
      */
-    public function testAssertArrayValuesIdenticalToFails(array $expect, $actual)
+    public function testAssertArrayValuesIdenticalToFails(array $expect, $actual, string $string)
     {
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that .+ is an array or ArrayAccess '.
@@ -90,7 +90,7 @@ final class ArrayValuesIdenticalToTraitTest extends TestCase
      *
      * @param mixed $actual
      */
-    public function testAssertNotArrayValuesIdenticalTo(array $expect, $actual)
+    public function testAssertNotArrayValuesIdenticalTo(array $expect, $actual, string $string)
     {
         self::assertNotArrayValuesIdenticalTo($expect, $actual);
     }
@@ -100,7 +100,7 @@ final class ArrayValuesIdenticalToTraitTest extends TestCase
      *
      * @param mixed $actual
      */
-    public function testAssertNotArrayValuesIdenticalToFails(array $expect, $actual)
+    public function testAssertNotArrayValuesIdenticalToFails(array $expect, $actual, string $string)
     {
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that .+ fails to be an array or ArrayAccess '.

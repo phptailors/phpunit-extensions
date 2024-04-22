@@ -58,7 +58,7 @@ final class ArrayValuesIdenticalToTest extends ConstraintTestCase
      *
      * @param mixed $actual
      */
-    public function testArrayValuesIdenticalToSucceeds(array $expect, $actual): void
+    public function testArrayValuesIdenticalToSucceeds(array $expect, $actual, string $string): void
     {
         parent::examineValuesMatchSucceeds($expect, $actual);
     }
@@ -84,7 +84,7 @@ final class ArrayValuesIdenticalToTest extends ConstraintTestCase
      *
      * @param mixed $actual
      */
-    public function testNotArrayValuesIdenticalToSucceeds(array $expect, $actual): void
+    public function testNotArrayValuesIdenticalToSucceeds(array $expect, $actual, string $string): void
     {
         parent::examineNotValuesMatchSucceeds($expect, $actual);
     }

@@ -137,17 +137,17 @@ final class ImplementsInterfaceTest extends TestCase
         return [
             'ImplementsInterfaceTest.php:'.__LINE__ => [
                 'argument' => 'non-interface string',
-                'messsage' => $message,
+                'message' => $message,
             ],
 
             'ImplementsInterfaceTest.php:'.__LINE__ => [
                 'argument' => \Exception::class,
-                'messsage' => $message,
+                'message' => $message,
             ],
 
             'ImplementsInterfaceTest.php:'.__LINE__ => [
                 'argument' => ExampleTrait::class,
-                'messsage' => $message,
+                'message' => $message,
             ],
         ];
     }
