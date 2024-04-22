@@ -32,24 +32,24 @@ final class ClassPropertiesEqualToTraitTest extends TestCase
      * @dataProvider provClassPropertiesIdenticalTo
      * @dataProvider provClassPropertiesEqualButNotIdenticalTo
      */
-    public function testClassPropertiesEqualToSucceeds(array $expect, string $class)
+    public function testClassPropertiesEqualToSucceeds(array $expect, string $actual, string $string)
     {
-        self::assertThat($class, self::classPropertiesEqualTo($expect));
+        self::assertThat($actual, self::classPropertiesEqualTo($expect));
     }
 
     /**
      * @dataProvider provClassPropertiesIdenticalTo
      * @dataProvider provClassPropertiesEqualButNotIdenticalTo
      */
-    public function testAssertClassPropertiesEqualToSucceeds(array $expect, string $class)
+    public function testAssertClassPropertiesEqualToSucceeds(array $expect, string $actual, string $string)
     {
-        self::assertClassPropertiesEqualTo($expect, $class);
+        self::assertClassPropertiesEqualTo($expect, $actual);
     }
 
     /**
      * @dataProvider provClassPropertiesNotEqualTo
      */
-    public function testAssertClassPropertiesEqualToFails(array $expect, string $class)
+    public function testAssertClassPropertiesEqualToFails(array $expect, string $actual, string $string)
     {
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that .+ is a class '.
@@ -57,30 +57,30 @@ final class ClassPropertiesEqualToTraitTest extends TestCase
         self::expectException(ExpectationFailedException::class);
         self::expectExceptionMessageMatches($regexp);
 
-        self::assertClassPropertiesEqualTo($expect, $class, 'Lorem ipsum.');
+        self::assertClassPropertiesEqualTo($expect, $actual, 'Lorem ipsum.');
     }
 
     /**
      * @dataProvider provClassPropertiesNotEqualTo
      */
-    public function testNotClassPropertiesEqualToSucceeds(array $expect, string $class)
+    public function testNotClassPropertiesEqualToSucceeds(array $expect, string $actual, string $string)
     {
-        self::assertThat($class, self::logicalNot(self::classPropertiesEqualTo($expect)));
+        self::assertThat($actual, self::logicalNot(self::classPropertiesEqualTo($expect)));
     }
 
     /**
      * @dataProvider provClassPropertiesNotEqualTo
      */
-    public function testAssertNotClassPropertiesEqualToSucceeds(array $expect, string $class)
+    public function testAssertNotClassPropertiesEqualToSucceeds(array $expect, string $actual, string $string)
     {
-        self::assertNotClassPropertiesEqualTo($expect, $class);
+        self::assertNotClassPropertiesEqualTo($expect, $actual);
     }
 
     /**
      * @dataProvider provClassPropertiesIdenticalTo
      * @dataProvider provClassPropertiesEqualButNotIdenticalTo
      */
-    public function testAssertNotClassPropertiesEqualToFails(array $expect, string $class)
+    public function testAssertNotClassPropertiesEqualToFails(array $expect, string $actual, string $string)
     {
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that .+ fails to be a class '.
@@ -88,7 +88,7 @@ final class ClassPropertiesEqualToTraitTest extends TestCase
         self::expectException(ExpectationFailedException::class);
         self::expectExceptionMessageMatches($regexp);
 
-        self::assertNotClassPropertiesEqualTo($expect, $class, 'Lorem ipsum.');
+        self::assertNotClassPropertiesEqualTo($expect, $actual, 'Lorem ipsum.');
     }
 }
 

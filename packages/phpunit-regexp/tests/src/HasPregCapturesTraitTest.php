@@ -34,7 +34,7 @@ final class HasPregCapturesTraitTest extends TestCase
      *
      * @param mixed $actual
      */
-    public function testAssertHasPregCapturesSucceeds(array $expect, $actual): void
+    public function testAssertHasPregCapturesSucceeds(array $expect, $actual, string $message): void
     {
         self::assertHasPregCaptures($expect, $actual);
     }
@@ -57,7 +57,7 @@ final class HasPregCapturesTraitTest extends TestCase
      *
      * @param mixed $actual
      */
-    public function testAssertNotHasPregCaptureSucceeds(array $expect, $actual): void
+    public function testAssertNotHasPregCaptureSucceeds(array $expect, $actual, string $message): void
     {
         self::assertNotHasPregCaptures($expect, $actual);
     }
@@ -79,7 +79,7 @@ final class HasPregCapturesTraitTest extends TestCase
      *
      * @param mixed $actual
      */
-    public function testHasPregCapturesSucceeds(array $expect, $actual): void
+    public function testHasPregCapturesSucceeds(array $expect, $actual, string $message): void
     {
         self::assertThat($actual, self::hasPregCaptures($expect));
     }

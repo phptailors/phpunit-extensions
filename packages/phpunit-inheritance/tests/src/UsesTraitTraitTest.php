@@ -87,7 +87,7 @@ final class UsesTraitTraitTest extends TestCase
      *
      * @param mixed $subject
      */
-    public function testAssertUsesTraitSucceeds(string $trait, $subject): void
+    public function testAssertUsesTraitSucceeds(string $trait, $subject, string $message): void
     {
         self::assertUsesTrait($trait, $subject);
     }
@@ -110,7 +110,7 @@ final class UsesTraitTraitTest extends TestCase
      *
      * @param mixed $subject
      */
-    public function testAssertNotUsesTraitSucceeds(string $trait, $subject): void
+    public function testAssertNotUsesTraitSucceeds(string $trait, $subject, string $message): void
     {
         self::assertNotUsesTrait($trait, $subject);
     }
@@ -133,7 +133,7 @@ final class UsesTraitTraitTest extends TestCase
      *
      * @param mixed $subject
      */
-    public function testUsesTrait(string $trait, $subject): void
+    public function testUsesTrait(string $trait, $subject, string $message): void
     {
         self::assertThat($subject, self::usesTrait($trait));
     }
@@ -143,7 +143,7 @@ final class UsesTraitTraitTest extends TestCase
      *
      * @param mixed $subject
      */
-    public function testNotUsesTrait(string $trait, $subject): void
+    public function testNotUsesTrait(string $trait, $subject, string $message): void
     {
         self::assertThat($subject, self::logicalNot(self::usesTrait($trait)));
     }

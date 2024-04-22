@@ -125,17 +125,17 @@ final class ExtendsClassTest extends TestCase
         return [
             'ExtendsClassTest.php:'.__LINE__ => [
                 'argument' => 'non-class string',
-                'messsage' => $message,
+                'message' => $message,
             ],
 
             'ExtendsClassTest.php:'.__LINE__ => [
                 'argument' => \Throwable::class,
-                'messsage' => $message,
+                'message' => $message,
             ],
 
             'ExtendsClassTest.php:'.__LINE__ => [
                 'argument' => ExampleTrait::class,
-                'messsage' => $message,
+                'message' => $message,
             ],
         ];
     }
@@ -145,7 +145,7 @@ final class ExtendsClassTest extends TestCase
      *
      * @param mixed $subject
      */
-    public function testConstraintSucceeds(string $class, $subject): void
+    public function testConstraintSucceeds(string $class, $subject, string $message = ''): void
     {
         $constraint = ExtendsClass::create($class);
 

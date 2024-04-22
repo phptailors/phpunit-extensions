@@ -134,17 +134,17 @@ final class UsesTraitTest extends TestCase
         return [
             'UsesTraitTest.php:'.__LINE__ => [
                 'argument' => 'non-trait string',
-                'messsage' => $message,
+                'message' => $message,
             ],
 
             'UsesTraitTest.php:'.__LINE__ => [
                 'argument' => \Exception::class,
-                'messsage' => $message,
+                'message' => $message,
             ],
 
             'UsesTraitTest.php:'.__LINE__ => [
                 'argument' => \Throwable::class,
-                'messsage' => $message,
+                'message' => $message,
             ],
         ];
     }
