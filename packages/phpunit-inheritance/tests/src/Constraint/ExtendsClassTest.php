@@ -125,17 +125,17 @@ final class ExtendsClassTest extends TestCase
         return [
             'ExtendsClassTest.php:'.__LINE__ => [
                 'argument' => 'non-class string',
-                'message' => $message,
+                'message'  => $message,
             ],
 
             'ExtendsClassTest.php:'.__LINE__ => [
                 'argument' => \Throwable::class,
-                'message' => $message,
+                'message'  => $message,
             ],
 
             'ExtendsClassTest.php:'.__LINE__ => [
                 'argument' => ExampleTrait::class,
-                'message' => $message,
+                'message'  => $message,
             ],
         ];
     }
