@@ -1,6 +1,6 @@
-PHPUnit 10.5.2 by Sebastian Bergmann and contributors.
+PHPUnit 11.1.2 by Sebastian Bergmann and contributors.
 
-Runtime:       PHP 8.2.13
+Runtime:       PHP 8.3.6
 Configuration: phpunit.xml
 
 .F                                                                  2 / 2 (100%)

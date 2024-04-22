@@ -1,11 +1,11 @@
-PHPUnit 10.5.2 by Sebastian Bergmann and contributors.
+PHPUnit 11.1.2 by Sebastian Bergmann and contributors.
 
-Runtime:       PHP 8.2.13
+Runtime:       PHP 8.3.6
 Configuration: phpunit.xml
 
 .F                                                                  2 / 2 (100%)
 
-Time: 00:00.008, Memory: 8.00 MB
+Time: 00:00.013, Memory: 8.00 MB
 
 There was 1 failure:
 
@@ -14,10 +14,10 @@ Failed asserting that array is an array or ArrayAccess with values identical to 
 --- Expected
 +++ Actual
 @@ @@
--Tailors\PHPUnit\Values\ExpectedValuesSelection Object #447 (
+-Tailors\PHPUnit\Values\ExpectedValuesSelection Object #452 (
 -    'int' => 123,
 -    1 => null,
-+Tailors\PHPUnit\Values\ActualValues Object #444 (
++Tailors\PHPUnit\Values\ActualValues Object #449 (
 +    'int' => '123',
 +    1 => '',
  )

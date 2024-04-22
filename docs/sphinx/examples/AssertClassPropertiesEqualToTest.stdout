@@ -1,6 +1,6 @@
-PHPUnit 10.5.2 by Sebastian Bergmann and contributors.
+PHPUnit 11.1.2 by Sebastian Bergmann and contributors.
 
-Runtime:       PHP 8.2.13
+Runtime:       PHP 8.3.6
 Configuration: phpunit.xml
 
 .F                                                                  2 / 2 (100%)
@@ -14,10 +14,10 @@ Failed asserting that AssertClassPropertiesEqualToTest is a class with propertie
 --- Expected
 +++ Actual
 @@ @@
--Tailors\PHPUnit\Values\ExpectedValuesSelection Object #451 (
+-Tailors\PHPUnit\Values\ExpectedValuesSelection Object #456 (
 -    'attribute' => '123',
 -    'getValue()' => null,
-+Tailors\PHPUnit\Values\ActualValues Object #448 (
++Tailors\PHPUnit\Values\ActualValues Object #453 (
 +    'attribute' => 123,
 +    'getValue()' => 321,
  )
