@@ -1,5 +1,5 @@
 {
     "require-dev": {
-        "symplify/monorepo-builder": "11.1.30.72"
+        "symplify/monorepo-builder": "^11"
     }
 }
