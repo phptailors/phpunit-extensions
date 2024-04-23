@@ -23,7 +23,7 @@ jobs:
 
       # get package json list
       - id: output_data
-        run: echo "matrix=$(vendor-bin/monorepo-builder/vendor/bin/monorepo-builder packages-json)" >> $GITHUB_OUTPUT
+        run: echo "matrix=$(util/packages-json.sh)" >> $GITHUB_OUTPUT
     outputs:
       matrix: ${{ steps.output_data.outputs.matrix }}
 
