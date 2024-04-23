@@ -55,7 +55,7 @@ jobs:
 
       - run: composer bin behat update --no-interaction --no-progress --ansi
 
-      - run: vendor-bin/behat/vendor/bin/behat -c docs/behat.yml
+      - run: bin/behat -c docs/behat.yml
 
 
   build-docs:

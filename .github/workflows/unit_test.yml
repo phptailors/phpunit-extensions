@@ -101,7 +101,7 @@ jobs:
       - run: composer install --no-interaction --no-progress --ansi
       - run: composer bin monorepo-builder install --no-interaction --no-progress --ansi
 
-      - run: vendor-bin/monorepo-builder/vendor/bin/monorepo-builder localize-composer-paths --ansi packages/${{ matrix.package }}/composer.json
+      - run: bin/monorepo-builder localize-composer-paths --ansi packages/${{ matrix.package }}/composer.json
 
       - if: matrix.dependencies == 'highest'
         run: composer update --no-interaction --no-progress --ansi --working-dir packages/${{ matrix.package }}

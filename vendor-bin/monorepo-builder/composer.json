@@ -1,5 +1,10 @@
 {
     "require-dev": {
         "symplify/monorepo-builder": "^11"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tailors\\MonorepoBuilder\\": "src/"
+        }
     }
 }
