@@ -53,7 +53,7 @@
             "target-directory": "vendor-bin"
         },
         "branch-alias": {
-            "dev-master": "3.0-dev"
+            "dev-master": "3.1-dev"
         }
     },
     "config": {
@@ -62,12 +62,12 @@
         }
     },
     "replace": {
-        "phptailors/phpunit-arrays": "3.0.2",
-        "phptailors/phpunit-common": "3.0.2",
-        "phptailors/phpunit-inheritance": "3.0.2",
-        "phptailors/phpunit-methods": "3.0.2",
-        "phptailors/phpunit-properties": "3.0.2",
-        "phptailors/phpunit-regexp": "3.0.2"
+        "phptailors/phpunit-arrays": "self.version",
+        "phptailors/phpunit-common": "self.version",
+        "phptailors/phpunit-inheritance": "self.version",
+        "phptailors/phpunit-methods": "self.version",
+        "phptailors/phpunit-properties": "self.version",
+        "phptailors/phpunit-regexp": "self.version"
     },
     "minimum-stability": "dev",
     "prefer-stable": true

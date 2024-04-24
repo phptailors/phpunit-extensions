@@ -20,7 +20,7 @@
     },
     "require": {
         "php": ">=8.2",
-        "phptailors/phpunit-common": "^3"
+        "phptailors/phpunit-common": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "^11.0.1"
