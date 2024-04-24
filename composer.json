@@ -49,8 +49,11 @@
     "extra": {
         "bamarni-bin": {
             "bin-links": false,
-            "target-directory": "vendor-bin",
-            "forward-command": false
+            "forward-command": false,
+            "target-directory": "vendor-bin"
+        },
+        "branch-alias": {
+            "dev-master": "3.0-dev"
         }
     },
     "config": {
