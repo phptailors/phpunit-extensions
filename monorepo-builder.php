@@ -3,6 +3,9 @@
 use Symplify\MonorepoBuilder\ComposerJsonManipulator\ValueObject\ComposerJsonSection;
 use Symplify\MonorepoBuilder\Config\MBConfig;
 use Symplify\MonorepoBuilder\Contract\Git\TagResolverInterface;
+use Symplify\MonorepoBuilder\Release\ReleaseWorker\PushTagReleaseWorker;
+use Symplify\MonorepoBuilder\Release\ReleaseWorker\TagVersionReleaseWorker;
+use Symplify\MonorepoBuilder\Release\ReleaseWorker\UpdateReplaceReleaseWorker;
 use Tailors\MonorepoBuilder\MostRecentTagResolver;
 
 return
@@ -45,5 +48,12 @@ static function (MBConfig $mbConfig) : void {
                 "bamarni/composer-bin-plugin" => true,
             ]
         ],
+    ]);
+
+    $mbConfig->disableDefaultWorkers();
+    $mbConfig->workers([
+        UpdateReplaceReleaseWorker::class,
+        TagVersionReleaseWorker::class,
+        PushTagReleaseWorker::class,
     ]);
 };
