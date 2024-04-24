@@ -66,12 +66,17 @@ jobs:
           user_email: "pawel@tomulik.pl"
 
       # with tag
+      - name: Get branch for ${{ github.ref_name }}
+        if: ${{ github.ref_type == 'tag' }}
+        run: |
+          echo '${{ github.ref_name }}' | awk -F'.' '{ print "BRANCH_FOR_TAG="$1"."$2 }' | tee -a $GITHUB_ENV
+
       - name: Split out ${{ matrix.package }} (tag)
         if: ${{ github.ref_type == 'tag' }}
         uses: symplify/monorepo-split-github-action@v2.3.0
         with:
           tag: "${{ github.ref_name }}"
-          branch: 'master'
+          branch: ${{ env.BRANCH_FOR_TAG }}
           package_directory: 'packages/${{ matrix.package }}'
           repository_organization: 'phptailors'
           repository_name: '${{ matrix.package }}'
