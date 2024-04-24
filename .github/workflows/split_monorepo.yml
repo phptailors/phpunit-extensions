@@ -9,6 +9,9 @@ on:
       - '[0-9]+.[0-9]+.[0-9]+'
   pull_request:
 
+env:
+  GITHUB_TOKEN: ${{ secrets.MONOREPO_SPLIT_TOKEN }}
+
 jobs:
   provide_packages_json:
     # see json juggling: https://docs.github.com/en/free-pro-team@latest/actions/reference/context-and-expression-syntax-for-github-actions#example-6
@@ -53,9 +56,7 @@ jobs:
       # no tag
       - name: Split out ${{ matrix.package }} (branch)
         if: ${{ github.ref_type == 'branch' }}
-        env:
-          PAT: ${{ secrets.MONOREPO_SPLIT_TOKEN }}
-        uses: symplify/github-action-monorepo-split@2.1
+        uses: symplify/monorepo-split-github-action@2.2
         with:
           branch: "${{ github.ref_name }}"
           package_directory: 'packages/${{ matrix.package }}'
@@ -67,9 +68,7 @@ jobs:
       # with tag
       - name: Split out ${{ matrix.package }} (tag)
         if: ${{ github.ref_type == 'tag' }}
-        env:
-          PAT: ${{ secrets.MONOREPO_SPLIT_TOKEN }}
-        uses: symplify/github-action-monorepo-split@2.1
+        uses: symplify/monorepo-split-github-action@2.2
         with:
           tag: "${{ github.ref_name }}"
           package_directory: 'packages/${{ matrix.package }}'
