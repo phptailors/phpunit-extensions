@@ -6,8 +6,8 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "support": {
-      "issues": "https://github.com/phptailors/phpunit-extensions/issues",
-      "source": "https://github.com/phptailors/phpunit-extensions"
+        "issues": "https://github.com/phptailors/phpunit-extensions/issues",
+        "source": "https://github.com/phptailors/phpunit-extensions"
     },
     "authors": [
         {
@@ -26,20 +26,18 @@
         "phpunit/phpunit": "^11.0.1"
     },
     "autoload": {
-      "psr-4" : {
-        "Tailors\\PHPUnit\\" : "src/"
-      },
-      "files": [
-      ]
+        "psr-4": {
+            "Tailors\\PHPUnit\\": "src/"
+        }
     },
     "autoload-dev": {
-      "psr-4" : {
-        "Tailors\\PHPUnit\\" : "tests/src/"
-      }
+        "psr-4": {
+            "Tailors\\PHPUnit\\": "tests/src/"
+        }
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "3.0-dev"
+            "dev-master": "3.1-dev"
         }
     }
 }
