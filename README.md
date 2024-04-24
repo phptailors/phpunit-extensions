@@ -36,6 +36,11 @@ final class ExampleRegexpTest extends TestCase
 {
     use HasPregCapturesTrait;
 
+    private static function regex(): string
+    {
+        return '/(?<name>\w+) (?<surname>\w+)(?:, (?<age>\d+))?/';
+    }
+
     /**
      * @return array<int,array<string,mixed>>
      */
@@ -43,34 +48,26 @@ final class ExampleRegexpTest extends TestCase
     {
 
         return [
-            [ 'input' => 'John',           'expect' => false ],
-            [ 'input' => ' John Smith ',   'expect' => ['name' => 'John', 'surname' => 'Smith', 'age' => false, 'city' => false ]],
-            [ 'input' => 'John Smith, 24', 'expect' => ['name' => 'John', 'surname' => 'Smith', 'age' => false, 'city' => false ]],
+            ['input' => 'John',           'expect' => ['name' => false,  'surname' => false,   'age' => false]],
+            ['input' => ' John Smith ',   'expect' => ['name' => 'John', 'surname' => 'Smith', 'age' => false]],
+            ['input' => 'John Smith, 24', 'expect' => ['name' => 'John', 'surname' => 'Smith', 'age' => false]],
         ];
     }
 
     /**
-     * @param array<string, mixed>|false $captures
+     * @param array<string, mixed> $expect
      */
     #[DataProvider('provideRegexMatchAndCaptures')]
-    public function testRegexMatchAndCaptures(string $input, array|false $expect): void
+    public function testRegexMatchAndCaptures(string $input, array $expect): void
     {
-        $regex = '/(?<name>\w+) (?<surname>\w+)(?:, (?<age>\d+))?(?:, (?<city>\w+))?/';
-
-        $result = preg_match($regex, $input, $captures, PREG_UNMATCHED_AS_NULL);
-
-        if (false === $expect) {
-            $this->assertSame(0, $result);
-        } else {
-            $this->assertHasPregCaptures($expect, $captures);
-        }
+        preg_match(self::regex(), $input, $captures, PREG_UNMATCHED_AS_NULL);
+        $this->assertHasPregCaptures($expect, $captures);
     }
 }
 ```
 
 ```console
 john@pc:$ vendor/bin/phpunit tests/ExampleRegexpTest.php
-
 PHPUnit 11.1.3 by Sebastian Bergmann and contributors.
 
 Runtime:       PHP 8.3.6
@@ -81,7 +78,7 @@ Time: 00:00.014, Memory: 8.00 MB
 
 There was 1 failure:
 
-1) Example\ExampleRegexpTest::testRegexMatchAndCaptures with data set #2 ('John Smith, 24', ['John', 'Smith', false, false])
+1) Example\ExampleRegexpTest::testRegexMatchAndCaptures with data set #2 ('John Smith, 24', ['John', 'Smith', false])
 Failed asserting that array has expected PCRE capture groups.
 --- Expected
 +++ Actual
@@ -91,13 +88,13 @@ Failed asserting that array has expected PCRE capture groups.
      'surname' => 'Smith',
 -    'age' => false,
 +    'age' => '24',
-     'city' => null,
  ]
 
-tests/ExampleRegexpTest.php:39
+ExampleRegexpTest.php:38
 
 FAILURES!
 Tests: 3, Assertions: 3, Failures: 1.
+
 ```
 
 There is more, see [documentation](https://phptailors.github.io/phpunit-extensions/docs).
