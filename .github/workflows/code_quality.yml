@@ -63,4 +63,4 @@ jobs:
         run: composer bin psalm update --no-interaction --ansi --no-progress
 
       - name: Run vimeo/psalm on packages
-        run: vendor-bin/psalm/vendor/bin/psalm --php-version=${{ matrix.php-version }} --no-progress --shepherd --show-info=true --stats
+        run: bin/psalm --php-version=${{ matrix.php-version }} --no-progress --shepherd --show-info=true --stats

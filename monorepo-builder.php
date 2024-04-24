@@ -2,29 +2,16 @@
 
 use Symplify\MonorepoBuilder\ComposerJsonManipulator\ValueObject\ComposerJsonSection;
 use Symplify\MonorepoBuilder\Config\MBConfig;
-use Symplify\MonorepoBuilder\ValueObject\Option;
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-// USAGE EXAMPLES:
-//
-// 1. Split onto repositories under "build/monorepo-split/repositories/phptailors/"
-//
-//      vendor/bin/monorepo-builder split
-//
-//    Bare repositories are required to be present uner this base path before the
-//    split is attempted. To initialize these repositories run
-//
-//      util/initialize-split-repositories.sh
-//
-// 2. Split onto repositories under git@github.com:phptailors/
-//
-//      MONOREPO_SPLIT_REPO_BASE='git@github.com:phptailors' vendor/bin/monorepo-builder split
-//
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+use Symplify\MonorepoBuilder\Contract\Git\TagResolverInterface;
+use Tailors\MonorepoBuilder\MostRecentTagResolver;
 
 return
 static function (MBConfig $mbConfig) : void {
+    $services = $mbConfig->services();
+    $services->set(MostRecentTagResolver::class)
+             ->autowire()
+             ->alias(TagResolverInterface::class, MostRecentTagResolver::class);
+
     $mbConfig->packageDirectories([
         __dir__ . '/packages'
     ]);
