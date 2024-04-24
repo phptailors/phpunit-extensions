@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1. Assertions &mdash; PHPUnit Extensions  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script integrity="sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK" src="_static/jquery.js"></script>
+        <script integrity="sha384-lSZeSIVKp9myfKbDQ3GkN/KHjUc+mzg17VKDN4Y2kUeBSJioB9QSM639vM9fuY//" src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="2. Constraints" href="constraints.html" />
+    <link rel="prev" title="PHPUnit Extensions" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            PHPUnit Extensions
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. Assertions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#assertarrayvaluesequalto">assertArrayValuesEqualTo()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#assertarrayvaluesidenticalto">assertArrayValuesIdenticalTo()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#assertclasspropertiesequalto">assertClassPropertiesEqualTo()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#assertclasspropertiesidenticalto">assertClassPropertiesIdenticalTo()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#assertextendsclass">assertExtendsClass()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#asserthasmethod">assertHasMethod()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#asserthaspregcaptures">assertHasPregCaptures()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#assertimplementsinterface">assertImplementsInterface()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#assertksortedarrayequalto">assertKsortedArrayEqualTo()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#assertksortedarrayidenticalto">assertKsortedArrayIdenticalTo()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#assertobjectpropertiesequalto">assertObjectPropertiesEqualTo()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#assertobjectpropertiesidenticalto">assertObjectPropertiesIdenticalTo()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#assertusestrait">assertUsesTrait()</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="constraints.html">2. Constraints</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PHPUnit Extensions</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">1. </span>Assertions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/assertions.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="assertions">
+<span id="id1"></span><h1><span class="section-number">1. </span>Assertions<a class="headerlink" href="#assertions" title="Permalink to this heading"></a></h1>
+<p>This section lists the various assertion methods that are provided by
+sub-packages of phptailors/phpunit-extensions. Assertions may be added to your
+test class by including appropriate trait as shown in prerequisite tables
+below.</p>
+<section id="assertarrayvaluesequalto">
+<span id="assertions-assertarrayvaluesequalto"></span><h2>assertArrayValuesEqualTo()<a class="headerlink" href="#assertarrayvaluesequalto" title="Permalink to this heading"></a></h2>
+<table class="docutils align-default" id="id2" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for assertArrayValuesEqualTo()</span><a class="headerlink" href="#id2" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Package</p></td>
+<td><p>phptailors/phpunit-arrays</p></td>
+</tr>
+<tr class="row-even"><td><p>Trait</p></td>
+<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/1.0/api/Tailors/PHPUnit/ArrayValuesEqualToTrait.html" title="Tailors\PHPUnit\ArrayValuesEqualToTrait"><span class="pre">ArrayValuesEqualToTrait</span></a></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Synopsis:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">assertArrayValuesEqualTo</span><span class="p">(</span><span class="k">array</span> <span class="nv">$expected</span><span class="p">,</span> <span class="nx">mixed</span> <span class="nv">$actual</span><span class="p">[,</span> <span class="nx">string</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Reports an error identified by <code class="docutils literal notranslate"><span class="pre">$message</span></code> if values in <code class="docutils literal notranslate"><span class="pre">$actual</span></code> (array or
+<a class="reference external" href="https://www.php.net/manual/en/class.arrayaccess.php">ArrayAccess</a> instance) are not equal to <code class="docutils literal notranslate"><span class="pre">$expected</span></code> ones (tested with <code class="docutils literal notranslate"><span class="pre">==</span></code>
+operator). The method compares only values specified in <code class="docutils literal notranslate"><span class="pre">$expected</span></code> array, so
+<code class="docutils literal notranslate"><span class="pre">$expected</span> <span class="pre">=</span> <span class="pre">[]</span></code> accepts any <code class="docutils literal notranslate"><span class="pre">$actual</span></code> array. If <code class="docutils literal notranslate"><span class="pre">$actual</span></code> is not an
+array nor <a class="reference external" href="https://www.php.net/manual/en/class.arrayaccess.php">ArrayAccess</a> instance, the constraint fails.</p>
+<p>The arguments are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">$expected</span></code> - an array of expected values,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$actual</span></code> - an array or an <a class="reference external" href="https://www.php.net/manual/en/class.arrayaccess.php">ArrayAccess</a> instance with actual values,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$message</span></code> - optional failure message,</p></li>
+</ul>
+<p>The method</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">assertNotArrayValuesEqualTo</span><span class="p">(</span><span class="k">array</span> <span class="nv">$expected</span><span class="p">,</span> <span class="nx">mixed</span> <span class="nv">$actual</span><span class="p">[,</span> <span class="nx">string</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>is the inverse of this.</p>
+<div class="literal-block-wrapper docutils container" id="assertions-assertarrayvaluesequalto-example">
+<div class="code-block-caption"><span class="caption-text">Usage of assertArrayValuesEqualTo()</span><a class="headerlink" href="#assertions-assertarrayvaluesequalto-example" title="Permalink to this code"></a></div>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">final</span> <span class="k">class</span> <span class="nc">AssertArrayValuesEqualToTest</span> <span class="k">extends</span> <span class="nx">\PHPUnit\Framework\TestCase</span>
+<span class="linenos"> 4</span><span class="p">{</span>
+<span class="linenos"> 5</span>    <span class="k">use</span> <span class="nx">\Tailors\PHPUnit\ArrayValuesEqualToTrait</span><span class="p">;</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testSuccess</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="linenos"> 8</span>    <span class="p">{</span>
+<span class="linenos"> 9</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertArrayValuesEqualTo</span><span class="p">(</span>
+<span class="linenos">10</span>            <span class="p">[</span><span class="s1">&#39;int&#39;</span> <span class="o">=&gt;</span> <span class="mi">123</span><span class="p">,</span>   <span class="mi">1</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">],</span>
+<span class="linenos">11</span>            <span class="p">[</span><span class="s1">&#39;int&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;123&#39;</span><span class="p">,</span> <span class="mi">1</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;FOO&#39;</span><span class="p">]</span>
+<span class="linenos">12</span>        <span class="p">);</span>
+<span class="linenos">13</span>    <span class="p">}</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testFailure</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="linenos">16</span>    <span class="p">{</span>
+<span class="linenos">17</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertArrayValuesEqualTo</span><span class="p">(</span>
+<span class="linenos">18</span>            <span class="p">[</span><span class="s1">&#39;int&#39;</span> <span class="o">=&gt;</span> <span class="mi">123</span><span class="p">,</span>   <span class="mi">1</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;BAR&#39;</span><span class="p">],</span>
+<span class="linenos">19</span>            <span class="p">[</span><span class="s1">&#39;int&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;123&#39;</span><span class="p">,</span> <span class="mi">1</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>   <span class="s1">&#39;foo&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;FOO&#39;</span><span class="p">]</span>
+<span class="linenos">20</span>        <span class="p">);</span>
+<span class="linenos">21</span>    <span class="p">}</span>
+<span class="linenos">22</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.2 by Sebastian Bergmann and contributors.
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span>Runtime:       PHP 8.2.13
+<span class="linenos"> 4</span>Configuration: phpunit.xml
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>Time: 00:00.008, Memory: 8.00 MB
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>There was 1 failure:
+<span class="linenos">11</span>
+<span class="linenos">12</span>1) AssertArrayValuesEqualToTest::testFailure
+<span class="linenos">13</span>Failed asserting that array is an array or ArrayAccess with values equal to specified.
+<span class="linenos">14</span>--- Expected
+<span class="linenos">15</span>+++ Actual
+<span class="linenos">16</span>@@ @@
+<span class="linenos">17</span>-Tailors\PHPUnit\Values\ExpectedValuesSelection Object #447 (
+<span class="linenos">18</span>-    &#39;int&#39; =&gt; 123,
+<span class="linenos">19</span>-    1 =&gt; null,
+<span class="linenos">20</span>-    &#39;foo&#39; =&gt; &#39;BAR&#39;,
+<span class="linenos">21</span>+Tailors\PHPUnit\Values\ActualValues Object #444 (
+<span class="linenos">22</span>+    &#39;int&#39; =&gt; &#39;123&#39;,
+<span class="linenos">23</span>+    1 =&gt; &#39;&#39;,
+<span class="linenos">24</span>+    &#39;foo&#39; =&gt; &#39;FOO&#39;,
+<span class="linenos">25</span> )
+<span class="linenos">26</span>
+<span class="linenos">27</span>AssertArrayValuesEqualToTest.php:17
+<span class="linenos">28</span>
+<span class="linenos">29</span>FAILURES!
+<span class="linenos">30</span>Tests: 2, Assertions: 2, Failures: 1.
+</pre></div>
+</div>
+</section>
+<section id="assertarrayvaluesidenticalto">
+<span id="assertions-assertarrayvaluesidenticalto"></span><h2>assertArrayValuesIdenticalTo()<a class="headerlink" href="#assertarrayvaluesidenticalto" title="Permalink to this heading"></a></h2>
+<table class="docutils align-default" id="id3" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for assertArrayValuesIdenticalTo()</span><a class="headerlink" href="#id3" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Package</p></td>
+<td><p>phptailors/phpunit-arrays</p></td>
+</tr>
+<tr class="row-even"><td><p>Trait</p></td>
+<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/1.0/api/Tailors/PHPUnit/ArrayValuesIdenticalToTrait.html" title="Tailors\PHPUnit\ArrayValuesIdenticalToTrait"><span class="pre">ArrayValuesIdenticalToTrait</span></a></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Synopsis:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">assertArrayValuesIdenticalTo</span><span class="p">(</span><span class="k">array</span> <span class="nv">$expected</span><span class="p">,</span> <span class="nx">mixed</span> <span class="nv">$actual</span><span class="p">[,</span> <span class="nx">string</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Reports an error identified by <code class="docutils literal notranslate"><span class="pre">$message</span></code> if values in <code class="docutils literal notranslate"><span class="pre">$actual</span></code> (array or
+<a class="reference external" href="https://www.php.net/manual/en/class.arrayaccess.php">ArrayAccess</a> instance) are not identical to <code class="docutils literal notranslate"><span class="pre">$expected</span></code> ones (tested with
+<code class="docutils literal notranslate"><span class="pre">===</span></code> operator). The method compares only values specified in <code class="docutils literal notranslate"><span class="pre">$expected</span></code>,
+so <code class="docutils literal notranslate"><span class="pre">$expected</span> <span class="pre">=</span> <span class="pre">[]</span></code> accepts any <code class="docutils literal notranslate"><span class="pre">$actual</span></code> array. If <code class="docutils literal notranslate"><span class="pre">$actual</span></code> is not an
+array nor an <a class="reference external" href="https://www.php.net/manual/en/class.arrayaccess.php">ArrayAccess</a> instance, the constraint fails.</p>
+<p>The arguments are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">$expected</span></code> - an array of expected values,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$actual</span></code> - an array or an <a class="reference external" href="https://www.php.net/manual/en/class.arrayaccess.php">ArrayAccess</a> instance with actual values,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$message</span></code> - optional failure message,</p></li>
+</ul>
+<p>The method</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">assertNotArrayValuesIdenticalTo</span><span class="p">(</span><span class="k">array</span> <span class="nv">$expected</span><span class="p">,</span> <span class="nx">mixed</span> <span class="nv">$actual</span><span class="p">[,</span> <span class="nx">string</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>is the inverse of this.</p>
+<div class="literal-block-wrapper docutils container" id="assertions-assertarrayvaluesidenticalto-example">
+<div class="code-block-caption"><span class="caption-text">Usage of assertArrayValuesIdenticalTo()</span><a class="headerlink" href="#assertions-assertarrayvaluesidenticalto-example" title="Permalink to this code"></a></div>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">final</span> <span class="k">class</span> <span class="nc">AssertArrayValuesIdenticalToTest</span> <span class="k">extends</span> <span class="nx">\PHPUnit\Framework\TestCase</span>
+<span class="linenos"> 4</span><span class="p">{</span>
+<span class="linenos"> 5</span>    <span class="k">use</span> <span class="nx">\Tailors\PHPUnit\ArrayValuesIdenticalToTrait</span><span class="p">;</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testSuccess</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="linenos"> 8</span>    <span class="p">{</span>
+<span class="linenos"> 9</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertArrayValuesIdenticalTo</span><span class="p">(</span>
+<span class="linenos">10</span>            <span class="p">[</span><span class="s1">&#39;int&#39;</span> <span class="o">=&gt;</span> <span class="mi">123</span><span class="p">,</span> <span class="mi">1</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">],</span>
+<span class="linenos">11</span>            <span class="p">[</span><span class="s1">&#39;int&#39;</span> <span class="o">=&gt;</span> <span class="mi">123</span><span class="p">,</span> <span class="mi">1</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;FOO&#39;</span><span class="p">]</span>
+<span class="linenos">12</span>        <span class="p">);</span>
+<span class="linenos">13</span>    <span class="p">}</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testFailure</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="linenos">16</span>    <span class="p">{</span>
+<span class="linenos">17</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertArrayValuesIdenticalTo</span><span class="p">(</span>
+<span class="linenos">18</span>            <span class="p">[</span><span class="s1">&#39;int&#39;</span> <span class="o">=&gt;</span>  <span class="mi">123</span><span class="p">,</span>  <span class="mi">1</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">],</span>
+<span class="linenos">19</span>            <span class="p">[</span><span class="s1">&#39;int&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;123&#39;</span><span class="p">,</span> <span class="mi">1</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">]</span>
+<span class="linenos">20</span>        <span class="p">);</span>
+<span class="linenos">21</span>    <span class="p">}</span>
+<span class="linenos">22</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.2 by Sebastian Bergmann and contributors.
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span>Runtime:       PHP 8.2.13
+<span class="linenos"> 4</span>Configuration: phpunit.xml
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>Time: 00:00.008, Memory: 8.00 MB
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>There was 1 failure:
+<span class="linenos">11</span>
+<span class="linenos">12</span>1) AssertArrayValuesIdenticalToTest::testFailure
+<span class="linenos">13</span>Failed asserting that array is an array or ArrayAccess with values identical to specified.
+<span class="linenos">14</span>--- Expected
+<span class="linenos">15</span>+++ Actual
+<span class="linenos">16</span>@@ @@
+<span class="linenos">17</span>-Tailors\PHPUnit\Values\ExpectedValuesSelection Object #447 (
+<span class="linenos">18</span>-    &#39;int&#39; =&gt; 123,
+<span class="linenos">19</span>-    1 =&gt; null,
+<span class="linenos">20</span>+Tailors\PHPUnit\Values\ActualValues Object #444 (
+<span class="linenos">21</span>+    &#39;int&#39; =&gt; &#39;123&#39;,
+<span class="linenos">22</span>+    1 =&gt; &#39;&#39;,
+<span class="linenos">23</span> )
+<span class="linenos">24</span>
+<span class="linenos">25</span>AssertArrayValuesIdenticalToTest.php:17
+<span class="linenos">26</span>
+<span class="linenos">27</span>FAILURES!
+<span class="linenos">28</span>Tests: 2, Assertions: 2, Failures: 1.
+</pre></div>
+</div>
+</section>
+<section id="assertclasspropertiesequalto">
+<span id="assertions-assertclasspropertiesequalto"></span><h2>assertClassPropertiesEqualTo()<a class="headerlink" href="#assertclasspropertiesequalto" title="Permalink to this heading"></a></h2>
+<table class="docutils align-default" id="id4" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for assertClassPropertiesEqualTo()</span><a class="headerlink" href="#id4" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Package</p></td>
+<td><p>phptailors/phpunit-properties</p></td>
+</tr>
+<tr class="row-even"><td><p>Trait</p></td>
+<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/1.0/api/Tailors/PHPUnit/ClassPropertiesEqualToTrait.html" title="Tailors\PHPUnit\ClassPropertiesEqualToTrait"><span class="pre">ClassPropertiesEqualToTrait</span></a></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Synopsis:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">assertClassPropertiesEqualTo</span><span class="p">(</span><span class="k">array</span> <span class="nv">$expected</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$class</span><span class="p">[,</span> <span class="nx">string</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Reports an error identified by <code class="docutils literal notranslate"><span class="pre">$message</span></code> if properties of <code class="docutils literal notranslate"><span class="pre">$class</span></code> are not
+equal to <code class="docutils literal notranslate"><span class="pre">$expected</span></code> ones (tested with <code class="docutils literal notranslate"><span class="pre">==</span></code> operator).
+A property is either a static attribute value or a value returned by class’s
+static method that is callable without arguments. The method compares only
+properties specified in <code class="docutils literal notranslate"><span class="pre">$expected</span></code>, so <code class="docutils literal notranslate"><span class="pre">$expected</span> <span class="pre">=</span> <span class="pre">[]</span></code> accepts any
+existing <code class="docutils literal notranslate"><span class="pre">$class</span></code>. If <code class="docutils literal notranslate"><span class="pre">$class</span></code> does not exists, the constraint fails.</p>
+<p>The arguments are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">$expected</span></code> - an associative array with property names as keys and their
+expected values as values, if a key ends with <code class="docutils literal notranslate"><span class="pre">&quot;()&quot;</span></code>, then the property is
+assumed to be a method, for example <code class="docutils literal notranslate"><span class="pre">$expected</span> <span class="pre">=</span> <span class="pre">['foo()'</span> <span class="pre">=&gt;</span> <span class="pre">'F']</span></code> requires
+method <code class="docutils literal notranslate"><span class="pre">foo()</span></code> to return <code class="docutils literal notranslate"><span class="pre">'F'</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$class</span></code> - name of the class to be examined,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$message</span></code> - optional failure message,</p></li>
+</ul>
+<p>The method</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">assertNotClassPropertiesEqualTo</span><span class="p">(</span><span class="k">array</span> <span class="nv">$expected</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$class</span><span class="p">[,</span> <span class="nx">string</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>is the inverse of this.</p>
+<div class="literal-block-wrapper docutils container" id="assertions-assertclasspropertiesequalto-example">
+<div class="code-block-caption"><span class="caption-text">Usage of assertClassPropertiesEqualTo()</span><a class="headerlink" href="#assertions-assertclasspropertiesequalto-example" title="Permalink to this code"></a></div>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">final</span> <span class="k">class</span> <span class="nc">AssertClassPropertiesEqualToTest</span> <span class="k">extends</span> <span class="nx">\PHPUnit\Framework\TestCase</span>
+<span class="linenos"> 4</span><span class="p">{</span>
+<span class="linenos"> 5</span>    <span class="k">use</span> <span class="nx">\Tailors\PHPUnit\ClassPropertiesEqualToTrait</span><span class="p">;</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span>    <span class="k">public</span> <span class="k">static</span> <span class="nv">$attribute</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span>    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">getValue</span><span class="p">()</span><span class="o">:</span> <span class="nx">int</span>
+<span class="linenos">10</span>    <span class="p">{</span>
+<span class="linenos">11</span>        <span class="k">return</span> <span class="mi">321</span><span class="p">;</span>
+<span class="linenos">12</span>    <span class="p">}</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testSuccess</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="linenos">15</span>    <span class="p">{</span>
+<span class="linenos">16</span>        <span class="c1">// assert that:</span>
+<span class="linenos">17</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertClassPropertiesEqualTo</span><span class="p">([</span>
+<span class="linenos">18</span>            <span class="s1">&#39;attribute&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;123&#39;</span><span class="p">,</span>  <span class="c1">// - self::$attribute equals &#39;123&#39; (ok)</span>
+<span class="linenos">19</span>            <span class="s1">&#39;getValue()&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;321&#39;</span><span class="p">,</span>  <span class="c1">// - self::getValue() equals &#39;321&#39; (ok)</span>
+<span class="linenos">20</span>        <span class="p">],</span> <span class="nx">self</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+<span class="linenos">21</span>    <span class="p">}</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testFailure</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="linenos">24</span>    <span class="p">{</span>
+<span class="linenos">25</span>        <span class="c1">// assert that:</span>
+<span class="linenos">26</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertClassPropertiesEqualTo</span><span class="p">([</span>
+<span class="linenos">27</span>            <span class="s1">&#39;attribute&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;123&#39;</span><span class="p">,</span>  <span class="c1">// - self::$attribute equals &#39;123&#39; (ok),</span>
+<span class="linenos">28</span>            <span class="s1">&#39;getValue()&#39;</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>   <span class="c1">// - self::$getValue() is 321, not equals null (fail)</span>
+<span class="linenos">29</span>        <span class="p">],</span> <span class="nx">self</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+<span class="linenos">30</span>    <span class="p">}</span>
+<span class="linenos">31</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.2 by Sebastian Bergmann and contributors.
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span>Runtime:       PHP 8.2.13
+<span class="linenos"> 4</span>Configuration: phpunit.xml
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>Time: 00:00.007, Memory: 8.00 MB
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>There was 1 failure:
+<span class="linenos">11</span>
+<span class="linenos">12</span>1) AssertClassPropertiesEqualToTest::testFailure
+<span class="linenos">13</span>Failed asserting that AssertClassPropertiesEqualToTest is a class with properties equal to specified.
+<span class="linenos">14</span>--- Expected
+<span class="linenos">15</span>+++ Actual
+<span class="linenos">16</span>@@ @@
+<span class="linenos">17</span>-Tailors\PHPUnit\Values\ExpectedValuesSelection Object #451 (
+<span class="linenos">18</span>-    &#39;attribute&#39; =&gt; &#39;123&#39;,
+<span class="linenos">19</span>-    &#39;getValue()&#39; =&gt; null,
+<span class="linenos">20</span>+Tailors\PHPUnit\Values\ActualValues Object #448 (
+<span class="linenos">21</span>+    &#39;attribute&#39; =&gt; 123,
+<span class="linenos">22</span>+    &#39;getValue()&#39; =&gt; 321,
+<span class="linenos">23</span> )
+<span class="linenos">24</span>
+<span class="linenos">25</span>AssertClassPropertiesEqualToTest.php:26
+<span class="linenos">26</span>
+<span class="linenos">27</span>FAILURES!
+<span class="linenos">28</span>Tests: 2, Assertions: 2, Failures: 1.
+</pre></div>
+</div>
+</section>
+<section id="assertclasspropertiesidenticalto">
+<span id="assertions-assertclasspropertiesidenticalto"></span><h2>assertClassPropertiesIdenticalTo()<a class="headerlink" href="#assertclasspropertiesidenticalto" title="Permalink to this heading"></a></h2>
+<table class="docutils align-default" id="id5" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for assertClassPropertiesIdenticalTo()</span><a class="headerlink" href="#id5" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Package</p></td>
+<td><p>phptailors/phpunit-properties</p></td>
+</tr>
+<tr class="row-even"><td><p>Trait</p></td>
+<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/1.0/api/Tailors/PHPUnit/ClassPropertiesIdenticalToTrait.html" title="Tailors\PHPUnit\ClassPropertiesIdenticalToTrait"><span class="pre">ClassPropertiesIdenticalToTrait</span></a></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Synopsis:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">assertClassPropertiesIdenticalTo</span><span class="p">(</span><span class="k">array</span> <span class="nv">$expected</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$class</span><span class="p">[,</span> <span class="nx">string</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Reports an error identified by <code class="docutils literal notranslate"><span class="pre">$message</span></code> if properties of <code class="docutils literal notranslate"><span class="pre">$class</span></code>’s are
+not identical to <code class="docutils literal notranslate"><span class="pre">$expected</span></code> ones (tested with <code class="docutils literal notranslate"><span class="pre">===</span></code> operator).
+A property is either a static attribute value or a value returned by
+<code class="docutils literal notranslate"><span class="pre">$class</span></code>’s static method that is callable without arguments. The method
+compares only properties specified in <code class="docutils literal notranslate"><span class="pre">$expected</span></code>, so <code class="docutils literal notranslate"><span class="pre">$expected</span> <span class="pre">=</span> <span class="pre">[]</span></code>
+accepts any existing <code class="docutils literal notranslate"><span class="pre">$class</span></code>. If <code class="docutils literal notranslate"><span class="pre">$class</span></code> does not exist, the constraint
+fails.</p>
+<p>The arguments are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">$expected</span></code> - an associative array with property names as keys and their
+expected values as values, if a key ends with <code class="docutils literal notranslate"><span class="pre">&quot;()&quot;</span></code>, then the property is
+assumed to be a method, for example <code class="docutils literal notranslate"><span class="pre">$expected</span> <span class="pre">=</span> <span class="pre">['foo()'</span> <span class="pre">=&gt;</span> <span class="pre">'F']</span></code> requires
+method <code class="docutils literal notranslate"><span class="pre">foo()</span></code> to return <code class="docutils literal notranslate"><span class="pre">'F'</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$class</span></code> - name of the class to be examined,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$message</span></code> - optional failure message,</p></li>
+</ul>
+<p>The method</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">assertNotClassPropertiesIdenticalTo</span><span class="p">(</span><span class="k">array</span> <span class="nv">$expected</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$class</span><span class="p">[,</span> <span class="nx">string</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>is the inverse of this.</p>
+<div class="literal-block-wrapper docutils container" id="assertions-assertclasspropertiesidenticalto-example">
+<div class="code-block-caption"><span class="caption-text">Usage of assertClassPropertiesIdenticalTo()</span><a class="headerlink" href="#assertions-assertclasspropertiesidenticalto-example" title="Permalink to this code"></a></div>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">final</span> <span class="k">class</span> <span class="nc">AssertClassPropertiesIdenticalToTest</span> <span class="k">extends</span> <span class="nx">\PHPUnit\Framework\TestCase</span>
+<span class="linenos"> 4</span><span class="p">{</span>
+<span class="linenos"> 5</span>    <span class="k">use</span> <span class="nx">\Tailors\PHPUnit\ClassPropertiesIdenticalToTrait</span><span class="p">;</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span>    <span class="k">public</span> <span class="k">static</span> <span class="nv">$attribute</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span>    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">getValue</span><span class="p">()</span><span class="o">:</span> <span class="nx">int</span>
+<span class="linenos">10</span>    <span class="p">{</span>
+<span class="linenos">11</span>        <span class="k">return</span> <span class="mi">321</span><span class="p">;</span>
+<span class="linenos">12</span>    <span class="p">}</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testSuccess</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="linenos">15</span>    <span class="p">{</span>
+<span class="linenos">16</span>        <span class="c1">// assert that:</span>
+<span class="linenos">17</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertClassPropertiesIdenticalTo</span><span class="p">([</span>
+<span class="linenos">18</span>            <span class="s1">&#39;attribute&#39;</span>  <span class="o">=&gt;</span> <span class="mi">123</span><span class="p">,</span>   <span class="c1">// - self::$attribute is 123 (ok)</span>
+<span class="linenos">19</span>            <span class="s1">&#39;getValue()&#39;</span> <span class="o">=&gt;</span> <span class="mi">321</span><span class="p">,</span>   <span class="c1">// - self::getValue() is 321 (ok)</span>
+<span class="linenos">20</span>        <span class="p">],</span> <span class="nx">self</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+<span class="linenos">21</span>    <span class="p">}</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testFailure</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="linenos">24</span>    <span class="p">{</span>
+<span class="linenos">25</span>        <span class="c1">// assert that:</span>
+<span class="linenos">26</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertClassPropertiesIdenticalTo</span><span class="p">([</span>
+<span class="linenos">27</span>            <span class="s1">&#39;attribute&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;123&#39;</span><span class="p">,</span> <span class="c1">// - self::$attribute is 123, not &#39;123&#39; (fail),</span>
+<span class="linenos">28</span>            <span class="s1">&#39;getValue()&#39;</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>  <span class="c1">// - self::getValue() is 321, not null (fail)</span>
+<span class="linenos">29</span>        <span class="p">],</span> <span class="nx">self</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+<span class="linenos">30</span>    <span class="p">}</span>
+<span class="linenos">31</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.2 by Sebastian Bergmann and contributors.
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span>Runtime:       PHP 8.2.13
+<span class="linenos"> 4</span>Configuration: phpunit.xml
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>Time: 00:00.007, Memory: 8.00 MB
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>There was 1 failure:
+<span class="linenos">11</span>
+<span class="linenos">12</span>1) AssertClassPropertiesIdenticalToTest::testFailure
+<span class="linenos">13</span>Failed asserting that AssertClassPropertiesIdenticalToTest is a class with properties identical to specified.
+<span class="linenos">14</span>--- Expected
+<span class="linenos">15</span>+++ Actual
+<span class="linenos">16</span>@@ @@
+<span class="linenos">17</span>-Tailors\PHPUnit\Values\ExpectedValuesSelection Object #451 (
+<span class="linenos">18</span>-    &#39;attribute&#39; =&gt; &#39;123&#39;,
+<span class="linenos">19</span>-    &#39;getValue()&#39; =&gt; null,
+<span class="linenos">20</span>+Tailors\PHPUnit\Values\ActualValues Object #448 (
+<span class="linenos">21</span>+    &#39;attribute&#39; =&gt; 123,
+<span class="linenos">22</span>+    &#39;getValue()&#39; =&gt; 321,
+<span class="linenos">23</span> )
+<span class="linenos">24</span>
+<span class="linenos">25</span>AssertClassPropertiesIdenticalToTest.php:26
+<span class="linenos">26</span>
+<span class="linenos">27</span>FAILURES!
+<span class="linenos">28</span>Tests: 2, Assertions: 2, Failures: 1.
+</pre></div>
+</div>
+</section>
+<section id="assertextendsclass">
+<span id="assertions-assertextendsclass"></span><h2>assertExtendsClass()<a class="headerlink" href="#assertextendsclass" title="Permalink to this heading"></a></h2>
+<table class="docutils align-default" id="id6" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for assertExtendsClass()</span><a class="headerlink" href="#id6" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Package</p></td>
+<td><p>phptailors/phpunit-inheritance</p></td>
+</tr>
+<tr class="row-even"><td><p>Trait</p></td>
+<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/1.0/api/Tailors/PHPUnit/ExtendsClassTrait.html" title="Tailors\PHPUnit\ExtendsClassTrait"><span class="pre">ExtendsClassTrait</span></a></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Synopsis:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">assertExtendsClass</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$parent</span><span class="p">,</span> <span class="nx">mixed</span> <span class="nv">$subject</span><span class="p">[,</span> <span class="nx">string</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Reports an error identified by <code class="docutils literal notranslate"><span class="pre">$message</span></code> if <code class="docutils literal notranslate"><span class="pre">$subject</span></code> does not extend the
+<code class="docutils literal notranslate"><span class="pre">$parent</span></code> class. The <code class="docutils literal notranslate"><span class="pre">$subject</span></code> may be an <code class="docutils literal notranslate"><span class="pre">object</span></code> or a class name as
+<code class="docutils literal notranslate"><span class="pre">string</span></code>:</p>
+<ul class="simple">
+<li><p>if <code class="docutils literal notranslate"><span class="pre">$subject</span></code> is an <code class="docutils literal notranslate"><span class="pre">object</span></code>, then its class, as returned by
+<code class="docutils literal notranslate"><span class="pre">get_class($subject)</span></code>, is examined against <code class="docutils literal notranslate"><span class="pre">$parent</span></code>, the assertion
+succeeds only if the class extends the <code class="docutils literal notranslate"><span class="pre">$parent</span></code> class,</p></li>
+<li><p>otherwise, the necessary conditions for the assertion to succeed are that</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">$subject</span></code> is a string,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">class_exists($subject)</span></code> is <code class="docutils literal notranslate"><span class="pre">true</span></code>, and</p></li>
+<li><p>the <code class="docutils literal notranslate"><span class="pre">$subject</span></code> class extends the <code class="docutils literal notranslate"><span class="pre">$parent</span></code> class.</p></li>
+</ul>
+</li>
+</ul>
+<p>The method</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">assertNotExtendsClass</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$parent</span><span class="p">,</span> <span class="nx">mixed</span> <span class="nv">$subject</span><span class="p">[,</span> <span class="nx">string</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>is the inverse of this.</p>
+<div class="literal-block-wrapper docutils container" id="assertions-assertextendsclass-example">
+<div class="code-block-caption"><span class="caption-text">Usage of assertExtendsClass()</span><a class="headerlink" href="#assertions-assertextendsclass-example" title="Permalink to this code"></a></div>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">final</span> <span class="k">class</span> <span class="nc">AssertExtendsClassTest</span> <span class="k">extends</span> <span class="nx">\PHPUnit\Framework\TestCase</span>
+<span class="linenos"> 4</span><span class="p">{</span>
+<span class="linenos"> 5</span>    <span class="k">use</span> <span class="nx">\Tailors\PHPUnit\ExtendsClassTrait</span><span class="p">;</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testAssertExtendsClass</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="linenos"> 8</span>    <span class="p">{</span>
+<span class="linenos"> 9</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertExtendsClass</span><span class="p">(</span><span class="nx">\Exception</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="nx">\RuntimeException</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+<span class="linenos">10</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertExtendsClass</span><span class="p">(</span><span class="nx">\Exception</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="k">new</span> <span class="nx">\RuntimeException</span><span class="p">());</span>
+<span class="linenos">11</span>    <span class="p">}</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testAssertExtendsClassFailure</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="linenos">14</span>    <span class="p">{</span>
+<span class="linenos">15</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertExtendsClass</span><span class="p">(</span><span class="nx">\Exception</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="nx">self</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+<span class="linenos">16</span>    <span class="p">}</span>
+<span class="linenos">17</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.2 by Sebastian Bergmann and contributors.
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span>Runtime:       PHP 8.2.13
+<span class="linenos"> 4</span>Configuration: phpunit.xml
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>Time: 00:00.006, Memory: 8.00 MB
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>There was 1 failure:
+<span class="linenos">11</span>
+<span class="linenos">12</span>1) AssertExtendsClassTest::testAssertExtendsClassFailure
+<span class="linenos">13</span>Failed asserting that AssertExtendsClassTest extends class Exception.
+<span class="linenos">14</span>
+<span class="linenos">15</span>AssertExtendsClassTest.php:15
+<span class="linenos">16</span>
+<span class="linenos">17</span>FAILURES!
+<span class="linenos">18</span>Tests: 2, Assertions: 3, Failures: 1.
+</pre></div>
+</div>
+</section>
+<section id="asserthasmethod">
+<span id="assertions-asserthasmethod"></span><h2>assertHasMethod()<a class="headerlink" href="#asserthasmethod" title="Permalink to this heading"></a></h2>
+<table class="docutils align-default" id="id7" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for assertHasMethod()</span><a class="headerlink" href="#id7" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Package</p></td>
+<td><p>phptailors/phpunit-methods</p></td>
+</tr>
+<tr class="row-even"><td><p>Trait</p></td>
+<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/1.0/api/Tailors/PHPUnit/HasMethodTrait.html" title="Tailors\PHPUnit\HasMethodTrait"><span class="pre">HasMethodTrait</span></a></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Synopsis:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">assertHasMethod</span><span class="p">(</span><span class="k">array</span> <span class="nv">$methodSpec</span><span class="p">,</span> <span class="nx">mixed</span> <span class="nv">$subject</span><span class="p">[,</span> <span class="nx">string</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Reports an error identified by <code class="docutils literal notranslate"><span class="pre">$message</span></code> if <code class="docutils literal notranslate"><span class="pre">$subject</span></code> has no method
+that matches <code class="docutils literal notranslate"><span class="pre">$methodSpec</span></code>. The <code class="docutils literal notranslate"><span class="pre">$methodSpec</span></code> specifies matching method
+via its name and modifiers (optional).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The assertion can only be successfull for <code class="docutils literal notranslate"><span class="pre">$subject</span></code> being an object,
+class, trait or interface. For any other values it always fails.</p>
+</div>
+<p>The syntax for <code class="docutils literal notranslate"><span class="pre">$methodSpec</span></code> string is the following</p>
+<div class="highlight-abnf notranslate"><div class="highlight"><pre><span></span><span class="nc">methodSpec</span><span class="w">  </span>:<span class="o">=</span><span class="w">  </span><span class="p">[</span><span class="nc">modifiers</span><span class="w"> </span><span class="l">&quot;function&quot;</span><span class="p">]</span><span class="w"> </span><span class="nc">name</span>
+<span class="w">            </span>|<span class="w">   </span><span class="nc">name</span>
+
+<span class="nc">name</span><span class="w">        </span>:<span class="o">=</span><span class="w">  </span><span class="p">[</span>_<span class="nc">a-zA-Z</span><span class="p">][</span>_0-<span class="o">9</span><span class="nc">a-zA-Z</span><span class="p">]</span><span class="o">*</span>
+
+<span class="nc">modifiers</span><span class="w">   </span>:<span class="o">=</span><span class="w">  </span><span class="p">[</span><span class="nc">abstract</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="nc">final</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="nc">access</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="nc">static</span><span class="p">]</span><span class="w">    </span><span class="c1">; order arbitrary</span>
+
+<span class="nc">abstract</span><span class="w">    </span>:<span class="o">=</span><span class="w">  </span><span class="l">&quot;abstract&quot;</span>
+<span class="w">            </span>|<span class="w">   </span><span class="l">&quot;!abstract&quot;</span>
+
+<span class="nc">final</span><span class="w">       </span>:<span class="o">=</span><span class="w">  </span><span class="l">&quot;final&quot;</span>
+<span class="w">            </span>|<span class="w">   </span><span class="l">&quot;!final&quot;</span>
+
+<span class="nc">access</span><span class="w">      </span>:<span class="o">=</span><span class="w">  </span><span class="l">&quot;public&quot;</span>
+<span class="w">            </span>|<span class="w">   </span><span class="l">&quot;!public&quot;</span>
+<span class="w">            </span>|<span class="w">   </span><span class="l">&quot;protected&quot;</span>
+<span class="w">            </span>|<span class="w">   </span><span class="l">&quot;!protected&quot;</span>
+
+<span class="nc">static</span><span class="w">      </span>:<span class="o">=</span><span class="w">  </span><span class="l">&quot;static&quot;</span>
+<span class="w">            </span>|<span class="w">   </span><span class="l">&quot;!static&quot;</span>
+</pre></div>
+</div>
+<p>The only allowed combination of <code class="docutils literal notranslate"><span class="pre">abstract</span></code> and <code class="docutils literal notranslate"><span class="pre">final</span></code> is <code class="docutils literal notranslate"><span class="pre">&quot;!abstract&quot;</span></code>
++ <code class="docutils literal notranslate"><span class="pre">&quot;!final&quot;</span></code>. All other combinations are treated as syntax error.</p>
+<p>Presence of a modifier (such as <code class="docutils literal notranslate"><span class="pre">&quot;final&quot;</span></code>) requires the modifier to be
+present in a matched method. Presence of negated modifier (such as
+<code class="docutils literal notranslate"><span class="pre">&quot;!final&quot;</span></code>) requires the modifier to be absent in a matched method. Absence
+of a modifier in <code class="docutils literal notranslate"><span class="pre">$methodSpec</span></code> means that it may be either present or absent
+in a matched method.</p>
+<p>The method</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">assertNotHasMethod</span><span class="p">(</span><span class="k">array</span> <span class="nv">$expected</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$matches</span><span class="p">[,</span> <span class="nx">string</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>is the inverse of this.</p>
+<div class="literal-block-wrapper docutils container" id="assertions-asserthasmethod-example">
+<div class="code-block-caption"><span class="caption-text">Usage of assertHasMethod()</span><a class="headerlink" href="#assertions-asserthasmethod-example" title="Permalink to this code"></a></div>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">abstract</span> <span class="k">class</span> <span class="nc">ClassWithSomeMethods</span>
+<span class="linenos"> 4</span><span class="p">{</span>
+<span class="linenos"> 5</span>    <span class="k">abstract</span> <span class="k">protected</span> <span class="k">function</span> <span class="nf">abstractProtectedMethod</span><span class="p">();</span>
+<span class="linenos"> 6</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">publicMethod</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+<span class="linenos"> 7</span><span class="p">}</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="k">final</span> <span class="k">class</span> <span class="nc">AssertHasMethodTest</span> <span class="k">extends</span> <span class="nx">PHPUnit\Framework\TestCase</span>
+<span class="linenos">10</span><span class="p">{</span>
+<span class="linenos">11</span>    <span class="k">use</span> <span class="nx">\Tailors\PHPUnit\HasMethodTrait</span><span class="p">;</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testAssertHasMethod</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="linenos">14</span>    <span class="p">{</span>
+<span class="linenos">15</span>        <span class="c1">// ClassWithSomeMethods::publicMethod</span>
+<span class="linenos">16</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertHasMethod</span><span class="p">(</span><span class="s1">&#39;publicMethod&#39;</span><span class="p">,</span> <span class="nx">ClassWithSomeMethods</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+<span class="linenos">17</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertHasMethod</span><span class="p">(</span><span class="s1">&#39;public function publicMethod&#39;</span><span class="p">,</span> <span class="nx">ClassWithSomeMethods</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+<span class="linenos">18</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertHasMethod</span><span class="p">(</span><span class="s1">&#39;!abstract !final public function publicMethod&#39;</span><span class="p">,</span> <span class="nx">ClassWithSomeMethods</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+<span class="linenos">19</span>
+<span class="linenos">20</span>        <span class="c1">// ClassWithSomeMethods::abstractProtectedMethod</span>
+<span class="linenos">21</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertHasMethod</span><span class="p">(</span><span class="s1">&#39;protected function abstractProtectedMethod&#39;</span><span class="p">,</span> <span class="nx">ClassWithSomeMethods</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+<span class="linenos">22</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertHasMethod</span><span class="p">(</span><span class="s1">&#39;abstract function abstractProtectedMethod&#39;</span><span class="p">,</span> <span class="nx">ClassWithSomeMethods</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+<span class="linenos">23</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertHasMethod</span><span class="p">(</span><span class="s1">&#39;abstract protected function abstractProtectedMethod&#39;</span><span class="p">,</span> <span class="nx">ClassWithSomeMethods</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span>
+<span class="linenos">26</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertNotHasMethod</span><span class="p">(</span><span class="s1">&#39;!abstract function abstractProtectedMethod&#39;</span><span class="p">,</span> <span class="nx">ClassWithSomeMethods</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+<span class="linenos">27</span>    <span class="p">}</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testAssertHasMethodFailure</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="linenos">30</span>    <span class="p">{</span>
+<span class="linenos">31</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertHasMethod</span><span class="p">(</span><span class="s1">&#39;!abstract function abstractProtectedMethod&#39;</span><span class="p">,</span> <span class="nx">ClassWithSomeMethods</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+<span class="linenos">32</span>    <span class="p">}</span>
+<span class="linenos">33</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.2 by Sebastian Bergmann and contributors.
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span>Runtime:       PHP 8.2.13
+<span class="linenos"> 4</span>Configuration: phpunit.xml
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>Time: 00:00.006, Memory: 8.00 MB
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>There was 1 failure:
+<span class="linenos">11</span>
+<span class="linenos">12</span>1) AssertHasMethodTest::testAssertHasMethodFailure
+<span class="linenos">13</span>Failed asserting that &#39;ClassWithSomeMethods&#39; has !abstract method abstractProtectedMethod().
+<span class="linenos">14</span>
+<span class="linenos">15</span>AssertHasMethodTest.php:31
+<span class="linenos">16</span>
+<span class="linenos">17</span>FAILURES!
+<span class="linenos">18</span>Tests: 2, Assertions: 8, Failures: 1.
+</pre></div>
+</div>
+</section>
+<section id="asserthaspregcaptures">
+<span id="assertions-asserthaspregcaptures"></span><h2>assertHasPregCaptures()<a class="headerlink" href="#asserthaspregcaptures" title="Permalink to this heading"></a></h2>
+<table class="docutils align-default" id="id8" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for assertHasPregCaptures()</span><a class="headerlink" href="#id8" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Package</p></td>
+<td><p>phptailors/phpunit-regexp</p></td>
+</tr>
+<tr class="row-even"><td><p>Trait</p></td>
+<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/1.0/api/Tailors/PHPUnit/HasPregCapturesTrait.html" title="Tailors\PHPUnit\HasPregCapturesTrait"><span class="pre">HasPregCapturesTrait</span></a></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Synopsis:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">assertHasPregCaptures</span><span class="p">(</span><span class="k">array</span> <span class="nv">$expected</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$matches</span><span class="p">[,</span> <span class="nx">string</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Reports an error identified by <code class="docutils literal notranslate"><span class="pre">$message</span></code> if PCRE captures found in
+<code class="docutils literal notranslate"><span class="pre">$matches</span></code> (an array supposedly returned from <a class="reference external" href="https://www.php.net/manual/en/function.preg-match.php">preg_match()</a>) do not agree
+with the expectations prescribed in the <code class="docutils literal notranslate"><span class="pre">$expected</span></code> array. The method
+verifies only groups specified in <code class="docutils literal notranslate"><span class="pre">$expected</span></code>, so <code class="docutils literal notranslate"><span class="pre">$expected</span> <span class="pre">=</span> <span class="pre">[]</span></code>
+accepts any array of <code class="docutils literal notranslate"><span class="pre">$matches</span></code>. Expectations are formulated as follows:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">$expected</span> <span class="pre">=</span> <span class="pre">['foo'</span> <span class="pre">=&gt;</span> <span class="pre">true]</span></code> requires <code class="docutils literal notranslate"><span class="pre">$matches['foo']</span></code> to be present,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$expected</span> <span class="pre">=</span> <span class="pre">['foo'</span> <span class="pre">=&gt;</span> <span class="pre">false]</span></code> requires <code class="docutils literal notranslate"><span class="pre">$matches['foo']</span></code> to be absent,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$expected</span> <span class="pre">=</span> <span class="pre">['foo'</span> <span class="pre">=&gt;</span> <span class="pre">'FOO']</span></code> requires that <code class="docutils literal notranslate"><span class="pre">$matches['foo']</span> <span class="pre">===</span> <span class="pre">'FOO'</span></code>,</p></li>
+</ul>
+<p>A capture group <code class="docutils literal notranslate"><span class="pre">foo</span></code> is considered absent if:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">$matches['foo']</span></code> is not set, or</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$matches['foo']</span> <span class="pre">===</span> <span class="pre">null</span></code>, or</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$matches['foo']</span> <span class="pre">===</span> <span class="pre">[null,</span> <span class="pre">...]</span></code>.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The presence/absence checks work only with <code class="docutils literal notranslate"><span class="pre">$matches</span></code> returned from
+<a class="reference external" href="https://www.php.net/manual/en/function.preg-match.php">preg_match()</a> when invoked with the <code class="docutils literal notranslate"><span class="pre">PREG_UNMATCHED_AS_NULL</span></code> flag.</p>
+</div>
+<p>The method</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">assertNotHasPregCaptures</span><span class="p">(</span><span class="k">array</span> <span class="nv">$expected</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$matches</span><span class="p">[,</span> <span class="nx">string</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>is the inverse of this.</p>
+<div class="literal-block-wrapper docutils container" id="assertions-asserthaspregcaptures-example">
+<div class="code-block-caption"><span class="caption-text">Usage of assertHasPregCaptures()</span><a class="headerlink" href="#assertions-asserthaspregcaptures-example" title="Permalink to this code"></a></div>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">final</span> <span class="k">class</span> <span class="nc">AssertHasPregCapturesTest</span> <span class="k">extends</span> <span class="nx">PHPUnit\Framework\TestCase</span>
+<span class="linenos"> 4</span><span class="p">{</span>
+<span class="linenos"> 5</span>    <span class="k">use</span> <span class="nx">\Tailors\PHPUnit\HasPregCapturesTrait</span><span class="p">;</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span>    <span class="k">private</span> <span class="nv">$regexp</span><span class="p">;</span>
+<span class="linenos"> 8</span>    <span class="k">private</span> <span class="nv">$subject</span><span class="p">;</span>
+<span class="linenos"> 9</span>    <span class="k">private</span> <span class="nv">$matches</span><span class="p">;</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">setUp</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="linenos">12</span>    <span class="p">{</span>
+<span class="linenos">13</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">regexp</span>  <span class="o">=</span> <span class="s1">&#39;/(?&lt;name&gt;\w+) (?&lt;surname&gt;\w+)(?:, (?&lt;age&gt;\d+))?(?:, (?&lt;city&gt;\w+))?/&#39;</span><span class="p">;</span>
+<span class="linenos">14</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">subject</span> <span class="o">=</span> <span class="s1">&#39;John Smith, London&#39;</span><span class="p">;</span>
+<span class="linenos">15</span>        <span class="nb">preg_match</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">regexp</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">subject</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">matches</span><span class="p">,</span> <span class="nx">PREG_UNMATCHED_AS_NULL</span><span class="p">);</span>
+<span class="linenos">16</span>    <span class="p">}</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testAssertHasPregCaptures</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="linenos">19</span>    <span class="p">{</span>
+<span class="linenos">20</span>        <span class="c1">// assert that:</span>
+<span class="linenos">21</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertHasPregCaptures</span><span class="p">([</span>
+<span class="linenos">22</span>            <span class="s1">&#39;name&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;John&#39;</span><span class="p">,</span>  <span class="c1">// - name is &#39;John&#39; (ok),</span>
+<span class="linenos">23</span>            <span class="s1">&#39;surname&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Smith&#39;</span><span class="p">,</span> <span class="c1">// - surname is &#39;Smith&#39; (ok),</span>
+<span class="linenos">24</span>            <span class="s1">&#39;age&#39;</span>     <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>   <span class="c1">// - age is absent (ok),</span>
+<span class="linenos">25</span>            <span class="s1">&#39;city&#39;</span>    <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>    <span class="c1">// - city is present (ok).</span>
+<span class="linenos">26</span>        <span class="p">],</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">matches</span><span class="p">);</span>
+<span class="linenos">27</span>    <span class="p">}</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testAssertHasPregCapturesFailure</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="linenos">30</span>    <span class="p">{</span>
+<span class="linenos">31</span>        <span class="c1">// assert that:</span>
+<span class="linenos">32</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertHasPregCaptures</span><span class="p">([</span>
+<span class="linenos">33</span>            <span class="s1">&#39;name&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;John&#39;</span><span class="p">,</span>  <span class="c1">// - name is &#39;John&#39; (ok),</span>
+<span class="linenos">34</span>            <span class="s1">&#39;surname&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Brown&#39;</span><span class="p">,</span> <span class="c1">// - surname is &#39;Brown&#39; (fail),</span>
+<span class="linenos">35</span>            <span class="s1">&#39;age&#39;</span>     <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>    <span class="c1">// - age is present (fail),</span>
+<span class="linenos">36</span>            <span class="s1">&#39;city&#39;</span>    <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>   <span class="c1">// - city is absent (fail).</span>
+<span class="linenos">37</span>        <span class="p">],</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">matches</span><span class="p">);</span>
+<span class="linenos">38</span>    <span class="p">}</span>
+<span class="linenos">39</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.2 by Sebastian Bergmann and contributors.
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span>Runtime:       PHP 8.2.13
+<span class="linenos"> 4</span>Configuration: phpunit.xml
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>Time: 00:00.007, Memory: 8.00 MB
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>There was 1 failure:
+<span class="linenos">11</span>
+<span class="linenos">12</span>1) AssertHasPregCapturesTest::testAssertHasPregCapturesFailure
+<span class="linenos">13</span>Failed asserting that array has expected PCRE capture groups.
+<span class="linenos">14</span>--- Expected
+<span class="linenos">15</span>+++ Actual
+<span class="linenos">16</span>@@ @@
+<span class="linenos">17</span> Array &amp;0 [
+<span class="linenos">18</span>     &#39;name&#39; =&gt; &#39;John&#39;,
+<span class="linenos">19</span>-    &#39;surname&#39; =&gt; &#39;Brown&#39;,
+<span class="linenos">20</span>-    &#39;age&#39; =&gt; true,
+<span class="linenos">21</span>-    &#39;city&#39; =&gt; false,
+<span class="linenos">22</span>+    &#39;surname&#39; =&gt; &#39;Smith&#39;,
+<span class="linenos">23</span>+    &#39;age&#39; =&gt; null,
+<span class="linenos">24</span>+    &#39;city&#39; =&gt; &#39;London&#39;,
+<span class="linenos">25</span> ]
+<span class="linenos">26</span>
+<span class="linenos">27</span>AssertHasPregCapturesTest.php:32
+<span class="linenos">28</span>
+<span class="linenos">29</span>FAILURES!
+<span class="linenos">30</span>Tests: 2, Assertions: 2, Failures: 1.
+</pre></div>
+</div>
+</section>
+<section id="assertimplementsinterface">
+<span id="assertions-assertimplementsinterface"></span><h2>assertImplementsInterface()<a class="headerlink" href="#assertimplementsinterface" title="Permalink to this heading"></a></h2>
+<table class="docutils align-default" id="id9" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for assertImplementsInterface()</span><a class="headerlink" href="#id9" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Package</p></td>
+<td><p>phptailors/phpunit-inheritance</p></td>
+</tr>
+<tr class="row-even"><td><p>Trait</p></td>
+<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/1.0/api/Tailors/PHPUnit/ImplementsInterfaceTrait.html" title="Tailors\PHPUnit\ImplementsInterfaceTrait"><span class="pre">ImplementsInterfaceTrait</span></a></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Synopsis:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">assertImplementsInterface</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$interface</span><span class="p">,</span> <span class="nx">mixed</span> <span class="nv">$subject</span><span class="p">[,</span> <span class="nx">string</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Reports an error identified by <code class="docutils literal notranslate"><span class="pre">$message</span></code> if <code class="docutils literal notranslate"><span class="pre">$subject</span></code> does not implement
+the <code class="docutils literal notranslate"><span class="pre">$interface</span></code>. The <code class="docutils literal notranslate"><span class="pre">$subject</span></code> may be an <code class="docutils literal notranslate"><span class="pre">object</span></code> or a class/interface
+name as <code class="docutils literal notranslate"><span class="pre">string</span></code>:</p>
+<ul class="simple">
+<li><p>if <code class="docutils literal notranslate"><span class="pre">$subject</span></code> is an <code class="docutils literal notranslate"><span class="pre">object</span></code>, then its class, as returned by
+<code class="docutils literal notranslate"><span class="pre">get_class($subject)</span></code>, is examined against <code class="docutils literal notranslate"><span class="pre">$interface</span></code>, the assertion
+succeeds only if the class implements the <code class="docutils literal notranslate"><span class="pre">$interface</span></code>,</p></li>
+<li><p>otherwise, the necessary conditions for the assertion to succeed are that</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">$subject</span></code> is a string,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">class_exists($subject)</span></code> is <code class="docutils literal notranslate"><span class="pre">true</span></code> or <code class="docutils literal notranslate"><span class="pre">interface_exists($subject)</span></code> is
+<code class="docutils literal notranslate"><span class="pre">true</span></code>, and</p></li>
+<li><p>the <code class="docutils literal notranslate"><span class="pre">$subject</span></code> implements the <code class="docutils literal notranslate"><span class="pre">$interface</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+<p>The method</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">assertNotImplementsInterface</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$interface</span><span class="p">,</span> <span class="nx">mixed</span> <span class="nv">$subject</span><span class="p">[,</span> <span class="nx">string</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>is the inverse of this.</p>
+<div class="literal-block-wrapper docutils container" id="assertions-assertimplementsinterface-example">
+<div class="code-block-caption"><span class="caption-text">Usage of assertImplementsInterface()</span><a class="headerlink" href="#assertions-assertimplementsinterface-example" title="Permalink to this code"></a></div>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">final</span> <span class="k">class</span> <span class="nc">AssertImplementsInterfaceTest</span> <span class="k">extends</span> <span class="nx">\PHPUnit\Framework\TestCase</span>
+<span class="linenos"> 4</span><span class="p">{</span>
+<span class="linenos"> 5</span>    <span class="k">use</span> <span class="nx">\Tailors\PHPUnit\ImplementsInterfaceTrait</span><span class="p">;</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testAssertImplementsInterface</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="linenos"> 8</span>    <span class="p">{</span>
+<span class="linenos"> 9</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertImplementsInterface</span><span class="p">(</span><span class="nx">\Throwable</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="nx">\RuntimeException</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+<span class="linenos">10</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertImplementsInterface</span><span class="p">(</span><span class="nx">\Throwable</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="k">new</span> <span class="nx">\RuntimeException</span><span class="p">());</span>
+<span class="linenos">11</span>    <span class="p">}</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testAssertImplementsInterfaceFailure</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="linenos">14</span>    <span class="p">{</span>
+<span class="linenos">15</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertImplementsInterface</span><span class="p">(</span><span class="nx">\Throwable</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="nx">self</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+<span class="linenos">16</span>    <span class="p">}</span>
+<span class="linenos">17</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.2 by Sebastian Bergmann and contributors.
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span>Runtime:       PHP 8.2.13
+<span class="linenos"> 4</span>Configuration: phpunit.xml
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>Time: 00:00.007, Memory: 8.00 MB
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>There was 1 failure:
+<span class="linenos">11</span>
+<span class="linenos">12</span>1) AssertImplementsInterfaceTest::testAssertImplementsInterfaceFailure
+<span class="linenos">13</span>Failed asserting that AssertImplementsInterfaceTest implements interface Throwable.
+<span class="linenos">14</span>
+<span class="linenos">15</span>AssertImplementsInterfaceTest.php:15
+<span class="linenos">16</span>
+<span class="linenos">17</span>FAILURES!
+<span class="linenos">18</span>Tests: 2, Assertions: 3, Failures: 1.
+</pre></div>
+</div>
+</section>
+<section id="assertksortedarrayequalto">
+<span id="assertions-assertksortedarrayequalto"></span><h2>assertKsortedArrayEqualTo()<a class="headerlink" href="#assertksortedarrayequalto" title="Permalink to this heading"></a></h2>
+<table class="docutils align-default" id="id10" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for assertKsortedArrayEqualTo()</span><a class="headerlink" href="#id10" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Package</p></td>
+<td><p>phptailors/phpunit-arrays</p></td>
+</tr>
+<tr class="row-even"><td><p>Trait</p></td>
+<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/1.0/api/Tailors/PHPUnit/KsortedArrayEqualToTrait.html" title="Tailors\PHPUnit\KsortedArrayEqualToTrait"><span class="pre">KsortedArrayEqualToTrait</span></a></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Synopsis:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">assertKsortedArrayEqualTo</span><span class="p">(</span><span class="k">array</span> <span class="nv">$expected</span><span class="p">,</span> <span class="nx">mixed</span> <span class="nv">$actual</span><span class="p">[,</span> <span class="nx">string</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Reports an error identified by <code class="docutils literal notranslate"><span class="pre">$message</span></code> if <code class="docutils literal notranslate"><span class="pre">$actual</span></code> array is not equal
+to <code class="docutils literal notranslate"><span class="pre">$expected</span></code> when key-sorted (tested with <code class="docutils literal notranslate"><span class="pre">==</span></code> operator). If <code class="docutils literal notranslate"><span class="pre">$actual</span></code>
+is not an array, the constraint fails.</p>
+<p>The arguments are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">$expected</span></code> - an array of expected values,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$actual</span></code> - an actual value,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$message</span></code> - optional failure message,</p></li>
+</ul>
+<p>The method</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">assertNotKsortedArrayEqualTo</span><span class="p">(</span><span class="k">array</span> <span class="nv">$expected</span><span class="p">,</span> <span class="nx">mixed</span> <span class="nv">$actual</span><span class="p">[,</span> <span class="nx">string</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>is the inverse of this.</p>
+<div class="literal-block-wrapper docutils container" id="assertions-assertksortedarrayequalto-example">
+<div class="code-block-caption"><span class="caption-text">Usage of assertKsortedArrayEqualTo()</span><a class="headerlink" href="#assertions-assertksortedarrayequalto-example" title="Permalink to this code"></a></div>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">final</span> <span class="k">class</span> <span class="nc">AssertKsortedArrayEqualToTest</span> <span class="k">extends</span> <span class="nx">\PHPUnit\Framework\TestCase</span>
+<span class="linenos"> 4</span><span class="p">{</span>
+<span class="linenos"> 5</span>    <span class="k">use</span> <span class="nx">\Tailors\PHPUnit\KsortedArrayEqualToTrait</span><span class="p">;</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testSuccess</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="linenos"> 8</span>    <span class="p">{</span>
+<span class="linenos"> 9</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertKsortedArrayEqualTo</span><span class="p">(</span>
+<span class="linenos">10</span>            <span class="p">[</span><span class="s1">&#39;int&#39;</span> <span class="o">=&gt;</span> <span class="mi">123</span><span class="p">,</span>   <span class="mi">1</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;FOO&#39;</span><span class="p">],</span>
+<span class="linenos">11</span>            <span class="p">[</span><span class="s1">&#39;foo&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;FOO&#39;</span><span class="p">,</span> <span class="s1">&#39;int&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;123&#39;</span><span class="p">,</span> <span class="mi">1</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">]</span>
+<span class="linenos">12</span>        <span class="p">);</span>
+<span class="linenos">13</span>    <span class="p">}</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testFailure</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="linenos">16</span>    <span class="p">{</span>
+<span class="linenos">17</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertKsortedArrayEqualTo</span><span class="p">(</span>
+<span class="linenos">18</span>            <span class="p">[</span><span class="s1">&#39;int&#39;</span> <span class="o">=&gt;</span> <span class="mi">123</span><span class="p">,</span> <span class="mi">1</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;BAR&#39;</span><span class="p">],</span>
+<span class="linenos">19</span>            <span class="p">[</span><span class="s1">&#39;int&#39;</span> <span class="o">=&gt;</span> <span class="mi">123</span><span class="p">,</span> <span class="mi">1</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;FOO&#39;</span><span class="p">]</span>
+<span class="linenos">20</span>        <span class="p">);</span>
+<span class="linenos">21</span>    <span class="p">}</span>
+<span class="linenos">22</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.2 by Sebastian Bergmann and contributors.
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span>Runtime:       PHP 8.2.13
+<span class="linenos"> 4</span>Configuration: phpunit.xml
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>Time: 00:00.006, Memory: 8.00 MB
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>There was 1 failure:
+<span class="linenos">11</span>
+<span class="linenos">12</span>1) AssertKsortedArrayEqualToTest::testFailure
+<span class="linenos">13</span>Failed asserting that array is an array equal to specified one when ksorted.
+<span class="linenos">14</span>--- Expected
+<span class="linenos">15</span>+++ Actual
+<span class="linenos">16</span>@@ @@
+<span class="linenos">17</span> Array &amp;0 [
+<span class="linenos">18</span>     1 =&gt; &#39;&#39;,
+<span class="linenos">19</span>-    &#39;foo&#39; =&gt; &#39;BAR&#39;,
+<span class="linenos">20</span>+    &#39;foo&#39; =&gt; &#39;FOO&#39;,
+<span class="linenos">21</span>     &#39;int&#39; =&gt; 123,
+<span class="linenos">22</span> ]
+<span class="linenos">23</span>
+<span class="linenos">24</span>AssertKsortedArrayEqualToTest.php:17
+<span class="linenos">25</span>
+<span class="linenos">26</span>FAILURES!
+<span class="linenos">27</span>Tests: 2, Assertions: 2, Failures: 1.
+</pre></div>
+</div>
+</section>
+<section id="assertksortedarrayidenticalto">
+<span id="assertions-assertksortedarrayidenticalto"></span><h2>assertKsortedArrayIdenticalTo()<a class="headerlink" href="#assertksortedarrayidenticalto" title="Permalink to this heading"></a></h2>
+<table class="docutils align-default" id="id11" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for assertKsortedArrayIdenticalTo()</span><a class="headerlink" href="#id11" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Package</p></td>
+<td><p>phptailors/phpunit-arrays</p></td>
+</tr>
+<tr class="row-even"><td><p>Trait</p></td>
+<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/1.0/api/Tailors/PHPUnit/KsortedArrayIdenticalToTrait.html" title="Tailors\PHPUnit\KsortedArrayIdenticalToTrait"><span class="pre">KsortedArrayIdenticalToTrait</span></a></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Synopsis:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">assertKsortedArrayIdenticalTo</span><span class="p">(</span><span class="k">array</span> <span class="nv">$expected</span><span class="p">,</span> <span class="nx">mixed</span> <span class="nv">$actual</span><span class="p">[,</span> <span class="nx">string</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Reports an error identified by <code class="docutils literal notranslate"><span class="pre">$message</span></code> if <code class="docutils literal notranslate"><span class="pre">$actual</span></code> is not identical to
+<code class="docutils literal notranslate"><span class="pre">$expected</span></code> one when key-sorted (tested with <code class="docutils literal notranslate"><span class="pre">===</span></code> operator). If
+<code class="docutils literal notranslate"><span class="pre">$actual</span></code> is not an array, the constraint fails.</p>
+<p>The arguments are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">$expected</span></code> - an array of expected values,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$actual</span></code> - actual value,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$message</span></code> - optional failure message,</p></li>
+</ul>
+<p>The method</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">assertNotKsortedArrayIdenticalTo</span><span class="p">(</span><span class="k">array</span> <span class="nv">$expected</span><span class="p">,</span> <span class="nx">mixed</span> <span class="nv">$actual</span><span class="p">[,</span> <span class="nx">string</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>is the inverse of this.</p>
+<div class="literal-block-wrapper docutils container" id="assertions-assertksortedarrayidenticalto-example">
+<div class="code-block-caption"><span class="caption-text">Usage of assertKsortedArrayIdenticalTo()</span><a class="headerlink" href="#assertions-assertksortedarrayidenticalto-example" title="Permalink to this code"></a></div>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">final</span> <span class="k">class</span> <span class="nc">AssertKsortedArrayIdenticalToTest</span> <span class="k">extends</span> <span class="nx">\PHPUnit\Framework\TestCase</span>
+<span class="linenos"> 4</span><span class="p">{</span>
+<span class="linenos"> 5</span>    <span class="k">use</span> <span class="nx">\Tailors\PHPUnit\KsortedArrayIdenticalToTrait</span><span class="p">;</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testSuccess</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="linenos"> 8</span>    <span class="p">{</span>
+<span class="linenos"> 9</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertKsortedArrayIdenticalTo</span><span class="p">(</span>
+<span class="linenos">10</span>            <span class="p">[</span><span class="s1">&#39;int&#39;</span> <span class="o">=&gt;</span> <span class="mi">123</span><span class="p">,</span> <span class="mi">1</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;FOO&#39;</span><span class="p">],</span>
+<span class="linenos">11</span>            <span class="p">[</span><span class="s1">&#39;foo&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;FOO&#39;</span><span class="p">,</span> <span class="mi">1</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span> <span class="s1">&#39;int&#39;</span> <span class="o">=&gt;</span> <span class="mi">123</span><span class="p">]</span>
+<span class="linenos">12</span>        <span class="p">);</span>
+<span class="linenos">13</span>    <span class="p">}</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testFailure</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="linenos">16</span>    <span class="p">{</span>
+<span class="linenos">17</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertKsortedArrayIdenticalTo</span><span class="p">(</span>
+<span class="linenos">18</span>            <span class="p">[</span><span class="s1">&#39;int&#39;</span> <span class="o">=&gt;</span>  <span class="mi">123</span><span class="p">,</span>  <span class="mi">1</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span> <span class="o">=&gt;</span><span class="s1">&#39;FOO&#39;</span><span class="p">],</span>
+<span class="linenos">19</span>            <span class="p">[</span><span class="s1">&#39;int&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;123&#39;</span><span class="p">,</span> <span class="mi">1</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;FOO&#39;</span><span class="p">]</span>
+<span class="linenos">20</span>        <span class="p">);</span>
+<span class="linenos">21</span>    <span class="p">}</span>
+<span class="linenos">22</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.2 by Sebastian Bergmann and contributors.
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span>Runtime:       PHP 8.2.13
+<span class="linenos"> 4</span>Configuration: phpunit.xml
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>Time: 00:00.006, Memory: 8.00 MB
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>There was 1 failure:
+<span class="linenos">11</span>
+<span class="linenos">12</span>1) AssertKsortedArrayIdenticalToTest::testFailure
+<span class="linenos">13</span>Failed asserting that array is an array identical to specified one when ksorted.
+<span class="linenos">14</span>--- Expected
+<span class="linenos">15</span>+++ Actual
+<span class="linenos">16</span>@@ @@
+<span class="linenos">17</span> Array &amp;0 [
+<span class="linenos">18</span>-    1 =&gt; null,
+<span class="linenos">19</span>+    1 =&gt; &#39;&#39;,
+<span class="linenos">20</span>     &#39;foo&#39; =&gt; &#39;FOO&#39;,
+<span class="linenos">21</span>-    &#39;int&#39; =&gt; 123,
+<span class="linenos">22</span>+    &#39;int&#39; =&gt; &#39;123&#39;,
+<span class="linenos">23</span> ]
+<span class="linenos">24</span>
+<span class="linenos">25</span>AssertKsortedArrayIdenticalToTest.php:17
+<span class="linenos">26</span>
+<span class="linenos">27</span>FAILURES!
+<span class="linenos">28</span>Tests: 2, Assertions: 2, Failures: 1.
+</pre></div>
+</div>
+</section>
+<section id="assertobjectpropertiesequalto">
+<span id="assertions-assertobjectpropertiesequalto"></span><h2>assertObjectPropertiesEqualTo()<a class="headerlink" href="#assertobjectpropertiesequalto" title="Permalink to this heading"></a></h2>
+<table class="docutils align-default" id="id12" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for assertObjectPropertiesEqualTo()</span><a class="headerlink" href="#id12" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Package</p></td>
+<td><p>phptailors/phpunit-properties</p></td>
+</tr>
+<tr class="row-even"><td><p>Trait</p></td>
+<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/1.0/api/Tailors/PHPUnit/ObjectPropertiesEqualToTrait.html" title="Tailors\PHPUnit\ObjectPropertiesEqualToTrait"><span class="pre">ObjectPropertiesEqualToTrait</span></a></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Synopsis:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">assertObjectPropertiesEqualTo</span><span class="p">(</span><span class="k">array</span> <span class="nv">$expected</span><span class="p">,</span> <span class="nx">object</span> <span class="nv">$object</span><span class="p">[,</span> <span class="nx">string</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Reports an error identified by <code class="docutils literal notranslate"><span class="pre">$message</span></code> if <code class="docutils literal notranslate"><span class="pre">$object</span></code>’s properties are not
+equal to <code class="docutils literal notranslate"><span class="pre">$expected</span></code> ones (tested with <code class="docutils literal notranslate"><span class="pre">==</span></code> operator).
+A property is either an attribute value or a value returned by object’s method
+that is callable without arguments. The method compares only properties
+specified in <code class="docutils literal notranslate"><span class="pre">$expected</span></code>, so <code class="docutils literal notranslate"><span class="pre">$expected</span> <span class="pre">=</span> <span class="pre">[]</span></code> accepts any <code class="docutils literal notranslate"><span class="pre">$object</span></code>.</p>
+<p>The arguments are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">$expected</span></code> - an associative array with property names as keys and their
+expected values as values, if a key ends with <code class="docutils literal notranslate"><span class="pre">&quot;()&quot;</span></code>, then the property is
+assumed to be a method, for example <code class="docutils literal notranslate"><span class="pre">$expected</span> <span class="pre">=</span> <span class="pre">['foo()'</span> <span class="pre">=&gt;</span> <span class="pre">'F']</span></code> requires
+method <code class="docutils literal notranslate"><span class="pre">foo()</span></code> to return <code class="docutils literal notranslate"><span class="pre">'F'</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$object</span></code> - an object to be examined,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$message</span></code> - optional failure message,</p></li>
+</ul>
+<p>The method</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">assertNotObjectPropertiesEqualTo</span><span class="p">(</span><span class="k">array</span> <span class="nv">$expected</span><span class="p">,</span> <span class="nx">object</span> <span class="nv">$object</span><span class="p">[,</span> <span class="nx">string</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>is the inverse of this.</p>
+<div class="literal-block-wrapper docutils container" id="assertions-assertobjectpropertiesequalto-example">
+<div class="code-block-caption"><span class="caption-text">Usage of assertObjectPropertiesEqualTo()</span><a class="headerlink" href="#assertions-assertobjectpropertiesequalto-example" title="Permalink to this code"></a></div>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">final</span> <span class="k">class</span> <span class="nc">AssertObjectPropertiesEqualToTest</span> <span class="k">extends</span> <span class="nx">PHPUnit\Framework\TestCase</span>
+<span class="linenos"> 4</span><span class="p">{</span>
+<span class="linenos"> 5</span>    <span class="k">use</span> <span class="nx">\Tailors\PHPUnit\ObjectPropertiesEqualToTrait</span><span class="p">;</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span>    <span class="k">public</span> <span class="nv">$attribute</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">getValue</span><span class="p">()</span><span class="o">:</span> <span class="nx">int</span>
+<span class="linenos">10</span>    <span class="p">{</span>
+<span class="linenos">11</span>        <span class="k">return</span> <span class="mi">321</span><span class="p">;</span>
+<span class="linenos">12</span>    <span class="p">}</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testSuccess</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="linenos">15</span>    <span class="p">{</span>
+<span class="linenos">16</span>        <span class="c1">// assert that:</span>
+<span class="linenos">17</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertObjectPropertiesEqualTo</span><span class="p">([</span>
+<span class="linenos">18</span>            <span class="s1">&#39;attribute&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;123&#39;</span><span class="p">,</span> <span class="c1">// - $this-&gt;attribute equals &#39;123&#39; (ok)</span>
+<span class="linenos">19</span>            <span class="s1">&#39;getValue()&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;321&#39;</span><span class="p">,</span> <span class="c1">// - $this-&gt;getValue() equals &#39;321&#39; (ok)</span>
+<span class="linenos">20</span>        <span class="p">],</span> <span class="nv">$this</span><span class="p">);</span>
+<span class="linenos">21</span>    <span class="p">}</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testFailure</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="linenos">24</span>    <span class="p">{</span>
+<span class="linenos">25</span>        <span class="c1">// assert that:</span>
+<span class="linenos">26</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertObjectPropertiesEqualTo</span><span class="p">([</span>
+<span class="linenos">27</span>            <span class="s1">&#39;attribute&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;123&#39;</span><span class="p">,</span> <span class="c1">// - $this-&gt;attribute equals &#39;123&#39; (ok),</span>
+<span class="linenos">28</span>            <span class="s1">&#39;getValue()&#39;</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>  <span class="c1">// - $this-&gt;getValue() is 321, not equals null (fail)</span>
+<span class="linenos">29</span>        <span class="p">],</span> <span class="nv">$this</span><span class="p">);</span>
+<span class="linenos">30</span>    <span class="p">}</span>
+<span class="linenos">31</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.2 by Sebastian Bergmann and contributors.
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span>Runtime:       PHP 8.2.13
+<span class="linenos"> 4</span>Configuration: phpunit.xml
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>Time: 00:00.007, Memory: 8.00 MB
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>There was 1 failure:
+<span class="linenos">11</span>
+<span class="linenos">12</span>1) AssertObjectPropertiesEqualToTest::testFailure
+<span class="linenos">13</span>Failed asserting that object AssertObjectPropertiesEqualToTest is an object with properties equal to specified.
+<span class="linenos">14</span>--- Expected
+<span class="linenos">15</span>+++ Actual
+<span class="linenos">16</span>@@ @@
+<span class="linenos">17</span>-Tailors\PHPUnit\Values\ExpectedValuesSelection Object #451 (
+<span class="linenos">18</span>-    &#39;attribute&#39; =&gt; &#39;123&#39;,
+<span class="linenos">19</span>-    &#39;getValue()&#39; =&gt; null,
+<span class="linenos">20</span>+Tailors\PHPUnit\Values\ActualValues Object #448 (
+<span class="linenos">21</span>+    &#39;attribute&#39; =&gt; 123,
+<span class="linenos">22</span>+    &#39;getValue()&#39; =&gt; 321,
+<span class="linenos">23</span> )
+<span class="linenos">24</span>
+<span class="linenos">25</span>AssertObjectPropertiesEqualToTest.php:26
+<span class="linenos">26</span>
+<span class="linenos">27</span>FAILURES!
+<span class="linenos">28</span>Tests: 2, Assertions: 2, Failures: 1.
+</pre></div>
+</div>
+</section>
+<section id="assertobjectpropertiesidenticalto">
+<span id="assertions-assertobjectpropertiesidenticalto"></span><h2>assertObjectPropertiesIdenticalTo()<a class="headerlink" href="#assertobjectpropertiesidenticalto" title="Permalink to this heading"></a></h2>
+<table class="docutils align-default" id="id13" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for assertObjectPropertiesIdenticalTo()</span><a class="headerlink" href="#id13" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Package</p></td>
+<td><p>phptailors/phpunit-properties</p></td>
+</tr>
+<tr class="row-even"><td><p>Trait</p></td>
+<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/1.0/api/Tailors/PHPUnit/ObjectPropertiesIdenticalToTrait.html" title="Tailors\PHPUnit\ObjectPropertiesIdenticalToTrait"><span class="pre">ObjectPropertiesIdenticalToTrait</span></a></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Synopsis:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">assertObjectPropertiesIdenticalTo</span><span class="p">(</span><span class="k">array</span> <span class="nv">$expected</span><span class="p">,</span> <span class="nx">object</span> <span class="nv">$object</span><span class="p">[,</span> <span class="nx">string</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Reports an error identified by <code class="docutils literal notranslate"><span class="pre">$message</span></code> if <code class="docutils literal notranslate"><span class="pre">$object</span></code>’s properties are not
+identical with <code class="docutils literal notranslate"><span class="pre">$expected</span></code> ones (tested with <code class="docutils literal notranslate"><span class="pre">===</span></code> operator).
+A property is either an attribute value or a value returned by object’s method
+that is callable without arguments. The method compares only properties
+specified in <code class="docutils literal notranslate"><span class="pre">$expected</span></code>, so <code class="docutils literal notranslate"><span class="pre">$expected</span> <span class="pre">=</span> <span class="pre">[]</span></code> accepts any <code class="docutils literal notranslate"><span class="pre">$object</span></code>.</p>
+<p>The arguments are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">$expected</span></code> - an associative array with property names as keys and their
+expected values as values, if a key ends with <code class="docutils literal notranslate"><span class="pre">&quot;()&quot;</span></code>, then the property is
+assumed to be a method, for example <code class="docutils literal notranslate"><span class="pre">$expected</span> <span class="pre">=</span> <span class="pre">['foo()'</span> <span class="pre">=&gt;</span> <span class="pre">'F']</span></code> requires
+method <code class="docutils literal notranslate"><span class="pre">foo()</span></code> to return <code class="docutils literal notranslate"><span class="pre">'F'</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$object</span></code> - an object to be examined,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$message</span></code> - optional failure message,</p></li>
+</ul>
+<p>The method</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">assertNotObjectPropertiesIdenticalTo</span><span class="p">(</span><span class="k">array</span> <span class="nv">$expected</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$matches</span><span class="p">[,</span> <span class="nx">string</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>is the inverse of this.</p>
+<div class="literal-block-wrapper docutils container" id="assertions-assertobjectpropertiesidenticalto-example">
+<div class="code-block-caption"><span class="caption-text">Usage of assertObjectPropertiesIdenticalTo()</span><a class="headerlink" href="#assertions-assertobjectpropertiesidenticalto-example" title="Permalink to this code"></a></div>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">final</span> <span class="k">class</span> <span class="nc">AssertObjectPropertiesIdenticalToTest</span> <span class="k">extends</span> <span class="nx">\PHPUnit\Framework\TestCase</span>
+<span class="linenos"> 4</span><span class="p">{</span>
+<span class="linenos"> 5</span>    <span class="k">use</span> <span class="nx">\Tailors\PHPUnit\ObjectPropertiesIdenticalToTrait</span><span class="p">;</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span>    <span class="k">public</span> <span class="nv">$attribute</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">getValue</span><span class="p">()</span><span class="o">:</span> <span class="nx">int</span>
+<span class="linenos">10</span>    <span class="p">{</span>
+<span class="linenos">11</span>        <span class="k">return</span> <span class="mi">321</span><span class="p">;</span>
+<span class="linenos">12</span>    <span class="p">}</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testSuccess</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="linenos">15</span>    <span class="p">{</span>
+<span class="linenos">16</span>        <span class="c1">// assert that:</span>
+<span class="linenos">17</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertObjectPropertiesIdenticalTo</span><span class="p">([</span>
+<span class="linenos">18</span>            <span class="s1">&#39;attribute&#39;</span>  <span class="o">=&gt;</span> <span class="mi">123</span><span class="p">,</span>   <span class="c1">// - $this-&gt;attribute is 123 (ok)</span>
+<span class="linenos">19</span>            <span class="s1">&#39;getValue()&#39;</span> <span class="o">=&gt;</span> <span class="mi">321</span><span class="p">,</span>   <span class="c1">// - $this-&gt;getValue() is 321 (ok)</span>
+<span class="linenos">20</span>        <span class="p">],</span> <span class="nv">$this</span><span class="p">);</span>
+<span class="linenos">21</span>    <span class="p">}</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testFailure</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="linenos">24</span>    <span class="p">{</span>
+<span class="linenos">25</span>        <span class="c1">// assert that:</span>
+<span class="linenos">26</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertObjectPropertiesIdenticalTo</span><span class="p">([</span>
+<span class="linenos">27</span>            <span class="s1">&#39;attribute&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;123&#39;</span><span class="p">,</span> <span class="c1">// - $this-&gt;attribute is 123, not &#39;123&#39; (fail),</span>
+<span class="linenos">28</span>            <span class="s1">&#39;getValue()&#39;</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>  <span class="c1">// - $this-&gt;getValue() is 321, not null (fail)</span>
+<span class="linenos">29</span>        <span class="p">],</span> <span class="nv">$this</span><span class="p">);</span>
+<span class="linenos">30</span>    <span class="p">}</span>
+<span class="linenos">31</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.2 by Sebastian Bergmann and contributors.
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span>Runtime:       PHP 8.2.13
+<span class="linenos"> 4</span>Configuration: phpunit.xml
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>Time: 00:00.007, Memory: 8.00 MB
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>There was 1 failure:
+<span class="linenos">11</span>
+<span class="linenos">12</span>1) AssertObjectPropertiesIdenticalToTest::testFailure
+<span class="linenos">13</span>Failed asserting that object AssertObjectPropertiesIdenticalToTest is an object with properties identical to specified.
+<span class="linenos">14</span>--- Expected
+<span class="linenos">15</span>+++ Actual
+<span class="linenos">16</span>@@ @@
+<span class="linenos">17</span>-Tailors\PHPUnit\Values\ExpectedValuesSelection Object #451 (
+<span class="linenos">18</span>-    &#39;attribute&#39; =&gt; &#39;123&#39;,
+<span class="linenos">19</span>-    &#39;getValue()&#39; =&gt; null,
+<span class="linenos">20</span>+Tailors\PHPUnit\Values\ActualValues Object #448 (
+<span class="linenos">21</span>+    &#39;attribute&#39; =&gt; 123,
+<span class="linenos">22</span>+    &#39;getValue()&#39; =&gt; 321,
+<span class="linenos">23</span> )
+<span class="linenos">24</span>
+<span class="linenos">25</span>AssertObjectPropertiesIdenticalToTest.php:26
+<span class="linenos">26</span>
+<span class="linenos">27</span>FAILURES!
+<span class="linenos">28</span>Tests: 2, Assertions: 2, Failures: 1.
+</pre></div>
+</div>
+</section>
+<section id="assertusestrait">
+<span id="assertions-assertusestrait"></span><h2>assertUsesTrait()<a class="headerlink" href="#assertusestrait" title="Permalink to this heading"></a></h2>
+<table class="docutils align-default" id="id14" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for assertUsesTrait()</span><a class="headerlink" href="#id14" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Package</p></td>
+<td><p>phptailors/phpunit-inheritance</p></td>
+</tr>
+<tr class="row-even"><td><p>Trait</p></td>
+<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/1.0/api/Tailors/PHPUnit/UsesTraitTrait.html" title="Tailors\PHPUnit\UsesTraitTrait"><span class="pre">UsesTraitTrait</span></a></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Synopsis:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">assertUsesTrait</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$trait</span><span class="p">,</span> <span class="nx">mixed</span> <span class="nv">$subject</span><span class="p">[,</span> <span class="nx">string</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Reports an error identified by <code class="docutils literal notranslate"><span class="pre">$message</span></code> if <code class="docutils literal notranslate"><span class="pre">$subject</span></code> does not use the
+<code class="docutils literal notranslate"><span class="pre">$trait</span></code>. The <code class="docutils literal notranslate"><span class="pre">$subject</span></code> may be an <code class="docutils literal notranslate"><span class="pre">object</span></code> or a class name as <code class="docutils literal notranslate"><span class="pre">string</span></code>:</p>
+<ul class="simple">
+<li><p>if <code class="docutils literal notranslate"><span class="pre">$subject</span></code> is an <code class="docutils literal notranslate"><span class="pre">object</span></code>, then its class, as returned by
+<code class="docutils literal notranslate"><span class="pre">get_class($subject)</span></code>, is examined against <code class="docutils literal notranslate"><span class="pre">$trait</span></code>, the assertion
+succeeds only if the class uses the <code class="docutils literal notranslate"><span class="pre">$trait</span></code>,</p></li>
+<li><p>otherwise, the necessary conditions for the assertion to succeed are that</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">$subject</span></code> is a string,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">class_exists($subject)</span></code> is <code class="docutils literal notranslate"><span class="pre">true</span></code>, and</p></li>
+<li><p>the <code class="docutils literal notranslate"><span class="pre">$subject</span></code> implements the <code class="docutils literal notranslate"><span class="pre">$trait</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+<p>The method</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">assertNotUsesTrait</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$trait</span><span class="p">,</span> <span class="nx">mixed</span> <span class="nv">$subject</span><span class="p">[,</span> <span class="nx">string</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>is the inverse of this.</p>
+<div class="literal-block-wrapper docutils container" id="assertions-assertusestrait-example">
+<div class="code-block-caption"><span class="caption-text">Usage of assertUsesTrait()</span><a class="headerlink" href="#assertions-assertusestrait-example" title="Permalink to this code"></a></div>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">trait</span> <span class="nx">ExampleTraitForAssertUsesTraitTest</span>
+<span class="linenos"> 4</span><span class="p">{</span>
+<span class="linenos"> 5</span><span class="p">}</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="k">final</span> <span class="k">class</span> <span class="nc">AssertUsesTraitTest</span> <span class="k">extends</span> <span class="nx">\PHPUnit\Framework\TestCase</span>
+<span class="linenos"> 8</span><span class="p">{</span>
+<span class="linenos"> 9</span>    <span class="k">use</span> <span class="nx">\Tailors\PHPUnit\UsesTraitTrait</span><span class="p">;</span>
+<span class="linenos">10</span>    <span class="k">use</span> <span class="nx">ExampleTraitForAssertUsesTraitTest</span><span class="p">;</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testAssertUsesTrait</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="linenos">13</span>    <span class="p">{</span>
+<span class="linenos">14</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertUsesTrait</span><span class="p">(</span><span class="nx">ExampleTraitForAssertUsesTraitTest</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="nx">self</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+<span class="linenos">15</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertUsesTrait</span><span class="p">(</span><span class="nx">ExampleTraitForAssertUsesTraitTest</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="nv">$this</span><span class="p">);</span>
+<span class="linenos">16</span>    <span class="p">}</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testAssertUsesTraitFailure</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="linenos">19</span>    <span class="p">{</span>
+<span class="linenos">20</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertUsesTrait</span><span class="p">(</span><span class="nx">ExampleTraitForAssertUsesTraitTest</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="nx">\RuntimeException</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+<span class="linenos">21</span>    <span class="p">}</span>
+<span class="linenos">22</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.2 by Sebastian Bergmann and contributors.
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span>Runtime:       PHP 8.2.13
+<span class="linenos"> 4</span>Configuration: phpunit.xml
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>Time: 00:00.006, Memory: 8.00 MB
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>There was 1 failure:
+<span class="linenos">11</span>
+<span class="linenos">12</span>1) AssertUsesTraitTest::testAssertUsesTraitFailure
+<span class="linenos">13</span>Failed asserting that RuntimeException uses trait ExampleTraitForAssertUsesTraitTest.
+<span class="linenos">14</span>
+<span class="linenos">15</span>AssertUsesTraitTest.php:20
+<span class="linenos">16</span>
+<span class="linenos">17</span>FAILURES!
+<span class="linenos">18</span>Tests: 2, Assertions: 3, Failures: 1.
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="PHPUnit Extensions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="constraints.html" class="btn btn-neutral float-right" title="2. Constraints" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Paweł Tomulik.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
