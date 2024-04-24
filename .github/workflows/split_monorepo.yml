@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       # required for matrix of packages set
       - uses: shivammathur/setup-php@v2
@@ -51,12 +51,12 @@ jobs:
         package: ${{fromJson(needs.provide_packages_json.outputs.matrix)}}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       # no tag
       - name: Split out ${{ matrix.package }} (branch)
         if: ${{ github.ref_type == 'branch' }}
-        uses: symplify/monorepo-split-github-action@2.2
+        uses: symplify/monorepo-split-github-action@v2.3.0
         with:
           branch: "${{ github.ref_name }}"
           package_directory: 'packages/${{ matrix.package }}'
@@ -68,7 +68,7 @@ jobs:
       # with tag
       - name: Split out ${{ matrix.package }} (tag)
         if: ${{ github.ref_type == 'tag' }}
-        uses: symplify/monorepo-split-github-action@2.2
+        uses: symplify/monorepo-split-github-action@v2.3.0
         with:
           tag: "${{ github.ref_name }}"
           branch: 'master'
