@@ -20,7 +20,7 @@
     },
     "require": {
         "php": ">=7.3",
-        "phptailors/phpunit-common": "*"
+        "phptailors/phpunit-common": "^1"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5.5 || ^10"
