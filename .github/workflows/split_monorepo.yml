@@ -71,7 +71,7 @@ jobs:
         uses: symplify/monorepo-split-github-action@2.2
         with:
           tag: "${{ github.ref_name }}"
-          branch: 'master'
+          branch: '1.0'
           package_directory: 'packages/${{ matrix.package }}'
           repository_organization: 'phptailors'
           repository_name: '${{ matrix.package }}'
