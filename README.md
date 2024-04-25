@@ -159,11 +159,11 @@ composer require --dev phptailors/phpunit-arrays
 
 We maintain several version branches, e.g. ``1.x``, ``2.x``, etc, mainly for compatibility with different versions of PHPUnit, PHP and dependent libraries (such as [sebastian/exporter](https://github.com/sebastianbergmann/exporter) or [sebastian/recursion-context](https://github.com/sebastianbergmann/recursion-context)). We do not define version constraints for PHPUnit in our composer.json files, don't even require it here. The choice is left to you - you install your preferred version of PHPUnit in your project along with one or more of our extension packages. The table below may be taken as a guidance, suggesting which version of phpunit-extensions is best to chose for particular PHPUnit and PHP version. Pickup most recent, suitable version. The table resembles our version matrix used in automated tests
 
-|  PHPUnit        | PHP                   | phpunit-extensions |
-| ----------------| --------------------- | ------------------ |
-| `^9.5.5 || ^10` | `7.3,7.4,8.0,8.1,8.2` | `1.x`              |
-| `^9.5.5 || ^10` | `8.1,8.2`             | `2.x`              |
-| `^11.0.1`       | `8.2,8.3`             | `3.x`              |
+|  PHPUnit            | PHP                     | phpunit-extensions |
+| --------------------| ----------------------- | ------------------ |
+| ``^9.5.5 \|\| ^10`` | ``7.3,7.4,8.0,8.1,8.2`` | ``1.x ``           |
+| ``^9.5.5 \|\| ^10`` | ``8.1,8.2``             | ``2.x``            |
+| ``^11.0.1``         | ``8.2,8.3``             | ``3.x``            |
 
 
 ## Online documentation
