@@ -15,13 +15,30 @@ Feel like having certain tests written with less effort? Or need an assertion, b
 
 ## Quick example
 
-Let's check if a ``$regexp`` matches sample strings and captures pieces of text as expected
+Let's say we have ``Syntax::PERSON`` regular expression with defined capture groups, and we want to test it
 
-```shell
-composer require --dev phptailors/phpunit-regexp
-composer require --dev phpunit/phpunit
-mkdir tests && nvim tests/ExampleRegexpTest.php
+**src/Syntax.php**:
+
+```php
+<?php declare(strict_types=1);
+
+namespace Example;
+
+final class Syntax
+{
+    public const PERSON = '/^\\s*(?<name>\\w+)\\s+(?<surname>\\w+)(?:,\\s+(?<age>\\d+))?\\s*/';
+}
 ```
+
+For that, we just install phpunit-regexp package (and, of course, the PHPUnit itself):
+
+```console
+john@pc:$ composer require --dev phptailors/phpunit-regexp
+john@pc:$ composer require --dev phpunit/phpunit
+john@pc:$ mkdir -p src tests
+```
+
+and write test such as the following:
 
 ```php
 <?php declare(strict_types=1);
@@ -32,35 +49,30 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\HasPregCapturesTrait;
 
-final class ExampleRegexpTest extends TestCase
+final class SyntaxTest extends TestCase
 {
     use HasPregCapturesTrait;
 
-    private static function regex(): string
-    {
-        return '/(?<name>\w+) (?<surname>\w+)(?:, (?<age>\d+))?/';
-    }
-
     /**
-     * @return array<int,array<string,mixed>>
+     * @return array<int, array<string,mixed>>
      */
-    public static function provideRegexMatchAndCaptures(): array
+    public static function provideSyntaxPerson(): array
     {
-
         return [
-            ['input' => 'John',           'expect' => ['name' => false,  'surname' => false,   'age' => false]],
-            ['input' => ' John Smith ',   'expect' => ['name' => 'John', 'surname' => 'Smith', 'age' => false]],
-            ['input' => 'John Smith, 24', 'expect' => ['name' => 'John', 'surname' => 'Smith', 'age' => false]],
+            ['John',              ['name' => false,  'surname' => false,   'age' => false]],
+            [' John   Smith ',    ['name' => 'John', 'surname' => 'Smith', 'age' => false]],
+            ['John Smith, 24',    ['name' => 'John', 'surname' => 'Smith', 'age' => '24']],
+            ['John Smith, 24yrs', ['name' => 'John', 'surname' => 'Smith', 'age' => '24']],
         ];
     }
 
     /**
-     * @param array<string, mixed> $expect
+     * @param array<string,mixed> $expect
      */
-    #[DataProvider('provideRegexMatchAndCaptures')]
-    public function testRegexMatchAndCaptures(string $input, array $expect): void
+    #[DataProvider('provideSyntaxPerson')]
+    public function testSyntaxPerson(string $input, array $expect): void
     {
-        preg_match(self::regex(), $input, $captures, PREG_UNMATCHED_AS_NULL);
+        preg_match(Syntax::PERSON, $input, $captures, PREG_UNMATCHED_AS_NULL);
         $this->assertHasPregCaptures($expect, $captures);
     }
 }
@@ -72,13 +84,13 @@ PHPUnit 11.1.3 by Sebastian Bergmann and contributors.
 
 Runtime:       PHP 8.3.6
 
-..F                                                                 3 / 3 (100%)
+...F                                                                4 / 4 (100%)
 
-Time: 00:00.014, Memory: 8.00 MB
+Time: 00:00.010, Memory: 8.00 MB
 
 There was 1 failure:
 
-1) Example\ExampleRegexpTest::testRegexMatchAndCaptures with data set #2 ('John Smith, 24', ['John', 'Smith', false])
+1) Example\SyntaxTest::testSyntaxPerson with data set #3 ('John Smith, 24yrs', ['John', 'Smith', '24'])
 Failed asserting that array has expected PCRE capture groups.
 --- Expected
 +++ Actual
@@ -86,47 +98,72 @@ Failed asserting that array has expected PCRE capture groups.
  Array &0 [
      'name' => 'John',
      'surname' => 'Smith',
--    'age' => false,
-+    'age' => '24',
+-    'age' => '24',
++    'age' => '24yrs',
  ]
 
-ExampleRegexpTest.php:38
+
+tests/SyntaxTest.php:33
 
 FAILURES!
-Tests: 3, Assertions: 3, Failures: 1.
-
+Tests: 4, Assertions: 4, Failures: 1.
 ```
 
-There is more, see [documentation](https://phptailors.github.io/phpunit-extensions/docs).
+
 
 ## Packages
 
-The [phptailors/phpunit-extensions](https://github.com/phptailors/phpunit-extensions) is a set of packages providing additional constraints and assertions that you may find handy in your project testing.
+The [phptailors/phpunit-extensions](https://github.com/phptailors/phpunit-extensions) is a monorepo, where we develop the following packages
 
-- [phptailors/phpunit-arrays](https://packagist.org/packages/phptailors/phpunit-arrays) - assertions for array contents testing (not provided by PHPUnit),
-  ```shell
-  composer require --dev phptailors/phpunit-arrays
-  ```
+#### [phpunit-arrays](https://packagist.org/packages/phptailors/phpunit-arrays)
 
-- [phptailors/phpunit-inheritance](https://packagist.org/packages/phptailors/phpunit-inheritance) - testing class hierarches: whether a class implements interface, uses trait, etc.,
-  ```shell
-  composer require --dev phptailors/phpunit-arrays
-  ```
+Assertions for array contents testing (not provided by PHPUnit),
 
-- [phptailors/phpunit-methods](https://packagist.org/packages/phptailors/phpunit-methods) - ensuring methods' existence and modifiers (is it private? is it final? or, maybe, is it static?),
-  ```shell
-  composer require --dev phptailors/phpunit-arrays
-  ```
+```shell
+composer require --dev phptailors/phpunit-arrays
+```
 
-- [phptailors/phpunit-properties](https://packagist.org/packages/phptailors/phpunit-properties) - testing for objects' state (property values checked using convenient array-like notation),
-  ```shell
-  composer require --dev phptailors/phpunit-arrays
-  ```
+#### [phpunit-inheritance](https://packagist.org/packages/phptailors/phpunit-inheritance)
 
-- [phptailors/phpunit-regexp](https://packagist.org/packages/phptailors/phpunit-regexp) - testing regular expressions including capture groups, useful for projects that implement tokenizers or parsers,
-  ```shell
-  composer require --dev phptailors/phpunit-arrays
-  ```
+Testing class hierarches: whether a class implements interface, uses trait, etc.,
+
+```shell
+composer require --dev phptailors/phpunit-arrays
+```
+
+#### [phpunit-methods](https://packagist.org/packages/phptailors/phpunit-methods)
+
+Ensuring methods' existence and modifiers (is it private? is it final? or, maybe, is it static?).
+
+```shell
+composer require --dev phptailors/phpunit-arrays
+```
+
+#### [phpunit-properties](https://packagist.org/packages/phptailors/phpunit-properties)
+
+Testing for objects' state (property values checked using convenient array-like notation).
+
+```shell
+composer require --dev phptailors/phpunit-arrays
+```
+
+#### [phpunit-regexp](https://packagist.org/packages/phptailors/phpunit-regexp)
+
+Testing capture groups in regular expressions, useful for projects that implement tokenizers or parsers.
+
+```shell
+composer require --dev phptailors/phpunit-arrays
+```
+
+## Versioning
+
+We maintain several version branches, e.g. ``1.x``, ``2.x``, etc, mainly for compatibility with different versions of PHPUnit, PHP and dependent libraries (such as [sebastian/exporter](https://github.com/sebastianbergmann/exporter) or [sebastian/recursion-context](https://github.com/sebastianbergmann/recursion-context)). We do not define version constraints for PHPUnit in our composer.json files, don't even require it here. The choice is left to you - you install your preferred version of PHPUnit in your project along with one or more of our extension packages. The table below may be taken as a guidance, suggesting which version of phpunit-extensions is best to chose for particular PHPUnit and PHP version. Pickup most recent, suitable version. The table resembles our version matrix used in automated tests
+
+|  PHPUnit        | PHP                   | phpunit-extensions |
+| ----------------| --------------------- | ------------------ |
+| `^9.5.5 || ^10` | `7.3,7.4,8.0,8.1,8.2` | `1.x`              |
+| `^9.5.5 || ^10` | `8.1,8.2`             | `2.x`              |
+| `^11.0.1`       | `8.2,8.3`             | `3.x`              |
 
 
 ## Online documentation
