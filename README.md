@@ -26,7 +26,7 @@ namespace Example;
 
 final class Syntax
 {
-    public const PERSON = '/^\\s*(?<name>\\w+)\\s+(?<surname>\\w+)(?:,\\s+(?<age>\\d+))?\\s*/';
+    public const PERSON = '/^\\s*(?<name>\\w+)\\s+(?<surname>\\w+)(?:,\\s+(?<age>\\w+))?\\s*/';
 }
 ```
 
