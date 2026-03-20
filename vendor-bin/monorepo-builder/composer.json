@@ -1,6 +1,6 @@
 {
     "require-dev": {
-        "symplify/monorepo-builder": "^11"
+        "symplify/monorepo-builder": "^11,<=11.2.20"
     },
     "autoload-dev": {
         "psr-4": {
