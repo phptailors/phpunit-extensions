@@ -42,6 +42,17 @@ return $config
         // needed for psalm
         'phpdoc_to_comment' => false,
         'no_superfluous_phpdoc_tags' => false,
+
+        // 2026-03-20: php-cs-fixed changed the @PhPCsFixer rulesets
+        // significantly between 3.54 and 3.94; for now we're disabling the
+        // following rules to avoid huge code reformatting being made by the
+        // new version of php-cs-fixer.
+        'operator_linebreak' => false,
+        'phpdoc_order' => false,
+        'php_unit_data_provider_method_order' => false,
+        'fully_qualified_strict_types' => false,
+        'new_with_parentheses' => false,
+        'string_implicit_backslashes' => false,
     ])
 ;
 // vim: syntax=php sw=4 ts=4 et:
