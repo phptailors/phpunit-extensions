@@ -37,6 +37,8 @@ jobs:
         php-version:
           - "8.1"
           - "8.2"
+          - "8.3"
+          # - "8.4" # FIXME: psalm 4.x, 5.x doesn't seem to work on 8.4
         dependencies:
           - lowest
           - highest
