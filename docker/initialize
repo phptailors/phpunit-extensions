@@ -19,20 +19,12 @@ class TailorsDockerInitializer
     protected function findDocker()
     {
         $fname = 'docker';
-        $local = $this->dir . '/' .$fname;
-        if (file_exists($local) && is_executable($local)) {
-            return './' . $fname;
-        }
 
         $bin = $this->dir . '/../bin/' . $fname;
         if (file_exists($bin) && is_executable($bin)) {
             return '../bin/' . $fname;
         }
 
-        $upper = $this->dir . '/../' . $fname;
-        if (file_exists($upper) && is_executable($upper)) {
-            return '../' . $fname;
-        }
         return $fname;
     }
 
