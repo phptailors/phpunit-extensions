@@ -57,7 +57,7 @@ jobs:
         run: composer update --no-interaction --no-progress --ansi
 
       - if: matrix.dependencies == 'lowest'
-        run: composer update --no-interaction --no-progress --ansi --prefer-lowest --with='sebastian/recursion-context:5.0.0'
+        run: composer update --no-interaction --no-progress --ansi --prefer-lowest --with='sebastian/recursion-context:5.0.1'
 
       - name: Install psalm with composer
         run: composer bin psalm update --no-interaction --ansi --no-progress
