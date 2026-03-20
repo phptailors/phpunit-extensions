@@ -12,7 +12,6 @@ namespace Tailors\PHPUnit\StaticAnalysis\HappyPath\ValuesConstraintTestCase;
 
 use PHPUnit\Framework\Exception;
 use PHPUnit\Framework\ExpectationFailedException;
-use PHPUnit\Framework\MockObject\ReflectionException;
 use PHPUnit\Framework\MockObject\RuntimeException;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\CircularDependencyException;
@@ -22,7 +21,6 @@ use Tailors\PHPUnit\Values\ConstraintTestCase;
 /**
  * @throws Exception
  * @throws ExpectationFailedException
- * @throws ReflectionException
  * @throws RuntimeException
  * @throws CircularDependencyException
  * @throws InvalidArgumentException
