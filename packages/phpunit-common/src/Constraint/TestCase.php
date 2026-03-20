@@ -14,7 +14,6 @@ use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\UnaryOperator;
 use PHPUnit\Framework\Exception;
 use PHPUnit\Framework\ExpectationFailedException;
-use PHPUnit\Framework\MockObject\ReflectionException;
 use PHPUnit\Framework\MockObject\RuntimeException;
 use Tailors\PHPUnit\CircularDependencyException;
 
@@ -67,7 +66,6 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
      *
      * @throws Exception
      * @throws ExpectationFailedException
-     * @throws ReflectionException
      * @throws RuntimeException
      */
     final public function examineConstraintUnaryOperatorFailure(array $args, $actual, string $message): void
@@ -156,7 +154,6 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
      *
      * @throws Exception
      * @throws RuntimeException
-     * @throws ReflectionException
      */
     final protected function wrapWithUnaryOperator(
         Constraint $constraint,
