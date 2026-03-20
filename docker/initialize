@@ -16,9 +16,9 @@ class TailorsDockerInitializer
         $this->updateDotEnv();
     }
 
-    protected function findDockerCompose()
+    protected function findDocker()
     {
-        $fname = 'docker-compose';
+        $fname = 'docker';
         $local = $this->dir . '/' .$fname;
         if (file_exists($local) && is_executable($local)) {
             return './' . $fname;
@@ -39,7 +39,7 @@ class TailorsDockerInitializer
     protected function updateDotEnv()
     {
         $defaults = [
-            '@BINARY@'          => $this->findDockerCompose(),
+            '@BINARY@'          => $this->findDocker(),
             '@PROJECT@'         => 'phpunit-extensions',
             '@UID@'             => (string)getmyuid(),
             '@GID@'             => (string)getmygid(),
