@@ -8,6 +8,6 @@ fi
 
 . "$dotenv"
 
-if [ -z "$COMPOSE_BINARY" ]; then
-  COMPOSE_BINARY='docker-compose';
+if [ -z "$DOCKER_BINARY" ]; then
+  DOCKER_BINARY='docker';
 fi
