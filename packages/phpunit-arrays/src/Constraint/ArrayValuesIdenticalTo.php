@@ -42,6 +42,7 @@ final class ArrayValuesIdenticalTo extends AbstractConstraint
     /**
      * Creates instance of IdentityComparator.
      */
+    #[\Override]
     protected static function makeComparator(): ComparatorInterface
     {
         return new IdentityComparator();
@@ -50,6 +51,7 @@ final class ArrayValuesIdenticalTo extends AbstractConstraint
     /**
      * Creates instance of ArrayValueSelector.
      */
+    #[\Override]
     protected static function makeSelector(): ValueSelectorInterface
     {
         return new ArrayValueSelector();

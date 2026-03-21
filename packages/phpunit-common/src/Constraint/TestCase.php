@@ -166,11 +166,13 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
                 parent::__construct($constraint);
             }
 
+            #[\Override]
             public function operator(): string
             {
                 return $this->operator;
             }
 
+            #[\Override]
             public function precedence(): int
             {
                 return $this->precedence;

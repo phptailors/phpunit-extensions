@@ -60,6 +60,7 @@ abstract class AbstractConstraint extends Constraint implements ComparatorWrappe
     /**
      * Returns an instance of SelectionInterface which defines expected values.
      */
+    #[\Override]
     final public function getSelection(): SelectionInterface
     {
         return $this->expected;
@@ -68,6 +69,7 @@ abstract class AbstractConstraint extends Constraint implements ComparatorWrappe
     /**
      * Returns an instance of ComparatorInterface which implements comparison operator.
      */
+    #[\Override]
     final public function getComparator(): ComparatorInterface
     {
         return $this->comparator;
@@ -76,6 +78,7 @@ abstract class AbstractConstraint extends Constraint implements ComparatorWrappe
     /**
      * Returns a string representation of the constraint.
      */
+    #[\Override]
     final public function toString(): string
     {
         return sprintf(
@@ -103,6 +106,7 @@ abstract class AbstractConstraint extends Constraint implements ComparatorWrappe
      * @throws ExpectationFailedException
      * @throws CircularDependencyException
      */
+    #[\Override]
     final public function evaluate($other, string $description = '', bool $returnResult = false): ?bool
     {
         $success = $this->matches($other);
@@ -145,6 +149,7 @@ abstract class AbstractConstraint extends Constraint implements ComparatorWrappe
      * @param Operator $operator the $operator of the expression
      * @param mixed    $role     role of $this constraint in the $operator expression
      */
+    #[\Override]
     final protected function toStringInContext(Operator $operator, $role): string
     {
         if ($operator instanceof LogicalNot) {
@@ -165,6 +170,7 @@ abstract class AbstractConstraint extends Constraint implements ComparatorWrappe
      *
      * @param mixed $other value or object to evaluate
      */
+    #[\Override]
     final protected function matches($other): bool
     {
         if (!$this->expected->getSelector()->supports($other)) {

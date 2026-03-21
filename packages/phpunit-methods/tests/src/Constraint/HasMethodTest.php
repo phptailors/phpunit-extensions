@@ -53,7 +53,7 @@ final class HasMethodTest extends TestCase
      * @param mixed $subject
      */
     #[DataProvider('provHasMethodSucceeds')]
-    public function testHasMethodMatchSucceeds(string $method, $subject): void
+    public function testHasMethodMatchSucceeds(string $method, $subject, string $_): void
     {
         parent::examineConstraintMatchSucceeds([$method], $subject);
     }
@@ -80,7 +80,7 @@ final class HasMethodTest extends TestCase
      * @param mixed $subject
      */
     #[DataProvider('provHasMethodFails')]
-    public function testNotHasMethodMatchSucceeds(string $method, $subject): void
+    public function testNotHasMethodMatchSucceeds(string $method, $subject, string $_): void
     {
         parent::examineNotConstraintMatchSucceeds([$method], $subject);
     }

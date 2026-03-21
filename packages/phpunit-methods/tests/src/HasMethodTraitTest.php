@@ -37,7 +37,7 @@ final class HasMethodTraitTest extends TestCase
      * @psalm-param non-empty-string $method
      */
     #[DataProvider('provHasMethodSucceeds')]
-    public function testHasMethodSucceeds(string $method, $subject)
+    public function testHasMethodSucceeds(string $method, $subject, string $_)
     {
         self::assertThat($subject, self::hasMethod($method));
     }
@@ -48,7 +48,7 @@ final class HasMethodTraitTest extends TestCase
      * @psalm-param non-empty-string $method
      */
     #[DataProvider('provHasMethodSucceeds')]
-    public function testAssertHasMethodSucceeds(string $method, $subject)
+    public function testAssertHasMethodSucceeds(string $method, $subject, string $_)
     {
         self::assertHasMethod($method, $subject);
     }
@@ -73,7 +73,7 @@ final class HasMethodTraitTest extends TestCase
      * @psalm-param non-empty-string $method
      */
     #[DataProvider('provHasMethodFails')]
-    public function testNotHasMethodSucceeds(string $method, $subject)
+    public function testNotHasMethodSucceeds(string $method, $subject, string $_)
     {
         self::assertThat($method, self::logicalNot(self::hasMethod($method)));
     }
@@ -84,7 +84,7 @@ final class HasMethodTraitTest extends TestCase
      * @psalm-param non-empty-string $method
      */
     #[DataProvider('provHasMethodFails')]
-    public function testAssertNotHasMethodSucceeds(string $method, $subject)
+    public function testAssertNotHasMethodSucceeds(string $method, $subject, string $_)
     {
         self::assertNotHasMethod($method, $subject);
     }

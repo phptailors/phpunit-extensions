@@ -34,6 +34,7 @@ final class RecursiveSelector implements RecursiveSelectorInterface
      *
      * @param mixed $subject
      */
+    #[\Override]
     public function select($subject): ValuesInterface
     {
         return new ActualValues($this->selectArray($subject));
