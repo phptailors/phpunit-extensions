@@ -37,13 +37,13 @@
     },
     "require": {
         "ext-mbstring": "*",
-        "php": ">=8.3"
+        "php": ">=8.4.1"
     },
     "license": "MIT",
     "require-dev": {
         "bamarni/composer-bin-plugin": "^1.8",
         "composer/semver": "^3.0",
-        "phpunit/phpunit": "^12.0.0",
+        "phpunit/phpunit": "^13.0.0",
         "sebastian/cli-parser": ">=1.0"
     },
     "extra": {
@@ -53,7 +53,7 @@
             "target-directory": "vendor-bin"
         },
         "branch-alias": {
-            "dev-master": "4.0-dev"
+            "dev-master": "5.0-dev"
         }
     },
     "config": {
@@ -62,12 +62,12 @@
         }
     },
     "replace": {
-        "phptailors/phpunit-arrays": "4.0.2",
-        "phptailors/phpunit-common": "4.0.2",
-        "phptailors/phpunit-inheritance": "4.0.2",
-        "phptailors/phpunit-methods": "4.0.2",
-        "phptailors/phpunit-properties": "4.0.2",
-        "phptailors/phpunit-regexp": "4.0.2"
+        "phptailors/phpunit-arrays": "5.0.0",
+        "phptailors/phpunit-common": "5.0.0",
+        "phptailors/phpunit-inheritance": "5.0.0",
+        "phptailors/phpunit-methods": "5.0.0",
+        "phptailors/phpunit-properties": "5.0.0",
+        "phptailors/phpunit-regexp": "5.0.0"
     },
     "minimum-stability": "dev",
     "prefer-stable": true
