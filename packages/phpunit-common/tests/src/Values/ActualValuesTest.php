@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\Values;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -23,7 +24,7 @@ use PHPUnit\Framework\TestCase;
  * @coversNothing
  */
 #[CoversClass(ActualValues::class)]
-#[CoversClass(ValuesTestTrait::class)]
+#[CoversTrait(ValuesTestTrait::class)]
 final class ActualValuesTest extends TestCase
 {
     use ValuesTestTrait;

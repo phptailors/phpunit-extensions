@@ -112,6 +112,7 @@ final class MethodSpec implements MethodSpecInterface
     /**
      * {@inheridoc}.
      */
+    #[\Override]
     public function getName(): string
     {
         return $this->name;
@@ -120,6 +121,7 @@ final class MethodSpec implements MethodSpecInterface
     /**
      * {@inheridoc}.
      */
+    #[\Override]
     public function getStatic(): ?bool
     {
         return $this->static;
@@ -128,6 +130,7 @@ final class MethodSpec implements MethodSpecInterface
     /**
      * {@inheridoc}.
      */
+    #[\Override]
     public function getAccess(): ?int
     {
         return $this->access;
@@ -136,6 +139,7 @@ final class MethodSpec implements MethodSpecInterface
     /**
      * {@inheridoc}.
      */
+    #[\Override]
     public function getAbstract(): ?bool
     {
         return $this->abstract;
@@ -144,6 +148,7 @@ final class MethodSpec implements MethodSpecInterface
     /**
      * {@inheridoc}.
      */
+    #[\Override]
     public function getFinal(): ?bool
     {
         return $this->final;
@@ -152,6 +157,7 @@ final class MethodSpec implements MethodSpecInterface
     /**
      * {@inheridoc}.
      */
+    #[\Override]
     public function matches(\ReflectionMethod $method): bool
     {
         return $this->matchName($method)
@@ -164,6 +170,7 @@ final class MethodSpec implements MethodSpecInterface
     /**
      * {@inheridoc}.
      */
+    #[\Override]
     public function toString(): string
     {
         $final = $this->getFinalModifierString();

@@ -30,6 +30,7 @@ abstract class AbstractValueSelector implements ValueSelectorInterface
      *
      * @psalm-param array-key $key
      */
+    #[\Override]
     final public function select($subject, $key, &$retval = null): bool
     {
         $this->assertSupports($subject, 1);

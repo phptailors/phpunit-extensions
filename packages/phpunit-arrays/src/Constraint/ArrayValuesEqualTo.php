@@ -42,6 +42,7 @@ final class ArrayValuesEqualTo extends AbstractConstraint
     /**
      * Creates instance of EqualityComparator.
      */
+    #[\Override]
     protected static function makeComparator(): ComparatorInterface
     {
         return new EqualityComparator();
@@ -50,6 +51,7 @@ final class ArrayValuesEqualTo extends AbstractConstraint
     /**
      * Creates instance of ArrayValueSelector.
      */
+    #[\Override]
     protected static function makeSelector(): ValueSelectorInterface
     {
         return new ArrayValueSelector();

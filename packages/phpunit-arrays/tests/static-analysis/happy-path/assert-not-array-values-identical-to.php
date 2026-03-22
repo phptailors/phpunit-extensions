@@ -14,7 +14,7 @@ use PHPUnit\Framework\ExpectationFailedException;
 use Tailors\PHPUnit\ArrayValuesIdenticalToTrait;
 use Tailors\PHPUnit\InvalidArgumentException;
 
-class Assert extends \PHPUnit\Framework\Assert
+final class Assert extends \PHPUnit\Framework\Assert
 {
     use ArrayValuesIdenticalToTrait;
 }

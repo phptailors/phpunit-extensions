@@ -39,6 +39,7 @@ final class CapturesFilter implements CapturesFilterInterface
      *
      * @psalm-return array<array-key, string|null|array{0:string|null,1:int}>
      */
+    #[\Override]
     public function filter(array $array): array
     {
         return array_filter($array, [$this, 'accepts']);
@@ -60,6 +61,7 @@ final class CapturesFilter implements CapturesFilterInterface
      *
      * @psalm-assert-if-true string|null|array{0:string|null,1:int} $value
      */
+    #[\Override]
     public function accepts($value): bool
     {
         return $this->isScalarCapture($value) || $this->isArrayCapture($value);

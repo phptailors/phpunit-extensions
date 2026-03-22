@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\Constraint;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
@@ -31,10 +32,10 @@ use Tailors\PHPUnit\InvalidArgumentException;
  *
  * @coversNothing
  */
-#[CoversClass(InheritanceConstraintTestTrait::class)]
+#[CoversTrait(InheritanceConstraintTestTrait::class)]
 #[CoversClass(UsesTrait::class)]
 #[CoversClass(AbstractConstraint::class)]
-#[CoversClass(ConstraintImplementationTrait::class)]
+#[CoversTrait(ConstraintImplementationTrait::class)]
 final class UsesTraitTest extends TestCase
 {
     use InheritanceConstraintTestTrait;

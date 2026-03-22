@@ -24,6 +24,7 @@ final class ClassPropertySelector extends AbstractPropertySelector
      *
      * @psalm-assert-if-true class-string $subject
      */
+    #[\Override]
     public function supports($subject): bool
     {
         return is_string($subject) && class_exists($subject);
@@ -32,6 +33,7 @@ final class ClassPropertySelector extends AbstractPropertySelector
     /**
      * A short string naming the subject type supported by this selector.
      */
+    #[\Override]
     public function subject(): string
     {
         return 'a class';
@@ -46,6 +48,7 @@ final class ClassPropertySelector extends AbstractPropertySelector
      * @psalm-param class-string $subject
      * @psalm-param array-key $key
      */
+    #[\Override]
     protected function getSubjectAttribute($subject, $key)
     {
         return $subject::${$key};

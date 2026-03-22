@@ -21,6 +21,7 @@ final class IdentityComparator implements ComparatorInterface
      * @param mixed $left
      * @param mixed $right
      */
+    #[\Override]
     public function compare($left, $right): bool
     {
         return $left === $right;
@@ -31,6 +32,7 @@ final class IdentityComparator implements ComparatorInterface
      *
      * @return string "identical to"
      */
+    #[\Override]
     public function adjective(): string
     {
         return 'identical to';

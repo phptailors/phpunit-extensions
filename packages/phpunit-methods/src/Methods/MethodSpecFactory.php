@@ -37,6 +37,7 @@ final class MethodSpecFactory implements MethodSpecFactoryInterface
      *
      * @throws MethodSpecSyntaxError
      */
+    #[\Override]
     public function fromString(string $string): MethodSpec
     {
         if (preg_match('/^'.self::RE_NAME.'$/', $string, $matches)) {

@@ -17,12 +17,13 @@ namespace Tailors\PHPUnit\Values;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-class ActualValues extends AbstractValues
+final class ActualValues extends AbstractValues
 {
     /**
      * @psalm-mutation-free
      */
-    final public function actual(): bool
+    #[\Override]
+    public function actual(): bool
     {
         return true;
     }

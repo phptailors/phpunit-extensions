@@ -21,6 +21,7 @@ final class EqualityComparator implements ComparatorInterface
      * @param mixed $left
      * @param mixed $right
      */
+    #[\Override]
     public function compare($left, $right): bool
     {
         return $left == $right;
@@ -31,6 +32,7 @@ final class EqualityComparator implements ComparatorInterface
      *
      * @return string "equal to"
      */
+    #[\Override]
     public function adjective(): string
     {
         return 'equal to';

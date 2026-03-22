@@ -15,7 +15,7 @@ namespace Tailors\PHPUnit\Values;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-class ExpectedValuesSelection extends ExpectedValues implements SelectionInterface
+final class ExpectedValuesSelection extends ExpectedValues implements SelectionInterface
 {
     /**
      * @var ValueSelectorInterface
@@ -43,6 +43,7 @@ class ExpectedValuesSelection extends ExpectedValues implements SelectionInterfa
     /**
      * @psalm-mutation-free
      */
+    #[\Override]
     final public function getSelector(): ValueSelectorInterface
     {
         return $this->selector;

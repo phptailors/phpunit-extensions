@@ -50,6 +50,7 @@ final class ClassPropertiesEqualTo extends AbstractConstraint
     /**
      * Creates instance of EqualityComparator.
      */
+    #[\Override]
     protected static function makeComparator(): ComparatorInterface
     {
         return new EqualityComparator();
@@ -58,6 +59,7 @@ final class ClassPropertiesEqualTo extends AbstractConstraint
     /**
      * Creates instance of ClassPropertySelector.
      */
+    #[\Override]
     protected static function makeSelector(): ValueSelectorInterface
     {
         return new ClassPropertySelector();

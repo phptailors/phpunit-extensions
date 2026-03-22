@@ -377,50 +377,41 @@ final class MethodSpecTest extends TestCase
 
     private static function makeMethod(TestCase $test, string $name, int $modifiers = self::IS_PUBLIC)
     {
-        $stub = $test->getMockBuilder(DummyClassWithMethodFoo::class)
-            ->getMock()
+        $stub = $test->getStubBuilder(DummyClassWithMethodFoo::class)
+            ->getStub()
         ;
-        $stub->expects($test->any())
-            ->method($name)
-        ;
+        $stub->method($name);
 
-        $method = $test->getMockBuilder(\ReflectionMethod::class)
+        $method = $test->getStubBuilder(\ReflectionMethod::class)
             ->setConstructorArgs([$stub, $name])
-            ->getMock()
+            ->getStub()
         ;
 
-        $method->expects($test->any())
-            ->method('isStatic')
+        $method->method('isStatic')
             ->willReturn(0 !== ($modifiers & self::IS_STATIC))
         ;
 
-        $method->expects($test->any())
-            ->method('isPublic')
+        $method->method('isPublic')
             ->willReturn(0 !== ($modifiers & self::IS_PUBLIC))
         ;
 
-        $method->expects($test->any())
-            ->method('isProtected')
+        $method->method('isProtected')
             ->willReturn(0 !== ($modifiers & self::IS_PROTECTED))
         ;
 
-        $method->expects($test->any())
-            ->method('isPrivate')
+        $method->method('isPrivate')
             ->willReturn(0 !== ($modifiers & self::IS_PRIVATE))
         ;
 
-        $method->expects($test->any())
-            ->method('isAbstract')
+        $method->method('isAbstract')
             ->willReturn(0 !== ($modifiers & self::IS_ABSTRACT))
         ;
 
-        $method->expects($test->any())
-            ->method('isFinal')
+        $method->method('isFinal')
             ->willReturn(0 !== ($modifiers & self::IS_FINAL))
         ;
 
-        $method->expects($test->any())
-            ->method('getModifiers')
+        $method->method('getModifiers')
             ->willReturn($modifiers)
         ;
 

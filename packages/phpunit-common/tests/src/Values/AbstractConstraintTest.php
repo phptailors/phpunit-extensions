@@ -40,15 +40,15 @@ final class AbstractConstraintTest extends TestCase
         ?RecursiveUnwrapperInterface $unwrapper = null
     ) {
         if (null === $comparator) {
-            $comparator = $test->createMock(ComparatorInterface::class);
+            $comparator = $test->createStub(ComparatorInterface::class);
         }
 
         if (null === $expected) {
-            $expected = $test->createMock(SelectionInterface::class);
+            $expected = $test->createStub(SelectionInterface::class);
         }
 
         if (null === $unwrapper) {
-            $unwrapper = $test->createMock(RecursiveUnwrapperInterface::class);
+            $unwrapper = $test->createStub(RecursiveUnwrapperInterface::class);
         }
 
         return DummyAbstractConstraint::create($comparator, $expected, $unwrapper);
@@ -90,8 +90,8 @@ final class AbstractConstraintTest extends TestCase
 
     public function testConstruct(): void
     {
-        $comparator = $this->createMock(ComparatorInterface::class);
-        $expected = $this->createMock(SelectionInterface::class);
+        $comparator = $this->createStub(ComparatorInterface::class);
+        $expected = $this->createStub(SelectionInterface::class);
 
         $constraint = self::createDummyConstraint($this, $comparator, $expected);
 
@@ -101,28 +101,24 @@ final class AbstractConstraintTest extends TestCase
 
     public function testToString(): void
     {
-        $comparator = $this->createMock(ComparatorInterface::class);
-        $expected = $this->createMock(SelectionInterface::class);
+        $comparator = $this->createStub(ComparatorInterface::class);
+        $expected = $this->createStub(SelectionInterface::class);
 
-        $selector = $this->createMock(ValueSelectorInterface::class);
+        $selector = $this->createStub(ValueSelectorInterface::class);
 
-        $expected->expects($this->any())
-            ->method('getSelector')
+        $expected->method('getSelector')
             ->willReturn($selector)
         ;
 
-        $selector->expects($this->once())
-            ->method('subject')
+        $selector->method('subject')
             ->willReturn('a tree')
         ;
 
-        $selector->expects($this->once())
-            ->method('selectable')
+        $selector->method('selectable')
             ->willReturn('apples')
         ;
 
-        $comparator->expects($this->once())
-            ->method('adjective')
+        $comparator->method('adjective')
             ->willReturn('having colors')
         ;
 
@@ -134,28 +130,24 @@ final class AbstractConstraintTest extends TestCase
     public static function provToStringInContext(): array
     {
         $constraint = function (TestCase $test): Constraint {
-            $comparator = $test->createMock(ComparatorInterface::class);
-            $expected = $test->createMock(SelectionInterface::class);
+            $comparator = $test->createStub(ComparatorInterface::class);
+            $expected = $test->createStub(SelectionInterface::class);
 
-            $selector = $test->createMock(ValueSelectorInterface::class);
+            $selector = $test->createStub(ValueSelectorInterface::class);
 
-            $expected->expects($test->any())
-                ->method('getSelector')
+            $expected->method('getSelector')
                 ->willReturn($selector)
             ;
 
-            $selector->expects($test->any())
-                ->method('subject')
+            $selector->method('subject')
                 ->willReturn('a tree')
             ;
 
-            $selector->expects($test->any())
-                ->method('selectable')
+            $selector->method('selectable')
                 ->willReturn('apples')
             ;
 
-            $comparator->expects($test->any())
-                ->method('adjective')
+            $comparator->method('adjective')
                 ->willReturn('having colors')
             ;
 

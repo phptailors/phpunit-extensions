@@ -34,13 +34,13 @@ final class ExpectedValuesSelectionTest extends TestCase
 
     public function testExtendsExpectedValues(): void
     {
-        $selector = $this->createMock(ValueSelectorInterface::class);
+        $selector = $this->createStub(ValueSelectorInterface::class);
         self::assertInstanceOf(ExpectedValues::class, new ExpectedValuesSelection($selector));
     }
 
     public function testImplementsSelectionInterface(): void
     {
-        $selector = $this->createMock(ValueSelectorInterface::class);
+        $selector = $this->createStub(ValueSelectorInterface::class);
         self::assertInstanceOf(SelectionInterface::class, new ExpectedValuesSelection($selector));
     }
 
@@ -78,7 +78,7 @@ final class ExpectedValuesSelectionTest extends TestCase
     #[DataProvider('provConstruct')]
     public function testConstruct(\Closure $args, array $expect): void
     {
-        $selector = $this->createMock(ValueSelectorInterface::class);
+        $selector = $this->createStub(ValueSelectorInterface::class);
 
         $selection = new ExpectedValuesSelection(...$args($selector));
         self::assertSame($selector, $selection->getSelector());

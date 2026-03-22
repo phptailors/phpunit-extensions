@@ -10,7 +10,7 @@
 
 namespace Tailors\PHPUnit;
 
-use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
@@ -25,8 +25,8 @@ use Tailors\PHPUnit\Constraint\ProvHasPregCapturesTrait;
  *
  * @coversNothing
  */
-#[CoversClass(ProvHasPregCapturesTrait::class)]
-#[CoversClass(HasPregCapturesTrait::class)]
+#[CoversTrait(ProvHasPregCapturesTrait::class)]
+#[CoversTrait(HasPregCapturesTrait::class)]
 final class HasPregCapturesTraitTest extends TestCase
 {
     use HasPregCapturesTrait;
