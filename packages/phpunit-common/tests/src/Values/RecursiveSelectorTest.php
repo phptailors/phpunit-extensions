@@ -35,9 +35,8 @@ final class RecursiveSelectorTest extends TestCase
 
     public static function createSelectionAggregate(TestCase $test, ...$args): SelectionWrapperInterface
     {
-        $aggregate = $test->createMock(SelectionWrapperInterface::class);
-        $aggregate->expects($test->any())
-            ->method('getSelection')
+        $aggregate = $test->createStub(SelectionWrapperInterface::class);
+        $aggregate->method('getSelection')
             ->willReturn(self::createSelection(...$args))
         ;
 
@@ -52,7 +51,7 @@ final class RecursiveSelectorTest extends TestCase
 
     public function testImplementsRecursiveSelectorInterface(): void
     {
-        $selection = $this->createMock(SelectionInterface::class);
+        $selection = $this->createStub(SelectionInterface::class);
         self::assertInstanceOf(RecursiveSelectorInterface::class, new RecursiveSelector($selection));
     }
 

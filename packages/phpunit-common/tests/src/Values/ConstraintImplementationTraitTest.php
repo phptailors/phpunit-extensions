@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\Values;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -22,7 +23,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @coversNothing
  */
-#[CoversClass(ConstraintImplementationTrait::class)]
+#[CoversTrait(ConstraintImplementationTrait::class)]
 #[CoversClass(DummyConstraintImplementation::class)]
 final class ConstraintImplementationTraitTest extends TestCase
 {

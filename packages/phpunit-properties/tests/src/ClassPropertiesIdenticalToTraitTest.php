@@ -10,7 +10,7 @@
 
 namespace Tailors\PHPUnit;
 
-use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
@@ -25,7 +25,7 @@ use Tailors\PHPUnit\Constraint\ProvClassPropertiesTrait;
  *
  * @coversNothing
  */
-#[CoversClass(ClassPropertiesIdenticalToTrait::class)]
+#[CoversTrait(ClassPropertiesIdenticalToTrait::class)]
 final class ClassPropertiesIdenticalToTraitTest extends TestCase
 {
     use ClassPropertiesIdenticalToTrait;

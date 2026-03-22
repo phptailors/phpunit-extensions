@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\Constraint;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Tailors\PHPUnit\Arrays\AbstractKsortedConstraint;
 use Tailors\PHPUnit\Arrays\KsortedConstraintTestCase;
@@ -28,7 +29,7 @@ use Tailors\PHPUnit\Comparator\EqualityComparator;
 #[CoversClass(AbstractKsortedConstraint::class)]
 #[CoversClass(KsortedConstraintTestCase::class)]
 #[CoversClass(KsortedArrayEqualTo::class)]
-#[CoversClass(ProvKsortedArrayTrait::class)]
+#[CoversTrait(ProvKsortedArrayTrait::class)]
 final class KsortedArrayEqualToTest extends KsortedConstraintTestCase
 {
     use ProvKsortedArrayTrait;

@@ -31,9 +31,8 @@ final class RecursiveUnwrapperTest extends TestCase
 
     public static function createSelectionAggregate(TestCase $test, ...$args): SelectionWrapperInterface
     {
-        $aggregate = $test->createMock(SelectionWrapperInterface::class);
-        $aggregate->expects($test->any())
-            ->method('getSelection')
+        $aggregate = $test->createStub(SelectionWrapperInterface::class);
+        $aggregate->method('getSelection')
             ->willReturn(new ExpectedValuesSelection(new ArrayValueSelector(), new ExpectedValues(...$args)))
         ;
 

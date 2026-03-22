@@ -10,7 +10,7 @@
 
 namespace Tailors\PHPUnit\Inheritance;
 
-use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\InvalidReturnValueException;
@@ -115,7 +115,7 @@ final class FaultyConstraint2 extends AbstractConstraint
  *
  * @coversNothing
  */
-#[CoversClass(ConstraintImplementationTrait::class)]
+#[CoversTrait(ConstraintImplementationTrait::class)]
 final class ConstraintImplementationTraitTest extends TestCase
 {
     #[RunInSeparateProcess]

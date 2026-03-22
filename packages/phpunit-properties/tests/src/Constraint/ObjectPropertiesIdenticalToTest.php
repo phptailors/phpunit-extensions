@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\Constraint;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Constraint\Constraint;
 use Tailors\PHPUnit\Values\ConstraintTestCase;
@@ -26,7 +27,7 @@ use Tailors\PHPUnit\Values\ConstraintTestCase;
  */
 #[CoversClass(ObjectPropertiesIdenticalTo::class)]
 #[CoversClass(PropertiesConstraintTestCase::class)]
-#[CoversClass(ProvObjectPropertiesTrait::class)]
+#[CoversTrait(ProvObjectPropertiesTrait::class)]
 #[CoversClass(ConstraintTestCase::class)]
 final class ObjectPropertiesIdenticalToTest extends PropertiesConstraintTestCase
 {

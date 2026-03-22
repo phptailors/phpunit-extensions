@@ -10,7 +10,7 @@
 
 namespace Tailors\PHPUnit;
 
-use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
@@ -26,7 +26,7 @@ use Tailors\PHPUnit\Examples\Inheritance\ExampleTrait;
  *
  * @coversNothing
  */
-#[CoversClass(ImplementsInterfaceTrait::class)]
+#[CoversTrait(ImplementsInterfaceTrait::class)]
 final class ImplementsInterfaceTraitTest extends TestCase
 {
     use ImplementsInterfaceTrait;

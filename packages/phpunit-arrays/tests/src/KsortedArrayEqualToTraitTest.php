@@ -10,7 +10,7 @@
 
 namespace Tailors\PHPUnit;
 
-use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
@@ -26,7 +26,7 @@ use Tailors\PHPUnit\Constraint\ProvKsortedArrayTrait;
  *
  * @coversNothing
  */
-#[CoversClass(KsortedArrayEqualToTrait::class)]
+#[CoversTrait(KsortedArrayEqualToTrait::class)]
 final class KsortedArrayEqualToTraitTest extends TestCase
 {
     use KsortedArrayEqualToTrait;
