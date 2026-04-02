@@ -19,7 +19,7 @@ use Tailors\PHPUnit\Comparator\IdentityComparator;
  * The ``===`` operator (identity) is used for comparison.
  *
  *
- *      $matcher = KsortedArrayEqualTo::create([
+ *      $matcher = KsortedArrayIdenticalTo::create([
  *          'name' => 'John', 'age' => 21
  *      ]);
  *
