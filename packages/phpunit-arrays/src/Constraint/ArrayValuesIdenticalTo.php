@@ -19,7 +19,7 @@ use Tailors\PHPUnit\Values\ConstraintImplementationTrait;
 use Tailors\PHPUnit\Values\ValueSelectorInterface;
 
 /**
- * Constraint that accepts arrays having values equal to specified ones.
+ * Constraint that accepts arrays having values identical to specified ones.
  *
  * Compares only values present in the array of expectations. The ``===``
  * operator (identity) is used for comparison.
