@@ -66,12 +66,12 @@ final class RecursiveUnwrapper implements RecursiveUnwrapperInterface
     private function walkRecursive(ValuesInterface $current): array
     {
         $array = $current->getArrayCopy();
-        $this->seen->attach($current);
+        $this->seen->offsetSet($current);
 
         try {
             array_walk_recursive($array, [$this, 'visit'], $current);
         } finally {
-            $this->seen->detach($current);
+            $this->seen->offsetUnset($current);
         }
 
         if ($this->tagging) {
