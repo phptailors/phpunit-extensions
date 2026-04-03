@@ -10,9 +10,9 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
-use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Constraint\Constraint;
 use Tailors\PHPUnit\Arrays\AbstractKsortedConstraint;
 use Tailors\PHPUnit\Arrays\KsortedConstraintTestCase;
 use Tailors\PHPUnit\Comparator\IdentityComparator;
