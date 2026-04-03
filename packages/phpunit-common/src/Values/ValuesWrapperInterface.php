@@ -15,12 +15,12 @@ namespace Tailors\PHPUnit\Values;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-interface SelectionWrapperInterface extends ValuesWrapperInterface
+interface ValuesWrapperInterface
 {
     /**
-     * Returns an instance of SelectionInterface.
+     * Returns an instance of ValuesInterface.
      */
-    public function getSelection(): SelectionInterface;
+    public function getValues(): ValuesInterface;
 }
 
 // vim: syntax=php sw=4 ts=4 et:

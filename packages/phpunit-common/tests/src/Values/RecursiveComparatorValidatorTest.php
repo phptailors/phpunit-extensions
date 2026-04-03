@@ -32,14 +32,14 @@ use Tailors\PHPUnit\InvalidArgumentException;
 #[CoversClass(RecursiveComparatorValidator::class)]
 final class RecursiveComparatorValidatorTest extends TestCase
 {
-    public static function createSelectionStub(TestCase $test, array $array): Stub
+    public static function createValuesStub(TestCase $test, array $array): Stub
     {
-        $selection = $test->createStub(SelectionInterface::class);
-        $selection->method('getArrayCopy')
+        $values = $test->createStub(ValuesInterface::class);
+        $values->method('getArrayCopy')
             ->willReturn($array)
         ;
 
-        return $selection;
+        return $values;
     }
 
     public static function createComparatorWrapperStub(TestCase $test, ComparatorInterface $comparator): Stub
@@ -52,40 +52,40 @@ final class RecursiveComparatorValidatorTest extends TestCase
         return $wrapper;
     }
 
-    public static function createSelectionWrapperStub(TestCase $test, $selection = null): Stub
+    public static function createValuesWrapperStub(TestCase $test, $values = null): Stub
     {
-        $wrapper = $test->createStub(SelectionWrapperInterface::class);
-        self::setSelectionWrapperStubSelection($test, $wrapper, $selection);
+        $wrapper = $test->createStub(ValuesWrapperInterface::class);
+        self::setValuesWrapperStubValues($test, $wrapper, $values);
 
         return $wrapper;
     }
 
-    public static function setSelectionWrapperStubSelection(TestCase $test, Stub $wrapper, $selection = null): void
+    public static function setValuesWrapperStubValues(TestCase $test, Stub $wrapper, $values = null): void
     {
-        if (is_array($selection)) {
-            $selection = self::createSelectionStub($test, $selection);
+        if (is_array($values)) {
+            $values = self::createValuesStub($test, $values);
         }
 
-        if (null !== $selection) {
-            $wrapper->method('getSelection')
-                ->willReturn($selection)
+        if (null !== $values) {
+            $wrapper->method('getValues')
+                ->willReturn($values)
             ;
         }
     }
 
-    public function createConstraint(ComparatorInterface $comparator, $selection = []): ConstraintInterface
+    public function createConstraint(ComparatorInterface $comparator, $values = []): ConstraintInterface
     {
         $wrapper = $this->createStub(ConstraintInterface::class);
-        if (is_array($selection)) {
-            $selection = $this->createSelectionStub($selection);
+        if (is_array($values)) {
+            $values = $this->createValuesStub($values);
         }
 
         $wrapper->method('getComparator')
             ->willReturn($comparator)
         ;
 
-        $wrapper->method('getSelection')
-            ->willReturn($selection)
+        $wrapper->method('getValues')
+            ->willReturn($values)
         ;
 
         return $wrapper;
@@ -121,10 +121,10 @@ final class RecursiveComparatorValidatorTest extends TestCase
 
         $equalityWrapper = fn (TestCase $test) => self::createComparatorWrapperStub($test, new EqualityComparator());
         $identityWrapper = fn (TestCase $test) => self::createComparatorWrapperStub($test, new IdentityComparator());
-        $emptySelection = fn (TestCase $test) => $test->createStub(SelectionInterface::class);
+        $emptyValues = fn (TestCase $test) => $test->createStub(ValuesInterface::class);
 
         $circularWrapper = function (TestCase $test) use ($equalityWrapper, $identityWrapper) {
-            $circularWrapper = self::createSelectionWrapperStub($test);
+            $circularWrapper = self::createValuesWrapperStub($test);
 
             $circularArray = [
                 'circular' => $circularWrapper,
@@ -132,7 +132,7 @@ final class RecursiveComparatorValidatorTest extends TestCase
                 'identity' => $identityWrapper($test),
             ];
 
-            self::setSelectionWrapperStubSelection($test, $circularWrapper, $circularArray);
+            self::setValuesWrapperStubValues($test, $circularWrapper, $circularArray);
 
             return $circularWrapper;
         };
@@ -215,10 +215,10 @@ final class RecursiveComparatorValidatorTest extends TestCase
                 'comparator' => $equalityComparator,
                 'args'       => fn (TestCase $test) => [
                     [
-                        'foo' => self::createSelectionWrapperStub($test, [
+                        'foo' => self::createValuesWrapperStub($test, [
                             'bar'  => 'BAR',
                             'err1' => $identityWrapper($test),
-                            'qux'  => self::createSelectionWrapperStub($test, [
+                            'qux'  => self::createValuesWrapperStub($test, [
                                 'err2' => $identityWrapper($test),
                             ]),
                         ]),
