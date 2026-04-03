@@ -93,8 +93,8 @@ final class RecursiveUnwrapper implements RecursiveUnwrapperInterface
      */
     private function visit(&$value, $key, ValuesInterface $parent): void
     {
-        if ($value instanceof SelectionWrapperInterface) {
-            $value = $value->getSelection();
+        if ($value instanceof ValuesWrapperInterface) {
+            $value = $value->getValues();
         }
 
         if ($value instanceof ValuesInterface && $parent->actual() === $value->actual()) {
