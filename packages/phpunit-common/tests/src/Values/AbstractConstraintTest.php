@@ -97,6 +97,7 @@ final class AbstractConstraintTest extends TestCase
 
         $this->assertSame($comparator, $constraint->getComparator());
         $this->assertSame($expected, $constraint->getSelection());
+        $this->assertSame($expected, $constraint->getValues());
     }
 
     public function testToString(): void

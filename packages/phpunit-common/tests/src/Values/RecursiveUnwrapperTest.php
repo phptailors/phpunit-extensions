@@ -29,10 +29,10 @@ final class RecursiveUnwrapperTest extends TestCase
 {
     public const UNIQUE_TAG = RecursiveUnwrapper::UNIQUE_TAG;
 
-    public static function createSelectionAggregate(TestCase $test, ...$args): SelectionWrapperInterface
+    public static function createValuesWrapper(TestCase $test, ...$args): SelectionWrapperInterface
     {
         $aggregate = $test->createStub(SelectionWrapperInterface::class);
-        $aggregate->method('getSelection')
+        $aggregate->method('getValues')
             ->willReturn(new ExpectedValuesSelection(new ArrayValueSelector(), new ExpectedValues(...$args)))
         ;
 
@@ -56,9 +56,9 @@ final class RecursiveUnwrapperTest extends TestCase
 
     public static function provUnwrap(): array
     {
-        $actualValues['[baz => BAZ]'] = new ActualValues(['baz' => 'BAZ']);
-        $expectValues['[baz => BAZ]'] = new ExpectedValues(['baz' => 'BAZ']);
-        $arrayObject['[baz => BAZ]'] = new \ArrayObject(['baz' => 'BAZ']);
+        $actualValues = ['[baz => BAZ]' => new ActualValues(['baz' => 'BAZ'])];
+        $expectValues = ['[baz => BAZ]' => new ExpectedValues(['baz' => 'BAZ'])];
+        $arrayObject = ['[baz => BAZ]' => new \ArrayObject(['baz' => 'BAZ'])];
 
         return [
             'RecursiveUnwrapperTest.php:'.__LINE__ => [
@@ -122,7 +122,7 @@ final class RecursiveUnwrapperTest extends TestCase
                 'args'   => [],
                 'values' => fn (TestCase $test) => new ExpectedValues([
                     'foo' => 'FOO',
-                    'bar' => self::createSelectionAggregate($test, [
+                    'bar' => self::createValuesWrapper($test, [
                         'baz' => 'BAZ',
                     ]),
                 ]),
@@ -166,8 +166,8 @@ final class RecursiveUnwrapperTest extends TestCase
                 'args'   => [],
                 'values' => fn (TestCase $test) => new ExpectedValues([
                     'foo' => 'FOO',
-                    'bar' => self::createSelectionAggregate($test, [
-                        'qux' => self::createSelectionAggregate($test, ['baz' => 'BAZ']),
+                    'bar' => self::createValuesWrapper($test, [
+                        'qux' => self::createValuesWrapper($test, ['baz' => 'BAZ']),
                         new ExpectedValues(['fred' => 'FRED']),
                     ]),
                 ]),
@@ -270,7 +270,7 @@ final class RecursiveUnwrapperTest extends TestCase
                 'args'   => [false], // no tagging
                 'values' => fn (TestCase $test) => new ExpectedValues([
                     'foo' => 'FOO',
-                    'bar' => self::createSelectionAggregate($test, [
+                    'bar' => self::createValuesWrapper($test, [
                         'baz' => 'BAZ',
                     ]),
                 ]),
@@ -296,6 +296,8 @@ final class RecursiveUnwrapperTest extends TestCase
 
     public static function provUnwrapThrowsExceptionOnCircularDependency(): array
     {
+        $values = [];
+
         $values['#0'] = new ActualValues([
             'foo' => [
             ],

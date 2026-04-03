@@ -10,6 +10,8 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
+use PHPUnit\Framework\Constraint\Constraint;
+
 /**
  * @internal This trait is not covered by the backward compatibility promise
  *
@@ -18,6 +20,11 @@ namespace Tailors\PHPUnit\Constraint;
 trait ProvKsortedArrayTrait
 {
     // @codeCoverageIgnoreStart
+
+    /**
+     * @param mixed $args
+     */
+    abstract public static function createConstraint(...$args): Constraint;
 
     public static function provKsortedArrayIdenticalTo(): array
     {
