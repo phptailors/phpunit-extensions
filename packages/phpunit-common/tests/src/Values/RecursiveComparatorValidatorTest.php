@@ -31,13 +31,13 @@ final class RecursiveComparatorValidatorTest extends TestCase
 {
     public static function createValuesMock(TestCase $test, array $array): MockObject
     {
-        $selection = $test->createMock(ValuesInterface::class);
-        $selection->expects($test->any())
+        $values = $test->createMock(ValuesInterface::class);
+        $values->expects($test->any())
             ->method('getArrayCopy')
             ->willReturn($array)
         ;
 
-        return $selection;
+        return $values;
     }
 
     public static function createComparatorWrapperMock(TestCase $test, ComparatorInterface $comparator): MockObject
@@ -51,33 +51,33 @@ final class RecursiveComparatorValidatorTest extends TestCase
         return $wrapper;
     }
 
-    public static function createValuesWrapperMock(TestCase $test, $selection = null): MockObject
+    public static function createValuesWrapperMock(TestCase $test, $values = null): MockObject
     {
         $wrapper = $test->createMock(ValuesWrapperInterface::class);
-        self::setValuesWrapperMockValues($test, $wrapper, $selection);
+        self::setValuesWrapperMockValues($test, $wrapper, $values);
 
         return $wrapper;
     }
 
-    public static function setValuesWrapperMockValues(TestCase $test, MockObject $wrapper, $selection = null): void
+    public static function setValuesWrapperMockValues(TestCase $test, MockObject $wrapper, $values = null): void
     {
-        if (is_array($selection)) {
-            $selection = self::createValuesMock($test, $selection);
+        if (is_array($values)) {
+            $values = self::createValuesMock($test, $values);
         }
 
-        if (null !== $selection) {
+        if (null !== $values) {
             $wrapper->expects($test->any())
                 ->method('getValues')
-                ->willReturn($selection)
+                ->willReturn($values)
             ;
         }
     }
 
-    public function createConstraint(ComparatorInterface $comparator, $selection = []): ConstraintInterface
+    public function createConstraint(ComparatorInterface $comparator, $values = []): ConstraintInterface
     {
         $wrapper = $this->createMock(ConstraintInterface::class);
-        if (is_array($selection)) {
-            $selection = $this->createValuesMock($selection);
+        if (is_array($values)) {
+            $values = $this->createValuesMock($values);
         }
 
         $wrapper->expects($this->any())
@@ -87,7 +87,7 @@ final class RecursiveComparatorValidatorTest extends TestCase
 
         $wrapper->expects($this->any())
             ->method('getValues')
-            ->willReturn($selection)
+            ->willReturn($values)
         ;
 
         return $wrapper;
