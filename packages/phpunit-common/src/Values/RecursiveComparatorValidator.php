@@ -97,12 +97,12 @@ final class RecursiveComparatorValidator
             return; // circular dependency
         }
 
-        $this->seen->attach($values);
+        $this->seen->offsetSet($values);
 
         try {
             $this->validateRecursive($values->getArrayCopy());
         } finally {
-            $this->seen->detach($values);
+            $this->seen->offsetUnset($values);
         }
     }
 
