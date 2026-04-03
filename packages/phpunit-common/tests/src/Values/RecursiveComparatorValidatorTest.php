@@ -217,10 +217,10 @@ final class RecursiveComparatorValidatorTest extends TestCase
                 'comparator' => $equalityComparator,
                 'args'       => fn (TestCase $test) => [
                     [
-                            'foo' => self::createValuesWrapperMock($test, [
+                        'foo' => self::createValuesWrapperMock($test, [
                             'bar'  => 'BAR',
                             'err1' => $identityWrapper($test),
-                                'qux'  => self::createValuesWrapperMock($test, [
+                            'qux'  => self::createValuesWrapperMock($test, [
                                 'err2' => $identityWrapper($test),
                             ]),
                         ]),

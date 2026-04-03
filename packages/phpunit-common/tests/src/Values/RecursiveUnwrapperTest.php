@@ -120,7 +120,7 @@ final class RecursiveUnwrapperTest extends TestCase
                 'args'   => [],
                 'values' => fn (TestCase $test) => new ExpectedValues([
                     'foo' => 'FOO',
-                        'bar' => self::createValuesWrapper($test, [
+                    'bar' => self::createValuesWrapper($test, [
                         'baz' => 'BAZ',
                     ]),
                 ]),
@@ -164,8 +164,8 @@ final class RecursiveUnwrapperTest extends TestCase
                 'args'   => [],
                 'values' => fn (TestCase $test) => new ExpectedValues([
                     'foo' => 'FOO',
-                        'bar' => self::createValuesWrapper($test, [
-                            'qux' => self::createValuesWrapper($test, ['baz' => 'BAZ']),
+                    'bar' => self::createValuesWrapper($test, [
+                        'qux' => self::createValuesWrapper($test, ['baz' => 'BAZ']),
                         new ExpectedValues(['fred' => 'FRED']),
                     ]),
                 ]),
@@ -268,7 +268,7 @@ final class RecursiveUnwrapperTest extends TestCase
                 'args'   => [false], // no tagging
                 'values' => fn (TestCase $test) => new ExpectedValues([
                     'foo' => 'FOO',
-                        'bar' => self::createValuesWrapper($test, [
+                    'bar' => self::createValuesWrapper($test, [
                         'baz' => 'BAZ',
                     ]),
                 ]),
