@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
+use PHPUnit\Framework\Constraint\Constraint;
 use Tailors\PHPUnit\Arrays\KsortedConstraintTestCase;
 use Tailors\PHPUnit\Comparator\IdentityComparator;
 
@@ -42,6 +43,11 @@ final class KsortedArrayIdenticalToTest extends KsortedConstraintTestCase
     public static function getComparatorClass(): string
     {
         return IdentityComparator::class;
+    }
+
+    public static function createConstraint(...$args): Constraint
+    {
+        return KsortedArrayIdenticalTo::create(...$args);
     }
 
     /**
