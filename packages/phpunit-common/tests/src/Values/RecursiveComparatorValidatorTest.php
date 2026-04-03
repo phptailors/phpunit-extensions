@@ -32,15 +32,15 @@ use Tailors\PHPUnit\InvalidArgumentException;
 #[CoversClass(RecursiveComparatorValidator::class)]
 final class RecursiveComparatorValidatorTest extends TestCase
 {
-    public static function createSelectionMock(TestCase $test, array $array): MockObject
+    public static function createValuesMock(TestCase $test, array $array): MockObject
     {
-        $selection = $test->createMock(SelectionInterface::class);
-        $selection->expects($test->any())
+        $values = $test->createMock(ValuesInterface::class);
+        $values->expects($test->any())
             ->method('getArrayCopy')
             ->willReturn($array)
         ;
 
-        return $selection;
+        return $values;
     }
 
     public static function createComparatorWrapperMock(TestCase $test, ComparatorInterface $comparator): MockObject
@@ -54,33 +54,33 @@ final class RecursiveComparatorValidatorTest extends TestCase
         return $wrapper;
     }
 
-    public static function createSelectionWrapperMock(TestCase $test, $selection = null): MockObject
+    public static function createValuesWrapperMock(TestCase $test, $values = null): MockObject
     {
-        $wrapper = $test->createMock(SelectionWrapperInterface::class);
-        self::setSelectionWrapperMockSelection($test, $wrapper, $selection);
+        $wrapper = $test->createMock(ValuesWrapperInterface::class);
+        self::setValuesWrapperMockValues($test, $wrapper, $values);
 
         return $wrapper;
     }
 
-    public static function setSelectionWrapperMockSelection(TestCase $test, MockObject $wrapper, $selection = null): void
+    public static function setValuesWrapperMockValues(TestCase $test, MockObject $wrapper, $values = null): void
     {
-        if (is_array($selection)) {
-            $selection = self::createSelectionMock($test, $selection);
+        if (is_array($values)) {
+            $values = self::createValuesMock($test, $values);
         }
 
-        if (null !== $selection) {
+        if (null !== $values) {
             $wrapper->expects($test->any())
-                ->method('getSelection')
-                ->willReturn($selection)
+                ->method('getValues')
+                ->willReturn($values)
             ;
         }
     }
 
-    public function createConstraint(ComparatorInterface $comparator, $selection = []): ConstraintInterface
+    public function createConstraint(ComparatorInterface $comparator, $values = []): ConstraintInterface
     {
         $wrapper = $this->createMock(ConstraintInterface::class);
-        if (is_array($selection)) {
-            $selection = $this->createSelectionMock($selection);
+        if (is_array($values)) {
+            $values = $this->createValuesMock($values);
         }
 
         $wrapper->expects($this->any())
@@ -89,8 +89,8 @@ final class RecursiveComparatorValidatorTest extends TestCase
         ;
 
         $wrapper->expects($this->any())
-            ->method('getSelection')
-            ->willReturn($selection)
+            ->method('getValues')
+            ->willReturn($values)
         ;
 
         return $wrapper;
@@ -126,10 +126,10 @@ final class RecursiveComparatorValidatorTest extends TestCase
 
         $equalityWrapper = fn (TestCase $test) => self::createComparatorWrapperMock($test, new EqualityComparator());
         $identityWrapper = fn (TestCase $test) => self::createComparatorWrapperMock($test, new IdentityComparator());
-        $emptySelection = fn (TestCase $test) => $test->createMock(SelectionInterface::class);
+        $emptyValues = fn (TestCase $test) => $test->createMock(ValuesInterface::class);
 
         $circularWrapper = function (TestCase $test) use ($equalityWrapper, $identityWrapper) {
-            $circularWrapper = self::createSelectionWrapperMock($test);
+            $circularWrapper = self::createValuesWrapperMock($test);
 
             $circularArray = [
                 'circular' => $circularWrapper,
@@ -137,7 +137,7 @@ final class RecursiveComparatorValidatorTest extends TestCase
                 'identity' => $identityWrapper($test),
             ];
 
-            self::setSelectionWrapperMockSelection($test, $circularWrapper, $circularArray);
+            self::setValuesWrapperMockValues($test, $circularWrapper, $circularArray);
 
             return $circularWrapper;
         };
@@ -220,10 +220,10 @@ final class RecursiveComparatorValidatorTest extends TestCase
                 'comparator' => $equalityComparator,
                 'args'       => fn (TestCase $test) => [
                     [
-                        'foo' => self::createSelectionWrapperMock($test, [
+                        'foo' => self::createValuesWrapperMock($test, [
                             'bar'  => 'BAR',
                             'err1' => $identityWrapper($test),
-                            'qux'  => self::createSelectionWrapperMock($test, [
+                            'qux'  => self::createValuesWrapperMock($test, [
                                 'err2' => $identityWrapper($test),
                             ]),
                         ]),

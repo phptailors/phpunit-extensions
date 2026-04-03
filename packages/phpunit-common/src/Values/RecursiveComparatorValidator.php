@@ -79,8 +79,8 @@ final class RecursiveComparatorValidator
             $this->visitComparator($value->getComparator());
         }
 
-        if ($value instanceof SelectionWrapperInterface) {
-            $this->visitSelection($value->getSelection());
+        if ($value instanceof ValuesWrapperInterface) {
+            $this->visitValues($value->getValues());
         }
     }
 
@@ -91,18 +91,18 @@ final class RecursiveComparatorValidator
         }
     }
 
-    private function visitSelection(SelectionInterface $selection): void
+    private function visitValues(ValuesInterface $values): void
     {
-        if ($this->seen->contains($selection)) {
+        if ($this->seen->contains($values)) {
             return; // circular dependency
         }
 
-        $this->seen->attach($selection);
+        $this->seen->attach($values);
 
         try {
-            $this->validateRecursive($selection->getArrayCopy());
+            $this->validateRecursive($values->getArrayCopy());
         } finally {
-            $this->seen->detach($selection);
+            $this->seen->detach($values);
         }
     }
 

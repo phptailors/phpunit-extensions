@@ -66,6 +66,14 @@ abstract class AbstractConstraint extends Constraint implements ComparatorWrappe
     }
 
     /**
+     * Returns an instance of ValuesInterface which defines expected values.
+     */
+    final public function getValues(): ValuesInterface
+    {
+        return $this->expected;
+    }
+
+    /**
      * Returns an instance of ComparatorInterface which implements comparison operator.
      */
     final public function getComparator(): ComparatorInterface

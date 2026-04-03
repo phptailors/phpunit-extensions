@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
+use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Tailors\PHPUnit\Arrays\AbstractKsortedConstraint;
@@ -46,6 +47,11 @@ final class KsortedArrayEqualToTest extends KsortedConstraintTestCase
     public static function getComparatorClass(): string
     {
         return EqualityComparator::class;
+    }
+
+    public static function createConstraint(...$args): Constraint
+    {
+        return KsortedArrayEqualTo::create(...$args);
     }
 
     /**
