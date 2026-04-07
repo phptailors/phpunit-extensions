@@ -12,6 +12,7 @@ namespace Tailors\PHPUnit\Constraint;
 
 use Tailors\PHPUnit\Arrays\AbstractKsortedConstraint;
 use Tailors\PHPUnit\Comparator\IdentityComparator;
+use Tailors\PHPUnit\Values\RecursiveComparatorValidator;
 
 /**
  * Constraint that accepts arrays identical to specified one when key-sorted.
@@ -30,9 +31,16 @@ use Tailors\PHPUnit\Comparator\IdentityComparator;
  */
 final class KsortedArrayIdenticalTo extends AbstractKsortedConstraint
 {
+    /**
+     * @param array $expected
+     */
     public static function create(array $expected, int $flags = SORT_REGULAR): self
     {
-        return new self(new IdentityComparator(), $expected, $flags);
+        $comparator = new IdentityComparator();
+
+        (new RecursiveComparatorValidator($comparator))->validate($expected, 1);
+
+        return new self($comparator, $expected, $flags);
     }
 }
 
