@@ -10,9 +10,10 @@
 
 namespace Tailors\PHPUnit\Arrays;
 
+use Tailors\PHPUnit\InvalidArgumentException;
 use Tailors\PHPUnit\Values\ActualValues;
+use Tailors\PHPUnit\Values\ExpectedValues;
 use Tailors\PHPUnit\Values\ValuesInterface;
-
 
 /**
  * Key-sorts actual values from a $subject according to expected values.
@@ -37,16 +38,26 @@ final class RecursiveSorter implements RecursiveSorterInterface
      * Select an array of values from $subject.
      *
      * @param mixed $subject
+     *
+     * @throws InvalidArgumentException
      */
     public function sorted($subject): ValuesInterface
     {
-        return new ActualValues($this->sortedArray($subject));
+        $array = $this->sortedArray($subject);
+
+        if ($subject instanceof ValuesInterface && !$subject->actual()) {
+            return new ExpectedValues($array);
+        }
+
+        return new ActualValues($array);
     }
 
     /**
      * @param mixed $subject
      *
      * @return array
+     *
+     * @throws InvalidArgumentException
      */
     private function sortedArray($subject): array
     {
@@ -57,8 +68,11 @@ final class RecursiveSorter implements RecursiveSorterInterface
         /** @psalm-var mixed $expect */
         foreach ($this->sorting as $key => $expect) {
             if (\array_key_exists($key, $array)) {
-                $actual = $array[$key];
-                $array[$key] = self::adjustActualValueToExpectedValue($actual, $expect);
+                /** @psalm-var mixed */
+                $value = $array[$key];
+
+                /** @psalm-var mixed */
+                $array[$key] = self::adjustValueToExpectedValue($value, $expect);
             }
         }
 
@@ -66,55 +80,59 @@ final class RecursiveSorter implements RecursiveSorterInterface
     }
 
     /**
-     * @param mixed $actual
+     * @param mixed $value
      * @param mixed $expect
      *
      * @return mixed
+     *
+     * @throws InvalidArgumentException
      */
-    private static function adjustActualValueToExpectedValue($actual, $expect)
+    private static function adjustValueToExpectedValue($value, $expect)
     {
         if ($expect instanceof SortingWrapperInterface) {
             $expect = $expect->getSorting();
         }
 
         if ($expect instanceof SortingInterface) {
-            return self::adjustActualValueToSorting($actual, $expect);
+            return self::adjustValueToSorting($value, $expect);
         }
 
-        if (is_array($expect) && is_array($actual)) {
-            return self::adjustActualValueToArray($actual, $expect);
+        if (is_array($expect) && is_array($value)) {
+            return self::adjustArrayToArray($value, $expect);
         }
 
-        return $actual;
+        return $value;
     }
 
     /**
-     * @param mixed $actual
+     * @param mixed $value
      *
      * @return mixed
+     *
+     * @throws InvalidArgumentException
      */
-    private static function adjustActualValueToSorting($actual, SortingInterface $sorting)
+    private static function adjustValueToSorting($value, SortingInterface $sorting)
     {
-        if ($sorting->getSorter()->supports($actual)) {
-            return (new RecursiveSorter($sorting))->sorted($actual);
+        if ($sorting->getSorter()->supports($value)) {
+            return (new self($sorting))->sorted($value);
         }
 
-        return $actual;
+        return $value;
     }
 
     /**
-     * @param array $actual
+     * @param array $value
      * @param array $expect
      */
-    private static function adjustActualValueToArray(array $actual, array $expect): array
+    private static function adjustArrayToArray(array $value, array $expect): array
     {
         /** @psalm-var mixed $val */
-        foreach ($actual as $key => &$val) {
+        foreach ($value as $key => &$val) {
             /** @psalm-var mixed */
-            $val = self::adjustActualValueToExpectedValue($val, $expect[$key]);
+            $val = self::adjustValueToExpectedValue($val, $expect[$key]);
         }
 
-        return $actual;
+        return $value;
     }
 }
 

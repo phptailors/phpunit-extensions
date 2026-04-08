@@ -12,7 +12,6 @@ namespace Tailors\PHPUnit\Arrays;
 
 use Tailors\PHPUnit\Values\ValuesWrapperInterface;
 
-
 /**
  * @internal This interface is not covered by the backward compatibility promise
  *

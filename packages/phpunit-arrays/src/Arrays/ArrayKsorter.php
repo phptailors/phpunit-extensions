@@ -10,14 +10,14 @@
 
 namespace Tailors\PHPUnit\Arrays;
 
-use Tailors\PHPUnit\InvalidArgumentException;
-
 /**
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @template-extends AbstractSorter<\Traversable|array>
  */
-final class ArrayKsorter implements SorterInterface
+final class ArrayKsorter extends AbstractSorter
 {
     private int $flags;
 
@@ -29,21 +29,7 @@ final class ArrayKsorter implements SorterInterface
     /**
      * @param mixed $subject
      *
-     * @return array
-     *
-     * @throws InvalidArgumentException
-     */
-    public function sorted($subject): array
-    {
-        $this->assertSupports($subject, 1);
-
-        return $this->sortSupported($subject);
-    }
-
-    /**
-     * @param mixed $subject
-     *
-     * @psalm-assert-if-true array $subject
+     * @psalm-assert-if-true \Traversable|array $subject
      */
     public function supports($subject): bool
     {
@@ -70,11 +56,9 @@ final class ArrayKsorter implements SorterInterface
     /**
      * @param mixed $subject
      *
-     * @psalm-param array $subject
+     * @psalm-param \Traversable|array $subject
      *
      * @return array
-     *
-     * @throws InvalidArgumentException
      */
     protected function sortSupported($subject): array
     {
@@ -87,24 +71,6 @@ final class ArrayKsorter implements SorterInterface
         ksort($array, $this->flags);
 
         return $array;
-    }
-
-    /**
-     * @psalm-assert SubjectType $subject
-     *
-     * @param mixed $subject
-     * @param int   $argument
-     * @param int   $distance
-     *
-     * @throws InvalidArgumentException
-     */
-    final protected function assertSupports($subject, int $argument, int $distance = 1): void
-    {
-        if (!$this->supports($subject)) {
-            $provided = is_object($subject) ? 'an object '.get_class($subject) : gettype($subject);
-
-            throw InvalidArgumentException::fromBackTrace($argument, $this->subject(), $provided, 1 + $distance);
-        }
     }
 }
 

@@ -12,7 +12,6 @@ namespace Tailors\PHPUnit\Arrays;
 
 use Tailors\PHPUnit\Values\ExpectedValues;
 
-
 /**
  * @internal This class is not covered by the backward compatibility promise
  *
@@ -27,7 +26,7 @@ class ExpectedValuesSorting extends ExpectedValues implements SortingInterface
 
     /**
      * @param SorterInterface $sorter
-     * @param mixed                  $input
+     * @param mixed           $input
      *
      * @psalm-param array|object     $input
      */

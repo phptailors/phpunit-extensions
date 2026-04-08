@@ -7,7 +7,7 @@ Time: 00:00.002, Memory: 6.00 MB
 There was 1 failure:
 
 1) AssertKsortedArrayEqualToTest::testFailure
-Failed asserting that array is an array equal to specified one when ksorted.
+Failed asserting that array is an array equal to specified one when sorted by keys.
 --- Expected
 +++ Actual
 @@ @@

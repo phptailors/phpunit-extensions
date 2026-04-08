@@ -47,7 +47,7 @@ abstract class KsortedConstraintTestCase extends TestCase
     {
         $verb = $negative ? 'fails to be' : 'is';
 
-        return sprintf('%s %s an array %s specified one when ksorted', $export, $verb, static::adjective());
+        return sprintf('%s %s an array %s specified one when sorted by keys', $export, $verb, static::adjective());
     }
 }
 

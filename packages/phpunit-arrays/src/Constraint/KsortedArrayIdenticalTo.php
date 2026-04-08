@@ -14,6 +14,7 @@ use Tailors\PHPUnit\Arrays\AbstractKsortedConstraint;
 use Tailors\PHPUnit\Arrays\ArrayKsorter;
 use Tailors\PHPUnit\Arrays\ExpectedValuesSorting;
 use Tailors\PHPUnit\Comparator\IdentityComparator;
+use Tailors\PHPUnit\InvalidArgumentException;
 use Tailors\PHPUnit\Values\RecursiveComparatorValidator;
 use Tailors\PHPUnit\Values\RecursiveUnwrapper;
 
@@ -36,6 +37,8 @@ final class KsortedArrayIdenticalTo extends AbstractKsortedConstraint
 {
     /**
      * @param array $expected
+     *
+     * @throws InvalidArgumentException
      */
     public static function create(array $expected, int $flags = SORT_REGULAR): self
     {

@@ -94,7 +94,7 @@ final class RecursiveSelector implements RecursiveSelectorInterface
     private static function adjustActualValueToSelection($actual, SelectionInterface $selection)
     {
         if ($selection->getSelector()->supports($actual)) {
-            return (new RecursiveSelector($selection))->select($actual);
+            return (new self($selection))->select($actual);
         }
 
         return $actual;

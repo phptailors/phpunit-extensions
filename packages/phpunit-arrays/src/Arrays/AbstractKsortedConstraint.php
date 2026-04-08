@@ -50,9 +50,6 @@ abstract class AbstractKsortedConstraint extends Constraint implements Comparato
      */
     private $comparator;
 
-    /**
-     * @param array $expected
-     */
     final protected function __construct(
         ComparatorInterface $comparator,
         SortingInterface $expected,
@@ -135,7 +132,7 @@ abstract class AbstractKsortedConstraint extends Constraint implements Comparato
                 $f = new ComparisonFailure(
                     $this->expected,
                     $other,
-                    Exporter::export($this->expected, true),
+                    Exporter::export($this->sorted($this->expected), true),
                     Exporter::export($this->sorted($other), true)
                 );
             }
@@ -179,6 +176,8 @@ abstract class AbstractKsortedConstraint extends Constraint implements Comparato
      * constraint is met, false otherwise.
      *
      * @param mixed $other value or object to evaluate
+     *
+     * @throws InvalidArgumentException
      */
     final protected function matches($other): bool
     {
@@ -189,13 +188,15 @@ abstract class AbstractKsortedConstraint extends Constraint implements Comparato
         }
 
         $actual = $this->unwrapper->unwrap($this->sorted($other));
-        $expect = $this->unwrapper->unwrap($this->expected);
+        $expect = $this->unwrapper->unwrap($this->sorted($this->expected));
 
         return $this->comparator->compare($expect, $actual);
     }
 
     /**
      * @param mixed $subject
+     *
+     * @throws InvalidArgumentException
      */
     private function sorted($subject): ValuesInterface
     {
