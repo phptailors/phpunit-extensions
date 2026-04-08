@@ -10,7 +10,6 @@
 
 namespace Tailors\PHPUnit\Arrays;
 
-use PHPUnit\Framework\Constraint\Constraint;
 use Tailors\PHPUnit\Constraint\TestCase;
 
 /**
@@ -23,16 +22,6 @@ abstract class KsortedConstraintTestCase extends TestCase
     abstract public static function adjective(): string;
 
     abstract public static function getComparatorClass(): string;
-
-    public static function createConstraint(...$args): Constraint
-    {
-        $class = static::getConstraintClass();
-
-        /**
-         * @psalm-var Constraint
-         */
-        return $class::create(...$args);
-    }
 
     final public function testCreateConstraint(): void
     {
