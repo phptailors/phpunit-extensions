@@ -135,7 +135,7 @@ abstract class AbstractKsortedConstraint extends Constraint implements Comparato
                 $f = new ComparisonFailure(
                     $this->expected,
                     $other,
-                    Exporter::export($this->sorted($this->expected), true),
+                    Exporter::export($this->expected, true),
                     Exporter::export($this->sorted($other), true)
                 );
             }
@@ -189,7 +189,7 @@ abstract class AbstractKsortedConstraint extends Constraint implements Comparato
         }
 
         $actual = $this->unwrapper->unwrap($this->sorted($other));
-        $expect = $this->unwrapper->unwrap($this->sorted($this->expected));
+        $expect = $this->unwrapper->unwrap($this->expected);
 
         return $this->comparator->compare($expect, $actual);
     }

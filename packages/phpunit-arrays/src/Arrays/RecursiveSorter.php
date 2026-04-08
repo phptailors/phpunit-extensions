@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);RecursiveSor
+<?php declare(strict_types=1);
 
 /*
  * This file is part of phptailors/phpunit-extensions.

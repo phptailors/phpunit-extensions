@@ -47,7 +47,7 @@ final class ArrayKsorter implements SorterInterface
      */
     public function supports($subject): bool
     {
-        return is_array($subject);
+        return is_array($subject) || $subject instanceof \Traversable;
     }
 
     /**
@@ -56,7 +56,7 @@ final class ArrayKsorter implements SorterInterface
      */
     public function subject(): string
     {
-        return 'an array';
+        return 'an array or Traversable';
     }
 
     /**
@@ -78,9 +78,15 @@ final class ArrayKsorter implements SorterInterface
      */
     protected function sortSupported($subject): array
     {
-        ksort($subject, $this->flags);
+        if ($subject instanceof \Traversable) {
+            $array = \iterator_to_array($subject, true);
+        } else {
+            $array = $subject;
+        }
 
-        return $subject;
+        ksort($array, $this->flags);
+
+        return $array;
     }
 
     /**

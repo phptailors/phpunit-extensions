@@ -43,7 +43,7 @@ final class KsortedArrayEqualTo extends AbstractKsortedConstraint
 
         (new RecursiveComparatorValidator($comparator))->validate($expected, 1);
 
-        $sorting = new ExpectedValuesSorting(new ArrayKsorter($flags));
+        $sorting = new ExpectedValuesSorting(new ArrayKsorter($flags), $expected);
 
         return new self($comparator, $sorting, new RecursiveUnwrapper());
     }
