@@ -19,6 +19,13 @@ use Tailors\PHPUnit\InvalidArgumentException;
  */
 final class ArrayKsorter implements SorterInterface
 {
+    private int $flags;
+
+    public function __construct(int $flags)
+    {
+        $this->flags = $flags;
+    }
+
     /**
      * @param mixed $subject
      *
@@ -52,13 +59,13 @@ final class ArrayKsorter implements SorterInterface
         return 'an array';
     }
 
-//    /**
-//     * A name for the values being selected from subject.
-//     */
-//    public function sortable(): string
-//    {
-//        return 'array';
-//    }
+    /**
+     * A name for the values being selected from subject.
+     */
+    public function sortable(): string
+    {
+        return 'keys';
+    }
 
     /**
      * @param mixed $subject
@@ -71,7 +78,7 @@ final class ArrayKsorter implements SorterInterface
      */
     protected function sortSupported($subject): array
     {
-        ksort($subject);
+        ksort($subject, $this->flags);
 
         return $subject;
     }

@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php declare(strict_types=1);RecursiveSor
 
 /*
  * This file is part of phptailors/phpunit-extensions.
@@ -24,13 +24,13 @@ use Tailors\PHPUnit\Values\ValuesInterface;
 final class RecursiveSorter implements RecursiveSorterInterface
 {
     /**
-     * @var SorterInterface
+     * @var SortingInterface
      */
-    private $sorter;
+    private $sorting;
 
-    public function __construct(SorterInterface $sorter)
+    public function __construct(SortingInterface $sorting)
     {
-        $this->sorter = $sorter;
+        $this->sorting = $sorting;
     }
 
     /**
@@ -45,26 +45,24 @@ final class RecursiveSorter implements RecursiveSorterInterface
 
     /**
      * @param mixed $subject
+     *
+     * @return array
      */
     private function sortedArray($subject): array
     {
-        $array = $this->sorter->sorted($subject);
+        $sorter = $this->sorting->getSorter();
 
+        $array = $sorter->sorted($subject);
+
+        /** @psalm-var mixed $expect */
+        foreach ($this->sorting as $key => $expect) {
+            if (\array_key_exists($key, $array)) {
+                $actual = $array[$key];
+                $array[$key] = self::adjustActualValueToExpectedValue($actual, $expect);
+            }
+        }
 
         return $array;
-//        $array = [];
-//        $selector = $this->selection->getSorter();
-//
-//        // order of keys in $array shall follow that of $this->selection
-//        /** @psalm-var mixed $expect */
-//        foreach ($this->selection as $key => $expect) {
-//            if ($selector->select($subject, $key, $actual)) {
-//                /** @psalm-var mixed */
-//                $array[$key] = self::adjustActualValueToExpectedValue($actual, $expect);
-//            }
-//        }
-//
-//        return $array;
     }
 
     /**
@@ -75,17 +73,19 @@ final class RecursiveSorter implements RecursiveSorterInterface
      */
     private static function adjustActualValueToExpectedValue($actual, $expect)
     {
-//        if ($expect instanceof SelectionWrapperInterface) {
-//            $expect = $expect->getSelection();
-//        }
-//        if ($expect instanceof SelectionInterface) {
-//            return self::adjustActualValueToSelection($actual, $expect);
-//        }
-//        if (is_array($expect) && is_array($actual)) {
-//            return self::adjustActualValueToArray($actual, $expect);
-//        }
-//
-//        return $actual;
+        if ($expect instanceof SortingWrapperInterface) {
+            $expect = $expect->getSorting();
+        }
+
+        if ($expect instanceof SortingInterface) {
+            return self::adjustActualValueToSorting($actual, $expect);
+        }
+
+        if (is_array($expect) && is_array($actual)) {
+            return self::adjustActualValueToArray($actual, $expect);
+        }
+
+        return $actual;
     }
 
     /**
@@ -93,15 +93,19 @@ final class RecursiveSorter implements RecursiveSorterInterface
      *
      * @return mixed
      */
-    private static function adjustActualValueToSelection($actual/*, SelectionInterface $selection*/)
+    private static function adjustActualValueToSorting($actual, SortingInterface $sorting)
     {
-        if ($selection->getSorter()->supports($actual)) {
-            return (new RecursiveSorter($selection))->select($actual);
+        if ($sorting->getSorter()->supports($actual)) {
+            return (new RecursiveSorter($sorting))->sorted($actual);
         }
 
         return $actual;
     }
 
+    /**
+     * @param array $actual
+     * @param array $expect
+     */
     private static function adjustActualValueToArray(array $actual, array $expect): array
     {
         /** @psalm-var mixed $val */

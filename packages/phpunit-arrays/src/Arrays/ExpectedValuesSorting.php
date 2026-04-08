@@ -8,29 +8,32 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Values;
+namespace Tailors\PHPUnit\Arrays;
+
+use Tailors\PHPUnit\Values\ExpectedValues;
+
 
 /**
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-class ExpectedValuesSelection extends ExpectedValues implements SelectionInterface
+class ExpectedValuesSorting extends ExpectedValues implements SortingInterface
 {
     /**
-     * @var ValueSelectorInterface
+     * @var SorterInterface
      */
-    private $selector;
+    private $sorter;
 
     /**
-     * @param ValueSelectorInterface $selector
+     * @param SorterInterface $sorter
      * @param mixed                  $input
      *
      * @psalm-param array|object     $input
      */
-    public function __construct(ValueSelectorInterface $selector, $input = [])
+    public function __construct(SorterInterface $sorter, $input = [])
     {
-        $this->selector = $selector;
+        $this->sorter = $sorter;
         // The following if-else is only to make psalm 5.4.0 happy
         // See: https://github.com/vimeo/psalm/issues/9082
         if (is_array($input)) {
@@ -43,9 +46,9 @@ class ExpectedValuesSelection extends ExpectedValues implements SelectionInterfa
     /**
      * @psalm-mutation-free
      */
-    final public function getSelector(): ValueSelectorInterface
+    final public function getSorter(): SorterInterface
     {
-        return $this->selector;
+        return $this->sorter;
     }
 }
 

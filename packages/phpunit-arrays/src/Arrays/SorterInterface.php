@@ -34,16 +34,16 @@ interface SorterInterface
     public function sorted($subject): array;
 
     /**
-     * A short string naming the subject type(s) supported by this selector
+     * A short string naming the subject type(s) supported by this sorter
      * (e.g. "an array", "an object", "a class", etc.).
      */
     public function subject(): string;
 
-//    /**
-//     * A name for the values being sorted from subject (in plural,
-//     * e.g. "values" or "properties").
-//     */
-//    public function sortable(): string;
+    /**
+     * A name for the values being sorted in subject (in plural,
+     * e.g. "values", "keys", "property names").
+     */
+    public function sortable(): string;
 }
 
 // vim: syntax=php sw=4 ts=4 et:

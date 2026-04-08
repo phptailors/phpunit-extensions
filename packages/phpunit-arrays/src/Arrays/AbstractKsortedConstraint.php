@@ -21,18 +21,29 @@ use Tailors\PHPUnit\Common\Exporter;
 use Tailors\PHPUnit\Common\ShortFailureDescriptionTrait;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\ComparatorWrapperInterface;
+use Tailors\PHPUnit\Values\RecursiveUnwrapperInterface;
+use Tailors\PHPUnit\Values\ValuesInterface;
 
 /**
  * Abstract base class for constraints that compare key-sorted arrays.
+ *
+ * @internal This class is not covered by the backward compatibility promise
+ *
+ * @psalm-internal Tailors\PHPUnit
  */
-abstract class AbstractKsortedConstraint extends Constraint implements ComparatorWrapperInterface
+abstract class AbstractKsortedConstraint extends Constraint implements ComparatorWrapperInterface, SortingWrapperInterface
 {
     use ShortFailureDescriptionTrait;
 
     /**
-     * @var array
+     * @var SortingInterface
      */
     private $expected;
+
+    /**
+     * @var RecursiveUnwrapperInterface
+     */
+    private $unwrapper;
 
     /**
      * @var ComparatorInterface
@@ -40,23 +51,42 @@ abstract class AbstractKsortedConstraint extends Constraint implements Comparato
     private $comparator;
 
     /**
-     * @var int
+     * @param array $expected
      */
-    private $flags;
-
-    final protected function __construct(ComparatorInterface $comparator, array $expected, int $flags)
-    {
+    final protected function __construct(
+        ComparatorInterface $comparator,
+        SortingInterface $expected,
+        RecursiveUnwrapperInterface $unwrapper
+    ) {
         $this->comparator = $comparator;
         $this->expected = $expected;
-        $this->flags = $flags;
+        $this->unwrapper = $unwrapper;
     }
 
     /**
      * Returns an instance of ComparatorInterface which implements comparison operator.
+     *
+     * @psalm-mutation-free
      */
     final public function getComparator(): ComparatorInterface
     {
         return $this->comparator;
+    }
+
+    /**
+     * @psalm-mutation-free
+     */
+    final public function getSorting(): SortingInterface
+    {
+        return $this->expected;
+    }
+
+    /**
+     * @psalm-mutation-free
+     */
+    final public function getValues(): ValuesInterface
+    {
+        return $this->expected;
     }
 
     /**
@@ -65,8 +95,9 @@ abstract class AbstractKsortedConstraint extends Constraint implements Comparato
     final public function toString(): string
     {
         return sprintf(
-            'is an array %s specified one when ksorted',
-            $this->comparator->adjective()
+            'is an array %s specified one when sorted by %s',
+            $this->comparator->adjective(),
+            $this->expected->getSorter()->sortable()
         );
     }
 
@@ -99,12 +130,13 @@ abstract class AbstractKsortedConstraint extends Constraint implements Comparato
         if (!$success) {
             $f = null;
 
-            if ($this->supports($other)) {
+            $sorter = $this->expected->getSorter();
+            if ($sorter->supports($other)) {
                 $f = new ComparisonFailure(
                     $this->expected,
                     $other,
-                    Exporter::export($this->ksorted($this->expected), true),
-                    Exporter::export($this->ksorted($other), true)
+                    Exporter::export($this->sorted($this->expected), true),
+                    Exporter::export($this->sorted($other), true)
                 );
             }
 
@@ -112,16 +144,6 @@ abstract class AbstractKsortedConstraint extends Constraint implements Comparato
         }
 
         return null;
-    }
-
-    /**
-     * Returns key-sorted copy of $array.
-     */
-    final public function ksorted(array $array): array
-    {
-        ksort($array, $this->flags);
-
-        return $array;
     }
 
     /**
@@ -143,8 +165,9 @@ abstract class AbstractKsortedConstraint extends Constraint implements Comparato
     {
         if ($operator instanceof LogicalNot) {
             return sprintf(
-                'fails to be an array %s specified one when ksorted',
-                $this->comparator->adjective()
+                'fails to be an array %s specified one when sorted by %s',
+                $this->comparator->adjective(),
+                $this->expected->getSorter()->sortable()
             );
         }
 
@@ -159,21 +182,24 @@ abstract class AbstractKsortedConstraint extends Constraint implements Comparato
      */
     final protected function matches($other): bool
     {
-        if (!$this->supports($other)) {
+        $sorter = $this->expected->getSorter();
+
+        if (!$sorter->supports($other)) {
             return false;
         }
 
-        return $this->comparator->compare($this->ksorted($this->expected), $this->ksorted($other));
+        $actual = $this->unwrapper->unwrap($this->sorted($other));
+        $expect = $this->unwrapper->unwrap($this->sorted($this->expected));
+
+        return $this->comparator->compare($expect, $actual);
     }
 
     /**
-     * @param mixed $other value or object to evaluate
-     *
-     * @psalm-assert-if-true array $other
+     * @param mixed $subject
      */
-    final protected function supports($other): bool
+    private function sorted($subject): ValuesInterface
     {
-        return is_array($other);
+        return (new RecursiveSorter($this->expected))->sorted($subject);
     }
 }
 

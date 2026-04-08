@@ -11,8 +11,11 @@
 namespace Tailors\PHPUnit\Constraint;
 
 use Tailors\PHPUnit\Arrays\AbstractKsortedConstraint;
+use Tailors\PHPUnit\Arrays\ArrayKsorter;
+use Tailors\PHPUnit\Arrays\ExpectedValuesSorting;
 use Tailors\PHPUnit\Comparator\IdentityComparator;
 use Tailors\PHPUnit\Values\RecursiveComparatorValidator;
+use Tailors\PHPUnit\Values\RecursiveUnwrapper;
 
 /**
  * Constraint that accepts arrays identical to specified one when key-sorted.
@@ -40,7 +43,9 @@ final class KsortedArrayIdenticalTo extends AbstractKsortedConstraint
 
         (new RecursiveComparatorValidator($comparator))->validate($expected, 1);
 
-        return new self($comparator, $expected, $flags);
+        $sorting = new ExpectedValuesSorting(new ArrayKsorter($flags));
+
+        return new self($comparator, $sorting, new RecursiveUnwrapper());
     }
 }
 
