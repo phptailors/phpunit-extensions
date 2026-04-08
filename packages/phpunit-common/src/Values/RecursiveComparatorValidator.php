@@ -93,7 +93,7 @@ final class RecursiveComparatorValidator
 
     private function visitValues(ValuesInterface $values): void
     {
-        if ($this->seen->contains($values)) {
+        if ($this->seen->offsetExists($values)) {
             return; // circular dependency
         }
 
