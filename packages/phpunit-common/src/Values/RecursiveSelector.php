@@ -36,7 +36,13 @@ final class RecursiveSelector implements RecursiveSelectorInterface
      */
     public function select($subject): ValuesInterface
     {
-        return new ActualValues($this->selectArray($subject));
+        $array = $this->selectArray($subject);
+
+        if ($array instanceof ValuesInterface && !$array->actual()) {
+            return new ExpectedValues($array);
+        }
+
+        return new ActualValues($array);
     }
 
     /**
