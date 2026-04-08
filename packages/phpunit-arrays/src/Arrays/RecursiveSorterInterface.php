@@ -18,14 +18,14 @@ use Tailors\PHPUnit\Values\ValuesInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-interface RecursiveKsorterInterface
+interface RecursiveSorterInterface
 {
     /**
      * Select an array of values from $subject.
      *
      * @param mixed $subject
      */
-    public function select($subject): ValuesInterface;
+    public function sorted($subject): ValuesInterface;
 }
 
 // vim: syntax=php sw=4 ts=4 et:
