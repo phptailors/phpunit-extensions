@@ -104,9 +104,9 @@ final class MethodSpecFactory implements MethodSpecFactoryInterface
     }
 
     /**
-     * @throws MethodSpecSyntaxError
-     *
      * @psalm-param array<string> $matches
+     *
+     * @throws MethodSpecSyntaxError
      */
     private function handleModifiers(
         string $string,
@@ -125,9 +125,9 @@ final class MethodSpecFactory implements MethodSpecFactoryInterface
     }
 
     /**
-     * @throws MethodSpecSyntaxError
-     *
      * @psalm-param array<string> $matches
+     *
+     * @throws MethodSpecSyntaxError
      */
     private function assertAbstractFinalConsistent(string $string, array $matches, ?bool $abstract, ?bool $final): void
     {

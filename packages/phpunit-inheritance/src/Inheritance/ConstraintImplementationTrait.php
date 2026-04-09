@@ -60,9 +60,9 @@ trait ConstraintImplementationTrait
     }
 
     /**
-     * @throws InvalidReturnValueException
-     *
      * @psalm-return array<string>
+     *
+     * @throws InvalidReturnValueException
      */
     protected function inheritance(string $class): array
     {
