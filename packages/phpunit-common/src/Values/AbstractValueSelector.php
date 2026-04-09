@@ -26,9 +26,9 @@ abstract class AbstractValueSelector implements ValueSelectorInterface
      * @param mixed $key
      * @param mixed $retval
      *
-     * @throws InvalidArgumentException
-     *
      * @psalm-param array-key $key
+     *
+     * @throws InvalidArgumentException
      */
     #[\Override]
     final public function select($subject, $key, &$retval = null): bool
