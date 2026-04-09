@@ -64,6 +64,12 @@ trait ProvKsortedArrayTrait
                 'actual' => ['a' => ['b' => 'B']],
                 'string' => 'array',
             ],
+
+            'ProvKsortedArrayTrait.php:'.__LINE__ => [
+                'expect' => ['a' => ['b' => 'B', 'c' => self::createConstraint(['d' => 'D', 'e' => 'E'])]],
+                'actual' => ['a' => ['b' => 'B', 'c' => ['e' => 'E', 'd' => 'D']]],
+                'string' => 'array',
+            ],
         ];
     }
 
@@ -122,6 +128,12 @@ trait ProvKsortedArrayTrait
                 'expect' => ['foo' => 'FOO', 'arr' => ['bar' => 'GEZ']],
                 'actual' => \Exception::class,
                 'string' => \Exception::class,
+            ],
+
+            'ProvKsortedArrayTrait.php:'.__LINE__ => [
+                'expect' => ['a' => ['b' => 'B', 'c' => self::createConstraint(['d' => 'D', 'e' => 'E'])]],
+                'actual' => ['a' => ['b' => 'B', 'c' => ['e' => 'E', 'f' => 'F', 'd' => 'D']]],
+                'string' => 'array',
             ],
         ];
     }
