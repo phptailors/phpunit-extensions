@@ -41,10 +41,10 @@ final class ClassPropertySelector extends AbstractPropertySelector
      * @param mixed $subject
      * @param mixed $key
      *
-     * @return mixed
-     *
      * @psalm-param class-string $subject
      * @psalm-param array-key $key
+     *
+     * @return mixed
      */
     protected function getSubjectAttribute($subject, $key)
     {

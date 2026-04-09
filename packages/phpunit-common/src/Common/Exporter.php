@@ -22,11 +22,11 @@ use SebastianBergmann\RecursionContext\InvalidArgumentException;
 final class Exporter
 {
     /**
-     * @psalm-param mixed $value
-     *
      * @psalm-suppress MixedInferredReturnType
      *
      * @param mixed $value
+     *
+     * @psalm-param mixed $value
      *
      * @throws InvalidArgumentException
      */
@@ -52,9 +52,9 @@ final class Exporter
     }
 
     /**
-     * @psalm-param mixed $value
-     *
      * @param mixed $value
+     *
+     * @psalm-param mixed $value
      *
      * @throws InvalidArgumentException
      */

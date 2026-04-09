@@ -230,12 +230,12 @@ final class HasPregCaptures extends Constraint
     }
 
     /**
+     * @param mixed $key
+     * @param mixed $value
+     *
      * @psalm-param array<array-key, string|null|array{0:string|null,1:int}> $matches
      * @psalm-param array-key $key
      * @psalm-param CaptureExpectation $value
-     *
-     * @param mixed $key
-     * @param mixed $value
      */
     private static function updateExpectForComparison(array &$expect, array $matches, $key, $value): void
     {
@@ -249,10 +249,10 @@ final class HasPregCaptures extends Constraint
     }
 
     /**
+     * @param mixed $key
+     *
      * @psalm-param array<array-key, string|null|array{0:string|null,1:int}> $matches
      * @psalm-param array-key $key
-     *
-     * @param mixed $key
      */
     private static function updateActualForComparison(array &$actual, array $matches, $key): void
     {
@@ -262,10 +262,10 @@ final class HasPregCaptures extends Constraint
     }
 
     /**
+     * @param mixed $key
+     *
      * @psalm-param array-key $key
      * @psalm-param array<array-key, PregMatchCaptured> $matches
-     *
-     * @param mixed $key
      */
     private static function isCaptured(array $matches, $key): bool
     {
