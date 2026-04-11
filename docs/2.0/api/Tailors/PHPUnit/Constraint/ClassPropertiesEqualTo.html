@@ -209,6 +209,17 @@ appears in context of an $operator expression.</p></p>                </div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
+                    <a href="../../../Tailors/PHPUnit/Values/ValuesInterface.html"><abbr title="Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_getValues">getValues</a>()
+        
+                                            <p><p>Returns an instance of ValuesInterface which defines expected values.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html#method_getValues">
+<abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
                     <a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a>
                 </div>
                 <div class="col-md-8">
@@ -560,9 +571,42 @@ customization by itself.</p></p>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_getValues">
+        <div class="location">in <a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html#method_getValues">
+<abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a> at line 71</div>
+        <code>final                    <a href="../../../Tailors/PHPUnit/Values/ValuesInterface.html"><abbr title="Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr></a>
+    <strong>getValues</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Returns an instance of ValuesInterface which defines expected values.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Tailors/PHPUnit/Values/ValuesInterface.html"><abbr title="Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_getComparator">
         <div class="location">in <a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html#method_getComparator">
-<abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a> at line 71</div>
+<abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a> at line 79</div>
         <code>final                    <a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a>
     <strong>getComparator</strong>()
         </code>
@@ -595,7 +639,7 @@ customization by itself.</p></p>
                     <div class="method-item">
                     <h3 id="method_evaluate">
         <div class="location">in <a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html#method_evaluate">
-<abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a> at line 106</div>
+<abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a> at line 114</div>
         <code>final                    bool|null
     <strong>evaluate</strong>(mixed $other, string $description = &#039;&#039;, bool $returnResult = false)
         </code>
@@ -665,7 +709,7 @@ failure.</p></p>
                     <div class="method-item">
                     <h3 id="method_matches">
         <div class="location">in <a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html#method_matches">
-<abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a> at line 168</div>
+<abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a> at line 176</div>
         <code>final            protected        bool
     <strong>matches</strong>(mixed $other)
         </code>
