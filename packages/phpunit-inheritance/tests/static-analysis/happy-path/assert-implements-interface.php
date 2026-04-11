@@ -14,7 +14,7 @@ use PHPUnit\Framework\ExpectationFailedException;
 use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use Tailors\PHPUnit\ImplementsInterfaceTrait;
 
-class Assert extends \PHPUnit\Framework\Assert
+final class Assert extends \PHPUnit\Framework\Assert
 {
     use ImplementsInterfaceTrait;
 }
