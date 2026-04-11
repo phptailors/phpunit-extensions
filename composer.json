@@ -1,11 +1,25 @@
 {
     "name": "phptailors/phpunit-extensions",
+    "description": "Extensions to PHPUnit framework",
+    "license": "MIT",
     "authors": [
         {
             "name": "Paweł Tomulik",
             "email": "pawel@tomulik.pl"
         }
     ],
+    "require": {
+        "ext-mbstring": "*",
+        "php": ">=8.1"
+    },
+    "require-dev": {
+        "bamarni/composer-bin-plugin": "^1.8",
+        "composer/semver": "^3.0",
+        "phpunit/phpunit": "^9.5.5 || ^10",
+        "sebastian/cli-parser": ">=1.0",
+        "sebastian/exporter": "^4 || ^5",
+        "sebastian/recursion-context": "^4 || ^5"
+    },
     "autoload": {
         "psr-4": {
             "Tailors\\PHPUnit\\": [
@@ -31,23 +45,6 @@
             "Tailors\\PHPUnit\\Docs\\Behat\\": "docs/sphinx/behat/"
         }
     },
-    "description": "Extensions to PHPUnit framework",
-    "conflict": {
-        "nikic/php-parser": "< 4.13.2"
-    },
-    "require": {
-        "ext-mbstring": "*",
-        "php": ">=8.1"
-    },
-    "license": "MIT",
-    "require-dev": {
-        "bamarni/composer-bin-plugin": "^1.8",
-        "composer/semver": "^3.0",
-        "phpunit/phpunit": "^9.5.5 || ^10",
-        "sebastian/cli-parser": ">=1.0",
-        "sebastian/exporter": "^4 || ^5",
-        "sebastian/recursion-context": "^4 || ^5"
-    },
     "extra": {
         "bamarni-bin": {
             "bin-links": false,
@@ -61,12 +58,15 @@
         }
     },
     "replace": {
-        "phptailors/phpunit-arrays": "2.0.4",
-        "phptailors/phpunit-common": "2.0.4",
-        "phptailors/phpunit-inheritance": "2.0.4",
-        "phptailors/phpunit-methods": "2.0.4",
-        "phptailors/phpunit-properties": "2.0.4",
-        "phptailors/phpunit-regexp": "2.0.4"
+        "phptailors/phpunit-arrays": "2.0.5",
+        "phptailors/phpunit-common": "2.0.5",
+        "phptailors/phpunit-inheritance": "2.0.5",
+        "phptailors/phpunit-methods": "2.0.5",
+        "phptailors/phpunit-properties": "2.0.5",
+        "phptailors/phpunit-regexp": "2.0.5"
+    },
+    "conflict": {
+        "nikic/php-parser": "< 4.13.2"
     },
     "minimum-stability": "dev",
     "prefer-stable": true
