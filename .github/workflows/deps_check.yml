@@ -35,7 +35,9 @@ jobs:
         os:
           - ubuntu-latest
         php-version:
+          - "8.3"
           - "8.4"
+          - "8.5"
         dependencies:
           - lowest
           - highest
@@ -73,7 +75,9 @@ jobs:
         os:
           - ubuntu-latest
         php-version:
+          - "8.3"
           - "8.4"
+          - "8.5"
         dependencies:
           - lowest
           - highest
