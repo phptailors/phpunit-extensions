@@ -64,8 +64,7 @@ final class RecursiveUnwrapperTest extends TestCase
         return [
             'RecursiveUnwrapperTest.php:'.__LINE__ => [
                 'args'   => [],
-                'values' => fn (TestCase $test) => new ExpectedValues([
-                ]),
+                'values' => fn (TestCase $test) => new ExpectedValues([]),
                 'expect' => [
                     self::UNIQUE_TAG => true,
                 ],
@@ -300,15 +299,13 @@ final class RecursiveUnwrapperTest extends TestCase
         $values = [];
 
         $values['#0'] = new ActualValues([
-            'foo' => [
-            ],
+            'foo' => [],
         ]);
         $values['#0']['foo']['bar'] = $values['#0'];
 
         $values['#1'] = new ActualValues([
             'foo' => [
-                'bar' => [
-                ],
+                'bar' => [],
             ],
         ]);
         $values['#1']['foo']['bar']['baz'] = $values['#1'];

@@ -149,8 +149,7 @@ final class RecursiveComparatorValidatorTest extends TestCase
                     [],
                     1,
                 ],
-                'expect' => [
-                ],
+                'expect' => [],
             ],
 
             'RecursiveComparatorValidatorTest.php:'.__LINE__ => [
@@ -165,8 +164,7 @@ final class RecursiveComparatorValidatorTest extends TestCase
                     ],
                     1,
                 ],
-                'expect' => [
-                ],
+                'expect' => [],
             ],
 
             'RecursiveComparatorValidatorTest.php:'.__LINE__ => [
