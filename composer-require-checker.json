@@ -15,6 +15,7 @@
     "callable",
     "void",
     "object",
+    "random_bytes",
     "PHPUnit\\Framework\\Constraint\\Constraint",
     "PHPUnit\\Framework\\Constraint\\LogicalNot",
     "PHPUnit\\Framework\\Constraint\\Operator",
@@ -24,7 +25,8 @@
     "PHPUnit\\Util\\Exporter",
     "SebastianBergmann\\Comparator\\ComparisonFailure",
     "SebastianBergmann\\Exporter\\Exporter",
-    "SebastianBergmann\\RecursionContext\\Context"
+    "SebastianBergmann\\RecursionContext\\Context",
+    "ReflectionReference"
   ],
   "php-core-extensions" : [
     "Core",

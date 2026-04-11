@@ -9,6 +9,7 @@
     ensureOverrideAttribute="false"
     findUnusedVariablesAndParams="true"
     findUnusedCode="true"
+    findUnusedBaselineEntry="true"
     rememberPropertyAssignmentsAfterCall="false"
     errorBaseline=".psalm/baseline.xml"
     errorLevel="1"
@@ -20,4 +21,7 @@
     <plugins>
         <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
     </plugins>
+    <stubs>
+        <file name=".psalm/stubs/ReflectionReference.php"/>
+    </stubs>
 </psalm>
