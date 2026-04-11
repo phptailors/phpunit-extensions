@@ -10,7 +10,7 @@ use PharIo\Version\Version;
 final class MostRecentTagResolver implements TagResolverInterface
 {
     // Gets only tags for current branch.
-    private const COMMAND = [ 'git', 'tag', '-l', '--sort=committerdate', '--merged', 'HEAD' ];
+    private const COMMAND = [ 'git', 'tag', '-l', '--sort=v:refname', '--merged', 'HEAD' ];
 
     /**
      * @var ProcessRunner
