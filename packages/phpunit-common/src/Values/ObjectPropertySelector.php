@@ -43,10 +43,10 @@ final class ObjectPropertySelector extends AbstractPropertySelector
      * @param mixed $subject
      * @param mixed $key
      *
-     * @return mixed
-     *
      * @psalm-param object $subject
      * @psalm-param array-key $key
+     *
+     * @return mixed
      */
     #[\Override]
     protected function getSubjectAttribute($subject, $key)

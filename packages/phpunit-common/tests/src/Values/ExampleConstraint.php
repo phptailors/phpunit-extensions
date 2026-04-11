@@ -21,7 +21,7 @@ use Tailors\PHPUnit\InvalidArgumentException;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-class ExampleConstraint extends AbstractConstraint
+final class ExampleConstraint extends AbstractConstraint
 {
     use ConstraintImplementationTrait;
 

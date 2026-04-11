@@ -36,6 +36,7 @@ jobs:
           - ubuntu-latest
         php-version:
           - "8.4"
+          - "8.5"
         dependencies:
           - lowest
           - highest
@@ -58,7 +59,7 @@ jobs:
       - run: composer bin composer-require-checker update --no-progress --ansi
 
       - name: Run composer-require-checker
-        run: bin/composer-require-checker check
+        run: bin/composer-require-checker check --config-file=composer-require-checker.json
 
 
   after_split_testing:
@@ -74,6 +75,7 @@ jobs:
           - ubuntu-latest
         php-version:
           - "8.4"
+          - "8.5"
         dependencies:
           - lowest
           - highest
@@ -101,4 +103,4 @@ jobs:
       - run: composer bin composer-require-checker update --no-progress --ansi
 
       - name: Run composer-require-checker
-        run: bin/composer-require-checker check
+        run: bin/composer-require-checker check --config-file=composer-require-checker.json
