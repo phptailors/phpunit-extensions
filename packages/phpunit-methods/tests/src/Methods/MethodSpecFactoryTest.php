@@ -80,26 +80,26 @@ final class MethodSpecFactoryTest extends TestCase
 
         $accessCases = [
             [[], []],
-            [['public'], ['access' => self::IS_PUBLIC]],
-            [['protected'], ['access' => self::IS_PROTECTED]],
-            [['private'], ['access' => self::IS_PRIVATE]],
-            [['!public'], ['access' => self::NOT_PUBLIC]],
+            [['public'], ['access'     => self::IS_PUBLIC]],
+            [['protected'], ['access'  => self::IS_PROTECTED]],
+            [['private'], ['access'    => self::IS_PRIVATE]],
+            [['!public'], ['access'    => self::NOT_PUBLIC]],
             [['!protected'], ['access' => self::NOT_PROTECTED]],
-            [['!private'], ['access' => self::NOT_PRIVATE]],
+            [['!private'], ['access'   => self::NOT_PRIVATE]],
         ];
 
         $staticCases = [
             [[], []],
-            [['static'], ['static' => true]],
+            [['static'], ['static'  => true]],
             [['!static'], ['static' => false]],
         ];
 
         $absfinCases = [
             [[], []],
-            [['abstract'], ['abstract' => true]],
-            [['!abstract'], ['abstract' => false]],
-            [['final'], ['final' => true]],
-            [['!final'], ['final' => false]],
+            [['abstract'], ['abstract'      => true]],
+            [['!abstract'], ['abstract'     => false]],
+            [['final'], ['final'            => true]],
+            [['!final'], ['final'           => false]],
             [['!final !abstract'], ['final' => false, 'abstract' => false]],
             [['!abstract !final'], ['final' => false, 'abstract' => false]],
         ];
