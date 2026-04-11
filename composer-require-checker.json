@@ -15,8 +15,6 @@
     "callable",
     "void",
     "object",
-    "apcu_add",
-    "apcu_fetch",
     "PHPUnit\\Framework\\Attributes\\DataProvider",
     "PHPUnit\\Framework\\Constraint\\Constraint",
     "PHPUnit\\Framework\\Constraint\\LogicalNot",
