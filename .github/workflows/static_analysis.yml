@@ -1,34 +1,10 @@
-name: Code Quality
+name: Static Analysis
 
 on:
   - pull_request
   - push
 
 jobs:
-  coding-guidelines:
-    name: Coding Guidelines (php-cs-fixer)
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-
-      - name: Instal PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: "8.4"
-          coverage: none
-
-      - name: Update dependencies with composer
-        run: composer update --no-interaction --ansi --no-progress
-
-      - name: Install php-cs-fixer with composer
-        run: composer bin php-cs-fixer update --no-interaction --ansi --no-progress
-
-      - name: Run php-cs-fixer
-        run: vendor-bin/php-cs-fixer/vendor/bin/php-cs-fixer check --diff --show-progress=dots --using-cache=no --verbose
-
   type-checker:
     runs-on: ubuntu-latest
     strategy:
@@ -41,7 +17,7 @@ jobs:
           - lowest
           - highest
 
-    name: Type Check (PHP-${{ matrix.php-version }}:${{ matrix.dependencies }})
+    name: Psalm (PHP-${{ matrix.php-version }}:${{ matrix.dependencies }})
     steps:
       - name: Checkout
         uses: actions/checkout@v6
