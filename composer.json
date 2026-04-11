@@ -58,12 +58,12 @@
         }
     },
     "replace": {
-        "phptailors/phpunit-arrays": "2.0.5",
-        "phptailors/phpunit-common": "2.0.5",
-        "phptailors/phpunit-inheritance": "2.0.5",
-        "phptailors/phpunit-methods": "2.0.5",
-        "phptailors/phpunit-properties": "2.0.5",
-        "phptailors/phpunit-regexp": "2.0.5"
+        "phptailors/phpunit-arrays": "2.0.6",
+        "phptailors/phpunit-common": "2.0.6",
+        "phptailors/phpunit-inheritance": "2.0.6",
+        "phptailors/phpunit-methods": "2.0.6",
+        "phptailors/phpunit-properties": "2.0.6",
+        "phptailors/phpunit-regexp": "2.0.6"
     },
     "conflict": {
         "nikic/php-parser": "< 4.13.2"
