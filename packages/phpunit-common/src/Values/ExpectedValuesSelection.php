@@ -15,7 +15,7 @@ namespace Tailors\PHPUnit\Values;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-class ExpectedValuesSelection extends ExpectedValues implements SelectionInterface
+final class ExpectedValuesSelection extends ExpectedValues implements SelectionInterface
 {
     /**
      * @var ValueSelectorInterface
