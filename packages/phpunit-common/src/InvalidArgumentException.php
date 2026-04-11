@@ -22,7 +22,7 @@ final class InvalidArgumentException extends \InvalidArgumentException implement
         $stack = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1 + $distance);
 
         /**
-         * @psalm-var string|null $caller['class']
+         * @psalm-var null|string $caller['class']
          * @psalm-var callable-string $caller['function']
          */
         $caller = $stack[$distance];

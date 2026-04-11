@@ -27,7 +27,7 @@ jobs:
         run: composer bin php-cs-fixer update --no-interaction --ansi --no-progress
 
       - name: Run php-cs-fixer
-        run: vendor-bin/php-cs-fixer/vendor/bin/php-cs-fixer fix --diff --dry-run --show-progress=dots --using-cache=no --verbose
+        run: vendor-bin/php-cs-fixer/vendor/bin/php-cs-fixer check --diff --show-progress=dots --using-cache=no --verbose
 
   type-checker:
     runs-on: ubuntu-latest
