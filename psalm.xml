@@ -6,6 +6,7 @@
     xmlns:xi="http://www.w3.org/2001/XInclude"
     cacheDirectory="build/psalm/cache"
     checkForThrowsDocblock="true"
+    ensureOverrideAttribute="false"
     findUnusedVariablesAndParams="true"
     findUnusedCode="true"
     rememberPropertyAssignmentsAfterCall="false"
