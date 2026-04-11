@@ -51,9 +51,6 @@
             "bin-links": false,
             "forward-command": false,
             "target-directory": "vendor-bin"
-        },
-        "branch-alias": {
-            "dev-master": "3.0-dev"
         }
     },
     "config": {
