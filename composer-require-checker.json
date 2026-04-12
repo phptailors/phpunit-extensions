@@ -17,6 +17,7 @@
     "date",
     "pcre",
     "Phar",
+    "Random",
     "Reflection",
     "SPL",
     "standard",
