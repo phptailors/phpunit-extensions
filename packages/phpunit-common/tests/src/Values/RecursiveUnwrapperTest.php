@@ -54,230 +54,231 @@ final class RecursiveUnwrapperTest extends TestCase
     // unwrap()
     //
 
-    public static function provUnwrap(): array
+    /**
+     * @return iterable<string, array{args: array, values: \Closure(TestCase):ValuesInterface, expect: array}>
+     */
+    public static function provUnwrap(): iterable
     {
         $actualValues = ['[baz => BAZ]' => new ActualValues(['baz' => 'BAZ'])];
         $expectValues = ['[baz => BAZ]' => new ExpectedValues(['baz' => 'BAZ'])];
         $arrayObject = ['[baz => BAZ]' => new \ArrayObject(['baz' => 'BAZ'])];
 
-        return [
-            'RecursiveUnwrapperTest.php:'.__LINE__ => [
-                'args'   => [],
-                'values' => fn (TestCase $test) => new ExpectedValues([]),
-                'expect' => [
+        yield 'RecursiveUnwrapperTest.php:'.__LINE__ => [
+            'args'   => [],
+            'values' => fn (TestCase $test) => new ExpectedValues([]),
+            'expect' => [
+                self::UNIQUE_TAG => true,
+            ],
+        ];
+
+        yield 'RecursiveUnwrapperTest.php:'.__LINE__ => [
+            'args'   => [],
+            'values' => fn (TestCase $test) => new ExpectedValues([
+                'foo' => 'FOO',
+            ]),
+            'expect' => [
+                'foo'            => 'FOO',
+                self::UNIQUE_TAG => true,
+            ],
+        ];
+
+        yield 'RecursiveUnwrapperTest.php:'.__LINE__ => [
+            'args'   => [],
+            'values' => fn (TestCase $test) => new ExpectedValues([
+                'foo' => 'FOO',
+                'bar' => [
+                    'baz' => 'BAZ',
+                    'qux' => 'QUX',
+                ],
+            ]),
+            'expect' => [
+                'foo' => 'FOO',
+                'bar' => [
+                    'baz' => 'BAZ',
+                    'qux' => 'QUX',
+                ],
+                self::UNIQUE_TAG => true,
+            ],
+        ];
+
+        yield 'RecursiveUnwrapperTest.php:'.__LINE__ => [
+            'args'   => [],
+            'values' => fn (TestCase $test) => new ExpectedValues([
+                'foo' => 'FOO',
+                'bar' => new ExpectedValues([
+                    'baz' => 'BAZ',
+                ]),
+            ]),
+            'expect' => [
+                'foo' => 'FOO',
+                'bar' => [
+                    'baz'            => 'BAZ',
                     self::UNIQUE_TAG => true,
                 ],
+                self::UNIQUE_TAG => true,
             ],
+        ];
 
-            'RecursiveUnwrapperTest.php:'.__LINE__ => [
-                'args'   => [],
-                'values' => fn (TestCase $test) => new ExpectedValues([
-                    'foo' => 'FOO',
+        yield 'RecursiveUnwrapperTest.php:'.__LINE__ => [
+            'args'   => [],
+            'values' => fn (TestCase $test) => new ExpectedValues([
+                'foo' => 'FOO',
+                'bar' => self::createValuesWrapper($test, [
+                    'baz' => 'BAZ',
                 ]),
-                'expect' => [
-                    'foo'            => 'FOO',
+            ]),
+            'expect' => [
+                'foo' => 'FOO',
+                'bar' => [
+                    'baz'            => 'BAZ',
                     self::UNIQUE_TAG => true,
                 ],
+                self::UNIQUE_TAG => true,
             ],
+        ];
 
-            'RecursiveUnwrapperTest.php:'.__LINE__ => [
-                'args'   => [],
-                'values' => fn (TestCase $test) => new ExpectedValues([
-                    'foo' => 'FOO',
-                    'bar' => [
-                        'baz' => 'BAZ',
-                        'qux' => 'QUX',
-                    ],
+        yield 'RecursiveUnwrapperTest.php:'.__LINE__ => [
+            'args'   => [],
+            'values' => fn (TestCase $test) => new ExpectedValues([
+                'foo' => 'FOO',
+                'bar' => new ExpectedValues([
+                    'qux' => new ExpectedValues(['baz' => 'BAZ']),
+                    new ExpectedValues(['fred' => 'FRED']),
                 ]),
-                'expect' => [
-                    'foo' => 'FOO',
-                    'bar' => [
-                        'baz' => 'BAZ',
-                        'qux' => 'QUX',
-                    ],
-                    self::UNIQUE_TAG => true,
-                ],
-            ],
-
-            'RecursiveUnwrapperTest.php:'.__LINE__ => [
-                'args'   => [],
-                'values' => fn (TestCase $test) => new ExpectedValues([
-                    'foo' => 'FOO',
-                    'bar' => new ExpectedValues([
-                        'baz' => 'BAZ',
-                    ]),
-                ]),
-                'expect' => [
-                    'foo' => 'FOO',
-                    'bar' => [
+            ]),
+            'expect' => [
+                'foo' => 'FOO',
+                'bar' => [
+                    'qux' => [
                         'baz'            => 'BAZ',
                         self::UNIQUE_TAG => true,
                     ],
+                    0 => [
+                        'fred'           => 'FRED',
+                        self::UNIQUE_TAG => true,
+                    ],
                     self::UNIQUE_TAG => true,
                 ],
+                self::UNIQUE_TAG => true,
             ],
+        ];
 
-            'RecursiveUnwrapperTest.php:'.__LINE__ => [
-                'args'   => [],
-                'values' => fn (TestCase $test) => new ExpectedValues([
-                    'foo' => 'FOO',
-                    'bar' => self::createValuesWrapper($test, [
-                        'baz' => 'BAZ',
-                    ]),
+        yield 'RecursiveUnwrapperTest.php:'.__LINE__ => [
+            'args'   => [],
+            'values' => fn (TestCase $test) => new ExpectedValues([
+                'foo' => 'FOO',
+                'bar' => self::createValuesWrapper($test, [
+                    'qux' => self::createValuesWrapper($test, ['baz' => 'BAZ']),
+                    new ExpectedValues(['fred' => 'FRED']),
                 ]),
-                'expect' => [
-                    'foo' => 'FOO',
-                    'bar' => [
+            ]),
+            'expect' => [
+                'foo' => 'FOO',
+                'bar' => [
+                    'qux' => [
                         'baz'            => 'BAZ',
                         self::UNIQUE_TAG => true,
                     ],
-                    self::UNIQUE_TAG => true,
-                ],
-            ],
-
-            'RecursiveUnwrapperTest.php:'.__LINE__ => [
-                'args'   => [],
-                'values' => fn (TestCase $test) => new ExpectedValues([
-                    'foo' => 'FOO',
-                    'bar' => new ExpectedValues([
-                        'qux' => new ExpectedValues(['baz' => 'BAZ']),
-                        new ExpectedValues(['fred' => 'FRED']),
-                    ]),
-                ]),
-                'expect' => [
-                    'foo' => 'FOO',
-                    'bar' => [
-                        'qux' => [
-                            'baz'            => 'BAZ',
-                            self::UNIQUE_TAG => true,
-                        ],
-                        0 => [
-                            'fred'           => 'FRED',
-                            self::UNIQUE_TAG => true,
-                        ],
+                    0 => [
+                        'fred'           => 'FRED',
                         self::UNIQUE_TAG => true,
                     ],
                     self::UNIQUE_TAG => true,
                 ],
+                self::UNIQUE_TAG => true,
             ],
+        ];
 
-            'RecursiveUnwrapperTest.php:'.__LINE__ => [
-                'args'   => [],
-                'values' => fn (TestCase $test) => new ExpectedValues([
-                    'foo' => 'FOO',
-                    'bar' => self::createValuesWrapper($test, [
-                        'qux' => self::createValuesWrapper($test, ['baz' => 'BAZ']),
-                        new ExpectedValues(['fred' => 'FRED']),
-                    ]),
+        yield 'RecursiveUnwrapperTest.php:'.__LINE__ => [
+            'args'   => [],
+            'values' => fn (TestCase $test) => new ExpectedValues([
+                'foo' => 'FOO',
+                'bar' => $actualValues['[baz => BAZ]'],
+            ]),
+            'expect' => [
+                'foo'            => 'FOO',
+                'bar'            => $actualValues['[baz => BAZ]'],
+                self::UNIQUE_TAG => true,
+            ],
+        ];
+
+        yield 'RecursiveUnwrapperTest.php:'.__LINE__ => [
+            'args'   => [],
+            'values' => fn (TestCase $test) => new ActualValues([
+                'foo' => 'FOO',
+                'bar' => $expectValues['[baz => BAZ]'],
+            ]),
+            'expect' => [
+                'foo'            => 'FOO',
+                'bar'            => $expectValues['[baz => BAZ]'],
+                self::UNIQUE_TAG => true,
+            ],
+        ];
+
+        yield 'RecursiveUnwrapperTest.php:'.__LINE__ => [
+            'args'   => [],
+            'values' => fn (TestCase $test) => new ExpectedValues([
+                'foo' => 'FOO',
+                'bar' => $arrayObject['[baz => BAZ]'],
+            ]),
+            'expect' => [
+                'foo'            => 'FOO',
+                'bar'            => $arrayObject['[baz => BAZ]'],
+                self::UNIQUE_TAG => true,
+            ],
+        ];
+
+        yield 'RecursiveUnwrapperTest.php:'.__LINE__ => [
+            'args'   => [],
+            'values' => fn (TestCase $test) => new ExpectedValues([
+                'foo' => 'FOO',
+                'bar' => $arrayObject['[baz => BAZ]'],
+            ]),
+            'expect' => [
+                'foo'            => 'FOO',
+                'bar'            => $arrayObject['[baz => BAZ]'],
+                self::UNIQUE_TAG => true,
+            ],
+        ];
+
+        yield 'RecursiveUnwrapperTest.php:'.__LINE__ => [
+            'args'   => [false], // no tagging
+            'values' => fn (TestCase $test) => new ExpectedValues([
+                'foo' => 'FOO',
+            ]),
+            'expect' => [
+                'foo' => 'FOO',
+            ],
+        ];
+
+        yield 'RecursiveUnwrapperTest.php:'.__LINE__ => [
+            'args'   => [false], // no tagging
+            'values' => fn (TestCase $test) => new ExpectedValues([
+                'foo' => 'FOO',
+                'bar' => new ExpectedValues([
+                    'baz' => 'BAZ',
                 ]),
-                'expect' => [
-                    'foo' => 'FOO',
-                    'bar' => [
-                        'qux' => [
-                            'baz'            => 'BAZ',
-                            self::UNIQUE_TAG => true,
-                        ],
-                        0 => [
-                            'fred'           => 'FRED',
-                            self::UNIQUE_TAG => true,
-                        ],
-                        self::UNIQUE_TAG => true,
-                    ],
-                    self::UNIQUE_TAG => true,
+            ]),
+            'expect' => [
+                'foo' => 'FOO',
+                'bar' => [
+                    'baz' => 'BAZ',
                 ],
             ],
+        ];
 
-            'RecursiveUnwrapperTest.php:'.__LINE__ => [
-                'args'   => [],
-                'values' => fn (TestCase $test) => new ExpectedValues([
-                    'foo' => 'FOO',
-                    'bar' => $actualValues['[baz => BAZ]'],
+        yield 'RecursiveUnwrapperTest.php:'.__LINE__ => [
+            'args'   => [false], // no tagging
+            'values' => fn (TestCase $test) => new ExpectedValues([
+                'foo' => 'FOO',
+                'bar' => self::createValuesWrapper($test, [
+                    'baz' => 'BAZ',
                 ]),
-                'expect' => [
-                    'foo'            => 'FOO',
-                    'bar'            => $actualValues['[baz => BAZ]'],
-                    self::UNIQUE_TAG => true,
-                ],
-            ],
-
-            'RecursiveUnwrapperTest.php:'.__LINE__ => [
-                'args'   => [],
-                'values' => fn (TestCase $test) => new ActualValues([
-                    'foo' => 'FOO',
-                    'bar' => $expectValues['[baz => BAZ]'],
-                ]),
-                'expect' => [
-                    'foo'            => 'FOO',
-                    'bar'            => $expectValues['[baz => BAZ]'],
-                    self::UNIQUE_TAG => true,
-                ],
-            ],
-
-            'RecursiveUnwrapperTest.php:'.__LINE__ => [
-                'args'   => [],
-                'values' => fn (TestCase $test) => new ExpectedValues([
-                    'foo' => 'FOO',
-                    'bar' => $arrayObject['[baz => BAZ]'],
-                ]),
-                'expect' => [
-                    'foo'            => 'FOO',
-                    'bar'            => $arrayObject['[baz => BAZ]'],
-                    self::UNIQUE_TAG => true,
-                ],
-            ],
-
-            'RecursiveUnwrapperTest.php:'.__LINE__ => [
-                'args'   => [],
-                'values' => fn (TestCase $test) => new ExpectedValues([
-                    'foo' => 'FOO',
-                    'bar' => $arrayObject['[baz => BAZ]'],
-                ]),
-                'expect' => [
-                    'foo'            => 'FOO',
-                    'bar'            => $arrayObject['[baz => BAZ]'],
-                    self::UNIQUE_TAG => true,
-                ],
-            ],
-
-            'RecursiveUnwrapperTest.php:'.__LINE__ => [
-                'args'   => [false], // no tagging
-                'values' => fn (TestCase $test) => new ExpectedValues([
-                    'foo' => 'FOO',
-                ]),
-                'expect' => [
-                    'foo' => 'FOO',
-                ],
-            ],
-
-            'RecursiveUnwrapperTest.php:'.__LINE__ => [
-                'args'   => [false], // no tagging
-                'values' => fn (TestCase $test) => new ExpectedValues([
-                    'foo' => 'FOO',
-                    'bar' => new ExpectedValues([
-                        'baz' => 'BAZ',
-                    ]),
-                ]),
-                'expect' => [
-                    'foo' => 'FOO',
-                    'bar' => [
-                        'baz' => 'BAZ',
-                    ],
-                ],
-            ],
-
-            'RecursiveUnwrapperTest.php:'.__LINE__ => [
-                'args'   => [false], // no tagging
-                'values' => fn (TestCase $test) => new ExpectedValues([
-                    'foo' => 'FOO',
-                    'bar' => self::createValuesWrapper($test, [
-                        'baz' => 'BAZ',
-                    ]),
-                ]),
-                'expect' => [
-                    'foo' => 'FOO',
-                    'bar' => [
-                        'baz' => 'BAZ',
-                    ],
+            ]),
+            'expect' => [
+                'foo' => 'FOO',
+                'bar' => [
+                    'baz' => 'BAZ',
                 ],
             ],
         ];
@@ -293,60 +294,107 @@ final class RecursiveUnwrapperTest extends TestCase
         self::assertSame($expect, $unwrapper->unwrap($values($this)));
     }
 
-    public static function provUnwrapThrowsExceptionOnCircularDependency(): array
+    /**
+     * @return iterable<string, array{values: ValuesInterface, path: string}>
+     */
+    public static function provUnwrapThrowsExceptionOnCircularDependency(): iterable
     {
-        $values = [];
-
-        $values['#0'] = new ActualValues([
+        //
+        // 01
+        //
+        $v01 = new ActualValues([
             'foo' => [],
         ]);
-        $values['#0']['foo']['bar'] = $values['#0'];
+        $v01['foo']['bar'] = $v01;
 
-        $values['#1'] = new ActualValues([
+        yield 'RecursiveUnwrapperTest.php:'.__LINE__ => [
+            'values' => $v01,
+            'path'   => '["foo"]["bar"]',
+        ];
+
+        //
+        // 02
+        //
+
+        $v02 = new ActualValues([
             'foo' => [
                 'bar' => [],
             ],
         ]);
-        $values['#1']['foo']['bar']['baz'] = $values['#1'];
+        $v02['foo']['bar']['baz'] = $v02;
 
-        $values['#2'] = new ActualValues([
+        yield 'RecursiveUnwrapperTest.php:'.__LINE__ => [
+            'values' => $v02,
+            'path'   => '["foo"]["bar"]["baz"]',
+        ];
+
+        //
+        // 03
+        //
+
+        $v03 = new ActualValues([
             'foo' => [
                 'bar' => new ActualValues([
                     'baz' => 'BAZ',
                 ]),
             ],
         ]);
-        $values['#2']['foo']['bar']['qux'] = $values['#2']['foo']['bar'];
+        $v03['foo']['bar']['qux'] = $v03['foo']['bar'];
 
-        $values['#3'] = new ActualValues([
+        yield 'RecursiveUnwrapperTest.php:'.__LINE__ => [
+            'values' => $v03,
+            'path'   => '["foo"]["bar"]["qux"]',
+        ];
+
+        //
+        // 04
+        //
+
+        $v04 = new ActualValues([
             'foo' => [
                 'bar' => new ActualValues([]),
                 'baz' => new ActualValues([]),
             ],
         ]);
-        $values['#3']['foo']['bar']['qux'] = $values['#3']['foo']['baz'];
-        $values['#3']['foo']['baz']['fred'] = $values['#3']['foo']['bar'];
+        $v04['foo']['bar']['qux'] = $v04['foo']['baz'];
+        $v04['foo']['baz']['fred'] = $v04['foo']['bar'];
 
-        return [
-            'RecursiveUnwrapperTest.php:'.__LINE__ => [
-                'values' => $values['#0'],
-                'path'   => '["foo"]["bar"]',
-            ],
+        yield 'RecursiveUnwrapperTest.php:'.__LINE__ => [
+            'values' => $v04,
+            'path'   => '["foo"]["bar"]["qux"]["fred"]',
+        ];
 
-            'RecursiveUnwrapperTest.php:'.__LINE__ => [
-                'values' => $values['#1'],
-                'path'   => '["foo"]["bar"]["baz"]',
-            ],
+        //
+        // 05
+        //
 
-            'RecursiveUnwrapperTest.php:'.__LINE__ => [
-                'values' => $values['#2'],
-                'path'   => '["foo"]["bar"]["qux"]',
+        $v05 = new ActualValues([
+            'foo' => [
+                'bar' => [],
+                'baz' => [],
             ],
+        ]);
+        $v05['foo']['baz'] = &$v05['foo'];
 
-            'RecursiveUnwrapperTest.php:'.__LINE__ => [
-                'values' => $values['#3'],
-                'path'   => '["foo"]["bar"]["qux"]["fred"]',
-            ],
+        yield 'RecursiveUnwrapperTest.php:'.__LINE__ => [
+            'values' => $v05,
+            'path'   => '["foo"]["baz"]',
+        ];
+
+        //
+        // 06
+        //
+
+        $v06 = [
+            'foo' => new ActualValues([
+                'bar' => [],
+            ]),
+        ];
+        $v06['foo']['bar']['baz'] = &$v06;
+
+        yield 'RecursiveUnwrapperTest.php:'.__LINE__ => [
+            'values' => $v06['foo'],
+            'path'   => '["bar"]["baz"]["foo"]',
         ];
     }
 
