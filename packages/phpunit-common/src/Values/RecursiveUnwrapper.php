@@ -107,6 +107,10 @@ final class RecursiveUnwrapper implements RecursiveUnwrapperInterface
      */
     private function arrayWalkRecursive(array &$array, ValuesInterface $parent): void
     {
+        if ($this->seen->contains($array)) {
+            $this->throwCircular();
+        }
+
         $this->seen->add($array);
 
         try {
