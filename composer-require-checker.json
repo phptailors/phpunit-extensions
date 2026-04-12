@@ -15,6 +15,7 @@
     "callable",
     "void",
     "object",
+    "random_bytes",
     "PHPUnit\\Framework\\Constraint\\Constraint",
     "PHPUnit\\Framework\\Constraint\\LogicalNot",
     "PHPUnit\\Framework\\Constraint\\Operator",

@@ -9,6 +9,7 @@
     ensureOverrideAttribute="false"
     findUnusedVariablesAndParams="true"
     findUnusedCode="true"
+    findUnusedBaselineEntry="true"
     rememberPropertyAssignmentsAfterCall="false"
     errorBaseline=".psalm/baseline.xml"
     errorLevel="1"
