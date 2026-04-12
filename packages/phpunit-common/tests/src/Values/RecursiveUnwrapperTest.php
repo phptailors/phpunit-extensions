@@ -331,36 +331,34 @@ final class RecursiveUnwrapperTest extends TestCase
         return [
             'RecursiveUnwrapperTest.php:'.__LINE__ => [
                 'values' => $values['#0'],
-                'key'    => 'bar',
+                'path'   => '["foo"]["bar"]',
             ],
 
             'RecursiveUnwrapperTest.php:'.__LINE__ => [
                 'values' => $values['#1'],
-                'key'    => 'baz',
+                'path'   => '["foo"]["bar"]["baz"]',
             ],
 
             'RecursiveUnwrapperTest.php:'.__LINE__ => [
                 'values' => $values['#2'],
-                'key'    => 'qux',
+                'path'   => '["foo"]["bar"]["qux"]',
             ],
 
             'RecursiveUnwrapperTest.php:'.__LINE__ => [
                 'values' => $values['#3'],
-                'key'    => 'fred',
+                'path'   => '["foo"]["bar"]["qux"]["fred"]',
             ],
         ];
     }
 
     /**
-     * @param mixed $key
      */
     #[DataProvider('provUnwrapThrowsExceptionOnCircularDependency')]
-    public function testUnwrapThrowsExceptionOnCircularDependency(ValuesInterface $values, $key): void
+    public function testUnwrapThrowsExceptionOnCircularDependency(ValuesInterface $values, string $path): void
     {
-        $id = is_string($key) ? "'".addslashes($key)."'" : $key;
-        $id = preg_quote($id, '/');
+        $rePath = preg_quote($path, '/');
         $this->expectException(CircularDependencyException::class);
-        $this->expectExceptionMessageMatches("/^Circular dependency found in nested properties at key {$id}\\.$/");
+        $this->expectExceptionMessageMatches("/^Circular dependency found in nested values at \\\$values{$rePath}\\.$/");
 
         (new RecursiveUnwrapper())->unwrap($values);
     }
