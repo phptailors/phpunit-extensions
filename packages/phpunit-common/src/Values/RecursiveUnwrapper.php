@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\Values;
 
 use Tailors\PHPUnit\CircularDependencyException;
+use Tailors\PHPUnit\Common\ReferenceStorage;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -22,7 +23,7 @@ final class RecursiveUnwrapper implements RecursiveUnwrapperInterface
     public const UNIQUE_TAG = 'unwrapped-values:$1$zIlgusJc$ZZCyNRPOX1SbpKdzoD2hU/';
 
     /**
-     * @var \SplObjectStorage
+     * @var ReferenceStorage
      */
     private $seen;
 
@@ -30,6 +31,11 @@ final class RecursiveUnwrapper implements RecursiveUnwrapperInterface
      * @var bool
      */
     private $tagging;
+
+    /**
+     * @var list<array-key>
+     */
+    private $path;
 
     /**
      * Initializes the object.
@@ -41,7 +47,8 @@ final class RecursiveUnwrapper implements RecursiveUnwrapperInterface
     public function __construct(bool $tagging = true)
     {
         $this->tagging = $tagging;
-        $this->seen = new \SplObjectStorage();
+        $this->seen = new ReferenceStorage();
+        $this->path = [];
     }
 
     /**
@@ -53,26 +60,36 @@ final class RecursiveUnwrapper implements RecursiveUnwrapperInterface
     #[\Override]
     public function unwrap(ValuesInterface $values): array
     {
-        $this->seen = new \SplObjectStorage();
+        $this->seen = new ReferenceStorage();
+        $this->path = [];
 
         try {
             $result = $this->walkRecursive($values);
         } finally {
-            $this->seen = new \SplObjectStorage();
+            $this->seen = new ReferenceStorage();
+            $this->path = [];
         }
 
         return $result;
     }
 
+    /**
+     * @throws CircularDependencyException
+     */
     private function walkRecursive(ValuesInterface $current): array
     {
+        if ($this->seen->contains($current)) {
+            // circular dependency
+            $this->throwCircular();
+        }
+
         $array = $current->getArrayCopy();
-        $this->seen->offsetSet($current);
+        $this->seen->add($current);
 
         try {
-            array_walk_recursive($array, [$this, 'visit'], $current);
+            $this->arrayWalkRecursive($array, $current);
         } finally {
-            $this->seen->offsetUnset($current);
+            $this->seen->remove($current);
         }
 
         if ($this->tagging) {
@@ -85,38 +102,68 @@ final class RecursiveUnwrapper implements RecursiveUnwrapperInterface
     }
 
     /**
-     * @param mixed $value
-     * @param mixed $key
-     *
-     * @psalm-param array-key $key
+     * @param array $array
      *
      * @throws CircularDependencyException
      */
-    private function visit(&$value, $key, ValuesInterface $parent): void
+    private function arrayWalkRecursive(array &$array, ValuesInterface $parent): void
+    {
+        $this->seen->add($array);
+
+        try {
+            /** @var mixed $value */
+            foreach ($array as $key => &$value) {
+                array_push($this->path, $key);
+
+                try {
+                    if (is_array($value)) {
+                        $this->arrayWalkRecursive($value, $parent);
+                    } else {
+                        $this->visit($value, $parent);
+                    }
+                } finally {
+                    array_pop($this->path);
+                }
+            }
+        } finally {
+            $this->seen->remove($array);
+        }
+    }
+
+    /**
+     * @param mixed $value
+     *
+     * @throws CircularDependencyException
+     */
+    private function visit(&$value, ValuesInterface $parent): void
     {
         if ($value instanceof ValuesWrapperInterface) {
             $value = $value->getValues();
         }
 
         if ($value instanceof ValuesInterface && $parent->actual() === $value->actual()) {
-            if ($this->seen->offsetExists($value)) {
-                // circular dependency
-                $this->throwCircular($key);
-            }
             $value = $this->walkRecursive($value);
         }
     }
 
     /**
-     * @param int|string $key
+     * @return never
      *
      * @throws CircularDependencyException
      */
-    private function throwCircular($key): void
+    private function throwCircular(): void
     {
-        $id = is_string($key) ? "'".addslashes($key)."'" : $key;
+        throw new CircularDependencyException("Circular dependency found in nested values at \$values{$this->pathString()}.");
+    }
 
-        throw new CircularDependencyException("Circular dependency found in nested properties at key {$id}.");
+    /**
+     * @psalm-mutation-free
+     */
+    private function pathString(): string
+    {
+        return implode('', array_map(function ($key) {
+            return '['.(is_string($key) ? ('"'.addslashes($key).'"') : (string) $key).']';
+        }, $this->path));
     }
 }
 
