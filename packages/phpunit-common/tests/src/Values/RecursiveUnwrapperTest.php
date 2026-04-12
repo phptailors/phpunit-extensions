@@ -351,8 +351,6 @@ final class RecursiveUnwrapperTest extends TestCase
         ];
     }
 
-    /**
-     */
     #[DataProvider('provUnwrapThrowsExceptionOnCircularDependency')]
     public function testUnwrapThrowsExceptionOnCircularDependency(ValuesInterface $values, string $path): void
     {
