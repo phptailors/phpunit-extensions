@@ -275,9 +275,8 @@ final class RecursiveUnwrapperTest extends TestCase
      * @dataProvider provUnwrap
      *
      * @param array $args
-     * @param mixed $expect
      */
-    public function testUnwrap(array $args, ValuesInterface $values, $expect): void
+    public function testUnwrap(array $args, ValuesInterface $values, mixed $expect): void
     {
         $unwrapper = new RecursiveUnwrapper(...$args);
         self::assertSame($expect, $unwrapper->unwrap($values));
