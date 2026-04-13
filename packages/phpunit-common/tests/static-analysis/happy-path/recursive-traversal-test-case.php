@@ -21,11 +21,31 @@ use Tailors\PHPUnit\Values\ValuesInterface;
  */
 final class DummyRecursiveVisitor implements RecursiveVisitorInterface
 {
-    public function visit($node, array $path): bool
+    /**
+     * @param array|ValuesInterface $node
+     * @param list<array-key>       $path
+     */
+    public function enter($node, array $path): bool
     {
         return true;
     }
 
+    /**
+     * @param array|ValuesInterface $node
+     * @param list<array-key>       $path
+     */
+    public function leave($node, array $path): void {}
+
+    /**
+     * @param mixed           $node
+     * @param list<array-key> $path
+     */
+    public function visit($node, array $path): void {}
+
+    /**
+     * @param array|ValuesInterface $node
+     * @param list<array-key>       $path
+     */
     public function cycle($node, array $path): bool
     {
         return false;

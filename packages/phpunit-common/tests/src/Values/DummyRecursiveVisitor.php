@@ -23,35 +23,53 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     private $trace;
 
     /**
-     * @var bool|callable(mixed,list<array-key>):bool
+     * @var bool|\Closure(mixed,list<array-key>):bool
      */
-    private $visit;
+    private $enter;
 
     /**
-     * @var bool|callable(mixed,list<array-key>):bool
+     * @var bool|\Closure(mixed,list<array-key>):bool
      */
     private $cycle;
 
     /**
-     * @param bool|callable(mixed,list<array-key>):bool $visit
-     * @param bool|callable(mixed,list<array-key>):bool $cycle
+     * @param bool|\Closure(mixed,list<array-key>):bool $enter
+     * @param bool|\Closure(mixed,list<array-key>):bool $cycle
      */
-    public function __construct($visit = true, $cycle = false)
+    public function __construct($enter = true, $cycle = false)
     {
         $this->trace = [];
-        $this->visit = $visit;
+        $this->enter = $enter;
         $this->cycle = $cycle;
     }
 
-    public function visit($node, array $path): bool
+    /**
+     * @param array|ValuesInterface $node
+     * @param list<array-key>       $path
+     */
+    public function enter($node, array $path): bool
     {
-        $this->trace[] = ['func' => 'visit', 'node' => &$node, 'path' => $path];
+        $this->trace[] = ['func' => 'enter', 'node' => &$node, 'path' => $path];
 
-        if (is_bool($this->visit)) {
-            return $this->visit;
+        if (is_bool($this->enter)) {
+            return $this->enter;
         }
 
-        return call_user_func_array($this->visit, [&$node, $path]);
+        return call_user_func_array($this->enter, [&$node, $path]);
+    }
+
+    /**
+     * @param array|ValuesInterface $node
+     * @param list<array-key>       $path
+     */
+    public function leave($node, array $path): void
+    {
+        $this->trace[] = ['func' => 'leave', 'node' => &$node, 'path' => $path];
+    }
+
+    public function visit($node, array $path): void
+    {
+        $this->trace[] = ['func' => 'visit', 'node' => &$node, 'path' => $path];
     }
 
     public function cycle($node, array $path): bool
