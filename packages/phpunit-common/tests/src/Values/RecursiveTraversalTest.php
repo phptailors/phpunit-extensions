@@ -15,9 +15,9 @@ use PHPUnit\Framework\TestCase;
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Values\RecursiveTraversal
  * @covers \Tailors\PHPUnit\Values\DummyRecursiveVisitor
  * @covers \Tailors\PHPUnit\Values\DummyValuesWrapper
+ * @covers \Tailors\PHPUnit\Values\RecursiveTraversal
  *
  * @internal This class is not covered by the backward compatibility promise
  *
@@ -148,6 +148,22 @@ final class RecursiveTraversalTest extends TestCase
             ],
         ];
 
+        yield 'RecursiveTraversalTest.php:'.__LINE__ => [
+            'args'    => [],
+            'values'  => $v06,
+            'visitor' => new DummyRecursiveVisitor(true, function ($node, array $path) {
+                return false;
+            }),
+            'expect' => [
+                ['func' => 'visit', 'node' => $v06, 'path' => []],
+                ['func' => 'visit', 'node' => $v06['foo'], 'path' => ['foo']],
+                ['func' => 'visit', 'node' => $v06['bar'], 'path' => ['bar']],
+                ['func' => 'visit', 'node' => $v06['baz'], 'path' => ['baz']],
+                ['func' => 'visit', 'node' => $v06['baz']['cor'], 'path' => ['baz', 'cor']],
+                ['func' => 'cycle', 'node' => $v06['baz']['qux'], 'path' => ['baz', 'qux']],
+            ],
+        ];
+
         //
         // 07
         //
@@ -192,6 +208,28 @@ final class RecursiveTraversalTest extends TestCase
             'visitor' => new DummyRecursiveVisitor(function ($value, array $path) {
                 return ['baz', 'qux', 'baz'] !== $path;
             }, true),
+            'expect' => [
+                ['func' => 'visit', 'node' => $v08, 'path' => []],
+                ['func' => 'visit', 'node' => $v08['foo'], 'path' => ['foo']],
+                ['func' => 'visit', 'node' => $v08['baz'], 'path' => ['baz']],
+                ['func' => 'cycle', 'node' => $v08, 'path' => ['baz', 'qux']],
+                ['func' => 'visit', 'node' => $v08, 'path' => ['baz', 'qux']],
+                ['func' => 'visit', 'node' => $v08['foo'], 'path' => ['baz', 'qux', 'foo']],
+                ['func' => 'visit', 'node' => $v08['baz'], 'path' => ['baz', 'qux', 'baz']],
+                ['func' => 'visit', 'node' => $v08['bar'], 'path' => ['baz', 'qux', 'bar']],
+                ['func' => 'visit', 'node' => $v08['baz']['cor'], 'path' => ['baz', 'cor']],
+                ['func' => 'visit', 'node' => $v08['bar'], 'path' => ['bar']],
+            ],
+        ];
+
+        yield 'RecursiveTraversalTest.php:'.__LINE__ => [
+            'args'    => [],
+            'values'  => $v08,
+            'visitor' => new DummyRecursiveVisitor(function ($value, array $path) {
+                return ['baz', 'qux', 'baz'] !== $path;
+            }, function ($value, array $path) {
+                return true;
+            }),
             'expect' => [
                 ['func' => 'visit', 'node' => $v08, 'path' => []],
                 ['func' => 'visit', 'node' => $v08['foo'], 'path' => ['foo']],
@@ -491,6 +529,22 @@ final class RecursiveTraversalTest extends TestCase
         $traversal->walk($values, $visitor);
 
         $this->assertSame($expect, $visitor->trace());
+    }
+
+    public function testDummyValuesWrapper(): void
+    {
+        // Mostly for code coverage.
+        $values = new ActualValues();
+        $wrapper = new DummyValuesWrapper($values);
+        $this->assertSame($values, $wrapper->getValues());
+    }
+
+    public function testDummyRecursiveVisitor(): void
+    {
+        // Mostly for code coverage.
+        $visitor = new DummyRecursiveVisitor();
+        $this->assertTrue($visitor->visit(null, []));
+        $this->assertFalse($visitor->cycle(null, []));
     }
 }
 // vim: syntax=php sw=4 ts=4 et:
