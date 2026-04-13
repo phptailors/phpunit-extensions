@@ -152,7 +152,7 @@ final class RecursiveTraversalTest extends TestCase
             'args'    => [],
             'values'  => $v06,
             'visitor' => new DummyRecursiveVisitor(true, fn (mixed $node, array $path): bool => true),
-            'expect' => [
+            'expect'  => [
                 ['func' => 'visit', 'node' => $v06, 'path' => []],
                 ['func' => 'visit', 'node' => $v06['foo'], 'path' => ['foo']],
                 ['func' => 'visit', 'node' => $v06['bar'], 'path' => ['bar']],
@@ -204,7 +204,7 @@ final class RecursiveTraversalTest extends TestCase
             'args'    => [],
             'values'  => $v08,
             'visitor' => new DummyRecursiveVisitor(
-                fn (mixed $value, array $path): bool => (['baz', 'qux', 'baz'] !== $path),
+                fn (mixed $value, array $path): bool => ['baz', 'qux', 'baz'] !== $path,
                 true
             ),
             'expect' => [
@@ -225,7 +225,7 @@ final class RecursiveTraversalTest extends TestCase
             'args'    => [],
             'values'  => $v08,
             'visitor' => new DummyRecursiveVisitor(
-                fn (mixed $value, array $path): bool => (['baz', 'qux', 'baz'] !== $path),
+                fn (mixed $value, array $path): bool => ['baz', 'qux', 'baz'] !== $path,
                 fn (mixed $value, array $path): bool => true,
             ),
             'expect' => [
@@ -273,7 +273,7 @@ final class RecursiveTraversalTest extends TestCase
             'args'    => [],
             'values'  => $v10,
             'visitor' => new DummyRecursiveVisitor(fn (mixed $value, array $path): bool => (count($path) < 1)),
-            'expect' => [
+            'expect'  => [
                 ['func' => 'visit', 'node' => $v10, 'path' => []],
                 ['func' => 'visit', 'node' => $v10['foo'], 'path' => ['foo']],
                 ['func' => 'visit', 'node' => $v10['bar'], 'path' => ['bar']],
@@ -293,7 +293,7 @@ final class RecursiveTraversalTest extends TestCase
             'args'    => [],
             'values'  => $v11,
             'visitor' => new DummyRecursiveVisitor(fn (mixed $value, array $path): bool => (count($path) < 2)),
-            'expect' => [
+            'expect'  => [
                 ['func' => 'visit', 'node' => $v11, 'path' => []],
                 ['func' => 'visit', 'node' => $v11['foo'], 'path' => ['foo']],
                 ['func' => 'visit', 'node' => $v11['foo']['baz'], 'path' => ['foo', 'baz']],
