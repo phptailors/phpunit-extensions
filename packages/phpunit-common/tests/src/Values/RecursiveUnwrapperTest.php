@@ -29,7 +29,10 @@ final class RecursiveUnwrapperTest extends TestCase
 {
     public const UNIQUE_TAG = RecursiveUnwrapper::UNIQUE_TAG;
 
-    public static function createValuesWrapper(TestCase $test, ...$args): SelectionWrapperInterface
+    /**
+     * @param mixed $args
+     */
+    public static function createValuesWrapper(TestCase $test, ...$args): ValuesWrapperInterface
     {
         $aggregate = $test->createStub(SelectionWrapperInterface::class);
         $aggregate->method('getValues')
