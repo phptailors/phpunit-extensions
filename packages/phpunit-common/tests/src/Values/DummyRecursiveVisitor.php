@@ -23,18 +23,18 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     private $trace;
 
     /**
-     * @var bool|\Closure(mixed,list<array-key>):bool
+     * @var bool|\Closure(array|ValuesInterface,list<array-key>):bool
      */
     private $enter;
 
     /**
-     * @var bool|\Closure(mixed,list<array-key>):bool
+     * @var bool|\Closure(array|ValuesInterface,list<array-key>):bool
      */
     private $cycle;
 
     /**
-     * @param bool|\Closure(mixed,list<array-key>):bool $enter
-     * @param bool|\Closure(mixed,list<array-key>):bool $cycle
+     * @param bool|\Closure(array|ValuesInterface,list<array-key>):bool $enter
+     * @param bool|\Closure(array|ValuesInterface,list<array-key>):bool $cycle
      */
     public function __construct($enter = true, $cycle = false)
     {
