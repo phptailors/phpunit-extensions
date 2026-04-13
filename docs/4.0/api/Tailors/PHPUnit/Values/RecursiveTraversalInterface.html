@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="robots" content="index, follow, all" />
-    <title>Tailors\PHPUnit\Values\RecursiveUnwrapper | API Documentation</title>
+    <title>Tailors\PHPUnit\Values\RecursiveTraversalInterface | API Documentation</title>
 
             <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-theme.min.css">
@@ -19,7 +19,7 @@
 
     </head>
 
-    <body id="class" data-name="class:Tailors_PHPUnit_Values_RecursiveUnwrapper" data-root-path="../../../" data-search-index-url="../../../doctum-search.json">
+    <body id="class" data-name="class:Tailors_PHPUnit_Values_RecursiveTraversalInterface" data-root-path="../../../" data-search-index-url="../../../doctum-search.json">
             <div id="content">
         <div id="left-column">
                 <div id="control-panel">
@@ -74,19 +74,19 @@
 
                         <div class="namespace-breadcrumbs">
             <ol class="breadcrumb">
-                <li><span class="label label-default">class</span></li>
-                        <li><a href="../../../Tailors.html">Tailors</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit.html">PHPUnit</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit/Values.html">Values</a></li><li class="backslash">\</li><li>RecursiveUnwrapper</li>
+                <li><span class="label label-default">interface</span></li>
+                        <li><a href="../../../Tailors.html">Tailors</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit.html">PHPUnit</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit/Values.html">Values</a></li><li class="backslash">\</li><li>RecursiveTraversalInterface</li>
             </ol>
         </div>
                 <div id="page-content">
     <div class="page-header">
-        <h1>RecursiveUnwrapper    
+        <h1>RecursiveTraversalInterface    
             </h1>
     </div>
 
     
-    <p>final         class
-    <strong>RecursiveUnwrapper</strong>        implements        <a href="../../../Tailors/PHPUnit/Values/RecursiveUnwrapperInterface.html"><abbr title="Tailors\PHPUnit\Values\RecursiveUnwrapperInterface">RecursiveUnwrapperInterface</abbr></a>
+    <p>        interface
+    <strong>RecursiveTraversalInterface</strong>
 </p>
 
         
@@ -94,7 +94,7 @@
                         <table>
             <tr>
                 <td><span class="label label-warning">internal</span></td>
-                <td>&nbsp;This class is not covered by the backward compatibility promise</td>
+                <td>&nbsp;This interface is not covered by the backward compatibility promise</td>
             </tr>
         </table>
                 &nbsp;
@@ -102,18 +102,6 @@
 
             
         
-            <h2>Constants</h2>    <table class="table table-condensed">
-                    <tr>
-                <td>
-                                                                                                                        UNIQUE_TAG
-                                    </td>
-                <td class="last">
-                    <p><em></em></p>
-                    <p></p>
-                </td>
-            </tr>
-            </table>
-
     
     
             <h2>Methods</h2>
@@ -121,23 +109,13 @@
             <div class="container-fluid underlined">
                     <div class="row">
                 <div class="col-md-2 type">
-                    
+                    void
                 </div>
                 <div class="col-md-8">
-                    <a href="#method___construct">__construct</a>(bool $tagging = true)
+                    <a href="#method_walk">walk</a>(<a href="../../../Tailors/PHPUnit/Values/ValuesInterface.html"><abbr title="Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr></a> $values, <a href="../../../Tailors/PHPUnit/Values/RecursiveVisitorInterface.html"><abbr title="Tailors\PHPUnit\Values\RecursiveVisitorInterface">RecursiveVisitorInterface</abbr></a> $visitor)
         
-                                            <p><p>Initializes the object.</p></p>                </div>
-                <div class="col-md-2"></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    array
-                </div>
-                <div class="col-md-8">
-                    <a href="#method_unwrap">unwrap</a>(<a href="../../../Tailors/PHPUnit/Values/ValuesInterface.html"><abbr title="Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr></a> $values)
-        
-                                            <p><p>Walk recursively through $values and unwrap nested instances of
-ValuesInterface when suitable.</p></p>                </div>
+                                            <p class="no-description">No description</p>
+                                    </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -147,10 +125,10 @@ ValuesInterface when suitable.</p></p>                </div>
 
             <div id="method-details">
                     <div class="method-item">
-                    <h3 id="method___construct">
-        <div class="location">at line 47</div>
-        <code>                    
-    <strong>__construct</strong>(bool $tagging = true)
+                    <h3 id="method_walk">
+        <div class="location">at line 20</div>
+        <code>                    void
+    <strong>walk</strong>(<a href="../../../Tailors/PHPUnit/Values/ValuesInterface.html"><abbr title="Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr></a> $values, <a href="../../../Tailors/PHPUnit/Values/RecursiveVisitorInterface.html"><abbr title="Tailors\PHPUnit\Values\RecursiveVisitorInterface">RecursiveVisitorInterface</abbr></a> $visitor)
         </code>
     </h3>
     <div class="details">    
@@ -158,42 +136,8 @@ ValuesInterface when suitable.</p></p>                </div>
             
 
         <div class="method-description">
-                            <p><p>Initializes the object.</p></p>                        
-        </div>
-        <div class="tags">
-                            <h4>Parameters</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td>bool</td>
-                <td>$tagging</td>
-                <td><p>If true, then a unique tag will be appended to the end of every
-array that results from unwrapping of array of properties</p></td>
-            </tr>
-            </table>
-
-            
-            
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
-                    <h3 id="method_unwrap">
-        <div class="location">at line 60</div>
-        <code>                    array
-    <strong>unwrap</strong>(<a href="../../../Tailors/PHPUnit/Values/ValuesInterface.html"><abbr title="Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr></a> $values)
-        </code>
-    </h3>
-    <div class="details">    
-    
-            
-
-        <div class="method-description">
-                            <p><p>Walk recursively through $values and unwrap nested instances of
-ValuesInterface when suitable.</p></p>                        
+                            <p class="no-description">No description</p>
+                    
         </div>
         <div class="tags">
                             <h4>Parameters</h4>
@@ -204,6 +148,11 @@ ValuesInterface when suitable.</p></p>
                 <td>$values</td>
                 <td></td>
             </tr>
+                    <tr>
+                <td><a href="../../../Tailors/PHPUnit/Values/RecursiveVisitorInterface.html"><abbr title="Tailors\PHPUnit\Values\RecursiveVisitorInterface">RecursiveVisitorInterface</abbr></a></td>
+                <td>$visitor</td>
+                <td></td>
+            </tr>
             </table>
 
             
@@ -211,21 +160,12 @@ ValuesInterface when suitable.</p></p>
 
                     <table class="table table-condensed">
         <tr>
-            <td>array</td>
+            <td>void</td>
             <td></td>
         </tr>
     </table>
 
             
-                            <h4>Exceptions</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td><a href="../../../Tailors/PHPUnit/CircularDependencyException.html"><abbr title="Tailors\PHPUnit\CircularDependencyException">CircularDependencyException</abbr></a></td>
-                <td></td>
-            </tr>
-            </table>
-
             
             
                     </div>
