@@ -113,7 +113,7 @@ final class RecursiveUnwrapperTest extends TestCase
                 'bar' => new DummyValuesWrapper(new ExpectedValues([
                     'baz' => 'BAZ',
                 ])),
-            ]) ,
+            ]),
             'expect' => [
                 'foo' => 'FOO',
                 'bar' => [
