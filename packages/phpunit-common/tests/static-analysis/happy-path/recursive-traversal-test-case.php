@@ -21,12 +21,12 @@ use Tailors\PHPUnit\Values\ValuesInterface;
  */
 final class DummyRecursiveVisitor implements RecursiveVisitorInterface
 {
-    public function visit($node, array $path): bool
+    public function visit(mixed $node, array $path): bool
     {
         return true;
     }
 
-    public function cycle($node, array $path): bool
+    public function cycle(mixed $node, array $path): bool
     {
         return false;
     }

@@ -18,16 +18,14 @@ namespace Tailors\PHPUnit\Values;
 interface RecursiveVisitorInterface
 {
     /**
-     * @param mixed           $node
      * @param list<array-key> $path
      */
-    public function visit($node, array $path): bool;
+    public function visit(mixed $node, array $path): bool;
 
     /**
-     * @param mixed           $node
      * @param list<array-key> $path
      */
-    public function cycle($node, array $path): bool;
+    public function cycle(mixed $node, array $path): bool;
 }
 
 // vim: syntax=php sw=4 ts=4 et:

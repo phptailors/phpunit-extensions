@@ -19,35 +19,20 @@ use Tailors\PHPUnit\Common\ReferenceStorage;
  */
 final class RecursiveTraversal implements RecursiveTraversalInterface
 {
-    /**
-     * @var ReferenceStorage
-     */
-    private $seen;
+    private ReferenceStorage $seen;
 
     /**
      * @var list<array-key>
      */
-    private $path;
-
-    /**
-     * @var bool
-     */
-    private $noUnwrapValuesWrappers;
-
-    /**
-     * @var bool
-     */
-    private $noWalkNestedValuesInterface;
+    private array $path;
 
     /**
      * Initializes the object.
      */
-    public function __construct(bool $noUnwrapValuesWrappers = false, bool $noWalkNestedValuesInterface = false)
+    public function __construct(private bool $noUnwrapValuesWrappers = false, private bool $noWalkNestedValuesInterface = false)
     {
         $this->seen = new ReferenceStorage();
         $this->path = [];
-        $this->noUnwrapValuesWrappers = $noUnwrapValuesWrappers;
-        $this->noWalkNestedValuesInterface = $noWalkNestedValuesInterface;
     }
 
     /**
@@ -133,15 +118,13 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
     }
 
     /**
-     * @param mixed $value
-     *
      * @psalm-template T
      *
      * @psalm-param T $value
      *
      * @psalm-param-out T $value
      */
-    private function arrayVisitValue(&$value, RecursiveVisitorInterface $visitor): void
+    private function arrayVisitValue(mixed &$value, RecursiveVisitorInterface $visitor): void
     {
         if (is_array($value)) {
             $this->arrayWalkRecursive($value, $visitor);

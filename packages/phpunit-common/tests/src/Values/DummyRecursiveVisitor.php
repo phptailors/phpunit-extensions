@@ -20,30 +20,18 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     /**
      * @var list<array{func: string, node:mixed, path:list<array-key>}>
      */
-    private $trace;
+    private array $trace;
 
     /**
-     * @var bool|callable(mixed,list<array-key>):bool
+     * @param bool|\Closure(mixed,list<array-key>):bool $visit
+     * @param bool|\Closure(mixed,list<array-key>):bool $cycle
      */
-    private $visit;
-
-    /**
-     * @var bool|callable(mixed,list<array-key>):bool
-     */
-    private $cycle;
-
-    /**
-     * @param bool|callable(mixed,list<array-key>):bool $visit
-     * @param bool|callable(mixed,list<array-key>):bool $cycle
-     */
-    public function __construct($visit = true, $cycle = false)
+    public function __construct(private bool|\Closure $visit = true, private bool|\Closure $cycle = false)
     {
         $this->trace = [];
-        $this->visit = $visit;
-        $this->cycle = $cycle;
     }
 
-    public function visit($node, array $path): bool
+    public function visit(mixed $node, array $path): bool
     {
         $this->trace[] = ['func' => 'visit', 'node' => &$node, 'path' => $path];
 
@@ -54,7 +42,7 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
         return call_user_func_array($this->visit, [&$node, $path]);
     }
 
-    public function cycle($node, array $path): bool
+    public function cycle(mixed $node, array $path): bool
     {
         $this->trace[] = ['func' => 'cycle', 'node' => &$node, 'path' => $path];
 
