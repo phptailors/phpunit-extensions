@@ -34,9 +34,9 @@ final class RecursiveUnwrapperTest extends TestCase
      */
     public static function createValuesWrapper(TestCase $test, ...$args): ValuesWrapperInterface
     {
-        $aggregate = $test->createStub(SelectionWrapperInterface::class);
+        $aggregate = $test->createStub(ValuesWrapperInterface::class);
         $aggregate->method('getValues')
-            ->willReturn(new ExpectedValuesSelection(new ArrayValueSelector(), new ExpectedValues(...$args)))
+            ->willReturn(new ExpectedValues(...$args))
         ;
 
         return $aggregate;
