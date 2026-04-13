@@ -30,12 +30,24 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
     private $path;
 
     /**
+     * @var bool
+     */
+    private $noUnwrapValuesWrappers;
+
+    /**
+     * @var bool
+     */
+    private $noWalkNestedValuesInterface;
+
+    /**
      * Initializes the object.
      */
-    public function __construct()
+    public function __construct(bool $noUnwrapValuesWrappers = false, bool $noWalkNestedValuesInterface = false)
     {
         $this->seen = new ReferenceStorage();
         $this->path = [];
+        $this->noUnwrapValuesWrappers = $noUnwrapValuesWrappers;
+        $this->noWalkNestedValuesInterface = $noWalkNestedValuesInterface;
     }
 
     /**
@@ -77,6 +89,10 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
 
     /**
      * @param array $array
+     *
+     * @psalm-template T of array
+     * @psalm-param T $array
+     * @psalm-param-out T $array
      */
     private function arrayWalkRecursive(array &$array, RecursiveVisitorInterface $visitor): void
     {
@@ -116,19 +132,31 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
 
     /**
      * @param mixed $value
+     *
+     * @psalm-template T
+     * @psalm-param T $value
+     * @psalm-param-out T $value
      */
     private function arrayVisitValue(&$value, RecursiveVisitorInterface $visitor): void
     {
         if (is_array($value)) {
             $this->arrayWalkRecursive($value, $visitor);
-        } elseif ($value instanceof ValuesWrapperInterface) {
-            $this->valuesWalkRecursive($value->getValues(), $visitor);
-        } elseif ($value instanceof ValuesInterface) {
-            $this->valuesWalkRecursive($value, $visitor);
-        } else {
-            // Leaf node
-            $visitor->visit($value, $this->path);
+            return;
         }
+
+        if (!$this->noUnwrapValuesWrappers && $value instanceof ValuesWrapperInterface) {
+            $node = $value->getValues();
+        } else {
+            $node = $value;
+        }
+
+        if (!$this->noWalkNestedValuesInterface && $node instanceof ValuesInterface) {
+            $this->valuesWalkRecursive($node, $visitor);
+            return;
+        }
+
+        // Leaf node
+        $visitor->visit($node, $this->path);
     }
 }
 
