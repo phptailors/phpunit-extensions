@@ -34,10 +34,10 @@ final class RecursiveUnwrapperTest extends TestCase
      */
     public static function createValuesWrapper(TestCase $test, ...$args): ValuesWrapperInterface
     {
-        $aggregate = $test->createMock(SelectionWrapperInterface::class);
+        $aggregate = $test->createMock(ValuesWrapperInterface::class);
         $aggregate->expects($test->any())
             ->method('getValues')
-            ->willReturn(new ExpectedValuesSelection(new ArrayValueSelector(), new ExpectedValues(...$args)))
+            ->willReturn(new ExpectedValues(...$args))
         ;
 
         return $aggregate;
