@@ -91,7 +91,9 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
      * @param array $array
      *
      * @psalm-template T of array
+     *
      * @psalm-param T $array
+     *
      * @psalm-param-out T $array
      */
     private function arrayWalkRecursive(array &$array, RecursiveVisitorInterface $visitor): void
@@ -134,13 +136,16 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
      * @param mixed $value
      *
      * @psalm-template T
+     *
      * @psalm-param T $value
+     *
      * @psalm-param-out T $value
      */
     private function arrayVisitValue(&$value, RecursiveVisitorInterface $visitor): void
     {
         if (is_array($value)) {
             $this->arrayWalkRecursive($value, $visitor);
+
             return;
         }
 
@@ -152,6 +157,7 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
 
         if (!$this->noWalkNestedValuesInterface && $node instanceof ValuesInterface) {
             $this->valuesWalkRecursive($node, $visitor);
+
             return;
         }
 
