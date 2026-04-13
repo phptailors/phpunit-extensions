@@ -151,7 +151,7 @@ final class RecursiveTraversalTest extends TestCase
         yield 'RecursiveTraversalTest.php:'.__LINE__ => [
             'args'    => [],
             'values'  => $v06,
-            'visitor' => new DummyRecursiveVisitor(true, fn (mixed $node, array $path): bool => true),
+            'visitor' => new DummyRecursiveVisitor(true, fn (mixed $node, array $path): bool => false),
             'expect'  => [
                 ['func' => 'visit', 'node' => $v06, 'path' => []],
                 ['func' => 'visit', 'node' => $v06['foo'], 'path' => ['foo']],
