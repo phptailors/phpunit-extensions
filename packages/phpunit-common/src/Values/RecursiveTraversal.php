@@ -45,14 +45,21 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
         $this->path = [];
 
         try {
-            $this->valuesWalkRecursive($values, $visitor);
+            $this->walkRecursive($values, $visitor);
         } finally {
             $this->seen = new ReferenceStorage();
             $this->path = [];
         }
     }
 
-    private function valuesWalkRecursive(ValuesInterface $values, RecursiveVisitorInterface $visitor): void
+    /**
+     * @psalm-template T of array|ValuesInterface
+     *
+     * @psalm-param T $values
+     *
+     * @psalm-param-out T $values
+     */
+    private function walkRecursive(array|ValuesInterface &$values, RecursiveVisitorInterface $visitor): void
     {
         if ($this->seen->contains($values)) {
             if (!$visitor->cycle($values, $this->path)) {
@@ -63,54 +70,23 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
         $this->seen->add($values);
 
         try {
-            if ($visitor->visit($values, $this->path)) {
-                $array = $values->getArrayCopy();
-                $this->arrayIterate($array, $visitor);
+            if ($visitor->enter($values, $this->path)) {
+                $this->iterate($values, $visitor);
             }
+            $visitor->leave($values, $this->path);
         } finally {
             $this->seen->remove($values);
         }
     }
 
-    /**
-     * @param array $array
-     *
-     * @psalm-template T of array
-     *
-     * @psalm-param T $array
-     *
-     * @psalm-param-out T $array
-     */
-    private function arrayWalkRecursive(array &$array, RecursiveVisitorInterface $visitor): void
-    {
-        if ($this->seen->contains($array)) {
-            if (!$visitor->cycle($array, $this->path)) {
-                return;
-            }
-        }
-
-        $this->seen->add($array);
-
-        try {
-            if ($visitor->visit($array, $this->path)) {
-                $this->arrayIterate($array, $visitor);
-            }
-        } finally {
-            $this->seen->remove($array);
-        }
-    }
-
-    /**
-     * @param array $array
-     */
-    private function arrayIterate(array $array, RecursiveVisitorInterface $visitor): void
+    private function iterate(array|ValuesInterface $values, RecursiveVisitorInterface $visitor): void
     {
         /** @var mixed $value */
-        foreach ($array as $key => &$value) {
+        foreach ($values as $key => &$value) {
             array_push($this->path, $key);
 
             try {
-                $this->arrayVisitValue($value, $visitor);
+                $this->visitValue($value, $visitor);
             } finally {
                 array_pop($this->path);
             }
@@ -124,10 +100,10 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
      *
      * @psalm-param-out T $value
      */
-    private function arrayVisitValue(mixed &$value, RecursiveVisitorInterface $visitor): void
+    private function visitValue(mixed &$value, RecursiveVisitorInterface $visitor): void
     {
         if (is_array($value)) {
-            $this->arrayWalkRecursive($value, $visitor);
+            $this->walkRecursive($value, $visitor);
 
             return;
         }
@@ -139,7 +115,7 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
         }
 
         if (!$this->noWalkNestedValuesInterface && $node instanceof ValuesInterface) {
-            $this->valuesWalkRecursive($node, $visitor);
+            $this->walkRecursive($node, $visitor);
 
             return;
         }

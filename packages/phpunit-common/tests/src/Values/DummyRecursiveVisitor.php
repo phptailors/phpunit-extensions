@@ -23,23 +23,39 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     private array $trace;
 
     /**
-     * @param bool|\Closure(mixed,list<array-key>):bool $visit
-     * @param bool|\Closure(mixed,list<array-key>):bool $cycle
+     * @param bool|\Closure(array|ValuesInterface,list<array-key>):bool $enter
+     * @param bool|\Closure(array|ValuesInterface,list<array-key>):bool $cycle
      */
-    public function __construct(private bool|\Closure $visit = true, private bool|\Closure $cycle = false)
+    public function __construct(private bool|\Closure $enter = true, private bool|\Closure $cycle = false)
     {
         $this->trace = [];
     }
 
-    public function visit(mixed $node, array $path): bool
+    /**
+     * @param list<array-key> $path
+     */
+    public function enter(array|ValuesInterface $node, array $path): bool
     {
-        $this->trace[] = ['func' => 'visit', 'node' => &$node, 'path' => $path];
+        $this->trace[] = ['func' => 'enter', 'node' => &$node, 'path' => $path];
 
-        if (is_bool($this->visit)) {
-            return $this->visit;
+        if (is_bool($this->enter)) {
+            return $this->enter;
         }
 
-        return call_user_func_array($this->visit, [&$node, $path]);
+        return call_user_func_array($this->enter, [&$node, $path]);
+    }
+
+    /**
+     * @param list<array-key> $path
+     */
+    public function leave(array|ValuesInterface $node, array $path): void
+    {
+        $this->trace[] = ['func' => 'leave', 'node' => &$node, 'path' => $path];
+    }
+
+    public function visit(mixed $node, array $path): void
+    {
+        $this->trace[] = ['func' => 'visit', 'node' => &$node, 'path' => $path];
     }
 
     public function cycle(mixed $node, array $path): bool
