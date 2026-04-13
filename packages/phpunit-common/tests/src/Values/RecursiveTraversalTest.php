@@ -16,6 +16,8 @@ use PHPUnit\Framework\TestCase;
  * @small
  *
  * @covers \Tailors\PHPUnit\Values\RecursiveTraversal
+ * @covers \Tailors\PHPUnit\Values\DummyRecursiveVisitor
+ * @covers \Tailors\PHPUnit\Values\DummyValuesWrapper
  *
  * @internal This class is not covered by the backward compatibility promise
  *
