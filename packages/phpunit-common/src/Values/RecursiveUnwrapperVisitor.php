@@ -22,23 +22,17 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
     public const UNIQUE_TAG = 'unwrapped-values:$1$zIlgusJc$ZZCyNRPOX1SbpKdzoD2hU/';
 
     /**
-     * @var bool
-     */
-    private $tagging;
-
-    /**
      * @var list<ValuesInterface>
      */
-    private $objectStack;
+    private array $objectStack;
 
     /**
      * @var array
      */
-    private $result;
+    private array $result;
 
-    public function __construct(bool $tagging = true)
+    public function __construct(private bool $tagging = true)
     {
-        $this->tagging = $tagging;
         $this->objectStack = [];
         $this->result = [];
     }
@@ -52,10 +46,9 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param array|ValuesInterface $node
-     * @param list<array-key>       $path
+     * @param list<array-key> $path
      */
-    public function enter($node, array $path): bool
+    public function enter(array|ValuesInterface $node, array $path): bool
     {
         if ($node instanceof ValuesInterface) {
             if (($count = count($this->objectStack)) > 0) {
@@ -78,10 +71,9 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param array|ValuesInterface $node
-     * @param list<array-key>       $path
+     * @param list<array-key> $path
      */
-    public function leave($node, array $path): void
+    public function leave(array|ValuesInterface $node, array $path): void
     {
         if ($node instanceof ValuesInterface) {
             array_pop($this->objectStack);
@@ -96,23 +88,21 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param mixed           $node
      * @param list<array-key> $path
      */
-    public function visit($node, array $path): void
+    public function visit(mixed $node, array $path): void
     {
         self::set($this->result, $path, $node);
     }
 
     /**
-     * @param mixed           $node
      * @param list<array-key> $path
      *
      * @return never
      *
      * @throws CircularDependencyException
      */
-    public function cycle($node, array $path): bool
+    public function cycle(mixed $node, array $path): bool
     {
         self::throwCircular($path);
     }
@@ -120,12 +110,11 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
     /**
      * @param array           $array
      * @param list<array-key> $path
-     * @param mixed           $value
      *
      * @psalm-suppress UnusedParam
      * @psalm-suppress UnusedVariable
      */
-    private static function set(array &$array, array $path, $value): void
+    private static function set(array &$array, array $path, mixed $value): void
     {
         if (0 === count($path)) {
             if (is_array($value)) {
