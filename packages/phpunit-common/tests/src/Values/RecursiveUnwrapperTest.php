@@ -70,6 +70,26 @@ final class RecursiveUnwrapperTest extends TestCase
         ];
 
         yield 'RecursiveUnwrapperTest.php:'.__LINE__ => [
+            'args'   => [false], // no tagging
+            'values' => new ExpectedValues([
+                'foo' => 'FOO',
+            ]),
+            'expect' => [
+                'foo' => 'FOO',
+            ],
+        ];
+
+        yield 'RecursiveUnwrapperTest.php:'.__LINE__ => [
+            'args'   => [false], // no tagging
+            'values' => new ExpectedValues([
+                'foo' => new ExpectedValues([]),
+            ]),
+            'expect' => [
+                'foo' => [],
+            ],
+        ];
+
+        yield 'RecursiveUnwrapperTest.php:'.__LINE__ => [
             'args'   => [],
             'values' => new ExpectedValues([
                 'foo' => 'FOO',
@@ -298,7 +318,7 @@ final class RecursiveUnwrapperTest extends TestCase
 
         yield 'RecursiveUnwrapperTest.php:'.__LINE__ => [
             'values' => $v01,
-            'path'   => '["foo"]["bar"]',
+            'path'   => "['foo']['bar']",
         ];
 
         //
@@ -314,7 +334,7 @@ final class RecursiveUnwrapperTest extends TestCase
 
         yield 'RecursiveUnwrapperTest.php:'.__LINE__ => [
             'values' => $v02,
-            'path'   => '["foo"]["bar"]["baz"]',
+            'path'   => "['foo']['bar']['baz']",
         ];
 
         //
@@ -332,7 +352,7 @@ final class RecursiveUnwrapperTest extends TestCase
 
         yield 'RecursiveUnwrapperTest.php:'.__LINE__ => [
             'values' => $v03,
-            'path'   => '["foo"]["bar"]["qux"]',
+            'path'   => "['foo']['bar']['qux']",
         ];
 
         //
@@ -350,7 +370,7 @@ final class RecursiveUnwrapperTest extends TestCase
 
         yield 'RecursiveUnwrapperTest.php:'.__LINE__ => [
             'values' => $v04,
-            'path'   => '["foo"]["bar"]["qux"]["fred"]',
+            'path'   => "['foo']['bar']['qux']['fred']",
         ];
 
         //
@@ -367,7 +387,7 @@ final class RecursiveUnwrapperTest extends TestCase
 
         yield 'RecursiveUnwrapperTest.php:'.__LINE__ => [
             'values' => $v05,
-            'path'   => '["foo"]["baz"]',
+            'path'   => "['foo']['baz']",
         ];
 
         //
@@ -383,7 +403,7 @@ final class RecursiveUnwrapperTest extends TestCase
 
         yield 'RecursiveUnwrapperTest.php:'.__LINE__ => [
             'values' => $v06['foo'],
-            'path'   => '["bar"]["baz"]["foo"]',
+            'path'   => "['bar']['baz']['foo']",
         ];
     }
 

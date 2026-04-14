@@ -111,6 +111,7 @@ final class RecursiveTraversalTest extends TestCase
             'visitor' => new DummyRecursiveVisitor(false),
             'expect'  => [
                 ['func' => 'enter', 'node' => $v04, 'path' => []],
+                ['func' => 'visit', 'node' => $v04, 'path' => []],
                 ['func' => 'leave', 'node' => $v04, 'path' => []],
             ],
         ];
@@ -218,6 +219,7 @@ final class RecursiveTraversalTest extends TestCase
                 ['func' => 'visit', 'node' => $v08['foo'], 'path' => ['baz', 'qux', 'foo']],
                 ['func' => 'cycle', 'node' => $v08['baz'], 'path' => ['baz', 'qux', 'baz']],
                 ['func' => 'enter', 'node' => $v08['baz'], 'path' => ['baz', 'qux', 'baz']],
+                ['func' => 'visit', 'node' => $v08['baz'], 'path' => ['baz', 'qux', 'baz']],
                 ['func' => 'leave', 'node' => $v08['baz'], 'path' => ['baz', 'qux', 'baz']],
                 ['func' => 'visit', 'node' => $v08['bar'], 'path' => ['baz', 'qux', 'bar']],
                 ['func' => 'leave', 'node' => $v08, 'path' => ['baz', 'qux']],
@@ -243,6 +245,7 @@ final class RecursiveTraversalTest extends TestCase
             'visitor' => new DummyRecursiveVisitor(false),
             'expect'  => [
                 ['func' => 'enter', 'node' => $v09, 'path' => []],
+                ['func' => 'visit', 'node' => $v09, 'path' => []],
                 ['func' => 'leave', 'node' => $v09, 'path' => []],
             ],
         ];
@@ -256,8 +259,10 @@ final class RecursiveTraversalTest extends TestCase
             'expect' => [
                 ['func' => 'enter', 'node' => $v09, 'path' => []],
                 ['func' => 'enter', 'node' => $v09['foo'], 'path' => ['foo']],
+                ['func' => 'visit', 'node' => $v09['foo'], 'path' => ['foo']],
                 ['func' => 'leave', 'node' => $v09['foo'], 'path' => ['foo']],
                 ['func' => 'enter', 'node' => $v09['bar'], 'path' => ['bar']],
+                ['func' => 'visit', 'node' => $v09['bar'], 'path' => ['bar']],
                 ['func' => 'leave', 'node' => $v09['bar'], 'path' => ['bar']],
                 ['func' => 'leave', 'node' => $v09, 'path' => []],
             ],
@@ -299,11 +304,13 @@ final class RecursiveTraversalTest extends TestCase
                 ['func' => 'enter', 'node' => $v10['foo'], 'path' => ['foo']],
                 ['func' => 'visit', 'node' => $v10['foo']['baz'], 'path' => ['foo', 'baz']],
                 ['func' => 'enter', 'node' => $v10['foo']['cor'], 'path' => ['foo', 'cor']],
+                ['func' => 'visit', 'node' => $v10['foo']['cor'], 'path' => ['foo', 'cor']],
                 ['func' => 'leave', 'node' => $v10['foo']['cor'], 'path' => ['foo', 'cor']],
                 ['func' => 'leave', 'node' => $v10['foo'], 'path' => ['foo']],
                 ['func' => 'enter', 'node' => $v10['bar'], 'path' => ['bar']],
                 ['func' => 'visit', 'node' => $v10['bar']['qux'], 'path' => ['bar', 'qux']],
                 ['func' => 'enter', 'node' => $v10['bar']['cor'], 'path' => ['bar', 'cor']],
+                ['func' => 'visit', 'node' => $v10['bar']['cor'], 'path' => ['bar', 'cor']],
                 ['func' => 'leave', 'node' => $v10['bar']['cor'], 'path' => ['bar', 'cor']],
                 ['func' => 'leave', 'node' => $v10['bar'], 'path' => ['bar']],
                 ['func' => 'leave', 'node' => $v10, 'path' => []],
@@ -319,8 +326,10 @@ final class RecursiveTraversalTest extends TestCase
             'expect' => [
                 ['func' => 'enter', 'node' => $v10, 'path' => []],
                 ['func' => 'enter', 'node' => $v10['foo'], 'path' => ['foo']],
+                ['func' => 'visit', 'node' => $v10['foo'], 'path' => ['foo']],
                 ['func' => 'leave', 'node' => $v10['foo'], 'path' => ['foo']],
                 ['func' => 'enter', 'node' => $v10['bar'], 'path' => ['bar']],
+                ['func' => 'visit', 'node' => $v10['bar'], 'path' => ['bar']],
                 ['func' => 'leave', 'node' => $v10['bar'], 'path' => ['bar']],
                 ['func' => 'leave', 'node' => $v10, 'path' => []],
             ],

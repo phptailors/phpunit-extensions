@@ -27,13 +27,13 @@ interface RecursiveVisitorInterface
      * @param array|ValuesInterface $node
      * @param list<array-key>       $path
      */
-    public function leave($node, array $path): void;
+    public function leave($node, array $path, bool $iterating): void;
 
     /**
      * @param mixed           $node
      * @param list<array-key> $path
      */
-    public function visit($node, array $path): void;
+    public function visit($node, array $path, bool $iterating): void;
 
     /**
      * @param array|ValuesInterface $node

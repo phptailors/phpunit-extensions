@@ -70,8 +70,8 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
             $iterate = true;
         }
 
-        if (!$iterate) {
-            self::set($this->result, $path, $node);
+        if ($iterate) {
+            self::set($this->result, $path, []);
         }
 
         return $iterate;
@@ -81,12 +81,12 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
      * @param array|ValuesInterface $node
      * @param list<array-key>       $path
      */
-    public function leave($node, array $path): void
+    public function leave($node, array $path, bool $iterating): void
     {
         if ($node instanceof ValuesInterface) {
             array_pop($this->objectStack);
 
-            if ($this->tagging) {
+            if ($this->tagging && $iterating) {
                 // Distinguish unwrapped values from regular arrays
                 // by adding UNIQUE TAG AT THE END of $array.
                 $path[] = self::UNIQUE_TAG;
@@ -99,14 +99,14 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
      * @param mixed           $node
      * @param list<array-key> $path
      */
-    public function visit($node, array $path): void
+    public function visit($node, array $path, bool $iterating): void
     {
         self::set($this->result, $path, $node);
     }
 
     /**
-     * @param mixed           $node
-     * @param list<array-key> $path
+     * @param array|ValuesInterface $node
+     * @param list<array-key>       $path
      *
      * @return never
      *
@@ -176,7 +176,7 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
     private static function pathString(array $path): string
     {
         return implode('', array_map(function ($key) {
-            return '['.(is_string($key) ? ('"'.addslashes($key).'"') : (string) $key).']';
+            return '['.var_export($key, true).']';
         }, $path));
     }
 }
