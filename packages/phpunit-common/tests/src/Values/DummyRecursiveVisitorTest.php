@@ -10,12 +10,12 @@
 
 namespace Tailors\PHPUnit\Values;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @small
- *
- * @covers \Tailors\PHPUnit\Values\DummyRecursiveVisitor
  *
  * @internal This class is not covered by the backward compatibility promise
  *
@@ -24,6 +24,7 @@ use PHPUnit\Framework\TestCase;
  * @psalm-type ClosureT = \Closure(array|ValuesInterface,list<array-key>):bool
  * @psalm-type ArgT = bool|ClosureT
  */
+#[CoversClass(DummyRecursiveVisitor::class)]
 final class DummyRecursiveVisitorTest extends TestCase
 {
     /**
@@ -67,14 +68,13 @@ final class DummyRecursiveVisitorTest extends TestCase
     }
 
     /**
-     * @dataProvider provDummyRecursiveVisitor
-     *
      * @param array $args
      * @param array $expect
      *
      * @psalm-param array<ArgT> $args
      * @psalm-param array{enter: mixed, cycle: mixed} $expect
      */
+    #[DataProvider('provDummyRecursiveVisitor')]
     public function testDummyRecursiveVisitor(array $args, array $expect): void
     {
         $node = new ExpectedValues();

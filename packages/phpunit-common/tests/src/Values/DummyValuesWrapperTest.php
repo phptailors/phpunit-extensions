@@ -10,17 +10,17 @@
 
 namespace Tailors\PHPUnit\Values;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Values\DummyValuesWrapper
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
+#[CoversClass(DummyValuesWrapper::class)]
 final class DummyValuesWrapperTest extends TestCase
 {
     public function testDummyValuesWrapper(): void
