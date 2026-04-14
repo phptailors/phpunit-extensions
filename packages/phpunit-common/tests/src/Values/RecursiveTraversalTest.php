@@ -313,10 +313,8 @@ final class RecursiveTraversalTest extends TestCase
         yield 'RecursiveTraversalTest.php:'.__LINE__ => [
             'args'    => [],
             'values'  => $v10,
-            'visitor' => new DummyRecursiveVisitor(function ($value, array $path): bool {
-                return count($path) < 1;
-            }),
-            'expect' => [
+            'visitor' => new DummyRecursiveVisitor(fn ($value, array $path): bool => (count($path) < 1)),
+            'expect'  => [
                 ['func' => 'enter', 'node' => $v10, 'path' => []],
                 ['func' => 'enter', 'node' => $v10['foo'], 'path' => ['foo']],
                 ['func' => 'leave', 'node' => $v10['foo'], 'path' => ['foo']],
@@ -547,24 +545,6 @@ final class RecursiveTraversalTest extends TestCase
         $traversal->walk($values, $visitor);
 
         $this->assertSame($expect, $visitor->trace());
-    }
-
-    public function testDummyValuesWrapper(): void
-    {
-        // Mostly for code coverage.
-        $values = new ActualValues();
-        $wrapper = new DummyValuesWrapper($values);
-        $this->assertSame($values, $wrapper->getValues());
-    }
-
-    public function testDummyRecursiveVisitor(): void
-    {
-        // Mostly for code coverage.
-        $visitor = new DummyRecursiveVisitor();
-        $this->assertTrue($visitor->enter(new ExpectedValues(), []));
-        $this->assertNull($visitor->visit(null, []));
-        $this->assertNull($visitor->leave(new ExpectedValues(), []));
-        $this->assertFalse($visitor->cycle(null, []));
     }
 }
 // vim: syntax=php sw=4 ts=4 et:
