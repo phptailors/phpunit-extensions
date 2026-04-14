@@ -77,8 +77,8 @@ final class DummyRecursiveVisitorTest extends TestCase
         // Mostly for code coverage.
         $visitor = new DummyRecursiveVisitor(...$args);
         $this->assertSame($expect['enter'], $visitor->enter($node, []));
-        $this->assertNull($visitor->visit(null, []));
-        $this->assertNull($visitor->leave($node, []));
+        $this->assertNull($visitor->visit(null, [], true));
+        $this->assertNull($visitor->leave($node, [], true));
         $this->assertSame($expect['cycle'], $visitor->cycle(null, []));
 
         $trace = [
