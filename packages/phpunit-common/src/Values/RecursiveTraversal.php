@@ -1,0 +1,128 @@
+<?php declare(strict_types=1);
+
+/*
+ * This file is part of phptailors/phpunit-extensions.
+ *
+ * Copyright (c) Paweł Tomulik <pawel@tomulik.pl>
+ *
+ * View the LICENSE file for full copyright and license information.
+ */
+
+namespace Tailors\PHPUnit\Values;
+
+use Tailors\PHPUnit\Common\ReferenceStorage;
+
+/**
+ * @internal This class is not covered by the backward compatibility promise
+ *
+ * @psalm-internal Tailors\PHPUnit
+ */
+final class RecursiveTraversal implements RecursiveTraversalInterface
+{
+    private ReferenceStorage $seen;
+
+    /**
+     * @var list<array-key>
+     */
+    private array $path;
+
+    /**
+     * Initializes the object.
+     */
+    public function __construct(private bool $noUnwrapValuesWrappers = false, private bool $noWalkNestedValuesInterface = false)
+    {
+        $this->seen = new ReferenceStorage();
+        $this->path = [];
+    }
+
+    /**
+     * Walk recursively through $values and unwrap nested instances of
+     * ValuesInterface when suitable.
+     */
+    public function walk(ValuesInterface $values, RecursiveVisitorInterface $visitor): void
+    {
+        $this->seen = new ReferenceStorage();
+        $this->path = [];
+
+        try {
+            $this->walkRecursive($values, $visitor);
+        } finally {
+            $this->seen = new ReferenceStorage();
+            $this->path = [];
+        }
+    }
+
+    /**
+     * @psalm-template T of array|ValuesInterface
+     *
+     * @psalm-param T $values
+     *
+     * @psalm-param-out T $values
+     */
+    private function walkRecursive(array|ValuesInterface &$values, RecursiveVisitorInterface $visitor): void
+    {
+        if ($this->seen->contains($values)) {
+            if (!$visitor->cycle($values, $this->path)) {
+                return;
+            }
+        }
+
+        $this->seen->add($values);
+
+        try {
+            if ($visitor->enter($values, $this->path)) {
+                $this->iterate($values, $visitor);
+            }
+            $visitor->leave($values, $this->path);
+        } finally {
+            $this->seen->remove($values);
+        }
+    }
+
+    private function iterate(array|ValuesInterface $values, RecursiveVisitorInterface $visitor): void
+    {
+        /** @var mixed $value */
+        foreach ($values as $key => &$value) {
+            array_push($this->path, $key);
+
+            try {
+                $this->visitValue($value, $visitor);
+            } finally {
+                array_pop($this->path);
+            }
+        }
+    }
+
+    /**
+     * @psalm-template T
+     *
+     * @psalm-param T $value
+     *
+     * @psalm-param-out T $value
+     */
+    private function visitValue(mixed &$value, RecursiveVisitorInterface $visitor): void
+    {
+        if (is_array($value)) {
+            $this->walkRecursive($value, $visitor);
+
+            return;
+        }
+
+        if (!$this->noUnwrapValuesWrappers && $value instanceof ValuesWrapperInterface) {
+            $node = $value->getValues();
+        } else {
+            $node = $value;
+        }
+
+        if (!$this->noWalkNestedValuesInterface && $node instanceof ValuesInterface) {
+            $this->walkRecursive($node, $visitor);
+
+            return;
+        }
+
+        // Leaf node
+        $visitor->visit($node, $this->path);
+    }
+}
+
+// vim: syntax=php sw=4 ts=4 et:
