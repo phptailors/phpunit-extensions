@@ -11,7 +11,6 @@
 namespace Tailors\PHPUnit\Values;
 
 use Tailors\PHPUnit\CircularDependencyException;
-use Tailors\PHPUnit\Common\ReferenceStorage;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -20,22 +19,12 @@ use Tailors\PHPUnit\Common\ReferenceStorage;
  */
 final class RecursiveUnwrapper implements RecursiveUnwrapperInterface
 {
-    public const UNIQUE_TAG = 'unwrapped-values:$1$zIlgusJc$ZZCyNRPOX1SbpKdzoD2hU/';
-
-    /**
-     * @var ReferenceStorage
-     */
-    private $seen;
+    public const UNIQUE_TAG = RecursiveUnwrapperVisitor::UNIQUE_TAG;
 
     /**
      * @var bool
      */
     private $tagging;
-
-    /**
-     * @var list<array-key>
-     */
-    private $path;
 
     /**
      * Initializes the object.
@@ -47,8 +36,6 @@ final class RecursiveUnwrapper implements RecursiveUnwrapperInterface
     public function __construct(bool $tagging = true)
     {
         $this->tagging = $tagging;
-        $this->seen = new ReferenceStorage();
-        $this->path = [];
     }
 
     /**
@@ -60,114 +47,11 @@ final class RecursiveUnwrapper implements RecursiveUnwrapperInterface
     #[\Override]
     public function unwrap(ValuesInterface $values): array
     {
-        $this->seen = new ReferenceStorage();
-        $this->path = [];
+        $traversal = new RecursiveTraversal();
+        $visitor = new RecursiveUnwrapperVisitor($this->tagging);
+        $traversal->walk($values, $visitor);
 
-        try {
-            $result = $this->walkRecursive($values);
-        } finally {
-            $this->seen = new ReferenceStorage();
-            $this->path = [];
-        }
-
-        return $result;
-    }
-
-    /**
-     * @throws CircularDependencyException
-     */
-    private function walkRecursive(ValuesInterface $current): array
-    {
-        if ($this->seen->contains($current)) {
-            // circular dependency
-            $this->throwCircular();
-        }
-
-        $array = $current->getArrayCopy();
-        $this->seen->add($current);
-
-        try {
-            $this->arrayWalkRecursive($array, $current);
-        } finally {
-            $this->seen->remove($current);
-        }
-
-        if ($this->tagging) {
-            // Distinguish unwrapped properties from regular arrays
-            // by adding UNIQUE TAG AT THE END of $array.
-            $array[self::UNIQUE_TAG] = true;
-        }
-
-        return $array;
-    }
-
-    /**
-     * @param array $array
-     *
-     * @throws CircularDependencyException
-     */
-    private function arrayWalkRecursive(array &$array, ValuesInterface $parent): void
-    {
-        if ($this->seen->contains($array)) {
-            $this->throwCircular();
-        }
-
-        $this->seen->add($array);
-
-        try {
-            /** @var mixed $value */
-            foreach ($array as $key => &$value) {
-                array_push($this->path, $key);
-
-                try {
-                    if (is_array($value)) {
-                        $this->arrayWalkRecursive($value, $parent);
-                    } else {
-                        $this->visit($value, $parent);
-                    }
-                } finally {
-                    array_pop($this->path);
-                }
-            }
-        } finally {
-            $this->seen->remove($array);
-        }
-    }
-
-    /**
-     * @param mixed $value
-     *
-     * @throws CircularDependencyException
-     */
-    private function visit(&$value, ValuesInterface $parent): void
-    {
-        if ($value instanceof ValuesWrapperInterface) {
-            $value = $value->getValues();
-        }
-
-        if ($value instanceof ValuesInterface && $parent->actual() === $value->actual()) {
-            $value = $this->walkRecursive($value);
-        }
-    }
-
-    /**
-     * @return never
-     *
-     * @throws CircularDependencyException
-     */
-    private function throwCircular(): void
-    {
-        throw new CircularDependencyException("Circular dependency found in nested values at \$values{$this->pathString()}.");
-    }
-
-    /**
-     * @psalm-mutation-free
-     */
-    private function pathString(): string
-    {
-        return implode('', array_map(function ($key) {
-            return '['.(is_string($key) ? ('"'.addslashes($key).'"') : (string) $key).']';
-        }, $this->path));
+        return $visitor->result();
     }
 }
 
