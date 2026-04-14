@@ -127,21 +127,31 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
      */
     private static function set(array &$array, array $path, $value): void
     {
-        $current = &$array;
-        foreach ($path as $key) {
-            if (!is_array($current)) {
-                return;
+        if (0 === count($path)) {
+            if (is_array($value)) {
+                $array = $value;
             }
+
+            return;
+        }
+
+        $current = &$array;
+
+        $top = array_pop($path);
+        foreach ($path as $key) {
             if (!array_key_exists($key, $current)) {
                 $current[$key] = [];
             }
+
+            if (!is_array($current[$key])) {
+                return;
+            }
+
             $current = &$current[$key];
         }
 
-        /**
-         * @psalm-var mixed
-         */
-        $current = $value;
+        /** @psalm-var mixed */
+        $current[$top] = $value;
     }
 
     /**
