@@ -164,9 +164,10 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
      */
     private static function pathString(array $path): string
     {
-        return implode('', array_map(function ($key) {
-            return '['.(is_string($key) ? ('"'.addslashes($key).'"') : (string) $key).']';
-        }, $path));
+        return implode('', array_map(
+            fn ($key) => '['.(is_string($key) ? ('"'.addslashes($key).'"') : (string) $key).']',
+            $path
+        ));
     }
 }
 
