@@ -48,12 +48,12 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     /**
      * @param list<array-key> $path
      */
-    public function leave(array|ValuesInterface $node, array $path): void
+    public function leave(array|ValuesInterface $node, array $path, bool $iterating): void
     {
         $this->trace[] = ['func' => 'leave', 'node' => &$node, 'path' => $path];
     }
 
-    public function visit(mixed $node, array $path): void
+    public function visit(mixed $node, array $path, bool $iterating): void
     {
         $this->trace[] = ['func' => 'visit', 'node' => &$node, 'path' => $path];
     }
