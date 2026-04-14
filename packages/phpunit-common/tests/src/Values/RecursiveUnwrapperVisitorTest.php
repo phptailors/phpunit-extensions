@@ -10,13 +10,13 @@
 
 namespace Tailors\PHPUnit\Values;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\CircularDependencyException;
 
 /**
  * @small
- *
- * @covers \Tailors\PHPUnit\Values\RecursiveUnwrapperVisitor
  *
  * @internal This class is not covered by the backward compatibility promise
  *
@@ -25,6 +25,7 @@ use Tailors\PHPUnit\CircularDependencyException;
  * @psalm-type ArgsEnter = array{node: array|ValuesInterface, path: list<array-key>}
  * @psalm-type ArgsVisit = array{node: mixed, path: list<array-key>, iterating: bool}
  */
+#[CoversClass(RecursiveUnwrapperVisitor::class)]
 final class RecursiveUnwrapperVisitorTest extends TestCase
 {
     public const UNIQUE_TAG = RecursiveUnwrapperVisitor::UNIQUE_TAG;
@@ -68,10 +69,9 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
     }
 
     /**
-     * @dataProvider provCycle
-     *
      * @param list<array-key> $path
      */
+    #[DataProvider('provCycle')]
     public function testCycle(array $path, string $expect): void
     {
         $rePath = preg_quote($expect, '/');
@@ -277,14 +277,13 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
     }
 
     /**
-     * @dataProvider provEnterLeave
-     *
      * @param array       $ctor
      * @param list<array> $calls
      * @param mixed       $result
      *
      * @psalm-param non-empty-list<array{args: EnterArgsT, expect: mixed}> $calls
      */
+    #[DataProvider('provEnterLeave')]
     public function testEnterLeave(array $ctor, array $calls, $result): void
     {
         $visitor = new RecursiveUnwrapperVisitor(...$ctor);
@@ -386,13 +385,12 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
     }
 
     /**
-     * @dataProvider provVisit
-     *
      * @param array $calls
      * @param mixed $result
      *
      * @psalm-param non-empty-list<array{args: ArgsVisit}> $calls
      */
+    #[DataProvider('provVisit')]
     public function testVisit(array $calls, $result): void
     {
         $visitor = new RecursiveUnwrapperVisitor();
