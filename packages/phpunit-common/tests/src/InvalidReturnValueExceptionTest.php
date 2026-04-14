@@ -38,7 +38,7 @@ final class InvalidReturnValueExceptionTest extends TestCase
             ],
 
             'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
-                function (string $s): string { return 2; }, 'a string', 'integer',
+                fn (string $s): string => 2, 'a string', 'integer',
             ],
 
             'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
@@ -84,7 +84,7 @@ final class InvalidReturnValueExceptionTest extends TestCase
             ],
 
             'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
-                function (string $s): string { return 2; }, 'a string', 2,
+                fn (string $s): string => 2, 'a string', 2,
             ],
         ];
     }

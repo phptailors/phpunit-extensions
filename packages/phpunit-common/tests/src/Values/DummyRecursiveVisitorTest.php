@@ -52,13 +52,8 @@ final class DummyRecursiveVisitorTest extends TestCase
 
         yield 'DummyRecursiveVisitorTest.php:'.__LINE__ => [
             'args' => [
-                function ($node, array $path): bool {
-                    return false;
-                },
-
-                function ($node, array $path): bool {
-                    return true;
-                },
+                fn ($node, array $path): bool => false,
+                fn ($node, array $path): bool => true,
             ],
             'expect' => [
                 'enter' => false,
