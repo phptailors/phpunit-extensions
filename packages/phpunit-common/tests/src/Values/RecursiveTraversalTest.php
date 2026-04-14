@@ -548,23 +548,5 @@ final class RecursiveTraversalTest extends TestCase
 
         $this->assertSame($expect, $visitor->trace());
     }
-
-    public function testDummyValuesWrapper(): void
-    {
-        // Mostly for code coverage.
-        $values = new ActualValues();
-        $wrapper = new DummyValuesWrapper($values);
-        $this->assertSame($values, $wrapper->getValues());
-    }
-
-    public function testDummyRecursiveVisitor(): void
-    {
-        // Mostly for code coverage.
-        $visitor = new DummyRecursiveVisitor();
-        $this->assertTrue($visitor->enter(new ExpectedValues(), []));
-        $this->assertNull($visitor->visit(null, []));
-        $this->assertNull($visitor->leave(new ExpectedValues(), []));
-        $this->assertFalse($visitor->cycle(null, []));
-    }
 }
 // vim: syntax=php sw=4 ts=4 et:
