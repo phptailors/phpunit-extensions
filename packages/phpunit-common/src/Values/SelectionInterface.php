@@ -15,9 +15,12 @@ namespace Tailors\PHPUnit\Values;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-interface SelectionInterface extends ValuesInterface
+interface SelectionInterface extends \Traversable, \Countable
 {
-    public function getSelector(): ValueSelectorInterface;
+    /**
+     * @return list<non-empty-list<array-key>>
+     */
+    public function getSelectionPaths(): array;
 }
 
 // vim: syntax=php sw=4 ts=4 et:

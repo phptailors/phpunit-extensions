@@ -15,7 +15,7 @@ namespace Tailors\PHPUnit\Values;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class ExpectedValuesSelection extends ExpectedValues implements SelectionInterface
+final class ExpectedValuesSelection extends AbstractValues implements SelectionInterface
 {
     /**
      * @var ValueSelectorInterface
@@ -38,6 +38,14 @@ final class ExpectedValuesSelection extends ExpectedValues implements SelectionI
         } else {
             parent::__construct($input);
         }
+    }
+
+    /**
+     * @psalm-mutation-free
+     */
+    final public function actual(): bool
+    {
+        return false;
     }
 
     /**

@@ -29,41 +29,47 @@ use Tailors\PHPUnit\Comparator\ComparatorWrapperInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-abstract class AbstractConstraint extends Constraint implements ComparatorWrapperInterface, SelectionWrapperInterface
+abstract class AbstractConstraint extends Constraint implements ValuesWrapperInterface, SelectionWrapperInterface, ComparatorWrapperInterface, ValueSelectorWrapperInterface
 {
     use ShortFailureDescriptionTrait;
 
     /**
-     * @var SelectionInterface
+     * @var ValuesInterface
      */
     private $expected;
 
     /**
-     * @var RecursiveUnwrapperInterface
+     * @var SelectionInterface
      */
-    private $unwrapper;
+    private $selection;
 
     /**
      * @var ComparatorInterface
      */
     private $comparator;
 
-    final protected function __construct(
-        ComparatorInterface $comparator,
-        SelectionInterface $expected,
-        RecursiveUnwrapperInterface $unwrapper
-    ) {
-        $this->comparator = $comparator;
-        $this->expected = $expected;
-        $this->unwrapper = $unwrapper;
-    }
+    /**
+     * @var ValueSelectorInterface
+     */
+    private $selector;
 
     /**
-     * Returns an instance of SelectionInterface which defines expected values.
+     * @var RecursiveUnwrapperInterface
      */
-    final public function getSelection(): SelectionInterface
-    {
-        return $this->expected;
+    private $unwrapper;
+
+    final protected function __construct(
+        ValuesInterface $expected,
+        SelectionInterface $selection,
+        ComparatorInterface $comparator,
+        ValueSelectorInterface $selector,
+        RecursiveUnwrapperInterface $unwrapper
+    ) {
+        $this->expected = $expected;
+        $this->comparator = $comparator;
+        $this->selection = $selection;
+        $this->selector = $selector;
+        $this->unwrapper = $unwrapper;
     }
 
     /**
@@ -75,11 +81,27 @@ abstract class AbstractConstraint extends Constraint implements ComparatorWrappe
     }
 
     /**
+     * Returns an instance of SelectionInterface which defines expected values.
+     */
+    final public function getSelection(): SelectionInterface
+    {
+        return $this->selection;
+    }
+
+    /**
      * Returns an instance of ComparatorInterface which implements comparison operator.
      */
     final public function getComparator(): ComparatorInterface
     {
         return $this->comparator;
+    }
+
+    /**
+     * Returns an instance of ValueSelectorInterface.
+     */
+    final public function getSelector(): ValueSelectorInterface
+    {
+        return $this->selector;
     }
 
     /**
@@ -89,8 +111,8 @@ abstract class AbstractConstraint extends Constraint implements ComparatorWrappe
     {
         return sprintf(
             'is %s with %s %s specified',
-            $this->expected->getSelector()->subject(),
-            $this->expected->getSelector()->selectable(),
+            $this->selector->subject(),
+            $this->selector->selectable(),
             $this->comparator->adjective()
         );
     }
@@ -124,7 +146,7 @@ abstract class AbstractConstraint extends Constraint implements ComparatorWrappe
         if (!$success) {
             $f = null;
 
-            if ($this->expected->getSelector()->supports($other)) {
+            if ($this->selector->supports($other)) {
                 $actual = $this->select($other);
                 $f = new ComparisonFailure(
                     $this->expected,
@@ -160,8 +182,8 @@ abstract class AbstractConstraint extends Constraint implements ComparatorWrappe
         if ($operator instanceof LogicalNot) {
             return sprintf(
                 'fails to be %s with %s %s specified',
-                $this->expected->getSelector()->subject(),
-                $this->expected->getSelector()->selectable(),
+                $this->selector->subject(),
+                $this->selector->selectable(),
                 $this->comparator->adjective()
             );
         }
@@ -177,7 +199,7 @@ abstract class AbstractConstraint extends Constraint implements ComparatorWrappe
      */
     final protected function matches($other): bool
     {
-        if (!$this->expected->getSelector()->supports($other)) {
+        if (!$this->selector->supports($other)) {
             return false;
         }
         $actual = $this->unwrapper->unwrap($this->select($other));

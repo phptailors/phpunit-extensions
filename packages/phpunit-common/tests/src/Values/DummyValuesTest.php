@@ -15,20 +15,24 @@ use PHPUnit\Framework\TestCase;
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Values\DummyValuesWrapper
+ * @covers \Tailors\PHPUnit\Values\DummyValues
  *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class DummyValuesWrapperTest extends TestCase
+final class DummyValuesTest extends TestCase
 {
-    public function testDummyValuesWrapper(): void
+    public function testDummyValues(): void
     {
         // Mostly for code coverage.
-        $values = new DummyValues(true);
-        $wrapper = new DummyValuesWrapper($values);
-        $this->assertSame($values, $wrapper->getValues());
+        $values = new DummyValues(false, ['a' => 'A']);
+        $this->assertFalse($values->actual());
+        $this->assertSame(['a' => 'A'], $values->getArrayCopy());
+
+        $values = new DummyValues(true, ['b' => 'B']);
+        $this->assertTrue($values->actual());
+        $this->assertSame(['b' => 'B'], $values->getArrayCopy());
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

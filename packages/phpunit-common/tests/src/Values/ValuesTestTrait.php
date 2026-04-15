@@ -20,6 +20,18 @@ namespace Tailors\PHPUnit\Values;
 trait ValuesTestTrait
 {
     abstract public static function getValuesClass(): string;
+    abstract public static function getValuesActual(): bool;
+
+    /**
+     * @param mixed $expected
+     * @param mixed $actual
+     */
+    abstract public static function assertSame($expected, $actual, string $message = ''): void;
+
+    /**
+     * @param mixed $actual
+     */
+    abstract public static function assertInstanceOf(string $expected, $actual, string $message = ''): void;
 
     //
     //
@@ -75,7 +87,14 @@ trait ValuesTestTrait
 
         self::assertSame($expect, $object->getArrayCopy());
         self::assertSame($expect, (array) $object);
-        self::assertSame(ActualValues::class === $class, $object->actual());
+    }
+
+    public function testActual(): void
+    {
+        $class = self::getValuesClass();
+        $object = new $class();
+
+        self::assertSame(self::getValuesActual(), $object->actual());
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

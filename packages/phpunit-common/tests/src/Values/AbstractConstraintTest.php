@@ -32,16 +32,26 @@ final class AbstractConstraintTest extends TestCase
 {
     public static function createConstraintMock(
         TestCase $test,
+        ?ValuesInterface $expected = null,
+        ?SelectionInterface $selection = null,
         ?ComparatorInterface $comparator = null,
-        ?SelectionInterface $expected = null,
+        ?ValueSelectorInterface $selector = null,
         ?RecursiveUnwrapperInterface $unwrapper = null
     ) {
+        if (null === $expected) {
+            $expected = $test->createMock(ValuesInterface::class);
+        }
+
+        if (null === $selection) {
+            $selection = $test->createMock(SelectionInterface::class);
+        }
+
         if (null === $comparator) {
             $comparator = $test->createMock(ComparatorInterface::class);
         }
 
-        if (null === $expected) {
-            $expected = $test->createMock(SelectionInterface::class);
+        if (null === $selector) {
+            $selector = $test->createMock(ValueSelectorInterface::class);
         }
 
         if (null === $unwrapper) {
@@ -57,17 +67,22 @@ final class AbstractConstraintTest extends TestCase
         $class = new \ReflectionClass(AbstractConstraint::class);
         $construct = $class->getMethod('__construct');
         $construct->setAccessible(true);
-        $construct->invokeArgs($mock, [$comparator, $expected, $unwrapper]);
+        $construct->invokeArgs($mock, [$expected, $selection, $comparator, $selector, $unwrapper]);
 
         return $mock;
     }
 
+    /**
+     * @param array $expected
+     */
     public static function createArrayValuesIdentityConstraint(TestCase $test, array $expected)
     {
         return self::createConstraintMock(
             $test,
+            new ExpectedValues($expected),
             new IdentityComparator(),
-            new ExpectedValuesSelection(new ArrayValueSelector(), $expected),
+            //new ExpectedValuesSelection(new ArrayValueSelector(), $expected), // FIXME:
+            new ArrayValueSelector(),
             new RecursiveUnwrapper()
         );
     }

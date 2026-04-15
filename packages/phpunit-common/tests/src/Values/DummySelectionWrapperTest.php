@@ -15,27 +15,20 @@ use PHPUnit\Framework\TestCase;
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Values\ExpectedValues
- * @covers \Tailors\PHPUnit\Values\ValuesTestTrait
+ * @covers \Tailors\PHPUnit\Values\DummySelectionWrapper
  *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class ExpectedValuesTest extends TestCase
+final class DummySelectionWrapperTest extends TestCase
 {
-    use ValuesTestTrait;
-
-    // required by ValuesTestTrait
-    public static function getValuesClass(): string
+    public function testDummySelectionWrapper(): void
     {
-        return ExpectedValues::class;
-    }
-
-    // required by ValuesTestTrait
-    public static function getValuesActual(): bool
-    {
-        return false;
+        // Mostly for code coverage.
+        $values = new DummyValues(false);
+        $wrapper = new DummySelectionWrapper($values);
+        $this->assertSame($values, $wrapper->getValues());
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

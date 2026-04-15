@@ -33,13 +33,6 @@ final class RecursiveSelectorTest extends TestCase
     public static function createSelectionWrapper(...$args): SelectionWrapperInterface
     {
         return new DummySelectionWrapper(self::createSelection(...$args));
-//        $wrapper = $test->createMock(SelectionWrapperInterface::class);
-//        $wrapper->expects($test->any())
-//            ->method('getSelection')
-//            ->willReturn(self::createSelection(...$args))
-//        ;
-//
-//        return $wrapper;
     }
 
     //

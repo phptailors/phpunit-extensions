@@ -31,5 +31,11 @@ final class ActualValuesTest extends TestCase
     {
         return ActualValues::class;
     }
+
+    // required by ValuesTestTrait
+    public static function getValuesActual(): bool
+    {
+        return true;
+    }
 }
 // vim: syntax=php sw=4 ts=4 et:

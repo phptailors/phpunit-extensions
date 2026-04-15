@@ -10,17 +10,21 @@
 
 namespace Tailors\PHPUnit\Values;
 
+use Tailors\PHPUnit\InvalidArgumentException;
+
 /**
  * @internal This interface is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-interface SelectionWrapperInterface
+interface SelectorInterface
 {
     /**
-     * Returns an instance of SelectionInterface.
+     * @param mixed $subject
+     *
+     * @throws InvalidArgumentException
      */
-    public function getSelection(): SelectionInterface;
+    public function select($subject, SelectionInterface $selection, ValuesInterface $output): void;
 }
 
 // vim: syntax=php sw=4 ts=4 et:
