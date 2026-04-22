@@ -29,7 +29,7 @@ use Tailors\PHPUnit\Comparator\ComparatorWrapperInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-abstract class AbstractConstraint extends Constraint implements ComparatorWrapperInterface, SelectionWrapperInterface
+abstract class AbstractConstraint extends Constraint implements ComparatorWrapperInterface, SelectionWrapperInterface, ValuesWrapperInterface
 {
     use ShortFailureDescriptionTrait;
 
