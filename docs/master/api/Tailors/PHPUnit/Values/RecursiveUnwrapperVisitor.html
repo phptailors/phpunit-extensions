@@ -157,7 +157,7 @@
                     void
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_leave">leave</a>(<abbr title="array|Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr> $node, array $path)
+                    <a href="#method_leave">leave</a>(<abbr title="array|Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr> $node, array $path, bool $iterating)
         
                                             <p class="no-description">No description</p>
                                     </div>
@@ -168,7 +168,7 @@
                     void
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_visit">visit</a>(mixed $node, array $path)
+                    <a href="#method_visit">visit</a>(mixed $node, array $path, bool $iterating)
         
                                             <p class="no-description">No description</p>
                                     </div>
@@ -310,7 +310,7 @@
                     <h3 id="method_leave">
         <div class="location">at line 76</div>
         <code>                    void
-    <strong>leave</strong>(<abbr title="array|Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr> $node, array $path)
+    <strong>leave</strong>(<abbr title="array|Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr> $node, array $path, bool $iterating)
         </code>
     </h3>
     <div class="details">    
@@ -333,6 +333,11 @@
                     <tr>
                 <td>array</td>
                 <td>$path</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>bool</td>
+                <td>$iterating</td>
                 <td></td>
             </tr>
             </table>
@@ -358,7 +363,7 @@
                     <h3 id="method_visit">
         <div class="location">at line 93</div>
         <code>                    void
-    <strong>visit</strong>(mixed $node, array $path)
+    <strong>visit</strong>(mixed $node, array $path, bool $iterating)
         </code>
     </h3>
     <div class="details">    
@@ -381,6 +386,11 @@
                     <tr>
                 <td>array</td>
                 <td>$path</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>bool</td>
+                <td>$iterating</td>
                 <td></td>
             </tr>
             </table>
