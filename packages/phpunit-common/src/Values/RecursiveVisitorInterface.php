@@ -25,12 +25,12 @@ interface RecursiveVisitorInterface
     /**
      * @param list<array-key> $path
      */
-    public function leave(array|ValuesInterface $node, array $path): void;
+    public function leave(array|ValuesInterface $node, array $path, bool $iterating): void;
 
     /**
      * @param list<array-key> $path
      */
-    public function visit(mixed $node, array $path): void;
+    public function visit(mixed $node, array $path, bool $iterating): void;
 
     /**
      * @param list<array-key> $path

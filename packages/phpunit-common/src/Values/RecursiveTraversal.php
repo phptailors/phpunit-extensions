@@ -70,10 +70,13 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
         $this->seen->add($values);
 
         try {
-            if ($visitor->enter($values, $this->path)) {
+            $iterate = $visitor->enter($values, $this->path);
+            if ($iterate) {
                 $this->iterate($values, $visitor);
+            } else {
+                $visitor->visit($values, $this->path, false);
             }
-            $visitor->leave($values, $this->path);
+            $visitor->leave($values, $this->path, $iterate);
         } finally {
             $this->seen->remove($values);
         }
@@ -121,7 +124,7 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
         }
 
         // Leaf node
-        $visitor->visit($node, $this->path);
+        $visitor->visit($node, $this->path, true);
     }
 }
 

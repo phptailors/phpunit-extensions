@@ -15,7 +15,7 @@ namespace Tailors\PHPUnit\Values;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-interface SelectionWrapperInterface extends ValuesWrapperInterface
+interface SelectionWrapperInterface
 {
     /**
      * Returns an instance of SelectionInterface.
