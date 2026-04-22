@@ -163,13 +163,13 @@ final class RecursiveComparatorValidatorTest extends TestCase
                 'comparator' => $equalityComparator,
                 'args'       => fn (TestCase $test) => [
                     [
-                            'foo' => new DummyValuesWrapper(new DummyValues(true, [
+                        'foo' => new DummyValuesWrapper(new DummyValues(true, [
                             'bar'  => 'BAR',
                             'err1' => $identityWrapper($test),
-                                'qux'  => new DummyValuesWrapper(new DummyValues(true, [
+                            'qux'  => new DummyValuesWrapper(new DummyValues(true, [
                                 'err2' => $identityWrapper($test),
-                                ])),
                             ])),
+                        ])),
                     ],
                     123,
                 ],
