@@ -11,6 +11,9 @@ return RectorConfig::configure()
     ->withPreparedSets(
         phpunit: true
     )
+    ->withPhpSets(
+        php73: true
+    )
     ->withSkip([
         AddDoesNotPerformAssertionToNonAssertingTestRector::class => [
             __DIR__.'/packages/phpunit-arrays/tests/src/Constraint/ArrayValuesEqualToTest.php',
