@@ -16,6 +16,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\ComparatorWrapperInterface;
+use Tailors\PHPUnit\Comparator\DummyComparatorWrapper;
 use Tailors\PHPUnit\Comparator\EqualityComparator;
 use Tailors\PHPUnit\Comparator\IdentityComparator;
 use Tailors\PHPUnit\InvalidArgumentException;
@@ -71,9 +72,9 @@ final class RecursiveComparatorValidatorTest extends TestCase
         $equalityComparator = new EqualityComparator();
         $identityComparator = new IdentityComparator();
 
-        $equalityWrapper = fn (TestCase $test) => self::createComparatorWrapperMock($test, new EqualityComparator());
-        $identityWrapper = fn (TestCase $test) => self::createComparatorWrapperMock($test, new IdentityComparator());
-        $emptyValues = fn (TestCase $test) => $test->createMock(ValuesInterface::class);
+        $equalityWrapper = fn (TestCase $test) => new DummyComparatorWrapper(new EqualityComparator());
+        $identityWrapper = fn (TestCase $test) => new DummyComparatorWrapper(new IdentityComparator());
+        $emptyValues = fn (TestCase $test) => new DummyValues(true);
 
         $circularWrapper = function (TestCase $test) use ($equalityWrapper, $identityWrapper) {
             $dummyValues = new DummyValues(true);
