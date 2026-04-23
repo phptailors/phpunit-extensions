@@ -32,7 +32,7 @@ final readonly class CapturesFilter implements CapturesFilterInterface
     #[\Override]
     public function filter(array $array): array
     {
-        return array_filter($array, $this->accepts(...));
+        return array_filter($array, fn (mixed $val) => $this->accepts($val));
     }
 
     /**

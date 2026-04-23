@@ -58,7 +58,7 @@ final class MethodSpecFactory implements MethodSpecFactoryInterface
         $i = 4; // prevent endless loop (in case of a bug).
         while ($this->lookahead($expressions, $string, $matches) && $i > 0) {
             $this->handleModifiers($string, $matches, $abstract, $final, $static, $access);
-            $string = ltrim((string) $string);
+            $string = ltrim($string);
             --$i;
         }
 
@@ -66,7 +66,7 @@ final class MethodSpecFactory implements MethodSpecFactoryInterface
         if (!$this->lookahead($expressions, $string, $matches)) {
             throw new MethodSpecSyntaxError(sprintf('syntax error at "%s"', $string));
         }
-        $string = ltrim((string) $string);
+        $string = ltrim($string);
 
         $expressions = [self::RE_NAME];
         if (!$this->lookahead($expressions, $string, $matches)) {
