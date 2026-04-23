@@ -2,6 +2,7 @@
 
 use Rector\Config\RectorConfig;
 use Rector\PHPUnit\PHPUnit60\Rector\ClassMethod\AddDoesNotPerformAssertionToNonAssertingTestRector;
+use Rector\PHPUnit\Set\PHPUnitSetList;
 
 return RectorConfig::configure()
     ->withPaths([
@@ -9,8 +10,13 @@ return RectorConfig::configure()
         __DIR__.'/packages/*/src/',
     ])
     ->withPreparedSets(
-        phpunit: true
     )
+    ->withSets([
+        PHPUnitSetList::PHPUNIT_60,
+        PHPUnitSetList::PHPUNIT_70,
+        PHPUnitSetList::PHPUNIT_80,
+        PHPUnitSetList::PHPUNIT_90
+    ])
     ->withPhpSets(
         php73: true
     )
