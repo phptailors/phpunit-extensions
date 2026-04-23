@@ -15,10 +15,11 @@ return RectorConfig::configure()
         PHPUnitSetList::PHPUNIT_60,
         PHPUnitSetList::PHPUNIT_70,
         PHPUnitSetList::PHPUNIT_80,
-        PHPUnitSetList::PHPUNIT_90
+        PHPUnitSetList::PHPUNIT_90,
+        PHPUnitSetList::PHPUNIT_100,
     ])
     ->withPhpSets(
-        php81: true
+        php82: true
     )
     ->withSkip([
         AddDoesNotPerformAssertionToNonAssertingTestRector::class => [
@@ -34,8 +35,6 @@ return RectorConfig::configure()
         ]
     ])
     ->withRules([
-        CoversAnnotationWithValueToAttributeRector::class,
-        DataProviderAnnotationToAttributeRector::class,
     ])
     ->withImportNames(
         importShortClasses: false,
