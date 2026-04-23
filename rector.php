@@ -35,4 +35,8 @@ return RectorConfig::configure()
     ])
     ->withRules([
     ])
+    ->withImportNames(
+        importShortClasses: false,
+        removeUnusedImports: true
+    )
 ;
