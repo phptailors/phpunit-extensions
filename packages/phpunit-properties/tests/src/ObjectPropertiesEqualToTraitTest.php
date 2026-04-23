@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit;
 
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\ExpectationFailedException;
@@ -18,15 +19,14 @@ use Tailors\PHPUnit\Constraint\ObjectPropertiesEqualTo;
 use Tailors\PHPUnit\Constraint\ProvObjectPropertiesTrait;
 
 /**
- * @small
  *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @coversNothing
  */
 #[CoversClass(ObjectPropertiesEqualToTrait::class)]
+#[Small]
 final class ObjectPropertiesEqualToTraitTest extends TestCase
 {
     use ObjectPropertiesEqualToTrait;

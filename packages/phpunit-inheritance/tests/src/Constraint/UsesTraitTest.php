@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\ExpectationFailedException;
@@ -23,18 +24,17 @@ use Tailors\PHPUnit\Inheritance\ConstraintImplementationTrait;
 use Tailors\PHPUnit\InvalidArgumentException;
 
 /**
- * @small
  *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @coversNothing
  */
 #[CoversClass(InheritanceConstraintTestTrait::class)]
 #[CoversClass(UsesTrait::class)]
 #[CoversClass(AbstractConstraint::class)]
 #[CoversClass(ConstraintImplementationTrait::class)]
+#[Small]
 final class UsesTraitTest extends TestCase
 {
     use InheritanceConstraintTestTrait;
@@ -154,22 +154,16 @@ final class UsesTraitTest extends TestCase
         ];
     }
 
-    /**
-     * @param mixed $subject
-     */
     #[DataProvider('provUsesTrait')]
-    public function testConstraintSucceeds(string $trait, $subject): void
+    public function testConstraintSucceeds(string $trait, mixed $subject): void
     {
         $constraint = UsesTrait::create($trait);
 
         self::assertTrue($constraint->evaluate($subject, '', true));
     }
 
-    /**
-     * @param mixed $subject
-     */
     #[DataProvider('provNotUsesTrait')]
-    public function testConstraintFails(string $trait, $subject, string $message): void
+    public function testConstraintFails(string $trait, mixed $subject, string $message): void
     {
         $constraint = UsesTrait::create($trait);
 

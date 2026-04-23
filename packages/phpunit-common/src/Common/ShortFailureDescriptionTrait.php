@@ -32,7 +32,7 @@ trait ShortFailureDescriptionTrait
      *
      * @param mixed $other evaluated value or object
      */
-    final public function failureDescription($other): string
+    final public function failureDescription(mixed $other): string
     {
         return $this->short($other, true).' '.$this->toString();
     }
@@ -53,7 +53,7 @@ trait ShortFailureDescriptionTrait
      * @param mixed    $role     role of $this constraint in the $operator expression
      * @param mixed    $other    evaluated value or object
      */
-    final public function failureDescriptionInContext(Operator $operator, $role, $other): string
+    final public function failureDescriptionInContext(Operator $operator, mixed $role, mixed $other): string
     {
         $string = $this->toStringInContext($operator, $role);
 
@@ -79,17 +79,15 @@ trait ShortFailureDescriptionTrait
      * @param Operator $operator the $operator of the expression
      * @param mixed    $role     role of $this constraint in the $operator expression
      */
-    abstract protected function toStringInContext(Operator $operator, $role): string;
+    abstract protected function toStringInContext(Operator $operator, mixed $role): string;
 
     /**
      * Returns short representation of $subject for failureDescription().
-     *
-     * @param mixed $subject
      */
-    private function short($subject, bool $exportObjects = false): string
+    private function short(mixed $subject, bool $exportObjects = false): string
     {
         if (is_object($subject)) {
-            return 'object '.get_class($subject);
+            return 'object '.$subject::class;
         }
 
         if (is_array($subject)) {

@@ -28,7 +28,7 @@ namespace Tailors\PHPUnit\Methods;
  *                       |  self::NOT_PROTECTED
  *                       |  self::NOT_PRIVATE )
  */
-final class MethodSpec implements MethodSpecInterface
+final readonly class MethodSpec implements MethodSpecInterface
 {
     public const IS_STATIC = \ReflectionMethod::IS_STATIC;
     public const IS_PUBLIC = \ReflectionMethod::IS_PUBLIC;
@@ -56,57 +56,33 @@ final class MethodSpec implements MethodSpecInterface
     ];
 
     /**
-     * @var string
-     *
-     * @psalm-var non-empty-string
-     *
-     * @psalm-readonly
-     */
-    private $name;
-
-    /**
-     * @var ?bool
-     *
-     * @psalm-readonly
-     */
-    private $static;
-
-    /**
-     * @var ?int
-     *
-     * @psalm-readonly
-     */
-    private $access;
-
-    /**
-     * @var ?bool
-     *
-     * @psalm-readonly
-     */
-    private $abstract;
-
-    /**
-     * @var ?bool
-     *
-     * @psalm-readonly
-     */
-    private $final;
-
-    /**
      * @psalm-param non-empty-string $name
      */
     public function __construct(
-        string $name,
-        ?bool $static = null,
-        ?int $access = null,
-        ?bool $abstract = null,
-        ?bool $final = null
-    ) {
-        $this->name = $name;
-        $this->static = $static;
-        $this->access = $access;
-        $this->abstract = $abstract;
-        $this->final = $final;
+        /**
+         *
+         * @psalm-var non-empty-string
+         * @psalm-readonly
+         */
+        private string $name,
+        /**
+         * @psalm-readonly
+         */
+        private ?bool $static = null,
+        /**
+         * @psalm-readonly
+         */
+        private ?int $access = null,
+        /**
+         * @psalm-readonly
+         */
+        private ?bool $abstract = null,
+        /**
+         * @psalm-readonly
+         */
+        private ?bool $final = null
+    )
+    {
     }
 
     /**

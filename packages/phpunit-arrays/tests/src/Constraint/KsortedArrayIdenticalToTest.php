@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Constraint\Constraint;
@@ -18,18 +19,17 @@ use Tailors\PHPUnit\Arrays\KsortedConstraintTestCase;
 use Tailors\PHPUnit\Comparator\IdentityComparator;
 
 /**
- * @small
  *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @coversNothing
  */
 #[CoversClass(AbstractKsortedConstraint::class)]
 #[CoversClass(KsortedConstraintTestCase::class)]
 #[CoversClass(KsortedArrayIdenticalTo::class)]
 #[CoversClass(ProvKsortedArrayTrait::class)]
+#[Small]
 final class KsortedArrayIdenticalToTest extends KsortedConstraintTestCase
 {
     use ProvKsortedArrayTrait;
@@ -54,42 +54,30 @@ final class KsortedArrayIdenticalToTest extends KsortedConstraintTestCase
         return KsortedArrayIdenticalTo::create(...$args);
     }
 
-    /**
-     * @param mixed $actual
-     */
     #[DataProvider('provKsortedArrayIdenticalTo')]
-    public function testKsortedArrayIdenticalToSucceeds(array $expect, $actual, string $string): void
+    public function testKsortedArrayIdenticalToSucceeds(array $expect, mixed $actual, string $string): void
     {
         parent::examineConstraintMatchSucceeds([$expect], $actual);
     }
 
-    /**
-     * @param mixed $actual
-     */
     #[DataProvider('provKsortedArrayEqualButNotIdenticalTo')]
     #[DataProvider('provKsortedArrayNotEqualTo')]
     #[DataProvider('provKsortedArrayNotEqualToNonArray')]
-    public function testKsortedArrayIdenticalToFails(array $expect, $actual, string $string): void
+    public function testKsortedArrayIdenticalToFails(array $expect, mixed $actual, string $string): void
     {
         parent::examineConstraintMatchFails([$expect], $actual, self::message($string));
     }
 
-    /**
-     * @param mixed $actual
-     */
     #[DataProvider('provKsortedArrayEqualButNotIdenticalTo')]
     #[DataProvider('provKsortedArrayNotEqualTo')]
     #[DataProvider('provKsortedArrayNotEqualToNonArray')]
-    public function testNotKsortedArrayIdenticalToSucceeds(array $expect, $actual, string $string): void
+    public function testNotKsortedArrayIdenticalToSucceeds(array $expect, mixed $actual, string $string): void
     {
         parent::examineNotConstraintMatchSucceeds([$expect], $actual);
     }
 
-    /**
-     * @param mixed $actual
-     */
     #[DataProvider('provKsortedArrayIdenticalTo')]
-    public function testNotKsortedArrayIdenticalToFails(array $expect, $actual, string $string): void
+    public function testNotKsortedArrayIdenticalToFails(array $expect, mixed $actual, string $string): void
     {
         parent::examineNotConstraintMatchFails([$expect], $actual, self::message($string, true));
     }

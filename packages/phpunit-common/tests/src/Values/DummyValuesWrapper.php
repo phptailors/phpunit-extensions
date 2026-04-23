@@ -15,7 +15,7 @@ namespace Tailors\PHPUnit\Values;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class DummyValuesWrapper implements ValuesWrapperInterface
+final readonly class DummyValuesWrapper implements ValuesWrapperInterface
 {
     public function __construct(private ValuesInterface $values) {}
 

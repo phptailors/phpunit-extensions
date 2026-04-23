@@ -10,21 +10,21 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Constraint\Constraint;
 use Tailors\PHPUnit\InvalidArgumentException;
 
 /**
- * @small
  *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @coversNothing
  */
 #[CoversClass(HasMethod::class)]
+#[Small]
 final class HasMethodTest extends TestCase
 {
     use ProvHasMethodTrait;
@@ -49,38 +49,26 @@ final class HasMethodTest extends TestCase
         return HasMethod::class;
     }
 
-    /**
-     * @param mixed $subject
-     */
     #[DataProvider('provHasMethodSucceeds')]
-    public function testHasMethodMatchSucceeds(string $method, $subject): void
+    public function testHasMethodMatchSucceeds(string $method, mixed $subject): void
     {
         parent::examineConstraintMatchSucceeds([$method], $subject);
     }
 
-    /**
-     * @param mixed $subject
-     */
     #[DataProvider('provHasMethodSucceeds')]
-    public function testNotHasMethodMatchFails(string $method, $subject, string $string): void
+    public function testNotHasMethodMatchFails(string $method, mixed $subject, string $string): void
     {
         parent::examineNotConstraintMatchFails([$method], $subject, $string);
     }
 
-    /**
-     * @param mixed $subject
-     */
     #[DataProvider('provHasMethodFails')]
-    public function testHasMethodMatchFails(string $method, $subject, string $string): void
+    public function testHasMethodMatchFails(string $method, mixed $subject, string $string): void
     {
         parent::examineConstraintMatchFails([$method], $subject, $string);
     }
 
-    /**
-     * @param mixed $subject
-     */
     #[DataProvider('provHasMethodFails')]
-    public function testNotHasMethodMatchSucceeds(string $method, $subject): void
+    public function testNotHasMethodMatchSucceeds(string $method, mixed $subject): void
     {
         parent::examineNotConstraintMatchSucceeds([$method], $subject);
     }

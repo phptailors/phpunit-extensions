@@ -18,19 +18,12 @@ namespace Tailors\PHPUnit\Values;
 final class ExpectedValuesSelection extends ExpectedValues implements SelectionInterface
 {
     /**
-     * @var ValueSelectorInterface
-     */
-    private $selector;
-
-    /**
      * @param ValueSelectorInterface $selector
-     * @param mixed                  $input
      *
      * @psalm-param array|object     $input
      */
-    public function __construct(ValueSelectorInterface $selector, $input = [])
+    public function __construct(private readonly ValueSelectorInterface $selector, mixed $input = [])
     {
-        $this->selector = $selector;
         // The folowing if-else is only to make psalm 5.4.0 happy
         // See: https://github.com/vimeo/psalm/issues/9082
         if (is_array($input)) {

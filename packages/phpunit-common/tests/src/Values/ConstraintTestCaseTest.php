@@ -10,21 +10,21 @@
 
 namespace Tailors\PHPUnit\Values;
 
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Constraint\Constraint;
 
 /**
- * @small
  *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @coversNothing
  */
 #[CoversClass(ConstraintTestCase::class)]
 #[CoversClass(ExampleConstraint::class)]
+#[Small]
 final class ConstraintTestCaseTest extends ConstraintTestCase
 {
     public static function subject(): string
@@ -95,40 +95,28 @@ final class ConstraintTestCaseTest extends ConstraintTestCase
         ];
     }
 
-    /**
-     * @param mixed $actual
-     */
     #[DataProvider('provArrayValuesIdenticalTo')]
-    public function testValuesMatchSucceeds(array $expect, $actual): void
+    public function testValuesMatchSucceeds(array $expect, mixed $actual): void
     {
         $this->examineValuesMatchSucceeds($expect, $actual);
     }
 
-    /**
-     * @param mixed $actual
-     */
     #[DataProvider('provArrayValuesEqualButNotIdenticalTo')]
     #[DataProvider('provArrayValuesNotEqualTo')]
-    public function testValuesMatchFails(array $expect, $actual): void
+    public function testValuesMatchFails(array $expect, mixed $actual): void
     {
         $this->examineValuesMatchFails($expect, $actual, 'array');
     }
 
-    /**
-     * @param mixed $actual
-     */
     #[DataProvider('provArrayValuesEqualButNotIdenticalTo')]
     #[DataProvider('provArrayValuesNotEqualTo')]
-    public function testNotValuesMatchSucceeds(array $expect, $actual): void
+    public function testNotValuesMatchSucceeds(array $expect, mixed $actual): void
     {
         $this->examineNotValuesMatchSucceeds($expect, $actual);
     }
 
-    /**
-     * @param mixed $actual
-     */
     #[DataProvider('provArrayValuesIdenticalTo')]
-    public function testNotValuesMatchFails(array $expect, $actual): void
+    public function testNotValuesMatchFails(array $expect, mixed $actual): void
     {
         $this->examineNotValuesMatchFails($expect, $actual, 'array');
     }

@@ -31,7 +31,7 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
      */
     private array $result;
 
-    public function __construct(private bool $tagging = true)
+    public function __construct(private readonly bool $tagging = true)
     {
         $this->objectStack = [];
         $this->result = [];
@@ -150,7 +150,7 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
      *
      * @throws CircularDependencyException
      */
-    private static function throwCircular(array $path): void
+    private static function throwCircular(array $path): never
     {
         $pathString = self::pathString($path);
 
