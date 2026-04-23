@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit\Values;
 
+use PHPUnit\Framework\Attributes\Small;
 use ArrayObject;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -17,16 +18,15 @@ use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\InvalidArgumentException;
 
 /**
- * @small
  *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @coversNothing
  */
 #[CoversClass(AbstractValueSelector::class)]
 #[CoversClass(ArrayValueSelector::class)]
+#[Small]
 final class ArrayValueSelectorTest extends TestCase
 {
     //
@@ -91,11 +91,8 @@ final class ArrayValueSelectorTest extends TestCase
     }
 
     // @codeCoverageIgnoreEnd
-    /**
-     * @param mixed $subject
-     */
     #[DataProvider('provSupports')]
-    public function testSupports($subject, bool $expect): void
+    public function testSupports(mixed $subject, bool $expect): void
     {
         $selector = new ArrayValueSelector();
         self::assertSame($expect, $selector->supports($subject));
@@ -188,15 +185,11 @@ final class ArrayValueSelectorTest extends TestCase
 
     // @codeCoverageIgnoreEnd
     /**
-     * @param mixed $subject
-     * @param mixed $key
-     * @param mixed $return
-     * @param mixed $expect
      *
      * @psalm-param array|ArrayObject $subject
      */
     #[DataProvider('provSelect')]
-    public function testSelect($subject, $key, $return, $expect): void
+    public function testSelect(mixed $subject, mixed $key, mixed $return, mixed $expect): void
     {
         $selector = new ArrayValueSelector();
         self::assertSame($return, $selector->select($subject, $key, $retval));

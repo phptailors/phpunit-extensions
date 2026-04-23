@@ -15,20 +15,20 @@ namespace Tailors\PHPUnit\Methods;
  */
 final class MethodSpecFactory implements MethodSpecFactoryInterface
 {
-    public const IS_PUBLIC = MethodSpec::IS_PUBLIC;
-    public const IS_PROTECTED = MethodSpec::IS_PROTECTED;
-    public const IS_PRIVATE = MethodSpec::IS_PRIVATE;
-    public const NOT_PUBLIC = MethodSpec::NOT_PUBLIC;
-    public const NOT_PROTECTED = MethodSpec::NOT_PROTECTED;
-    public const NOT_PRIVATE = MethodSpec::NOT_PRIVATE;
-    public const ACCESS_MAP = MethodSpec::ACCESS_MAP;
+    public const int IS_PUBLIC = MethodSpec::IS_PUBLIC;
+    public const int IS_PROTECTED = MethodSpec::IS_PROTECTED;
+    public const int IS_PRIVATE = MethodSpec::IS_PRIVATE;
+    public const int NOT_PUBLIC = MethodSpec::NOT_PUBLIC;
+    public const int NOT_PROTECTED = MethodSpec::NOT_PROTECTED;
+    public const int NOT_PRIVATE = MethodSpec::NOT_PRIVATE;
+    public const array ACCESS_MAP = MethodSpec::ACCESS_MAP;
 
-    private const RE_STATIC = '(?<static>!?static)';
-    private const RE_ACCESS = '(?<access>(?:!?public)|(?:!?protected)|(?:!?private))';
-    private const RE_ABSTRACT = '(?<abstract>!?abstract)';
-    private const RE_FINAL = '(?<final>!?final)';
-    private const RE_IDENT = '[a-zA-z_][0-9a-zA-Z_]*';
-    private const RE_NAME = '(?<name>'.self::RE_IDENT.')';
+    private const string RE_STATIC = '(?<static>!?static)';
+    private const string RE_ACCESS = '(?<access>(?:!?public)|(?:!?protected)|(?:!?private))';
+    private const string RE_ABSTRACT = '(?<abstract>!?abstract)';
+    private const string RE_FINAL = '(?<final>!?final)';
+    private const string RE_IDENT = '[a-zA-z_][0-9a-zA-Z_]*';
+    private const string RE_NAME = '(?<name>'.self::RE_IDENT.')';
 
     /**
      * Parses string containing method requirement specification.
@@ -58,7 +58,7 @@ final class MethodSpecFactory implements MethodSpecFactoryInterface
         $i = 4; // prevent endless loop (in case of a bug).
         while ($this->lookahead($expressions, $string, $matches) && $i > 0) {
             $this->handleModifiers($string, $matches, $abstract, $final, $static, $access);
-            $string = ltrim($string);
+            $string = ltrim((string) $string);
             --$i;
         }
 
@@ -66,7 +66,7 @@ final class MethodSpecFactory implements MethodSpecFactoryInterface
         if (!$this->lookahead($expressions, $string, $matches)) {
             throw new MethodSpecSyntaxError(sprintf('syntax error at "%s"', $string));
         }
-        $string = ltrim($string);
+        $string = ltrim((string) $string);
 
         $expressions = [self::RE_NAME];
         if (!$this->lookahead($expressions, $string, $matches)) {

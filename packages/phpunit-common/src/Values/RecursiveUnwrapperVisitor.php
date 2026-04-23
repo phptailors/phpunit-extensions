@@ -19,7 +19,7 @@ use Tailors\PHPUnit\CircularDependencyException;
  */
 final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
 {
-    public const UNIQUE_TAG = 'unwrapped-values:$1$zIlgusJc$ZZCyNRPOX1SbpKdzoD2hU/';
+    public const string UNIQUE_TAG = 'unwrapped-values:$1$zIlgusJc$ZZCyNRPOX1SbpKdzoD2hU/';
 
     /**
      * @var list<ValuesInterface>
@@ -31,7 +31,7 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
      */
     private array $result;
 
-    public function __construct(private bool $tagging = true)
+    public function __construct(private readonly bool $tagging = true)
     {
         $this->objectStack = [];
         $this->result = [];
@@ -48,6 +48,7 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
     /**
      * @param list<array-key> $path
      */
+    #[\Override]
     public function enter(array|ValuesInterface $node, array $path): bool
     {
         if ($node instanceof ValuesInterface) {
@@ -73,6 +74,7 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
     /**
      * @param list<array-key> $path
      */
+    #[\Override]
     public function leave(array|ValuesInterface $node, array $path, bool $iterating): void
     {
         if ($node instanceof ValuesInterface) {
@@ -90,6 +92,7 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
     /**
      * @param list<array-key> $path
      */
+    #[\Override]
     public function visit(mixed $node, array $path, bool $iterating): void
     {
         self::set($this->result, $path, $node);
@@ -102,6 +105,7 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
      *
      * @throws CircularDependencyException
      */
+    #[\Override]
     public function cycle(mixed $node, array $path): bool
     {
         self::throwCircular($path);
@@ -150,7 +154,7 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
      *
      * @throws CircularDependencyException
      */
-    private static function throwCircular(array $path): void
+    private static function throwCircular(array $path): never
     {
         $pathString = self::pathString($path);
 

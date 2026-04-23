@@ -17,16 +17,10 @@ namespace Tailors\PHPUnit\Values;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class RecursiveSelector implements RecursiveSelectorInterface
+final readonly class RecursiveSelector implements RecursiveSelectorInterface
 {
-    /**
-     * @var SelectionInterface
-     */
-    private $selection;
-
-    public function __construct(SelectionInterface $selection)
+    public function __construct(private SelectionInterface $selection)
     {
-        $this->selection = $selection;
     }
 
     /**
@@ -46,10 +40,7 @@ final class RecursiveSelector implements RecursiveSelectorInterface
         return new ActualValues($array);
     }
 
-    /**
-     * @param mixed $subject
-     */
-    private function selectArray($subject): array
+    private function selectArray(mixed $subject): array
     {
         $array = [];
         $selector = $this->selection->getSelector();
@@ -67,12 +58,10 @@ final class RecursiveSelector implements RecursiveSelectorInterface
     }
 
     /**
-     * @param mixed $actual
-     * @param mixed $expect
      *
      * @return mixed
      */
-    private static function adjustActualValueToExpectedValue($actual, $expect)
+    private static function adjustActualValueToExpectedValue(mixed $actual, mixed $expect)
     {
         if ($expect instanceof SelectionWrapperInterface) {
             $expect = $expect->getSelection();
@@ -88,11 +77,9 @@ final class RecursiveSelector implements RecursiveSelectorInterface
     }
 
     /**
-     * @param mixed $actual
-     *
      * @return mixed
      */
-    private static function adjustActualValueToSelection($actual, SelectionInterface $selection)
+    private static function adjustActualValueToSelection(mixed $actual, SelectionInterface $selection)
     {
         if ($selection->getSelector()->supports($actual)) {
             return (new RecursiveSelector($selection))->select($actual);

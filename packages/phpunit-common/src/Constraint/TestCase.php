@@ -26,10 +26,7 @@ use Tailors\PHPUnit\CircularDependencyException;
  */
 abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @param mixed $args
-     */
-    abstract public static function createConstraint(...$args): Constraint;
+    abstract public static function createConstraint(mixed ...$args): Constraint;
 
     /**
      * Returns constraint's class name.
@@ -68,7 +65,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
      * @throws ExpectationFailedException
      * @throws RuntimeException
      */
-    final public function examineConstraintUnaryOperatorFailure(array $args, $actual, string $message): void
+    final public function examineConstraintUnaryOperatorFailure(array $args, mixed $actual, string $message): void
     {
         $constraint = $this->createConstraint(...$args);
 
@@ -90,7 +87,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
      *
      * @throws ExpectationFailedException
      */
-    final public function examineConstraintMatchSucceeds(array $args, $actual): void
+    final public function examineConstraintMatchSucceeds(array $args, mixed $actual): void
     {
         $constraint = $this->createConstraint(...$args);
         self::assertThat($actual, $constraint);
@@ -98,13 +95,12 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
 
     /**
      * @param array  $args    arguments passed to createConstraint()
-     * @param mixed  $actual
      * @param string $message
      *
      * @throws ExpectationFailedException
      * @throws CircularDependencyException
      */
-    final public function examineConstraintMatchFails(array $args, $actual, string $message): void
+    final public function examineConstraintMatchFails(array $args, mixed $actual, string $message): void
     {
         $constraint = $this->createConstraint(...$args);
 
@@ -116,14 +112,12 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     }
 
     // @codeCoverageIgnoreEnd
-
     /**
      * @param array $args   arguments passed to createConstraint()
-     * @param mixed $actual
      *
      * @throws ExpectationFailedException
      */
-    final public function examineNotConstraintMatchSucceeds(array $args, $actual): void
+    final public function examineNotConstraintMatchSucceeds(array $args, mixed $actual): void
     {
         $constraint = self::logicalNot($this->createConstraint(...$args));
         self::assertThat($actual, $constraint);
@@ -131,12 +125,10 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
 
     /**
      * @param array  $args    arguments passed to createConstraint()
-     * @param mixed  $actual
      * @param string $message
-     *
      * @throws ExpectationFailedException
      */
-    final public function examineNotConstraintMatchFails(array $args, $actual, string $message): void
+    final public function examineNotConstraintMatchFails(array $args, mixed $actual, string $message): void
     {
         $constraint = self::logicalNot($this->createConstraint(...$args));
 
@@ -161,7 +153,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         int $precedence = 1
     ): UnaryOperator {
         return new class($constraint, $operator, $precedence) extends UnaryOperator {
-            public function __construct(Constraint $constraint, private string $operator, private int $precedence)
+            public function __construct(Constraint $constraint, private readonly string $operator, private readonly int $precedence)
             {
                 parent::__construct($constraint);
             }
