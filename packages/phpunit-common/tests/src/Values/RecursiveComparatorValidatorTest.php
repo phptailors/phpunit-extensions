@@ -106,7 +106,7 @@ final class RecursiveComparatorValidatorTest extends TestCase
                 ],
                 'expect' => [
                     'exception' => InvalidArgumentException::class,
-                    'message'   => self::makeFailureMessage(123, __CLASS__.'::testValidate', 'EqualityComparator', 1),
+                    'message'   => self::makeFailureMessage(123, self::class.'::testValidate', 'EqualityComparator', 1),
                 ],
             ],
 
@@ -120,7 +120,7 @@ final class RecursiveComparatorValidatorTest extends TestCase
                 ],
                 'expect' => [
                     'exception' => InvalidArgumentException::class,
-                    'message'   => self::makeFailureMessage(123, __CLASS__.'::testValidate', 'IdentityComparator', 1),
+                    'message'   => self::makeFailureMessage(123, self::class.'::testValidate', 'IdentityComparator', 1),
                 ],
             ],
 
@@ -139,7 +139,7 @@ final class RecursiveComparatorValidatorTest extends TestCase
                 ],
                 'expect' => [
                     'exception' => InvalidArgumentException::class,
-                    'message'   => self::makeFailureMessage(11, __CLASS__.'::testValidate', 'EqualityComparator', 2),
+                    'message'   => self::makeFailureMessage(11, self::class.'::testValidate', 'EqualityComparator', 2),
                 ],
             ],
 
@@ -159,7 +159,7 @@ final class RecursiveComparatorValidatorTest extends TestCase
                 ],
                 'expect' => [
                     'exception' => InvalidArgumentException::class,
-                    'message'   => self::makeFailureMessage(123, __CLASS__.'::testValidate', 'EqualityComparator', 2),
+                    'message'   => self::makeFailureMessage(123, self::class.'::testValidate', 'EqualityComparator', 2),
                 ],
             ],
 
@@ -174,7 +174,7 @@ final class RecursiveComparatorValidatorTest extends TestCase
                 ],
                 'expect' => [
                     'exception' => InvalidArgumentException::class,
-                    'message'   => self::makeFailureMessage(123, __CLASS__.'::testValidate', 'EqualityComparator', 2),
+                    'message'   => self::makeFailureMessage(123, self::class.'::testValidate', 'EqualityComparator', 2),
                 ],
             ],
         ];
