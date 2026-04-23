@@ -15,18 +15,13 @@ namespace Tailors\PHPUnit\Values;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class DummySelectionWrapper implements SelectionWrapperInterface
+final readonly class DummySelectionWrapper implements SelectionWrapperInterface
 {
-    /**
-     * @var SelectionInterface
-     */
-    private $selection;
-
-    public function __construct(SelectionInterface $selection)
+    public function __construct(private SelectionInterface $selection)
     {
-        $this->selection = $selection;
     }
 
+    #[\Override]
     public function getSelection(): SelectionInterface
     {
         return $this->selection;

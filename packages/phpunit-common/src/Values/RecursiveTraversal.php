@@ -29,7 +29,7 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
     /**
      * Initializes the object.
      */
-    public function __construct(private bool $noUnwrapValuesWrappers = false, private bool $noWalkNestedValuesInterface = false)
+    public function __construct(private readonly bool $noUnwrapValuesWrappers = false, private readonly bool $noWalkNestedValuesInterface = false)
     {
         $this->seen = new ReferenceStorage();
         $this->path = [];
@@ -39,6 +39,7 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
      * Walk recursively through $values and unwrap nested instances of
      * ValuesInterface when suitable.
      */
+    #[\Override]
     public function walk(ValuesInterface $values, RecursiveVisitorInterface $visitor): void
     {
         $this->seen = new ReferenceStorage();
