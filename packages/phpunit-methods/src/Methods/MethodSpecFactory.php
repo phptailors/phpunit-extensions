@@ -85,6 +85,7 @@ final class MethodSpecFactory implements MethodSpecFactoryInterface
     /**
      * @psalm-param array<string> $expressions
      *
+     * @psalm-param-out string $string
      * @psalm-param-out array<string> $matches
      */
     private function lookahead(array &$expressions, string &$string, ?array &$matches = null): bool
