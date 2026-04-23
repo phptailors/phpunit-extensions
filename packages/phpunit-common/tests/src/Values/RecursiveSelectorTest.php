@@ -51,239 +51,237 @@ final class RecursiveSelectorTest extends TestCase
     }
 
     //
-    // selectProperties()
+    // select()
     //
 
-    public static function provSelect(): array
+    public static function provSelect(): iterable
     {
-        return [
-            'RecursiveSelectorTest.php:'.__LINE__ => [
-                'selection' => self::createSelection([]),
-                'subject'   => [],
-                'expect'    => [
-                    self::UNIQUE_TAG => true,
+        yield 'RecursiveSelectorTest.php:'.__LINE__ => [
+            'selection' => self::createSelection([]),
+            'subject'   => [],
+            'expect'    => [
+                self::UNIQUE_TAG => true,
+            ],
+        ];
+
+        yield 'RecursiveSelectorTest.php:'.__LINE__ => [
+            'selection' => self::createSelection([
+                'foo' => 'e:FOO',
+            ]),
+            'subject' => [
+                'foo' => 'a:FOO',
+            ],
+            'expect' => [
+                'foo'            => 'a:FOO',
+                self::UNIQUE_TAG => true,
+            ],
+        ];
+
+        yield 'RecursiveSelectorTest.php:'.__LINE__ => [
+            'selection' => self::createSelection([
+                'foo' => 'e:FOO',
+                'bar' => [
+                    'baz' => 'e:BAZ',
+                ],
+            ]),
+            'subject' => [
+                'foo' => 'a:FOO',
+                'bar' => [
+                    'baz' => 'a:BAZ',
                 ],
             ],
-
-            'RecursiveSelectorTest.php:'.__LINE__ => [
-                'selection' => self::createSelection([
-                    'foo' => 'e:FOO',
-                ]),
-                'subject' => [
-                    'foo' => 'a:FOO',
+            'expect' => [
+                'foo' => 'a:FOO',
+                'bar' => [
+                    'baz' => 'a:BAZ',
                 ],
-                'expect' => [
-                    'foo'            => 'a:FOO',
-                    self::UNIQUE_TAG => true,
+                self::UNIQUE_TAG => true,
+            ],
+        ];
+
+        yield 'RecursiveSelectorTest.php:'.__LINE__ => [
+            'selection' => self::createSelection([
+                'foo' => 'e:FOO',
+                'bar' => [
+                    'baz' => 'e:BAZ',
+                ],
+            ]),
+            'subject' => [
+                'foo' => 'a:FOO',
+                'bar' => 'a:BAR',
+            ],
+            'expect' => [
+                'foo'            => 'a:FOO',
+                'bar'            => 'a:BAR',
+                self::UNIQUE_TAG => true,
+            ],
+        ];
+
+        yield 'RecursiveSelectorTest.php:'.__LINE__ => [
+            'selection' => self::createSelection([
+                'foo' => 'e:FOO',
+                'bar' => self::createSelection([
+                    'baz' => 'e:BAZ',
+                ]),
+            ]),
+            'subject' => [
+                'foo' => 'a:FOO',
+                'bar' => [
+                    'baz' => 'a:BAZ',
+                    'qux' => 'a:QUX',
                 ],
             ],
-
-            'RecursiveSelectorTest.php:'.__LINE__ => [
-                'selection' => self::createSelection([
-                    'foo' => 'e:FOO',
-                    'bar' => [
-                        'baz' => 'e:BAZ',
-                    ],
-                ]),
-                'subject' => [
-                    'foo' => 'a:FOO',
-                    'bar' => [
-                        'baz' => 'a:BAZ',
-                    ],
-                ],
-                'expect' => [
-                    'foo' => 'a:FOO',
-                    'bar' => [
-                        'baz' => 'a:BAZ',
-                    ],
+            'expect' => [
+                'foo' => 'a:FOO',
+                'bar' => [
+                    'baz'            => 'a:BAZ',
                     self::UNIQUE_TAG => true,
+                ],
+                self::UNIQUE_TAG => true,
+            ],
+        ];
+
+        yield 'RecursiveSelectorTest.php:'.__LINE__ => [
+            'selection' => self::createSelection([
+                'foo' => 'e:FOO',
+                'bar' => self::createSelectionWrapper([
+                    'baz' => 'e:BAZ',
+                ]),
+            ]),
+            'subject' => [
+                'foo' => 'a:FOO',
+                'bar' => [
+                    'baz' => 'a:BAZ',
+                    'qux' => 'a:QUX',
                 ],
             ],
-
-            'RecursiveSelectorTest.php:'.__LINE__ => [
-                'selection' => self::createSelection([
-                    'foo' => 'e:FOO',
-                    'bar' => [
-                        'baz' => 'e:BAZ',
-                    ],
-                ]),
-                'subject' => [
-                    'foo' => 'a:FOO',
-                    'bar' => 'a:BAR',
-                ],
-                'expect' => [
-                    'foo'            => 'a:FOO',
-                    'bar'            => 'a:BAR',
+            'expect' => [
+                'foo' => 'a:FOO',
+                'bar' => [
+                    'baz'            => 'a:BAZ',
                     self::UNIQUE_TAG => true,
                 ],
+                self::UNIQUE_TAG => true,
             ],
+        ];
 
-            'RecursiveSelectorTest.php:'.__LINE__ => [
-                'selection' => self::createSelection([
-                    'foo' => 'e:FOO',
-                    'bar' => self::createSelection([
-                        'baz' => 'e:BAZ',
-                    ]),
+        yield 'RecursiveSelectorTest.php:'.__LINE__ => [
+            'selection' => self::createSelection([
+                'foo' => 'e:FOO',
+                'bar' => self::createSelection([
+                    'baz' => 'e:BAZ',
                 ]),
-                'subject' => [
-                    'foo' => 'a:FOO',
-                    'bar' => [
-                        'baz' => 'a:BAZ',
-                        'qux' => 'a:QUX',
-                    ],
-                ],
-                'expect' => [
-                    'foo' => 'a:FOO',
-                    'bar' => [
-                        'baz'            => 'a:BAZ',
-                        self::UNIQUE_TAG => true,
-                    ],
-                    self::UNIQUE_TAG => true,
-                ],
+            ]),
+            'subject' => [
+                'foo' => 'a:FOO',
+                'bar' => new \ArrayObject([
+                    'baz' => 'a:BAZ',
+                    'qux' => 'a:QUX',
+                ]),
             ],
-
-            'RecursiveSelectorTest.php:'.__LINE__ => [
-                'selection' => self::createSelection([
-                    'foo' => 'e:FOO',
-                    'bar' => self::createSelectionWrapper([
-                        'baz' => 'e:BAZ',
-                    ]),
-                ]),
-                'subject' => [
-                    'foo' => 'a:FOO',
-                    'bar' => [
-                        'baz' => 'a:BAZ',
-                        'qux' => 'a:QUX',
-                    ],
-                ],
-                'expect' => [
-                    'foo' => 'a:FOO',
-                    'bar' => [
-                        'baz'            => 'a:BAZ',
-                        self::UNIQUE_TAG => true,
-                    ],
+            'expect' => [
+                'foo' => 'a:FOO',
+                'bar' => [
+                    'baz'            => 'a:BAZ',
                     self::UNIQUE_TAG => true,
                 ],
+                self::UNIQUE_TAG => true,
             ],
+        ];
 
-            'RecursiveSelectorTest.php:'.__LINE__ => [
-                'selection' => self::createSelection([
-                    'foo' => 'e:FOO',
-                    'bar' => self::createSelection([
-                        'baz' => 'e:BAZ',
-                    ]),
+        yield 'RecursiveSelectorTest.php:'.__LINE__ => [
+            'selection' => self::createSelection([
+                'foo' => 'e:FOO',
+                'bar' => self::createSelectionWrapper([
+                    'baz' => 'e:BAZ',
                 ]),
-                'subject' => [
-                    'foo' => 'a:FOO',
-                    'bar' => new \ArrayObject([
-                        'baz' => 'a:BAZ',
-                        'qux' => 'a:QUX',
-                    ]),
-                ],
-                'expect' => [
-                    'foo' => 'a:FOO',
-                    'bar' => [
-                        'baz'            => 'a:BAZ',
-                        self::UNIQUE_TAG => true,
-                    ],
-                    self::UNIQUE_TAG => true,
-                ],
+            ]),
+            'subject' => [
+                'foo' => 'a:FOO',
+                'bar' => new \ArrayObject([
+                    'baz' => 'a:BAZ',
+                    'qux' => 'a:QUX',
+                ]),
             ],
-
-            'RecursiveSelectorTest.php:'.__LINE__ => [
-                'selection' => self::createSelection([
-                    'foo' => 'e:FOO',
-                    'bar' => self::createSelectionWrapper([
-                        'baz' => 'e:BAZ',
-                    ]),
-                ]),
-                'subject' => [
-                    'foo' => 'a:FOO',
-                    'bar' => new \ArrayObject([
-                        'baz' => 'a:BAZ',
-                        'qux' => 'a:QUX',
-                    ]),
-                ],
-                'expect' => [
-                    'foo' => 'a:FOO',
-                    'bar' => [
-                        'baz'            => 'a:BAZ',
-                        self::UNIQUE_TAG => true,
-                    ],
+            'expect' => [
+                'foo' => 'a:FOO',
+                'bar' => [
+                    'baz'            => 'a:BAZ',
                     self::UNIQUE_TAG => true,
                 ],
+                self::UNIQUE_TAG => true,
             ],
+        ];
 
-            'RecursiveSelectorTest.php:'.__LINE__ => [
-                'selection' => self::createSelection([
-                    'foo' => 'e:FOO',
-                    'bar' => self::createSelection([
-                        'baz' => 'e:BAZ',
-                    ]),
+        yield 'RecursiveSelectorTest.php:'.__LINE__ => [
+            'selection' => self::createSelection([
+                'foo' => 'e:FOO',
+                'bar' => self::createSelection([
+                    'baz' => 'e:BAZ',
                 ]),
-                'subject' => [
-                    'foo' => 'a:FOO',
-                    'bar' => 'a:BAR',
-                ],
-                'expect' => [
-                    'foo'            => 'a:FOO',
-                    'bar'            => 'a:BAR',
-                    self::UNIQUE_TAG => true,
-                ],
+            ]),
+            'subject' => [
+                'foo' => 'a:FOO',
+                'bar' => 'a:BAR',
             ],
-
-            'RecursiveSelectorTest.php:'.__LINE__ => [
-                'selection' => self::createSelection([
-                    'foo' => 'e:FOO',
-                    'bar' => self::createSelectionWrapper([
-                        'baz' => 'e:BAZ',
-                    ]),
-                ]),
-                'subject' => [
-                    'foo' => 'a:FOO',
-                    'bar' => 'a:BAR',
-                ],
-                'expect' => [
-                    'foo'            => 'a:FOO',
-                    'bar'            => 'a:BAR',
-                    self::UNIQUE_TAG => true,
-                ],
+            'expect' => [
+                'foo'            => 'a:FOO',
+                'bar'            => 'a:BAR',
+                self::UNIQUE_TAG => true,
             ],
+        ];
 
-            'RecursiveSelectorTest.php:'.__LINE__ => [
-                'selection' => self::createSelection([
-                    'foo' => 'e:FOO',
-                    'bar' => self::createSelection([
-                        'baz' => 'e:BAZ',
-                    ]),
+        yield 'RecursiveSelectorTest.php:'.__LINE__ => [
+            'selection' => self::createSelection([
+                'foo' => 'e:FOO',
+                'bar' => self::createSelectionWrapper([
+                    'baz' => 'e:BAZ',
                 ]),
-                'subject' => [
-                    'foo' => 'a:FOO',
-                    'bar' => 'a:BAR',
-                ],
-                'expect' => [
-                    'foo'            => 'a:FOO',
-                    'bar'            => 'a:BAR',
-                    self::UNIQUE_TAG => true,
-                ],
+            ]),
+            'subject' => [
+                'foo' => 'a:FOO',
+                'bar' => 'a:BAR',
             ],
+            'expect' => [
+                'foo'            => 'a:FOO',
+                'bar'            => 'a:BAR',
+                self::UNIQUE_TAG => true,
+            ],
+        ];
 
-            'RecursiveSelectorTest.php:'.__LINE__ => [
-                'selection' => self::createSelection([
-                    'foo' => 'e:FOO',
-                    'bar' => self::createSelectionWrapper([
-                        'baz' => 'e:BAZ',
-                    ]),
+        yield 'RecursiveSelectorTest.php:'.__LINE__ => [
+            'selection' => self::createSelection([
+                'foo' => 'e:FOO',
+                'bar' => self::createSelection([
+                    'baz' => 'e:BAZ',
                 ]),
-                'subject' => [
-                    'foo' => 'a:FOO',
-                    'bar' => 'a:BAR',
-                ],
-                'expect' => [
-                    'foo'            => 'a:FOO',
-                    'bar'            => 'a:BAR',
-                    self::UNIQUE_TAG => true,
-                ],
+            ]),
+            'subject' => [
+                'foo' => 'a:FOO',
+                'bar' => 'a:BAR',
+            ],
+            'expect' => [
+                'foo'            => 'a:FOO',
+                'bar'            => 'a:BAR',
+                self::UNIQUE_TAG => true,
+            ],
+        ];
+
+        yield 'RecursiveSelectorTest.php:'.__LINE__ => [
+            'selection' => self::createSelection([
+                'foo' => 'e:FOO',
+                'bar' => self::createSelectionWrapper([
+                    'baz' => 'e:BAZ',
+                ]),
+            ]),
+            'subject' => [
+                'foo' => 'a:FOO',
+                'bar' => 'a:BAR',
+            ],
+            'expect' => [
+                'foo'            => 'a:FOO',
+                'bar'            => 'a:BAR',
+                self::UNIQUE_TAG => true,
             ],
         ];
     }
