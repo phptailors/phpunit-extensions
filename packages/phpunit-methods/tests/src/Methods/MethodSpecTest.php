@@ -10,19 +10,17 @@
 
 namespace Tailors\PHPUnit\Methods;
 
-use PHPUnit\Framework\Attributes\Small;
 use Closure;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use ReflectionMethod;
 
 /**
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
- *
  */
 #[CoversClass(MethodSpec::class)]
 #[Small]

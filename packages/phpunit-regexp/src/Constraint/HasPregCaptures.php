@@ -49,9 +49,7 @@ final class HasPregCaptures extends Constraint
          */
         private readonly array $expected,
         private readonly CapturesFilterInterface $filter
-    )
-    {
-    }
+    ) {}
 
     /**
      * Initializes the constraint.
@@ -221,7 +219,6 @@ final class HasPregCaptures extends Constraint
     }
 
     /**
-     *
      * @psalm-param array<array-key, string|null|array{0:string|null,1:int}> $matches
      * @psalm-param array-key $key
      * @psalm-param CaptureExpectation $value
@@ -238,7 +235,6 @@ final class HasPregCaptures extends Constraint
     }
 
     /**
-     *
      * @psalm-param array<array-key, string|null|array{0:string|null,1:int}> $matches
      * @psalm-param array-key $key
      */
@@ -250,7 +246,6 @@ final class HasPregCaptures extends Constraint
     }
 
     /**
-     *
      * @psalm-param array-key $key
      * @psalm-param array<array-key, PregMatchCaptured> $matches
      */

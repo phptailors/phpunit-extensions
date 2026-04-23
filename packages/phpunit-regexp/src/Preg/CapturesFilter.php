@@ -20,14 +20,7 @@ final readonly class CapturesFilter implements CapturesFilterInterface
     /**
      * @param int $flags PREG_* flags such as PREG_UNMATCHED_AS_NULL or PREG_OFFSET_CAPTURE
      */
-    public function __construct(
-        /**
-         * @psalm-readonly
-         */
-        private int $flags = 0
-    )
-    {
-    }
+    public function __construct(private int $flags = 0) {}
 
     /**
      * Filter-out all elements of $array with $this->accepts().
@@ -38,7 +31,7 @@ final readonly class CapturesFilter implements CapturesFilterInterface
      */
     public function filter(array $array): array
     {
-        return array_filter($array, $this->accepts(...));
+        return array_filter($array, fn (mixed $val) => $this->accepts($val));
     }
 
     /**

@@ -10,20 +10,18 @@
 
 namespace Tailors\PHPUnit;
 
-use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Constraint\ArrayValuesIdenticalTo;
 use Tailors\PHPUnit\Constraint\ProvArrayValuesTrait;
 
 /**
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
- *
  */
 #[CoversClass(ArrayValuesIdenticalToTrait::class)]
 #[Small]

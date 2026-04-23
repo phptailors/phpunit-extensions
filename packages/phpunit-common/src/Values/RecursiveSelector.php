@@ -19,9 +19,7 @@ namespace Tailors\PHPUnit\Values;
  */
 final readonly class RecursiveSelector implements RecursiveSelectorInterface
 {
-    public function __construct(private SelectionInterface $selection)
-    {
-    }
+    public function __construct(private SelectionInterface $selection) {}
 
     /**
      * Select an array of values from $subject.
@@ -57,7 +55,6 @@ final readonly class RecursiveSelector implements RecursiveSelectorInterface
     }
 
     /**
-     *
      * @return mixed
      */
     private static function adjustActualValueToExpectedValue(mixed $actual, mixed $expect)

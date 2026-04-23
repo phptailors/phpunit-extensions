@@ -33,9 +33,7 @@ abstract class AbstractConstraint extends Constraint
          * @psalm-readonly
          */
         private readonly string $expected
-    )
-    {
-    }
+    ) {}
 
     /**
      * Returns a string representation of the constraint.

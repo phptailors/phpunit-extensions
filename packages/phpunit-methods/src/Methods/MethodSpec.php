@@ -60,8 +60,8 @@ final readonly class MethodSpec implements MethodSpecInterface
      */
     public function __construct(
         /**
-         *
          * @psalm-var non-empty-string
+         *
          * @psalm-readonly
          */
         private string $name,
@@ -81,9 +81,7 @@ final readonly class MethodSpec implements MethodSpecInterface
          * @psalm-readonly
          */
         private ?bool $final = null
-    )
-    {
-    }
+    ) {}
 
     /**
      * {@inheridoc}.

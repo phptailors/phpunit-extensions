@@ -10,19 +10,17 @@
 
 namespace Tailors\PHPUnit\Values;
 
-use PHPUnit\Framework\Attributes\Small;
 use ArrayObject;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\InvalidArgumentException;
 
 /**
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
- *
  */
 #[CoversClass(AbstractValueSelector::class)]
 #[CoversClass(ArrayValueSelector::class)]
@@ -185,7 +183,6 @@ final class ArrayValueSelectorTest extends TestCase
 
     // @codeCoverageIgnoreEnd
     /**
-     *
      * @psalm-param array|ArrayObject $subject
      */
     #[DataProvider('provSelect')]

@@ -10,9 +10,9 @@
 
 namespace Tailors\PHPUnit\Values;
 
-use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\InvalidArgumentException;
 
@@ -27,11 +27,9 @@ final class ClassWithNonStaticMethodFooBLSGG
 }
 
 /**
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
- *
  */
 #[CoversClass(AbstractPropertySelector::class)]
 #[CoversClass(AbstractValueSelector::class)]

@@ -10,9 +10,9 @@
 
 namespace Tailors\PHPUnit;
 
-use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Constraint\UsesTrait;
@@ -22,11 +22,9 @@ use Tailors\PHPUnit\Examples\Inheritance\ExampleTrait;
 use Tailors\PHPUnit\Examples\Inheritance\ExampleTraitUsingTrait;
 
 /**
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
- *
  */
 #[CoversClass(UsesTraitTrait::class)]
 #[Small]

@@ -10,18 +10,16 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
-use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Constraint\Constraint;
 use Tailors\PHPUnit\Values\ConstraintTestCase;
 
 /**
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
- *
  */
 #[CoversClass(ClassPropertiesIdenticalTo::class)]
 #[CoversClass(PropertiesConstraintTestCase::class)]
