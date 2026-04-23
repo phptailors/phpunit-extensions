@@ -115,6 +115,7 @@ abstract class ConstraintTestCase extends TestCase
     /**
      * @param array  $expect
      * @param string $string
+     *
      * @throws ExpectationFailedException
      */
     final public function examineNotValuesMatchFails(array $expect, mixed $actual, string $string): void

@@ -39,7 +39,6 @@ abstract class AbstractValueSelector implements ValueSelectorInterface
     }
 
     /**
-     *
      * @psalm-param SubjectType $subject
      * @psalm-param array-key $key
      */
@@ -48,8 +47,9 @@ abstract class AbstractValueSelector implements ValueSelectorInterface
     /**
      * @psalm-assert SubjectType $subject
      *
-     * @param int   $argument
-     * @param int   $distance
+     * @param int $argument
+     * @param int $distance
+     *
      * @throws InvalidArgumentException
      */
     final protected function assertSupports(mixed $subject, int $argument, int $distance = 1): void

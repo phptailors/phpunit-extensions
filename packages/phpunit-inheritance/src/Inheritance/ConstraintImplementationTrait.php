@@ -92,7 +92,6 @@ trait ConstraintImplementationTrait
     }
 
     /**
-     *
      * @psalm-template ValueType $value
      *
      * @psalm-param ValueType $value

@@ -64,8 +64,7 @@ final readonly class MethodSpec implements MethodSpecInterface
         private ?int $access = null,
         private ?bool $abstract = null,
         private ?bool $final = null
-    ) {
-    }
+    ) {}
 
     /**
      * {@inheridoc}.
