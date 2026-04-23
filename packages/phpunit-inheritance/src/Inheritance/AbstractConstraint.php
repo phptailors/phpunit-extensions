@@ -28,9 +28,7 @@ abstract class AbstractConstraint extends Constraint
     /**
      * Initializes the constraint.
      */
-    protected function __construct(private readonly string $expected)
-    {
-    }
+    protected function __construct(private readonly string $expected) {}
 
     /**
      * Returns a string representation of the constraint.

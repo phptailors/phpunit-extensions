@@ -49,7 +49,6 @@ abstract class AbstractPropertySelector extends AbstractValueSelector
     }
 
     /**
-     *
      * @psalm-param SubjectType $subject
      * @psalm-param array-key $key
      *
@@ -77,7 +76,6 @@ abstract class AbstractPropertySelector extends AbstractValueSelector
     }
 
     /**
-     *
      * @param-out mixed $retval
      *
      * @psalm-param SubjectType $subject

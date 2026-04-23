@@ -28,9 +28,7 @@ final class RecursiveUnwrapper implements RecursiveUnwrapperInterface
      *                      If true, then a unique tag will be appended to the end of every
      *                      array that results from unwrapping of array of properties
      */
-    public function __construct(private readonly bool $tagging = true)
-    {
-    }
+    public function __construct(private readonly bool $tagging = true) {}
 
     /**
      * Walk recursively through $values and unwrap nested instances of

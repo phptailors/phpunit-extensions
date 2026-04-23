@@ -24,6 +24,7 @@ final class InvalidReturnValueException extends \LogicException implements Excep
      * @psalm-template ActualType
      *
      * @psalm-param ActualType $actualValue
+     *
      * @param-out ActualType $actualValue
      */
     public static function fromExpectedTypeAndActualValue(mixed $function, string $expectedType, mixed &$actualValue): self

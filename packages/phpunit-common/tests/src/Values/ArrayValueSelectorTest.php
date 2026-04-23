@@ -185,7 +185,6 @@ final class ArrayValueSelectorTest extends TestCase
     /**
      * @dataProvider provSelect
      *
-     *
      * @psalm-param array|\ArrayObject $subject
      */
     public function testSelect(mixed $subject, mixed $key, mixed $return, mixed $expect): void

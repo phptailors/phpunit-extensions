@@ -17,9 +17,7 @@ namespace Tailors\PHPUnit\Comparator;
  */
 final class DummyComparatorWrapper implements ComparatorWrapperInterface
 {
-    public function __construct(private readonly ComparatorInterface $comparator)
-    {
-    }
+    public function __construct(private readonly ComparatorInterface $comparator) {}
 
     public function getComparator(): ComparatorInterface
     {

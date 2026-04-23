@@ -38,7 +38,6 @@ interface CapturesFilterInterface
      *      - $value[0] is a string or PREG_UNMATCHED_AS_NULL is set and $value is null, and
      *      - $value[1] is an integer,
      *
-     *
      * @psalm-assert-if-true string|null|array{0:string|null,1:int} $value
      */
     public function accepts(mixed $value): bool;

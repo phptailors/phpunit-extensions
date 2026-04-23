@@ -28,9 +28,7 @@ abstract class AbstractKsortedConstraint extends Constraint implements Comparato
 {
     use ShortFailureDescriptionTrait;
 
-    final protected function __construct(private ComparatorInterface $comparator, private array $expected, private int $flags)
-    {
-    }
+    final protected function __construct(private ComparatorInterface $comparator, private array $expected, private int $flags) {}
 
     /**
      * Returns an instance of ComparatorInterface which implements comparison operator.

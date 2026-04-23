@@ -31,7 +31,6 @@ final class HasMethodTraitTest extends TestCase
     /**
      * @dataProvider provHasMethodSucceeds
      *
-     *
      * @psalm-param non-empty-string $method
      */
     public function testHasMethodSucceeds(string $method, mixed $subject)
@@ -42,7 +41,6 @@ final class HasMethodTraitTest extends TestCase
     /**
      * @dataProvider provHasMethodSucceeds
      *
-     *
      * @psalm-param non-empty-string $method
      */
     public function testAssertHasMethodSucceeds(string $method, mixed $subject)
@@ -52,7 +50,6 @@ final class HasMethodTraitTest extends TestCase
 
     /**
      * @dataProvider provHasMethodFails
-     *
      *
      * @psalm-param non-empty-string $method
      */
@@ -67,7 +64,6 @@ final class HasMethodTraitTest extends TestCase
     /**
      * @dataProvider provHasMethodFails
      *
-     *
      * @psalm-param non-empty-string $method
      */
     public function testNotHasMethodSucceeds(string $method, mixed $subject)
@@ -78,7 +74,6 @@ final class HasMethodTraitTest extends TestCase
     /**
      * @dataProvider provHasMethodFails
      *
-     *
      * @psalm-param non-empty-string $method
      */
     public function testAssertNotHasMethodSucceeds(string $method, mixed $subject)
@@ -88,7 +83,6 @@ final class HasMethodTraitTest extends TestCase
 
     /**
      * @dataProvider provHasMethodSucceeds
-     *
      *
      * @psalm-param non-empty-string $method
      */

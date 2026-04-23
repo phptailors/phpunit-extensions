@@ -101,7 +101,6 @@ final class ConstraintTestCaseTest extends ConstraintTestCase
     }
 
     /**
-     *
      * @dataProvider provArrayValuesEqualButNotIdenticalTo
      * @dataProvider provArrayValuesNotEqualTo
      */
@@ -111,7 +110,6 @@ final class ConstraintTestCaseTest extends ConstraintTestCase
     }
 
     /**
-     *
      * @dataProvider provArrayValuesEqualButNotIdenticalTo
      * @dataProvider provArrayValuesNotEqualTo
      */

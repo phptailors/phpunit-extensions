@@ -77,7 +77,7 @@ final class RecursiveComparatorValidator
 
     private function visitComparator(ComparatorInterface $comparator): void
     {
-        if ($comparator::class !== $this->comparator::class) {
+        if ($this->comparator::class !== $comparator::class) {
             ++$this->failures;
         }
     }

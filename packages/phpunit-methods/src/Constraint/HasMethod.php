@@ -21,9 +21,7 @@ use Tailors\PHPUnit\Methods\MethodSpecSyntaxError;
  */
 final class HasMethod extends Constraint
 {
-    public function __construct(private readonly MethodSpecInterface $methodSpec)
-    {
-    }
+    public function __construct(private readonly MethodSpecInterface $methodSpec) {}
 
     /**
      * @throws InvalidArgumentException
