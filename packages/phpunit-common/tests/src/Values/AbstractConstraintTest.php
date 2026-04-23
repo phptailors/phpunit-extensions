@@ -298,9 +298,8 @@ final class AbstractConstraintTest extends TestCase
      * @dataProvider provEvaluate
      *
      * @param \Closure(TestCase):Constraint $constraint
-     * @param mixed                         $expect
      */
-    public function testEvaluate(\Closure $constraint, array $args, $expect): void
+    public function testEvaluate(\Closure $constraint, array $args, mixed $expect): void
     {
         if (is_array($expect)) {
             $this->expectException($expect['exception']);

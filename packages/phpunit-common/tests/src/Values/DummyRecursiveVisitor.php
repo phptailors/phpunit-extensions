@@ -26,7 +26,7 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
      * @param bool|\Closure(array|ValuesInterface,list<array-key>):bool $enter
      * @param bool|\Closure(array|ValuesInterface,list<array-key>):bool $cycle
      */
-    public function __construct(private bool|\Closure $enter = true, private bool|\Closure $cycle = false)
+    public function __construct(private readonly bool|\Closure $enter = true, private readonly bool|\Closure $cycle = false)
     {
         $this->trace = [];
     }

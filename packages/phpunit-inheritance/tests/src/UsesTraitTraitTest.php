@@ -84,20 +84,16 @@ final class UsesTraitTraitTest extends TestCase
 
     /**
      * @dataProvider provUsesTrait
-     *
-     * @param mixed $subject
      */
-    public function testAssertUsesTraitSucceeds(string $trait, $subject, string $message): void
+    public function testAssertUsesTraitSucceeds(string $trait, mixed $subject, string $message): void
     {
         self::assertUsesTrait($trait, $subject);
     }
 
     /**
      * @dataProvider provNotUsesTrait
-     *
-     * @param mixed $subject
      */
-    public function testAssertUsesTraitFails(string $trait, $subject, string $message): void
+    public function testAssertUsesTraitFails(string $trait, mixed $subject, string $message): void
     {
         self::expectException(ExpectationFailedException::class);
         self::expectExceptionMessage($message);
@@ -107,20 +103,16 @@ final class UsesTraitTraitTest extends TestCase
 
     /**
      * @dataProvider provNotUsesTrait
-     *
-     * @param mixed $subject
      */
-    public function testAssertNotUsesTraitSucceeds(string $trait, $subject, string $message): void
+    public function testAssertNotUsesTraitSucceeds(string $trait, mixed $subject, string $message): void
     {
         self::assertNotUsesTrait($trait, $subject);
     }
 
     /**
      * @dataProvider provUsesTrait
-     *
-     * @param mixed $subject
      */
-    public function testAssertNotUsesTraitFails(string $trait, $subject, string $message): void
+    public function testAssertNotUsesTraitFails(string $trait, mixed $subject, string $message): void
     {
         self::expectException(ExpectationFailedException::class);
         self::expectExceptionMessage($message);
@@ -130,20 +122,16 @@ final class UsesTraitTraitTest extends TestCase
 
     /**
      * @dataProvider provUsesTrait
-     *
-     * @param mixed $subject
      */
-    public function testUsesTrait(string $trait, $subject, string $message): void
+    public function testUsesTrait(string $trait, mixed $subject, string $message): void
     {
         self::assertThat($subject, self::usesTrait($trait));
     }
 
     /**
      * @dataProvider provNotUsesTrait
-     *
-     * @param mixed $subject
      */
-    public function testNotUsesTrait(string $trait, $subject, string $message): void
+    public function testNotUsesTrait(string $trait, mixed $subject, string $message): void
     {
         self::assertThat($subject, self::logicalNot(self::usesTrait($trait)));
     }

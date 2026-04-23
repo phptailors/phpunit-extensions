@@ -17,7 +17,7 @@ namespace Tailors\PHPUnit\Values;
  */
 final class DummyValuesWrapper implements ValuesWrapperInterface
 {
-    public function __construct(private ValuesInterface $values) {}
+    public function __construct(private readonly ValuesInterface $values) {}
 
     public function getValues(): ValuesInterface
     {

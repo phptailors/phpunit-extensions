@@ -55,10 +55,8 @@ final class ArrayValuesIdenticalToTest extends ConstraintTestCase
 
     /**
      * @dataProvider provArrayValuesIdenticalTo
-     *
-     * @param mixed $actual
      */
-    public function testArrayValuesIdenticalToSucceeds(array $expect, $actual, string $string): void
+    public function testArrayValuesIdenticalToSucceeds(array $expect, mixed $actual, string $string): void
     {
         parent::examineValuesMatchSucceeds($expect, $actual);
     }
@@ -67,10 +65,8 @@ final class ArrayValuesIdenticalToTest extends ConstraintTestCase
      * @dataProvider provArrayValuesNotEqualTo
      * @dataProvider provArrayValuesEqualButNotIdenticalTo
      * @dataProvider provArrayValuesNotEqualToNonArray
-     *
-     * @param mixed $actual
      */
-    public function testArrayValuesIdenticalToFails(array $expect, $actual, string $string): void
+    public function testArrayValuesIdenticalToFails(array $expect, mixed $actual, string $string): void
     {
         parent::examineValuesMatchFails($expect, $actual, $string);
     }
@@ -81,20 +77,16 @@ final class ArrayValuesIdenticalToTest extends ConstraintTestCase
      * @dateProvider provArrayValuesEqualButNotIdenticalTo
      *
      * @dataProvider provArrayValuesNotEqualToNonArray
-     *
-     * @param mixed $actual
      */
-    public function testNotArrayValuesIdenticalToSucceeds(array $expect, $actual, string $string): void
+    public function testNotArrayValuesIdenticalToSucceeds(array $expect, mixed $actual, string $string): void
     {
         parent::examineNotValuesMatchSucceeds($expect, $actual);
     }
 
     /**
      * @dataProvider provArrayValuesIdenticalTo
-     *
-     * @param mixed $actual
      */
-    public function testNotArrayValuesIdenticalToFails(array $expect, $actual, string $string): void
+    public function testNotArrayValuesIdenticalToFails(array $expect, mixed $actual, string $string): void
     {
         parent::examineNotValuesMatchFails($expect, $actual, $string);
     }

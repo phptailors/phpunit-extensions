@@ -93,43 +93,37 @@ final class ConstraintTestCaseTest extends ConstraintTestCase
     }
 
     /**
-     * @param mixed $actual
-     *
      * @dataProvider provArrayValuesIdenticalTo
      */
-    public function testValuesMatchSucceeds(array $expect, $actual): void
+    public function testValuesMatchSucceeds(array $expect, mixed $actual): void
     {
         $this->examineValuesMatchSucceeds($expect, $actual);
     }
 
     /**
-     * @param mixed $actual
      *
      * @dataProvider provArrayValuesEqualButNotIdenticalTo
      * @dataProvider provArrayValuesNotEqualTo
      */
-    public function testValuesMatchFails(array $expect, $actual): void
+    public function testValuesMatchFails(array $expect, mixed $actual): void
     {
         $this->examineValuesMatchFails($expect, $actual, 'array');
     }
 
     /**
-     * @param mixed $actual
      *
      * @dataProvider provArrayValuesEqualButNotIdenticalTo
      * @dataProvider provArrayValuesNotEqualTo
      */
-    public function testNotValuesMatchSucceeds(array $expect, $actual): void
+    public function testNotValuesMatchSucceeds(array $expect, mixed $actual): void
     {
         $this->examineNotValuesMatchSucceeds($expect, $actual);
     }
 
     /**
-     * @param mixed $actual
-     *
      * @dataProvider provArrayValuesIdenticalTo
      */
-    public function testNotValuesMatchFails(array $expect, $actual): void
+    public function testNotValuesMatchFails(array $expect, mixed $actual): void
     {
         $this->examineNotValuesMatchFails($expect, $actual, 'array');
     }

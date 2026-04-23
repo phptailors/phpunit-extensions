@@ -91,9 +91,8 @@ final class InvalidReturnValueExceptionTest extends TestCase
      * @dataProvider provFromExpectedTypeAndActualValue
      *
      * @param array{0:object|string,1:string}|callable|string $function
-     * @param mixed                                           $actual
      */
-    public function testFromExpectedTypeAndActualValue($function, string $expected, $actual): void
+    public function testFromExpectedTypeAndActualValue($function, string $expected, mixed $actual): void
     {
         $name = self::getFunctionName($function);
         $actualType = is_object($actual) ? 'object' : gettype($actual);
@@ -108,7 +107,7 @@ final class InvalidReturnValueExceptionTest extends TestCase
         if (is_string($function)) {
             $name = $function;
         } elseif (is_array($function)) {
-            $name = sprintf('%s::%s', is_object($function[0]) ? get_class($function[0]) : $function[0], $function[1]);
+            $name = sprintf('%s::%s', is_object($function[0]) ? $function[0]::class : $function[0], $function[1]);
         } else {
             is_callable($function, true, $name);
         }

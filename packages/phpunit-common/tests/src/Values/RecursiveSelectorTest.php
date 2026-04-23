@@ -287,9 +287,8 @@ final class RecursiveSelectorTest extends TestCase
      * @dataProvider provSelect
      *
      * @param SelectionInterface $selection
-     * @param mixed              $subject
      */
-    public function testSelect(SelectionInterface $selection, $subject, array $expect): void
+    public function testSelect(SelectionInterface $selection, mixed $subject, array $expect): void
     {
         $selector = new RecursiveSelector($selection);
         $unwrapper = new RecursiveUnwrapper();

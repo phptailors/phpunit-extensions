@@ -29,20 +29,15 @@ final class ArrayValuesIdenticalToTraitTest extends TestCase
     use ArrayValuesIdenticalToTrait;
     use ProvArrayValuesTrait;
 
-    /**
-     * @param mixed $args
-     */
-    public static function createConstraint(...$args): ArrayValuesIdenticalTo
+    public static function createConstraint(mixed ...$args): ArrayValuesIdenticalTo
     {
         return ArrayValuesIdenticalTo::create(...$args);
     }
 
     /**
      * @dataProvider provArrayValuesIdenticalTo
-     *
-     * @param mixed $actual
      */
-    public function testArrayValuesIdenticalTo(array $expect, $actual, string $string)
+    public function testArrayValuesIdenticalTo(array $expect, mixed $actual, string $string)
     {
         self::assertThat($actual, self::arrayValuesIdenticalTo($expect));
     }
@@ -50,20 +45,16 @@ final class ArrayValuesIdenticalToTraitTest extends TestCase
     /**
      * @dataProvider provArrayValuesNotEqualTo
      * @dataProvider provArrayValuesEqualButNotIdenticalTo
-     *
-     * @param mixed $actual
      */
-    public function testLogicalNotArrayValuesIdenticalTo(array $expect, $actual, string $string)
+    public function testLogicalNotArrayValuesIdenticalTo(array $expect, mixed $actual, string $string)
     {
         self::assertThat($actual, self::logicalNot(self::arrayValuesIdenticalTo($expect)));
     }
 
     /**
      * @dataProvider provArrayValuesIdenticalTo
-     *
-     * @param mixed $actual
      */
-    public function testAssertArrayValuesIdenticalTo(array $expect, $actual, string $string)
+    public function testAssertArrayValuesIdenticalTo(array $expect, mixed $actual, string $string)
     {
         self::assertArrayValuesIdenticalTo($expect, $actual);
     }
@@ -71,10 +62,8 @@ final class ArrayValuesIdenticalToTraitTest extends TestCase
     /**
      * @dataProvider provArrayValuesNotEqualTo
      * @dataProvider provArrayValuesEqualButNotIdenticalTo
-     *
-     * @param mixed $actual
      */
-    public function testAssertArrayValuesIdenticalToFails(array $expect, $actual, string $string)
+    public function testAssertArrayValuesIdenticalToFails(array $expect, mixed $actual, string $string)
     {
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that .+ is an array or ArrayAccess '.
@@ -87,20 +76,16 @@ final class ArrayValuesIdenticalToTraitTest extends TestCase
 
     /**
      * @dataProvider provArrayValuesNotEqualTo
-     *
-     * @param mixed $actual
      */
-    public function testAssertNotArrayValuesIdenticalTo(array $expect, $actual, string $string)
+    public function testAssertNotArrayValuesIdenticalTo(array $expect, mixed $actual, string $string)
     {
         self::assertNotArrayValuesIdenticalTo($expect, $actual);
     }
 
     /**
      * @dataProvider provArrayValuesIdenticalTo
-     *
-     * @param mixed $actual
      */
-    public function testAssertNotArrayValuesIdenticalToFails(array $expect, $actual, string $string)
+    public function testAssertNotArrayValuesIdenticalToFails(array $expect, mixed $actual, string $string)
     {
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that .+ fails to be an array or ArrayAccess '.

@@ -29,10 +29,7 @@ final class ArrayValuesEqualToTraitTest extends TestCase
     use ArrayValuesEqualToTrait;
     use ProvArrayValuesTrait;
 
-    /**
-     * @param mixed $args
-     */
-    public static function createConstraint(...$args): ArrayValuesEqualTo
+    public static function createConstraint(mixed ...$args): ArrayValuesEqualTo
     {
         return ArrayValuesEqualTo::create(...$args);
     }
@@ -40,10 +37,8 @@ final class ArrayValuesEqualToTraitTest extends TestCase
     /**
      * @dataProvider provArrayValuesIdenticalTo
      * @dataProvider provArrayValuesEqualButNotIdenticalTo
-     *
-     * @param mixed $actual
      */
-    public function testArrayValuesEqualToSucceeds(array $expect, $actual, string $string)
+    public function testArrayValuesEqualToSucceeds(array $expect, mixed $actual, string $string)
     {
         self::assertThat($actual, self::arrayValuesEqualTo($expect));
     }
@@ -51,20 +46,16 @@ final class ArrayValuesEqualToTraitTest extends TestCase
     /**
      * @dataProvider provArrayValuesIdenticalTo
      * @dataProvider provArrayValuesEqualButNotIdenticalTo
-     *
-     * @param mixed $actual
      */
-    public function testAssertArrayValuesEqualToSucceeds(array $expect, $actual, string $string)
+    public function testAssertArrayValuesEqualToSucceeds(array $expect, mixed $actual, string $string)
     {
         self::assertArrayValuesEqualTo($expect, $actual);
     }
 
     /**
      * @dataProvider provArrayValuesNotEqualTo
-     *
-     * @param mixed $actual
      */
-    public function testAssertArrayValuesEqualToFails(array $expect, $actual, string $string)
+    public function testAssertArrayValuesEqualToFails(array $expect, mixed $actual, string $string)
     {
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that .+ is an array or ArrayAccess '.
@@ -77,20 +68,16 @@ final class ArrayValuesEqualToTraitTest extends TestCase
 
     /**
      * @dataProvider provArrayValuesNotEqualTo
-     *
-     * @param mixed $actual
      */
-    public function testNotArrayValuesEqualToSucceeds(array $expect, $actual, string $string)
+    public function testNotArrayValuesEqualToSucceeds(array $expect, mixed $actual, string $string)
     {
         self::assertThat($actual, self::logicalNot(self::arrayValuesEqualTo($expect)));
     }
 
     /**
      * @dataProvider provArrayValuesNotEqualTo
-     *
-     * @param mixed $actual
      */
-    public function testAssertNotArrayValuesEqualToSucceeds(array $expect, $actual, string $string)
+    public function testAssertNotArrayValuesEqualToSucceeds(array $expect, mixed $actual, string $string)
     {
         self::assertNotArrayValuesEqualTo($expect, $actual);
     }
@@ -98,10 +85,8 @@ final class ArrayValuesEqualToTraitTest extends TestCase
     /**
      * @dataProvider provArrayValuesIdenticalTo
      * @dataProvider provArrayValuesEqualButNotIdenticalTo
-     *
-     * @param mixed $actual
      */
-    public function testAssertNotArrayValuesEqualToFails(array $expect, $actual, string $string)
+    public function testAssertNotArrayValuesEqualToFails(array $expect, mixed $actual, string $string)
     {
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that .+ fails to be an array or ArrayAccess '.

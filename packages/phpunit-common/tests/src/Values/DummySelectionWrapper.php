@@ -17,14 +17,8 @@ namespace Tailors\PHPUnit\Values;
  */
 final class DummySelectionWrapper implements SelectionWrapperInterface
 {
-    /**
-     * @var SelectionInterface
-     */
-    private $selection;
-
-    public function __construct(SelectionInterface $selection)
+    public function __construct(private readonly SelectionInterface $selection)
     {
-        $this->selection = $selection;
     }
 
     public function getSelection(): SelectionInterface

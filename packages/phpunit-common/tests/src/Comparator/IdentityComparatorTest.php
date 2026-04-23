@@ -51,11 +51,8 @@ final class IdentityComparatorTest extends TestCase
 
     /**
      * @dataProvider provCompare
-     *
-     * @param mixed $left
-     * @param mixed $right
      */
-    public function testCompare($left, $right, bool $expect): void
+    public function testCompare(mixed $left, mixed $right, bool $expect): void
     {
         $comparator = new IdentityComparator();
         self::assertSame($expect, $comparator->compare($left, $right));

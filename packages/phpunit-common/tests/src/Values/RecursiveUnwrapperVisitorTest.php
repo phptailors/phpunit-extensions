@@ -281,11 +281,10 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
      *
      * @param array       $ctor
      * @param list<array> $calls
-     * @param mixed       $result
      *
      * @psalm-param non-empty-list<array{args: EnterArgsT, expect: mixed}> $calls
      */
-    public function testEnterLeave(array $ctor, array $calls, $result): void
+    public function testEnterLeave(array $ctor, array $calls, mixed $result): void
     {
         $visitor = new RecursiveUnwrapperVisitor(...$ctor);
 
@@ -389,11 +388,10 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
      * @dataProvider provVisit
      *
      * @param array $calls
-     * @param mixed $result
      *
      * @psalm-param non-empty-list<array{args: ArgsVisit}> $calls
      */
-    public function testVisit(array $calls, $result): void
+    public function testVisit(array $calls, mixed $result): void
     {
         $visitor = new RecursiveUnwrapperVisitor();
 

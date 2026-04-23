@@ -56,10 +56,8 @@ final class ArrayValuesEqualToTest extends ConstraintTestCase
     /**
      * @dataProvider provArrayValuesIdenticalTo
      * @dataProvider provArrayValuesEqualButNotIdenticalTo
-     *
-     * @param mixed $actual
      */
-    public function testArrayValuesEqualToSucceeds(array $expect, $actual, string $string): void
+    public function testArrayValuesEqualToSucceeds(array $expect, mixed $actual, string $string): void
     {
         parent::examineValuesMatchSucceeds($expect, $actual);
     }
@@ -67,10 +65,8 @@ final class ArrayValuesEqualToTest extends ConstraintTestCase
     /**
      * @dataProvider provArrayValuesNotEqualTo
      * @dataProvider provArrayValuesNotEqualToNonArray
-     *
-     * @param mixed $actual
      */
-    public function testArrayValuesEqualToFails(array $expect, $actual, string $string): void
+    public function testArrayValuesEqualToFails(array $expect, mixed $actual, string $string): void
     {
         parent::examineValuesMatchFails($expect, $actual, $string);
     }
@@ -78,10 +74,8 @@ final class ArrayValuesEqualToTest extends ConstraintTestCase
     /**
      * @dataProvider provArrayValuesNotEqualTo
      * @dataProvider provArrayValuesNotEqualToNonArray
-     *
-     * @param mixed $actual
      */
-    public function testNotArrayValuesEqualToSucceeds(array $expect, $actual, string $string): void
+    public function testNotArrayValuesEqualToSucceeds(array $expect, mixed $actual, string $string): void
     {
         parent::examineNotValuesMatchSucceeds($expect, $actual);
     }
@@ -89,10 +83,8 @@ final class ArrayValuesEqualToTest extends ConstraintTestCase
     /**
      * @dataProvider provArrayValuesIdenticalTo
      * @dataProvider provArrayValuesEqualButNotIdenticalTo
-     *
-     * @param mixed $actual
      */
-    public function testNotArrayValuesEqualToFails(array $expect, $actual, string $string): void
+    public function testNotArrayValuesEqualToFails(array $expect, mixed $actual, string $string): void
     {
         parent::examineNotValuesMatchFails($expect, $actual, $string);
     }

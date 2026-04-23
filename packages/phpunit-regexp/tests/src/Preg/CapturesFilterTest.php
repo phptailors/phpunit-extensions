@@ -183,10 +183,8 @@ final class CapturesFilterTest extends TestCase
 
     /**
      * @dataProvider provIsCapture
-     *
-     * @param mixed $value
      */
-    public function testIsCapture(array $args, $value, bool $expect): void
+    public function testIsCapture(array $args, mixed $value, bool $expect): void
     {
         $filter = new CapturesFilter(...$args);
         $this->assertSame($expect, $filter->accepts($value));

@@ -142,10 +142,8 @@ final class ExtendsClassTest extends TestCase
 
     /**
      * @dataProvider provExtendsClass
-     *
-     * @param mixed $subject
      */
-    public function testConstraintSucceeds(string $class, $subject, string $message = ''): void
+    public function testConstraintSucceeds(string $class, mixed $subject, string $message = ''): void
     {
         $constraint = ExtendsClass::create($class);
 
@@ -154,10 +152,8 @@ final class ExtendsClassTest extends TestCase
 
     /**
      * @dataProvider provNotExtendsClass
-     *
-     * @param mixed $subject
      */
-    public function testConstraintFails(string $class, $subject, string $message): void
+    public function testConstraintFails(string $class, mixed $subject, string $message): void
     {
         $constraint = ExtendsClass::create($class);
 

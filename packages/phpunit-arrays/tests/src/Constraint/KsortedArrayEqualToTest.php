@@ -53,10 +53,8 @@ final class KsortedArrayEqualToTest extends KsortedConstraintTestCase
     /**
      * @dataProvider provKsortedArrayIdenticalTo
      * @dataProvider provKsortedArrayEqualButNotIdenticalTo
-     *
-     * @param mixed $actual
      */
-    public function testKsortedArrayEqualToSucceeds(array $expect, $actual, string $string): void
+    public function testKsortedArrayEqualToSucceeds(array $expect, mixed $actual, string $string): void
     {
         parent::examineConstraintMatchSucceeds([$expect], $actual);
     }
@@ -64,10 +62,8 @@ final class KsortedArrayEqualToTest extends KsortedConstraintTestCase
     /**
      * @dataProvider provKsortedArrayNotEqualTo
      * @dataProvider provKsortedArrayNotEqualToNonArray
-     *
-     * @param mixed $actual
      */
-    public function testKsortedArrayEqualToFails(array $expect, $actual, string $string): void
+    public function testKsortedArrayEqualToFails(array $expect, mixed $actual, string $string): void
     {
         parent::examineConstraintMatchFails([$expect], $actual, self::message($string));
     }
@@ -75,10 +71,8 @@ final class KsortedArrayEqualToTest extends KsortedConstraintTestCase
     /**
      * @dataProvider provKsortedArrayNotEqualTo
      * @dataProvider provKsortedArrayNotEqualToNonArray
-     *
-     * @param mixed $actual
      */
-    public function testNotKsortedArrayEqualToSucceeds(array $expect, $actual, string $string): void
+    public function testNotKsortedArrayEqualToSucceeds(array $expect, mixed $actual, string $string): void
     {
         parent::examineNotConstraintMatchSucceeds([$expect], $actual);
     }
@@ -86,10 +80,8 @@ final class KsortedArrayEqualToTest extends KsortedConstraintTestCase
     /**
      * @dataProvider provKsortedArrayIdenticalTo
      * @dataProvider provKsortedArrayEqualButNotIdenticalTo
-     *
-     * @param mixed $actual
      */
-    public function testNotKsortedArrayEqualToFails(array $expect, $actual, string $string): void
+    public function testNotKsortedArrayEqualToFails(array $expect, mixed $actual, string $string): void
     {
         parent::examineNotConstraintMatchFails([$expect], $actual, self::message($string, true));
     }

@@ -75,7 +75,7 @@ abstract class PropertiesConstraintTestCase extends ConstraintTestCase
         $message = sprintf(
             'Argument 1 passed to %s::create() must be an associative array with string keys, '.
             'an array with %d non-string %s given',
-            get_class($this->createConstraint([])),
+            $this->createConstraint([])::class,
             $count,
             $count > 1 ? 'keys' : 'key'
         );

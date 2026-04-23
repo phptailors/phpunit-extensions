@@ -22,13 +22,13 @@ trait ProvClassPropertiesTrait
     public static function provClassPropertiesIdenticalTo(): array
     {
         $classes = [
-            get_class(new class() {
+            (new class() {
                 public static $emptyString = '';
                 public static $null;
                 public static $string123 = '123';
                 public static $int321 = 321;
                 public static $boolFalse = false;
-            }),
+            })::class,
         ];
 
         return [
@@ -55,13 +55,13 @@ trait ProvClassPropertiesTrait
     public static function provClassPropertiesEqualButNotIdenticalTo(): array
     {
         $classes = [
-            get_class(new class() {
+            (new class() {
                 public static $emptyString = '';
                 public static $null;
                 public static $string123 = '123';
                 public static $int321 = 321;
                 public static $boolFalse = false;
-            }),
+            })::class,
         ];
 
         return [
@@ -82,13 +82,13 @@ trait ProvClassPropertiesTrait
     public static function provClassPropertiesNotEqualTo(): array
     {
         $classes = [
-            get_class(new class() {
+            (new class() {
                 public static $emptyString = '';
                 public static $null;
                 public static $string123 = '123';
                 public static $int321 = 321;
                 public static $boolFalse = false;
-            }),
+            })::class,
         ];
 
         return [

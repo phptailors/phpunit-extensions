@@ -77,20 +77,16 @@ final class ExtendsClassTraitTest extends TestCase
 
     /**
      * @dataProvider provExtendsClass
-     *
-     * @param mixed $subject
      */
-    public function testAssertExtendsClassSucceeds(string $class, $subject, string $message): void
+    public function testAssertExtendsClassSucceeds(string $class, mixed $subject, string $message): void
     {
         self::assertExtendsClass($class, $subject);
     }
 
     /**
      * @dataProvider provNotExtendsClass
-     *
-     * @param mixed $subject
      */
-    public function testAssertExtendsClassFails(string $class, $subject, string $message): void
+    public function testAssertExtendsClassFails(string $class, mixed $subject, string $message): void
     {
         self::expectException(ExpectationFailedException::class);
         self::expectExceptionMessage($message);
@@ -100,20 +96,16 @@ final class ExtendsClassTraitTest extends TestCase
 
     /**
      * @dataProvider provNotExtendsClass
-     *
-     * @param mixed $subject
      */
-    public function testAssertNotExtendsClassSucceeds(string $class, $subject, string $message): void
+    public function testAssertNotExtendsClassSucceeds(string $class, mixed $subject, string $message): void
     {
         self::assertNotExtendsClass($class, $subject);
     }
 
     /**
      * @dataProvider provExtendsClass
-     *
-     * @param mixed $subject
      */
-    public function testAssertNotExtendsClassFails(string $class, $subject, string $message): void
+    public function testAssertNotExtendsClassFails(string $class, mixed $subject, string $message): void
     {
         self::expectException(ExpectationFailedException::class);
         self::expectExceptionMessage($message);
@@ -123,20 +115,16 @@ final class ExtendsClassTraitTest extends TestCase
 
     /**
      * @dataProvider provExtendsClass
-     *
-     * @param mixed $subject
      */
-    public function testExtendsClass(string $class, $subject, string $message): void
+    public function testExtendsClass(string $class, mixed $subject, string $message): void
     {
         self::assertThat($subject, self::extendsClass($class));
     }
 
     /**
      * @dataProvider provNotExtendsClass
-     *
-     * @param mixed $subject
      */
-    public function testNotExtendsClass(string $class, $subject, string $message): void
+    public function testNotExtendsClass(string $class, mixed $subject, string $message): void
     {
         self::assertThat($subject, self::logicalNot(self::extendsClass($class)));
     }

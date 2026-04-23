@@ -31,10 +31,8 @@ final class HasPregCapturesTest extends TestCase
 
     /**
      * @dataProvider provHasPregCaptures
-     *
-     * @param mixed $actual
      */
-    public function testHasPregCapturesSucceeds(array $expect, $actual, string $message): void
+    public function testHasPregCapturesSucceeds(array $expect, mixed $actual, string $message): void
     {
         $constraint = HasPregCaptures::create($expect);
         self::assertThat($actual, $constraint);
@@ -43,10 +41,8 @@ final class HasPregCapturesTest extends TestCase
     /**
      * @dataProvider provNotHasPregCaptures
      * @dataProvider provNotHasPregCapturesNonArray
-     *
-     * @param mixed $actual
      */
-    public function testHasPregCapturesFails(array $expect, $actual, string $message): void
+    public function testHasPregCapturesFails(array $expect, mixed $actual, string $message): void
     {
         $constraint = HasPregCaptures::create($expect);
 
@@ -59,10 +55,8 @@ final class HasPregCapturesTest extends TestCase
     /**
      * @dataProvider provNotHasPregCaptures
      * @dataProvider provNotHasPregCapturesNonArray
-     *
-     * @param mixed $actual
      */
-    public function testNotHasPregCapturesSucceeds(array $expect, $actual, string $message): void
+    public function testNotHasPregCapturesSucceeds(array $expect, mixed $actual, string $message): void
     {
         $constraint = new LogicalNot(HasPregCaptures::create($expect));
         self::assertThat($actual, $constraint);
@@ -70,10 +64,8 @@ final class HasPregCapturesTest extends TestCase
 
     /**
      * @dataProvider provHasPregCaptures
-     *
-     * @param mixed $actual
      */
-    public function testNotHasPregCapturesFails(array $expect, $actual, string $message): void
+    public function testNotHasPregCapturesFails(array $expect, mixed $actual, string $message): void
     {
         $constraint = new LogicalNot(HasPregCaptures::create($expect));
 

@@ -55,10 +55,8 @@ final class ClassPropertiesIdenticalToTest extends PropertiesConstraintTestCase
 
     /**
      * @dataProvider provClassPropertiesIdenticalTo
-     *
-     * @param mixed $actual
      */
-    public function testClassPropertiesIdenticalToSucceeds(array $expect, $actual, string $string): void
+    public function testClassPropertiesIdenticalToSucceeds(array $expect, mixed $actual, string $string): void
     {
         parent::examineValuesMatchSucceeds($expect, $actual);
     }
@@ -67,10 +65,8 @@ final class ClassPropertiesIdenticalToTest extends PropertiesConstraintTestCase
      * @dataProvider provClassPropertiesNotEqualTo
      * @dataProvider provClassPropertiesNotEqualToNonClass
      * @dataProvider provClassPropertiesEqualButNotIdenticalTo
-     *
-     * @param mixed $actual
      */
-    public function testClassPropertiesIdenticalToFails(array $expect, $actual, string $string): void
+    public function testClassPropertiesIdenticalToFails(array $expect, mixed $actual, string $string): void
     {
         parent::examineValuesMatchFails($expect, $actual, $string);
     }
@@ -79,20 +75,16 @@ final class ClassPropertiesIdenticalToTest extends PropertiesConstraintTestCase
      * @dataProvider provClassPropertiesNotEqualTo
      * @dataProvider provClassPropertiesNotEqualToNonClass
      * @dataProvider provClassPropertiesEqualButNotIdenticalTo
-     *
-     * @param mixed $actual
      */
-    public function testNotClassPropertiesIdenticalToSucceeds(array $expect, $actual, string $string): void
+    public function testNotClassPropertiesIdenticalToSucceeds(array $expect, mixed $actual, string $string): void
     {
         parent::examineNotValuesMatchSucceeds($expect, $actual);
     }
 
     /**
      * @dataProvider provClassPropertiesIdenticalTo
-     *
-     * @param mixed $actual
      */
-    public function testNotClassPropertiesIdenticalToFails(array $expect, $actual, string $string): void
+    public function testNotClassPropertiesIdenticalToFails(array $expect, mixed $actual, string $string): void
     {
         parent::examineNotValuesMatchFails($expect, $actual, $string);
     }

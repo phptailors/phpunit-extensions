@@ -41,10 +41,8 @@ trait InheritanceConstraintTestTrait
 
     /**
      * @dataProvider provFailureDescriptionOfCustomUnaryOperator
-     *
-     * @param mixed $subject
      */
-    public function testFailureDescriptionOfCustomUnaryOperator(Constraint $constraint, $subject, array $expect): void
+    public function testFailureDescriptionOfCustomUnaryOperator(Constraint $constraint, mixed $subject, array $expect): void
     {
         $noop = $this->getMockBuilder(UnaryOperator::class)
             ->setConstructorArgs([$constraint])
@@ -71,13 +69,10 @@ trait InheritanceConstraintTestTrait
     }
 
     // @codeCoverageIgnoreEnd
-
     /**
      * @dataProvider provFailureDescriptionOfLogicalNotOperator
-     *
-     * @param mixed $subject
      */
-    public function testFailureDescriptionOfLogicalNotOperator(Constraint $constraint, $subject, array $expect): void
+    public function testFailureDescriptionOfLogicalNotOperator(Constraint $constraint, mixed $subject, array $expect): void
     {
         $not = self::logicalNot($constraint);
 

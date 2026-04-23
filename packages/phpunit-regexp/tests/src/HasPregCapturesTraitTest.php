@@ -31,20 +31,16 @@ final class HasPregCapturesTraitTest extends TestCase
 
     /**
      * @dataProvider provHasPregCaptures
-     *
-     * @param mixed $actual
      */
-    public function testAssertHasPregCapturesSucceeds(array $expect, $actual, string $message): void
+    public function testAssertHasPregCapturesSucceeds(array $expect, mixed $actual, string $message): void
     {
         self::assertHasPregCaptures($expect, $actual);
     }
 
     /**
      * @dataProvider provNotHasPregCaptures
-     *
-     * @param mixed $actual
      */
-    public function testAssertHasPregCapturesFails(array $expect, $actual, string $message): void
+    public function testAssertHasPregCapturesFails(array $expect, mixed $actual, string $message): void
     {
         $this->expectException(ExpectationFailedException::class);
         $this->expectExceptionMessage(sprintf('Failed asserting that %s.', $message));
@@ -54,20 +50,16 @@ final class HasPregCapturesTraitTest extends TestCase
 
     /**
      * @dataProvider provNotHasPregCaptures
-     *
-     * @param mixed $actual
      */
-    public function testAssertNotHasPregCaptureSucceeds(array $expect, $actual, string $message): void
+    public function testAssertNotHasPregCaptureSucceeds(array $expect, mixed $actual, string $message): void
     {
         self::assertNotHasPregCaptures($expect, $actual);
     }
 
     /**
      * @dataProvider provHasPregCaptures
-     *
-     * @param mixed $actual
      */
-    public function testAssertNotHasPregCaptureFails(array $expect, $actual, string $message): void
+    public function testAssertNotHasPregCaptureFails(array $expect, mixed $actual, string $message): void
     {
         $this->expectException(ExpectationFailedException::class);
         $this->expectExceptionMessage(sprintf('Failed asserting that %s.', $message));
@@ -76,10 +68,8 @@ final class HasPregCapturesTraitTest extends TestCase
 
     /**
      * @dataProvider provHasPregCaptures
-     *
-     * @param mixed $actual
      */
-    public function testHasPregCapturesSucceeds(array $expect, $actual, string $message): void
+    public function testHasPregCapturesSucceeds(array $expect, mixed $actual, string $message): void
     {
         self::assertThat($actual, self::hasPregCaptures($expect));
     }
@@ -87,10 +77,8 @@ final class HasPregCapturesTraitTest extends TestCase
     /**
      * @dataProvider provNotHasPregCaptures
      * @dataProvider provNotHasPregCapturesNonArray
-     *
-     * @param mixed $actual
      */
-    public function testHasPregCapturesFails(array $expect, $actual, string $message): void
+    public function testHasPregCapturesFails(array $expect, mixed $actual, string $message): void
     {
         $this->expectException(ExpectationFailedException::class);
         $this->expectExceptionMessage(sprintf('Failed asserting that %s.', $message));

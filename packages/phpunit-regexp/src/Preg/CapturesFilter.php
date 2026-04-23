@@ -18,18 +18,10 @@ namespace Tailors\PHPUnit\Preg;
 final class CapturesFilter implements CapturesFilterInterface
 {
     /**
-     * @var int
-     *
-     * @psalm-readonly
-     */
-    private $flags;
-
-    /**
      * @param int $flags PREG_* flags such as PREG_UNMATCHED_AS_NULL or PREG_OFFSET_CAPTURE
      */
-    public function __construct(int $flags = 0)
+    public function __construct(private readonly int $flags = 0)
     {
-        $this->flags = $flags;
     }
 
     /**
@@ -41,7 +33,7 @@ final class CapturesFilter implements CapturesFilterInterface
      */
     public function filter(array $array): array
     {
-        return array_filter($array, [$this, 'accepts']);
+        return array_filter($array, fn (mixed $val) => $this->accepts($val));
     }
 
     /**
@@ -66,21 +58,17 @@ final class CapturesFilter implements CapturesFilterInterface
     }
 
     /**
-     * @param mixed $value
-     *
      * @psalm-assert-if-true string|null $value
      */
-    private function isScalarCapture($value): bool
+    private function isScalarCapture(mixed $value): bool
     {
         return is_string($value) || (null === $value && (0 !== ($this->flags & PREG_UNMATCHED_AS_NULL)));
     }
 
     /**
-     * @param mixed $value
-     *
      * @psalm-assert-if-true array{0:string|null,1:int} $value
      */
-    private function isArrayCapture($value): bool
+    private function isArrayCapture(mixed $value): bool
     {
         if (!is_array($value) || (0 === ($this->flags & PREG_OFFSET_CAPTURE))) {
             return false;

@@ -48,40 +48,32 @@ final class HasMethodTest extends TestCase
 
     /**
      * @dataProvider provHasMethodSucceeds
-     *
-     * @param mixed $subject
      */
-    public function testHasMethodMatchSucceeds(string $method, $subject): void
+    public function testHasMethodMatchSucceeds(string $method, mixed $subject): void
     {
         parent::examineConstraintMatchSucceeds([$method], $subject);
     }
 
     /**
      * @dataProvider provHasMethodSucceeds
-     *
-     * @param mixed $subject
      */
-    public function testNotHasMethodMatchFails(string $method, $subject, string $string): void
+    public function testNotHasMethodMatchFails(string $method, mixed $subject, string $string): void
     {
         parent::examineNotConstraintMatchFails([$method], $subject, $string);
     }
 
     /**
      * @dataProvider provHasMethodFails
-     *
-     * @param mixed $subject
      */
-    public function testHasMethodMatchFails(string $method, $subject, string $string): void
+    public function testHasMethodMatchFails(string $method, mixed $subject, string $string): void
     {
         parent::examineConstraintMatchFails([$method], $subject, $string);
     }
 
     /**
      * @dataProvider provHasMethodFails
-     *
-     * @param mixed $subject
      */
-    public function testNotHasMethodMatchSucceeds(string $method, $subject): void
+    public function testNotHasMethodMatchSucceeds(string $method, mixed $subject): void
     {
         parent::examineNotConstraintMatchSucceeds([$method], $subject);
     }
