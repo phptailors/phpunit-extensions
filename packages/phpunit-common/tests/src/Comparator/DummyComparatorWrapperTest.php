@@ -10,17 +10,17 @@
 
 namespace Tailors\PHPUnit\Comparator;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Comparator\DummyComparatorWrapper
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
+#[CoversClass(DummyComparatorWrapper::class)]
 final class DummyComparatorWrapperTest extends TestCase
 {
     public function testDummyComparatorWrapper(): void
