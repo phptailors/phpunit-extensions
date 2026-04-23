@@ -12,10 +12,8 @@ namespace Tailors\PHPUnit\Values;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
-use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
-use Tailors\PHPUnit\Comparator\ComparatorWrapperInterface;
 use Tailors\PHPUnit\Comparator\DummyComparatorWrapper;
 use Tailors\PHPUnit\Comparator\EqualityComparator;
 use Tailors\PHPUnit\Comparator\IdentityComparator;
@@ -33,17 +31,6 @@ use Tailors\PHPUnit\InvalidArgumentException;
 #[CoversClass(RecursiveComparatorValidator::class)]
 final class RecursiveComparatorValidatorTest extends TestCase
 {
-    public static function createComparatorWrapperMock(TestCase $test, ComparatorInterface $comparator): MockObject
-    {
-        $wrapper = $test->createMock(ComparatorWrapperInterface::class);
-        $wrapper->expects($test->any())
-            ->method('getComparator')
-            ->willReturn($comparator)
-        ;
-
-        return $wrapper;
-    }
-
     public static function makeFailureMessage(
         int $argument,
         string $function,
@@ -72,38 +59,31 @@ final class RecursiveComparatorValidatorTest extends TestCase
         $equalityComparator = new EqualityComparator();
         $identityComparator = new IdentityComparator();
 
-        $equalityWrapper = fn (TestCase $test) => new DummyComparatorWrapper(new EqualityComparator());
-        $identityWrapper = fn (TestCase $test) => new DummyComparatorWrapper(new IdentityComparator());
-        $emptyValues = fn (TestCase $test) => new DummyValues(true);
+        $equalityWrapper = new DummyComparatorWrapper(new EqualityComparator());
+        $identityWrapper = new DummyComparatorWrapper(new IdentityComparator());
 
-        $circularWrapper = function (TestCase $test) use ($equalityWrapper, $identityWrapper) {
-            $dummyValues = new DummyValues(true);
-            $circularWrapper = new DummyValuesWrapper($dummyValues);
+        $emptyValues = new DummyValues(true);
+        $dummyValues = new DummyValues(true);
 
-            $circularArray = [
-                'circular' => $circularWrapper,
-                'equality' => $equalityWrapper($test),
-                'identity' => $identityWrapper($test),
-            ];
+        $circularWrapper = new DummyValuesWrapper($dummyValues);
 
-            $dummyValues->exchangeArray($circularArray);
-
-            return $circularWrapper;
-        };
+        $circularArray = [
+            'circular' => $circularWrapper,
+            'equality' => $equalityWrapper,
+            'identity' => $identityWrapper,
+        ];
+        $dummyValues->exchangeArray($circularArray);
 
         return [
             'RecursiveComparatorValidatorTest.php:'.__LINE__ => [
                 'comparator' => $equalityComparator,
-                'args'       => fn (TestCase $test) => [
-                    [],
-                    1,
-                ],
-                'expect' => [],
+                'args'       => [[], 1],
+                'expect'     => [],
             ],
 
             'RecursiveComparatorValidatorTest.php:'.__LINE__ => [
                 'comparator' => $equalityComparator,
-                'args'       => fn (TestCase $test) => [
+                'args'       => [
                     [
                         'foo' => 'FOO',
                         'bar' => [
@@ -118,9 +98,9 @@ final class RecursiveComparatorValidatorTest extends TestCase
 
             'RecursiveComparatorValidatorTest.php:'.__LINE__ => [
                 'comparator' => $equalityComparator,
-                'args'       => fn (TestCase $test) => [
+                'args'       => [
                     [
-                        'foo' => $identityWrapper($test),
+                        'foo' => $identityWrapper,
                     ],
                     123,
                 ],
@@ -132,9 +112,9 @@ final class RecursiveComparatorValidatorTest extends TestCase
 
             'RecursiveComparatorValidatorTest.php:'.__LINE__ => [
                 'comparator' => $identityComparator,
-                'args'       => fn (TestCase $test) => [
+                'args'       => [
                     [
-                        'err' => $equalityWrapper($test),
+                        'err' => $equalityWrapper,
                     ],
                     123,
                 ],
@@ -146,14 +126,14 @@ final class RecursiveComparatorValidatorTest extends TestCase
 
             'RecursiveComparatorValidatorTest.php:'.__LINE__ => [
                 'comparator' => $equalityComparator,
-                'args'       => fn (TestCase $test) => [
+                'args'       => [
                     [
-                        'err1' => $identityWrapper($test),
+                        'err1' => $identityWrapper,
                         'bar'  => [
                             'gez'  => 'GEZ',
-                            'err2' => $identityWrapper($test),
+                            'err2' => $identityWrapper,
                         ],
-                        'frd' => $equalityWrapper($test),
+                        'frd' => $equalityWrapper,
                     ],
                     11,
                 ],
@@ -165,13 +145,13 @@ final class RecursiveComparatorValidatorTest extends TestCase
 
             'RecursiveComparatorValidatorTest.php:'.__LINE__ => [
                 'comparator' => $equalityComparator,
-                'args'       => fn (TestCase $test) => [
+                'args'       => [
                     [
                         'foo' => new DummyValuesWrapper(new DummyValues(true, [
                             'bar'  => 'BAR',
-                            'err1' => $identityWrapper($test),
+                            'err1' => $identityWrapper,
                             'qux'  => new DummyValuesWrapper(new DummyValues(true, [
-                                'err2' => $identityWrapper($test),
+                                'err2' => $identityWrapper,
                             ])),
                         ])),
                     ],
@@ -185,10 +165,10 @@ final class RecursiveComparatorValidatorTest extends TestCase
 
             'RecursiveComparatorValidatorTest.php:'.__LINE__ => [
                 'comparator' => $equalityComparator,
-                'args'       => fn (TestCase $test) => [
+                'args'       => [
                     [
-                        'circular' => $circularWrapper($test),
-                        'identity' => $identityWrapper($test),
+                        'circular' => $circularWrapper,
+                        'identity' => $identityWrapper,
                     ],
                     123,
                 ],
@@ -201,10 +181,10 @@ final class RecursiveComparatorValidatorTest extends TestCase
     }
 
     /**
-     * @param \Closure(TestCase):array $args
+     * @param array $args
      */
     #[DataProvider('provValidate')]
-    public function testValidate(ComparatorInterface $comparator, \Closure $args, array $expect = []): void
+    public function testValidate(ComparatorInterface $comparator, array $args, array $expect = []): void
     {
         $validator = new RecursiveComparatorValidator($comparator);
 
@@ -213,7 +193,7 @@ final class RecursiveComparatorValidatorTest extends TestCase
             $this->expectExceptionMessage($expect['message']);
         }
 
-        $this->assertNull($validator->validate(...$args($this)));
+        $this->assertNull($validator->validate(...$args));
     }
 }
 // vim: syntax=php sw=4 ts=4 et:
