@@ -37,4 +37,8 @@ return RectorConfig::configure()
         CoversAnnotationWithValueToAttributeRector::class,
         DataProviderAnnotationToAttributeRector::class,
     ])
+    ->withImportNames(
+        importShortClasses: false,
+        removeUnusedImports: true
+    )
 ;
