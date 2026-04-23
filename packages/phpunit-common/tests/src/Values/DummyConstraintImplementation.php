@@ -15,10 +15,10 @@ use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\IdentityComparator;
 
 /**
- *
  * @covers \Tailors\PHPUnit\Values\ConstraintImplementationTrait
  *
  * @internal This class is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit
  */
 #[Small]
@@ -41,9 +41,7 @@ final class DummyConstraintImplementation
      */
     public static $validateExpectations;
 
-    protected function __construct(public ComparatorInterface $comparator, public SelectionInterface $selection, public RecursiveUnwrapperInterface $unwrapper)
-    {
-    }
+    protected function __construct(public ComparatorInterface $comparator, public SelectionInterface $selection, public RecursiveUnwrapperInterface $unwrapper) {}
 
     #[\Override]
     protected static function validateExpectations(array $expected, int $argument, int $distance = 1): void

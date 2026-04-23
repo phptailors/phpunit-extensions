@@ -39,10 +39,10 @@ final class ReferenceStorage implements \Countable
     }
 
     /**
-     *
      * @psalm-template T
      *
      * @psalm-param T $value
+     *
      * @psalm-param-out T $value
      */
     public function add(mixed &$value): void
@@ -57,10 +57,10 @@ final class ReferenceStorage implements \Countable
     }
 
     /**
-     *
      * @psalm-template T
      *
      * @psalm-param T $value
+     *
      * @psalm-param-out T $value
      */
     public function remove(mixed &$value): void
@@ -75,10 +75,10 @@ final class ReferenceStorage implements \Countable
     }
 
     /**
-     *
      * @psalm-template T
      *
      * @psalm-param T $value
+     *
      * @psalm-param-out T $value
      */
     public function contains(mixed &$value): bool
@@ -98,10 +98,10 @@ final class ReferenceStorage implements \Countable
     }
 
     /**
-     *
      * @psalm-template T
      *
      * @psalm-param T $value
+     *
      * @psalm-param-out T $value
      */
     private function addReference(mixed &$value): void
@@ -120,10 +120,10 @@ final class ReferenceStorage implements \Countable
     }
 
     /**
-     *
      * @psalm-template T
      *
      * @psalm-param T $value
+     *
      * @psalm-param-out T $value
      */
     private function removeReference(mixed &$value): void
@@ -140,10 +140,10 @@ final class ReferenceStorage implements \Countable
     }
 
     /**
-     *
      * @psalm-template T
      *
      * @psalm-param T $value
+     *
      * @psalm-param-out T $value
      */
     private function containsReference(mixed &$value): bool
@@ -154,10 +154,10 @@ final class ReferenceStorage implements \Countable
     }
 
     /**
-     *
      * @psalm-template T
      *
      * @psalm-param T $value
+     *
      * @psalm-param-out T $value
      */
     private function getReferenceId(mixed &$value): string

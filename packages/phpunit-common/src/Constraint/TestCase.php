@@ -113,7 +113,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
 
     // @codeCoverageIgnoreEnd
     /**
-     * @param array $args   arguments passed to createConstraint()
+     * @param array $args arguments passed to createConstraint()
      *
      * @throws ExpectationFailedException
      */
@@ -126,6 +126,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     /**
      * @param array  $args    arguments passed to createConstraint()
      * @param string $message
+     *
      * @throws ExpectationFailedException
      */
     final public function examineNotConstraintMatchFails(array $args, mixed $actual, string $message): void

@@ -25,9 +25,7 @@ final readonly class CapturesFilter implements CapturesFilterInterface
          * @psalm-readonly
          */
         private int $flags = 0
-    )
-    {
-    }
+    ) {}
 
     /**
      * Filter-out all elements of $array with $this->accepts().

@@ -32,9 +32,7 @@ abstract class AbstractConstraint extends Constraint implements ComparatorWrappe
 {
     use ShortFailureDescriptionTrait;
 
-    final protected function __construct(private ComparatorInterface $comparator, private SelectionInterface $expected, private RecursiveUnwrapperInterface $unwrapper)
-    {
-    }
+    final protected function __construct(private ComparatorInterface $comparator, private SelectionInterface $expected, private RecursiveUnwrapperInterface $unwrapper) {}
 
     /**
      * Returns an instance of SelectionInterface which defines expected values.
