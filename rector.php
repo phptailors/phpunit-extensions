@@ -20,7 +20,7 @@ return RectorConfig::configure()
         PHPUnitSetList::PHPUNIT_110,
     ])
     ->withPhpSets(
-        php83: true
+        php84: true
     )
     ->withSkip([
         AddDoesNotPerformAssertionToNonAssertingTestRector::class => [
