@@ -54,7 +54,7 @@ final class RecursiveSelectorTest extends TestCase
     // selectProperties()
     //
 
-    public static function provSelectProperties(): array
+    public static function provSelect(): array
     {
         return [
             'RecursiveSelectorTest.php:'.__LINE__ => [
@@ -292,8 +292,8 @@ final class RecursiveSelectorTest extends TestCase
      * @param SelectionInterface $selection
      * @param mixed              $subject
      */
-    #[DataProvider('provSelectProperties')]
-    public function testSelectProperties(SelectionInterface $selection, $subject, array $expect): void
+    #[DataProvider('provSelect')]
+    public function testSelect(SelectionInterface $selection, $subject, array $expect): void
     {
         $selector = new RecursiveSelector($selection);
         $unwrapper = new RecursiveUnwrapper();
