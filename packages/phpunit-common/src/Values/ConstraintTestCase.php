@@ -52,11 +52,10 @@ abstract class ConstraintTestCase extends TestCase
     }
 
     // @codeCoverageIgnoreEnd
-
     /**
      * @dataProvider provCreateConstraint
      *
-     * @psalm-param array{values:\PHPUnit\Framework\Constraint\Constraint} $expect
+     * @psalm-param array{values: Constraint} $expect
      *
      * @throws Exception
      * @throws ExpectationFailedException
