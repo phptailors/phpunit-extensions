@@ -20,13 +20,12 @@ trait UsesTraitTrait
     /**
      * Evaluates a \PHPUnit\Framework\Constraint\Constraint matcher object.
      *
-     * @param mixed      $value
      * @param Constraint $constraint
      * @param string     $message
      *
      * @throws ExpectationFailedException
      */
-    abstract public static function assertThat($value, Constraint $constraint, string $message = ''): void;
+    abstract public static function assertThat(mixed $value, Constraint $constraint, string $message = ''): void;
 
     /**
      * Asserts that *$subject* uses *$trait*.
@@ -38,7 +37,7 @@ trait UsesTraitTrait
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
      */
-    public static function assertUsesTrait(string $trait, $subject, string $message = ''): void
+    public static function assertUsesTrait(string $trait, mixed $subject, string $message = ''): void
     {
         self::assertThat($subject, self::usesTrait($trait), $message);
     }
@@ -53,7 +52,7 @@ trait UsesTraitTrait
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
      */
-    public static function assertNotUsesTrait(string $trait, $subject, string $message = ''): void
+    public static function assertNotUsesTrait(string $trait, mixed $subject, string $message = ''): void
     {
         self::assertThat($subject, new LogicalNot(self::usesTrait($trait)), $message);
     }

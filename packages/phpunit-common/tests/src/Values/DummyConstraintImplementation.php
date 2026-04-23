@@ -10,36 +10,21 @@
 
 namespace Tailors\PHPUnit\Values;
 
+use PHPUnit\Framework\Attributes\Small;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\IdentityComparator;
 
 /**
- * @small
- *
  * @covers \Tailors\PHPUnit\Values\ConstraintImplementationTrait
  *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
+#[Small]
 final class DummyConstraintImplementation
 {
     use ConstraintImplementationTrait;
-
-    /**
-     * @var ComparatorInterface
-     */
-    public $comparator;
-
-    /**
-     * @var SelectionInterface
-     */
-    public $selection;
-
-    /**
-     * @var RecursiveUnwrapperInterface
-     */
-    public $unwrapper;
 
     /**
      * @var null|ValueSelectorInterface
@@ -56,21 +41,15 @@ final class DummyConstraintImplementation
      */
     public static $validateExpectations;
 
-    protected function __construct(
-        ComparatorInterface $comparator,
-        SelectionInterface $selection,
-        RecursiveUnwrapperInterface $unwrapper
-    ) {
-        $this->comparator = $comparator;
-        $this->selection = $selection;
-        $this->unwrapper = $unwrapper;
-    }
+    protected function __construct(public ComparatorInterface $comparator, public SelectionInterface $selection, public RecursiveUnwrapperInterface $unwrapper) {}
 
+    #[\Override]
     protected static function validateExpectations(array $expected, int $argument, int $distance = 1): void
     {
         self::$validateExpectations = [$expected, $argument, $distance];
     }
 
+    #[\Override]
     protected static function makeSelector(): ValueSelectorInterface
     {
         if (null === self::$makeSelector) {
@@ -80,6 +59,7 @@ final class DummyConstraintImplementation
         return self::$makeSelector;
     }
 
+    #[\Override]
     protected static function makeComparator(): ComparatorInterface
     {
         if (null === self::$makeComparator) {

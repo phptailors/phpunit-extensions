@@ -13,6 +13,7 @@ namespace Tailors\PHPUnit\Constraint;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Examples\Inheritance\ExampleTrait;
@@ -21,23 +22,21 @@ use Tailors\PHPUnit\Inheritance\ConstraintImplementationTrait;
 use Tailors\PHPUnit\InvalidArgumentException;
 
 /**
- * @small
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
- *
- * @coversNothing
  */
 #[CoversClass(ImplementsInterface::class)]
 #[CoversTrait(InheritanceConstraintTestTrait::class)]
 #[CoversClass(AbstractConstraint::class)]
 #[CoversTrait(ConstraintImplementationTrait::class)]
+#[Small]
 final class ImplementsInterfaceTest extends TestCase
 {
     use InheritanceConstraintTestTrait;
 
     // required by InheritanceConstraintTestTrait
+    #[\Override]
     public static function provFailureDescriptionOfCustomUnaryOperator(): iterable
     {
         return [
@@ -158,22 +157,16 @@ final class ImplementsInterfaceTest extends TestCase
         ];
     }
 
-    /**
-     * @param mixed $subject
-     */
     #[DataProvider('provImplementsInterface')]
-    public function testConstraintSucceeds(string $interface, $subject): void
+    public function testConstraintSucceeds(string $interface, mixed $subject): void
     {
         $constraint = ImplementsInterface::create($interface);
 
         self::assertTrue($constraint->evaluate($subject, '', true));
     }
 
-    /**
-     * @param mixed $subject
-     */
     #[DataProvider('provNotImplementsInterface')]
-    public function testConstraintFails(string $interface, $subject, string $message): void
+    public function testConstraintFails(string $interface, mixed $subject, string $message): void
     {
         $constraint = ImplementsInterface::create($interface);
 

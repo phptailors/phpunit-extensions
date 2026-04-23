@@ -20,13 +20,12 @@ trait ImplementsInterfaceTrait
     /**
      * Evaluates a \PHPUnit\Framework\Constraint\Constraint matcher object.
      *
-     * @param mixed      $value
      * @param Constraint $constraint
      * @param string     $message
      *
      * @throws ExpectationFailedException
      */
-    abstract public static function assertThat($value, Constraint $constraint, string $message = ''): void;
+    abstract public static function assertThat(mixed $value, Constraint $constraint, string $message = ''): void;
 
     /**
      * Asserts that *$subject* implements *$interface*.
@@ -38,7 +37,7 @@ trait ImplementsInterfaceTrait
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
      */
-    public static function assertImplementsInterface(string $interface, $subject, string $message = ''): void
+    public static function assertImplementsInterface(string $interface, mixed $subject, string $message = ''): void
     {
         self::assertThat($subject, self::implementsInterface($interface), $message);
     }
@@ -53,7 +52,7 @@ trait ImplementsInterfaceTrait
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
      */
-    public static function assertNotImplementsInterface(string $interface, $subject, string $message = ''): void
+    public static function assertNotImplementsInterface(string $interface, mixed $subject, string $message = ''): void
     {
         self::assertThat($subject, new LogicalNot(self::implementsInterface($interface)), $message);
     }

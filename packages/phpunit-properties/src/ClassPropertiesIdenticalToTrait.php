@@ -20,13 +20,12 @@ trait ClassPropertiesIdenticalToTrait
     /**
      * Evaluates a \PHPUnit\Framework\Constraint\Constraint matcher object.
      *
-     * @param mixed      $value
      * @param Constraint $constraint
      * @param string     $message
      *
      * @throws ExpectationFailedException
      */
-    abstract public static function assertThat($value, Constraint $constraint, string $message = ''): void;
+    abstract public static function assertThat(mixed $value, Constraint $constraint, string $message = ''): void;
 
     /**
      * Asserts that selected properties of *$class* are identical to *$expected* ones.

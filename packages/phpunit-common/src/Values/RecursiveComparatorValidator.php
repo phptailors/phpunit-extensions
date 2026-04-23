@@ -25,11 +25,6 @@ use Tailors\PHPUnit\InvalidArgumentException;
 final class RecursiveComparatorValidator
 {
     /**
-     * @var ComparatorInterface
-     */
-    private $comparator;
-
-    /**
      * @var \SplObjectStorage
      */
     private $seen;
@@ -39,9 +34,8 @@ final class RecursiveComparatorValidator
      */
     private $failures;
 
-    public function __construct(ComparatorInterface $comparator)
+    public function __construct(private readonly ComparatorInterface $comparator)
     {
-        $this->comparator = $comparator;
         $this->seen = new \SplObjectStorage();
         $this->failures = 0;
     }
@@ -70,10 +64,7 @@ final class RecursiveComparatorValidator
         array_walk_recursive($current, [$this, 'visit']);
     }
 
-    /**
-     * @param mixed $value
-     */
-    private function visit($value): void
+    private function visit(mixed $value): void
     {
         if ($value instanceof ComparatorWrapperInterface) {
             $this->visitComparator($value->getComparator());
@@ -86,7 +77,7 @@ final class RecursiveComparatorValidator
 
     private function visitComparator(ComparatorInterface $comparator): void
     {
-        if (get_class($comparator) !== get_class($this->comparator)) {
+        if ($this->comparator::class !== $comparator::class) {
             ++$this->failures;
         }
     }
@@ -109,7 +100,7 @@ final class RecursiveComparatorValidator
     /**
      * @throws InvalidArgumentException
      */
-    private function throwInvalidArgumentException(int $failures, int $argument, int $distance): void
+    private function throwInvalidArgumentException(int $failures, int $argument, int $distance): never
     {
         $comparator = (new \ReflectionClass($this->comparator))->getShortName();
         $expect = sprintf('an array with only %s nested comparators', $comparator);

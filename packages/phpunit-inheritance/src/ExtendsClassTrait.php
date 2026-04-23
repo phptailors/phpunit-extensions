@@ -20,13 +20,12 @@ trait ExtendsClassTrait
     /**
      * Evaluates a \PHPUnit\Framework\Constraint\Constraint matcher object.
      *
-     * @param mixed      $value
      * @param Constraint $constraint
      * @param string     $message
      *
      * @throws ExpectationFailedException
      */
-    abstract public static function assertThat($value, Constraint $constraint, string $message = ''): void;
+    abstract public static function assertThat(mixed $value, Constraint $constraint, string $message = ''): void;
 
     /**
      * Asserts that *$subject* extends the class *$parent*.
@@ -38,7 +37,7 @@ trait ExtendsClassTrait
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
      */
-    public static function assertExtendsClass(string $parent, $subject, string $message = ''): void
+    public static function assertExtendsClass(string $parent, mixed $subject, string $message = ''): void
     {
         self::assertThat($subject, self::extendsClass($parent), $message);
     }
@@ -53,7 +52,7 @@ trait ExtendsClassTrait
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
      */
-    public static function assertNotExtendsClass(string $parent, $subject, string $message = ''): void
+    public static function assertNotExtendsClass(string $parent, mixed $subject, string $message = ''): void
     {
         self::assertThat($subject, new LogicalNot(self::extendsClass($parent)), $message);
     }

@@ -12,18 +12,16 @@ namespace Tailors\PHPUnit;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @small
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
- *
- * @coversNothing
  */
 #[CoversClass(InvalidReturnValueException::class)]
+#[Small]
 final class InvalidReturnValueExceptionTest extends TestCase
 {
     public static function provFromExpectedAndActual(): array
@@ -74,7 +72,7 @@ final class InvalidReturnValueExceptionTest extends TestCase
                 'inexistentFunction', 'string', 123,
             ],
             'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
-                [self::class, 'provFromExpectedTypeAndActualValue'], 'string', null,
+                self::provFromExpectedTypeAndActualValue(...), 'string', null,
             ],
             'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
                 [self::class, 'inexistentMethod'], 'string', null,
@@ -91,10 +89,9 @@ final class InvalidReturnValueExceptionTest extends TestCase
 
     /**
      * @param array{0:object|string,1:string}|callable|string $function
-     * @param mixed                                           $actual
      */
     #[DataProvider('provFromExpectedTypeAndActualValue')]
-    public function testFromExpectedTypeAndActualValue($function, string $expected, $actual): void
+    public function testFromExpectedTypeAndActualValue($function, string $expected, mixed $actual): void
     {
         $name = self::getFunctionName($function);
         $actualType = is_object($actual) ? 'object' : gettype($actual);
@@ -109,7 +106,7 @@ final class InvalidReturnValueExceptionTest extends TestCase
         if (is_string($function)) {
             $name = $function;
         } elseif (is_array($function)) {
-            $name = sprintf('%s::%s', is_object($function[0]) ? get_class($function[0]) : $function[0], $function[1]);
+            $name = sprintf('%s::%s', is_object($function[0]) ? $function[0]::class : $function[0], $function[1]);
         } else {
             is_callable($function, true, $name);
         }

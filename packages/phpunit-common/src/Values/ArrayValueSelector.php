@@ -77,13 +77,10 @@ final class ArrayValueSelector extends AbstractValueSelector
     }
 
     /**
-     * @param mixed $subject
-     * @param mixed $key
-     *
      * @psalm-param array|\ArrayAccess $subject
      * @psalm-param array-key $key
      */
-    private static function subjectHasKey($subject, $key): bool
+    private static function subjectHasKey(mixed $subject, mixed $key): bool
     {
         if ($subject instanceof \ArrayAccess) {
             return $subject->offsetExists($key);

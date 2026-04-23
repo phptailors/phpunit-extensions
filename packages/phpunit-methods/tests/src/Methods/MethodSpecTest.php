@@ -13,27 +13,25 @@ namespace Tailors\PHPUnit\Methods;
 use Closure;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use ReflectionMethod;
 
 /**
- * @small
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
- *
- * @coversNothing
  */
 #[CoversClass(MethodSpec::class)]
+#[Small]
 final class MethodSpecTest extends TestCase
 {
-    public const IS_STATIC = MethodSpec::IS_STATIC;
-    public const IS_PUBLIC = MethodSpec::IS_PUBLIC;
-    public const IS_PROTECTED = MethodSpec::IS_PROTECTED;
-    public const IS_PRIVATE = MethodSpec::IS_PRIVATE;
-    public const IS_ABSTRACT = MethodSpec::IS_ABSTRACT;
-    public const IS_FINAL = MethodSpec::IS_FINAL;
+    public const int IS_STATIC = MethodSpec::IS_STATIC;
+    public const int IS_PUBLIC = MethodSpec::IS_PUBLIC;
+    public const int IS_PROTECTED = MethodSpec::IS_PROTECTED;
+    public const int IS_PRIVATE = MethodSpec::IS_PRIVATE;
+    public const int IS_ABSTRACT = MethodSpec::IS_ABSTRACT;
+    public const int IS_FINAL = MethodSpec::IS_FINAL;
 
     public const MMASK =
         self::IS_STATIC

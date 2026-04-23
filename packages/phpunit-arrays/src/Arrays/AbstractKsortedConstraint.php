@@ -28,27 +28,7 @@ abstract class AbstractKsortedConstraint extends Constraint implements Comparato
 {
     use ShortFailureDescriptionTrait;
 
-    /**
-     * @var array
-     */
-    private $expected;
-
-    /**
-     * @var ComparatorInterface
-     */
-    private $comparator;
-
-    /**
-     * @var int
-     */
-    private $flags;
-
-    final protected function __construct(ComparatorInterface $comparator, array $expected, int $flags)
-    {
-        $this->comparator = $comparator;
-        $this->expected = $expected;
-        $this->flags = $flags;
-    }
+    final protected function __construct(private ComparatorInterface $comparator, private array $expected, private int $flags) {}
 
     /**
      * Returns an instance of ComparatorInterface which implements comparison operator.
@@ -174,7 +154,7 @@ abstract class AbstractKsortedConstraint extends Constraint implements Comparato
      *
      * @psalm-assert-if-true array $other
      */
-    final protected function supports($other): bool
+    final protected function supports(mixed $other): bool
     {
         return is_array($other);
     }

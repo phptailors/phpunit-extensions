@@ -26,19 +26,14 @@ use Tailors\PHPUnit\Common\Exporter;
 abstract class AbstractConstraint extends Constraint
 {
     /**
-     * @var string
-     *
-     * @psalm-readonly
-     */
-    private $expected;
-
-    /**
      * Initializes the constraint.
      */
-    protected function __construct(string $expected)
-    {
-        $this->expected = $expected;
-    }
+    protected function __construct(
+        /**
+         * @psalm-readonly
+         */
+        private readonly string $expected
+    ) {}
 
     /**
      * Returns a string representation of the constraint.
@@ -59,7 +54,7 @@ abstract class AbstractConstraint extends Constraint
     final public function matches($other): bool
     {
         if (is_object($other)) {
-            $other = get_class($other);
+            $other = $other::class;
         }
         if (!is_string($other) || !$this->supports($other)) {
             return false;
@@ -161,13 +156,11 @@ abstract class AbstractConstraint extends Constraint
 
     /**
      * Returns short representation of $subject for failureDescription().
-     *
-     * @param mixed $subject
      */
-    private function short($subject): string
+    private function short(mixed $subject): string
     {
         if (is_object($subject)) {
-            $subject = 'object '.get_class($subject);
+            $subject = 'object '.$subject::class;
         } elseif (!is_string($subject) || !$this->supports($subject)) {
             $subject = Exporter::export($subject);
         }

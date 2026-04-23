@@ -42,7 +42,7 @@ abstract class AbstractPropertySelector extends AbstractValueSelector
     #[\Override]
     final protected function selectFromSupported($subject, $key, &$retval = null): bool
     {
-        $method = ('()' === substr((string) $key, -2)) ? substr((string) $key, 0, -2) : null;
+        $method = (str_ends_with((string) $key, '()')) ? substr((string) $key, 0, -2) : null;
         if (null !== $method) {
             return $this->selectWithMethod($subject, $method, $retval);
         }
@@ -51,26 +51,21 @@ abstract class AbstractPropertySelector extends AbstractValueSelector
     }
 
     /**
-     * @param mixed $subject
-     * @param mixed $key
-     *
      * @psalm-param SubjectType $subject
      * @psalm-param array-key $key
      *
      * @return mixed
      */
-    abstract protected function getSubjectAttribute($subject, $key);
+    abstract protected function getSubjectAttribute(mixed $subject, mixed $key);
 
     /**
-     * @param mixed  $subject
      * @param string $method
-     * @param mixed  $retval
      *
      * @psalm-param object|class-string $subject
      *
      * @param-out mixed $retval
      */
-    final protected function selectWithMethod($subject, string $method, &$retval = null): bool
+    final protected function selectWithMethod(mixed $subject, string $method, mixed &$retval = null): bool
     {
         if (!method_exists($subject, $method)) {
             return false;
@@ -83,16 +78,12 @@ abstract class AbstractPropertySelector extends AbstractValueSelector
     }
 
     /**
-     * @param mixed $subject
-     * @param mixed $key
-     * @param mixed $retval
-     *
      * @param-out mixed $retval
      *
      * @psalm-param SubjectType $subject
      * @psalm-param array-key $key
      */
-    final protected function selectWithAttribute($subject, $key, &$retval = null): bool
+    final protected function selectWithAttribute(mixed $subject, mixed $key, mixed &$retval = null): bool
     {
         $key = (string) $key;
         if (!property_exists($subject, $key)) {

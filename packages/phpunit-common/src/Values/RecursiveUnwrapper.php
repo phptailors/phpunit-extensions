@@ -17,14 +17,9 @@ use Tailors\PHPUnit\CircularDependencyException;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class RecursiveUnwrapper implements RecursiveUnwrapperInterface
+final readonly class RecursiveUnwrapper implements RecursiveUnwrapperInterface
 {
-    public const UNIQUE_TAG = RecursiveUnwrapperVisitor::UNIQUE_TAG;
-
-    /**
-     * @var bool
-     */
-    private $tagging;
+    public const string UNIQUE_TAG = RecursiveUnwrapperVisitor::UNIQUE_TAG;
 
     /**
      * Initializes the object.
@@ -33,10 +28,7 @@ final class RecursiveUnwrapper implements RecursiveUnwrapperInterface
      *                      If true, then a unique tag will be appended to the end of every
      *                      array that results from unwrapping of array of properties
      */
-    public function __construct(bool $tagging = true)
-    {
-        $this->tagging = $tagging;
-    }
+    public function __construct(private bool $tagging = true) {}
 
     /**
      * Walk recursively through $values and unwrap nested instances of

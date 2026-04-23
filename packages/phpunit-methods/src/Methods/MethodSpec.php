@@ -28,14 +28,14 @@ namespace Tailors\PHPUnit\Methods;
  *                       |  self::NOT_PROTECTED
  *                       |  self::NOT_PRIVATE )
  */
-final class MethodSpec implements MethodSpecInterface
+final readonly class MethodSpec implements MethodSpecInterface
 {
-    public const IS_STATIC = \ReflectionMethod::IS_STATIC;
-    public const IS_PUBLIC = \ReflectionMethod::IS_PUBLIC;
-    public const IS_PROTECTED = \ReflectionMethod::IS_PROTECTED;
-    public const IS_PRIVATE = \ReflectionMethod::IS_PRIVATE;
-    public const IS_ABSTRACT = \ReflectionMethod::IS_ABSTRACT;
-    public const IS_FINAL = \ReflectionMethod::IS_FINAL;
+    public const int IS_STATIC = \ReflectionMethod::IS_STATIC;
+    public const int IS_PUBLIC = \ReflectionMethod::IS_PUBLIC;
+    public const int IS_PROTECTED = \ReflectionMethod::IS_PROTECTED;
+    public const int IS_PRIVATE = \ReflectionMethod::IS_PRIVATE;
+    public const int IS_ABSTRACT = \ReflectionMethod::IS_ABSTRACT;
+    public const int IS_FINAL = \ReflectionMethod::IS_FINAL;
 
     public const ACCESS_MASK = self::IS_PUBLIC | self::IS_PROTECTED | self::IS_PRIVATE;
 
@@ -46,7 +46,7 @@ final class MethodSpec implements MethodSpecInterface
     /**
      * @psalm-var array<AccessStr,AccessInt>
      */
-    public const ACCESS_MAP = [
+    public const array ACCESS_MAP = [
         'public'     => self::IS_PUBLIC,
         'protected'  => self::IS_PROTECTED,
         'private'    => self::IS_PRIVATE,
@@ -56,58 +56,15 @@ final class MethodSpec implements MethodSpecInterface
     ];
 
     /**
-     * @var string
-     *
-     * @psalm-var non-empty-string
-     *
-     * @psalm-readonly
-     */
-    private $name;
-
-    /**
-     * @var ?bool
-     *
-     * @psalm-readonly
-     */
-    private $static;
-
-    /**
-     * @var ?int
-     *
-     * @psalm-readonly
-     */
-    private $access;
-
-    /**
-     * @var ?bool
-     *
-     * @psalm-readonly
-     */
-    private $abstract;
-
-    /**
-     * @var ?bool
-     *
-     * @psalm-readonly
-     */
-    private $final;
-
-    /**
      * @psalm-param non-empty-string $name
      */
     public function __construct(
-        string $name,
-        ?bool $static = null,
-        ?int $access = null,
-        ?bool $abstract = null,
-        ?bool $final = null
-    ) {
-        $this->name = $name;
-        $this->static = $static;
-        $this->access = $access;
-        $this->abstract = $abstract;
-        $this->final = $final;
-    }
+        private string $name,
+        private ?bool $static = null,
+        private ?int $access = null,
+        private ?bool $abstract = null,
+        private ?bool $final = null
+    ) {}
 
     /**
      * {@inheridoc}.

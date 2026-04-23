@@ -12,16 +12,16 @@ namespace Tailors\PHPUnit\Common;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @small
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
 #[CoversClass(ReferenceStorage::class)]
+#[Small]
 final class ReferenceStorageTest extends TestCase
 {
     public function testCountOnFreshObject(): void

@@ -13,6 +13,7 @@ namespace Tailors\PHPUnit\Constraint;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Examples\Inheritance\ExampleTrait;
@@ -21,23 +22,21 @@ use Tailors\PHPUnit\Inheritance\ConstraintImplementationTrait;
 use Tailors\PHPUnit\InvalidArgumentException;
 
 /**
- * @small
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
- *
- * @coversNothing
  */
 #[CoversClass(ExtendsClass::class)]
 #[CoversTrait(InheritanceConstraintTestTrait::class)]
 #[CoversClass(AbstractConstraint::class)]
 #[CoversTrait(ConstraintImplementationTrait::class)]
+#[Small]
 final class ExtendsClassTest extends TestCase
 {
     use InheritanceConstraintTestTrait;
 
     // required by InheritanceConstraintTestTrait
+    #[\Override]
     public static function provFailureDescriptionOfCustomUnaryOperator(): iterable
     {
         return [
@@ -146,22 +145,16 @@ final class ExtendsClassTest extends TestCase
         ];
     }
 
-    /**
-     * @param mixed $subject
-     */
     #[DataProvider('provExtendsClass')]
-    public function testConstraintSucceeds(string $class, $subject): void
+    public function testConstraintSucceeds(string $class, mixed $subject): void
     {
         $constraint = ExtendsClass::create($class);
 
         self::assertTrue($constraint->evaluate($subject, '', true));
     }
 
-    /**
-     * @param mixed $subject
-     */
     #[DataProvider('provNotExtendsClass')]
-    public function testConstraintFails(string $class, $subject, string $message): void
+    public function testConstraintFails(string $class, mixed $subject, string $message): void
     {
         $constraint = ExtendsClass::create($class);
 

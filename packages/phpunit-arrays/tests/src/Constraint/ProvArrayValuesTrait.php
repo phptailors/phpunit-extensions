@@ -20,11 +20,7 @@ use PHPUnit\Framework\Constraint\Constraint;
 trait ProvArrayValuesTrait
 {
     // @codeCoverageIgnoreStart
-
-    /**
-     * @param mixed $args
-     */
-    abstract public static function createConstraint(...$args): Constraint;
+    abstract public static function createConstraint(mixed ...$args): Constraint;
 
     public static function provArrayValuesIdenticalTo(): array
     {

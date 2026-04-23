@@ -20,13 +20,12 @@ trait ArrayValuesIdenticalToTrait
     /**
      * Evaluates a \PHPUnit\Framework\Constraint\Constraint matcher object.
      *
-     * @param mixed      $value
      * @param Constraint $constraint
      * @param string     $message
      *
      * @throws ExpectationFailedException
      */
-    abstract public static function assertThat($value, Constraint $constraint, string $message = ''): void;
+    abstract public static function assertThat(mixed $value, Constraint $constraint, string $message = ''): void;
 
     /**
      * Asserts that selected values of *$actual* array are identical to *$expected* ones.
@@ -40,7 +39,7 @@ trait ArrayValuesIdenticalToTrait
      */
     public static function assertArrayValuesIdenticalTo(
         array $expected,
-        $actual,
+        mixed $actual,
         string $message = ''
     ): void {
         self::assertThat($actual, self::arrayValuesIdenticalTo($expected), $message);
@@ -58,7 +57,7 @@ trait ArrayValuesIdenticalToTrait
      */
     public static function assertNotArrayValuesIdenticalTo(
         array $expected,
-        $actual,
+        mixed $actual,
         string $message = ''
     ): void {
         self::assertThat($actual, new LogicalNot(self::arrayValuesIdenticalTo($expected)), $message);

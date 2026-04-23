@@ -12,12 +12,11 @@ namespace Tailors\PHPUnit\Values;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\CircularDependencyException;
 
 /**
- * @small
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
@@ -26,9 +25,10 @@ use Tailors\PHPUnit\CircularDependencyException;
  * @psalm-type ArgsVisit = array{node: mixed, path: list<array-key>, iterating: bool}
  */
 #[CoversClass(RecursiveUnwrapperVisitor::class)]
+#[Small]
 final class RecursiveUnwrapperVisitorTest extends TestCase
 {
-    public const UNIQUE_TAG = RecursiveUnwrapperVisitor::UNIQUE_TAG;
+    public const string UNIQUE_TAG = RecursiveUnwrapperVisitor::UNIQUE_TAG;
 
     //
     //
@@ -279,12 +279,11 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
     /**
      * @param array       $ctor
      * @param list<array> $calls
-     * @param mixed       $result
      *
      * @psalm-param non-empty-list<array{args: EnterArgsT, expect: mixed}> $calls
      */
     #[DataProvider('provEnterLeave')]
-    public function testEnterLeave(array $ctor, array $calls, $result): void
+    public function testEnterLeave(array $ctor, array $calls, mixed $result): void
     {
         $visitor = new RecursiveUnwrapperVisitor(...$ctor);
 
@@ -386,12 +385,11 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
 
     /**
      * @param array $calls
-     * @param mixed $result
      *
      * @psalm-param non-empty-list<array{args: ArgsVisit}> $calls
      */
     #[DataProvider('provVisit')]
-    public function testVisit(array $calls, $result): void
+    public function testVisit(array $calls, mixed $result): void
     {
         $visitor = new RecursiveUnwrapperVisitor();
 

@@ -39,25 +39,17 @@ use Tailors\PHPUnit\Preg\CapturesFilterInterface;
 final class HasPregCaptures extends Constraint
 {
     /**
-     * @psalm-var array<array-key, CaptureExpectation>
-     */
-    private $expected;
-
-    /**
-     * @var CapturesFilterInterface
-     */
-    private $filter;
-
-    /**
      * Initializes the constraint.
      *
      * @psalm-param array<array-key, CaptureExpectation> $expected
      */
-    private function __construct(array $expected, CapturesFilterInterface $filter)
-    {
-        $this->expected = $expected;
-        $this->filter = $filter;
-    }
+    private function __construct(
+        /**
+         * @psalm-var array<array-key, CaptureExpectation>
+         */
+        private readonly array $expected,
+        private readonly CapturesFilterInterface $filter
+    ) {}
 
     /**
      * Initializes the constraint.
@@ -156,7 +148,7 @@ final class HasPregCaptures extends Constraint
     protected function failureDescription($other): string
     {
         if (is_object($other)) {
-            $what = 'object '.get_class($other);
+            $what = 'object '.$other::class;
         } else {
             $what = gettype($other);
         }
@@ -196,11 +188,9 @@ final class HasPregCaptures extends Constraint
     }
 
     /**
-     * @param mixed $value
-     *
      * @psalm-assert-if-true CaptureExpectation $value
      */
-    private static function isValidExpectation($value): bool
+    private static function isValidExpectation(mixed $value): bool
     {
         if (!is_array($value)) {
             return null === $value
@@ -233,14 +223,11 @@ final class HasPregCaptures extends Constraint
     }
 
     /**
-     * @param mixed $key
-     * @param mixed $value
-     *
      * @psalm-param array<array-key, string|null|array{0:string|null,1:int}> $matches
      * @psalm-param array-key $key
      * @psalm-param CaptureExpectation $value
      */
-    private static function updateExpectForComparison(array &$expect, array $matches, $key, $value): void
+    private static function updateExpectForComparison(array &$expect, array $matches, mixed $key, mixed $value): void
     {
         if ($value === self::isCaptured($matches, $key)) {
             if (array_key_exists($key, $matches)) {
@@ -252,12 +239,10 @@ final class HasPregCaptures extends Constraint
     }
 
     /**
-     * @param mixed $key
-     *
      * @psalm-param array<array-key, string|null|array{0:string|null,1:int}> $matches
      * @psalm-param array-key $key
      */
-    private static function updateActualForComparison(array &$actual, array $matches, $key): void
+    private static function updateActualForComparison(array &$actual, array $matches, mixed $key): void
     {
         if (array_key_exists($key, $matches)) {
             $actual[$key] = $matches[$key];
@@ -265,12 +250,10 @@ final class HasPregCaptures extends Constraint
     }
 
     /**
-     * @param mixed $key
-     *
      * @psalm-param array-key $key
      * @psalm-param array<array-key, PregMatchCaptured> $matches
      */
-    private static function isCaptured(array $matches, $key): bool
+    private static function isCaptured(array $matches, mixed $key): bool
     {
         if (null === ($val = $matches[$key] ?? null)) {
             return false;

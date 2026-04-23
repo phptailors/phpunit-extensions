@@ -32,30 +32,7 @@ abstract class AbstractConstraint extends Constraint implements ComparatorWrappe
 {
     use ShortFailureDescriptionTrait;
 
-    /**
-     * @var SelectionInterface
-     */
-    private $expected;
-
-    /**
-     * @var RecursiveUnwrapperInterface
-     */
-    private $unwrapper;
-
-    /**
-     * @var ComparatorInterface
-     */
-    private $comparator;
-
-    final protected function __construct(
-        ComparatorInterface $comparator,
-        SelectionInterface $expected,
-        RecursiveUnwrapperInterface $unwrapper
-    ) {
-        $this->comparator = $comparator;
-        $this->expected = $expected;
-        $this->unwrapper = $unwrapper;
-    }
+    final protected function __construct(private ComparatorInterface $comparator, private SelectionInterface $expected, private RecursiveUnwrapperInterface $unwrapper) {}
 
     /**
      * Returns an instance of SelectionInterface which defines expected values.
@@ -191,10 +168,7 @@ abstract class AbstractConstraint extends Constraint implements ComparatorWrappe
         return $this->comparator->compare($expect, $actual);
     }
 
-    /**
-     * @param mixed $subject
-     */
-    private function select($subject): ValuesInterface
+    private function select(mixed $subject): ValuesInterface
     {
         return (new RecursiveSelector($this->expected))->select($subject);
     }

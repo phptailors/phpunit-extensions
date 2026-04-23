@@ -12,21 +12,19 @@ namespace Tailors\PHPUnit\Values;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\InvalidArgumentException;
 
 /**
- * @small
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
- *
- * @coversNothing
  */
 #[CoversClass(AbstractPropertySelector::class)]
 #[CoversClass(AbstractValueSelector::class)]
 #[CoversClass(ObjectPropertySelector::class)]
+#[Small]
 final class ObjectPropertySelectorTest extends TestCase
 {
     //
@@ -85,11 +83,8 @@ final class ObjectPropertySelectorTest extends TestCase
     }
 
     // @codeCoverageIgnoreEnd
-    /**
-     * @param mixed $subject
-     */
     #[DataProvider('provSupports')]
-    public function testSupports($subject, bool $expect): void
+    public function testSupports(mixed $subject, bool $expect): void
     {
         $selector = new ObjectPropertySelector();
         self::assertSame($expect, $selector->supports($subject));
@@ -165,13 +160,8 @@ final class ObjectPropertySelectorTest extends TestCase
     }
 
     // @codeCoverageIgnoreEnd
-    /**
-     * @param mixed $key
-     * @param mixed $return
-     * @param mixed $expect
-     */
     #[DataProvider('provSelect')]
-    public function testSelect(object $object, $key, $return, $expect): void
+    public function testSelect(object $object, mixed $key, mixed $return, mixed $expect): void
     {
         $selector = new ObjectPropertySelector();
         self::assertSame($return, $selector->select($object, $key, $retval));

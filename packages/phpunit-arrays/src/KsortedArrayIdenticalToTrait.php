@@ -20,13 +20,12 @@ trait KsortedArrayIdenticalToTrait
     /**
      * Evaluates a \PHPUnit\Framework\Constraint\Constraint matcher object.
      *
-     * @param mixed      $value
      * @param Constraint $constraint
      * @param string     $message
      *
      * @throws ExpectationFailedException
      */
-    abstract public static function assertThat($value, Constraint $constraint, string $message = ''): void;
+    abstract public static function assertThat(mixed $value, Constraint $constraint, string $message = ''): void;
 
     /**
      * Asserts that *$actual* is an array identical to *$expected* when key-sorted.
@@ -40,7 +39,7 @@ trait KsortedArrayIdenticalToTrait
      */
     public static function assertKsortedArrayIdenticalTo(
         array $expected,
-        $actual,
+        mixed $actual,
         string $message = ''
     ): void {
         self::assertThat($actual, self::ksortedArrayIdenticalTo($expected), $message);
@@ -58,7 +57,7 @@ trait KsortedArrayIdenticalToTrait
      */
     public static function assertNotKsortedArrayIdenticalTo(
         array $expected,
-        $actual,
+        mixed $actual,
         string $message = ''
     ): void {
         self::assertThat($actual, new LogicalNot(self::ksortedArrayIdenticalTo($expected)), $message);

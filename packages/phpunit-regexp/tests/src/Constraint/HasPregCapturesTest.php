@@ -13,42 +13,34 @@ namespace Tailors\PHPUnit\Constraint;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Constraint\LogicalNot;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\InvalidArgumentException;
 
 /**
- * @small
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
- *
- * @coversNothing
  */
 #[CoversClass(HasPregCaptures::class)]
 #[CoversTrait(ProvHasPregCapturesTrait::class)]
+#[Small]
 final class HasPregCapturesTest extends TestCase
 {
     use ProvHasPregCapturesTrait;
 
-    /**
-     * @param mixed $actual
-     */
     #[DataProvider('provHasPregCaptures')]
-    public function testHasPregCapturesSucceeds(array $expect, $actual, string $message): void
+    public function testHasPregCapturesSucceeds(array $expect, mixed $actual, string $message): void
     {
         $constraint = HasPregCaptures::create($expect);
         self::assertThat($actual, $constraint);
     }
 
-    /**
-     * @param mixed $actual
-     */
     #[DataProvider('provNotHasPregCaptures')]
     #[DataProvider('provNotHasPregCapturesNonArray')]
-    public function testHasPregCapturesFails(array $expect, $actual, string $message): void
+    public function testHasPregCapturesFails(array $expect, mixed $actual, string $message): void
     {
         $constraint = HasPregCaptures::create($expect);
 
@@ -58,22 +50,16 @@ final class HasPregCapturesTest extends TestCase
         $constraint->evaluate($actual);
     }
 
-    /**
-     * @param mixed $actual
-     */
     #[DataProvider('provNotHasPregCaptures')]
     #[DataProvider('provNotHasPregCapturesNonArray')]
-    public function testNotHasPregCapturesSucceeds(array $expect, $actual, string $message): void
+    public function testNotHasPregCapturesSucceeds(array $expect, mixed $actual, string $message): void
     {
         $constraint = new LogicalNot(HasPregCaptures::create($expect));
         self::assertThat($actual, $constraint);
     }
 
-    /**
-     * @param mixed $actual
-     */
     #[DataProvider('provHasPregCaptures')]
-    public function testNotHasPregCapturesFails(array $expect, $actual, string $message): void
+    public function testNotHasPregCapturesFails(array $expect, mixed $actual, string $message): void
     {
         $constraint = new LogicalNot(HasPregCaptures::create($expect));
 

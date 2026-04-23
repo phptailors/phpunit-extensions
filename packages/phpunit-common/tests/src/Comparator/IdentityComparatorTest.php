@@ -12,18 +12,16 @@ namespace Tailors\PHPUnit\Comparator;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @small
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
- *
- * @coversNothing
  */
 #[CoversClass(IdentityComparator::class)]
+#[Small]
 final class IdentityComparatorTest extends TestCase
 {
     public function testImplementsComparatorInterface(): void
@@ -52,12 +50,8 @@ final class IdentityComparatorTest extends TestCase
         ];
     }
 
-    /**
-     * @param mixed $left
-     * @param mixed $right
-     */
     #[DataProvider('provCompare')]
-    public function testCompare($left, $right, bool $expect): void
+    public function testCompare(mixed $left, mixed $right, bool $expect): void
     {
         $comparator = new IdentityComparator();
         self::assertSame($expect, $comparator->compare($left, $right));

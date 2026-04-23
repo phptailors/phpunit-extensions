@@ -12,40 +12,32 @@ namespace Tailors\PHPUnit;
 
 use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Constraint\ProvHasPregCapturesTrait;
 
 /**
- * @small
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
- *
- * @coversNothing
  */
 #[CoversTrait(ProvHasPregCapturesTrait::class)]
 #[CoversTrait(HasPregCapturesTrait::class)]
+#[Small]
 final class HasPregCapturesTraitTest extends TestCase
 {
     use HasPregCapturesTrait;
     use ProvHasPregCapturesTrait;
 
-    /**
-     * @param mixed $actual
-     */
     #[DataProvider('provHasPregCaptures')]
-    public function testAssertHasPregCapturesSucceeds(array $expect, $actual, string $message): void
+    public function testAssertHasPregCapturesSucceeds(array $expect, mixed $actual, string $message): void
     {
         self::assertHasPregCaptures($expect, $actual);
     }
 
-    /**
-     * @param mixed $actual
-     */
     #[DataProvider('provNotHasPregCaptures')]
-    public function testAssertHasPregCapturesFails(array $expect, $actual, string $message): void
+    public function testAssertHasPregCapturesFails(array $expect, mixed $actual, string $message): void
     {
         $this->expectException(ExpectationFailedException::class);
         $this->expectExceptionMessage(sprintf('Failed asserting that %s.', $message));
@@ -53,41 +45,29 @@ final class HasPregCapturesTraitTest extends TestCase
         self::assertHasPregCaptures($expect, $actual);
     }
 
-    /**
-     * @param mixed $actual
-     */
     #[DataProvider('provNotHasPregCaptures')]
-    public function testAssertNotHasPregCaptureSucceeds(array $expect, $actual, string $message): void
+    public function testAssertNotHasPregCaptureSucceeds(array $expect, mixed $actual, string $message): void
     {
         self::assertNotHasPregCaptures($expect, $actual);
     }
 
-    /**
-     * @param mixed $actual
-     */
     #[DataProvider('provHasPregCaptures')]
-    public function testAssertNotHasPregCaptureFails(array $expect, $actual, string $message): void
+    public function testAssertNotHasPregCaptureFails(array $expect, mixed $actual, string $message): void
     {
         $this->expectException(ExpectationFailedException::class);
         $this->expectExceptionMessage(sprintf('Failed asserting that %s.', $message));
         self::assertNotHasPregCaptures($expect, $actual);
     }
 
-    /**
-     * @param mixed $actual
-     */
     #[DataProvider('provHasPregCaptures')]
-    public function testHasPregCapturesSucceeds(array $expect, $actual, string $message): void
+    public function testHasPregCapturesSucceeds(array $expect, mixed $actual, string $message): void
     {
         self::assertThat($actual, self::hasPregCaptures($expect));
     }
 
-    /**
-     * @param mixed $actual
-     */
     #[DataProvider('provNotHasPregCaptures')]
     #[DataProvider('provNotHasPregCapturesNonArray')]
-    public function testHasPregCapturesFails(array $expect, $actual, string $message): void
+    public function testHasPregCapturesFails(array $expect, mixed $actual, string $message): void
     {
         $this->expectException(ExpectationFailedException::class);
         $this->expectExceptionMessage(sprintf('Failed asserting that %s.', $message));

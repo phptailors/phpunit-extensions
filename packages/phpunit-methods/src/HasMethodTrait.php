@@ -20,14 +20,13 @@ trait HasMethodTrait
     /**
      * Evaluates a \PHPUnit\Framework\Constraint\Constraint matcher object.
      *
-     * @param mixed      $value
      * @param Constraint $constraint
      * @param string     $message
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
      */
-    abstract public static function assertThat($value, Constraint $constraint, string $message = ''): void;
+    abstract public static function assertThat(mixed $value, Constraint $constraint, string $message = ''): void;
 
     /**
      * Asserts that *$subject* has method specified with *$methodSpec*.
@@ -47,7 +46,7 @@ trait HasMethodTrait
      */
     public static function assertHasMethod(
         string $methodSpec,
-        $subject,
+        mixed $subject,
         string $message = ''
     ): void {
         self::assertThat($subject, self::hasMethod($methodSpec), $message);
@@ -68,7 +67,7 @@ trait HasMethodTrait
      */
     public static function assertNotHasMethod(
         string $methodSpec,
-        $subject,
+        mixed $subject,
         string $message = ''
     ): void {
         self::assertThat($subject, new LogicalNot(self::hasMethod($methodSpec)), $message);

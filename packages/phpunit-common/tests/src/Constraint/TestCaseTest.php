@@ -11,27 +11,27 @@
 namespace Tailors\PHPUnit\Constraint;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\IsTrue;
 use PHPUnit\Framework\Constraint\LogicalOr;
 
 /**
- * @small
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
- *
- * @coversNothing
  */
 #[CoversClass(TestCase::class)]
+#[Small]
 final class TestCaseTest extends TestCase
 {
+    #[\Override]
     public static function createConstraint(...$args): Constraint
     {
         return LogicalOr::fromConstraints(new IsTrue(...$args), new IsTrue(...$args));
     }
 
+    #[\Override]
     public static function getConstraintClass(): string
     {
         return LogicalOr::class;

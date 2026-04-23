@@ -12,6 +12,7 @@ namespace Tailors\PHPUnit\Values;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\Operator;
 use PHPUnit\Framework\Constraint\UnaryOperator;
@@ -22,15 +23,12 @@ use Tailors\PHPUnit\Comparator\ComparatorWrapperInterface;
 use Tailors\PHPUnit\Comparator\IdentityComparator;
 
 /**
- * @small
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
- *
- * @coversNothing
  */
 #[CoversClass(AbstractConstraint::class)]
+#[Small]
 final class AbstractConstraintTest extends TestCase
 {
     public static function createDummyConstraint(
@@ -286,10 +284,9 @@ final class AbstractConstraintTest extends TestCase
 
     /**
      * @param \Closure(TestCase):Constraint $constraint
-     * @param mixed                         $expect
      */
     #[DataProvider('provEvaluate')]
-    public function testEvaluate(\Closure $constraint, array $args, $expect): void
+    public function testEvaluate(\Closure $constraint, array $args, mixed $expect): void
     {
         if (is_array($expect)) {
             $this->expectException($expect['exception']);

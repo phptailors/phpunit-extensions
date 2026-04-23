@@ -12,20 +12,18 @@ namespace Tailors\PHPUnit;
 
 use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Constraint\ProvClassPropertiesTrait;
 
 /**
- * @small
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
- *
- * @coversNothing
  */
 #[CoversTrait(ClassPropertiesEqualToTrait::class)]
+#[Small]
 final class ClassPropertiesEqualToTraitTest extends TestCase
 {
     use ClassPropertiesEqualToTrait;

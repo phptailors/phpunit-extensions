@@ -51,9 +51,8 @@ abstract class ConstraintTestCase extends TestCase
     }
 
     // @codeCoverageIgnoreEnd
-
     /**
-     * @psalm-param array{values:\PHPUnit\Framework\Constraint\Constraint} $expect
+     * @psalm-param array{values: Constraint} $expect
      *
      * @throws Exception
      * @throws ExpectationFailedException
@@ -78,27 +77,24 @@ abstract class ConstraintTestCase extends TestCase
     }
 
     // @codeCoverageIgnoreEnd
-
     /**
      * @param array $expect
-     * @param mixed $actual
      *
      * @throws ExpectationFailedException
      */
-    final public function examineValuesMatchSucceeds(array $expect, $actual): void
+    final public function examineValuesMatchSucceeds(array $expect, mixed $actual): void
     {
         $this->examineConstraintMatchSucceeds([$expect], $actual);
     }
 
     /**
      * @param array  $expect
-     * @param mixed  $actual
      * @param string $string
      *
      * @throws ExpectationFailedException
      * @throws CircularDependencyException
      */
-    final public function examineValuesMatchFails(array $expect, $actual, string $string): void
+    final public function examineValuesMatchFails(array $expect, mixed $actual, string $string): void
     {
         $this->examineConstraintMatchFails([$expect], $actual, self::message($string));
 
@@ -106,26 +102,23 @@ abstract class ConstraintTestCase extends TestCase
     }
 
     // @codeCoverageIgnoreEnd
-
     /**
      * @param array $expect
-     * @param mixed $actual
      *
      * @throws ExpectationFailedException
      */
-    final public function examineNotValuesMatchSucceeds(array $expect, $actual): void
+    final public function examineNotValuesMatchSucceeds(array $expect, mixed $actual): void
     {
         $this->examineNotConstraintMatchSucceeds([$expect], $actual);
     }
 
     /**
      * @param array  $expect
-     * @param mixed  $actual
      * @param string $string
      *
      * @throws ExpectationFailedException
      */
-    final public function examineNotValuesMatchFails(array $expect, $actual, string $string): void
+    final public function examineNotValuesMatchFails(array $expect, mixed $actual, string $string): void
     {
         $this->examineNotConstraintMatchFails([$expect], $actual, self::message($string, true));
 
