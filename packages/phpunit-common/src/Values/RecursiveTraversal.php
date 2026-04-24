@@ -40,14 +40,20 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
     private $noWalkNestedValuesInterface;
 
     /**
+     * @var bool
+     */
+    private $noWalkNestedArrays;
+
+    /**
      * Initializes the object.
      */
-    public function __construct(bool $noUnwrapValuesWrappers = false, bool $noWalkNestedValuesInterface = false)
+    public function __construct(bool $noUnwrapValuesWrappers = false, bool $noWalkNestedValuesInterface = false, bool $noWalkNestedArrays = false)
     {
         $this->seen = new ReferenceStorage();
         $this->path = [];
         $this->noUnwrapValuesWrappers = $noUnwrapValuesWrappers;
         $this->noWalkNestedValuesInterface = $noWalkNestedValuesInterface;
+        $this->noWalkNestedArrays = $noWalkNestedArrays;
     }
 
     /**
@@ -127,7 +133,7 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
      */
     private function visitValue(&$value, RecursiveVisitorInterface $visitor): void
     {
-        if (is_array($value)) {
+        if (!$this->noWalkNestedArrays && is_array($value)) {
             $this->walkRecursive($value, $visitor);
 
             return;
