@@ -462,6 +462,38 @@ final class RecursiveTraversalTest extends TestCase
         ];
 
         yield 'RecursiveTraversalTest.php:'.__LINE__ => [
+            'args'    => [false, false, false],
+            'values'  => $v12,
+            'visitor' => new DummyRecursiveVisitor(),
+            'expect'  => [
+                ['func' => 'enter', 'node' => $v12, 'path' => []],
+                ['func' => 'enter', 'node' => $v12['foo'], 'path' => ['foo']],
+                ['func' => 'enter', 'node' => $v12baz, 'path' => ['foo', 'baz']],
+                ['func' => 'visit', 'node' => $v12baz['cor'], 'path' => ['foo', 'baz', 'cor']],
+                ['func' => 'leave', 'node' => $v12baz, 'path' => ['foo', 'baz']],
+                ['func' => 'leave', 'node' => $v12['foo'], 'path' => ['foo']],
+                ['func' => 'enter', 'node' => $v12['bar'], 'path' => ['bar']],
+                ['func' => 'enter', 'node' => $v12qux, 'path' => ['bar', 'qux']],
+                ['func' => 'visit', 'node' => $v12qux['cor'], 'path' => ['bar', 'qux', 'cor']],
+                ['func' => 'leave', 'node' => $v12qux, 'path' => ['bar', 'qux']],
+                ['func' => 'leave', 'node' => $v12['bar'], 'path' => ['bar']],
+                ['func' => 'leave', 'node' => $v12, 'path' => []],
+            ],
+        ];
+
+        yield 'RecursiveTraversalTest.php:'.__LINE__ => [
+            'args'    => [false, false, true],
+            'values'  => $v12,
+            'visitor' => new DummyRecursiveVisitor(),
+            'expect'  => [
+                ['func' => 'enter', 'node' => $v12, 'path' => []],
+                ['func' => 'visit', 'node' => $v12['foo'], 'path' => ['foo']],
+                ['func' => 'visit', 'node' => $v12['bar'], 'path' => ['bar']],
+                ['func' => 'leave', 'node' => $v12, 'path' => []],
+            ],
+        ];
+
+        yield 'RecursiveTraversalTest.php:'.__LINE__ => [
             'args'    => [false, true],
             'values'  => $v12,
             'visitor' => new DummyRecursiveVisitor(),
@@ -473,6 +505,34 @@ final class RecursiveTraversalTest extends TestCase
                 ['func' => 'enter', 'node' => $v12['bar'], 'path' => ['bar']],
                 ['func' => 'visit', 'node' => $v12qux, 'path' => ['bar', 'qux']],
                 ['func' => 'leave', 'node' => $v12['bar'], 'path' => ['bar']],
+                ['func' => 'leave', 'node' => $v12, 'path' => []],
+            ],
+        ];
+
+        yield 'RecursiveTraversalTest.php:'.__LINE__ => [
+            'args'    => [false, true, false],
+            'values'  => $v12,
+            'visitor' => new DummyRecursiveVisitor(),
+            'expect'  => [
+                ['func' => 'enter', 'node' => $v12, 'path' => []],
+                ['func' => 'enter', 'node' => $v12['foo'], 'path' => ['foo']],
+                ['func' => 'visit', 'node' => $v12baz, 'path' => ['foo', 'baz']],
+                ['func' => 'leave', 'node' => $v12['foo'], 'path' => ['foo']],
+                ['func' => 'enter', 'node' => $v12['bar'], 'path' => ['bar']],
+                ['func' => 'visit', 'node' => $v12qux, 'path' => ['bar', 'qux']],
+                ['func' => 'leave', 'node' => $v12['bar'], 'path' => ['bar']],
+                ['func' => 'leave', 'node' => $v12, 'path' => []],
+            ],
+        ];
+
+        yield 'RecursiveTraversalTest.php:'.__LINE__ => [
+            'args'    => [false, true, true],
+            'values'  => $v12,
+            'visitor' => new DummyRecursiveVisitor(),
+            'expect'  => [
+                ['func' => 'enter', 'node' => $v12, 'path' => []],
+                ['func' => 'visit', 'node' => $v12['foo'], 'path' => ['foo']],
+                ['func' => 'visit', 'node' => $v12['bar'], 'path' => ['bar']],
                 ['func' => 'leave', 'node' => $v12, 'path' => []],
             ],
         ];
@@ -494,6 +554,34 @@ final class RecursiveTraversalTest extends TestCase
         ];
 
         yield 'RecursiveTraversalTest.php:'.__LINE__ => [
+            'args'    => [true, false, false],
+            'values'  => $v12,
+            'visitor' => new DummyRecursiveVisitor(),
+            'expect'  => [
+                ['func' => 'enter', 'node' => $v12, 'path' => []],
+                ['func' => 'enter', 'node' => $v12['foo'], 'path' => ['foo']],
+                ['func' => 'visit', 'node' => $v12['foo']['baz'], 'path' => ['foo', 'baz']],
+                ['func' => 'leave', 'node' => $v12['foo'], 'path' => ['foo']],
+                ['func' => 'enter', 'node' => $v12['bar'], 'path' => ['bar']],
+                ['func' => 'visit', 'node' => $v12['bar']['qux'], 'path' => ['bar', 'qux']],
+                ['func' => 'leave', 'node' => $v12['bar'], 'path' => ['bar']],
+                ['func' => 'leave', 'node' => $v12, 'path' => []],
+            ],
+        ];
+
+        yield 'RecursiveTraversalTest.php:'.__LINE__ => [
+            'args'    => [true, false, true],
+            'values'  => $v12,
+            'visitor' => new DummyRecursiveVisitor(),
+            'expect'  => [
+                ['func' => 'enter', 'node' => $v12, 'path' => []],
+                ['func' => 'visit', 'node' => $v12['foo'], 'path' => ['foo']],
+                ['func' => 'visit', 'node' => $v12['bar'], 'path' => ['bar']],
+                ['func' => 'leave', 'node' => $v12, 'path' => []],
+            ],
+        ];
+
+        yield 'RecursiveTraversalTest.php:'.__LINE__ => [
             'args'    => [true, true],
             'values'  => $v12,
             'visitor' => new DummyRecursiveVisitor(),
@@ -505,6 +593,34 @@ final class RecursiveTraversalTest extends TestCase
                 ['func' => 'enter', 'node' => $v12['bar'], 'path' => ['bar']],
                 ['func' => 'visit', 'node' => $v12['bar']['qux'], 'path' => ['bar', 'qux']],
                 ['func' => 'leave', 'node' => $v12['bar'], 'path' => ['bar']],
+                ['func' => 'leave', 'node' => $v12, 'path' => []],
+            ],
+        ];
+
+        yield 'RecursiveTraversalTest.php:'.__LINE__ => [
+            'args'    => [true, true, false],
+            'values'  => $v12,
+            'visitor' => new DummyRecursiveVisitor(),
+            'expect'  => [
+                ['func' => 'enter', 'node' => $v12, 'path' => []],
+                ['func' => 'enter', 'node' => $v12['foo'], 'path' => ['foo']],
+                ['func' => 'visit', 'node' => $v12['foo']['baz'], 'path' => ['foo', 'baz']],
+                ['func' => 'leave', 'node' => $v12['foo'], 'path' => ['foo']],
+                ['func' => 'enter', 'node' => $v12['bar'], 'path' => ['bar']],
+                ['func' => 'visit', 'node' => $v12['bar']['qux'], 'path' => ['bar', 'qux']],
+                ['func' => 'leave', 'node' => $v12['bar'], 'path' => ['bar']],
+                ['func' => 'leave', 'node' => $v12, 'path' => []],
+            ],
+        ];
+
+        yield 'RecursiveTraversalTest.php:'.__LINE__ => [
+            'args'    => [true, true, true],
+            'values'  => $v12,
+            'visitor' => new DummyRecursiveVisitor(),
+            'expect'  => [
+                ['func' => 'enter', 'node' => $v12, 'path' => []],
+                ['func' => 'visit', 'node' => $v12['foo'], 'path' => ['foo']],
+                ['func' => 'visit', 'node' => $v12['bar'], 'path' => ['bar']],
                 ['func' => 'leave', 'node' => $v12, 'path' => []],
             ],
         ];
