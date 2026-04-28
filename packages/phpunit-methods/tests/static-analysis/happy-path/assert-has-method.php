@@ -20,7 +20,6 @@ final class Assert extends \PHPUnit\Framework\Assert
 }
 
 /**
- *
  * @throws ExpectationFailedException
  * @throws InvalidArgumentException
  */

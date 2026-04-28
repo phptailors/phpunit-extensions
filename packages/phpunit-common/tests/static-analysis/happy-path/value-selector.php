@@ -50,9 +50,7 @@ final class DummyValueSelector implements ValueSelectorInterface
 
 final class DummyValueSelectorWrapper implements ValueSelectorWrapperInterface
 {
-    public function __construct(public ValueSelectorInterface $valueSelector)
-    {
-    }
+    public function __construct(public ValueSelectorInterface $valueSelector) {}
 
     public function getValueSelector(): ValueSelectorInterface
     {

@@ -32,9 +32,7 @@ final class DummyComparator implements ComparatorInterface
 
 final class DummyComparatorWrapper implements ComparatorWrapperInterface
 {
-    public function __construct(public ComparatorInterface $comparator)
-    {
-    }
+    public function __construct(public ComparatorInterface $comparator) {}
 
     public function getComparator(): ComparatorInterface
     {
