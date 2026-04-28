@@ -15,6 +15,10 @@ use Tailors\PHPUnit\Comparator\ComparatorWrapperInterface;
 
 final class DummyComparator implements ComparatorInterface
 {
+    /**
+     * @param mixed $left
+     * @param mixed $right
+     */
     public function compare($left, $right): bool
     {
         return false;
