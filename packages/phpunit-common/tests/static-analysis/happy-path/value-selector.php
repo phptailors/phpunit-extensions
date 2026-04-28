@@ -15,11 +15,23 @@ use Tailors\PHPUnit\Values\ValueSelectorWrapperInterface;
 
 final class DummyValueSelector implements ValueSelectorInterface
 {
+    /**
+     * @param mixed $subject
+     */
     public function supports($subject): bool
     {
         return false;
     }
 
+    /**
+     * @param mixed $subject
+     * @param mixed $key
+     * @param mixed $retval
+     *
+     * @psalm-param array-key $key
+     *
+     * @param-out mixed $retval
+     */
     public function select($subject, $key, &$retval): bool
     {
         return false;
