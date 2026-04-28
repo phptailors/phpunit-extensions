@@ -27,14 +27,19 @@ final class DummyConstraintImplementation
     use ConstraintImplementationTrait;
 
     /**
+     * @var ValuesInterface
+     */
+    public $expected;
+
+    /**
      * @var ComparatorInterface
      */
     public $comparator;
 
     /**
-     * @var SelectionInterface
+     * @var ValueSelectorInterface
      */
-    public $selection;
+    public $valueSelector;
 
     /**
      * @var RecursiveUnwrapperInterface
@@ -57,12 +62,14 @@ final class DummyConstraintImplementation
     public static $validateExpectations;
 
     protected function __construct(
+        ValuesInterface $expected,
         ComparatorInterface $comparator,
-        SelectionInterface $selection,
+        ValueSelectorInterface $valueSelector,
         RecursiveUnwrapperInterface $unwrapper
     ) {
+        $this->expected = $expected;
         $this->comparator = $comparator;
-        $this->selection = $selection;
+        $this->valueSelector = $valueSelector;
         $this->unwrapper = $unwrapper;
     }
 

@@ -28,41 +28,40 @@ use Tailors\PHPUnit\Comparator\ComparatorWrapperInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-abstract class AbstractConstraint extends Constraint implements ComparatorWrapperInterface, SelectionWrapperInterface, ValuesWrapperInterface
+abstract class AbstractConstraint extends Constraint implements ComparatorWrapperInterface, ValueSelectorWrapperInterface, ValuesWrapperInterface
 {
     use ShortFailureDescriptionTrait;
 
     /**
-     * @var SelectionInterface
+     * @var ValuesInterface
      */
     private $expected;
-
-    /**
-     * @var RecursiveUnwrapperInterface
-     */
-    private $unwrapper;
 
     /**
      * @var ComparatorInterface
      */
     private $comparator;
 
-    final protected function __construct(
-        ComparatorInterface $comparator,
-        SelectionInterface $expected,
-        RecursiveUnwrapperInterface $unwrapper
-    ) {
-        $this->comparator = $comparator;
-        $this->expected = $expected;
-        $this->unwrapper = $unwrapper;
-    }
+    /**
+     * @var ValueSelectorInterface
+     */
+    private $valueSelector;
 
     /**
-     * Returns an instance of SelectionInterface which defines expected values.
+     * @var RecursiveUnwrapperInterface
      */
-    final public function getSelection(): SelectionInterface
-    {
-        return $this->expected;
+    private $unwrapper;
+
+    final protected function __construct(
+        ValuesInterface $expected,
+        ComparatorInterface $comparator,
+        ValueSelectorInterface $valueSelector,
+        RecursiveUnwrapperInterface $unwrapper
+    ) {
+        $this->expected = $expected;
+        $this->comparator = $comparator;
+        $this->valueSelector = $valueSelector;
+        $this->unwrapper = $unwrapper;
     }
 
     /**
@@ -82,14 +81,22 @@ abstract class AbstractConstraint extends Constraint implements ComparatorWrappe
     }
 
     /**
+     * Returns an instance of ValueSelectiorInterface.
+     */
+    final public function getValueSelector(): ValueSelectorInterface
+    {
+        return $this->valueSelector;
+    }
+
+    /**
      * Returns a string representation of the constraint.
      */
     final public function toString(): string
     {
         return sprintf(
             'is %s with %s %s specified',
-            $this->expected->getSelector()->subject(),
-            $this->expected->getSelector()->selectable(),
+            $this->valueSelector->subject(),
+            $this->valueSelector->selectable(),
             $this->comparator->adjective()
         );
     }
@@ -122,7 +129,7 @@ abstract class AbstractConstraint extends Constraint implements ComparatorWrappe
         if (!$success) {
             $f = null;
 
-            if ($this->expected->getSelector()->supports($other)) {
+            if ($this->valueSelector->supports($other)) {
                 $actual = $this->select($other);
                 $f = new ComparisonFailure(
                     $this->expected,
@@ -158,8 +165,8 @@ abstract class AbstractConstraint extends Constraint implements ComparatorWrappe
         if ($operator instanceof LogicalNot) {
             return sprintf(
                 'fails to be %s with %s %s specified',
-                $this->expected->getSelector()->subject(),
-                $this->expected->getSelector()->selectable(),
+                $this->valueSelector->subject(),
+                $this->valueSelector->selectable(),
                 $this->comparator->adjective()
             );
         }
@@ -175,7 +182,7 @@ abstract class AbstractConstraint extends Constraint implements ComparatorWrappe
      */
     final protected function matches($other): bool
     {
-        if (!$this->expected->getSelector()->supports($other)) {
+        if (!$this->valueSelector->supports($other)) {
             return false;
         }
         $actual = $this->unwrapper->unwrap($this->select($other));
@@ -204,12 +211,11 @@ abstract class AbstractConstraint extends Constraint implements ComparatorWrappe
     private function selectArray($subject): array
     {
         $array = [];
-        $selector = $this->expected->getSelector();
 
         // order of keys in $array shall follow that of $this->selection
         /** @psalm-var mixed $expect */
         foreach ($this->expected as $key => $_) {
-            if ($selector->select($subject, $key, $actual)) {
+            if ($this->valueSelector->select($subject, $key, $actual)) {
                 /** @psalm-var mixed */
                 $array[$key] = $actual;
             }

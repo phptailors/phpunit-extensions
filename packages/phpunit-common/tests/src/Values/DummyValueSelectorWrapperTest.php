@@ -15,20 +15,20 @@ use PHPUnit\Framework\TestCase;
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Values\DummySelectionWrapper
+ * @covers \Tailors\PHPUnit\Values\DummyValueSelectorWrapper
  *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class DummySelectionWrapperTest extends TestCase
+final class DummyValueSelectorWrapperTest extends TestCase
 {
-    public function testDummySelectionWrapper(): void
+    public function testDummyValueSelectorWrapper(): void
     {
         // Mostly for code coverage.
-        $selection = $this->createStub(SelectionInterface::class);
-        $wrapper = new DummySelectionWrapper($selection);
-        $this->assertSame($selection, $wrapper->getSelection());
+        $valueSelector = $this->createStub(ValueSelectorInterface::class);
+        $wrapper = new DummyValueSelectorWrapper($valueSelector);
+        $this->assertSame($valueSelector, $wrapper->getValueSelector());
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

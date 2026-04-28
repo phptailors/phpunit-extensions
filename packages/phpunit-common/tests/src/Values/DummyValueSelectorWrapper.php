@@ -15,26 +15,21 @@ namespace Tailors\PHPUnit\Values;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class DummySelectionWrapper implements SelectionWrapperInterface
+final class DummyValueSelectorWrapper implements ValueSelectorWrapperInterface
 {
     /**
-     * @var SelectionInterface
+     * @var ValueSelectorInterface
      */
-    private $selection;
+    private $valueSelector;
 
-    public function __construct(SelectionInterface $selection)
+    public function __construct(ValueSelectorInterface $valueSelector)
     {
-        $this->selection = $selection;
+        $this->valueSelector = $valueSelector;
     }
 
-    public function getSelection(): SelectionInterface
+    public function getValueSelector(): ValueSelectorInterface
     {
-        return $this->selection;
-    }
-
-    public function getValues(): ValuesInterface
-    {
-        return $this->selection;
+        return $this->valueSelector;
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

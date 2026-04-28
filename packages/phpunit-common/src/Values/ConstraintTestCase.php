@@ -64,7 +64,7 @@ abstract class ConstraintTestCase extends TestCase
     final public function testCreateConstraint(array $args, array $expect): void
     {
         $constraint = $this->examineCreateConstraint($args);
-        self::assertThat($constraint->getSelection()->getArrayCopy(), $expect['values']);
+        self::assertThat($constraint->getValues()->getArrayCopy(), $expect['values']);
     }
 
     /**
