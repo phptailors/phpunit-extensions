@@ -47,6 +47,7 @@ final class DummyComparatorWrapper implements ComparatorWrapperInterface
 function consume(): ComparatorInterface
 {
     $wrapper = new DummyComparatorWrapper(new DummyComparator());
+
     return $wrapper->getComparator();
 }
 

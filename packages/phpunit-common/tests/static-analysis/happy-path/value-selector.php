@@ -57,6 +57,7 @@ final class DummyValueSelectorWrapper implements ValueSelectorWrapperInterface
 function consume(): ValueSelectorInterface
 {
     $wrapper = new DummyValueSelectorWrapper(new DummyValueSelector());
+
     return $wrapper->getValueSelector();
 }
 
