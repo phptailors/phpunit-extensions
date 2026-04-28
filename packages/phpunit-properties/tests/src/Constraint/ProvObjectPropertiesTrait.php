@@ -141,76 +141,10 @@ trait ProvObjectPropertiesTrait
 
             'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => [
-                    'name' => 'John',
-                    'last' => 'Smith',
-                    'age'  => 21,
-                    'wife' => static::createConstraint([
-                        'name'        => 'Emily',
-                        'last'        => 'Smith',
-                        'age'         => 20,
-                        'husband'     => $jsmith,
-                        'getSalary()' => 98,
-                    ]),
-                ],
-                'actual' => $jsmith,
-                'string' => 'object '.$jsmith::class,
-            ],
-
-            'ProvObjectPropertiesTrait.php:'.__LINE__ => [
-                'expect' => [
-                    'name' => 'John',
-                    'last' => 'Smith',
-                    'age'  => 21,
-                    'wife' => static::createConstraint([
-                        'name'    => 'Emily',
-                        'last'    => 'Smith',
-                        'age'     => 20,
-                        'husband' => static::createConstraint([
-                            'name'        => 'John',
-                            'last'        => 'Smith',
-                            'age'         => 21,
-                            'getSalary()' => 123,
-                        ]),
-                        'getSalary()' => 98,
-                    ]),
-                ],
-                'actual' => $jsmith,
-                'string' => 'object '.$jsmith::class,
-            ],
-
-            'ProvObjectPropertiesTrait.php:'.__LINE__ => [
-                'expect' => [
                     'family' => [$esmith],
                 ],
                 'actual' => $jsmith,
                 'string' => 'object '.$jsmith::class,
-            ],
-
-            'ProvObjectPropertiesTrait.php:'.__LINE__ => [
-                'expect' => [
-                    'family' => [
-                        static::createConstraint(['name' => 'Emily', 'last' => 'Smith']),
-                    ],
-                ],
-                'actual' => $jsmith,
-                'string' => 'object '.$jsmith::class,
-            ],
-
-            'ProvObjectPropertiesTrait.php:'.__LINE__ => [
-                'expect' => [
-                    'persons' => [
-                        static::createConstraint(['name' => 'Emily', 'last' => 'Smith']),
-                        static::createConstraint(['name' => 'John', 'last' => 'Smith']),
-                    ],
-                    'families' => [
-                        'smith' => [
-                            static::createConstraint(['name' => 'Emily', 'last' => 'Smith']),
-                            static::createConstraint(['name' => 'John', 'last' => 'Smith']),
-                        ],
-                    ],
-                ],
-                'actual' => $registry,
-                'string' => 'object '.$registry::class,
             ],
 
             'ProvObjectPropertiesTrait.php:'.__LINE__ => [

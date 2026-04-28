@@ -8,7 +8,7 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\StaticAnalysis\HappyPath\RecursiveTraversalTestCase;
+namespace Tailors\PHPUnit\StaticAnalysis\HappyPath\RecursiveTraversal;
 
 use Tailors\PHPUnit\Values\RecursiveTraversal;
 use Tailors\PHPUnit\Values\RecursiveVisitorInterface;
@@ -17,7 +17,7 @@ use Tailors\PHPUnit\Values\ValuesInterface;
 /**
  * @internal This class is not covered by the backward compatibility promise
  *
- * @psalm-internal Tailors\PHPUnit\StaticAnalysis\HappyPath\RecursiveTraversalTestCase
+ * @psalm-internal Tailors\PHPUnit\StaticAnalysis\HappyPath\RecursiveTraversal
  */
 final class DummyRecursiveVisitor implements RecursiveVisitorInterface
 {
@@ -53,7 +53,7 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
  *
  * @internal This class is not covered by the backward compatibility promise
  *
- * @psalm-internal Tailors\PHPUnit\StaticAnalysis\HappyPath\RecursiveTraversalTestCase
+ * @psalm-internal Tailors\PHPUnit\StaticAnalysis\HappyPath\RecursiveTraversal
  */
 final class DummyValues extends \ArrayObject implements ValuesInterface
 {

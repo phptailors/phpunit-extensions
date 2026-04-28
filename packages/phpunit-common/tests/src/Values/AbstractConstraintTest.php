@@ -32,16 +32,21 @@ final class AbstractConstraintTest extends TestCase
 {
     public static function createConstraintMock(
         TestCase $test,
+        ?ValuesInterface $expected = null,
         ?ComparatorInterface $comparator = null,
-        ?SelectionInterface $expected = null,
+        ?ValueSelectorInterface $valueSelector = null,
         ?RecursiveUnwrapperInterface $unwrapper = null
     ) {
+        if (null === $expected) {
+            $expected = $test->createMock(ValuesInterface::class);
+        }
+
         if (null === $comparator) {
             $comparator = $test->createMock(ComparatorInterface::class);
         }
 
-        if (null === $expected) {
-            $expected = $test->createMock(SelectionInterface::class);
+        if (null === $valueSelector) {
+            $valueSelector = $test->createMock(ValueSelectorInterface::class);
         }
 
         if (null === $unwrapper) {
@@ -57,7 +62,7 @@ final class AbstractConstraintTest extends TestCase
         $class = new \ReflectionClass(AbstractConstraint::class);
         $construct = $class->getMethod('__construct');
         $construct->setAccessible(true);
-        $construct->invokeArgs($mock, [$comparator, $expected, $unwrapper]);
+        $construct->invokeArgs($mock, [$expected, $comparator, $valueSelector, $unwrapper]);
 
         return $mock;
     }
@@ -66,8 +71,9 @@ final class AbstractConstraintTest extends TestCase
     {
         return self::createConstraintMock(
             $test,
+            new ExpectedValues($expected),
             new IdentityComparator(),
-            new ExpectedValuesSelection(new ArrayValueSelector(), $expected),
+            new ArrayValueSelector(),
             new RecursiveUnwrapper()
         );
     }
@@ -84,48 +90,50 @@ final class AbstractConstraintTest extends TestCase
         $this->assertInstanceOf(Constraint::class, $constraint);
     }
 
+    public function testImplementsValuesWrapperInterface(): void
+    {
+        $constraint = self::createConstraintMock($this);
+        $this->assertInstanceOf(ValuesWrapperInterface::class, $constraint);
+    }
+
     public function testImplementsComparatorWrapperInterface(): void
     {
         $constraint = self::createConstraintMock($this);
         $this->assertInstanceOf(ComparatorWrapperInterface::class, $constraint);
     }
 
-    public function testImplementsSelectionWrapperInterface(): void
+    public function testImplementsValueSelectorWrapperInterface(): void
     {
         $constraint = self::createConstraintMock($this);
-        $this->assertInstanceOf(SelectionWrapperInterface::class, $constraint);
+        $this->assertInstanceOf(ValueSelectorWrapperInterface::class, $constraint);
     }
 
     public function testConstruct(): void
     {
+        $expected = $this->createMock(ValuesInterface::class);
         $comparator = $this->createMock(ComparatorInterface::class);
-        $expected = $this->createMock(SelectionInterface::class);
+        $valueSelector = $this->createMock(ValueSelectorInterface::class);
 
-        $constraint = self::createConstraintMock($this, $comparator, $expected);
+        $constraint = self::createConstraintMock($this, $expected, $comparator, $valueSelector);
 
-        $this->assertSame($comparator, $constraint->getComparator());
-        $this->assertSame($expected, $constraint->getSelection());
         $this->assertSame($expected, $constraint->getValues());
+        $this->assertSame($comparator, $constraint->getComparator());
+        $this->assertSame($valueSelector, $constraint->getValueSelector());
     }
 
     public function testToString(): void
     {
+        $expected = $this->createMock(ValuesInterface::class);
         $comparator = $this->createMock(ComparatorInterface::class);
-        $expected = $this->createMock(SelectionInterface::class);
 
-        $selector = $this->createMock(ValueSelectorInterface::class);
+        $valueSelector = $this->createMock(ValueSelectorInterface::class);
 
-        $expected->expects($this->any())
-            ->method('getSelector')
-            ->willReturn($selector)
-        ;
-
-        $selector->expects($this->once())
+        $valueSelector->expects($this->once())
             ->method('subject')
             ->willReturn('a tree')
         ;
 
-        $selector->expects($this->once())
+        $valueSelector->expects($this->once())
             ->method('selectable')
             ->willReturn('apples')
         ;
@@ -135,7 +143,7 @@ final class AbstractConstraintTest extends TestCase
             ->willReturn('having colors')
         ;
 
-        $constraint = self::createConstraintMock($this, $comparator, $expected);
+        $constraint = self::createConstraintMock($this, $expected, $comparator, $valueSelector);
 
         $this->assertSame('is a tree with apples having colors specified', $constraint->toString());
     }
@@ -143,22 +151,17 @@ final class AbstractConstraintTest extends TestCase
     public static function provToStringInContext(): array
     {
         $constraint = function (TestCase $test): Constraint {
+            $expected = $test->createMock(ValuesInterface::class);
             $comparator = $test->createMock(ComparatorInterface::class);
-            $expected = $test->createMock(SelectionInterface::class);
 
-            $selector = $test->createMock(ValueSelectorInterface::class);
+            $valueSelector = $test->createMock(ValueSelectorInterface::class);
 
-            $expected->expects($test->any())
-                ->method('getSelector')
-                ->willReturn($selector)
-            ;
-
-            $selector->expects($test->any())
+            $valueSelector->expects($test->any())
                 ->method('subject')
                 ->willReturn('a tree')
             ;
 
-            $selector->expects($test->any())
+            $valueSelector->expects($test->any())
                 ->method('selectable')
                 ->willReturn('apples')
             ;
@@ -168,7 +171,7 @@ final class AbstractConstraintTest extends TestCase
                 ->willReturn('having colors')
             ;
 
-            return static::createConstraintMock($test, $comparator, $expected);
+            return static::createConstraintMock($test, $expected, $comparator, $valueSelector);
         };
 
         return [

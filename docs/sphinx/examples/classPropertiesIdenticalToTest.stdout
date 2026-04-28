@@ -14,7 +14,7 @@ Failed asserting that classPropertiesIdenticalToTest is a class with properties 
 --- Expected
 +++ Actual
 @@ @@
--Tailors\PHPUnit\Values\ExpectedValuesSelection Object #451 (
+-Tailors\PHPUnit\Values\ExpectedValues Object #451 (
 -    'attribute' => '123',
 -    'getValue()' => null,
 +Tailors\PHPUnit\Values\ActualValues Object #448 (
