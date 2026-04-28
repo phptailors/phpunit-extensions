@@ -189,7 +189,33 @@ abstract class AbstractConstraint extends Constraint implements ComparatorWrappe
      */
     private function select($subject): ValuesInterface
     {
-        return (new RecursiveSelector($this->expected))->select($subject);
+        $array = $this->selectArray($subject);
+
+        if ($array instanceof ValuesInterface && !$array->actual()) {
+            return new ExpectedValues($array);
+        }
+
+        return new ActualValues($array);
+    }
+
+    /**
+     * @param mixed $subject
+     */
+    private function selectArray($subject): array
+    {
+        $array = [];
+        $selector = $this->expected->getSelector();
+
+        // order of keys in $array shall follow that of $this->selection
+        /** @psalm-var mixed $expect */
+        foreach ($this->expected as $key => $_) {
+            if ($selector->select($subject, $key, $actual)) {
+                /** @psalm-var mixed */
+                $array[$key] = $actual;
+            }
+        }
+
+        return $array;
     }
 }
 
