@@ -61,7 +61,6 @@ final class AbstractConstraintTest extends TestCase
         // AbstractConstraint::__construct() is protected, but we need it
         $class = new \ReflectionClass(AbstractConstraint::class);
         $construct = $class->getMethod('__construct');
-        $construct->setAccessible(true);
         $construct->invokeArgs($mock, [$expected, $comparator, $valueSelector, $unwrapper]);
 
         return $mock;
