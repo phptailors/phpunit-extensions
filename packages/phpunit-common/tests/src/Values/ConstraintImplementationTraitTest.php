@@ -44,11 +44,11 @@ final class ConstraintImplementationTraitTest extends TestCase
         $this->assertSame([$expected, 1, 1], DummyConstraintImplementation::$validateExpectations);
 
         $this->assertSame(DummyConstraintImplementation::$makeComparator, $constraint->comparator);
-        $this->assertInstanceOf(ExpectedValuesSelection::class, $constraint->selection);
+        $this->assertInstanceOf(ValueSelectorInterface::class, $constraint->valueSelector);
         $this->assertInstanceOf(RecursiveUnwrapper::class, $constraint->unwrapper);
 
-        $this->assertSame(DummyConstraintImplementation::$makeSelector, $constraint->selection->getSelector());
-        $this->assertSame($expected, $constraint->selection->getArrayCopy());
+        $this->assertSame(DummyConstraintImplementation::$makeSelector, $constraint->valueSelector);
+        $this->assertSame($expected, $constraint->expected->getArrayCopy());
     }
 
     //

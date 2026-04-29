@@ -27,20 +27,11 @@ use Tailors\PHPUnit\Comparator\ComparatorWrapperInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-abstract class AbstractConstraint extends Constraint implements ComparatorWrapperInterface, SelectionWrapperInterface, ValuesWrapperInterface
+abstract class AbstractConstraint extends Constraint implements ComparatorWrapperInterface, ValueSelectorWrapperInterface, ValuesWrapperInterface
 {
     use ShortFailureDescriptionTrait;
 
-    final protected function __construct(private ComparatorInterface $comparator, private SelectionInterface $expected, private RecursiveUnwrapperInterface $unwrapper) {}
-
-    /**
-     * Returns an instance of SelectionInterface which defines expected values.
-     */
-    #[\Override]
-    final public function getSelection(): SelectionInterface
-    {
-        return $this->expected;
-    }
+    final protected function __construct(private ValuesInterface $expected, private ComparatorInterface $comparator, private ValueSelectorInterface $valueSelector, private RecursiveUnwrapperInterface $unwrapper) {}
 
     /**
      * Returns an instance of ValuesInterface which defines expected values.
@@ -61,6 +52,14 @@ abstract class AbstractConstraint extends Constraint implements ComparatorWrappe
     }
 
     /**
+     * Returns an instance of ValueSelectiorInterface.
+     */
+    final public function getValueSelector(): ValueSelectorInterface
+    {
+        return $this->valueSelector;
+    }
+
+    /**
      * Returns a string representation of the constraint.
      */
     #[\Override]
@@ -68,8 +67,8 @@ abstract class AbstractConstraint extends Constraint implements ComparatorWrappe
     {
         return sprintf(
             'is %s with %s %s specified',
-            $this->expected->getSelector()->subject(),
-            $this->expected->getSelector()->selectable(),
+            $this->valueSelector->subject(),
+            $this->valueSelector->selectable(),
             $this->comparator->adjective()
         );
     }
@@ -102,7 +101,7 @@ abstract class AbstractConstraint extends Constraint implements ComparatorWrappe
         if (!$success) {
             $f = null;
 
-            if ($this->expected->getSelector()->supports($other)) {
+            if ($this->valueSelector->supports($other)) {
                 $actual = $this->select($other);
                 $f = new ComparisonFailure(
                     $this->expected,
@@ -139,8 +138,8 @@ abstract class AbstractConstraint extends Constraint implements ComparatorWrappe
         if ($operator instanceof LogicalNot) {
             return sprintf(
                 'fails to be %s with %s %s specified',
-                $this->expected->getSelector()->subject(),
-                $this->expected->getSelector()->selectable(),
+                $this->valueSelector->subject(),
+                $this->valueSelector->selectable(),
                 $this->comparator->adjective()
             );
         }
@@ -157,7 +156,7 @@ abstract class AbstractConstraint extends Constraint implements ComparatorWrappe
     #[\Override]
     final protected function matches($other): bool
     {
-        if (!$this->expected->getSelector()->supports($other)) {
+        if (!$this->valueSelector->supports($other)) {
             return false;
         }
         $actual = $this->unwrapper->unwrap($this->select($other));
@@ -168,7 +167,29 @@ abstract class AbstractConstraint extends Constraint implements ComparatorWrappe
 
     private function select(mixed $subject): ValuesInterface
     {
-        return (new RecursiveSelector($this->expected))->select($subject);
+        $array = $this->selectArray($subject);
+
+        if ($array instanceof ValuesInterface && !$array->actual()) {
+            return new ExpectedValues($array);
+        }
+
+        return new ActualValues($array);
+    }
+
+    private function selectArray(mixed $subject): array
+    {
+        $array = [];
+
+        // order of keys in $array shall follow that of $this->selection
+        /** @psalm-var mixed $expect */
+        foreach ($this->expected as $key => $_) {
+            if ($this->valueSelector->select($subject, $key, $actual)) {
+                /** @psalm-var mixed */
+                $array[$key] = $actual;
+            }
+        }
+
+        return $array;
     }
 }
 
