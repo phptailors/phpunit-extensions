@@ -182,22 +182,11 @@ appears in context of an $operator expression.</p></p>                </div>
                     
                 </div>
                 <div class="col-md-8">
-                    <a href="#method___construct">__construct</a>(<a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a> $comparator, <a href="../../../Tailors/PHPUnit/Values/SelectionInterface.html"><abbr title="Tailors\PHPUnit\Values\SelectionInterface">SelectionInterface</abbr></a> $expected, <a href="../../../Tailors/PHPUnit/Values/RecursiveUnwrapperInterface.html"><abbr title="Tailors\PHPUnit\Values\RecursiveUnwrapperInterface">RecursiveUnwrapperInterface</abbr></a> $unwrapper)
+                    <a href="#method___construct">__construct</a>(<a href="../../../Tailors/PHPUnit/Values/ValuesInterface.html"><abbr title="Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr></a> $expected, <a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a> $comparator, <a href="../../../Tailors/PHPUnit/Values/ValueSelectorInterface.html"><abbr title="Tailors\PHPUnit\Values\ValueSelectorInterface">ValueSelectorInterface</abbr></a> $valueSelector, <a href="../../../Tailors/PHPUnit/Values/RecursiveUnwrapperInterface.html"><abbr title="Tailors\PHPUnit\Values\RecursiveUnwrapperInterface">RecursiveUnwrapperInterface</abbr></a> $unwrapper)
         
                                             <p class="no-description">No description</p>
                                     </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html#method___construct">
-<abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a></small></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    <a href="../../../Tailors/PHPUnit/Values/SelectionInterface.html"><abbr title="Tailors\PHPUnit\Values\SelectionInterface">SelectionInterface</abbr></a>
-                </div>
-                <div class="col-md-8">
-                    <a href="#method_getSelection">getSelection</a>()
-        
-                                            <p><p>Returns an instance of SelectionInterface which defines expected values.</p></p>                </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html#method_getSelection">
 <abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a></small></div>
             </div>
                     <div class="row">
@@ -220,6 +209,17 @@ appears in context of an $operator expression.</p></p>                </div>
         
                                             <p><p>Returns an instance of ComparatorInterface which implements comparison operator.</p></p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html#method_getComparator">
+<abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Tailors/PHPUnit/Values/ValueSelectorInterface.html"><abbr title="Tailors\PHPUnit\Values\ValueSelectorInterface">ValueSelectorInterface</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_getValueSelector">getValueSelector</a>()
+        
+                                            <p><p>Returns an instance of ValueSelectiorInterface.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html#method_getValueSelector">
 <abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a></small></div>
             </div>
                     <div class="row">
@@ -490,7 +490,7 @@ customization by itself.</p></p>
         <div class="location">in <a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html#method___construct">
 <abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a> at line 34</div>
         <code>final            protected        
-    <strong>__construct</strong>(<a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a> $comparator, <a href="../../../Tailors/PHPUnit/Values/SelectionInterface.html"><abbr title="Tailors\PHPUnit\Values\SelectionInterface">SelectionInterface</abbr></a> $expected, <a href="../../../Tailors/PHPUnit/Values/RecursiveUnwrapperInterface.html"><abbr title="Tailors\PHPUnit\Values\RecursiveUnwrapperInterface">RecursiveUnwrapperInterface</abbr></a> $unwrapper)
+    <strong>__construct</strong>(<a href="../../../Tailors/PHPUnit/Values/ValuesInterface.html"><abbr title="Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr></a> $expected, <a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a> $comparator, <a href="../../../Tailors/PHPUnit/Values/ValueSelectorInterface.html"><abbr title="Tailors\PHPUnit\Values\ValueSelectorInterface">ValueSelectorInterface</abbr></a> $valueSelector, <a href="../../../Tailors/PHPUnit/Values/RecursiveUnwrapperInterface.html"><abbr title="Tailors\PHPUnit\Values\RecursiveUnwrapperInterface">RecursiveUnwrapperInterface</abbr></a> $unwrapper)
         </code>
     </h3>
     <div class="details">    
@@ -506,13 +506,18 @@ customization by itself.</p></p>
 
                     <table class="table table-condensed">
                     <tr>
+                <td><a href="../../../Tailors/PHPUnit/Values/ValuesInterface.html"><abbr title="Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr></a></td>
+                <td>$expected</td>
+                <td></td>
+            </tr>
+                    <tr>
                 <td><a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a></td>
                 <td>$comparator</td>
                 <td></td>
             </tr>
                     <tr>
-                <td><a href="../../../Tailors/PHPUnit/Values/SelectionInterface.html"><abbr title="Tailors\PHPUnit\Values\SelectionInterface">SelectionInterface</abbr></a></td>
-                <td>$expected</td>
+                <td><a href="../../../Tailors/PHPUnit/Values/ValueSelectorInterface.html"><abbr title="Tailors\PHPUnit\Values\ValueSelectorInterface">ValueSelectorInterface</abbr></a></td>
+                <td>$valueSelector</td>
                 <td></td>
             </tr>
                     <tr>
@@ -531,42 +536,9 @@ customization by itself.</p></p>
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_getSelection">
-        <div class="location">in <a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html#method_getSelection">
-<abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a> at line 39</div>
-        <code>final                    <a href="../../../Tailors/PHPUnit/Values/SelectionInterface.html"><abbr title="Tailors\PHPUnit\Values\SelectionInterface">SelectionInterface</abbr></a>
-    <strong>getSelection</strong>()
-        </code>
-    </h3>
-    <div class="details">    
-    
-            
-
-        <div class="method-description">
-                            <p><p>Returns an instance of SelectionInterface which defines expected values.</p></p>                        
-        </div>
-        <div class="tags">
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td><a href="../../../Tailors/PHPUnit/Values/SelectionInterface.html"><abbr title="Tailors\PHPUnit\Values\SelectionInterface">SelectionInterface</abbr></a></td>
-            <td></td>
-        </tr>
-    </table>
-
-            
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
                     <h3 id="method_getValues">
         <div class="location">in <a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html#method_getValues">
-<abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a> at line 48</div>
+<abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a> at line 39</div>
         <code>final                    <a href="../../../Tailors/PHPUnit/Values/ValuesInterface.html"><abbr title="Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr></a>
     <strong>getValues</strong>()
         </code>
@@ -599,7 +571,7 @@ customization by itself.</p></p>
                     <div class="method-item">
                     <h3 id="method_getComparator">
         <div class="location">in <a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html#method_getComparator">
-<abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a> at line 57</div>
+<abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a> at line 48</div>
         <code>final                    <a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a>
     <strong>getComparator</strong>()
         </code>
@@ -630,9 +602,42 @@ customization by itself.</p></p>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_getValueSelector">
+        <div class="location">in <a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html#method_getValueSelector">
+<abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a> at line 57</div>
+        <code>final                    <a href="../../../Tailors/PHPUnit/Values/ValueSelectorInterface.html"><abbr title="Tailors\PHPUnit\Values\ValueSelectorInterface">ValueSelectorInterface</abbr></a>
+    <strong>getValueSelector</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Returns an instance of ValueSelectiorInterface.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Tailors/PHPUnit/Values/ValueSelectorInterface.html"><abbr title="Tailors\PHPUnit\Values\ValueSelectorInterface">ValueSelectorInterface</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_evaluate">
         <div class="location">in <a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html#method_evaluate">
-<abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a> at line 93</div>
+<abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a> at line 92</div>
         <code>final                    bool|null
     <strong>evaluate</strong>(mixed $other, string $description = &#039;&#039;, bool $returnResult = false)
         </code>
@@ -698,7 +703,7 @@ failure.</p></p>
                     <div class="method-item">
                     <h3 id="method_matches">
         <div class="location">in <a href="../../../Tailors/PHPUnit/Values/AbstractConstraint.html#method_matches">
-<abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a> at line 157</div>
+<abbr title="Tailors\PHPUnit\Values\AbstractConstraint">AbstractConstraint</abbr></a> at line 156</div>
         <code>final            protected        bool
     <strong>matches</strong>(mixed $other)
         </code>
