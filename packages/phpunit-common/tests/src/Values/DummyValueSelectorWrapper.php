@@ -17,10 +17,7 @@ namespace Tailors\PHPUnit\Values;
  */
 final class DummyValueSelectorWrapper implements ValueSelectorWrapperInterface
 {
-    public function __construct(ValueSelectorInterface $valueSelector)
-    {
-        $this->valueSelector = $valueSelector;
-    }
+    public function __construct(private readonly ValueSelectorInterface $valueSelector) {}
 
     public function getValueSelector(): ValueSelectorInterface
     {

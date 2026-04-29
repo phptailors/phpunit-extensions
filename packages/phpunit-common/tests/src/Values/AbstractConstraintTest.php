@@ -30,7 +30,7 @@ use Tailors\PHPUnit\Comparator\IdentityComparator;
  */
 final class AbstractConstraintTest extends TestCase
 {
-    public static function createConstraintMock(
+    public static function createDummyConstraint(
         TestCase $test,
         ?ValuesInterface $expected = null,
         ?ComparatorInterface $comparator = null,
@@ -53,22 +53,12 @@ final class AbstractConstraintTest extends TestCase
             $unwrapper = $test->createMock(RecursiveUnwrapperInterface::class);
         }
 
-        $mock = $test->getMockBuilder(AbstractConstraint::class)
-            ->disableOriginalConstructor()
-            ->getMockForAbstractClass()
-        ;
-
-        // AbstractConstraint::__construct() is protected, but we need it
-        $class = new \ReflectionClass(AbstractConstraint::class);
-        $construct = $class->getMethod('__construct');
-        $construct->invokeArgs($mock, [$expected, $comparator, $valueSelector, $unwrapper]);
-
-        return $mock;
+        return DummyAbstractConstraint::create($expected, $comparator, $valueSelector, $unwrapper);
     }
 
     public static function createArrayValuesIdentityConstraint(TestCase $test, array $expected)
     {
-        return self::createConstraintMock(
+        return self::createDummyConstraint(
             $test,
             new ExpectedValues($expected),
             new IdentityComparator(),
@@ -85,25 +75,25 @@ final class AbstractConstraintTest extends TestCase
 
     public function testExtendsConstraint(): void
     {
-        $constraint = self::createConstraintMock($this);
+        $constraint = self::createDummyConstraint($this);
         $this->assertInstanceOf(Constraint::class, $constraint);
     }
 
     public function testImplementsValuesWrapperInterface(): void
     {
-        $constraint = self::createConstraintMock($this);
+        $constraint = self::createDummyConstraint($this);
         $this->assertInstanceOf(ValuesWrapperInterface::class, $constraint);
     }
 
     public function testImplementsComparatorWrapperInterface(): void
     {
-        $constraint = self::createConstraintMock($this);
+        $constraint = self::createDummyConstraint($this);
         $this->assertInstanceOf(ComparatorWrapperInterface::class, $constraint);
     }
 
     public function testImplementsValueSelectorWrapperInterface(): void
     {
-        $constraint = self::createConstraintMock($this);
+        $constraint = self::createDummyConstraint($this);
         $this->assertInstanceOf(ValueSelectorWrapperInterface::class, $constraint);
     }
 
@@ -113,7 +103,7 @@ final class AbstractConstraintTest extends TestCase
         $comparator = $this->createMock(ComparatorInterface::class);
         $valueSelector = $this->createMock(ValueSelectorInterface::class);
 
-        $constraint = self::createConstraintMock($this, $expected, $comparator, $valueSelector);
+        $constraint = self::createDummyConstraint($this, $expected, $comparator, $valueSelector);
 
         $this->assertSame($expected, $constraint->getValues());
         $this->assertSame($comparator, $constraint->getComparator());
@@ -142,7 +132,7 @@ final class AbstractConstraintTest extends TestCase
             ->willReturn('having colors')
         ;
 
-        $constraint = self::createConstraintMock($this, $expected, $comparator, $valueSelector);
+        $constraint = self::createDummyConstraint($this, $expected, $comparator, $valueSelector);
 
         $this->assertSame('is a tree with apples having colors specified', $constraint->toString());
     }
@@ -170,7 +160,7 @@ final class AbstractConstraintTest extends TestCase
                 ->willReturn('having colors')
             ;
 
-            return static::createConstraintMock($test, $expected, $comparator, $valueSelector);
+            return static::createDummyConstraint($test, $expected, $comparator, $valueSelector);
         };
 
         return [
