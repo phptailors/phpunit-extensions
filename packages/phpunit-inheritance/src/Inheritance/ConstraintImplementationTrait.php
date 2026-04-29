@@ -108,7 +108,7 @@ trait ConstraintImplementationTrait
             throw InvalidReturnValueException::fromExpectedTypeAndActualValue($function, 'array', $value);
         }
 
-        $strings = array_filter($value, 'is_string');
+        $strings = array_filter($value, fn (mixed $val) => is_string($val));
 
         if (count($strings) < count($value)) {
             throw InvalidReturnValueException::fromExpectedTypeAndActualValue($function, 'array of strings', $value);

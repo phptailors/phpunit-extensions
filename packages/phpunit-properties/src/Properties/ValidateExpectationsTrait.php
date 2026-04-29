@@ -34,7 +34,7 @@ trait ValidateExpectationsTrait
      */
     private static function assertStringKeysOnly(array $array, int $argument, int $distance = 1): void
     {
-        $valid = array_filter($array, 'is_string', ARRAY_FILTER_USE_KEY);
+        $valid = array_filter($array, fn (mixed $val) => is_string($val), ARRAY_FILTER_USE_KEY);
         if (($count = count($array) - count($valid)) > 0) {
             throw InvalidArgumentException::fromBackTrace(
                 $argument,

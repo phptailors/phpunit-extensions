@@ -78,7 +78,7 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
         $this->expectException(CircularDependencyException::class);
         $this->expectExceptionMessageMatches("/^Circular dependency found in nested values at \\\$values{$rePath}\\.$/");
 
-        (new RecursiveUnwrapperVisitor())->cycle([], $path);
+        new RecursiveUnwrapperVisitor()->cycle([], $path);
     }
 
     /**

@@ -8,7 +8,7 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\StaticAnalysis\HappyPath\ReferenceStorageTestCase;
+namespace Tailors\PHPUnit\StaticAnalysis\HappyPath\ReferenceStorage;
 
 use Tailors\PHPUnit\Common\ReferenceStorage;
 

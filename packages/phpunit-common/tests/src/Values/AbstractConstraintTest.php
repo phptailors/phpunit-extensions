@@ -33,31 +33,37 @@ final class AbstractConstraintTest extends TestCase
 {
     public static function createDummyConstraint(
         TestCase $test,
+        ?ValuesInterface $expected = null,
         ?ComparatorInterface $comparator = null,
-        ?SelectionInterface $expected = null,
+        ?ValueSelectorInterface $valueSelector = null,
         ?RecursiveUnwrapperInterface $unwrapper = null
     ) {
+        if (null === $expected) {
+            $expected = $test->createStub(ValuesInterface::class);
+        }
+
         if (null === $comparator) {
             $comparator = $test->createStub(ComparatorInterface::class);
         }
 
-        if (null === $expected) {
-            $expected = $test->createStub(SelectionInterface::class);
+        if (null === $valueSelector) {
+            $valueSelector = $test->createStub(ValueSelectorInterface::class);
         }
 
         if (null === $unwrapper) {
             $unwrapper = $test->createStub(RecursiveUnwrapperInterface::class);
         }
 
-        return DummyAbstractConstraint::create($comparator, $expected, $unwrapper);
+        return DummyAbstractConstraint::create($expected, $comparator, $valueSelector, $unwrapper);
     }
 
     public static function createArrayValuesIdentityConstraint(TestCase $test, array $expected)
     {
         return self::createDummyConstraint(
             $test,
+            new ExpectedValues($expected),
             new IdentityComparator(),
-            new ExpectedValuesSelection(new ArrayValueSelector(), $expected),
+            new ArrayValueSelector(),
             new RecursiveUnwrapper()
         );
     }
@@ -74,46 +80,49 @@ final class AbstractConstraintTest extends TestCase
         $this->assertInstanceOf(Constraint::class, $constraint);
     }
 
+    public function testImplementsValuesWrapperInterface(): void
+    {
+        $constraint = self::createDummyConstraint($this);
+        $this->assertInstanceOf(ValuesWrapperInterface::class, $constraint);
+    }
+
     public function testImplementsComparatorWrapperInterface(): void
     {
         $constraint = self::createDummyConstraint($this);
         $this->assertInstanceOf(ComparatorWrapperInterface::class, $constraint);
     }
 
-    public function testImplementsSelectionWrapperInterface(): void
+    public function testImplementsValueSelectorWrapperInterface(): void
     {
         $constraint = self::createDummyConstraint($this);
-        $this->assertInstanceOf(SelectionWrapperInterface::class, $constraint);
+        $this->assertInstanceOf(ValueSelectorWrapperInterface::class, $constraint);
     }
 
     public function testConstruct(): void
     {
+        $expected = $this->createStub(ValuesInterface::class);
         $comparator = $this->createStub(ComparatorInterface::class);
-        $expected = $this->createStub(SelectionInterface::class);
+        $valueSelector = $this->createStub(ValueSelectorInterface::class);
 
-        $constraint = self::createDummyConstraint($this, $comparator, $expected);
+        $constraint = self::createDummyConstraint($this, $expected, $comparator, $valueSelector);
 
-        $this->assertSame($comparator, $constraint->getComparator());
-        $this->assertSame($expected, $constraint->getSelection());
         $this->assertSame($expected, $constraint->getValues());
+        $this->assertSame($comparator, $constraint->getComparator());
+        $this->assertSame($valueSelector, $constraint->getValueSelector());
     }
 
     public function testToString(): void
     {
+        $expected = $this->createStub(ValuesInterface::class);
         $comparator = $this->createStub(ComparatorInterface::class);
-        $expected = $this->createStub(SelectionInterface::class);
 
-        $selector = $this->createStub(ValueSelectorInterface::class);
+        $valueSelector = $this->createStub(ValueSelectorInterface::class);
 
-        $expected->method('getSelector')
-            ->willReturn($selector)
-        ;
-
-        $selector->method('subject')
+        $valueSelector->method('subject')
             ->willReturn('a tree')
         ;
 
-        $selector->method('selectable')
+        $valueSelector->method('selectable')
             ->willReturn('apples')
         ;
 
@@ -121,7 +130,7 @@ final class AbstractConstraintTest extends TestCase
             ->willReturn('having colors')
         ;
 
-        $constraint = self::createDummyConstraint($this, $comparator, $expected);
+        $constraint = self::createDummyConstraint($this, $expected, $comparator, $valueSelector);
 
         $this->assertSame('is a tree with apples having colors specified', $constraint->toString());
     }
@@ -129,20 +138,16 @@ final class AbstractConstraintTest extends TestCase
     public static function provToStringInContext(): array
     {
         $constraint = function (TestCase $test): Constraint {
+            $expected = $test->createStub(ValuesInterface::class);
             $comparator = $test->createStub(ComparatorInterface::class);
-            $expected = $test->createStub(SelectionInterface::class);
 
-            $selector = $test->createStub(ValueSelectorInterface::class);
+            $valueSelector = $test->createStub(ValueSelectorInterface::class);
 
-            $expected->method('getSelector')
-                ->willReturn($selector)
-            ;
-
-            $selector->method('subject')
+            $valueSelector->method('subject')
                 ->willReturn('a tree')
             ;
 
-            $selector->method('selectable')
+            $valueSelector->method('selectable')
                 ->willReturn('apples')
             ;
 
@@ -150,7 +155,7 @@ final class AbstractConstraintTest extends TestCase
                 ->willReturn('having colors')
             ;
 
-            return static::createDummyConstraint($test, $comparator, $expected);
+            return static::createDummyConstraint($test, $expected, $comparator, $valueSelector);
         };
 
         return [
