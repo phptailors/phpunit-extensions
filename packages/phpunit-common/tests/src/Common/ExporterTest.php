@@ -48,7 +48,7 @@ final class ExporterTest extends TestCase
     {
         $array = [];
         $array[0] = &$array;
-        $format = (new SebastianExporter())->export($array);
+        $format = new SebastianExporter()->export($array);
         $this->assertStringMatchesFormat($format, Exporter::export($array));
     }
 
@@ -56,7 +56,7 @@ final class ExporterTest extends TestCase
     {
         $array = ['foo' => new \ArrayObject()];
         $array['foo'][0] = &$array;
-        $format = (new SebastianExporter())->export($array);
+        $format = new SebastianExporter()->export($array);
         $this->assertStringMatchesFormat('{enable export of objects to see this value}', Exporter::export($array));
         $this->assertStringMatchesFormat($format, Exporter::export($array, true));
     }

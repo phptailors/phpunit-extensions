@@ -28,7 +28,7 @@ final class Exporter
         // @codeCoverageIgnoreStart
 
         if (self::isExportable($value) || $exportObjects) {
-            return (new SebastianExporter())->export($value);
+            return new SebastianExporter()->export($value);
         }
 
         return '{enable export of objects to see this value}';
