@@ -14,7 +14,7 @@ Failed asserting that object AssertObjectPropertiesIdenticalToTest is an object 
 --- Expected
 +++ Actual
 @@ @@
--Tailors\PHPUnit\Values\ExpectedValuesSelection Object #456 (
+-Tailors\PHPUnit\Values\ExpectedValues Object #451 (
 -    'attribute' => '123',
 -    'getValue()' => null,
 +Tailors\PHPUnit\Values\ActualValues Object #453 (

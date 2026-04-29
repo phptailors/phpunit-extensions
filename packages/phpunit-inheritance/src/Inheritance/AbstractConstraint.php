@@ -60,7 +60,7 @@ abstract class AbstractConstraint extends Constraint
             return false;
         }
 
-        return in_array(strtolower($this->expected), array_map('strtolower', $this->inheritance($other)), true);
+        return in_array(strtolower($this->expected), array_map(fn (string $val) => strtolower($val), $this->inheritance($other)), true);
     }
 
     /**

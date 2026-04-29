@@ -30,9 +30,7 @@ trait ConstraintImplementationTrait
         $comparator = self::makeComparator();
         $selector = self::makeSelector();
 
-        (new RecursiveComparatorValidator($comparator))->validate($expected, 1);
-
-        return new self($comparator, new ExpectedValuesSelection($selector, $expected), new RecursiveUnwrapper());
+        return new self(new ExpectedValues($expected), $comparator, $selector, new RecursiveUnwrapper());
     }
 
     /**

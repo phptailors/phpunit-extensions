@@ -19,16 +19,16 @@ use PHPUnit\Framework\TestCase;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-#[CoversClass(DummySelectionWrapper::class)]
 #[Small]
-final class DummySelectionWrapperTest extends TestCase
+#[CoversClass(DummyValueSelectorWrapper::class)]
+final class DummyValueSelectorWrapperTest extends TestCase
 {
-    public function testDummySelectionWrapper(): void
+    public function testDummyValueSelectorWrapper(): void
     {
         // Mostly for code coverage.
-        $selection = $this->createStub(SelectionInterface::class);
-        $wrapper = new DummySelectionWrapper($selection);
-        $this->assertSame($selection, $wrapper->getSelection());
+        $valueSelector = $this->createStub(ValueSelectorInterface::class);
+        $wrapper = new DummyValueSelectorWrapper($valueSelector);
+        $this->assertSame($valueSelector, $wrapper->getValueSelector());
     }
 }
 // vim: syntax=php sw=4 ts=4 et:
