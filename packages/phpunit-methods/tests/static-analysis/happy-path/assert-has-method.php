@@ -20,12 +20,10 @@ final class Assert extends \PHPUnit\Framework\Assert
 }
 
 /**
- * @param mixed $subject
- *
  * @throws ExpectationFailedException
  * @throws InvalidArgumentException
  */
-function consume(string $method, $subject): void
+function consume(string $method, mixed $subject): void
 {
     Assert::assertHasMethod($method, $subject);
 }

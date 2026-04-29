@@ -15,10 +15,11 @@ use Tailors\PHPUnit\Comparator\ComparatorInterface;
 final class DummyAbstractConstraint extends AbstractConstraint
 {
     public static function create(
+        ValuesInterface $expected,
         ComparatorInterface $comparator,
-        SelectionInterface $expected,
+        ValueSelectorInterface $valueSelector,
         RecursiveUnwrapperInterface $unwrapper
     ): self {
-        return new self($comparator, $expected, $unwrapper);
+        return new self($expected, $comparator, $valueSelector, $unwrapper);
     }
 }

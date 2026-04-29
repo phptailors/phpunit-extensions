@@ -41,7 +41,7 @@ final class DummyConstraintImplementation
      */
     public static $validateExpectations;
 
-    protected function __construct(public ComparatorInterface $comparator, public SelectionInterface $selection, public RecursiveUnwrapperInterface $unwrapper) {}
+    protected function __construct(public ValuesInterface $expected, public ComparatorInterface $comparator, public ValueSelectorInterface $valueSelector, public RecursiveUnwrapperInterface $unwrapper) {}
 
     protected static function validateExpectations(array $expected, int $argument, int $distance = 1): void
     {
