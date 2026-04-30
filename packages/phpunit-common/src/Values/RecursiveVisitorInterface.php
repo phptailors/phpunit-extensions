@@ -18,28 +18,32 @@ namespace Tailors\PHPUnit\Values;
 interface RecursiveVisitorInterface
 {
     /**
-     * @param array|ValuesInterface $node
-     * @param list<array-key>       $path
+     * @param array|ValuesInterface       $node
+     * @param list<array-key>             $path
+     * @param list<array|ValuesInterface> $stack
      */
-    public function enter($node, array $path): bool;
+    public function enter($node, array $path, array $stack): bool;
 
     /**
-     * @param array|ValuesInterface $node
-     * @param list<array-key>       $path
+     * @param array|ValuesInterface       $node
+     * @param list<array-key>             $path
+     * @param list<array|ValuesInterface> $stack
      */
-    public function leave($node, array $path, bool $iterating): void;
+    public function leave($node, array $path, array $stack, bool $iterating): void;
 
     /**
-     * @param mixed           $node
-     * @param list<array-key> $path
+     * @param mixed                       $node
+     * @param list<array-key>             $path
+     * @param list<array|ValuesInterface> $stack
      */
-    public function visit($node, array $path, bool $iterating): void;
+    public function visit($node, array $path, array $stack, bool $iterating): void;
 
     /**
-     * @param array|ValuesInterface $node
-     * @param list<array-key>       $path
+     * @param array|ValuesInterface       $node
+     * @param list<array-key>             $path
+     * @param list<array|ValuesInterface> $stack
      */
-    public function cycle($node, array $path): bool;
+    public function cycle($node, array $path, array $stack): bool;
 }
 
 // vim: syntax=php sw=4 ts=4 et:
