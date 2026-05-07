@@ -29,8 +29,9 @@ trait ConstraintImplementationTrait
 
         $comparator = self::makeComparator();
         $selector = self::makeSelector();
+        $values = self::makeExpectedValues($expected);
 
-        return new self(new ExpectedValues($expected), $comparator, $selector, new RecursiveUnwrapper());
+        return new self($values, $comparator, $selector, new RecursiveUnwrapper());
     }
 
     /**
@@ -47,6 +48,11 @@ trait ConstraintImplementationTrait
      * Creates instance of ComparatorInterface.
      */
     abstract protected static function makeComparator(): ComparatorInterface;
+
+    /**
+     * Creates instance of ValuesInterface to be used as expected values.
+     */
+    abstract protected static function makeExpectedValues(array $array): ValuesInterface;
 }
 
 // vim: syntax=php sw=4 ts=4 et:

@@ -20,6 +20,7 @@ use Tailors\PHPUnit\Common\Exporter;
 use Tailors\PHPUnit\Common\ShortFailureDescriptionTrait;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\ComparatorWrapperInterface;
+use Tailors\PHPUnit\InternalErrorException;
 
 /**
  * Abstract base for constraints that examine values.
@@ -194,28 +195,20 @@ abstract class AbstractConstraint extends Constraint implements ComparatorWrappe
      */
     private function select($subject): ValuesInterface
     {
-        $array = $this->selectArray($subject);
+        $visitor = new RecursiveSelectorVisitor($this->valueSelector, $subject);
 
-        return $this->expected->createActualValues($array);
-    }
+        (new RecursiveTraversal())->walk($this->expected, $visitor);
 
-    /**
-     * @param mixed $subject
-     */
-    private function selectArray($subject): array
-    {
-        $array = [];
+        $result = $visitor->result();
 
-        // order of keys in $array shall follow that of $this->selection
-        /** @psalm-var mixed $expect */
-        foreach ($this->expected as $key => $_) {
-            if ($this->valueSelector->select($subject, $key, $actual)) {
-                /** @psalm-var mixed */
-                $array[$key] = $actual;
-            }
+        if (!$result instanceof ValuesInterface) {
+            $type = is_object($result) ? get_class($result) : gettype($result);
+
+            /** @psalm-suppress MissingThrowsDocblock */
+            throw InternalErrorException::fromBackTrace("recursive walk resulted with {$type}", 0);
         }
 
-        return $array;
+        return $result;
     }
 }
 

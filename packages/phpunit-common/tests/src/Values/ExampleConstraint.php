@@ -45,6 +45,11 @@ class ExampleConstraint extends AbstractConstraint
     {
         return new IdentityComparator();
     }
+
+    protected static function makeExpectedValues(array $array): ValuesInterface
+    {
+        return new ExpectedValues($array);
+    }
 }
 
 // vim: syntax=php sw=4 ts=4 et:
