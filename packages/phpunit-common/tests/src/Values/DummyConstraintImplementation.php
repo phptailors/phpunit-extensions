@@ -54,5 +54,10 @@ final class DummyConstraintImplementation
 
         return self::$makeComparator;
     }
+
+    protected static function makeExpectedValues(array $array): ValuesInterface
+    {
+        return new DummyValues(false, $array);
+    }
 }
 // vim: syntax=php sw=4 ts=4 et:
