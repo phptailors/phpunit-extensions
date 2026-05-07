@@ -112,7 +112,7 @@
                     bool
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_enter">enter</a>(<abbr title="array|Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr> $node, array $path)
+                    <a href="#method_enter">enter</a>(<abbr title="array|Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr> $node, array $path, array $stack)
         
                                             <p class="no-description">No description</p>
                                     </div>
@@ -123,7 +123,7 @@
                     void
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_leave">leave</a>(<abbr title="array|Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr> $node, array $path, bool $iterating)
+                    <a href="#method_leave">leave</a>(<abbr title="array|Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr> $node, array $path, array $stack, bool $iterating)
         
                                             <p class="no-description">No description</p>
                                     </div>
@@ -134,7 +134,7 @@
                     void
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_visit">visit</a>(mixed $node, array $path, bool $iterating)
+                    <a href="#method_visit">visit</a>(mixed $node, array $path, array $stack, bool $iterating)
         
                                             <p class="no-description">No description</p>
                                     </div>
@@ -145,7 +145,7 @@
                     bool
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_cycle">cycle</a>(<abbr title="array|Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr> $node, array $path)
+                    <a href="#method_cycle">cycle</a>(<abbr title="array|Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr> $node, array $path, array $stack)
         
                                             <p class="no-description">No description</p>
                                     </div>
@@ -159,9 +159,9 @@
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method_enter">
-        <div class="location">at line 23</div>
+        <div class="location">at line 24</div>
         <code>                    bool
-    <strong>enter</strong>(<abbr title="array|Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr> $node, array $path)
+    <strong>enter</strong>(<abbr title="array|Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr> $node, array $path, array $stack)
         </code>
     </h3>
     <div class="details">    
@@ -184,6 +184,11 @@
                     <tr>
                 <td>array</td>
                 <td>$path</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$stack</td>
                 <td></td>
             </tr>
             </table>
@@ -207,9 +212,9 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_leave">
-        <div class="location">at line 28</div>
+        <div class="location">at line 30</div>
         <code>                    void
-    <strong>leave</strong>(<abbr title="array|Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr> $node, array $path, bool $iterating)
+    <strong>leave</strong>(<abbr title="array|Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr> $node, array $path, array $stack, bool $iterating)
         </code>
     </h3>
     <div class="details">    
@@ -232,6 +237,11 @@
                     <tr>
                 <td>array</td>
                 <td>$path</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$stack</td>
                 <td></td>
             </tr>
                     <tr>
@@ -260,9 +270,9 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_visit">
-        <div class="location">at line 33</div>
+        <div class="location">at line 36</div>
         <code>                    void
-    <strong>visit</strong>(mixed $node, array $path, bool $iterating)
+    <strong>visit</strong>(mixed $node, array $path, array $stack, bool $iterating)
         </code>
     </h3>
     <div class="details">    
@@ -285,6 +295,11 @@
                     <tr>
                 <td>array</td>
                 <td>$path</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$stack</td>
                 <td></td>
             </tr>
                     <tr>
@@ -313,9 +328,9 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_cycle">
-        <div class="location">at line 38</div>
+        <div class="location">at line 42</div>
         <code>                    bool
-    <strong>cycle</strong>(<abbr title="array|Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr> $node, array $path)
+    <strong>cycle</strong>(<abbr title="array|Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr> $node, array $path, array $stack)
         </code>
     </h3>
     <div class="details">    
@@ -338,6 +353,11 @@
                     <tr>
                 <td>array</td>
                 <td>$path</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$stack</td>
                 <td></td>
             </tr>
             </table>
