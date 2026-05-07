@@ -18,24 +18,28 @@ namespace Tailors\PHPUnit\Values;
 interface RecursiveVisitorInterface
 {
     /**
-     * @param list<array-key> $path
+     * @param list<array-key>             $path
+     * @param list<array|ValuesInterface> $stack
      */
-    public function enter(array|ValuesInterface $node, array $path): bool;
+    public function enter(array|ValuesInterface $node, array $path, array $stack): bool;
 
     /**
-     * @param list<array-key> $path
+     * @param list<array-key>             $path
+     * @param list<array|ValuesInterface> $stack
      */
-    public function leave(array|ValuesInterface $node, array $path, bool $iterating): void;
+    public function leave(array|ValuesInterface $node, array $path, array $stack, bool $iterating): void;
 
     /**
-     * @param list<array-key> $path
+     * @param list<array-key>             $path
+     * @param list<array|ValuesInterface> $stack
      */
-    public function visit(mixed $node, array $path, bool $iterating): void;
+    public function visit(mixed $node, array $path, array $stack, bool $iterating): void;
 
     /**
-     * @param list<array-key> $path
+     * @param list<array-key>             $path
+     * @param list<array|ValuesInterface> $stack
      */
-    public function cycle(array|ValuesInterface $node, array $path): bool;
+    public function cycle(array|ValuesInterface $node, array $path, array $stack): bool;
 }
 
 // vim: syntax=php sw=4 ts=4 et:
