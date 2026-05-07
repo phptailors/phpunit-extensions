@@ -27,12 +27,18 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
     private array $path;
 
     /**
+     * @var list<array|ValuesInterface>
+     */
+    private array $stack;
+
+    /**
      * Initializes the object.
      */
     public function __construct(private readonly bool $noUnwrapValuesWrappers = false, private readonly bool $noWalkNestedValuesInterface = false, private readonly bool $noWalkNestedArrays = false)
     {
         $this->seen = new ReferenceStorage();
         $this->path = [];
+        $this->stack = [];
     }
 
     /**
@@ -44,12 +50,14 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
     {
         $this->seen = new ReferenceStorage();
         $this->path = [];
+        $this->stack = [];
 
         try {
             $this->walkRecursive($values, $visitor);
         } finally {
             $this->seen = new ReferenceStorage();
             $this->path = [];
+            $this->stack = [];
         }
     }
 
@@ -63,7 +71,7 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
     private function walkRecursive(array|ValuesInterface &$values, RecursiveVisitorInterface $visitor): void
     {
         if ($this->seen->contains($values)) {
-            if (!$visitor->cycle($values, $this->path)) {
+            if (!$visitor->cycle($values, $this->path, $this->stack)) {
                 return;
             }
         }
@@ -71,13 +79,13 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
         $this->seen->add($values);
 
         try {
-            $iterate = $visitor->enter($values, $this->path);
+            $iterate = $visitor->enter($values, $this->path, $this->stack);
             if ($iterate) {
                 $this->iterate($values, $visitor);
             } else {
-                $visitor->visit($values, $this->path, false);
+                $visitor->visit($values, $this->path, $this->stack, false);
             }
-            $visitor->leave($values, $this->path, $iterate);
+            $visitor->leave($values, $this->path, $this->stack, $iterate);
         } finally {
             $this->seen->remove($values);
         }
@@ -85,15 +93,21 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
 
     private function iterate(array|ValuesInterface $values, RecursiveVisitorInterface $visitor): void
     {
-        /** @var mixed $value */
-        foreach ($values as $key => &$value) {
-            array_push($this->path, $key);
+        try {
+            array_push($this->stack, $values);
 
-            try {
-                $this->visitValue($value, $visitor);
-            } finally {
-                array_pop($this->path);
+            /** @var mixed $value */
+            foreach ($values as $key => &$value) {
+                array_push($this->path, $key);
+
+                try {
+                    $this->visitValue($value, $visitor);
+                } finally {
+                    array_pop($this->path);
+                }
             }
+        } finally {
+            array_pop($this->stack);
         }
     }
 
@@ -125,7 +139,7 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
         }
 
         // Leaf node
-        $visitor->visit($node, $this->path, true);
+        $visitor->visit($node, $this->path, $this->stack, true);
     }
 }
 
