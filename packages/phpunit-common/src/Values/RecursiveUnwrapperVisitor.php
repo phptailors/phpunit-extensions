@@ -46,9 +46,7 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
     public function enter(array|ValuesInterface $node, array $path, array $stack): bool
     {
         if ($node instanceof ValuesInterface) {
-            $objects = array_filter($stack, function ($value) {
-                return $value instanceof ValuesInterface;
-            });
+            $objects = array_filter($stack, fn($value) => $value instanceof ValuesInterface);
             $root = $objects[0] ?? $node;
             $iterate = $root->actual() === $node->actual();
         } else {
