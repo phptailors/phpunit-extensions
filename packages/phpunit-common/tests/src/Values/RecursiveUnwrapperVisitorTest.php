@@ -142,6 +142,7 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
         //
 
         $s03 = [new ExpectedValues(), [], new ExpectedValues()];
+
         yield 'RecursiveUnwrapperVisitorTest.php:'.__LINE__ => [
             'ctor'  => [],
             'calls' => [
@@ -184,6 +185,7 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
         // 04
         //
         $s04 = [new ExpectedValues(), [], new ActualValues()];
+
         yield 'RecursiveUnwrapperVisitorTest.php:'.__LINE__ => [
             'ctor'  => [],
             'calls' => [
@@ -222,6 +224,7 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
         // 05
         //
         $s05 = [new ExpectedValues(), [], new ExpectedValues()];
+
         yield 'RecursiveUnwrapperVisitorTest.php:'.__LINE__ => [
             'ctor'  => [false],
             'calls' => [
@@ -261,6 +264,7 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
         // 06
         //
         $s06 = [new ExpectedValues(), [], new ActualValues()];
+
         yield 'RecursiveUnwrapperVisitorTest.php:'.__LINE__ => [
             'ctor'  => [false],
             'calls' => [
