@@ -32,10 +32,11 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param list<array-key> $path
+     * @param list<array-key>             $path
+     * @param list<array|ValuesInterface> $stack
      */
     #[\Override]
-    public function enter(array|ValuesInterface $node, array $path): bool
+    public function enter(array|ValuesInterface $node, array $path, array $stack): bool
     {
         $this->trace[] = ['func' => 'enter', 'node' => &$node, 'path' => $path];
 
@@ -47,22 +48,31 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param list<array-key> $path
+     * @param list<array-key>             $path
+     * @param list<array|ValuesInterface> $stack
      */
     #[\Override]
-    public function leave(array|ValuesInterface $node, array $path, bool $iterating): void
+    public function leave(array|ValuesInterface $node, array $path, array $stack, bool $iterating): void
     {
         $this->trace[] = ['func' => 'leave', 'node' => &$node, 'path' => $path];
     }
 
+    /**
+     * @param list<array-key>             $path
+     * @param list<array|ValuesInterface> $stack
+     */
     #[\Override]
-    public function visit(mixed $node, array $path, bool $iterating): void
+    public function visit(mixed $node, array $path, array $stack, bool $iterating): void
     {
         $this->trace[] = ['func' => 'visit', 'node' => &$node, 'path' => $path];
     }
 
+    /**
+     * @param list<array-key>             $path
+     * @param list<array|ValuesInterface> $stack
+     */
     #[\Override]
-    public function cycle(mixed $node, array $path): bool
+    public function cycle(array|ValuesInterface $node, array $path, array $stack): bool
     {
         $this->trace[] = ['func' => 'cycle', 'node' => &$node, 'path' => $path];
 
