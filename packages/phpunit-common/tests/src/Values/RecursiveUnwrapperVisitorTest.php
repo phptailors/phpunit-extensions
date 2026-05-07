@@ -21,8 +21,8 @@ use Tailors\PHPUnit\CircularDependencyException;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ArgsEnter = array{node: array|ValuesInterface, path: list<array-key>}
- * @psalm-type ArgsVisit = array{node: mixed, path: list<array-key>, iterating: bool}
+ * @psalm-type ArgsEnter = array{node: array|ValuesInterface, path: list<array-key>, stack: list<array|ValuesInterface>}
+ * @psalm-type ArgsVisit = array{node: mixed, path: list<array-key>, stack: list<array|ValuesInterface>, iterating: bool}
  */
 #[CoversClass(RecursiveUnwrapperVisitor::class)]
 #[Small]
