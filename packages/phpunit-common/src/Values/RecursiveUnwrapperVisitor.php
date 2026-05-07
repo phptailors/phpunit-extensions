@@ -22,18 +22,12 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
     public const UNIQUE_TAG = 'unwrapped-values:$1$zIlgusJc$ZZCyNRPOX1SbpKdzoD2hU/';
 
     /**
-     * @var list<ValuesInterface>
-     */
-    private array $objectStack;
-
-    /**
      * @var array
      */
     private array $result;
 
     public function __construct(private readonly bool $tagging = true)
     {
-        $this->objectStack = [];
         $this->result = [];
     }
 
@@ -46,19 +40,15 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param list<array-key> $path
+     * @param list<array-key>             $path
+     * @param list<array|ValuesInterface> $stack
      */
-    public function enter(array|ValuesInterface $node, array $path): bool
+    public function enter(array|ValuesInterface $node, array $path, array $stack): bool
     {
         if ($node instanceof ValuesInterface) {
-            if (($count = count($this->objectStack)) > 0) {
-                $parent = $this->objectStack[$count - 1];
-                $iterate = $parent->actual() === $node->actual();
-            } else {
-                $iterate = true;
-            }
-
-            $this->objectStack[] = $node;
+            $objects = array_filter($stack, fn ($value) => $value instanceof ValuesInterface);
+            $root = $objects[0] ?? $node;
+            $iterate = $root->actual() === $node->actual();
         } else {
             $iterate = true;
         }
@@ -71,13 +61,13 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param list<array-key> $path
+     * @param array|ValuesInterface       $node
+     * @param list<array-key>             $path
+     * @param list<array|ValuesInterface> $stack
      */
-    public function leave(array|ValuesInterface $node, array $path, bool $iterating): void
+    public function leave(array|ValuesInterface $node, array $path, array $stack, bool $iterating): void
     {
         if ($node instanceof ValuesInterface) {
-            array_pop($this->objectStack);
-
             if ($this->tagging && $iterating) {
                 // Distinguish unwrapped values from regular arrays
                 // by adding UNIQUE TAG AT THE END of $array.
@@ -88,21 +78,23 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param list<array-key> $path
+     * @param list<array-key>             $path
+     * @param list<array|ValuesInterface> $stack
      */
-    public function visit(mixed $node, array $path, bool $iterating): void
+    public function visit(mixed $node, array $path, array $stack, bool $iterating): void
     {
         self::set($this->result, $path, $node);
     }
 
     /**
-     * @param list<array-key> $path
+     * @param list<array-key>             $path
+     * @param list<array|ValuesInterface> $stack
      *
      * @return never
      *
      * @throws CircularDependencyException
      */
-    public function cycle(mixed $node, array $path): bool
+    public function cycle(array|ValuesInterface $node, array $path, array $stack): bool
     {
         self::throwCircular($path);
     }
