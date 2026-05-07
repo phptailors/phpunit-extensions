@@ -32,8 +32,6 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
     private array $stack;
 
     /**
-
-    /**
      * Initializes the object.
      */
     public function __construct(private readonly bool $noUnwrapValuesWrappers = false, private readonly bool $noWalkNestedValuesInterface = false, private readonly bool $noWalkNestedArrays = false)
