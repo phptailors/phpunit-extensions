@@ -14,36 +14,43 @@ namespace Tailors\PHPUnit\Values;
  * @internal This interface is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-template StackItem of RecursiveVisitorStackItemInterface
  */
 interface RecursiveVisitorInterface
 {
     /**
-     * @param array|ValuesInterface       $node
-     * @param list<array-key>             $path
-     * @param list<array|ValuesInterface> $stack
+     * @param array|ValuesInterface $node
+     * @param list<StackItem>       $stack
      */
-    public function enter($node, array $path, array $stack): bool;
+    public function enter($node, array $stack): bool;
 
     /**
-     * @param array|ValuesInterface       $node
-     * @param list<array-key>             $path
-     * @param list<array|ValuesInterface> $stack
+     * @param array|ValuesInterface $node
+     * @param list<StackItem>       $stack
      */
-    public function leave($node, array $path, array $stack, bool $iterating): void;
+    public function leave($node, array $stack, bool $iterating): void;
 
     /**
-     * @param mixed                       $node
-     * @param list<array-key>             $path
-     * @param list<array|ValuesInterface> $stack
+     * @param mixed           $node
+     * @param list<StackItem> $stack
      */
-    public function visit($node, array $path, array $stack, bool $iterating): void;
+    public function visit($node, array $stack, bool $iterating): void;
 
     /**
-     * @param array|ValuesInterface       $node
-     * @param list<array-key>             $path
-     * @param list<array|ValuesInterface> $stack
+     * @param array|ValuesInterface $node
+     * @param list<StackItem>       $stack
      */
-    public function cycle($node, array $path, array $stack): bool;
+    public function cycle($node, array $stack): bool;
+
+    /**
+     * @param array|ValuesInterface $node
+     * @param array-key             $key
+     * @param list<StackItem>       $stack
+     *
+     * @psalm-return StackItem
+     */
+    public function makeStackItem($node, $key, array $stack): RecursiveVisitorStackItemInterface;
 }
 
 // vim: syntax=php sw=4 ts=4 et:

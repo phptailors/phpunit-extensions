@@ -20,6 +20,8 @@ use PHPUnit\Framework\TestCase;
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type StackItem = DummyRecursiveVisitorStackItem
  */
 final class RecursiveTraversalTest extends TestCase
 {
@@ -207,8 +209,8 @@ final class RecursiveTraversalTest extends TestCase
         yield 'RecursiveTraversalTest.php:'.__LINE__ => [
             'args'    => [],
             'values'  => $v08,
-            'visitor' => new DummyRecursiveVisitor(function ($value, array $path) {
-                return ['baz', 'qux', 'baz'] !== $path;
+            'visitor' => new DummyRecursiveVisitor(function ($value, array $stack) {
+                return ['baz', 'qux', 'baz'] !== array_map(function ($item) { return $item->key(); }, $stack);
             }, true),
             'expect' => [
                 ['func' => 'enter', 'node' => $v08, 'path' => []],
@@ -253,8 +255,8 @@ final class RecursiveTraversalTest extends TestCase
         yield 'RecursiveTraversalTest.php:'.__LINE__ => [
             'args'    => [],
             'values'  => $v09,
-            'visitor' => new DummyRecursiveVisitor(function ($values, array $path) {
-                return count($path) < 1;
+            'visitor' => new DummyRecursiveVisitor(function ($values, array $stack) {
+                return count($stack) < 1;
             }),
             'expect' => [
                 ['func' => 'enter', 'node' => $v09, 'path' => []],
@@ -296,8 +298,8 @@ final class RecursiveTraversalTest extends TestCase
         yield 'RecursiveTraversalTest.php:'.__LINE__ => [
             'args'    => [],
             'values'  => $v10,
-            'visitor' => new DummyRecursiveVisitor(function ($value, array $path): bool {
-                return count($path) < 2;
+            'visitor' => new DummyRecursiveVisitor(function ($value, array $stack): bool {
+                return count($stack) < 2;
             }),
             'expect' => [
                 ['func' => 'enter', 'node' => $v10, 'path' => []],
@@ -320,8 +322,8 @@ final class RecursiveTraversalTest extends TestCase
         yield 'RecursiveTraversalTest.php:'.__LINE__ => [
             'args'    => [],
             'values'  => $v10,
-            'visitor' => new DummyRecursiveVisitor(function ($value, array $path): bool {
-                return count($path) < 1;
+            'visitor' => new DummyRecursiveVisitor(function ($value, array $stack): bool {
+                return count($stack) < 1;
             }),
             'expect' => [
                 ['func' => 'enter', 'node' => $v10, 'path' => []],

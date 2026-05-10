@@ -16,6 +16,10 @@ use Tailors\PHPUnit\CircularDependencyException;
  * @internal This interface is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @template-implements RecursiveVisitorInterface<RecursiveUnwrapperStackItem>
+ *
+ * @psalm-type StackItem = RecursiveUnwrapperStackItem
  */
 final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
 {
@@ -46,81 +50,94 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param array|ValuesInterface       $node
-     * @param list<array-key>             $path
-     * @param list<array|ValuesInterface> $stack
+     * @param array|ValuesInterface $node
+     * @param list<StackItem>       $stack
      */
-    public function enter($node, array $path, array $stack): bool
+    public function enter($node, array $stack): bool
     {
         if ($node instanceof ValuesInterface) {
-            $objects = array_filter($stack, function ($value) {
-                return $value instanceof ValuesInterface;
-            });
-            $root = $objects[0] ?? $node;
+            $root = $node;
+            foreach ($stack as $item) {
+                $inode = $item->node();
+                if ($inode instanceof ValuesInterface) {
+                    $root = $inode;
+
+                    break;
+                }
+            }
             $iterate = $root->actual() === $node->actual();
         } else {
             $iterate = true;
         }
 
         if ($iterate) {
-            self::set($this->result, $path, []);
+            self::set($this->result, $stack, []);
         }
 
         return $iterate;
     }
 
     /**
-     * @param array|ValuesInterface       $node
-     * @param list<array-key>             $path
-     * @param list<array|ValuesInterface> $stack
+     * @param array|ValuesInterface $node
+     * @param list<StackItem>       $stack
      */
-    public function leave($node, array $path, array $stack, bool $iterating): void
+    public function leave($node, array $stack, bool $iterating): void
     {
         if ($node instanceof ValuesInterface) {
             if ($this->tagging && $iterating) {
                 // Distinguish unwrapped values from regular arrays
                 // by adding UNIQUE TAG AT THE END of $array.
-                $path[] = self::UNIQUE_TAG;
-                self::set($this->result, $path, true);
+                $stack[] = new RecursiveUnwrapperStackItem($node, self::UNIQUE_TAG);
+                self::set($this->result, $stack, true);
             }
         }
     }
 
     /**
-     * @param mixed                       $node
-     * @param list<array-key>             $path
-     * @param list<array|ValuesInterface> $stack
+     * @param mixed           $node
+     * @param list<StackItem> $stack
      */
-    public function visit($node, array $path, array $stack, bool $iterating): void
+    public function visit($node, array $stack, bool $iterating): void
     {
-        self::set($this->result, $path, $node);
+        self::set($this->result, $stack, $node);
     }
 
     /**
-     * @param array|ValuesInterface       $node
-     * @param list<array-key>             $path
-     * @param list<array|ValuesInterface> $stack
+     * @param array|ValuesInterface $node
+     * @param array-key             $key
+     * @param list<StackItem>       $stack
+     *
+     * @psalm-return StackItem
+     */
+    public function makeStackItem($node, $key, array $stack): RecursiveVisitorStackItemInterface
+    {
+        return new RecursiveUnwrapperStackItem($node, $key);
+    }
+
+    /**
+     * @param array|ValuesInterface $node
+     * @param list<StackItem>       $stack
      *
      * @return never
      *
      * @throws CircularDependencyException
      */
-    public function cycle($node, array $path, array $stack): bool
+    public function cycle($node, array $stack): bool
     {
-        self::throwCircular($path);
+        self::throwCircular($stack);
     }
 
     /**
      * @param array           $array
-     * @param list<array-key> $path
+     * @param list<StackItem> $stack
      * @param mixed           $value
      *
      * @psalm-suppress UnusedParam
      * @psalm-suppress UnusedVariable
      */
-    private static function set(array &$array, array $path, $value): void
+    private static function set(array &$array, array $stack, $value): void
     {
-        if (0 === count($path)) {
+        if (0 === count($stack)) {
             if (is_array($value)) {
                 $array = $value;
             }
@@ -130,8 +147,9 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
 
         $current = &$array;
 
-        $top = array_pop($path);
-        foreach ($path as $key) {
+        $top = array_pop($stack)->key();
+        foreach ($stack as $item) {
+            $key = $item->key();
             if (!array_key_exists($key, $current)) {
                 $current[$key] = [];
             }
@@ -148,29 +166,29 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param list<array-key> $path
+     * @param list<StackItem> $stack
      *
      * @return never
      *
      * @throws CircularDependencyException
      */
-    private static function throwCircular(array $path): void
+    private static function throwCircular(array $stack): void
     {
-        $pathString = self::pathString($path);
+        $pathString = self::pathString($stack);
 
         throw new CircularDependencyException("Circular dependency found in nested values at \$values{$pathString}.");
     }
 
     /**
-     * @param list<array-key> $path
+     * @param list<StackItem> $stack
      *
      * @psalm-mutation-free
      */
-    private static function pathString(array $path): string
+    private static function pathString(array $stack): string
     {
-        return implode('', array_map(function ($key) {
-            return '['.var_export($key, true).']';
-        }, $path));
+        return implode('', array_map(function ($item) {
+            return '['.var_export($item->key(), true).']';
+        }, $stack));
     }
 }
 
