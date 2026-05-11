@@ -112,7 +112,7 @@
                     bool
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_enter">enter</a>(<abbr title="array|Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr> $node, array $path, array $stack)
+                    <a href="#method_enter">enter</a>(<abbr title="array|Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr> $node, array $stack)
         
                                             <p class="no-description">No description</p>
                                     </div>
@@ -123,7 +123,7 @@
                     void
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_leave">leave</a>(<abbr title="array|Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr> $node, array $path, array $stack, bool $iterating)
+                    <a href="#method_leave">leave</a>(<abbr title="array|Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr> $node, array $stack, bool $iterating)
         
                                             <p class="no-description">No description</p>
                                     </div>
@@ -134,7 +134,7 @@
                     void
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_visit">visit</a>(mixed $node, array $path, array $stack, bool $iterating)
+                    <a href="#method_visit">visit</a>(mixed $node, array $stack, bool $iterating)
         
                                             <p class="no-description">No description</p>
                                     </div>
@@ -145,7 +145,18 @@
                     bool
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_cycle">cycle</a>(<abbr title="array|Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr> $node, array $path, array $stack)
+                    <a href="#method_cycle">cycle</a>(<abbr title="array|Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr> $node, array $stack)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Tailors/PHPUnit/Values/RecursiveVisitorStackItemInterface.html"><abbr title="Tailors\PHPUnit\Values\RecursiveVisitorStackItemInterface">RecursiveVisitorStackItemInterface</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_makeStackItem">makeStackItem</a>(<abbr title="array|Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr> $node, <abbr title="Tailors\PHPUnit\Values\array-key">array-key</abbr> $key, array $stack)
         
                                             <p class="no-description">No description</p>
                                     </div>
@@ -159,9 +170,9 @@
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method_enter">
-        <div class="location">at line 24</div>
+        <div class="location">at line 25</div>
         <code>                    bool
-    <strong>enter</strong>(<abbr title="array|Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr> $node, array $path, array $stack)
+    <strong>enter</strong>(<abbr title="array|Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr> $node, array $stack)
         </code>
     </h3>
     <div class="details">    
@@ -179,11 +190,6 @@
                     <tr>
                 <td><abbr title="array|Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr></td>
                 <td>$node</td>
-                <td></td>
-            </tr>
-                    <tr>
-                <td>array</td>
-                <td>$path</td>
                 <td></td>
             </tr>
                     <tr>
@@ -214,7 +220,7 @@
                     <h3 id="method_leave">
         <div class="location">at line 30</div>
         <code>                    void
-    <strong>leave</strong>(<abbr title="array|Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr> $node, array $path, array $stack, bool $iterating)
+    <strong>leave</strong>(<abbr title="array|Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr> $node, array $stack, bool $iterating)
         </code>
     </h3>
     <div class="details">    
@@ -232,11 +238,6 @@
                     <tr>
                 <td><abbr title="array|Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr></td>
                 <td>$node</td>
-                <td></td>
-            </tr>
-                    <tr>
-                <td>array</td>
-                <td>$path</td>
                 <td></td>
             </tr>
                     <tr>
@@ -270,9 +271,9 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_visit">
-        <div class="location">at line 36</div>
+        <div class="location">at line 35</div>
         <code>                    void
-    <strong>visit</strong>(mixed $node, array $path, array $stack, bool $iterating)
+    <strong>visit</strong>(mixed $node, array $stack, bool $iterating)
         </code>
     </h3>
     <div class="details">    
@@ -290,11 +291,6 @@
                     <tr>
                 <td>mixed</td>
                 <td>$node</td>
-                <td></td>
-            </tr>
-                    <tr>
-                <td>array</td>
-                <td>$path</td>
                 <td></td>
             </tr>
                     <tr>
@@ -328,9 +324,9 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_cycle">
-        <div class="location">at line 42</div>
+        <div class="location">at line 40</div>
         <code>                    bool
-    <strong>cycle</strong>(<abbr title="array|Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr> $node, array $path, array $stack)
+    <strong>cycle</strong>(<abbr title="array|Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr> $node, array $stack)
         </code>
     </h3>
     <div class="details">    
@@ -352,7 +348,55 @@
             </tr>
                     <tr>
                 <td>array</td>
-                <td>$path</td>
+                <td>$stack</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_makeStackItem">
+        <div class="location">at line 48</div>
+        <code>                    <a href="../../../Tailors/PHPUnit/Values/RecursiveVisitorStackItemInterface.html"><abbr title="Tailors\PHPUnit\Values\RecursiveVisitorStackItemInterface">RecursiveVisitorStackItemInterface</abbr></a>
+    <strong>makeStackItem</strong>(<abbr title="array|Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr> $node, <abbr title="Tailors\PHPUnit\Values\array-key">array-key</abbr> $key, array $stack)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p class="no-description">No description</p>
+                    
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="array|Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr></td>
+                <td>$node</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td><abbr title="Tailors\PHPUnit\Values\array-key">array-key</abbr></td>
+                <td>$key</td>
                 <td></td>
             </tr>
                     <tr>
@@ -367,7 +411,7 @@
 
                     <table class="table table-condensed">
         <tr>
-            <td>bool</td>
+            <td><a href="../../../Tailors/PHPUnit/Values/RecursiveVisitorStackItemInterface.html"><abbr title="Tailors\PHPUnit\Values\RecursiveVisitorStackItemInterface">RecursiveVisitorStackItemInterface</abbr></a></td>
             <td></td>
         </tr>
     </table>
