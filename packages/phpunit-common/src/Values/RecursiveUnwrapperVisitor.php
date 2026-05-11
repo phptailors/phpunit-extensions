@@ -117,6 +117,12 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
     }
 
     /**
+     * @param StackItem       $item
+     * @param list<StackItem> $stack
+     */
+    public function freeStackItem(RecursiveVisitorStackItemInterface $item, array $stack): void {}
+
+    /**
      * @param array           $array
      * @param list<StackItem> $stack
      *
