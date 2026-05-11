@@ -15,13 +15,13 @@ namespace Tailors\PHPUnit\Values;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class DummyRecursiveVisitorStackItem implements RecursiveVisitorStackItemInterface
+final readonly class DummyRecursiveVisitorStackItem implements RecursiveVisitorStackItemInterface
 {
     /**
      * @param array|ValuesInterface $node
      * @param array-key             $key
      */
-    public function __construct(private readonly array|ValuesInterface $node, private readonly mixed $key) {}
+    public function __construct(private array|ValuesInterface $node, private mixed $key) {}
 
     /**
      * @return array|ValuesInterface
