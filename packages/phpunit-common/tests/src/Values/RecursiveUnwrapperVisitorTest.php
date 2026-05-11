@@ -420,7 +420,7 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
             $node = $args['node'];
 
             if ($iter) {
-                array_push($stack, $visitor->makeStackItem($node, $call['key'], $stack));
+                array_push($stack, $visitor->makeStackItem($root, $call['key'], $stack));
             }
 
             $this->assertNull($visitor->visit($node, $stack, $iter));
