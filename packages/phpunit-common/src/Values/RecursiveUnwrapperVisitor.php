@@ -36,7 +36,7 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
      */
     private array $current;
 
-    public function __construct(private readonly bool $tagging = true, )
+    public function __construct(private readonly bool $tagging = true)
     {
         $this->result = [];
         $this->current = [];
@@ -144,7 +144,7 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
 
         if (0 === $count) {
             if (!is_array($value)) {
-                $actual = is_object($value) ? get_class($value) : gettype($value);
+                $actual = get_debug_type($value);
 
                 /** @psalm-suppress MissingThrowsDocblock */
                 throw InvalidArgumentException::fromBackTrace(2, 'an array', $actual);
