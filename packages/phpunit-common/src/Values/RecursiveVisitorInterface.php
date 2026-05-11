@@ -14,32 +14,38 @@ namespace Tailors\PHPUnit\Values;
  * @internal This interface is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-template StackItem of RecursiveVisitorStackItemInterface
  */
 interface RecursiveVisitorInterface
 {
     /**
-     * @param list<array-key>             $path
-     * @param list<array|ValuesInterface> $stack
+     * @param list<StackItem> $stack
      */
-    public function enter(array|ValuesInterface $node, array $path, array $stack): bool;
+    public function enter(array|ValuesInterface $node, array $stack): bool;
 
     /**
-     * @param list<array-key>             $path
-     * @param list<array|ValuesInterface> $stack
+     * @param list<StackItem> $stack
      */
-    public function leave(array|ValuesInterface $node, array $path, array $stack, bool $iterating): void;
+    public function leave(array|ValuesInterface $node, array $stack, bool $iterating): void;
 
     /**
-     * @param list<array-key>             $path
-     * @param list<array|ValuesInterface> $stack
+     * @param list<StackItem> $stack
      */
-    public function visit(mixed $node, array $path, array $stack, bool $iterating): void;
+    public function visit(mixed $node, array $stack, bool $iterating): void;
 
     /**
-     * @param list<array-key>             $path
-     * @param list<array|ValuesInterface> $stack
+     * @param list<StackItem> $stack
      */
-    public function cycle(array|ValuesInterface $node, array $path, array $stack): bool;
+    public function cycle(array|ValuesInterface $node, array $stack): bool;
+
+    /**
+     * @param array-key       $key
+     * @param list<StackItem> $stack
+     *
+     * @psalm-return StackItem
+     */
+    public function makeStackItem(array|ValuesInterface $node, $key, array $stack): RecursiveVisitorStackItemInterface;
 }
 
 // vim: syntax=php sw=4 ts=4 et:

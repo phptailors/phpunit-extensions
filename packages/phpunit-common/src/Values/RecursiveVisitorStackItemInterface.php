@@ -15,14 +15,21 @@ namespace Tailors\PHPUnit\Values;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-interface RecursiveTraversalInterface
+interface RecursiveVisitorStackItemInterface
 {
     /**
-     * @psalm-template StackItem of RecursiveVisitorStackItemInterface
+     * @return array|ValuesInterface
      *
-     * @psalm-param RecursiveVisitorInterface<StackItem> $visitor
+     * @psalm-mutation-free
      */
-    public function walk(ValuesInterface $values, RecursiveVisitorInterface $visitor): void;
+    public function node();
+
+    /**
+     * @return array-key
+     *
+     * @psalm-mutation-free
+     */
+    public function key();
 }
 
 // vim: syntax=php sw=4 ts=4 et:
