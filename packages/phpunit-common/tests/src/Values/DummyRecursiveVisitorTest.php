@@ -52,8 +52,8 @@ final class DummyRecursiveVisitorTest extends TestCase
 
         yield 'DummyRecursiveVisitorTest.php:'.__LINE__ => [
             'args' => [
-                fn ($node, array $path): bool => false,
-                fn ($node, array $path): bool => true,
+                fn ($node, array $stack): bool => false,
+                fn ($node, array $stack): bool => true,
             ],
             'expect' => [
                 'enter' => false,
@@ -76,10 +76,10 @@ final class DummyRecursiveVisitorTest extends TestCase
 
         // Mostly for code coverage.
         $visitor = new DummyRecursiveVisitor(...$args);
-        $this->assertSame($expect['enter'], $visitor->enter($node, [], []));
-        $this->assertNull($visitor->visit(null, [], [], true));
-        $this->assertNull($visitor->leave($node, [], [], true));
-        $this->assertSame($expect['cycle'], $visitor->cycle([], [], []));
+        $this->assertSame($expect['enter'], $visitor->enter($node, []));
+        $this->assertNull($visitor->visit(null, [], true));
+        $this->assertNull($visitor->leave($node, [], true));
+        $this->assertSame($expect['cycle'], $visitor->cycle([], []));
 
         $trace = [
             ['func' => 'enter', 'node' => $node, 'path' => []],

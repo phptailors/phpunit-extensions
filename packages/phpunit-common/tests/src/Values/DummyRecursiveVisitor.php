@@ -14,6 +14,10 @@ namespace Tailors\PHPUnit\Values;
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @template-implements RecursiveVisitorInterface<DummyRecursiveVisitorStackItem>
+ *
+ * @psalm-type StackItem = DummyRecursiveVisitorStackItem
  */
 final class DummyRecursiveVisitor implements RecursiveVisitorInterface
 {
@@ -23,8 +27,8 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     private array $trace;
 
     /**
-     * @param bool|\Closure(array|ValuesInterface,list<array-key>):bool $enter
-     * @param bool|\Closure(array|ValuesInterface,list<array-key>):bool $cycle
+     * @param bool|\Closure(array|ValuesInterface,list<StackItem>):bool $enter
+     * @param bool|\Closure(array|ValuesInterface,list<StackItem>):bool $cycle
      */
     public function __construct(private readonly bool|\Closure $enter = true, private readonly bool|\Closure $cycle = false)
     {
@@ -32,51 +36,58 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param list<array-key>             $path
-     * @param list<array|ValuesInterface> $stack
+     * @param list<StackItem> $stack
      */
-    public function enter(array|ValuesInterface $node, array $path, array $stack): bool
+    public function enter(array|ValuesInterface $node, array $stack): bool
     {
-        $this->trace[] = ['func' => 'enter', 'node' => &$node, 'path' => $path];
+        $this->trace[] = ['func' => 'enter', 'node' => &$node, 'path' => self::path($stack)];
 
         if (is_bool($this->enter)) {
             return $this->enter;
         }
 
-        return call_user_func_array($this->enter, [&$node, $path]);
+        return call_user_func_array($this->enter, [&$node, $stack]);
     }
 
     /**
-     * @param list<array-key>             $path
-     * @param list<array|ValuesInterface> $stack
+     * @param list<StackItem> $stack
      */
-    public function leave(array|ValuesInterface $node, array $path, array $stack, bool $iterating): void
+    public function leave(array|ValuesInterface $node, array $stack, bool $iterating): void
     {
-        $this->trace[] = ['func' => 'leave', 'node' => &$node, 'path' => $path];
+        $this->trace[] = ['func' => 'leave', 'node' => &$node, 'path' => self::path($stack)];
     }
 
     /**
-     * @param list<array-key>             $path
-     * @param list<array|ValuesInterface> $stack
+     * @param list<StackItem> $stack
      */
-    public function visit(mixed $node, array $path, array $stack, bool $iterating): void
+    public function visit(mixed $node, array $stack, bool $iterating): void
     {
-        $this->trace[] = ['func' => 'visit', 'node' => &$node, 'path' => $path];
+        $this->trace[] = ['func' => 'visit', 'node' => &$node, 'path' => self::path($stack)];
     }
 
     /**
-     * @param list<array-key>             $path
-     * @param list<array|ValuesInterface> $stack
+     * @param list<StackItem> $stack
      */
-    public function cycle(array|ValuesInterface $node, array $path, array $stack): bool
+    public function cycle(array|ValuesInterface $node, array $stack): bool
     {
-        $this->trace[] = ['func' => 'cycle', 'node' => &$node, 'path' => $path];
+        $this->trace[] = ['func' => 'cycle', 'node' => &$node, 'path' => self::path($stack)];
 
         if (is_bool($this->cycle)) {
             return $this->cycle;
         }
 
-        return call_user_func_array($this->cycle, [&$node, $path]);
+        return call_user_func_array($this->cycle, [&$node, $stack]);
+    }
+
+    /**
+     * @param array-key       $key
+     * @param list<StackItem> $stack
+     *
+     * @psalm-return StackItem
+     */
+    public function makeStackItem(array|ValuesInterface $node, $key, array $stack): RecursiveVisitorStackItemInterface
+    {
+        return new DummyRecursiveVisitorStackItem($node, $key);
     }
 
     /**
@@ -87,6 +98,16 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     public function trace(): array
     {
         return $this->trace;
+    }
+
+    /**
+     * @param list<StackItem> $stack
+     *
+     * @psalm-pure
+     */
+    private static function path(array $stack): array
+    {
+        return array_map(fn ($item) => $item->key(), $stack);
     }
 }
 // vim: syntax=php sw=4 ts=4 et:
