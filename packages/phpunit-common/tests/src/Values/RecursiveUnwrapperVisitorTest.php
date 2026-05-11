@@ -21,9 +21,9 @@ use Tailors\PHPUnit\CircularDependencyException;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ArgsEnter = array{node: array|ValuesInterface, path: list<array-key>, stack: list<array|ValuesInterface>}
- * @psalm-type ArgsVisit = array{node: mixed, path: list<array-key>, stack: list<array|ValuesInterface>, iterating: bool}
  * @psalm-type StackItem = RecursiveUnwrapperStackItem
+ * @psalm-type EnterTestCall = array{args: array{node: array|ValuesInterface}, return: mixed, next?: array-key}
+ * @psalm-type VisitTestCall = array{args: array{node: mixed}, key?: array-key}
  */
 #[CoversClass(RecursiveUnwrapperVisitor::class)]
 #[Small]
@@ -60,18 +60,18 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
 
         yield 'RecursiveUnwrapperVisitorTest.php:'.__LINE__ => [
             'stack' => [
-                new RecursiveUnwrapperStackItem([], 'foo'),
-                new RecursiveUnwrapperStackItem([], 3),
-                new RecursiveUnwrapperStackItem([], 'bar'),
+                new RecursiveUnwrapperStackItem([], 'foo', []),
+                new RecursiveUnwrapperStackItem([], 3, []),
+                new RecursiveUnwrapperStackItem([], 'bar', []),
             ],
             'expect' => "['foo'][3]['bar']",
         ];
 
         yield 'RecursiveUnwrapperVisitorTest.php:'.__LINE__ => [
             'stack' => [
-                new RecursiveUnwrapperStackItem([], null),
-                new RecursiveUnwrapperStackItem([], 3),
-                new RecursiveUnwrapperStackItem([], false),
+                new RecursiveUnwrapperStackItem([], null, []),
+                new RecursiveUnwrapperStackItem([], 3, []),
+                new RecursiveUnwrapperStackItem([], false, []),
             ],
             'expect' => '[NULL][3][false]',
         ];
@@ -95,10 +95,7 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
      *
      * @psalm-return iterable<string, array{
      *      ctor: array,
-     *      calls: non-empty-list<array{
-     *          args: ArgsEnter,
-     *          expect: mixed,
-     *      }>,
+     *      calls: non-empty-list<EnterTestCall>,
      *      result: mixed
      *  }>
      */
@@ -113,10 +110,9 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
             'calls' => [
                 [
                     'args' => [
-                        'node'  => [],
-                        'stack' => [],
+                        'node' => [],
                     ],
-                    'expect' => true,
+                    'return' => true,
                 ],
             ],
             'result' => [],
@@ -131,10 +127,9 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
             'calls' => [
                 [
                     'args' => [
-                        'node'  => new ExpectedValues(),
-                        'stack' => [],
+                        'node' => new ExpectedValues(),
                     ],
-                    'expect' => true,
+                    'return' => true,
                 ],
             ],
             'result' => [self::UNIQUE_TAG => true],
@@ -144,35 +139,30 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
         // 03
         //
 
-        $s03 = [
-            new RecursiveUnwrapperStackItem(new ExpectedValues(), 'foo'),
-            new RecursiveUnwrapperStackItem([], 'bar'),
-        ];
-        $v03 = new ExpectedValues();
+        $s03 = [new ExpectedValues(), [], new ExpectedValues()];
 
         yield 'RecursiveUnwrapperVisitorTest.php:'.__LINE__ => [
             'ctor'  => [],
             'calls' => [
                 [
                     'args' => [
-                        'node'  => $s03[0]->node(),
-                        'stack' => [],
+                        'node' => $s03[0],
                     ],
-                    'expect' => true,
+                    'return' => true,
+                    'next'   => 'foo',
                 ],
                 [
                     'args' => [
-                        'node'  => $s03[1]->node(),
-                        'stack' => [$s03[0]],
+                        'node' => $s03[1],
                     ],
-                    'expect' => true,
+                    'return' => true,
+                    'next'   => 'bar',
                 ],
                 [
                     'args' => [
-                        'node'  => $v03,
-                        'stack' => $s03,
+                        'node' => $s03[2],
                     ],
-                    'expect' => true,
+                    'return' => true,
                 ],
             ],
             'result' => [
@@ -188,35 +178,30 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
         //
         // 04
         //
-        $s04 = [
-            new RecursiveUnwrapperStackItem(new ExpectedValues(), 'foo'),
-            new RecursiveUnwrapperStackItem([], 'bar'),
-        ];
-        $v04 = new ActualValues();
+        $s04 = [new ExpectedValues(), [], new ActualValues()];
 
         yield 'RecursiveUnwrapperVisitorTest.php:'.__LINE__ => [
             'ctor'  => [],
             'calls' => [
                 [
                     'args' => [
-                        'node'  => $s04[0]->node(),
-                        'stack' => [],
+                        'node' => $s04[0],
                     ],
-                    'expect' => true,
+                    'return' => true,
+                    'next'   => 'foo',
                 ],
                 [
                     'args' => [
-                        'node'  => $s04[1]->node(),
-                        'stack' => [$s04[0]],
+                        'node' => $s04[1],
                     ],
-                    'expect' => true,
+                    'return' => true,
+                    'next'   => 'bar',
                 ],
                 [
                     'args' => [
-                        'node'  => $v04,
-                        'stack' => $s04,
+                        'node' => $s04[2],
                     ],
-                    'expect' => false,
+                    'return' => false,
                 ],
             ],
             'result' => [
@@ -228,35 +213,30 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
         //
         // 05
         //
-        $s05 = [
-            new RecursiveUnwrapperStackItem(new ExpectedValues(), 'foo'),
-            new RecursiveUnwrapperStackItem([], 'bar'),
-        ];
-        $v05 = new ExpectedValues();
+        $s05 = [new ExpectedValues(), [], new ExpectedValues()];
 
         yield 'RecursiveUnwrapperVisitorTest.php:'.__LINE__ => [
             'ctor'  => [false],
             'calls' => [
                 [
                     'args' => [
-                        'node'  => $s05[0]->node(),
-                        'stack' => [],
+                        'node' => $s05[0],
                     ],
-                    'expect' => true,
+                    'return' => true,
+                    'next'   => 'foo',
                 ],
                 [
                     'args' => [
-                        'node'  => $s05[1]->node(),
-                        'stack' => [$s05[0]],
+                        'node' => $s05[1],
                     ],
-                    'expect' => true,
+                    'return' => true,
+                    'next'   => 'bar',
                 ],
                 [
                     'args' => [
-                        'node'  => $v05,
-                        'stack' => $s05,
+                        'node' => $s05[2],
                     ],
-                    'expect' => true,
+                    'return' => true,
                 ],
             ],
             'result' => [
@@ -269,35 +249,30 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
         //
         // 06
         //
-        $s06 = [
-            new RecursiveUnwrapperStackItem(new ExpectedValues(), 'foo'),
-            new RecursiveUnwrapperStackItem([], 'bar'),
-        ];
-        $v06 = new ActualValues();
+        $s06 = [new ExpectedValues(), [], new ActualValues()];
 
         yield 'RecursiveUnwrapperVisitorTest.php:'.__LINE__ => [
             'ctor'  => [false],
             'calls' => [
                 [
                     'args' => [
-                        'node'  => $s06[0]->node(),
-                        'stack' => [],
+                        'node' => $s06[0],
                     ],
-                    'expect' => true,
+                    'return' => true,
+                    'next'   => 'foo',
                 ],
                 [
                     'args' => [
-                        'node'  => $s06[1]->node(),
-                        'stack' => [$s06[0]],
+                        'node' => $s06[1],
                     ],
-                    'expect' => true,
+                    'return' => true,
+                    'next'   => 'bar',
                 ],
                 [
                     'args' => [
-                        'node'  => $v06,
-                        'stack' => $s06,
+                        'node' => $s06[2],
                     ],
-                    'expect' => false,
+                    'return' => false,
                 ],
             ],
             'result' => [
@@ -307,24 +282,33 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
     }
 
     /**
-     * @param array                                       $ctor
-     * @param list<array{args: ArgsEnter, expect: mixed}> $calls
+     * @param array       $ctor
+     * @param list<array> $calls
      *
-     * @psalm-param non-empty-list<array{args: EnterArgsT, expect: mixed}> $calls
+     * @psalm-param non-empty-list<EnterTestCall> $calls
      */
     #[DataProvider('provEnterLeave')]
     public function testEnterLeave(array $ctor, array $calls, mixed $result): void
     {
         $visitor = new RecursiveUnwrapperVisitor(...$ctor);
+        $stack = [];
 
         foreach ($calls as $call) {
             $args = $call['args'];
-            $this->assertSame($call['expect'], $visitor->enter(...$args));
+            $node = $args['node'];
+            $this->assertSame($call['return'], $visitor->enter($node, $stack));
+            if ($call['return'] && array_key_exists('next', $call)) {
+                array_push($stack, $visitor->makeStackItem($node, $call['next'], $stack));
+            }
         }
 
         foreach (array_reverse($calls) as $call) {
-            $args = array_merge($call['args'], ['iterating' => $call['expect']]);
-            $this->assertNull($visitor->leave(...$args));
+            $args = $call['args'];
+            $node = $args['node'];
+            if ($call['return'] && array_key_exists('next', $call)) {
+                $visitor->freeStackItem(array_pop($stack), $stack);
+            }
+            $this->assertNull($visitor->leave($node, $stack, $call['return']));
         }
 
         $this->assertSame($result, $visitor->result());
@@ -334,9 +318,8 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
      * @return iterable
      *
      * @psalm-return iterable<string, array{
-     *      calls: non-empty-list<array{
-     *          args: ArgsVisit,
-     *      }>,
+     *      iter: bool,
+     *      calls: non-empty-list<VisitTestCall>,
      *      result: mixed
      *  }>
      */
@@ -347,12 +330,12 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
         //
 
         yield 'RecursiveUnwrapperVisitorTest.php:'.__LINE__ => [
+            'root'  => [],
+            'iter'  => false,
             'calls' => [
                 [
                     'args' => [
-                        'node'      => [],
-                        'stack'     => [],
-                        'iterating' => false,
+                        'node' => [],
                     ],
                 ],
             ],
@@ -364,25 +347,25 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
         //
 
         yield 'RecursiveUnwrapperVisitorTest.php:'.__LINE__ => [
+            'root'  => [],
+            'iter'  => true,
             'calls' => [
                 [
+                    'key'  => 'foo',
                     'args' => [
-                        'node'      => 'FOO',
-                        'stack'     => [new RecursiveUnwrapperStackItem([], 'foo')],
-                        'iterating' => false,
+                        'node' => 'FOO',
                     ],
                 ],
                 [
+                    'key'  => 'bar',
                     'args' => [
-                        'node'      => 'BAR.GEZ',
-                        'stack'     => [new RecursiveUnwrapperStackItem([], 'bar'), new RecursiveUnwrapperStackItem([], 'gez')],
-                        'iterating' => false,
+                        'node' => 'BAR',
                     ],
                 ],
             ],
             'result' => [
                 'foo' => 'FOO',
-                'bar' => ['gez' => 'BAR.GEZ'],
+                'bar' => 'BAR',
             ],
         ];
 
@@ -391,24 +374,26 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
         //
 
         yield 'RecursiveUnwrapperVisitorTest.php:'.__LINE__ => [
+            'root'  => new ActualValues(),
+            'iter'  => true,
             'calls' => [
                 [
+                    'key'  => 'foo',
                     'args' => [
-                        'node'      => 'FOO',
-                        'stack'     => [new RecursiveUnwrapperStackItem([], 'foo')],
-                        'iterating' => false,
+                        'node' => 'FOO',
                     ],
                 ],
                 [
+                    'key'  => 'bar',
                     'args' => [
-                        'node'      => 'FOO.BAR',
-                        'stack'     => [new RecursiveUnwrapperStackItem([], 'foo'), new RecursiveUnwrapperStackItem([], 'bar')],
-                        'iterating' => false,
+                        'node' => ['gez' => 'GEZ'],
                     ],
                 ],
             ],
             'result' => [
-                'foo' => 'FOO',
+                'foo'            => 'FOO',
+                'bar'            => ['gez' => 'GEZ'],
+                self::UNIQUE_TAG => true,
             ],
         ];
     }
@@ -416,17 +401,30 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
     /**
      * @param array $calls
      *
-     * @psalm-param non-empty-list<array{args: ArgsVisit}> $calls
+     * @psalm-param non-empty-list<VisitTestCall> $calls
      */
     #[DataProvider('provVisit')]
-    public function testVisit(array $calls, mixed $result): void
+    public function testVisit(array|ValuesInterface $root, bool $iter, array $calls, mixed $result): void
     {
         $visitor = new RecursiveUnwrapperVisitor();
+        $stack = [];
 
+        $this->assertTrue($visitor->enter($root, $stack));
         foreach ($calls as $call) {
             $args = $call['args'];
-            $this->assertNull($visitor->visit(...$args));
+            $node = $args['node'];
+
+            if ($iter) {
+                array_push($stack, $visitor->makeStackItem($root, $call['key'], $stack));
+            }
+
+            $this->assertNull($visitor->visit($node, $stack, $iter));
+
+            if ($iter) {
+                $visitor->freeStackItem(array_pop($stack), $stack);
+            }
         }
+        $visitor->leave($root, $stack, $iter);
 
         $this->assertSame($result, $visitor->result());
     }
