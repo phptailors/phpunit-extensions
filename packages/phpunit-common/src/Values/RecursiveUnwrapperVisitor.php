@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\Values;
 
 use Tailors\PHPUnit\CircularDependencyException;
+use Tailors\PHPUnit\InvalidArgumentException;
 
 /**
  * @internal This interface is not covered by the backward compatibility promise
@@ -35,10 +36,16 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
      */
     private $result;
 
+    /**
+     * @var array
+     */
+    private $current;
+
     public function __construct(bool $tagging = true)
     {
         $this->tagging = $tagging;
         $this->result = [];
+        $this->current = [];
     }
 
     /**
@@ -71,7 +78,7 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
         }
 
         if ($iterate) {
-            self::set($this->result, $stack, []);
+            $this->current = [];
         }
 
         return $iterate;
@@ -83,14 +90,17 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
      */
     public function leave($node, array $stack, bool $iterating): void
     {
-        if ($node instanceof ValuesInterface) {
-            if ($this->tagging && $iterating) {
-                // Distinguish unwrapped values from regular arrays
-                // by adding UNIQUE TAG AT THE END of $array.
-                $stack[] = new RecursiveUnwrapperStackItem($node, self::UNIQUE_TAG);
-                self::set($this->result, $stack, true);
-            }
+        if (!$iterating) {
+            return;
         }
+
+        if ($node instanceof ValuesInterface && $this->tagging) {
+            // Distinguish unwrapped values from regular arrays
+            // by adding UNIQUE TAG AT THE END of $array.
+            $this->current[self::UNIQUE_TAG] = true;
+        }
+
+        $this->set($stack, $this->current);
     }
 
     /**
@@ -99,7 +109,7 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
      */
     public function visit($node, array $stack, bool $iterating): void
     {
-        self::set($this->result, $stack, $node);
+        $this->set($stack, $node);
     }
 
     /**
@@ -124,51 +134,41 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
      */
     public function makeStackItem($node, $key, array $stack): RecursiveVisitorStackItemInterface
     {
-        return new RecursiveUnwrapperStackItem($node, $key);
+        return new RecursiveUnwrapperStackItem($node, $key, $this->current);
     }
 
     /**
      * @param StackItem       $item
      * @param list<StackItem> $stack
      */
-    public function freeStackItem(RecursiveVisitorStackItemInterface $item, array $stack): void {}
+    public function freeStackItem(RecursiveVisitorStackItemInterface $item, array $stack): void
+    {
+        $this->current = $item->result();
+    }
 
     /**
-     * @param array           $array
      * @param list<StackItem> $stack
      * @param mixed           $value
-     *
-     * @psalm-suppress UnusedParam
-     * @psalm-suppress UnusedVariable
      */
-    private static function set(array &$array, array $stack, $value): void
+    private function set(array $stack, $value): void
     {
-        if (0 === count($stack)) {
-            if (is_array($value)) {
-                $array = $value;
+        $count = count($stack);
+
+        if (0 === $count) {
+            if (!is_array($value)) {
+                $actual = is_object($value) ? get_class($value) : gettype($value);
+
+                /** @psalm-suppress MissingThrowsDocblock */
+                throw InvalidArgumentException::fromBackTrace(2, 'an array', $actual);
             }
+            $this->result = $value;
 
             return;
         }
 
-        $current = &$array;
-
-        $top = array_pop($stack)->key();
-        foreach ($stack as $item) {
-            $key = $item->key();
-            if (!array_key_exists($key, $current)) {
-                $current[$key] = [];
-            }
-
-            if (!is_array($current[$key])) {
-                return;
-            }
-
-            $current = &$current[$key];
-        }
-
-        /** @psalm-var mixed */
-        $current[$top] = $value;
+        $last = $count - 1;
+        $top = $stack[$last];
+        $top->set($value);
     }
 
     /**
