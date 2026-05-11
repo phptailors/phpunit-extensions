@@ -109,8 +109,10 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
             try {
                 $this->visitValue($value, $visitor);
             } finally {
-                array_pop($this->stack);
+                $item = array_pop($this->stack);
             }
+
+            $visitor->freeStackItem($item, $this->stack);
         }
     }
 

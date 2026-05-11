@@ -46,6 +46,12 @@ interface RecursiveVisitorInterface
      * @psalm-return StackItem
      */
     public function makeStackItem(array|ValuesInterface $node, $key, array $stack): RecursiveVisitorStackItemInterface;
+
+    /**
+     * @param StackItem       $item
+     * @param list<StackItem> $stack
+     */
+    public function freeStackItem(RecursiveVisitorStackItemInterface $item, array $stack): void;
 }
 
 // vim: syntax=php sw=4 ts=4 et:

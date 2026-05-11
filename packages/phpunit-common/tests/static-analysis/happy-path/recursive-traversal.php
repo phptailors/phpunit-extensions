@@ -98,6 +98,12 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     {
         return new DummyRecursiveVisitorStackItem($node, $key);
     }
+
+    /**
+     * @param StackItem       $item
+     * @param list<StackItem> $stack
+     */
+    public function freeStackItem(RecursiveVisitorStackItemInterface $item, array $stack): void {}
 }
 
 /**
