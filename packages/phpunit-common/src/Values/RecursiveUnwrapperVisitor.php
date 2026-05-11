@@ -104,18 +104,6 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
 
     /**
      * @param array|ValuesInterface $node
-     * @param array-key             $key
-     * @param list<StackItem>       $stack
-     *
-     * @psalm-return StackItem
-     */
-    public function makeStackItem($node, $key, array $stack): RecursiveVisitorStackItemInterface
-    {
-        return new RecursiveUnwrapperStackItem($node, $key);
-    }
-
-    /**
-     * @param array|ValuesInterface $node
      * @param list<StackItem>       $stack
      *
      * @return never
@@ -125,6 +113,18 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
     public function cycle($node, array $stack): bool
     {
         self::throwCircular($stack);
+    }
+
+    /**
+     * @param array|ValuesInterface $node
+     * @param array-key             $key
+     * @param list<StackItem>       $stack
+     *
+     * @psalm-return StackItem
+     */
+    public function makeStackItem($node, $key, array $stack): RecursiveVisitorStackItemInterface
+    {
+        return new RecursiveUnwrapperStackItem($node, $key);
     }
 
     /**
