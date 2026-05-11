@@ -106,7 +106,7 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param array-key             $key
+     * @param array-key       $key
      * @param list<StackItem> $stack
      *
      * @psalm-return StackItem
