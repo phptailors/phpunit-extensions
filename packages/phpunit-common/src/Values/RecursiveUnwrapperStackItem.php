@@ -20,8 +20,9 @@ final class RecursiveUnwrapperStackItem implements RecursiveVisitorStackItemInte
     /**
      * @param array|ValuesInterface $node
      * @param array-key             $key
+     * @param array                 $result
      */
-    public function __construct(private readonly array|ValuesInterface $node, private readonly mixed $key) {}
+    public function __construct(private readonly array|ValuesInterface $node, private readonly mixed $key, private array $result) {}
 
     /**
      * @return array|ValuesInterface
@@ -41,6 +42,19 @@ final class RecursiveUnwrapperStackItem implements RecursiveVisitorStackItemInte
     public function key()
     {
         return $this->key;
+    }
+
+    public function result(): array
+    {
+        return $this->result;
+    }
+
+    /**
+     * @param mixed $value
+     */
+    public function set($value): void
+    {
+        $this->result[$this->key()] = $value;
     }
 }
 
