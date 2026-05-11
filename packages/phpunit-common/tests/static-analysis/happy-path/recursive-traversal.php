@@ -12,43 +12,91 @@ namespace Tailors\PHPUnit\StaticAnalysis\HappyPath\RecursiveTraversal;
 
 use Tailors\PHPUnit\Values\RecursiveTraversal;
 use Tailors\PHPUnit\Values\RecursiveVisitorInterface;
+use Tailors\PHPUnit\Values\RecursiveVisitorStackItemInterface;
 use Tailors\PHPUnit\Values\ValuesInterface;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
  *
+ * @psalm-internal Tailors\PHPUnit
+ */
+final class DummyRecursiveVisitorStackItem implements RecursiveVisitorStackItemInterface
+{
+    /**
+     * @param array|ValuesInterface $node
+     * @param array-key             $key
+     */
+    public function __construct(private readonly array|ValuesInterface $node, private readonly mixed $key) {}
+
+    /**
+     * @return mixed
+     *
+     * @psalm-return array|ValuesInterface
+     *
+     * @psalm-mutation-free
+     */
+    public function node()
+    {
+        return $this->node;
+    }
+
+    /**
+     * @return array-key
+     *
+     * @psalm-mutation-free
+     */
+    public function key()
+    {
+        return $this->key;
+    }
+}
+
+/**
+ * @internal This class is not covered by the backward compatibility promise
+ *
  * @psalm-internal Tailors\PHPUnit\StaticAnalysis\HappyPath\RecursiveTraversal
+ *
+ * @template-implements RecursiveVisitorInterface<DummyRecursiveVisitorStackItem>
+ *
+ * @psalm-type StackItem = DummyRecursiveVisitorStackItem
  */
 final class DummyRecursiveVisitor implements RecursiveVisitorInterface
 {
     /**
-     * @param list<array-key>             $path
-     * @param list<array|ValuesInterface> $stack
+     * @param list<StackItem> $stack
      */
-    public function enter(array|ValuesInterface $node, array $path, array $stack): bool
+    public function enter(array|ValuesInterface $node, array $stack): bool
     {
         return true;
     }
 
     /**
-     * @param list<array-key>             $path
-     * @param list<array|ValuesInterface> $stack
+     * @param list<StackItem> $stack
      */
-    public function leave(array|ValuesInterface $node, array $path, array $stack, bool $iterating): void {}
+    public function leave(array|ValuesInterface $node, array $stack, bool $iterating): void {}
 
     /**
-     * @param list<array-key>             $path
-     * @param list<array|ValuesInterface> $stack
+     * @param list<StackItem> $stack
      */
-    public function visit(mixed $node, array $path, array $stack, bool $iterating): void {}
+    public function visit(mixed $node, array $stack, bool $iterating): void {}
 
     /**
-     * @param list<array-key>             $path
-     * @param list<array|ValuesInterface> $stack
+     * @param list<StackItem> $stack
      */
-    public function cycle(array|ValuesInterface $node, array $path, array $stack): bool
+    public function cycle(array|ValuesInterface $node, array $stack): bool
     {
         return false;
+    }
+
+    /**
+     * @param array-key       $key
+     * @param list<StackItem> $stack
+     *
+     * @psalm-return StackItem
+     */
+    public function makeStackItem(array|ValuesInterface $node, $key, array $stack): RecursiveVisitorStackItemInterface
+    {
+        return new DummyRecursiveVisitorStackItem($node, $key);
     }
 }
 
