@@ -20,11 +20,9 @@ namespace Tailors\PHPUnit\Values;
 final class ClassPropertySelector extends AbstractPropertySelector
 {
     /**
-     * @param mixed $subject
-     *
      * @psalm-assert-if-true class-string $subject
      */
-    public function supports($subject): bool
+    public function supports(mixed $subject): bool
     {
         return is_string($subject) && class_exists($subject);
     }
@@ -38,15 +36,12 @@ final class ClassPropertySelector extends AbstractPropertySelector
     }
 
     /**
-     * @param mixed $subject
-     * @param mixed $key
-     *
      * @return mixed
      *
      * @psalm-param class-string $subject
      * @psalm-param array-key    $key
      */
-    protected function getSubjectAttribute($subject, $key)
+    protected function getSubjectAttribute(mixed $subject, mixed $key)
     {
         return $subject::${$key};
     }

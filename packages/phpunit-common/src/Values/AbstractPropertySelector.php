@@ -31,14 +31,10 @@ abstract class AbstractPropertySelector extends AbstractValueSelector
     }
 
     /**
-     * @param mixed $subject
-     * @param mixed $key
-     * @param mixed $retval
-     *
      * @psalm-param SubjectType $subject
      * @psalm-param array-key   $key
      */
-    final protected function selectFromSupported($subject, $key, &$retval = null): bool
+    final protected function selectFromSupported(mixed $subject, mixed $key, mixed &$retval = null): bool
     {
         $method = (str_ends_with((string) $key, '()')) ? substr((string) $key, 0, -2) : null;
         if (null !== $method) {
