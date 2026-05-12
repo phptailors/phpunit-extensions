@@ -105,7 +105,6 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     /**
      * @param array  $args    arguments passed to createConstraint()
      * @param mixed  $actual
-     * @param string $message
      *
      * @throws ExpectationFailedException
      * @throws CircularDependencyException
@@ -140,7 +139,6 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     /**
      * @param array  $args    arguments passed to createConstraint()
      * @param mixed  $actual
-     * @param string $message
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException

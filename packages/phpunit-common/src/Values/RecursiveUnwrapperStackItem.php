@@ -39,7 +39,6 @@ final class RecursiveUnwrapperStackItem implements RecursiveVisitorStackItemInte
     /**
      * @param array|ValuesInterface $node
      * @param mixed                 $key
-     * @param array                 $result
      *
      * @psalm-param array-key $key
      */

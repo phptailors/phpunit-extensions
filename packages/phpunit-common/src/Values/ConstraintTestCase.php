@@ -82,9 +82,7 @@ abstract class ConstraintTestCase extends TestCase
     }
 
     // @codeCoverageIgnoreEnd
-
     /**
-     * @param array $expect
      * @param mixed $actual
      *
      * @throws ExpectationFailedException
@@ -96,9 +94,7 @@ abstract class ConstraintTestCase extends TestCase
     }
 
     /**
-     * @param array  $expect
      * @param mixed  $actual
-     * @param string $string
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
@@ -112,9 +108,7 @@ abstract class ConstraintTestCase extends TestCase
     }
 
     // @codeCoverageIgnoreEnd
-
     /**
-     * @param array $expect
      * @param mixed $actual
      *
      * @throws ExpectationFailedException
@@ -126,9 +120,7 @@ abstract class ConstraintTestCase extends TestCase
     }
 
     /**
-     * @param array  $expect
      * @param mixed  $actual
-     * @param string $string
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException

@@ -19,13 +19,11 @@ final class InvalidReturnValueException extends \LogicException implements Excep
 {
     /**
      * @param mixed  $function
-     * @param string $expectedType
      * @param mixed  $actualValue  Actual value
      *
      * @psalm-template ActualType
      *
      * @param-out ActualType $actualValue
-     *
      * @psalm-param ActualType $actualValue
      */
     public static function fromExpectedTypeAndActualValue($function, string $expectedType, &$actualValue): self
@@ -37,8 +35,6 @@ final class InvalidReturnValueException extends \LogicException implements Excep
 
     /**
      * @param mixed  $function
-     * @param string $expected
-     * @param string $actual
      */
     public static function fromExpectedAndActual($function, string $expected, string $actual): self
     {
