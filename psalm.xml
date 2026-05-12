@@ -23,5 +23,6 @@
     </plugins>
     <stubs>
         <file name=".psalm/stubs/ReflectionReference.php"/>
+        <file name=".psalm/stubs/Countable.php"/>
     </stubs>
 </psalm>
