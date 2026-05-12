@@ -21,4 +21,7 @@
     <plugins>
         <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
     </plugins>
+    <stubs>
+        <file name=".psalm/stubs/Countable.php"/>
+    </stubs>
 </psalm>
