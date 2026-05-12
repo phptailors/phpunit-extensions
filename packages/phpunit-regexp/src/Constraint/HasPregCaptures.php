@@ -34,7 +34,7 @@ use Tailors\PHPUnit\Preg\CapturesFilterInterface;
  * ``PREG_UNMATCHED_AS_NULL`` flag.
  *
  * @psalm-type CaptureExpectation = null|bool|string|array{0:null|string,1:int}
- * @psalm-type PregMatchCaptured = string|null|array{0:string|null,1:int}
+ * @psalm-type PregMatchCaptured  = string|null|array{0:string|null,1:int}
  */
 final class HasPregCaptures extends Constraint
 {
@@ -224,8 +224,8 @@ final class HasPregCaptures extends Constraint
 
     /**
      * @psalm-param array<array-key, string|null|array{0:string|null,1:int}> $matches
-     * @psalm-param array-key $key
-     * @psalm-param CaptureExpectation $value
+     * @psalm-param array-key                                                $key
+     * @psalm-param CaptureExpectation                                       $value
      */
     private static function updateExpectForComparison(array &$expect, array $matches, mixed $key, mixed $value): void
     {
@@ -240,7 +240,7 @@ final class HasPregCaptures extends Constraint
 
     /**
      * @psalm-param array<array-key, string|null|array{0:string|null,1:int}> $matches
-     * @psalm-param array-key $key
+     * @psalm-param array-key                                                $key
      */
     private static function updateActualForComparison(array &$actual, array $matches, mixed $key): void
     {
@@ -250,7 +250,7 @@ final class HasPregCaptures extends Constraint
     }
 
     /**
-     * @psalm-param array-key $key
+     * @psalm-param array-key                           $key
      * @psalm-param array<array-key, PregMatchCaptured> $matches
      */
     private static function isCaptured(array $matches, mixed $key): bool
