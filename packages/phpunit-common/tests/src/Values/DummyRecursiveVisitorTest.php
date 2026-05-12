@@ -63,9 +63,6 @@ final class DummyRecursiveVisitorTest extends TestCase
     }
 
     /**
-     * @param array $args
-     * @param array $expect
-     *
      * @psalm-param array<ArgT>                       $args
      * @psalm-param array{enter: mixed, cycle: mixed} $expect
      */

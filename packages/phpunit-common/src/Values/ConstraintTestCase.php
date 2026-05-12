@@ -78,8 +78,6 @@ abstract class ConstraintTestCase extends TestCase
 
     // @codeCoverageIgnoreEnd
     /**
-     * @param array $expect
-     *
      * @throws ExpectationFailedException
      */
     final public function examineValuesMatchSucceeds(array $expect, mixed $actual): void
@@ -88,9 +86,6 @@ abstract class ConstraintTestCase extends TestCase
     }
 
     /**
-     * @param array  $expect
-     * @param string $string
-     *
      * @throws ExpectationFailedException
      * @throws CircularDependencyException
      */
@@ -103,8 +98,6 @@ abstract class ConstraintTestCase extends TestCase
 
     // @codeCoverageIgnoreEnd
     /**
-     * @param array $expect
-     *
      * @throws ExpectationFailedException
      */
     final public function examineNotValuesMatchSucceeds(array $expect, mixed $actual): void
@@ -113,9 +106,6 @@ abstract class ConstraintTestCase extends TestCase
     }
 
     /**
-     * @param array  $expect
-     * @param string $string
-     *
      * @throws ExpectationFailedException
      */
     final public function examineNotValuesMatchFails(array $expect, mixed $actual, string $string): void

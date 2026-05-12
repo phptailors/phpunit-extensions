@@ -78,8 +78,6 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
     }
 
     /**
-     * @param array $stack
-     *
      * @psalm-param list<StackItem> $stack
      */
     #[DataProvider('provCycle')]
@@ -93,8 +91,6 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
     }
 
     /**
-     * @return iterable
-     *
      * @psalm-return iterable<string, array{
      *      ctor: array,
      *      calls: non-empty-list<EnterTestCall>,
@@ -284,9 +280,6 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
     }
 
     /**
-     * @param array $ctor
-     * @param array $calls
-     *
      * @psalm-param non-empty-list<EnterTestCall> $calls
      */
     #[DataProvider('provEnterLeave')]
@@ -317,8 +310,6 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
     }
 
     /**
-     * @return iterable
-     *
      * @psalm-return iterable<string, array{
      *      iter: bool,
      *      calls: non-empty-list<VisitTestCall>,
@@ -401,8 +392,6 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
     }
 
     /**
-     * @param array $calls
-     *
      * @psalm-param non-empty-list<VisitTestCall> $calls
      */
     #[DataProvider('provVisit')]

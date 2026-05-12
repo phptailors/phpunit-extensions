@@ -18,9 +18,6 @@ namespace Tailors\PHPUnit\Values;
 final readonly class DummyRecursiveVisitorStackItem implements RecursiveVisitorStackItemInterface
 {
     /**
-     * @param array|ValuesInterface $node
-     * @param mixed                 $key
-     *
      * @psalm-param array-key $key
      */
     public function __construct(private array|ValuesInterface $node, private mixed $key) {}

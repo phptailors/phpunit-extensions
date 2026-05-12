@@ -23,9 +23,6 @@ use Tailors\PHPUnit\Values\ValuesInterface;
 final readonly class DummyRecursiveVisitorStackItem implements RecursiveVisitorStackItemInterface
 {
     /**
-     * @param array|ValuesInterface $node
-     * @param mixed                 $key
-     *
      * @psalm-param array-key $key
      */
     public function __construct(private array|ValuesInterface $node, private mixed $key) {}
@@ -78,8 +75,6 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     public function leave(array|ValuesInterface $node, array $stack, bool $iterating): void {}
 
     /**
-     * @param array $stack
-     *
      * @psalm-param list<StackItem> $stack
      */
     public function visit(mixed $node, array $stack, bool $iterating): void {}
@@ -106,9 +101,6 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param RecursiveVisitorStackItemInterface $item
-     * @param array                              $stack
-     *
      * @psalm-param StackItem       $item
      * @psalm-param list<StackItem> $stack
      */

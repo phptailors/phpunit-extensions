@@ -83,9 +83,7 @@ abstract class AbstractConstraint extends Constraint implements ComparatorWrappe
      * a boolean value instead: true in case of success, false in case of a
      * failure.
      *
-     * @param mixed  $other
-     * @param string $description
-     * @param bool   $returnResult
+     * @param mixed $other
      *
      * @throws ExpectationFailedException
      */
