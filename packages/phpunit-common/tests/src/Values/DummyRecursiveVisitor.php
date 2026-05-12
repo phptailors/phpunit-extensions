@@ -113,8 +113,8 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     *
      * @psalm-param list<StackItem> $stack
+     *
      * @psalm-pure
      */
     private static function path(array $stack): array

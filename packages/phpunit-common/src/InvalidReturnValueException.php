@@ -18,11 +18,12 @@ namespace Tailors\PHPUnit;
 final class InvalidReturnValueException extends \LogicException implements ExceptionInterface
 {
     /**
-     * @param mixed  $actualValue  Actual value
+     * @param mixed $actualValue Actual value
      *
      * @psalm-template ActualType
      *
      * @param-out ActualType $actualValue
+     *
      * @psalm-param ActualType $actualValue
      */
     public static function fromExpectedTypeAndActualValue(mixed $function, string $expectedType, mixed &$actualValue): self
