@@ -20,36 +20,23 @@ final class ImplementsInterface extends AbstractConstraint
 {
     use ConstraintImplementationTrait;
 
-    /**
-     * @var string
-     */
-    private static $verb = 'implements interface';
+    private static string $verb = 'implements interface';
+    private static string $negatedVerb = 'does not implement interface';
 
     /**
-     * @var string
-     */
-    private static $negatedVerb = 'does not implement interface';
-
-    /**
-     * @var array
-     *
      * @psalm-var array{0:callable, 1:string}
      */
-    private static $validation = ['interface_exists', 'an interface-string'];
+    private static array $validation = ['interface_exists', 'an interface-string'];
 
     /**
-     * @var callable
-     *
      * @psalm-var callable
      */
-    private static $inheritance = 'class_implements';
+    private static mixed $inheritance = 'class_implements';
 
     /**
-     * @var array
-     *
      * @psalm-var array{0:callable, 1:callable}
      */
-    private static $supports = ['class_exists', 'interface_exists'];
+    private static array $supports = ['class_exists', 'interface_exists'];
 }
 
 // vim: syntax=php sw=4 ts=4 et:
