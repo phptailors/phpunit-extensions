@@ -33,7 +33,7 @@ trait KsortedArrayIdenticalToTrait
      *
      * @param array  $expected expected array
      * @param mixed  $actual   actual value
-     * @param string $message  ofailure message
+     * @param string $message  failure message
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
@@ -52,7 +52,7 @@ trait KsortedArrayIdenticalToTrait
      *
      * @param array  $expected expected array
      * @param mixed  $actual   actual value
-     * @param string $message  ofailure message
+     * @param string $message  failure message
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException

@@ -304,7 +304,8 @@ final class MethodSpecTest extends TestCase
     /**
      * @dataProvider provMatches
      *
-     * @param \Closure(TestCase):mixed $method
+     * @psalm-param list                     $args
+     * @psalm-param \Closure(TestCase):mixed $method
      */
     public function testMatches(array $args, \Closure $method, bool $expect): void
     {

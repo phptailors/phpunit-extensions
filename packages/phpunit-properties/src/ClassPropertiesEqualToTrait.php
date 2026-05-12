@@ -31,13 +31,10 @@ trait ClassPropertiesEqualToTrait
     /**
      * Asserts that selected properties of *$class* are identical to *$expected* ones.
      *
-     * @param array  $expected
-     *                         An array of key => value pairs with property names as keys and
-     *                         their expected values as values
-     * @param string $class
-     *                         A name of a class to be examined
-     * @param string $message
-     *                         Optional failure message
+     * @param array  $expected An array of key => value pairs with property
+     *                         names as keys and their expected values as values
+     * @param string $class    A name of a class to be examined
+     * @param string $message  Optional failure message
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
@@ -54,13 +51,11 @@ trait ClassPropertiesEqualToTrait
     /**
      * Asserts that selected properties of *$class* are not identical to *$expected* ones.
      *
-     * @param array  $expected
-     *                         An array of key => value pairs with property names as keys and
-     *                         their expected values as values
-     * @param string $class
-     *                         A name of a class to be examined
-     * @param string $message
-     *                         Optional failure message
+     * @param array  $expected An array of key => value pairs with property
+     *                         names as keys and their expected values as
+     *                         values
+     * @param string $class    A name of a class to be examined
+     * @param string $message  Optional failure message
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
@@ -77,8 +72,8 @@ trait ClassPropertiesEqualToTrait
     /**
      * Compares selected properties of *$class* with *$expected* ones.
      *
-     * @param array $expected
-     *                        An array of key => value pairs with expected values of attributes
+     * @param array $expected An array of key => value pairs with expected
+     *                        values of attributes
      *
      * @throws \Tailors\PHPUnit\InvalidArgumentException when non-string keys are found in *$expected*
      */
