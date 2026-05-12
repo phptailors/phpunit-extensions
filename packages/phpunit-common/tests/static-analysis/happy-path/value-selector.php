@@ -10,46 +10,9 @@
 
 namespace Tailors\PHPUnit\StaticAnalysis\HappyPath\ValueSelector;
 
+use Tailors\PHPUnit\Values\DummyValueSelector;
+use Tailors\PHPUnit\Values\DummyValueSelectorWrapper;
 use Tailors\PHPUnit\Values\ValueSelectorInterface;
-use Tailors\PHPUnit\Values\ValueSelectorWrapperInterface;
-
-final class DummyValueSelector implements ValueSelectorInterface
-{
-    public function supports(mixed $subject): bool
-    {
-        return false;
-    }
-
-    /**
-     * @psalm-param array-key $key
-     *
-     * @psalm-param-out mixed $retval
-     */
-    public function select(mixed $subject, mixed $key, mixed &$retval): bool
-    {
-        return false;
-    }
-
-    public function subject(): string
-    {
-        return '';
-    }
-
-    public function selectable(): string
-    {
-        return '';
-    }
-}
-
-final class DummyValueSelectorWrapper implements ValueSelectorWrapperInterface
-{
-    public function __construct(public ValueSelectorInterface $valueSelector) {}
-
-    public function getValueSelector(): ValueSelectorInterface
-    {
-        return $this->valueSelector;
-    }
-}
 
 function consume(): ValueSelectorInterface
 {
