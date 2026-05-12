@@ -20,36 +20,23 @@ final class ExtendsClass extends AbstractConstraint
 {
     use ConstraintImplementationTrait;
 
-    /**
-     * @var string
-     */
-    private static $verb = 'extends class';
+    private static string $verb = 'extends class';
+    private static string $negatedVerb = 'does not extend class';
 
     /**
-     * @var string
-     */
-    private static $negatedVerb = 'does not extend class';
-
-    /**
-     * @var array
-     *
      * @psalm-var array{0:callable, 1:string}
      */
-    private static $validation = ['class_exists', 'a class-string'];
+    private static array $validation = ['class_exists', 'a class-string'];
 
     /**
-     * @var callable
-     *
      * @psalm-var callable
      */
-    private static $inheritance = 'class_parents';
+    private static mixed $inheritance = 'class_parents';
 
     /**
-     * @var array
-     *
      * @psalm-var array{0:callable}
      */
-    private static $supports = ['class_exists'];
+    private static array $supports = ['class_exists'];
 }
 
 // vim: syntax=php sw=4 ts=4 et:

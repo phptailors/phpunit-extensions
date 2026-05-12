@@ -27,36 +27,23 @@ final class FaultyConstraint1 extends AbstractConstraint
         inheritance as public;
     }
 
-    /**
-     * @var string
-     */
-    private static $verb = 'is string';
+    private static string $verb = 'is string';
+    private static string $negatedVerb = 'is not a string';
 
     /**
-     * @var string
-     */
-    private static $negatedVerb = 'is not a string';
-
-    /**
-     * @var array
-     *
      * @psalm-var array{0:callable, 1:string}
      */
-    private static $validation = ['is_string', 'a string'];
+    private static array $validation = ['is_string', 'a string'];
 
     /**
-     * @var callable
-     *
      * @psalm-var callable
      */
-    private static $inheritance = 'strlen';
+    private static mixed $inheritance = 'strlen';
 
     /**
-     * @var array
-     *
      * @psalm-var array{0:callable}
      */
-    private static $supports = ['is_string'];
+    private static array $supports = ['is_string'];
 }
 
 /**
@@ -70,36 +57,23 @@ final class FaultyConstraint2 extends AbstractConstraint
         inheritance as public;
     }
 
-    /**
-     * @var string
-     */
-    private static $verb = 'is string';
+    private static string $verb = 'is string';
+    private static string $negatedVerb = 'is not a string';
 
     /**
-     * @var string
-     */
-    private static $negatedVerb = 'is not a string';
-
-    /**
-     * @var array
-     *
      * @psalm-var array{0:callable, 1:string}
      */
-    private static $validation = ['is_string', 'a string'];
+    private static array $validation = ['is_string', 'a string'];
 
     /**
-     * @var callable
-     *
      * @psalm-var callable
      */
-    private static $inheritance = [self::class, 'arrayWithStrlen'];
+    private static mixed $inheritance = [self::class, 'arrayWithStrlen'];
 
     /**
-     * @var array
-     *
      * @psalm-var array{0:callable}
      */
-    private static $supports = ['is_string'];
+    private static array $supports = ['is_string'];
 
     public static function arrayWithStrlen(string $str): array
     {
