@@ -40,7 +40,9 @@ final class DummyRecursiveVisitorStackItem implements RecursiveVisitorStackItemI
     }
 
     /**
-     * @return array-key
+     * @return mixed
+     *
+     * @psalm-return array-key
      *
      * @psalm-mutation-free
      */

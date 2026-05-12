@@ -190,8 +190,6 @@ final class HasPregCaptures extends Constraint
     }
 
     /**
-     * @return array[]
-     *
      * @psalm-return array{0: array, 1: array}
      */
     private function getArraysForComparison(array $matches): array

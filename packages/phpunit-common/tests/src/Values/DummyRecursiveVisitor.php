@@ -97,7 +97,7 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     public function freeStackItem(RecursiveVisitorStackItemInterface $item, array $stack): void {}
 
     /**
-     * @return list<array{func: string, node:mixed, path:list<array-key>}>
+     * @psalm-return list<array{func: string, node:mixed, path:list<array-key>}>
      *
      * @psalm-mutation-free
      */

@@ -48,7 +48,7 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
     }
 
     /**
-     * @return iterable<string, array{stack: list<StackItem>, expect: string}>
+     * @psalm-return iterable<string, array{stack: list<StackItem>, expect: string}>
      */
     public static function provCycle(): iterable
     {

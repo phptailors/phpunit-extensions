@@ -23,7 +23,9 @@ final class DummyRecursiveVisitorStackItem implements RecursiveVisitorStackItemI
     public function __construct(private readonly array|ValuesInterface $node, private readonly mixed $key) {}
 
     /**
-     * @return array|ValuesInterface
+     * @return mixed
+     *
+     * @psalm-return array|ValuesInterface
      *
      * @psalm-mutation-free
      */
@@ -33,7 +35,9 @@ final class DummyRecursiveVisitorStackItem implements RecursiveVisitorStackItemI
     }
 
     /**
-     * @return array-key
+     * @return mixed
+     *
+     * @psalm-return array-key
      *
      * @psalm-mutation-free
      */
