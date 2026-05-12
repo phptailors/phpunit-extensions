@@ -22,7 +22,9 @@ namespace Tailors\PHPUnit\Values;
 final class DummyRecursiveVisitor implements RecursiveVisitorInterface
 {
     /**
-     * @var list<array{func: string, node:mixed, path:list<array-key>}>
+     * @var array
+     *
+     * @psalm-var list<array{func: string, node:mixed, path:list<array-key>}>
      */
     private $trace;
 

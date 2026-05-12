@@ -27,7 +27,9 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
     private $seen;
 
     /**
-     * @var list<VisitorStackItem>
+     * @var array
+     *
+     * @psalm-var list<VisitorStackItem>
      */
     private $stack;
 
@@ -72,7 +74,7 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
         $this->stack = [];
 
         try {
-            /** @var self<StackItem> $this */
+            /** @psalm-var self<StackItem> $this */
             $this->walkRecursive($values, $visitor);
         } finally {
             $this->seen = new ReferenceStorage();
