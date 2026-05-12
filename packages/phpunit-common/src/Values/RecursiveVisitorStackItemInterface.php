@@ -18,14 +18,18 @@ namespace Tailors\PHPUnit\Values;
 interface RecursiveVisitorStackItemInterface
 {
     /**
-     * @return array|ValuesInterface
+     * @return mixed
+     *
+     * @psalm-return array|ValuesInterface
      *
      * @psalm-mutation-free
      */
     public function node();
 
     /**
-     * @return array-key
+     * @return mixed
+     *
+     * @psalm-return array-key
      *
      * @psalm-mutation-free
      */

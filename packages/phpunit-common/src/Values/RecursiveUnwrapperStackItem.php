@@ -52,7 +52,9 @@ final class RecursiveUnwrapperStackItem implements RecursiveVisitorStackItemInte
     }
 
     /**
-     * @return array|ValuesInterface
+     * @return mixed
+     *
+     * @psalm-return array|ValuesInterface
      *
      * @psalm-mutation-free
      */
@@ -62,7 +64,9 @@ final class RecursiveUnwrapperStackItem implements RecursiveVisitorStackItemInte
     }
 
     /**
-     * @return array-key
+     * @return mixed
+     *
+     * @psalm-return array-key
      *
      * @psalm-mutation-free
      */
