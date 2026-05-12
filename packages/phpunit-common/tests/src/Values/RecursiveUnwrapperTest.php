@@ -43,7 +43,7 @@ final class RecursiveUnwrapperTest extends TestCase
     //
 
     /**
-     * @return iterable<string, array{args: array, values: ValuesInterface, expect: mixed}>
+     * @psalm-return iterable<string, array{args: array, values: ValuesInterface, expect: mixed}>
      */
     public static function provUnwrap(): iterable
     {
@@ -300,7 +300,7 @@ final class RecursiveUnwrapperTest extends TestCase
     }
 
     /**
-     * @return iterable<string, array{values: ValuesInterface, path: string}>
+     * @psalm-return iterable<string, array{values: ValuesInterface, path: string}>
      */
     public static function provUnwrapThrowsExceptionOnCircularDependency(): iterable
     {

@@ -34,7 +34,7 @@ final class RecursiveTraversalTest extends TestCase
     }
 
     /**
-     * @return iterable<string, array{args: array, values: ValuesInterface, visitor: DummyRecursiveVisitor, expect:mixed}>
+     * @psalm-return iterable<string, array{args: array, values: ValuesInterface, visitor: DummyRecursiveVisitor, expect:mixed}>
      */
     public static function provWalk(): iterable
     {

@@ -34,8 +34,7 @@ interface MethodSpecInterface
     /**
      * Returns specification of methods visibility.
      *
-     * @return ?int
-     *              a bit combination of ``\ReflectionMethod::IS_PUBLIC``, ``\ReflectionMethod::IS_PROTECTED``
+     * @return ?int a bit combination of ``\ReflectionMethod::IS_PUBLIC``, ``\ReflectionMethod::IS_PROTECTED``
      *              and ``\ReflectionMethod::IS_PRIVATE`` specifying which of these visibility modifiers match
      *              the specification, or ``null`` if anything is accepted
      */
