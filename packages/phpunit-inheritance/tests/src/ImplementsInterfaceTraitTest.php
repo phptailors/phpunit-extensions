@@ -80,11 +80,8 @@ final class ImplementsInterfaceTraitTest extends TestCase
         ];
     }
 
-    /**
-     * @param object|string $subject
-     */
     #[DataProvider('provImplementsInterface')]
-    public function testAssertImplementsInterfaceSucceeds(string $interface, $subject, string $message): void
+    public function testAssertImplementsInterfaceSucceeds(string $interface, object|string $subject, string $message): void
     {
         self::assertImplementsInterface($interface, $subject);
     }

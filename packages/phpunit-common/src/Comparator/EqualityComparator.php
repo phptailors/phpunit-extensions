@@ -17,12 +17,8 @@ namespace Tailors\PHPUnit\Comparator;
  */
 final class EqualityComparator implements ComparatorInterface
 {
-    /**
-     * @param mixed $left
-     * @param mixed $right
-     */
     #[\Override]
-    public function compare($left, $right): bool
+    public function compare(mixed $left, mixed $right): bool
     {
         return $left == $right;
     }

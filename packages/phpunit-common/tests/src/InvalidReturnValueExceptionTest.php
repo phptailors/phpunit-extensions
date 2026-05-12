@@ -49,13 +49,8 @@ final class InvalidReturnValueExceptionTest extends TestCase
         ];
     }
 
-    /**
-     * @param array $function
-     *
-     * @psalm-param array{0:object|string,1:string}|callable|string $function
-     */
     #[DataProvider('provFromExpectedAndActual')]
-    public function testFromExpectedAndActual($function, string $expected, string $actual): void
+    public function testFromExpectedAndActual(mixed $function, string $expected, string $actual): void
     {
         $name = self::getFunctionName($function);
         $message = sprintf('Return value of %s() must be %s, %s returned', $name, $expected, $actual);
@@ -89,11 +84,8 @@ final class InvalidReturnValueExceptionTest extends TestCase
         ];
     }
 
-    /**
-     * @param array{0:object|string,1:string}|callable|string $function
-     */
     #[DataProvider('provFromExpectedTypeAndActualValue')]
-    public function testFromExpectedTypeAndActualValue($function, string $expected, mixed $actual): void
+    public function testFromExpectedTypeAndActualValue(mixed $function, string $expected, mixed $actual): void
     {
         $name = self::getFunctionName($function);
         $actualType = is_object($actual) ? 'object' : gettype($actual);
@@ -103,7 +95,7 @@ final class InvalidReturnValueExceptionTest extends TestCase
         self::assertSame($message, $exception->getMessage());
     }
 
-    protected static function getFunctionName($function): string
+    protected static function getFunctionName(mixed $function): string
     {
         if (is_string($function)) {
             $name = $function;
