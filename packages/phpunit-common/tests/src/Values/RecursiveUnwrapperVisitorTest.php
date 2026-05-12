@@ -21,7 +21,7 @@ use Tailors\PHPUnit\CircularDependencyException;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type StackItem = RecursiveUnwrapperStackItem
+ * @psalm-type StackItem     = RecursiveUnwrapperStackItem
  * @psalm-type EnterTestCall = array{args: array{node: array|ValuesInterface}, return: mixed, next?: array-key}
  * @psalm-type VisitTestCall = array{args: array{node: mixed}, key?: array-key}
  */
