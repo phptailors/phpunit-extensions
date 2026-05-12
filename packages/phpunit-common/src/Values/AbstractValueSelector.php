@@ -47,8 +47,6 @@ abstract class AbstractValueSelector implements ValueSelectorInterface
     /**
      * @psalm-assert SubjectType $subject
      *
-     * @param int $argument
-     * @param int $distance
      *
      * @throws InvalidArgumentException
      */

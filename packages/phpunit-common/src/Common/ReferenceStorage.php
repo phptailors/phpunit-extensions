@@ -165,17 +165,14 @@ final class ReferenceStorage implements \Countable
         if (!class_exists(\ReflectionReference::class)) {
             /** @var mixed $reference */
             foreach ($this->references as $id => &$reference) {
-                /** @var mixed */
                 $backup = $reference;
                 $reference = $this->objects;
                 if ($value === $this->objects) {
-                    /** @var mixed */
                     $reference = $backup;
 
                     return $id;
                 }
 
-                /** @var mixed */
                 $reference = $backup;
             }
 
