@@ -51,8 +51,6 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
     }
 
     /**
-
-     *
      * @psalm-param list<StackItem>       $stack
      */
     public function enter(array|ValuesInterface $node, array $stack): bool
@@ -118,7 +116,7 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param mixed                 $key
+     * @param mixed $key
      *
      * @psalm-param array-key             $key
      * @psalm-param list<StackItem>       $stack
