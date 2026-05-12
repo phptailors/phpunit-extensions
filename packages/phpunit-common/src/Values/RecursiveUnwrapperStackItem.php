@@ -18,9 +18,6 @@ namespace Tailors\PHPUnit\Values;
 final class RecursiveUnwrapperStackItem implements RecursiveVisitorStackItemInterface
 {
     /**
-     * @param array|ValuesInterface $node
-     * @param mixed                 $key
-     * @param array                 $result
      *
      * @psalm-param array-key $key
      */

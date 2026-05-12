@@ -31,8 +31,6 @@ final class ReferenceStorageTest extends TestCase
     }
 
     /**
-     * @param array $values
-     *
      * @dataProvider provAddAndCount
      */
     public function testAddAndCount(array $values, int $expect): void
@@ -47,8 +45,6 @@ final class ReferenceStorageTest extends TestCase
     }
 
     /**
-     * @param array $values
-     *
      * @dataProvider provAddRemoveContains
      */
     public function testAddRemoveContains(array $values): void

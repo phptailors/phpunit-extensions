@@ -20,8 +20,6 @@ trait ArrayValuesEqualToTrait
     /**
      * Evaluates a \PHPUnit\Framework\Constraint\Constraint matcher object.
      *
-     * @param Constraint $constraint
-     * @param string     $message
      *
      * @throws ExpectationFailedException
      */

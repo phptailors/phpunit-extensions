@@ -293,8 +293,6 @@ final class RecursiveUnwrapperTest extends TestCase
 
     /**
      * @dataProvider provUnwrap
-     *
-     * @param array $args
      */
     public function testUnwrap(array $args, ValuesInterface $values, mixed $expect): void
     {

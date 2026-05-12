@@ -659,8 +659,6 @@ final class RecursiveTraversalTest extends TestCase
 
     /**
      * @dataProvider provWalk
-     *
-     * @param array $args
      */
     public function testWalk(array $args, ValuesInterface $values, DummyRecursiveVisitor $visitor, mixed $expect): void
     {
