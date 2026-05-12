@@ -28,9 +28,9 @@ final class DummyValueSelector implements ValueSelectorInterface
      * @param mixed $key
      * @param mixed $retval
      *
-     * @psalm-param array-key $key
-     *
      * @param-out mixed $retval
+     *
+     * @psalm-param array-key $key
      */
     public function select($subject, $key, &$retval): bool
     {
