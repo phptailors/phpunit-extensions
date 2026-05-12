@@ -18,18 +18,14 @@ namespace Tailors\PHPUnit\Common;
 final class ReferenceStorage implements \Countable
 {
     /**
-     * @var array
-     *
      * @psalm-var array<string,mixed>
      */
-    private $references = [];
+    private array $references = [];
 
     /**
-     * @var \SplObjectStorage
-     *
      * @psalm-var \SplObjectStorage<object, null>
      */
-    private $objects;
+    private readonly \SplObjectStorage $objects;
 
     public function __construct()
     {
