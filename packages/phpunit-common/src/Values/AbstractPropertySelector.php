@@ -36,7 +36,7 @@ abstract class AbstractPropertySelector extends AbstractValueSelector
      * @param mixed $retval
      *
      * @psalm-param SubjectType $subject
-     * @psalm-param array-key $key
+     * @psalm-param array-key   $key
      */
     final protected function selectFromSupported($subject, $key, &$retval = null): bool
     {
@@ -49,19 +49,19 @@ abstract class AbstractPropertySelector extends AbstractValueSelector
     }
 
     /**
-     * @psalm-param SubjectType $subject
-     * @psalm-param array-key $key
-     *
      * @return mixed
+     *
+     * @psalm-param SubjectType $subject
+     * @psalm-param array-key   $key
      */
     abstract protected function getSubjectAttribute(mixed $subject, mixed $key);
 
     /**
      * @param string $method
      *
-     * @psalm-param object|class-string $subject
-     *
      * @param-out mixed $retval
+     *
+     * @psalm-param object|class-string $subject
      */
     final protected function selectWithMethod(mixed $subject, string $method, mixed &$retval = null): bool
     {
@@ -79,7 +79,7 @@ abstract class AbstractPropertySelector extends AbstractValueSelector
      * @param-out mixed $retval
      *
      * @psalm-param SubjectType $subject
-     * @psalm-param array-key $key
+     * @psalm-param array-key   $key
      */
     final protected function selectWithAttribute(mixed $subject, mixed $key, mixed &$retval = null): bool
     {

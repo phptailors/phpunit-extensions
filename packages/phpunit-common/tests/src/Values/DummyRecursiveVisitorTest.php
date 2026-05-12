@@ -21,7 +21,7 @@ use PHPUnit\Framework\TestCase;
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-type ClosureT = \Closure(array|ValuesInterface,list<array-key>):bool
- * @psalm-type ArgT = bool|ClosureT
+ * @psalm-type ArgT     = bool|ClosureT
  */
 #[CoversClass(DummyRecursiveVisitor::class)]
 #[Small]
@@ -66,7 +66,7 @@ final class DummyRecursiveVisitorTest extends TestCase
      * @param array $args
      * @param array $expect
      *
-     * @psalm-param array<ArgT> $args
+     * @psalm-param array<ArgT>                       $args
      * @psalm-param array{enter: mixed, cycle: mixed} $expect
      */
     #[DataProvider('provDummyRecursiveVisitor')]
