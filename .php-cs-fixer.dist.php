@@ -46,8 +46,23 @@ return $config
             'imports_order' => ['const', 'class', 'function'],
             'sort_algorithm' => 'alpha',
         ],
+        'phpdoc_align' => [
+            'tags' => [
+                'method', 'phpstan-method', 'psalm-method',
+                'param', 'phpstan-param', 'psalm-param',
+                'property', 'phpstan-property', 'psalm-property',
+                'return', 'phpstan-return', 'psalm-return',
+                'throws', 'phpstan-throws', 'psalm-throws',
+                'type', 'phpstan-type', 'psalm-type',
+                'var', 'phpstan-var', 'psalm-var',
+            ],
+        ],
         'phpdoc_order' => [
-            'order' => ['param', 'return', 'throws'],
+            'order' => [
+                'param', 'param-out', 'return', 'throws',
+                'phpstan-param', 'phpstan-return', 'phpstan-throws',
+                'psalm-param', 'psalm-param-out', 'psalm-return', 'psalm-throws',
+            ],
         ],
 
         // 2026-03-20: php-cs-fixed changed the @PhPCsFixer rulesets
