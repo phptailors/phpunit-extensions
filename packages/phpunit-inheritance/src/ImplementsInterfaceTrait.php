@@ -20,7 +20,6 @@ trait ImplementsInterfaceTrait
     /**
      * Evaluates a \PHPUnit\Framework\Constraint\Constraint matcher object.
      *
-     *
      * @throws ExpectationFailedException
      */
     abstract public static function assertThat(mixed $value, Constraint $constraint, string $message = ''): void;

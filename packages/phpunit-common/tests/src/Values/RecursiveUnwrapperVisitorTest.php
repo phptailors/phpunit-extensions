@@ -280,7 +280,6 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
     }
 
     /**
-     *
      * @psalm-param non-empty-list<EnterTestCall> $calls
      */
     #[DataProvider('provEnterLeave')]

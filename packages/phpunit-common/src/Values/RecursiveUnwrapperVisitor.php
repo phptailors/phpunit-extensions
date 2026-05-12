@@ -156,8 +156,6 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     *
-     *
      * @throws CircularDependencyException
      *
      * @psalm-param list<StackItem> $stack
@@ -170,8 +168,8 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     *
      * @psalm-param list<StackItem> $stack
+     *
      * @psalm-mutation-free
      */
     private static function pathString(array $stack): string
