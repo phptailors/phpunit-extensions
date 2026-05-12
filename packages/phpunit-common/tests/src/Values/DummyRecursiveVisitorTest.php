@@ -72,18 +72,22 @@ final class DummyRecursiveVisitorTest extends TestCase
      */
     public function testDummyRecursiveVisitor(array $args, array $expect): void
     {
-        $node = new ExpectedValues();
+        $node = new ExpectedValues(['foo' => 'FOO']);
 
         // Mostly for code coverage.
         $visitor = new DummyRecursiveVisitor(...$args);
         $this->assertSame($expect['enter'], $visitor->enter($node, []));
+        $item = $visitor->makeStackItem($node['foo'], 'foo', []);
         $this->assertNull($visitor->visit(null, [], true));
+        $this->assertNull($visitor->freeStackItem($item, []));
         $this->assertNull($visitor->leave($node, [], true));
         $this->assertSame($expect['cycle'], $visitor->cycle([], []));
 
         $trace = [
             ['func' => 'enter', 'node' => $node, 'path' => []],
+            ['func' => 'makeStackItem', 'node' => $node['foo'], 'key' => 'foo', 'path' => []],
             ['func' => 'visit', 'node' => null, 'path' => []],
+            ['func' => 'freeStackItem', 'path' => []],
             ['func' => 'leave', 'node' => $node, 'path' => []],
             ['func' => 'cycle', 'node' => [], 'path' => []],
         ];
