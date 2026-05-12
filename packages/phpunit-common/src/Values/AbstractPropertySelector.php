@@ -45,12 +45,10 @@ abstract class AbstractPropertySelector extends AbstractValueSelector
     }
 
     /**
-     * @return mixed
-     *
      * @psalm-param SubjectType $subject
      * @psalm-param array-key   $key
      */
-    abstract protected function getSubjectAttribute(mixed $subject, mixed $key);
+    abstract protected function getSubjectAttribute(mixed $subject, mixed $key): mixed;
 
     /**
      * @param-out mixed $retval

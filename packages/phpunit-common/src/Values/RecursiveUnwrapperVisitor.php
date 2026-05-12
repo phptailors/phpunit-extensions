@@ -98,11 +98,11 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @return never
-     *
      * @throws CircularDependencyException
      *
      * @psalm-param list<StackItem> $stack
+     *
+     * @psalm-return never
      */
     public function cycle(array|ValuesInterface $node, array $stack): bool
     {
