@@ -58,7 +58,9 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
 
     /**
      * @param array|ValuesInterface $node
-     * @param list<StackItem>       $stack
+     * @param array                 $stack
+     *
+     * @psalm-param list<StackItem>       $stack
      */
     public function enter($node, array $stack): bool
     {
@@ -86,7 +88,9 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
 
     /**
      * @param array|ValuesInterface $node
-     * @param list<StackItem>       $stack
+     * @param array                 $stack
+     *
+     * @psalm-param list<StackItem>       $stack
      */
     public function leave($node, array $stack, bool $iterating): void
     {
@@ -104,8 +108,10 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param mixed           $node
-     * @param list<StackItem> $stack
+     * @param mixed $node
+     * @param array $stack
+     *
+     * @psalm-param list<StackItem> $stack
      */
     public function visit($node, array $stack, bool $iterating): void
     {
@@ -114,7 +120,9 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
 
     /**
      * @param array|ValuesInterface $node
-     * @param list<StackItem>       $stack
+     * @param array                 $stack
+     *
+     * @psalm-param list<StackItem>       $stack
      *
      * @return never
      *
@@ -127,8 +135,11 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
 
     /**
      * @param array|ValuesInterface $node
-     * @param array-key             $key
-     * @param list<StackItem>       $stack
+     * @param mixed                 $key
+     * @param array                 $stack
+     *
+     * @psalm-param array-key             $key
+     * @psalm-param list<StackItem>       $stack
      *
      * @psalm-return StackItem
      */
@@ -138,8 +149,11 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param StackItem       $item
-     * @param list<StackItem> $stack
+     * @param RecursiveVisitorStackItemInterface $item
+     * @param array                              $stack
+     *
+     * @psalm-param StackItem       $item
+     * @psalm-param list<StackItem> $stack
      */
     public function freeStackItem(RecursiveVisitorStackItemInterface $item, array $stack): void
     {
@@ -147,8 +161,10 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param list<StackItem> $stack
-     * @param mixed           $value
+     * @param array $stack
+     * @param mixed $value
+     *
+     * @psalm-param list<StackItem> $stack
      */
     private function set(array $stack, $value): void
     {
@@ -172,7 +188,9 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param list<StackItem> $stack
+     * @param array $stack
+     *
+     * @psalm-param list<StackItem> $stack
      *
      * @return never
      *
@@ -186,7 +204,9 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param list<StackItem> $stack
+     * @param array $stack
+     *
+     * @psalm-param list<StackItem> $stack
      *
      * @psalm-mutation-free
      */
