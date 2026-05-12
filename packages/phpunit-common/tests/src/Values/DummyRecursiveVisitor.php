@@ -105,6 +105,7 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
      *
      * @psalm-param array-key       $key
      * @psalm-param list<StackItem> $stack
+     *
      * @psalm-return StackItem
      */
     public function makeStackItem($node, $key, array $stack): RecursiveVisitorStackItemInterface
@@ -129,8 +130,8 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     *
      * @psalm-param list<StackItem> $stack
+     *
      * @psalm-pure
      */
     private static function path(array $stack): array

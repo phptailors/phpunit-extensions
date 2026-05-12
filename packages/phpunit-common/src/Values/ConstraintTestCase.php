@@ -94,7 +94,7 @@ abstract class ConstraintTestCase extends TestCase
     }
 
     /**
-     * @param mixed  $actual
+     * @param mixed $actual
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
@@ -120,7 +120,7 @@ abstract class ConstraintTestCase extends TestCase
     }
 
     /**
-     * @param mixed  $actual
+     * @param mixed $actual
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException

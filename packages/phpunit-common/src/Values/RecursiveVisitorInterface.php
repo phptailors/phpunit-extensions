@@ -53,6 +53,7 @@ interface RecursiveVisitorInterface
      *
      * @psalm-param array-key       $key
      * @psalm-param list<StackItem> $stack
+     *
      * @psalm-return StackItem
      */
     public function makeStackItem($node, $key, array $stack): RecursiveVisitorStackItemInterface;

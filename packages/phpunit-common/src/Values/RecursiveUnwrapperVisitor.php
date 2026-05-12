@@ -121,6 +121,7 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
      * @return never
      *
      * @throws CircularDependencyException
+     *
      * @psalm-param list<StackItem> $stack
      */
     public function cycle($node, array $stack): bool
@@ -134,6 +135,7 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
      *
      * @psalm-param array-key       $key
      * @psalm-param list<StackItem> $stack
+     *
      * @psalm-return StackItem
      */
     public function makeStackItem($node, $key, array $stack): RecursiveVisitorStackItemInterface
@@ -152,6 +154,7 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
 
     /**
      * @param mixed $value
+     *
      * @psalm-param list<StackItem> $stack
      */
     private function set(array $stack, $value): void
@@ -176,10 +179,10 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     *
      * @return never
      *
      * @throws CircularDependencyException
+     *
      * @psalm-param list<StackItem> $stack
      */
     private static function throwCircular(array $stack): void
@@ -190,8 +193,8 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     *
      * @psalm-param list<StackItem> $stack
+     *
      * @psalm-mutation-free
      */
     private static function pathString(array $stack): string

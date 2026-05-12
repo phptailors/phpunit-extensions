@@ -79,7 +79,6 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
     /**
      * @dataProvider provCycle
      *
-     *
      * @psalm-param list<StackItem> $stack
      */
     public function testCycle(array $stack, string $expect): void
@@ -400,6 +399,7 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
      *
      * @param array|ValuesInterface $root
      * @param mixed                 $result
+     *
      * @psalm-param non-empty-list<VisitTestCall> $calls
      */
     public function testVisit($root, bool $iter, array $calls, $result): void

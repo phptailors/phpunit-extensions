@@ -60,10 +60,11 @@ abstract class AbstractPropertySelector extends AbstractValueSelector
     abstract protected function getSubjectAttribute($subject, $key);
 
     /**
-     * @param mixed  $subject
-     * @param mixed  $retval
+     * @param mixed $subject
+     * @param mixed $retval
      *
      * @param-out mixed $retval
+     *
      * @psalm-param object|class-string $subject
      */
     final protected function selectWithMethod($subject, string $method, &$retval = null): bool

@@ -21,7 +21,7 @@ trait KsortedArrayEqualToTrait
     /**
      * Evaluates a \PHPUnit\Framework\Constraint\Constraint matcher object.
      *
-     * @param mixed      $value
+     * @param mixed $value
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
