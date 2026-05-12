@@ -79,7 +79,6 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
     /**
      * @dataProvider provCycle
      *
-     *
      * @psalm-param list<StackItem> $stack
      */
     public function testCycle(array $stack, string $expect): void
@@ -283,7 +282,6 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
     /**
      * @dataProvider provEnterLeave
      *
-     *
      * @psalm-param non-empty-list<EnterTestCall> $calls
      */
     public function testEnterLeave(array $ctor, array $calls, mixed $result): void
@@ -396,7 +394,6 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
 
     /**
      * @dataProvider provVisit
-     *
      *
      * @psalm-param non-empty-list<VisitTestCall> $calls
      */

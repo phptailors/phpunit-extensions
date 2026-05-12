@@ -78,7 +78,7 @@ final class HasPregCaptures extends Constraint
      * a boolean value instead: true in case of success, false in case of a
      * failure.
      *
-     * @param mixed  $other
+     * @param mixed $other
      *
      * @throws ExpectationFailedException
      */

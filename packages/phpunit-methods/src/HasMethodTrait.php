@@ -20,7 +20,6 @@ trait HasMethodTrait
     /**
      * Evaluates a \PHPUnit\Framework\Constraint\Constraint matcher object.
      *
-     *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
      */
