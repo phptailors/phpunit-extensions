@@ -36,7 +36,7 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param list<StackItem> $stack
+     * @psalm-param list<StackItem>       $stack
      */
     #[\Override]
     public function enter(array|ValuesInterface $node, array $stack): bool
@@ -51,7 +51,7 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param list<StackItem> $stack
+     * @psalm-param list<StackItem>       $stack
      */
     #[\Override]
     public function leave(array|ValuesInterface $node, array $stack, bool $iterating): void
@@ -60,7 +60,7 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param list<StackItem> $stack
+     * @psalm-param list<StackItem>       $stack
      */
     #[\Override]
     public function visit(mixed $node, array $stack, bool $iterating): void
@@ -69,7 +69,7 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param list<StackItem> $stack
+     * @psalm-param list<StackItem>       $stack
      */
     #[\Override]
     public function cycle(array|ValuesInterface $node, array $stack): bool
@@ -84,8 +84,10 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param array-key       $key
-     * @param list<StackItem> $stack
+     * @param mixed $key
+     *
+     * @psalm-param array-key             $key
+     * @psalm-param list<StackItem>       $stack
      *
      * @psalm-return StackItem
      */
@@ -95,8 +97,11 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param StackItem       $item
-     * @param list<StackItem> $stack
+     * @param RecursiveVisitorStackItemInterface $item
+     * @param array                              $stack
+     *
+     * @psalm-param StackItem       $item
+     * @psalm-param list<StackItem> $stack
      */
     public function freeStackItem(RecursiveVisitorStackItemInterface $item, array $stack): void {}
 
@@ -111,7 +116,9 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param list<StackItem> $stack
+     * @param array $stack
+     *
+     * @psalm-param list<StackItem> $stack
      *
      * @psalm-pure
      */
