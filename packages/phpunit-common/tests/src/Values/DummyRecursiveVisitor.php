@@ -22,13 +22,13 @@ namespace Tailors\PHPUnit\Values;
 final class DummyRecursiveVisitor implements RecursiveVisitorInterface
 {
     /**
-     * @var list<array{func: string, node:mixed, path:list<array-key>}>
+     * @psalm-var list<array{func: string, node:mixed, path:list<array-key>}>
      */
     private array $trace;
 
     /**
-     * @param bool|\Closure(array|ValuesInterface,list<StackItem>):bool $enter
-     * @param bool|\Closure(array|ValuesInterface,list<StackItem>):bool $cycle
+     * @psalm-param bool|\Closure(array|ValuesInterface,list<StackItem>):bool $enter
+     * @psalm-param bool|\Closure(array|ValuesInterface,list<StackItem>):bool $cycle
      */
     public function __construct(private readonly bool|\Closure $enter = true, private readonly bool|\Closure $cycle = false)
     {
