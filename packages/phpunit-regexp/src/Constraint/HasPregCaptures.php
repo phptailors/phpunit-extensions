@@ -85,8 +85,6 @@ final class HasPregCaptures extends Constraint
      * failure.
      *
      * @param mixed  $other
-     * @param string $description
-     * @param bool   $returnResult
      *
      * @throws ExpectationFailedException
      */

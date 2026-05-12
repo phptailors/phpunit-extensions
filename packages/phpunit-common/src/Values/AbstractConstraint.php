@@ -81,8 +81,6 @@ abstract class AbstractConstraint extends Constraint implements ComparatorWrappe
      * failure.
      *
      * @param mixed  $other
-     * @param string $description
-     * @param bool   $returnResult
      *
      * @throws ExpectationFailedException
      */

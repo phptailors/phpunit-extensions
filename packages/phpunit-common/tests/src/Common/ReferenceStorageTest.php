@@ -31,9 +31,6 @@ final class ReferenceStorageTest extends TestCase
         $this->assertSame(0, count($storage));
     }
 
-    /**
-     * @param array $values
-     */
     #[DataProvider('provAddAndCount')]
     public function testAddAndCount(array $values, int $expect): void
     {
@@ -46,9 +43,6 @@ final class ReferenceStorageTest extends TestCase
         $this->assertSame($expect, count($storage));
     }
 
-    /**
-     * @param array $values
-     */
     #[DataProvider('provAddRemoveContains')]
     public function testAddRemoveContains(array $values): void
     {
