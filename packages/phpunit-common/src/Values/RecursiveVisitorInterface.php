@@ -20,36 +20,41 @@ namespace Tailors\PHPUnit\Values;
 interface RecursiveVisitorInterface
 {
     /**
-     * @param list<StackItem> $stack
+     * @psalm-param list<StackItem>       $stack
      */
     public function enter(array|ValuesInterface $node, array $stack): bool;
 
     /**
-     * @param list<StackItem> $stack
+     * @psalm-param list<StackItem>       $stack
      */
     public function leave(array|ValuesInterface $node, array $stack, bool $iterating): void;
 
     /**
-     * @param list<StackItem> $stack
+     * @psalm-param list<StackItem> $stack
      */
     public function visit(mixed $node, array $stack, bool $iterating): void;
 
     /**
-     * @param list<StackItem> $stack
+     * @psalm-param list<StackItem>       $stack
      */
     public function cycle(array|ValuesInterface $node, array $stack): bool;
 
     /**
-     * @param array-key       $key
-     * @param list<StackItem> $stack
+     * @param mixed $key
+     *
+     * @psalm-param array-key             $key
+     * @psalm-param list<StackItem>       $stack
      *
      * @psalm-return StackItem
      */
     public function makeStackItem(array|ValuesInterface $node, $key, array $stack): RecursiveVisitorStackItemInterface;
 
     /**
-     * @param StackItem       $item
-     * @param list<StackItem> $stack
+     * @param RecursiveVisitorStackItemInterface $item
+     * @param array                              $stack
+     *
+     * @psalm-param StackItem       $item
+     * @psalm-param list<StackItem> $stack
      */
     public function freeStackItem(RecursiveVisitorStackItemInterface $item, array $stack): void;
 }

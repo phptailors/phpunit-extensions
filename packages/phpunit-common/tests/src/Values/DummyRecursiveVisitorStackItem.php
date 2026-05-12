@@ -19,7 +19,9 @@ final readonly class DummyRecursiveVisitorStackItem implements RecursiveVisitorS
 {
     /**
      * @param array|ValuesInterface $node
-     * @param array-key             $key
+     * @param mixed                 $key
+     *
+     * @psalm-param array-key             $key
      */
     public function __construct(private array|ValuesInterface $node, private mixed $key) {}
 

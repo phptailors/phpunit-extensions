@@ -50,7 +50,9 @@ final class InvalidReturnValueExceptionTest extends TestCase
     }
 
     /**
-     * @param array{0:object|string,1:string}|callable|string $function
+     * @param array $function
+     *
+     * @psalm-param array{0:object|string,1:string}|callable|string $function
      */
     #[DataProvider('provFromExpectedAndActual')]
     public function testFromExpectedAndActual($function, string $expected, string $actual): void
