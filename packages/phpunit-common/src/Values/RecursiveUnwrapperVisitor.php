@@ -26,14 +26,8 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
 {
     public const string UNIQUE_TAG = 'unwrapped-values:$1$zIlgusJc$ZZCyNRPOX1SbpKdzoD2hU/';
 
-    /**
-     * @var array
-     */
     private array $result;
 
-    /**
-     * @var array
-     */
     private array $current;
 
     public function __construct(private readonly bool $tagging = true)
@@ -133,9 +127,6 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param RecursiveVisitorStackItemInterface $item
-     * @param array                              $stack
-     *
      * @psalm-param StackItem       $item
      * @psalm-param list<StackItem> $stack
      */
@@ -145,8 +136,6 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param array $stack
-     *
      * @psalm-param list<StackItem> $stack
      */
     private function set(array $stack, mixed $value): void
@@ -171,9 +160,7 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param array $stack
      *
-     * @return never
      *
      * @throws CircularDependencyException
      *
@@ -187,10 +174,8 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param array $stack
      *
      * @psalm-param list<StackItem> $stack
-     *
      * @psalm-mutation-free
      */
     private static function pathString(array $stack): string
