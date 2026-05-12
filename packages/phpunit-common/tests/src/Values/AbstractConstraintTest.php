@@ -176,7 +176,7 @@ final class AbstractConstraintTest extends TestCase
     }
 
     /**
-     * @param \Closure(TestCase $test): Operator
+     * @psalm-param \Closure(TestCase $test):Operator $operator
      *
      * @dataProvider provToStringInContext
      */
@@ -289,7 +289,8 @@ final class AbstractConstraintTest extends TestCase
     /**
      * @dataProvider provEvaluate
      *
-     * @param \Closure(TestCase):Constraint $constraint
+     * @psalm-param \Closure(TestCase):Constraint $constraint
+     * @psalm-param non-empty-list                $args
      */
     public function testEvaluate(\Closure $constraint, array $args, mixed $expect): void
     {

@@ -51,7 +51,7 @@ final class InvalidReturnValueExceptionTest extends TestCase
     /**
      * @dataProvider provFromExpectedAndActual
      *
-     * @param array $function
+     * @param mixed $function
      *
      * @psalm-param array{0:object|string,1:string}|callable|string $function
      */
@@ -92,7 +92,9 @@ final class InvalidReturnValueExceptionTest extends TestCase
     /**
      * @dataProvider provFromExpectedTypeAndActualValue
      *
-     * @param array{0:object|string,1:string}|callable|string $function
+     * @param mixed $function
+     *
+     * @psalm-param array{0:object|string,1:string}|callable|string $function
      */
     public function testFromExpectedTypeAndActualValue($function, string $expected, mixed $actual): void
     {
@@ -104,6 +106,11 @@ final class InvalidReturnValueExceptionTest extends TestCase
         self::assertSame($message, $exception->getMessage());
     }
 
+    /**
+     * @param mixed $function
+     *
+     * @psalm-param array{0:object|string,1:string}|callable|string $function
+     */
     protected static function getFunctionName($function): string
     {
         if (is_string($function)) {
