@@ -25,7 +25,9 @@ final class ReferenceStorage implements \Countable
     private $references = [];
 
     /**
-     * @var \SplObjectStorage<object, null>
+     * @var \SplObjectStorage
+     *
+     * @psalm-var \SplObjectStorage<object, null>
      */
     private $objects;
 
