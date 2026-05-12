@@ -53,12 +53,12 @@ final class ArrayValueSelector extends AbstractValueSelector
      * @param mixed $key
      * @param mixed $retval
      *
-     * @psalm-param array|\ArrayAccess $subject
-     * @psalm-param array-key $key
-     *
      * @param-out mixed $retval
      *
      * @throws InvalidArgumentException
+     *
+     * @psalm-param array|\ArrayAccess $subject
+     * @psalm-param array-key          $key
      */
     protected function selectFromSupported($subject, $key, &$retval = null): bool
     {
@@ -77,7 +77,7 @@ final class ArrayValueSelector extends AbstractValueSelector
      * @param mixed $key
      *
      * @psalm-param array|\ArrayAccess $subject
-     * @psalm-param array-key $key
+     * @psalm-param array-key          $key
      */
     private static function subjectHasKey($subject, $key): bool
     {

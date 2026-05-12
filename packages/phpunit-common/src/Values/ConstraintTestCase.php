@@ -55,11 +55,11 @@ abstract class ConstraintTestCase extends TestCase
     /**
      * @dataProvider provCreateConstraint
      *
-     * @psalm-param array{values: Constraint} $expect
-     *
      * @throws Exception
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
+     *
+     * @psalm-param array{values: Constraint} $expect
      */
     final public function testCreateConstraint(array $args, array $expect): void
     {

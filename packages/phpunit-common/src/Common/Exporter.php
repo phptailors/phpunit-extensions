@@ -26,9 +26,9 @@ final class Exporter
      *
      * @param mixed $value
      *
-     * @psalm-param mixed $value
-     *
      * @throws InvalidArgumentException
+     *
+     * @psalm-param mixed $value
      */
     public static function export($value, bool $exportObjects = false): string
     {
@@ -54,9 +54,9 @@ final class Exporter
     /**
      * @param mixed $value
      *
-     * @psalm-param mixed $value
-     *
      * @throws InvalidArgumentException
+     *
+     * @psalm-param mixed $value
      */
     private static function isExportable(&$value, ?Context $context = null): bool
     {

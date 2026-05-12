@@ -45,11 +45,11 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     /**
      * @param array $args arguments for createConstraint()
      *
-     * @psalm-return ConstraintClass
-     *
      * @throws Exception
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
+     *
+     * @psalm-return ConstraintClass
      */
     final public function examineCreateConstraint(array $args): Constraint
     {

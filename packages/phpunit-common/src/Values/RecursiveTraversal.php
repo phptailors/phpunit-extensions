@@ -86,7 +86,7 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
      * @psalm-template T of array|ValuesInterface
      * @psalm-template StackItem of RecursiveVisitorStackItemInterface
      *
-     * @psalm-param T $node
+     * @psalm-param T                                    $node
      * @psalm-param RecursiveVisitorInterface<StackItem> $visitor
      *
      * @psalm-param-out T $node
@@ -147,7 +147,7 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
      * @psalm-template T
      * @psalm-template StackItem of RecursiveVisitorStackItemInterface
      *
-     * @psalm-param T $value
+     * @psalm-param T                                    $value
      * @psalm-param RecursiveVisitorInterface<StackItem> $visitor
      *
      * @psalm-param-out T $value

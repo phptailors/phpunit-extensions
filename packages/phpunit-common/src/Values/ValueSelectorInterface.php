@@ -29,11 +29,11 @@ interface ValueSelectorInterface
      * @param mixed $key
      * @param mixed $retval
      *
-     * @psalm-param array-key $key
-     *
      * @param-out mixed $retval
      *
      * @throws InvalidArgumentException
+     *
+     * @psalm-param array-key $key
      */
     public function select($subject, $key, &$retval): bool;
 

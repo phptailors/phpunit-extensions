@@ -41,7 +41,7 @@ final class RecursiveUnwrapperStackItem implements RecursiveVisitorStackItemInte
      * @param mixed                 $key
      * @param array                 $result
      *
-     * @psalm-param array-key             $key
+     * @psalm-param array-key $key
      */
     public function __construct($node, $key, array $result)
     {

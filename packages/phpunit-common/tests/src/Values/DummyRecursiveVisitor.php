@@ -51,7 +51,7 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
      * @param array|ValuesInterface $node
      * @param array                 $stack
      *
-     * @psalm-param list<StackItem>       $stack
+     * @psalm-param list<StackItem> $stack
      */
     public function enter($node, array $stack): bool
     {
@@ -68,7 +68,7 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
      * @param array|ValuesInterface $node
      * @param array                 $stack
      *
-     * @psalm-param list<StackItem>       $stack
+     * @psalm-param list<StackItem> $stack
      */
     public function leave($node, array $stack, bool $iterating): void
     {
@@ -79,7 +79,7 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
      * @param array|ValuesInterface $node
      * @param array                 $stack
      *
-     * @psalm-param list<StackItem>       $stack
+     * @psalm-param list<StackItem> $stack
      */
     public function visit($node, array $stack, bool $iterating): void
     {
@@ -90,7 +90,7 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
      * @param array|ValuesInterface $node
      * @param array                 $stack
      *
-     * @psalm-param list<StackItem>       $stack
+     * @psalm-param list<StackItem> $stack
      */
     public function cycle($node, array $stack): bool
     {
@@ -108,8 +108,8 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
      * @param mixed                 $key
      * @param array                 $stack
      *
-     * @psalm-param array-key             $key
-     * @psalm-param list<StackItem>       $stack
+     * @psalm-param array-key       $key
+     * @psalm-param list<StackItem> $stack
      *
      * @psalm-return StackItem
      */

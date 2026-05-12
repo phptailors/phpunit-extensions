@@ -23,7 +23,7 @@ interface RecursiveVisitorInterface
      * @param array|ValuesInterface $node
      * @param array                 $stack
      *
-     * @psalm-param list<StackItem>       $stack
+     * @psalm-param list<StackItem> $stack
      */
     public function enter($node, array $stack): bool;
 
@@ -31,7 +31,7 @@ interface RecursiveVisitorInterface
      * @param array|ValuesInterface $node
      * @param array                 $stack
      *
-     * @psalm-param list<StackItem>       $stack
+     * @psalm-param list<StackItem> $stack
      */
     public function leave($node, array $stack, bool $iterating): void;
 
@@ -47,7 +47,7 @@ interface RecursiveVisitorInterface
      * @param array|ValuesInterface $node
      * @param array                 $stack
      *
-     * @psalm-param list<StackItem>       $stack
+     * @psalm-param list<StackItem> $stack
      */
     public function cycle($node, array $stack): bool;
 
@@ -56,8 +56,8 @@ interface RecursiveVisitorInterface
      * @param mixed                 $key
      * @param array                 $stack
      *
-     * @psalm-param array-key             $key
-     * @psalm-param list<StackItem>       $stack
+     * @psalm-param array-key       $key
+     * @psalm-param list<StackItem> $stack
      *
      * @psalm-return StackItem
      */
