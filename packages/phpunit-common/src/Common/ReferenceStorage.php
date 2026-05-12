@@ -163,16 +163,19 @@ final class ReferenceStorage implements \Countable
     private function getReferenceId(mixed &$value): string
     {
         if (!class_exists(\ReflectionReference::class)) {
-            /** @var mixed $reference */
+            /** @psalm-var mixed $reference */
             foreach ($this->references as $id => &$reference) {
+                /** @psalm-var mixed */
                 $backup = $reference;
                 $reference = $this->objects;
                 if ($value === $this->objects) {
+                    /** @psalm-var mixed */
                     $reference = $backup;
 
                     return $id;
                 }
 
+                /** @psalm-var mixed */
                 $reference = $backup;
             }
 
