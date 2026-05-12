@@ -26,20 +26,9 @@ final class DummyConstraintImplementation
 {
     use ConstraintImplementationTrait;
 
-    /**
-     * @var null|ValueSelectorInterface
-     */
-    public static $makeSelector;
-
-    /**
-     * @var null|ComparatorInterface
-     */
-    public static $makeComparator;
-
-    /**
-     * @var null|array
-     */
-    public static $validateExpectations;
+    public static ?ValueSelectorInterface $makeSelector;
+    public static ?ComparatorInterface $makeComparator;
+    public static ?array $validateExpectations;
 
     protected function __construct(public ValuesInterface $expected, public ComparatorInterface $comparator, public ValueSelectorInterface $valueSelector, public RecursiveUnwrapperInterface $unwrapper) {}
 
