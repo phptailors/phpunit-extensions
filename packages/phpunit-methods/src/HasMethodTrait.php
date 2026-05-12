@@ -28,12 +28,11 @@ trait HasMethodTrait
     /**
      * Asserts that *$subject* has method specified with *$methodSpec*.
      *
-     * @param string $methodSpec
-     *                           Method specification (name and optionally specified modifiers)
-     * @param mixed  $subject
-     *                           An object, or a name of class, trait or interface to be examined
-     * @param string $message
-     *                           Optional failure message
+     * @param string $methodSpec Method specification (name and optionally
+     *                           specified modifiers)
+     * @param mixed  $subject    An object, or a name of class, trait or
+     *                           interface to be examined
+     * @param string $message    Optional failure message
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
@@ -52,12 +51,11 @@ trait HasMethodTrait
     /**
      * Asserts that *$subject* has no method specified with *$methodSpec*.
      *
-     * @param string $methodSpec
-     *                           Method specification (name and optionally specified modifiers)
-     * @param mixed  $subject
-     *                           An object, or a name of class, trait or interface to be examined
-     * @param string $message
-     *                           Optional failure message
+     * @param string $methodSpec Method specification (name and optionally
+     *                           specified modifiers)
+     * @param mixed  $subject    An object, or a name of class, trait or
+     *                           interface to be examined
+     * @param string $message    Optional failure message
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
@@ -73,8 +71,8 @@ trait HasMethodTrait
     /**
      * Checks if an object, class, trait or interface has given method.
      *
-     * @param string $methodSpec
-     *                           Method specification (name and optionally specified modifiers)
+     * @param string $methodSpec Method specification (name and optionally
+     *                           specified modifiers)
      *
      * @throws InvalidArgumentException
      */

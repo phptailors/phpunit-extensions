@@ -20,12 +20,10 @@ namespace Tailors\PHPUnit\Values;
 final class ObjectPropertySelector extends AbstractPropertySelector
 {
     /**
-     * @param mixed $subject
-     *
      * @psalm-assert-if-true object $subject
      */
     #[\Override]
-    public function supports($subject): bool
+    public function supports(mixed $subject): bool
     {
         return is_object($subject);
     }
@@ -40,16 +38,11 @@ final class ObjectPropertySelector extends AbstractPropertySelector
     }
 
     /**
-     * @param mixed $subject
-     * @param mixed $key
-     *
-     * @return mixed
-     *
      * @psalm-param object    $subject
      * @psalm-param array-key $key
      */
     #[\Override]
-    protected function getSubjectAttribute($subject, $key)
+    protected function getSubjectAttribute(mixed $subject, mixed $key): mixed
     {
         return $subject->{$key};
     }

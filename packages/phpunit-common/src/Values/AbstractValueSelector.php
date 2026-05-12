@@ -22,16 +22,12 @@ use Tailors\PHPUnit\InvalidArgumentException;
 abstract class AbstractValueSelector implements ValueSelectorInterface
 {
     /**
-     * @param mixed $subject
-     * @param mixed $key
-     * @param mixed $retval
-     *
      * @throws InvalidArgumentException
      *
      * @psalm-param array-key $key
      */
     #[\Override]
-    final public function select($subject, $key, &$retval = null): bool
+    final public function select(mixed $subject, mixed $key, mixed &$retval = null): bool
     {
         $this->assertSupports($subject, 1);
 

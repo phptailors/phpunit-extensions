@@ -22,12 +22,10 @@ use Tailors\PHPUnit\InvalidArgumentException;
 final class ArrayValueSelector extends AbstractValueSelector
 {
     /**
-     * @param mixed $subject
-     *
      * @psalm-assert-if-true array|\ArrayAccess $subject
      */
     #[\Override]
-    public function supports($subject): bool
+    public function supports(mixed $subject): bool
     {
         return is_array($subject) || $subject instanceof \ArrayAccess;
     }
@@ -52,19 +50,15 @@ final class ArrayValueSelector extends AbstractValueSelector
     }
 
     /**
-     * @param mixed $subject
-     * @param mixed $key
-     * @param mixed $retval
-     *
-     * @param-out mixed $retval
-     *
      * @throws InvalidArgumentException
      *
      * @psalm-param array|\ArrayAccess $subject
      * @psalm-param array-key          $key
+     *
+     * @psalm-param-out mixed $retval
      */
     #[\Override]
-    protected function selectFromSupported($subject, $key, &$retval = null): bool
+    protected function selectFromSupported(mixed $subject, mixed $key, mixed &$retval = null): bool
     {
         if (self::subjectHasKey($subject, $key)) {
             /** @psalm-var mixed */

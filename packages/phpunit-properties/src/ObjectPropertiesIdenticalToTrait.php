@@ -27,13 +27,11 @@ trait ObjectPropertiesIdenticalToTrait
     /**
      * Asserts that selected properties of *$object* are identical to *$expected* ones.
      *
-     * @param array  $expected
-     *                         An array of key => value pairs with property names as keys and
-     *                         their expected values as values
-     * @param object $object
-     *                         An object to be examined
-     * @param string $message
-     *                         Optional failure message
+     * @param array  $expected An array of key => value pairs with property
+     *                         names as keys and their expected values as
+     *                         values
+     * @param object $object   An object to be examined
+     * @param string $message  Optional failure message
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
@@ -49,13 +47,11 @@ trait ObjectPropertiesIdenticalToTrait
     /**
      * Asserts that selected properties of *$object* are not identical to *$expected* ones.
      *
-     * @param array  $expected
-     *                         An array of key => value pairs with property names as keys and
-     *                         their expected values as values
-     * @param object $object
-     *                         An object to be examined
-     * @param string $message
-     *                         Optional failure message
+     * @param array  $expected An array of key => value pairs with property
+     *                         names as keys and their expected values as
+     *                         values
+     * @param object $object   An object to be examined
+     * @param string $message  Optional failure message
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
@@ -71,8 +67,8 @@ trait ObjectPropertiesIdenticalToTrait
     /**
      * Compares selected properties of *$object* with *$expected* ones.
      *
-     * @param array $expected
-     *                        An array of key => value pairs with expected values of attributes
+     * @param array $expected An array of key => value pairs with expected
+     *                        values of attributes
      *
      * @throws InvalidArgumentException
      */

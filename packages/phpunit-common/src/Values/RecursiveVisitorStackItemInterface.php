@@ -18,18 +18,16 @@ namespace Tailors\PHPUnit\Values;
 interface RecursiveVisitorStackItemInterface
 {
     /**
-     * @return array|ValuesInterface
-     *
      * @psalm-mutation-free
      */
-    public function node();
+    public function node(): array|ValuesInterface;
 
     /**
-     * @return array-key
+     * @psalm-return array-key
      *
      * @psalm-mutation-free
      */
-    public function key();
+    public function key(): mixed;
 }
 
 // vim: syntax=php sw=4 ts=4 et:
