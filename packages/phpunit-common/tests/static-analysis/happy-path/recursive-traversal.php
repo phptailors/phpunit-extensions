@@ -26,7 +26,7 @@ final class DummyRecursiveVisitorStackItem implements RecursiveVisitorStackItemI
      * @param array|ValuesInterface $node
      * @param mixed                 $key
      *
-     * @psalm-param array-key             $key
+     * @psalm-param array-key $key
      */
     public function __construct(private readonly array|ValuesInterface $node, private readonly mixed $key) {}
 
@@ -65,7 +65,7 @@ final class DummyRecursiveVisitorStackItem implements RecursiveVisitorStackItemI
 final class DummyRecursiveVisitor implements RecursiveVisitorInterface
 {
     /**
-     * @psalm-param list<StackItem>       $stack
+     * @psalm-param list<StackItem> $stack
      */
     public function enter(array|ValuesInterface $node, array $stack): bool
     {
@@ -73,7 +73,7 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @psalm-param list<StackItem>       $stack
+     * @psalm-param list<StackItem> $stack
      */
     public function leave(array|ValuesInterface $node, array $stack, bool $iterating): void {}
 
@@ -85,7 +85,7 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     public function visit(mixed $node, array $stack, bool $iterating): void {}
 
     /**
-     * @psalm-param list<StackItem>       $stack
+     * @psalm-param list<StackItem> $stack
      */
     public function cycle(array|ValuesInterface $node, array $stack): bool
     {
@@ -95,8 +95,8 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     /**
      * @param mixed $key
      *
-     * @psalm-param array-key             $key
-     * @psalm-param list<StackItem>       $stack
+     * @psalm-param array-key       $key
+     * @psalm-param list<StackItem> $stack
      *
      * @psalm-return StackItem
      */
@@ -109,7 +109,7 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
      * @param RecursiveVisitorStackItemInterface $item
      * @param array                              $stack
      *
-     * @psalm-param StackItem $item
+     * @psalm-param StackItem       $item
      * @psalm-param list<StackItem> $stack
      */
     public function freeStackItem(RecursiveVisitorStackItemInterface $item, array $stack): void {}

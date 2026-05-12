@@ -60,9 +60,9 @@ trait ConstraintImplementationTrait
     }
 
     /**
-     * @psalm-return array<string>
-     *
      * @throws InvalidReturnValueException
+     *
+     * @psalm-return array<string>
      */
     protected function inheritance(string $class): array
     {
@@ -94,13 +94,13 @@ trait ConstraintImplementationTrait
     /**
      * @psalm-template ValueType $value
      *
-     * @psalm-param ValueType $value
-     *
      * @param-out ValueType $value
      *
      * @psalm-assert array<string> $value
      *
      * @throws InvalidReturnValueException
+     *
+     * @psalm-param ValueType $value
      */
     private static function assertReturnValueIsListOfStrings(mixed $function, mixed &$value): void
     {

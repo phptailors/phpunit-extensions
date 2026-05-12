@@ -22,11 +22,11 @@ interface ValueSelectorInterface
     public function supports(mixed $subject): bool;
 
     /**
-     * @psalm-param array-key $key
-     *
      * @param-out mixed $retval
      *
      * @throws InvalidArgumentException
+     *
+     * @psalm-param array-key $key
      */
     public function select(mixed $subject, mixed $key, mixed &$retval): bool;
 
