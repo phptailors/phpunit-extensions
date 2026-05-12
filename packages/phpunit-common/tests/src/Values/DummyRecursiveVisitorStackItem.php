@@ -23,21 +23,19 @@ final readonly class DummyRecursiveVisitorStackItem implements RecursiveVisitorS
     public function __construct(private array|ValuesInterface $node, private mixed $key) {}
 
     /**
-     * @return array|ValuesInterface
-     *
      * @psalm-mutation-free
      */
-    public function node()
+    public function node(): array|ValuesInterface
     {
         return $this->node;
     }
 
     /**
-     * @return array-key
+     * @psalm-return array-key
      *
      * @psalm-mutation-free
      */
-    public function key()
+    public function key(): mixed
     {
         return $this->key;
     }

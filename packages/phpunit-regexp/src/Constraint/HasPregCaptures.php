@@ -84,11 +84,9 @@ final class HasPregCaptures extends Constraint
      * a boolean value instead: true in case of success, false in case of a
      * failure.
      *
-     * @param mixed $other
-     *
      * @throws ExpectationFailedException
      */
-    public function evaluate($other, string $description = '', bool $returnResult = false): ?bool
+    public function evaluate(mixed $other, string $description = '', bool $returnResult = false): ?bool
     {
         $success = $this->matches($other);
 
@@ -198,8 +196,6 @@ final class HasPregCaptures extends Constraint
     }
 
     /**
-     * @return array[]
-     *
      * @psalm-return array{0: array, 1: array}
      */
     private function getArraysForComparison(array $matches): array

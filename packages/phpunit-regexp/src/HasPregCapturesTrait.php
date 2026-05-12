@@ -39,12 +39,9 @@ trait HasPregCapturesTrait
      * properly only with arrays obtained from ``preg_match()`` invoked with
      * ``PREG_UNMATCHED_AS_NULL`` flag.
      *
-     * @param array  $expected
-     *                         An array of expectations
-     * @param array  $matches
-     *                         An array of preg matches to be examined
-     * @param string $message
-     *                         Additional message
+     * @param array  $expected An array of expectations
+     * @param array  $matches  An array of preg matches to be examined
+     * @param string $message  Additional message
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
@@ -57,12 +54,9 @@ trait HasPregCapturesTrait
     /**
      * Negated assertHasPregCaptures().
      *
-     * @param array  $expected
-     *                         An array of expectations
-     * @param array  $matches
-     *                         An array of preg matches to be examined
-     * @param string $message
-     *                         Additional message
+     * @param array  $expected An array of expectations
+     * @param array  $matches  An array of preg matches to be examined
+     * @param string $message  Additional message
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException

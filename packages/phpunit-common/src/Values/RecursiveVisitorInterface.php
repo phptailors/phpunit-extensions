@@ -40,14 +40,12 @@ interface RecursiveVisitorInterface
     public function cycle(array|ValuesInterface $node, array $stack): bool;
 
     /**
-     * @param mixed $key
-     *
      * @psalm-param array-key       $key
      * @psalm-param list<StackItem> $stack
      *
      * @psalm-return StackItem
      */
-    public function makeStackItem(array|ValuesInterface $node, $key, array $stack): RecursiveVisitorStackItemInterface;
+    public function makeStackItem(array|ValuesInterface $node, mixed $key, array $stack): RecursiveVisitorStackItemInterface;
 
     /**
      * @psalm-param StackItem       $item

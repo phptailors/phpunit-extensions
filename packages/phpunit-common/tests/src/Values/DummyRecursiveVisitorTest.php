@@ -28,8 +28,6 @@ use PHPUnit\Framework\TestCase;
 final class DummyRecursiveVisitorTest extends TestCase
 {
     /**
-     * @return iterable<string,array{args: array, expect: array}>
-     *
      * @psalm-return iterable<string,array{args: array<ArgT>, expect: array{enter: mixed, cycle: mixed}}>
      */
     public static function provDummyRecursiveVisitor(): iterable

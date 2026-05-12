@@ -28,23 +28,19 @@ final readonly class DummyRecursiveVisitorStackItem implements RecursiveVisitorS
     public function __construct(private array|ValuesInterface $node, private mixed $key) {}
 
     /**
-     * @return mixed
-     *
-     * @psalm-return array|ValuesInterface
-     *
      * @psalm-mutation-free
      */
-    public function node()
+    public function node(): array|ValuesInterface
     {
         return $this->node;
     }
 
     /**
-     * @return array-key
+     * @psalm-return array-key
      *
      * @psalm-mutation-free
      */
-    public function key()
+    public function key(): mixed
     {
         return $this->key;
     }
@@ -88,14 +84,12 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param mixed $key
-     *
      * @psalm-param array-key       $key
      * @psalm-param list<StackItem> $stack
      *
      * @psalm-return StackItem
      */
-    public function makeStackItem(array|ValuesInterface $node, $key, array $stack): RecursiveVisitorStackItemInterface
+    public function makeStackItem(array|ValuesInterface $node, mixed $key, array $stack): RecursiveVisitorStackItemInterface
     {
         return new DummyRecursiveVisitorStackItem($node, $key);
     }
