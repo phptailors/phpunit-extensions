@@ -13,11 +13,64 @@ namespace Tailors\PHPUnit\Values;
 final class DummyValueSelector implements ValueSelectorInterface
 {
     /**
+     * @var bool|\Closure
+     *
+     * @psalm-var bool|\Closure(mixed):bool
+     *
+     * @psalm-readonly
+     */
+    private $supports;
+
+    /**
+     * @var bool|\Closure
+     *
+     * @psalm-var bool|\Closure(mixed,mixed,mixed):bool
+     *
+     * @psalm-readonly
+     */
+    private $select;
+
+    /**
+     * @var string
+     *
+     * @psalm-readonly
+     */
+    private $subject;
+
+    /**
+     * @var string
+     *
+     * @psalm-readonly
+     */
+    private $selectable;
+
+    /**
+     * @param bool|\Closure $supports
+     * @param bool|\Closure $select
+     *
+     * @psalm-param bool|\Closure(mixed):bool             $supports
+     * @psalm-param bool|\Closure(mixed,mixed,mixed):bool $select
+     */
+    public function __construct($supports = false, $select = false, string $subject = '', string $selectable = '')
+    {
+        $this->supports = $supports;
+        $this->select = $select;
+        $this->subject = $subject;
+        $this->selectable = $selectable;
+    }
+
+    /**
      * @param mixed $subject
+     *
+     * @psalm-mutation-free
      */
     public function supports($subject): bool
     {
-        return false;
+        if (is_bool($this->supports)) {
+            return $this->supports;
+        }
+
+        return call_user_func($this->supports, $subject);
     }
 
     /**
@@ -25,22 +78,34 @@ final class DummyValueSelector implements ValueSelectorInterface
      * @param mixed $key
      * @param mixed $retval
      *
-     * @param-out mixed $retval
-     *
      * @psalm-param array-key $key
+     *
+     * @psalm-param-out mixed $retval
+     *
+     * @psalm-mutation-free
      */
     public function select($subject, $key, &$retval): bool
     {
-        return false;
+        if (is_bool($this->select)) {
+            return $this->select;
+        }
+
+        return call_user_func_array($this->select, [$subject, $key, &$retval]);
     }
 
+    /**
+     * @psalm-mutation-free
+     */
     public function subject(): string
     {
-        return '';
+        return $this->subject;
     }
 
+    /**
+     * @psalm-mutation-free
+     */
     public function selectable(): string
     {
-        return '';
+        return $this->selectable;
     }
 }
