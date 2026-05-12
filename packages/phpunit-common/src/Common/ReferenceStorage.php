@@ -18,7 +18,9 @@ namespace Tailors\PHPUnit\Common;
 final class ReferenceStorage implements \Countable
 {
     /**
-     * @var array<string,mixed>
+     * @var array
+     *
+     * @psalm-var array<string,mixed>
      */
     private $references = [];
 
