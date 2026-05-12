@@ -25,7 +25,9 @@ final class RecursiveUnwrapperStackItem implements RecursiveVisitorStackItemInte
     private $node;
 
     /**
-     * @var array-key
+     * @var mixed
+     *
+     * @psalm-var array-key
      *
      * @psalm-readonly
      */
