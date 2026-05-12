@@ -2,6 +2,10 @@
 
 use Rector\CodingStyle\Rector\ArrowFunction\ArrowFunctionDelegatingCallToFirstClassCallableRector;
 use Rector\Config\RectorConfig;
+use Rector\DeadCode\Rector\ClassMethod\RemoveUselessParamTagRector;
+use Rector\DeadCode\Rector\ClassMethod\RemoveUselessReturnTagRector;
+use Rector\DeadCode\Rector\Property\RemoveUselessReadOnlyTagRector;
+use Rector\DeadCode\Rector\Property\RemoveUselessVarTagRector;
 use Rector\PHPUnit\PHPUnit60\Rector\ClassMethod\AddDoesNotPerformAssertionToNonAssertingTestRector;
 use Rector\PHPUnit\Set\PHPUnitSetList;
 use Rector\Php84\Rector\Foreach_\ForeachToArrayAllRector;
@@ -46,6 +50,10 @@ return RectorConfig::configure()
         ],
     ])
     ->withRules([
+        RemoveUselessParamTagRector::class,
+        RemoveUselessReadOnlyTagRector::class,
+        RemoveUselessReturnTagRector::class,
+        RemoveUselessVarTagRector::class,
     ])
     ->withImportNames(
         importShortClasses: false,
