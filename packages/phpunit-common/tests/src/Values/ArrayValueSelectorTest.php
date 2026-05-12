@@ -103,8 +103,8 @@ final class ArrayValueSelectorTest extends TestCase
     // @codeCoverageIgnoreStart
     public static function provSelect(): array
     {
-        $arrayAccessFoo = new class() implements \ArrayAccess {
-            private readonly string $foo;
+        $arrayAccessFoo = new readonly class() implements \ArrayAccess {
+            private string $foo;
 
             public function __construct()
             {
