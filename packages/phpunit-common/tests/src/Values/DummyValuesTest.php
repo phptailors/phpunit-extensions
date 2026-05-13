@@ -28,11 +28,11 @@ final class DummyValuesTest extends TestCase
         // Mostly for code coverage.
         $values = new DummyValues(false, ['a' => 'A']);
         $this->assertFalse($values->actual());
-        $this->assertSame(['a' => 'A'], $values->getArrayCopy());
+        $this->assertSame(['a' => 'A'], iterator_to_array($values));
 
         $values = new DummyValues(true, ['b' => 'B']);
         $this->assertTrue($values->actual());
-        $this->assertSame(['b' => 'B'], $values->getArrayCopy());
+        $this->assertSame(['b' => 'B'], iterator_to_array($values));
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

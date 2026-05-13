@@ -48,7 +48,7 @@ final class ConstraintImplementationTraitTest extends TestCase
         $this->assertInstanceOf(RecursiveUnwrapper::class, $constraint->unwrapper);
 
         $this->assertSame(DummyConstraintImplementation::$makeSelector, $constraint->valueSelector);
-        $this->assertSame($expected, $constraint->expected->getArrayCopy());
+        $this->assertSame($expected, iterator_to_array($constraint->expected));
     }
 
     //
