@@ -6,11 +6,14 @@ use PharIo\Version\InvalidVersionException;
 use Symplify\MonorepoBuilder\Contract\Git\TagResolverInterface;
 use Symplify\MonorepoBuilder\Release\Process\ProcessRunner;
 use PharIo\Version\Version;
+use PharIo\Version\VersionConstraintParser;
 
 final class MostRecentTagResolver implements TagResolverInterface
 {
     // Gets only tags for current branch.
-    private const COMMAND = [ 'git', 'tag', '-l', '--sort=v:refname', '--merged', 'HEAD' ];
+    private const GIT_TAG = [ 'git', 'tag', '-l', '--sort=v:refname', '--merged', 'HEAD' ];
+    // Gets only current branch name
+    private const GIT_BRANCH = ['git', 'branch', '--show-current', '--no-color'];
 
     /**
      * @var ProcessRunner
@@ -25,10 +28,22 @@ final class MostRecentTagResolver implements TagResolverInterface
     public function resolve(string $gitDirectory): ?string
     {
         $tagList = $this->filterSemverTags(
-            $this->parseTags($this->processRunner->run(self::COMMAND, $gitDirectory))
+            $this->parseTags($this->processRunner->run(self::GIT_TAG, $gitDirectory)),
+            $this->parseBranch($this->processRunner->run(self::GIT_BRANCH, $gitDirectory))
         );
 
         return (string)array_pop($tagList) ?: null;
+    }
+
+    private function parseBranch(string $commandResult): string
+    {
+        $branch = trim($commandResult);
+
+        // Remove all "\r" chars in case the CLI env like the Windows OS.
+        // Otherwise (ConEmu, git bash, mingw cli, e.g.), leave as is.
+        $branch = str_replace("\r", '', $branch);
+
+        return (string)$branch;
     }
 
     /**
@@ -40,24 +55,38 @@ final class MostRecentTagResolver implements TagResolverInterface
 
         // Remove all "\r" chars in case the CLI env like the Windows OS.
         // Otherwise (ConEmu, git bash, mingw cli, e.g.), leave as is.
-        $normalizedTags = str_replace("\r", '', $tags);
+        $tags = str_replace("\r", '', $tags);
 
-        return explode("\n", $normalizedTags);
+        return explode("\n", $tags);
     }
 
     /**
      * @param string[] $tagList
      * @return string[]
      */
-    private function filterSemverTags(array $tagList): array
+    private function filterSemverTags(array $tagList, string $branch): array
     {
-        return array_filter($tagList, function ($tag) {
+        // Only work with branches named "[v]maj.min" or "maj.min.x"
+        if (!preg_match('/^v?(?<majmin>[0-9]+\.[0-9]+)(?:\.x)?$/', $branch, $matches, PREG_UNMATCHED_AS_NULL)) {
+            return [];
+        }
+
+        if (null === ($majmin = $matches['majmin'] ?? null)) {
+            return [];
+        }
+
+
+        $parser = new VersionConstraintParser();
+        $constraint = $parser->parse("~{$majmin}.0");
+
+        return array_filter($tagList, function ($tag) use ($constraint) {
             try {
-                new Version($tag);
+                $version = new Version($tag);
             } catch(InvalidVersionException $e) {
                 return false;
             }
-            return true;
+
+            return $constraint->complies($version);
         });
     }
 }

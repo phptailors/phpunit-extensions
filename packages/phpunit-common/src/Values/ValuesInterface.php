@@ -23,11 +23,6 @@ namespace Tailors\PHPUnit\Values;
 interface ValuesInterface extends \Traversable, \ArrayAccess, \Countable
 {
     /**
-     * @return array
-     */
-    public function getArrayCopy();
-
-    /**
      * Returns true if this object represents actual values (as opposite to expected values).
      */
     public function actual(): bool;
