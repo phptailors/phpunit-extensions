@@ -49,7 +49,7 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
         if (null === $tag) {
             try {
                 $hex = bin2hex(random_bytes(self::TAGSIZE));
-            } catch (\Exception $_e) {
+            } catch (\Exception) {
                 // @codeCoverageIgnoreStart
                 $hex = '4694a81d074f3386a9b8c7c2ad04914e120f1a10';
                 // @codeCoverageIgnoreEnd
