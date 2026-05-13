@@ -13,51 +13,15 @@ namespace Tailors\PHPUnit\Values;
 final class DummyValueSelector implements ValueSelectorInterface
 {
     /**
-     * @var bool|\Closure
-     *
-     * @psalm-var bool|\Closure(mixed):bool
-     *
-     * @psalm-readonly
-     */
-    private $supports;
-
-    /**
-     * @var bool|\Closure
-     *
-     * @psalm-var bool|\Closure(mixed,mixed,mixed):bool
-     *
-     * @psalm-readonly
-     */
-    private $select;
-
-    /**
-     * @var string
-     *
-     * @psalm-readonly
-     */
-    private $subject;
-
-    /**
-     * @var string
-     *
-     * @psalm-readonly
-     */
-    private $selectable;
-
-    /**
-     * @param bool|\Closure $supports
-     * @param bool|\Closure $select
-     *
      * @psalm-param bool|\Closure(mixed):bool             $supports
      * @psalm-param bool|\Closure(mixed,mixed,mixed):bool $select
      */
-    public function __construct($supports = false, $select = false, string $subject = '', string $selectable = '')
-    {
-        $this->supports = $supports;
-        $this->select = $select;
-        $this->subject = $subject;
-        $this->selectable = $selectable;
-    }
+    public function __construct(
+        private readonly bool|\Closure $supports = false,
+        private readonly bool|\Closure $select = false,
+        private readonly string $subject = '',
+        private readonly string $selectable = ''
+    ) {}
 
     /**
      * @psalm-mutation-free

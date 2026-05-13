@@ -46,9 +46,7 @@ final class DummyValueSelectorTest extends TestCase
      */
     public static function provDummyValueSelector(): iterable
     {
-        $supports = function ($subject): bool {
-            return is_array($subject);
-        };
+        $supports = (fn ($subject): bool => is_array($subject));
 
         $select = function ($subject, $key, &$retval): bool {
             if (!array_key_exists($key, $subject)) {
