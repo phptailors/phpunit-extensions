@@ -12,6 +12,7 @@ namespace Tailors\PHPUnit\Values;
 
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\CircularDependencyException;
+use Tailors\PHPUnit\InvalidArgumentException;
 
 /**
  * @small
@@ -425,6 +426,17 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
         $visitor->leave($root, $stack, $iter);
 
         $this->assertSame($result, $visitor->result());
+    }
+
+    public function testVisitThrowsInvalidArgumentException(): void
+    {
+        $visitor = new RecursiveUnwrapperVisitor();
+
+        $message = '/Argument 2 passed to [a-zA-Z\\\\]*RecursiveUnwrapperVisitor::set\(\) must be an array, string given/';
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessageMatches($message);
+
+        $visitor->visit('', [], false);
     }
 }
 // vim: syntax=php sw=4 ts=4 et:
