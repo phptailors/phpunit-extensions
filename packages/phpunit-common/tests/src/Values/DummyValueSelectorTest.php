@@ -139,7 +139,11 @@ final class DummyValueSelectorTest extends TestCase
     /**
      * @dataProvider provDummyValueSelector
      *
-     * @psalm-param CtorArgs $ctor
+     * @psalm-param CtorArgs            $ctor
+     * @psalm-param ?SupportsTestCall   $support
+     * @psalm-param ?SelectTestCall     $select
+     * @psalm-param ?SubjectTestCall    $subject
+     * @psalm-param ?SelectableTestCall $selectable
      */
     public function testDummyValueSelector(
         array $ctor,
@@ -156,7 +160,7 @@ final class DummyValueSelectorTest extends TestCase
 
         if (null !== $select) {
             $retval = null;
-            $args = [...$select['args'], &$retval];
+            $args = array_merge($select['args'], [&$retval]);
             $this->assertSame($select['return'], $selector->select(...$args));
             if (array_key_exists('retval', $select)) {
                 $this->assertSame($select['retval'], $retval);
