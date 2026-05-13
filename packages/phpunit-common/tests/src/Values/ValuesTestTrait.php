@@ -73,7 +73,7 @@ trait ValuesTestTrait
         $class = self::getValuesClass();
         $object = new $class(...$args);
 
-        self::assertSame($expect, $object->getArrayCopy());
+        self::assertSame($expect, iterator_to_array($object));
         self::assertSame($expect, (array) $object);
         self::assertSame(ActualValues::class === $class, $object->actual());
     }
