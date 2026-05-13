@@ -130,7 +130,7 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
      */
     public function freeStackItem(RecursiveVisitorStackItemInterface $item, array $stack): void
     {
-        $this->trace[] = ['func' => 'freeStackItem', 'path' => self::path($stack)];
+        $this->trace[] = ['func' => 'freeStackItem', 'node' => $item->node(), 'key' => $item->key(), 'path' => self::path($stack)];
     }
 
     /**

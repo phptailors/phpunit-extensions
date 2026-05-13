@@ -87,7 +87,7 @@ final class DummyRecursiveVisitorTest extends TestCase
             ['func' => 'enter', 'node' => $node, 'path' => []],
             ['func' => 'makeStackItem', 'node' => $node['foo'], 'key' => 'foo', 'path' => []],
             ['func' => 'visit', 'node' => null, 'path' => []],
-            ['func' => 'freeStackItem', 'path' => []],
+            ['func' => 'freeStackItem', 'node' => $node['foo'], 'key' => 'foo', 'path' => []],
             ['func' => 'leave', 'node' => $node, 'path' => []],
             ['func' => 'cycle', 'node' => [], 'path' => []],
         ];
