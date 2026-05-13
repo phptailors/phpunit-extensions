@@ -25,10 +25,10 @@ final class DummyAbstractConstraintTest extends TestCase
     public function testCreate(): void
     {
         $constraint = DummyAbstractConstraint::create(
-            $this->createMock(ValuesInterface::class),
-            $this->createMock(ComparatorInterface::class),
-            $this->createMock(ValueSelectorInterface::class),
-            $this->createMock(RecursiveUnwrapperInterface::class)
+            $this->createStub(ValuesInterface::class),
+            $this->createStub(ComparatorInterface::class),
+            $this->createStub(ValueSelectorInterface::class),
+            $this->createStub(RecursiveUnwrapperInterface::class)
         );
 
         $this->assertInstanceOf(DummyAbstractConstraint::class, $constraint);
