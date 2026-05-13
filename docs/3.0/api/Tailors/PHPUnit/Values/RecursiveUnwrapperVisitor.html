@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="robots" content="index, follow, all" />
-    <title>Tailors\PHPUnit\Values\RecursiveVisitorInterface | API Documentation</title>
+    <title>Tailors\PHPUnit\Values\RecursiveUnwrapperVisitor | API Documentation</title>
 
             <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-theme.min.css">
@@ -19,7 +19,7 @@
 
     </head>
 
-    <body id="class" data-name="class:Tailors_PHPUnit_Values_RecursiveVisitorInterface" data-root-path="../../../" data-search-index-url="../../../doctum-search.json">
+    <body id="class" data-name="class:Tailors_PHPUnit_Values_RecursiveUnwrapperVisitor" data-root-path="../../../" data-search-index-url="../../../doctum-search.json">
             <div id="content">
         <div id="left-column">
                 <div id="control-panel">
@@ -74,19 +74,19 @@
 
                         <div class="namespace-breadcrumbs">
             <ol class="breadcrumb">
-                <li><span class="label label-default">interface</span></li>
-                        <li><a href="../../../Tailors.html">Tailors</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit.html">PHPUnit</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit/Values.html">Values</a></li><li class="backslash">\</li><li>RecursiveVisitorInterface</li>
+                <li><span class="label label-default">class</span></li>
+                        <li><a href="../../../Tailors.html">Tailors</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit.html">PHPUnit</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit/Values.html">Values</a></li><li class="backslash">\</li><li>RecursiveUnwrapperVisitor</li>
             </ol>
         </div>
                 <div id="page-content">
     <div class="page-header">
-        <h1>RecursiveVisitorInterface    
+        <h1>RecursiveUnwrapperVisitor    
             </h1>
     </div>
 
     
-    <p>        interface
-    <strong>RecursiveVisitorInterface</strong>
+    <p>final         class
+    <strong>RecursiveUnwrapperVisitor</strong>        implements        <a href="../../../Tailors/PHPUnit/Values/RecursiveVisitorInterface.html"><abbr title="Tailors\PHPUnit\Values\RecursiveVisitorInterface">RecursiveVisitorInterface</abbr></a>
 </p>
 
         
@@ -102,11 +102,55 @@
 
             
         
+            <h2>Constants</h2>    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                                                                                                        TAGSIZE
+                                    </td>
+                <td class="last">
+                    <p><em></em></p>
+                    <p></p>
+                </td>
+            </tr>
+            </table>
+
     
     
             <h2>Methods</h2>
 
             <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8">
+                    <a href="#method___construct">__construct</a>(bool $tagging = true)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_tag">tag</a>()
+        
+                                            <p><p>Returns random string generated once per process run.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_result">result</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
                     <div class="row">
                 <div class="col-md-2 type">
                     bool
@@ -180,8 +224,107 @@
 
             <div id="method-details">
                     <div class="method-item">
+                    <h3 id="method___construct">
+        <div class="location">at line 33</div>
+        <code>                    
+    <strong>__construct</strong>(bool $tagging = true)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p class="no-description">No description</p>
+                    
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>bool</td>
+                <td>$tagging</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_tag">
+        <div class="location">at line 44</div>
+        <code>        static            string
+    <strong>tag</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Returns random string generated once per process run.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_result">
+        <div class="location">at line 66</div>
+        <code>                    array
+    <strong>result</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p class="no-description">No description</p>
+                    
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_enter">
-        <div class="location">at line 25</div>
+        <div class="location">at line 74</div>
         <code>                    bool
     <strong>enter</strong>(<abbr title="array|Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr> $node, array $stack)
         </code>
@@ -229,7 +372,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_leave">
-        <div class="location">at line 30</div>
+        <div class="location">at line 101</div>
         <code>                    void
     <strong>leave</strong>(<abbr title="array|Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr> $node, array $stack, bool $iterating)
         </code>
@@ -282,7 +425,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_visit">
-        <div class="location">at line 35</div>
+        <div class="location">at line 119</div>
         <code>                    void
     <strong>visit</strong>(mixed $node, array $stack, bool $iterating)
         </code>
@@ -335,7 +478,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_cycle">
-        <div class="location">at line 40</div>
+        <div class="location">at line 129</div>
         <code>                    bool
     <strong>cycle</strong>(<abbr title="array|Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr> $node, array $stack)
         </code>
@@ -375,6 +518,15 @@
     </table>
 
             
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../Tailors/PHPUnit/CircularDependencyException.html"><abbr title="Tailors\PHPUnit\CircularDependencyException">CircularDependencyException</abbr></a></td>
+                <td></td>
+            </tr>
+            </table>
+
             
             
                     </div>
@@ -383,7 +535,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_makeStackItem">
-        <div class="location">at line 48</div>
+        <div class="location">at line 140</div>
         <code>                    <a href="../../../Tailors/PHPUnit/Values/RecursiveVisitorStackItemInterface.html"><abbr title="Tailors\PHPUnit\Values\RecursiveVisitorStackItemInterface">RecursiveVisitorStackItemInterface</abbr></a>
     <strong>makeStackItem</strong>(<abbr title="array|Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr> $node, mixed $key, array $stack)
         </code>
@@ -436,7 +588,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_freeStackItem">
-        <div class="location">at line 54</div>
+        <div class="location">at line 149</div>
         <code>                    void
     <strong>freeStackItem</strong>(<a href="../../../Tailors/PHPUnit/Values/RecursiveVisitorStackItemInterface.html"><abbr title="Tailors\PHPUnit\Values\RecursiveVisitorStackItemInterface">RecursiveVisitorStackItemInterface</abbr></a> $item, array $stack)
         </code>
