@@ -19,8 +19,6 @@ use Tailors\PHPUnit\CircularDependencyException;
  */
 final readonly class RecursiveUnwrapper implements RecursiveUnwrapperInterface
 {
-    public const UNIQUE_TAG = RecursiveUnwrapperVisitor::UNIQUE_TAG;
-
     /**
      * Initializes the object.
      *
