@@ -11,34 +11,12 @@
 namespace Tailors\PHPUnit\StaticAnalysis\HappyPath\Comparator;
 
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
-use Tailors\PHPUnit\Comparator\ComparatorWrapperInterface;
-
-final class DummyComparator implements ComparatorInterface
-{
-    public function compare(mixed $left, mixed $right): bool
-    {
-        return false;
-    }
-
-    public function adjective(): string
-    {
-        return '';
-    }
-}
-
-final class DummyComparatorWrapper implements ComparatorWrapperInterface
-{
-    public function __construct(public ComparatorInterface $comparator) {}
-
-    public function getComparator(): ComparatorInterface
-    {
-        return $this->comparator;
-    }
-}
+use Tailors\PHPUnit\Comparator\DummyComparator;
+use Tailors\PHPUnit\Comparator\DummyComparatorWrapper;
 
 function consume(): ComparatorInterface
 {
-    $wrapper = new DummyComparatorWrapper(new DummyComparator());
+    $wrapper = new DummyComparatorWrapper(new DummyComparator(true, ''));
 
     return $wrapper->getComparator();
 }

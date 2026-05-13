@@ -41,13 +41,13 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     #[\Override]
     public function enter(array|ValuesInterface $node, array $stack): bool
     {
-        $this->trace[] = ['func' => 'enter', 'node' => &$node, 'path' => self::path($stack)];
+        $this->trace[] = ['func' => 'enter', 'node' => $node, 'path' => self::path($stack)];
 
         if (is_bool($this->enter)) {
             return $this->enter;
         }
 
-        return call_user_func_array($this->enter, [&$node, $stack]);
+        return call_user_func_array($this->enter, [$node, $stack]);
     }
 
     /**
@@ -56,7 +56,7 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     #[\Override]
     public function leave(array|ValuesInterface $node, array $stack, bool $iterating): void
     {
-        $this->trace[] = ['func' => 'leave', 'node' => &$node, 'path' => self::path($stack)];
+        $this->trace[] = ['func' => 'leave', 'node' => $node, 'path' => self::path($stack)];
     }
 
     /**
@@ -65,7 +65,7 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     #[\Override]
     public function visit(mixed $node, array $stack, bool $iterating): void
     {
-        $this->trace[] = ['func' => 'visit', 'node' => &$node, 'path' => self::path($stack)];
+        $this->trace[] = ['func' => 'visit', 'node' => $node, 'path' => self::path($stack)];
     }
 
     /**
@@ -74,13 +74,13 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     #[\Override]
     public function cycle(array|ValuesInterface $node, array $stack): bool
     {
-        $this->trace[] = ['func' => 'cycle', 'node' => &$node, 'path' => self::path($stack)];
+        $this->trace[] = ['func' => 'cycle', 'node' => $node, 'path' => self::path($stack)];
 
         if (is_bool($this->cycle)) {
             return $this->cycle;
         }
 
-        return call_user_func_array($this->cycle, [&$node, $stack]);
+        return call_user_func_array($this->cycle, [$node, $stack]);
     }
 
     /**
@@ -91,6 +91,8 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
      */
     public function makeStackItem(array|ValuesInterface $node, mixed $key, array $stack): RecursiveVisitorStackItemInterface
     {
+        $this->trace[] = ['func' => 'makeStackItem', 'node' => $node, 'key' => $key, 'path' => self::path($stack)];
+
         return new DummyRecursiveVisitorStackItem($node, $key);
     }
 
@@ -98,7 +100,10 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
      * @psalm-param StackItem       $item
      * @psalm-param list<StackItem> $stack
      */
-    public function freeStackItem(RecursiveVisitorStackItemInterface $item, array $stack): void {}
+    public function freeStackItem(RecursiveVisitorStackItemInterface $item, array $stack): void
+    {
+        $this->trace[] = ['func' => 'freeStackItem', 'node' => $item->node(), 'key' => $item->key(), 'path' => self::path($stack)];
+    }
 
     /**
      * @psalm-return list<array{func: string, node:mixed, path:list<array-key>}>
