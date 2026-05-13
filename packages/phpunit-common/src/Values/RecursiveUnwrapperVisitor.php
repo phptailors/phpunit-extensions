@@ -24,7 +24,7 @@ use Tailors\PHPUnit\InvalidArgumentException;
  */
 final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
 {
-    public const TAGSIZE = 20;
+    public const int TAGSIZE = 20;
 
     private array $result;
 
