@@ -189,8 +189,10 @@ final class ReferenceStorage implements \Countable
         $ref = \ReflectionReference::fromArrayElement(get_defined_vars(), 'value');
 
         if (null === $ref) {
+            // @codeCoverageIgnoreStart
             /** @psalm-suppress MissingThrowsDocblock */
             throw new \LogicException('Internal error');
+            // @codeCoverageIgnoreEnd
         }
 
         return $ref->getId();
