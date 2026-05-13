@@ -30,8 +30,6 @@ use Tailors\PHPUnit\InvalidArgumentException;
 #[Small]
 final class RecursiveUnwrapperVisitorTest extends TestCase
 {
-    public const string UNIQUE_TAG = RecursiveUnwrapperVisitor::UNIQUE_TAG;
-
     //
     //
     // TESTS
@@ -100,6 +98,8 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
      */
     public static function provEnterLeave(): iterable
     {
+        $tagk = RecursiveUnwrapperVisitor::tag();
+
         //
         // 01
         //
@@ -131,7 +131,7 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
                     'return' => true,
                 ],
             ],
-            'result' => [self::UNIQUE_TAG => true],
+            'result' => [$tagk => true],
         ];
 
         //
@@ -167,10 +167,10 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
             'result' => [
                 'foo' => [
                     'bar' => [
-                        self::UNIQUE_TAG => true,
+                        $tagk => true,
                     ],
                 ],
-                self::UNIQUE_TAG => true,
+                $tagk => true,
             ],
         ];
 
@@ -204,8 +204,8 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
                 ],
             ],
             'result' => [
-                'foo'            => [],
-                self::UNIQUE_TAG => true,
+                'foo' => [],
+                $tagk => true,
             ],
         ];
 
@@ -319,6 +319,8 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
      */
     public static function provVisit(): iterable
     {
+        $tagk = RecursiveUnwrapperVisitor::tag();
+
         //
         // 01
         //
@@ -385,9 +387,9 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
                 ],
             ],
             'result' => [
-                'foo'            => 'FOO',
-                'bar'            => ['gez' => 'GEZ'],
-                self::UNIQUE_TAG => true,
+                'foo' => 'FOO',
+                'bar' => ['gez' => 'GEZ'],
+                $tagk => true,
             ],
         ];
     }
