@@ -11,6 +11,7 @@
     "SebastianBergmann\\Comparator\\ComparisonFailure",
     "SebastianBergmann\\Exporter\\Exporter",
     "SebastianBergmann\\RecursionContext\\Context"
+    "Random\\RandomException",
   ],
   "php-core-extensions" : [
     "Core",
