@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="robots" content="index, follow, all" />
-    <title>Tailors\PHPUnit\Values\RecursiveSelector | API Documentation</title>
+    <title>Tailors\PHPUnit\Values\ValueSelectorWrapperInterface | API Documentation</title>
 
             <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-theme.min.css">
@@ -19,7 +19,7 @@
 
     </head>
 
-    <body id="class" data-name="class:Tailors_PHPUnit_Values_RecursiveSelector" data-root-path="../../../" data-search-index-url="../../../doctum-search.json">
+    <body id="class" data-name="class:Tailors_PHPUnit_Values_ValueSelectorWrapperInterface" data-root-path="../../../" data-search-index-url="../../../doctum-search.json">
             <div id="content">
         <div id="left-column">
                 <div id="control-panel">
@@ -74,19 +74,19 @@
 
                         <div class="namespace-breadcrumbs">
             <ol class="breadcrumb">
-                <li><span class="label label-default">class</span></li>
-                        <li><a href="../../../Tailors.html">Tailors</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit.html">PHPUnit</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit/Values.html">Values</a></li><li class="backslash">\</li><li>RecursiveSelector</li>
+                <li><span class="label label-default">interface</span></li>
+                        <li><a href="../../../Tailors.html">Tailors</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit.html">PHPUnit</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit/Values.html">Values</a></li><li class="backslash">\</li><li>ValueSelectorWrapperInterface</li>
             </ol>
         </div>
                 <div id="page-content">
     <div class="page-header">
-        <h1>RecursiveSelector    
+        <h1>ValueSelectorWrapperInterface    
             </h1>
     </div>
 
     
-    <p>final         class
-    <strong>RecursiveSelector</strong>        implements        <a href="../../../Tailors/PHPUnit/Values/RecursiveSelectorInterface.html"><abbr title="Tailors\PHPUnit\Values\RecursiveSelectorInterface">RecursiveSelectorInterface</abbr></a>
+    <p>        interface
+    <strong>ValueSelectorWrapperInterface</strong>
 </p>
 
         
@@ -94,14 +94,12 @@
                         <table>
             <tr>
                 <td><span class="label label-warning">internal</span></td>
-                <td>&nbsp;This class is not covered by the backward compatibility promise</td>
+                <td>&nbsp;This interface is not covered by the backward compatibility promise</td>
             </tr>
         </table>
                 &nbsp;
     
 
-            <div class="description">
-            <p><p>Selects actual values from a $subject according to expected values.</p></p>                    </div>
             
         
     
@@ -111,23 +109,12 @@
             <div class="container-fluid underlined">
                     <div class="row">
                 <div class="col-md-2 type">
-                    
+                    <a href="../../../Tailors/PHPUnit/Values/ValueSelectorInterface.html"><abbr title="Tailors\PHPUnit\Values\ValueSelectorInterface">ValueSelectorInterface</abbr></a>
                 </div>
                 <div class="col-md-8">
-                    <a href="#method___construct">__construct</a>(<a href="../../../Tailors/PHPUnit/Values/SelectionInterface.html"><abbr title="Tailors\PHPUnit\Values\SelectionInterface">SelectionInterface</abbr></a> $selection)
+                    <a href="#method_getValueSelector">getValueSelector</a>()
         
-                                            <p class="no-description">No description</p>
-                                    </div>
-                <div class="col-md-2"></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    <a href="../../../Tailors/PHPUnit/Values/ValuesInterface.html"><abbr title="Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr></a>
-                </div>
-                <div class="col-md-8">
-                    <a href="#method_select">select</a>(mixed $subject)
-        
-                                            <p><p>Select an array of values from $subject.</p></p>                </div>
+                                            <p><p>Returns an instance of ValueSelectorInterface.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -137,10 +124,10 @@
 
             <div id="method-details">
                     <div class="method-item">
-                    <h3 id="method___construct">
-        <div class="location">at line 27</div>
-        <code>                    
-    <strong>__construct</strong>(<a href="../../../Tailors/PHPUnit/Values/SelectionInterface.html"><abbr title="Tailors\PHPUnit\Values\SelectionInterface">SelectionInterface</abbr></a> $selection)
+                    <h3 id="method_getValueSelector">
+        <div class="location">at line 23</div>
+        <code>                    <a href="../../../Tailors/PHPUnit/Values/ValueSelectorInterface.html"><abbr title="Tailors\PHPUnit\Values\ValueSelectorInterface">ValueSelectorInterface</abbr></a>
+    <strong>getValueSelector</strong>()
         </code>
     </h3>
     <div class="details">    
@@ -148,59 +135,15 @@
             
 
         <div class="method-description">
-                            <p class="no-description">No description</p>
-                    
+                            <p><p>Returns an instance of ValueSelectorInterface.</p></p>                        
         </div>
         <div class="tags">
-                            <h4>Parameters</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td><a href="../../../Tailors/PHPUnit/Values/SelectionInterface.html"><abbr title="Tailors\PHPUnit\Values\SelectionInterface">SelectionInterface</abbr></a></td>
-                <td>$selection</td>
-                <td></td>
-            </tr>
-            </table>
-
-            
-            
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
-                    <h3 id="method_select">
-        <div class="location">at line 37</div>
-        <code>                    <a href="../../../Tailors/PHPUnit/Values/ValuesInterface.html"><abbr title="Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr></a>
-    <strong>select</strong>(mixed $subject)
-        </code>
-    </h3>
-    <div class="details">    
-    
-            
-
-        <div class="method-description">
-                            <p><p>Select an array of values from $subject.</p></p>                        
-        </div>
-        <div class="tags">
-                            <h4>Parameters</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td>mixed</td>
-                <td>$subject</td>
-                <td></td>
-            </tr>
-            </table>
-
             
                             <h4>Return Value</h4>
 
                     <table class="table table-condensed">
         <tr>
-            <td><a href="../../../Tailors/PHPUnit/Values/ValuesInterface.html"><abbr title="Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr></a></td>
+            <td><a href="../../../Tailors/PHPUnit/Values/ValueSelectorInterface.html"><abbr title="Tailors\PHPUnit\Values\ValueSelectorInterface">ValueSelectorInterface</abbr></a></td>
             <td></td>
         </tr>
     </table>
