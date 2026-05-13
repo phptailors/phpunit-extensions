@@ -196,11 +196,7 @@ abstract class AbstractConstraint extends Constraint implements ComparatorWrappe
     {
         $array = $this->selectArray($subject);
 
-        if ($array instanceof ValuesInterface && !$array->actual()) {
-            return new ExpectedValues($array);
-        }
-
-        return new ActualValues($array);
+        return $this->expected->createActualValues($array);
     }
 
     /**

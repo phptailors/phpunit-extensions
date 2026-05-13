@@ -20,21 +20,22 @@ namespace Tailors\PHPUnit\Values;
 final class DummyValues extends \ArrayObject implements ValuesInterface
 {
     /**
-     * @var ?bool
+     * @var bool
      */
     private $actual;
 
     /**
-     * @param array|object $array
+     * @param array|\Traversable $array
      */
-    public function __construct(
-        bool $actual,
-        $array = [],
-        int $flags = 0,
-        string $iteratorClass = \ArrayIterator::class
-    ) {
+    public function __construct(bool $actual, $array = [])
+    {
         $this->actual = $actual;
-        parent::__construct($array, $flags, $iteratorClass);
+
+        if (!is_array($array)) {
+            $array = iterator_to_array($array);
+        }
+
+        parent::__construct($array);
     }
 
     /**
@@ -43,6 +44,24 @@ final class DummyValues extends \ArrayObject implements ValuesInterface
     public function actual(): bool
     {
         return $this->actual;
+    }
+
+    /**
+     * @psalm-return non-empty-string
+     */
+    public function tag(): string
+    {
+        return self::class.':a1a44e79c791a1fe22ac49067eef00b222d10131';
+    }
+
+    /**
+     * @param array|\Traversable $array
+     *
+     * @psalm-param array|\Traversable<array-key,mixed> $array
+     */
+    public function createActualValues($array = []): ValuesInterface
+    {
+        return new self(true, $array);
     }
 }
 

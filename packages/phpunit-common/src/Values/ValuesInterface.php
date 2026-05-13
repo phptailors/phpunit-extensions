@@ -10,6 +10,8 @@
 
 namespace Tailors\PHPUnit\Values;
 
+use Tailors\PHPUnit\Common\TagInterface;
+
 /**
  * An array of actual or expected values.
  *
@@ -20,12 +22,17 @@ namespace Tailors\PHPUnit\Values;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-interface ValuesInterface extends \Traversable, \ArrayAccess, \Countable
+interface ValuesInterface extends \Traversable, \ArrayAccess, \Countable, TagInterface
 {
     /**
      * Returns true if this object represents actual values (as opposite to expected values).
      */
     public function actual(): bool;
+
+    /**
+     * @param array|\Traversable $array
+     */
+    public function createActualValues($array = []): ValuesInterface;
 }
 
 // vim: syntax=php sw=4 ts=4 et:
