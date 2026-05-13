@@ -24,7 +24,7 @@ use Tailors\PHPUnit\InvalidArgumentException;
  */
 final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
 {
-    public const UNIQUE_TAG = 'unwrapped-values:$1$zIlgusJc$ZZCyNRPOX1SbpKdzoD2hU/';
+    public const TAGSIZE = 20;
 
     private array $result;
 
@@ -34,6 +34,30 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
     {
         $this->result = [];
         $this->current = [];
+    }
+
+    /**
+     * Returns random string generated once per process run.
+     *
+     * @psalm-return non-empty-string
+     */
+    public static function tag(): string
+    {
+        /** @psalm-var ?non-empty-string */
+        static $tag = null;
+
+        if (null === $tag) {
+            try {
+                $hex = bin2hex(random_bytes(self::TAGSIZE));
+            } catch (\Exception $_e) {
+                // @codeCoverageIgnoreStart
+                $hex = '4694a81d074f3386a9b8c7c2ad04914e120f1a10';
+                // @codeCoverageIgnoreEnd
+            }
+            $tag = "unwrapped-values:{$hex}";
+        }
+
+        return $tag;
     }
 
     /**
@@ -83,7 +107,7 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
         if ($node instanceof ValuesInterface && $this->tagging) {
             // Distinguish unwrapped values from regular arrays
             // by adding UNIQUE TAG AT THE END of $array.
-            $this->current[self::UNIQUE_TAG] = true;
+            $this->current[self::tag()] = true;
         }
 
         $this->set($stack, $this->current);
