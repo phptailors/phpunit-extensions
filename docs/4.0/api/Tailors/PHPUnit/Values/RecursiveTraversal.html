@@ -112,7 +112,7 @@
                     
                 </div>
                 <div class="col-md-8">
-                    <a href="#method___construct">__construct</a>(bool $noUnwrapValuesWrappers = false, bool $noWalkNestedValuesInterface = false)
+                    <a href="#method___construct">__construct</a>(bool $noUnwrapValuesWrappers = false, bool $noWalkNestedValuesInterface = false, bool $noWalkNestedArrays = false)
         
                                             <p><p>Initializes the object.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -136,9 +136,9 @@ ValuesInterface when suitable.</p></p>                </div>
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method___construct">
-        <div class="location">at line 32</div>
+        <div class="location">at line 34</div>
         <code>                    
-    <strong>__construct</strong>(bool $noUnwrapValuesWrappers = false, bool $noWalkNestedValuesInterface = false)
+    <strong>__construct</strong>(bool $noUnwrapValuesWrappers = false, bool $noWalkNestedValuesInterface = false, bool $noWalkNestedArrays = false)
         </code>
     </h3>
     <div class="details">    
@@ -162,6 +162,11 @@ ValuesInterface when suitable.</p></p>                </div>
                 <td>$noWalkNestedValuesInterface</td>
                 <td></td>
             </tr>
+                    <tr>
+                <td>bool</td>
+                <td>$noWalkNestedArrays</td>
+                <td></td>
+            </tr>
             </table>
 
             
@@ -174,7 +179,7 @@ ValuesInterface when suitable.</p></p>                </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_walk">
-        <div class="location">at line 42</div>
+        <div class="location">at line 48</div>
         <code>                    void
     <strong>walk</strong>(<a href="../../../Tailors/PHPUnit/Values/ValuesInterface.html"><abbr title="Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr></a> $values, <a href="../../../Tailors/PHPUnit/Values/RecursiveVisitorInterface.html"><abbr title="Tailors\PHPUnit\Values\RecursiveVisitorInterface">RecursiveVisitorInterface</abbr></a> $visitor)
         </code>
