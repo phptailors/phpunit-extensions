@@ -10,17 +10,17 @@
 
 namespace Tailors\PHPUnit\Values;
 
-final class DummyValueSelector implements ValueSelectorInterface
+final readonly class DummyValueSelector implements ValueSelectorInterface
 {
     /**
      * @psalm-param bool|\Closure(mixed):bool             $supports
      * @psalm-param bool|\Closure(mixed,mixed,mixed):bool $select
      */
     public function __construct(
-        private readonly bool|\Closure $supports = false,
-        private readonly bool|\Closure $select = false,
-        private readonly string $subject = '',
-        private readonly string $selectable = ''
+        private bool|\Closure $supports = false,
+        private bool|\Closure $select = false,
+        private string $subject = '',
+        private string $selectable = ''
     ) {}
 
     /**

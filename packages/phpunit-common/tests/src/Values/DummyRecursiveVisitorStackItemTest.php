@@ -10,17 +10,17 @@
 
 namespace Tailors\PHPUnit\Values;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\Values\DummyRecursiveVisitorStackItem
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
+#[CoversClass(DummyRecursiveVisitorStackItem::class)]
+#[Small]
 final class DummyRecursiveVisitorStackItemTest extends TestCase
 {
     public function testDummyRecursiveVisitorStackItem(): void
