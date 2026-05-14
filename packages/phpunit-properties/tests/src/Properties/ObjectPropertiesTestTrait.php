@@ -10,9 +10,6 @@
 
 namespace Tailors\PHPUnit\Properties;
 
-use Tailors\PHPUnit\Common\StaticRandomStrings;
-use Tailors\PHPUnit\Values\ValuesInterface;
-
 /**
  * @small
  *
@@ -24,115 +21,14 @@ trait ObjectPropertiesTestTrait
 {
     abstract public static function getValuesClass(): string;
 
-    //
-    //
-    // TESTS
-    //
-    //
-
-    public function testImplementsValuesInterface(): void
+    public static function getValuesFamilyName(): string
     {
-        $class = self::getValuesClass();
-        self::assertInstanceOf(ValuesInterface::class, new $class());
+        return __NAMESPACE__.'\ObjectProperties';
     }
 
-    public function testExtendsArrayObject(): void
+    public static function getValuesActual(): bool
     {
-        $class = self::getValuesClass();
-        self::assertInstanceOf(\ArrayObject::class, new $class());
-    }
-
-    // @codeCoverageIgnoreStart
-    public static function provValues(): iterable
-    {
-        // #0
-        yield 'ObjectPropertiesTestTrait.php:'.__LINE__ => [
-            'args'   => [],
-            'expect' => [],
-        ];
-
-        // #1
-        yield 'ObjectPropertiesTestTrait.php:'.__LINE__ => [
-            'args'   => [[]],
-            'expect' => [],
-        ];
-
-        // #2
-        yield 'ObjectPropertiesTestTrait.php:'.__LINE__ => [
-            'args'   => [['foo' => 'FOO']],
-            'expect' => ['foo' => 'FOO'],
-        ];
-
-        // #3
-        yield 'ObjectPropertiesTestTrait.php:'.__LINE__ => [
-            'args'   => [new \ArrayObject(['foo' => 'FOO'])],
-            'expect' => ['foo' => 'FOO'],
-        ];
-    }
-
-    // @codeCoverageIgnoreEnd
-
-    /**
-     * @dataProvider provValues
-     *
-     * @param mixed $expect
-     *
-     * @psalm-param list{0?:array|\Traversable} $args
-     */
-    public function testValues(array $args, $expect): void
-    {
-        $class = self::getValuesClass();
-        $object = new $class(...$args);
-
-        self::assertSame($expect, iterator_to_array($object));
-        self::assertSame($expect, (array) $object);
-        self::assertSame(ActualObjectProperties::class === $class, $object->actual());
-    }
-
-    // @codeCoverageIgnoreStart
-    public static function provTag(): iterable
-    {
-        $family = __NAMESPACE__.'\ObjectProperties';
-        $familyHex = StaticRandomStrings::get($family);
-        $familyTag = "{$family}:{$familyHex}";
-
-        // #0
-        yield 'ObjectPropertiesTestTrait.php:'.__LINE__ => [
-            'args'   => [],
-            'expect' => $familyTag,
-        ];
-
-        // #1
-        yield 'ObjectPropertiesTestTrait.php:'.__LINE__ => [
-            'args'   => [['foo' => 'FOO']],
-            'expect' => $familyTag,
-        ];
-    }
-    // @codeCoverageIgnoreEnd
-
-    /**
-     * @dataProvider provTag
-     *
-     * @param mixed $expect
-     *
-     * @psalm-param list{0?:array|\Traversable,1?:null|non-empty-string} $args
-     */
-    public function testTag(array $args, $expect): void
-    {
-        $class = self::getValuesClass();
-        $object = new $class(...$args);
-
-        $this->assertSame($expect, $object->tag());
-    }
-
-    public function testCreateActualObjectProperties(): void
-    {
-        $class = self::getValuesClass();
-        $object = new $class([]);
-        $actual = $object->createActualValues(['foo' => 'FOO']);
-
-        $this->assertSame(['foo' => 'FOO'], (array) $actual);
-        $this->assertSame($object->tag(), $actual->tag());
+        return ActualObjectProperties::class === self::getValuesClass();
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

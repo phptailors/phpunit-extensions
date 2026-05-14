@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\Arrays;
 
 use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\Values\AbstractValuesTestTrait;
 
 /**
  * @small
@@ -25,6 +26,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class ExpectedArrayValuesTest extends TestCase
 {
+    use AbstractValuesTestTrait;
     use ArrayValuesTestTrait;
 
     // required by ValuesTestTrait

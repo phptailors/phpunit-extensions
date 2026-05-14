@@ -17,6 +17,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @covers \Tailors\PHPUnit\Values\AbstractGenericValues
  * @covers \Tailors\PHPUnit\Values\AbstractValues
+ * @covers \Tailors\PHPUnit\Values\AbstractValuesTestTrait
  * @covers \Tailors\PHPUnit\Values\ActualValues
  * @covers \Tailors\PHPUnit\Values\GenericValuesTestTrait
  *
@@ -26,6 +27,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class ActualValuesTest extends TestCase
 {
+    use AbstractValuesTestTrait;
     use GenericValuesTestTrait;
 
     // required by ValuesTestTrait

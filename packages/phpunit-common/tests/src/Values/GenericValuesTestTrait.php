@@ -10,8 +10,6 @@
 
 namespace Tailors\PHPUnit\Values;
 
-use Tailors\PHPUnit\Common\StaticRandomStrings;
-
 /**
  * @small
  *
@@ -23,91 +21,24 @@ trait GenericValuesTestTrait
 {
     abstract public static function getValuesClass(): string;
 
-    //
-    //
-    // TESTS
-    //
-    //
+    abstract public static function assertInstanceOf(string $expected, $actual, string $message = ''): void;
 
-    public function testImplementsValuesInterface(): void
+    abstract public static function assertSame($expected, $actual, string $message = ''): void;
+
+    public static function getValuesFamilyName(): string
     {
-        $class = self::getValuesClass();
-        self::assertInstanceOf(ValuesInterface::class, new $class());
+        return __NAMESPACE__.'\GenericValues';
     }
 
-    public function testExtendsArrayObject(): void
+    public static function getValuesActual(): bool
     {
-        $class = self::getValuesClass();
-        self::assertInstanceOf(\ArrayObject::class, new $class());
+        return ActualValues::class === self::getValuesClass();
     }
 
     // @codeCoverageIgnoreStart
-    public static function provValues(): iterable
+    public static function provGenericValuesTag(): iterable
     {
-        // #0
-        yield 'GenericValuesTestTrait.php:'.__LINE__ => [
-            'args'   => [],
-            'expect' => [],
-        ];
-
         // #1
-        yield 'GenericValuesTestTrait.php:'.__LINE__ => [
-            'args'   => [[]],
-            'expect' => [],
-        ];
-
-        // #2
-        yield 'GenericValuesTestTrait.php:'.__LINE__ => [
-            'args'   => [['foo' => 'FOO']],
-            'expect' => ['foo' => 'FOO'],
-        ];
-
-        // #3
-        yield 'GenericValuesTestTrait.php:'.__LINE__ => [
-            'args'   => [new \ArrayObject(['foo' => 'FOO'])],
-            'expect' => ['foo' => 'FOO'],
-        ];
-    }
-
-    // @codeCoverageIgnoreEnd
-
-    /**
-     * @dataProvider provValues
-     *
-     * @param mixed $expect
-     *
-     * @psalm-param list{0?:array|\Traversable} $args
-     */
-    public function testValues(array $args, $expect): void
-    {
-        $class = self::getValuesClass();
-        $object = new $class(...$args);
-
-        self::assertSame($expect, iterator_to_array($object));
-        self::assertSame($expect, (array) $object);
-        self::assertSame(ActualValues::class === $class, $object->actual());
-    }
-
-    // @codeCoverageIgnoreStart
-    public static function provTag(): iterable
-    {
-        $family = __NAMESPACE__.'\GenericValues';
-        $familyHex = StaticRandomStrings::get($family);
-        $familyTag = "{$family}:{$familyHex}";
-
-        // #0
-        yield 'GenericValuesTestTrait.php:'.__LINE__ => [
-            'args'   => [],
-            'expect' => $familyTag,
-        ];
-
-        // #1
-        yield 'GenericValuesTestTrait.php:'.__LINE__ => [
-            'args'   => [['foo' => 'FOO']],
-            'expect' => $familyTag,
-        ];
-
-        // #2
         yield 'GenericValuesTestTrait.php:'.__LINE__ => [
             'args'   => [['foo' => 'FOO'], 'TAGFOO'],
             'expect' => 'TAGFOO',
@@ -116,13 +47,13 @@ trait GenericValuesTestTrait
     // @codeCoverageIgnoreEnd
 
     /**
-     * @dataProvider provTag
+     * @dataProvider provGenericValuesTag
      *
      * @param mixed $expect
      *
      * @psalm-param list{0?:array|\Traversable,1?:null|non-empty-string} $args
      */
-    public function testTag(array $args, $expect): void
+    public function testGenericValuesTag(array $args, $expect): void
     {
         $class = self::getValuesClass();
         $object = new $class(...$args);
@@ -130,7 +61,7 @@ trait GenericValuesTestTrait
         $this->assertSame($expect, $object->tag());
     }
 
-    public function testCreateActualValues(): void
+    public function testGenericValuesCreateActualValues(): void
     {
         $class = self::getValuesClass();
         $object = new $class([], 'TAGFOO');

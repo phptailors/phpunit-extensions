@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\Properties;
 
 use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\Values\AbstractValuesTestTrait;
 
 /**
  * @small
@@ -25,6 +26,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class ActualObjectPropertiesTest extends TestCase
 {
+    use AbstractValuesTestTrait;
     use ObjectPropertiesTestTrait;
 
     // required by ValuesTestTrait
