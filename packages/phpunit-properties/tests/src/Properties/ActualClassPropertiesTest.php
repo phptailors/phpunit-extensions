@@ -15,7 +15,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Properties\AbstractClassPropertie
+ * @covers \Tailors\PHPUnit\Properties\AbstractClassProperties
  * @covers \Tailors\PHPUnit\Properties\ActualClassProperties
  * @covers \Tailors\PHPUnit\Properties\ClassPropertiesTestTrait
  *
