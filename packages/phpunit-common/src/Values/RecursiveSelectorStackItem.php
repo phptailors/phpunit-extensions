@@ -18,61 +18,28 @@ namespace Tailors\PHPUnit\Values;
 final class RecursiveSelectorStackItem implements RecursiveVisitorStackItemInterface
 {
     /**
-     * @var array|ValuesInterface
-     *
-     * @psalm-readonly
-     */
-    private $node;
-
-    /**
-     * @var mixed
-     *
-     * @psalm-var array-key
-     *
-     * @psalm-readonly
-     */
-    private $key;
-
-    /**
-     * @var RecursiveSelectorState
-     *
-     * @psalm-readonly
-     */
-    private $state;
-
-    /**
-     * @param array|ValuesInterface $node
-     * @param mixed                 $key
-     *
      * @psalm-param array-key $key
      */
-    public function __construct($node, $key, RecursiveSelectorState $state)
-    {
-        $this->node = $node;
-        $this->key = $key;
-        $this->state = $state;
-    }
+    public function __construct(
+        private readonly array|ValuesInterface $node,
+        private readonly mixed $key,
+        private readonly RecursiveSelectorState $state
+    ) {}
 
     /**
-     * @return mixed
-     *
-     * @psalm-return array|ValuesInterface
-     *
      * @psalm-mutation-free
      */
-    public function node()
+    public function node(): array|ValuesInterface
     {
         return $this->node;
     }
 
     /**
-     * @return mixed
-     *
      * @psalm-return array-key
      *
      * @psalm-mutation-free
      */
-    public function key()
+    public function key(): mixed
     {
         return $this->key;
     }

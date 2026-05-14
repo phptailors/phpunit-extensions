@@ -157,7 +157,7 @@ abstract class AbstractConstraint extends Constraint implements ComparatorWrappe
         $result = $visitor->result();
 
         if (!$result instanceof ValuesInterface) {
-            $type = is_object($result) ? get_class($result) : gettype($result);
+            $type = get_debug_type($result);
 
             /** @psalm-suppress MissingThrowsDocblock */
             throw InternalErrorException::fromBackTrace("recursive walk resulted with {$type}", 0);

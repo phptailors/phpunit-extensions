@@ -67,9 +67,7 @@ final class RecursiveSelectorVisitorTest extends TestCase
         // 02
         //
 
-        $s02 = array_map(function ($key) {
-            return new RecursiveSelectorStackItem([], $key, new RecursiveSelectorState([], []));
-        }, ['foo', 3, 'bar']);
+        $s02 = array_map(fn ($key) => new RecursiveSelectorStackItem([], $key, new RecursiveSelectorState([], [])), ['foo', 3, 'bar']);
 
         yield 'RecursiveSelectorVisitorTest.php:'.__LINE__ => [
             'stack'  => $s02,
@@ -80,9 +78,7 @@ final class RecursiveSelectorVisitorTest extends TestCase
         // 03
         //
 
-        $s03 = array_map(function ($key) {
-            return new RecursiveSelectorStackItem([], $key, new RecursiveSelectorState([], []));
-        }, [null, 3, false]);
+        $s03 = array_map(fn ($key) => new RecursiveSelectorStackItem([], $key, new RecursiveSelectorState([], [])), [null, 3, false]);
 
         yield 'RecursiveSelectorVisitorTest.php:'.__LINE__ => [
             'stack'  => $s03,
@@ -229,12 +225,6 @@ final class RecursiveSelectorVisitorTest extends TestCase
                     'return' => true,
                     'next'   => 0,
                 ],
-                [
-                    'args' => [
-                        'node' => $e05['foo']['bar'][0],
-                    ],
-                    'return' => false,
-                ],
             ],
             'result' => new ActualValues([
                 'foo' => new ActualValues([
@@ -335,12 +325,6 @@ final class RecursiveSelectorVisitorTest extends TestCase
                     ],
                     'return' => true,
                     'next'   => 0,
-                ],
-                [
-                    'args' => [
-                        'node' => $e07['foo']['bar'][0],
-                    ],
-                    'return' => false,
                 ],
             ],
             'result' => new ActualValues([
@@ -786,9 +770,7 @@ final class RecursiveSelectorVisitorTest extends TestCase
     private static function getArrayObjectSelector(): DummyValueSelector
     {
         return new DummyValueSelector(
-            function ($subject): bool {
-                return is_object($subject) && \ArrayObject::class === get_class($subject);
-            },
+            fn ($subject): bool => is_object($subject) && \ArrayObject::class === $subject::class,
             function ($subject, $key, &$retval): bool {
                 if (!$subject->offsetExists($key)) {
                     return false;

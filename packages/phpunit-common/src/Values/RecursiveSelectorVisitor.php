@@ -24,55 +24,24 @@ use Tailors\PHPUnit\InternalErrorException;
  */
 final class RecursiveSelectorVisitor implements RecursiveVisitorInterface
 {
-    /**
-     * @var ValueSelectorInterface
-     *
-     * @psalm-readonly
-     */
-    private $valueSelector;
+    private mixed $result = null;
+
+    private ?RecursiveSelectorState $state = null;
+
+    public function __construct(private readonly ValueSelectorInterface $valueSelector, private readonly mixed $subject) {}
 
     /**
-     * @var mixed
-     *
-     * @psalm-readonly
-     */
-    private $subject;
-
-    /**
-     * @var mixed
-     */
-    private $result;
-
-    /**
-     * @var ?RecursiveSelectorState
-     */
-    private $state;
-
-    /**
-     * @param mixed $subject
-     */
-    public function __construct(ValueSelectorInterface $valueSelector, $subject)
-    {
-        $this->valueSelector = $valueSelector;
-        $this->subject = $subject;
-    }
-
-    /**
-     * @return mixed
-     *
      * @psalm-mutation-free
      */
-    public function result()
+    public function result(): mixed
     {
         return $this->result;
     }
 
     /**
-     * @param array|ValuesInterface $node
-     *
      * @psalm-param list<StackItem> $stack
      */
-    public function enter($node, array $stack): bool
+    public function enter(array|ValuesInterface $node, array $stack): bool
     {
         if (!$this->selectIfIterable($node, $stack, $subject, $result)) {
             return false;
@@ -310,13 +279,11 @@ final class RecursiveSelectorVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @return never
-     *
      * @throws CircularDependencyException
      *
      * @psalm-param list<StackItem> $stack
      */
-    private static function throwCircular(array $stack): void
+    private static function throwCircular(array $stack): never
     {
         $pathString = self::pathString($stack);
 
@@ -330,9 +297,7 @@ final class RecursiveSelectorVisitor implements RecursiveVisitorInterface
      */
     private static function pathString(array $stack): string
     {
-        return implode('', array_map(function ($item) {
-            return '['.var_export($item->key(), true).']';
-        }, $stack));
+        return implode('', array_map(fn ($item) => '['.var_export($item->key(), true).']', $stack));
     }
 }
 
