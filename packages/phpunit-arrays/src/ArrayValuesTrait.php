@@ -16,11 +16,13 @@ use Tailors\PHPUnit\Values\ValuesInterface;
 trait ArrayValuesTrait
 {
     /**
-     * Returns an object representing expected array values.
+     * Returns an object representing array array values.
+     *
+     * @param array|\Traversable $array
      */
-    public static function expectArrayValues(array $expected): ValuesInterface
+    public static function arrayValues($array): ValuesInterface
     {
-        return new ExpectedArrayValues($expected);
+        return new ExpectedArrayValues($array);
     }
 }
 

@@ -29,7 +29,7 @@ use Tailors\PHPUnit\InternalErrorException;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-abstract class AbstractConstraint extends Constraint implements ComparatorWrapperInterface, ValueSelectorWrapperInterface, ValuesWrapperInterface
+abstract class AbstractConstraint extends Constraint implements ComparatorWrapperInterface, ValuesWrapperInterface
 {
     use ShortFailureDescriptionTrait;
 
@@ -79,14 +79,6 @@ abstract class AbstractConstraint extends Constraint implements ComparatorWrappe
     final public function getComparator(): ComparatorInterface
     {
         return $this->comparator;
-    }
-
-    /**
-     * Returns an instance of ValueSelectiorInterface.
-     */
-    final public function getValueSelector(): ValueSelectorInterface
-    {
-        return $this->valueSelector;
     }
 
     /**
