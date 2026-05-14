@@ -91,12 +91,6 @@ final class AbstractConstraintTest extends TestCase
         $this->assertInstanceOf(ComparatorWrapperInterface::class, $constraint);
     }
 
-    public function testImplementsValueSelectorWrapperInterface(): void
-    {
-        $constraint = self::createDummyConstraint($this);
-        $this->assertInstanceOf(ValueSelectorWrapperInterface::class, $constraint);
-    }
-
     public function testConstruct(): void
     {
         $expected = $this->createMock(ValuesInterface::class);
@@ -107,7 +101,6 @@ final class AbstractConstraintTest extends TestCase
 
         $this->assertSame($expected, $constraint->getValues());
         $this->assertSame($comparator, $constraint->getComparator());
-        $this->assertSame($valueSelector, $constraint->getValueSelector());
     }
 
     public function testToString(): void

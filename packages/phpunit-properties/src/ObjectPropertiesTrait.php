@@ -17,10 +17,12 @@ trait ObjectPropertiesTrait
 {
     /**
      * Returns an object representing expected array values.
+     *
+     * @param array|\Traversable $array
      */
-    public static function expectObjectProperties(array $expected): ValuesInterface
+    public static function objectProperties($array): ValuesInterface
     {
-        return new ExpectedObjectProperties($expected);
+        return new ExpectedObjectProperties($array);
     }
 }
 

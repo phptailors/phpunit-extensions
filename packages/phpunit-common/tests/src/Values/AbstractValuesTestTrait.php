@@ -18,6 +18,8 @@ use Tailors\PHPUnit\Common\StaticRandomStrings;
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type CtorArgs = list{0?:array|\Traversable}
  */
 trait AbstractValuesTestTrait
 {
@@ -30,6 +32,18 @@ trait AbstractValuesTestTrait
     abstract public static function assertInstanceOf(string $expected, $actual, string $message = ''): void;
 
     abstract public static function assertSame($expected, $actual, string $message = ''): void;
+
+    abstract public static function assertTrue($actual, string $message = ''): void;
+
+    /**
+     * @psalm-param CtorArgs $ctor
+     */
+    public static function getValuesObject(array $ctor): ValuesInterface
+    {
+        $class = self::getValuesClass();
+
+        return new $class(...$ctor);
+    }
 
     //
     //
@@ -54,25 +68,25 @@ trait AbstractValuesTestTrait
     {
         // #0
         yield 'AbstractValuesTestTrait.php:'.__LINE__ => [
-            'args'   => [],
+            'ctor'   => [],
             'expect' => [],
         ];
 
         // #1
         yield 'AbstractValuesTestTrait.php:'.__LINE__ => [
-            'args'   => [[]],
+            'ctor'   => [[]],
             'expect' => [],
         ];
 
         // #2
         yield 'AbstractValuesTestTrait.php:'.__LINE__ => [
-            'args'   => [['foo' => 'FOO']],
+            'ctor'   => [['foo' => 'FOO']],
             'expect' => ['foo' => 'FOO'],
         ];
 
         // #3
         yield 'AbstractValuesTestTrait.php:'.__LINE__ => [
-            'args'   => [new \ArrayObject(['foo' => 'FOO'])],
+            'ctor'   => [new \ArrayObject(['foo' => 'FOO'])],
             'expect' => ['foo' => 'FOO'],
         ];
     }
@@ -84,12 +98,11 @@ trait AbstractValuesTestTrait
      *
      * @param mixed $expect
      *
-     * @psalm-param list{0?:array|\Traversable} $args
+     * @psalm-param list{0?:array|\Traversable} $ctor
      */
-    public function testAbstractValues(array $args, $expect): void
+    public function testAbstractValues(array $ctor, $expect): void
     {
-        $class = self::getValuesClass();
-        $object = new $class(...$args);
+        $object = self::getValuesObject($ctor);
 
         self::assertSame($expect, iterator_to_array($object));
         self::assertSame($expect, (array) $object);
@@ -97,23 +110,14 @@ trait AbstractValuesTestTrait
     }
 
     // @codeCoverageIgnoreStart
+    /**
+     * @psalm-return iterable<string,array{ctor: CtorArgs}>
+     */
     public static function provAbstractValuesTag(): iterable
     {
-        $family = self::getValuesFamilyName();
-        $familyHex = StaticRandomStrings::get($family);
-        $familyTag = "{$family}:{$familyHex}";
+        yield 'AbstractValuesTestTrait.php:'.__LINE__ => ['ctor' => []];
 
-        // #0
-        yield 'AbstractValuesTestTrait.php:'.__LINE__ => [
-            'args'   => [],
-            'expect' => $familyTag,
-        ];
-
-        // #1
-        yield 'AbstractValuesTestTrait.php:'.__LINE__ => [
-            'args'   => [['foo' => 'FOO']],
-            'expect' => $familyTag,
-        ];
+        yield 'AbstractValuesTestTrait.php:'.__LINE__ => ['ctor' => [['foo' => 'FOO']]];
     }
     // @codeCoverageIgnoreEnd
 
@@ -122,14 +126,26 @@ trait AbstractValuesTestTrait
      *
      * @param mixed $expect
      *
-     * @psalm-param list{0?:array|\Traversable,1?:null|non-empty-string} $args
+     * @psalm-param CtorArgs $ctor
      */
-    public function testAbstractValuesTag(array $args, $expect): void
+    public function testAbstractValuesTag(array $ctor): void
     {
-        $class = self::getValuesClass();
-        $object = new $class(...$args);
+        $family = self::getValuesFamilyName();
+        $familyHex = StaticRandomStrings::get($family);
+        $familyTag = "{$family}:{$familyHex}";
 
-        self::assertSame($expect, $object->tag());
+        $object = self::getValuesObject($ctor);
+
+        self::assertSame($familyTag, $object->tag());
+    }
+
+    public function testAbstractValuesCreateActualValues(): void
+    {
+        $object = self::getValuesObject([['o' => 'O']]);
+        $actual = $object->createActualValues(['a' => 'A']);
+
+        self::assertSame(['a' => 'A'], (array) $actual);
+        self::assertTrue($actual->actual());
     }
 }
 // vim: syntax=php sw=4 ts=4 et:
