@@ -10,6 +10,8 @@
 
 namespace Tailors\PHPUnit\Values;
 
+use Tailors\PHPUnit\Common\StaticRandomStrings;
+
 /**
  * An array of expected values.
  *
@@ -19,6 +21,41 @@ namespace Tailors\PHPUnit\Values;
  *
  * @template-extends \ArrayObject<array-key,mixed>
  */
-abstract class AbstractValues extends \ArrayObject implements ValuesInterface {}
+abstract class AbstractValues extends \ArrayObject implements ValuesInterface
+{
+    /**
+     * @param array|\Traversable $array
+     */
+    protected function __construct($array = [])
+    {
+        if (!is_array($array)) {
+            $array = iterator_to_array($array);
+        }
+
+        parent::__construct($array);
+    }
+
+    /**
+     * @psalm-return non-empty-string
+     */
+    final protected function familyTag(): string
+    {
+        $family = $this->familyName();
+
+        $random = StaticRandomStrings::get($family, $this->fallbackFamilyString());
+
+        return "{$family}:{$random}";
+    }
+
+    /**
+     * @psalm-return non-empty-string
+     */
+    abstract protected function familyName(): string;
+
+    /**
+     * @psalm-return non-empty-string
+     */
+    abstract protected function fallbackFamilyString(): string;
+}
 
 // vim: syntax=php sw=4 ts=4 et:

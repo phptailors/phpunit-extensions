@@ -15,8 +15,10 @@ use PHPUnit\Framework\TestCase;
 /**
  * @small
  *
+ * @covers \Tailors\PHPUnit\Values\AbstractGenericValues
+ * @covers \Tailors\PHPUnit\Values\AbstractValues
  * @covers \Tailors\PHPUnit\Values\ActualValues
- * @covers \Tailors\PHPUnit\Values\ValuesTestTrait
+ * @covers \Tailors\PHPUnit\Values\GenericValuesTestTrait
  *
  * @internal This class is not covered by the backward compatibility promise
  *
@@ -24,7 +26,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class ActualValuesTest extends TestCase
 {
-    use ValuesTestTrait;
+    use GenericValuesTestTrait;
 
     // required by ValuesTestTrait
     public static function getValuesClass(): string

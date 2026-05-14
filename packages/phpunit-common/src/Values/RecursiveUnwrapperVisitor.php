@@ -11,6 +11,8 @@
 namespace Tailors\PHPUnit\Values;
 
 use Tailors\PHPUnit\CircularDependencyException;
+use Tailors\PHPUnit\Common\StaticRandomStrings;
+use Tailors\PHPUnit\Common\StaticTagInterface;
 use Tailors\PHPUnit\InvalidArgumentException;
 
 /**
@@ -22,7 +24,7 @@ use Tailors\PHPUnit\InvalidArgumentException;
  *
  * @psalm-type StackItem = RecursiveUnwrapperStackItem
  */
-final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
+final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface, StaticTagInterface
 {
     public const TAGSIZE = 20;
 
@@ -43,21 +45,9 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
      */
     public static function tag(): string
     {
-        /** @psalm-var ?non-empty-string */
-        static $tag = null;
+        $hex = StaticRandomStrings::get(self::class, '4694a81d074f3386a9b8c7c2ad04914e120f1a10');
 
-        if (null === $tag) {
-            try {
-                $hex = bin2hex(random_bytes(self::TAGSIZE));
-            } catch (\Exception) {
-                // @codeCoverageIgnoreStart
-                $hex = '4694a81d074f3386a9b8c7c2ad04914e120f1a10';
-                // @codeCoverageIgnoreEnd
-            }
-            $tag = "unwrapped-values:{$hex}";
-        }
-
-        return $tag;
+        return __NAMESPACE__."\UnwrappedValues:{$hex}";
     }
 
     /**
@@ -107,7 +97,7 @@ final class RecursiveUnwrapperVisitor implements RecursiveVisitorInterface
         if ($node instanceof ValuesInterface && $this->tagging) {
             // Distinguish unwrapped values from regular arrays
             // by adding UNIQUE TAG AT THE END of $array.
-            $this->current[self::tag()] = true;
+            $this->current[self::tag()] = $node->tag();
         }
 
         $this->set($stack, $this->current);
