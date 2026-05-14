@@ -21,6 +21,8 @@ final class DummyValues extends \ArrayObject implements ValuesInterface
 {
     /**
      * @var bool
+     *
+     * @psalm-var readonly
      */
     private $actual;
 
@@ -48,6 +50,8 @@ final class DummyValues extends \ArrayObject implements ValuesInterface
 
     /**
      * @psalm-return non-empty-string
+     *
+     * @psalm-mutation-free
      */
     public function tag(): string
     {
@@ -58,6 +62,8 @@ final class DummyValues extends \ArrayObject implements ValuesInterface
      * @param array|\Traversable $array
      *
      * @psalm-param array|\Traversable<array-key,mixed> $array
+     *
+     * @psalm-mutation-free
      */
     public function createActualValues($array = []): ValuesInterface
     {
