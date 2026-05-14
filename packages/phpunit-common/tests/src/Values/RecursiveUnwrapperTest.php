@@ -51,8 +51,8 @@ final class RecursiveUnwrapperTest extends TestCase
         $arrayObject = ['[baz => BAZ]' => new \ArrayObject(['baz' => 'BAZ'])];
 
         $tagk = RecursiveUnwrapperVisitor::tag();
-        $tagg = (new ExpectedValues())->tag();
-        $tagd = (new DummyValues(false))->tag();
+        $tagg = new ExpectedValues()->tag();
+        $tagd = new DummyValues(false)->tag();
 
         yield 'RecursiveUnwrapperTest.php:'.__LINE__ => [
             'args'   => [],

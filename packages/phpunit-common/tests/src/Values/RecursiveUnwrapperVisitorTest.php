@@ -105,8 +105,8 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
     public static function provEnterLeave(): iterable
     {
         $tagk = RecursiveUnwrapperVisitor::tag();
-        $tagg = (new ExpectedValues())->tag();
-        $tagd = (new DummyValues(false))->tag();
+        $tagg = new ExpectedValues()->tag();
+        $tagd = new DummyValues(false)->tag();
 
         //
         // 01
@@ -401,7 +401,7 @@ final class RecursiveUnwrapperVisitorTest extends TestCase
     public static function provVisit(): iterable
     {
         $tagk = RecursiveUnwrapperVisitor::tag();
-        $tagg = (new ExpectedValues())->tag();
+        $tagg = new ExpectedValues()->tag();
 
         //
         // 01
