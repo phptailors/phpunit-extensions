@@ -10,8 +10,8 @@
 
 namespace Tailors\PHPUnit\Values;
 
-use Tailors\PHPUnit\Common\StaticRandomStrings;
 use PHPUnit\Framework\Attributes\DataProvider;
+use Tailors\PHPUnit\Common\StaticRandomStrings;
 
 /**
  * @small
