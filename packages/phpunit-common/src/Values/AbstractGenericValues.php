@@ -20,21 +20,12 @@ namespace Tailors\PHPUnit\Values;
 abstract class AbstractGenericValues extends AbstractValues
 {
     /**
-     * @var ?string
-     *
-     * @psalm-var ?non-empty-string
-     */
-    private $tag;
-
-    /**
      * @param array|\Traversable $array
      *
      * @psalm-param ?non-empty-string $tag
      */
-    final public function __construct($array = [], ?string $tag = null)
+    final public function __construct($array = [], private readonly ?string $tag = null)
     {
-        $this->tag = $tag;
-
         parent::__construct($array);
     }
 
