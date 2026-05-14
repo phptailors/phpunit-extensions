@@ -229,12 +229,6 @@ final class RecursiveSelectorVisitorTest extends TestCase
                     'return' => true,
                     'next'   => 0,
                 ],
-                [
-                    'args' => [
-                        'node' => $e05['foo']['bar'][0],
-                    ],
-                    'return' => false,
-                ],
             ],
             'result' => new ActualValues([
                 'foo' => new ActualValues([
@@ -335,12 +329,6 @@ final class RecursiveSelectorVisitorTest extends TestCase
                     ],
                     'return' => true,
                     'next'   => 0,
-                ],
-                [
-                    'args' => [
-                        'node' => $e07['foo']['bar'][0],
-                    ],
-                    'return' => false,
                 ],
             ],
             'result' => new ActualValues([
