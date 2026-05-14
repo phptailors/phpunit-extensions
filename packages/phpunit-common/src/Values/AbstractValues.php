@@ -23,10 +23,7 @@ use Tailors\PHPUnit\Common\StaticRandomStrings;
  */
 abstract class AbstractValues extends \ArrayObject implements ValuesInterface
 {
-    /**
-     * @param array|\Traversable $array
-     */
-    protected function __construct($array = [])
+    protected function __construct(array|\Traversable $array = [])
     {
         if (!is_array($array)) {
             $array = iterator_to_array($array);

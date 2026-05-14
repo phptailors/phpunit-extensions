@@ -74,11 +74,9 @@ trait GenericValuesTestTrait
     /**
      * @dataProvider provValues
      *
-     * @param mixed $expect
-     *
      * @psalm-param list{0?:array|\Traversable} $args
      */
-    public function testValues(array $args, $expect): void
+    public function testValues(array $args, mixed $expect): void
     {
         $class = self::getValuesClass();
         $object = new $class(...$args);
@@ -118,11 +116,9 @@ trait GenericValuesTestTrait
     /**
      * @dataProvider provTag
      *
-     * @param mixed $expect
-     *
      * @psalm-param list{0?:array|\Traversable,1?:null|non-empty-string} $args
      */
-    public function testTag(array $args, $expect): void
+    public function testTag(array $args, mixed $expect): void
     {
         $class = self::getValuesClass();
         $object = new $class(...$args);

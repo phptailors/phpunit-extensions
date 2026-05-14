@@ -20,11 +20,9 @@ namespace Tailors\PHPUnit\Values;
 abstract class AbstractGenericValues extends AbstractValues
 {
     /**
-     * @param array|\Traversable $array
-     *
      * @psalm-param ?non-empty-string $tag
      */
-    final public function __construct($array = [], private readonly ?string $tag = null)
+    final public function __construct(array|\Traversable $array = [], private readonly ?string $tag = null)
     {
         parent::__construct($array);
     }
@@ -45,10 +43,7 @@ abstract class AbstractGenericValues extends AbstractValues
         return $this->tag ?? $this->familyTag();
     }
 
-    /**
-     * @param array|\Traversable $array
-     */
-    final public function createActualValues($array = []): ValuesInterface
+    final public function createActualValues(array|\Traversable $array = []): ValuesInterface
     {
         return new ActualValues($array, $this->tag);
     }

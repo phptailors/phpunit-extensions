@@ -29,10 +29,7 @@ interface ValuesInterface extends \Traversable, \ArrayAccess, \Countable, TagInt
      */
     public function actual(): bool;
 
-    /**
-     * @param array|\Traversable $array
-     */
-    public function createActualValues($array = []): ValuesInterface;
+    public function createActualValues(array|\Traversable $array = []): ValuesInterface;
 }
 
 // vim: syntax=php sw=4 ts=4 et:

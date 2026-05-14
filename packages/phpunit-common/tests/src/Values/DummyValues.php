@@ -45,11 +45,9 @@ final class DummyValues extends \ArrayObject implements ValuesInterface
     }
 
     /**
-     * @param array|\Traversable $array
-     *
      * @psalm-param array|\Traversable<array-key,mixed> $array
      */
-    public function createActualValues($array = []): ValuesInterface
+    public function createActualValues(array|\Traversable $array = []): ValuesInterface
     {
         return new self(true, $array);
     }
