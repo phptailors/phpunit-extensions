@@ -113,7 +113,9 @@ class DocExampleContext implements Context
             '/^(?:(?:phpvfscomposer:\/\/)?(?:'.$top.'\/))docs\/sphinx\/examples\/(?:[^\/]*\/)*([\w-]+\.php):(\d+)$/m',
             '/^(Configuration:\s*)((?:phpvfscomposer:\/\/)?(?:'.$top.'\/)?docs\/)?sphinx\/examples\/phpunit.xml$/m',
             '/^(Runtime:\s*)(PHP\s*)(?:\$phpversion|\d+(?:\.\w+)*)(\s*)$/m',
-            '/(Tailors\\\\PHPUnit\\\\Values\\\\\\w+ Object)\\s+(?:(?:#\\d+)|(?:&[0-9a-fA-F]+))\\s*\\(/m',
+            '/(Tailors\\\\PHPUnit\\\\Values\\\\\\w+Values Object)\\s+(?:(?:#\\d+)|(?:&[0-9a-fA-F]+))\\s*\\(/m',
+            '/(Tailors\\\\PHPUnit\\\\Arrays\\\\\\w+Values Object)\\s+(?:(?:#\\d+)|(?:&[0-9a-fA-F]+))\\s*\\(/m',
+            '/(Tailors\\\\PHPUnit\\\\Properties\\\\\\w+Properties Object)\\s+(?:(?:#\\d+)|(?:&[0-9a-fA-F]+))\\s*\\(/m',
         ];
         $replaces = [
             '',

@@ -8,33 +8,25 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Values;
+namespace Tailors\PHPUnit\Arrays;
+
+use Tailors\PHPUnit\Values\AbstractValues;
+use Tailors\PHPUnit\Values\ValuesInterface;
 
 /**
- * An array of expected or actual values (generic).
+ * An array of expected or actual array values.
  *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-abstract class AbstractGenericValues extends AbstractValues
+abstract class AbstractArrayValues extends AbstractValues
 {
     /**
-     * @var ?string
-     *
-     * @psalm-var ?non-empty-string
-     */
-    private $tag;
-
-    /**
      * @param array|\Traversable $array
-     *
-     * @psalm-param ?non-empty-string $tag
      */
-    final public function __construct($array = [], ?string $tag = null)
+    final public function __construct($array = [])
     {
-        $this->tag = $tag;
-
         parent::__construct($array);
     }
 
@@ -43,7 +35,7 @@ abstract class AbstractGenericValues extends AbstractValues
      */
     final public function familyName(): string
     {
-        return __NAMESPACE__.'\GenericValues';
+        return __NAMESPACE__.'\ArrayValues';
     }
 
     /**
@@ -51,7 +43,7 @@ abstract class AbstractGenericValues extends AbstractValues
      */
     final public function tag(): string
     {
-        return $this->tag ?? $this->familyTag();
+        return $this->familyTag();
     }
 
     /**
@@ -59,12 +51,12 @@ abstract class AbstractGenericValues extends AbstractValues
      */
     final public function createActualValues($array = []): ValuesInterface
     {
-        return new ActualValues($array, $this->tag);
+        return new ActualArrayValues($array);
     }
 
     final protected function fallbackFamilyString(): string
     {
-        return 'b431aa5424c80003a46c769389f28d0bcde7bf21';
+        return 'c225435bd5434279f77fb3cddf138302a5c826ec';
     }
 }
 

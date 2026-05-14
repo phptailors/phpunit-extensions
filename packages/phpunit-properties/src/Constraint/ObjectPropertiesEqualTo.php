@@ -12,10 +12,10 @@ namespace Tailors\PHPUnit\Constraint;
 
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\EqualityComparator;
+use Tailors\PHPUnit\Properties\ExpectedObjectProperties;
 use Tailors\PHPUnit\Properties\ValidateExpectationsTrait;
 use Tailors\PHPUnit\Values\AbstractConstraint;
 use Tailors\PHPUnit\Values\ConstraintImplementationTrait;
-use Tailors\PHPUnit\Values\ExpectedValues;
 use Tailors\PHPUnit\Values\ObjectPropertySelector;
 use Tailors\PHPUnit\Values\ValueSelectorInterface;
 use Tailors\PHPUnit\Values\ValuesInterface;
@@ -70,7 +70,7 @@ final class ObjectPropertiesEqualTo extends AbstractConstraint
      */
     protected static function makeExpectedValues(array $array): ValuesInterface
     {
-        return new ExpectedValues($array);
+        return new ExpectedObjectProperties($array);
     }
 }
 

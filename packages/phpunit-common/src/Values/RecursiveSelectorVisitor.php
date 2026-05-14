@@ -183,7 +183,7 @@ final class RecursiveSelectorVisitor implements RecursiveVisitorInterface
      * @psalm-param-out mixed $subject
      * @psalm-param-out mixed $result
      *
-     * @psalm-assert-if-true array|ActualValues $result
+     * @psalm-assert-if-true array|ValuesInterface $result
      */
     private function selectIfIterable($node, array $stack, &$subject, &$result): bool
     {
@@ -204,7 +204,7 @@ final class RecursiveSelectorVisitor implements RecursiveVisitorInterface
      * @psalm-param-out mixed $subject
      * @psalm-param-out mixed $result
      *
-     * @psalm-assert-if-true array|ActualValues $result
+     * @psalm-assert-if-true array|ValuesInterface $result
      */
     private function selectNestedIfIterable($node, array $stack, &$subject, &$result): bool
     {
@@ -253,7 +253,7 @@ final class RecursiveSelectorVisitor implements RecursiveVisitorInterface
      * @psalm-param-out mixed $result
      *
      * @psalm-assert-if-true T $subject
-     * @psalm-assert-if-true array|ActualValues $result
+     * @psalm-assert-if-true array|ValuesInterface $result
      */
     private function selectValueIfIterable($node, $value, &$subject, &$result): bool
     {
