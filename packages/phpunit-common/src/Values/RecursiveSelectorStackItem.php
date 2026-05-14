@@ -44,10 +44,7 @@ final class RecursiveSelectorStackItem implements RecursiveVisitorStackItemInter
         return $this->key;
     }
 
-    /**
-     * @param mixed $value
-     */
-    public function set($value): void
+    public function set(mixed $value): void
     {
         $this->state->result[$this->key] = $value;
     }

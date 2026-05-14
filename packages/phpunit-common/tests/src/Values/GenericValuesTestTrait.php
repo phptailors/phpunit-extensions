@@ -49,11 +49,9 @@ trait GenericValuesTestTrait
     /**
      * @dataProvider provGenericValuesTag
      *
-     * @param mixed $expect
-     *
      * @psalm-param list{0?:array|\Traversable,1?:null|non-empty-string} $args
      */
-    public function testGenericValuesTag(array $args, $expect): void
+    public function testGenericValuesTag(array $args, mixed $expect): void
     {
         $class = self::getValuesClass();
         $object = new $class(...$args);

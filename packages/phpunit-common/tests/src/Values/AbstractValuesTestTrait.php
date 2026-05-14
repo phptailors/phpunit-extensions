@@ -96,11 +96,9 @@ trait AbstractValuesTestTrait
     /**
      * @dataProvider provAbstractValues
      *
-     * @param mixed $expect
-     *
      * @psalm-param list{0?:array|\Traversable} $ctor
      */
-    public function testAbstractValues(array $ctor, $expect): void
+    public function testAbstractValues(array $ctor, mixed $expect): void
     {
         $object = self::getValuesObject($ctor);
 
@@ -123,8 +121,6 @@ trait AbstractValuesTestTrait
 
     /**
      * @dataProvider provAbstractValuesTag
-     *
-     * @param mixed $expect
      *
      * @psalm-param CtorArgs $ctor
      */

@@ -338,12 +338,10 @@ final class RecursiveSelectorVisitorTest extends TestCase
     /**
      * @dataProvider provEnterLeave
      *
-     * @param mixed $result
-     *
      * @psalm-param CtorArgs                      $ctor
      * @psalm-param non-empty-list<EnterTestCall> $calls
      */
-    public function testEnterLeave(array $ctor, array $calls, $result): void
+    public function testEnterLeave(array $ctor, array $calls, mixed $result): void
     {
         $visitor = new RecursiveSelectorVisitor(...$ctor);
         $stack = [];
@@ -502,13 +500,11 @@ final class RecursiveSelectorVisitorTest extends TestCase
     /**
      * @dataProvider provVisit
      *
-     * @param mixed $result
-     *
      * @psalm-param array{0: ValueSelectorInterface, 1: mixed} $ctor
      * @psalm-param ?EnterTestCall                             $enter
      * @psalm-param non-empty-list<VisitTestCall>              $calls
      */
-    public function testVisit(array $ctor, ?array $enter, array $calls, $result): void
+    public function testVisit(array $ctor, ?array $enter, array $calls, mixed $result): void
     {
         $visitor = new RecursiveSelectorVisitor(...$ctor);
         $stack = [];
@@ -713,11 +709,9 @@ final class RecursiveSelectorVisitorTest extends TestCase
     /**
      * @dataProvider provWithRecursiveTraversal
      *
-     * @param mixed $result
-     *
      * @psalm-param CtorArgs $ctor
      */
-    public function testWithRecursiveTraversal(array $ctor, ValuesInterface $values, $result): void
+    public function testWithRecursiveTraversal(array $ctor, ValuesInterface $values, mixed $result): void
     {
         $visitor = new RecursiveSelectorVisitor(...$ctor);
         $traversal = new RecursiveTraversal();
