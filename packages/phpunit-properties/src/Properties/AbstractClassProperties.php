@@ -35,7 +35,7 @@ abstract class AbstractClassProperties extends AbstractValues
      */
     final public function familyName(): string
     {
-        return __NAMESPACE__.'\ArrayValues';
+        return __NAMESPACE__.'\ClassProperties';
     }
 
     /**
