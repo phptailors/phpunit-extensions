@@ -124,8 +124,6 @@ trait AbstractValuesTestTrait
     /**
      * @dataProvider provAbstractValuesTag
      *
-     * @param mixed $expect
-     *
      * @psalm-param CtorArgs $ctor
      */
     public function testAbstractValuesTag(array $ctor): void
