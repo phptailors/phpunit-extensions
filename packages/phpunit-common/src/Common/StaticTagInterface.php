@@ -8,25 +8,21 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Values;
+namespace Tailors\PHPUnit\Common;
 
 /**
- * An array of actual values.
+ * An array of actual or expected values.
  *
- * @internal This class is not covered by the backward compatibility promise
+ * @internal This interface is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class ActualValues extends AbstractGenericValues
+interface StaticTagInterface
 {
     /**
-     * @psalm-mutation-free
+     * @psalm-return non-empty-string
      */
-    #[\Override]
-    public function actual(): bool
-    {
-        return true;
-    }
+    public static function tag(): string;
 }
 
 // vim: syntax=php sw=4 ts=4 et:
