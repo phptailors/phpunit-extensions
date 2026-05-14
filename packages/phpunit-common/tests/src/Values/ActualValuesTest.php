@@ -11,18 +11,19 @@
 namespace Tailors\PHPUnit\Values;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Tailors\PHPUnit\Values\AbstractGenericValues
- * @covers \Tailors\PHPUnit\Values\AbstractValues
- * @covers \Tailors\PHPUnit\Values\GenericValuesTestTrait
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
+#[CoversClass(AbstractGenericValues::class)]
+#[CoversClass(AbstractValues::class)]
 #[CoversClass(ActualValues::class)]
+#[CoversTrait(GenericValuesTestTrait::class)]
 #[Small]
 final class ActualValuesTest extends TestCase
 {

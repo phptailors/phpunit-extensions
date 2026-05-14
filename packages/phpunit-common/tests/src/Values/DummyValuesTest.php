@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\Values;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 
@@ -68,11 +69,10 @@ final class DummyValuesTest extends TestCase
     }
 
     /**
-     * @dataProvider provDummyValues
-     *
      * @psalm-param list{0?:bool,1?:array|\Traversable}            $ctor
      * @psalm-param array{arary: mixed, actual: mixed, tag: mixed} $expect
      */
+    #[DataProvider('provDummyValues')]
     public function testDummyValues(array $ctor, array $expect): void
     {
         $values = new DummyValues(...$ctor);

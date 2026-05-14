@@ -17,13 +17,12 @@ use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\CircularDependencyException;
 
 /**
- * @covers \Tailors\PHPUnit\Values\AbstractValues
- * @covers \Tailors\PHPUnit\Values\RecursiveUnwrapperVisitor
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
 #[CoversClass(RecursiveUnwrapper::class)]
+#[CoversClass(RecursiveUnwrapperVisitor::class)]
 #[Small]
 final class RecursiveUnwrapperTest extends TestCase
 {

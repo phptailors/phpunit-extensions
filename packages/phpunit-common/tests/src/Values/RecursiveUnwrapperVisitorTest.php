@@ -19,7 +19,6 @@ use Tailors\PHPUnit\Common\StaticTagInterface;
 use Tailors\PHPUnit\InvalidArgumentException;
 
 /**
- * @covers \Tailors\PHPUnit\Values\AbstractValues
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
