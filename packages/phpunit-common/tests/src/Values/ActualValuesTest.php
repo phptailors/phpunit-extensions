@@ -20,12 +20,14 @@ use PHPUnit\Framework\TestCase;
  *
  * @psalm-internal Tailors\PHPUnit
  */
+#[CoversClass(AbstractGenericValues::class)]
+#[CoversClass(AbstractValues::class)]
 #[CoversClass(ActualValues::class)]
-#[CoversTrait(ValuesTestTrait::class)]
+#[CoversTrait(GenericValuesTestTrait::class)]
 #[Small]
 final class ActualValuesTest extends TestCase
 {
-    use ValuesTestTrait;
+    use GenericValuesTestTrait;
 
     // required by ValuesTestTrait
     #[\Override]
