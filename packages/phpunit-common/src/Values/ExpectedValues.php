@@ -17,13 +17,13 @@ namespace Tailors\PHPUnit\Values;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class ExpectedValues extends AbstractValues
+final class ExpectedValues extends AbstractGenericValues
 {
     /**
      * @psalm-mutation-free
      */
     #[\Override]
-    final public function actual(): bool
+    public function actual(): bool
     {
         return false;
     }
