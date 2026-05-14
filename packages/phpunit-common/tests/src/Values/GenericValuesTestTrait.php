@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\Values;
 
 use Tailors\PHPUnit\Common\StaticRandomStrings;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 /**
  * @small
@@ -72,10 +73,9 @@ trait GenericValuesTestTrait
     // @codeCoverageIgnoreEnd
 
     /**
-     * @dataProvider provValues
-     *
      * @psalm-param list{0?:array|\Traversable} $args
      */
+    #[DataProvider('provValues')]
     public function testValues(array $args, mixed $expect): void
     {
         $class = self::getValuesClass();
@@ -114,10 +114,9 @@ trait GenericValuesTestTrait
     // @codeCoverageIgnoreEnd
 
     /**
-     * @dataProvider provTag
-     *
      * @psalm-param list{0?:array|\Traversable,1?:null|non-empty-string} $args
      */
+    #[DataProvider('provTag')]
     public function testTag(array $args, mixed $expect): void
     {
         $class = self::getValuesClass();
