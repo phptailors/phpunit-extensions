@@ -64,14 +64,12 @@ abstract class GenericValuesTestCase extends AbstractValuesTestCase
     /**
      * @dataProvider provGenericValuesTag
      *
-     * @param mixed $expect
-     *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
      *
      * @psalm-param GenericValuesCtorArgs $ctor
      */
-    final public function testGenericValuesTag(array $ctor, $expect): void
+    final public function testGenericValuesTag(array $ctor, mixed $expect): void
     {
         $object = self::getValuesObject($ctor);
 

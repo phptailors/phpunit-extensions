@@ -95,14 +95,12 @@ abstract class AbstractValuesTestCase extends TestCase
     /**
      * @dataProvider provAbstractValues
      *
-     * @param mixed $expect
-     *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
      *
      * @psalm-param AbstractValuesCtorArgs $ctor
      */
-    final public function testAbstractValues(array $ctor, $expect): void
+    final public function testAbstractValues(array $ctor, mixed $expect): void
     {
         $object = static::getValuesObject($ctor);
 
