@@ -8,27 +8,25 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Values;
+namespace Tailors\PHPUnit\Properties;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Small;
-use PHPUnit\Framework\TestCase;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
+#[CoversClass(AbstractClassProperties::class)]
+#[CoversClass(ClassPropertiesTestCase::class)]
+#[CoversClass(ExpectedClassProperties::class)]
 #[Small]
-#[CoversClass(DummyValueSelectorWrapper::class)]
-final class DummyValueSelectorWrapperTest extends TestCase
+final class ExpectedClassPropertiesTest extends ClassPropertiesTestCase
 {
-    public function testDummyValueSelectorWrapper(): void
+    public static function getValuesClass(): string
     {
-        // Mostly for code coverage.
-        $valueSelector = $this->createStub(ValueSelectorInterface::class);
-        $wrapper = new DummyValueSelectorWrapper($valueSelector);
-        $this->assertSame($valueSelector, $wrapper->getValueSelector());
+        return ExpectedClassProperties::class;
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

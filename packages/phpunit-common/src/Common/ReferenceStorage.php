@@ -163,6 +163,7 @@ final class ReferenceStorage implements \Countable
     private function getReferenceId(mixed &$value): string
     {
         if (!class_exists(\ReflectionReference::class)) {
+            // @codeCoverageIgnoreStart
             /** @psalm-var mixed $reference */
             foreach ($this->references as $id => &$reference) {
                 /** @psalm-var mixed */
@@ -184,6 +185,7 @@ final class ReferenceStorage implements \Countable
             } while (array_key_exists($id, $this->references));
 
             return $id;
+            // @codeCoverageIgnoreEnd
         }
 
         $ref = \ReflectionReference::fromArrayElement(get_defined_vars(), 'value');

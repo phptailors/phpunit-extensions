@@ -24,55 +24,24 @@ use Tailors\PHPUnit\InternalErrorException;
  */
 final class RecursiveSelectorVisitor implements RecursiveVisitorInterface
 {
-    /**
-     * @var ValueSelectorInterface
-     *
-     * @psalm-readonly
-     */
-    private $valueSelector;
+    private mixed $result = null;
+
+    private ?RecursiveSelectorState $state = null;
+
+    public function __construct(private readonly ValueSelectorInterface $valueSelector, private readonly mixed $subject) {}
 
     /**
-     * @var mixed
-     *
-     * @psalm-readonly
-     */
-    private $subject;
-
-    /**
-     * @var mixed
-     */
-    private $result;
-
-    /**
-     * @var ?RecursiveSelectorState
-     */
-    private $state;
-
-    /**
-     * @param mixed $subject
-     */
-    public function __construct(ValueSelectorInterface $valueSelector, $subject)
-    {
-        $this->valueSelector = $valueSelector;
-        $this->subject = $subject;
-    }
-
-    /**
-     * @return mixed
-     *
      * @psalm-mutation-free
      */
-    public function result()
+    public function result(): mixed
     {
         return $this->result;
     }
 
     /**
-     * @param array|ValuesInterface $node
-     *
      * @psalm-param list<StackItem> $stack
      */
-    public function enter($node, array $stack): bool
+    public function enter(array|ValuesInterface $node, array $stack): bool
     {
         if (!$this->selectIfIterable($node, $stack, $subject, $result)) {
             return false;
@@ -84,11 +53,9 @@ final class RecursiveSelectorVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param array|ValuesInterface $node
-     *
      * @psalm-param list<StackItem> $stack
      */
-    public function leave($node, array $stack, bool $iterating): void
+    public function leave(array|ValuesInterface $node, array $stack, bool $iterating): void
     {
         if (!$iterating) {
             return;
@@ -112,11 +79,9 @@ final class RecursiveSelectorVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param mixed $node
-     *
      * @psalm-param list<StackItem> $stack
      */
-    public function visit($node, array $stack, bool $iterating): void
+    public function visit(mixed $node, array $stack, bool $iterating): void
     {
         if (0 === count($stack)) {
             $this->result = $this->subject;
@@ -134,27 +99,22 @@ final class RecursiveSelectorVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param array|ValuesInterface $node
-     *
      * @throws CircularDependencyException
      *
      * @psalm-param list<StackItem> $stack
      */
-    public function cycle($node, array $stack): bool
+    public function cycle(array|ValuesInterface $node, array $stack): bool
     {
         self::throwCircular($stack);
     }
 
     /**
-     * @param array|ValuesInterface $node
-     * @param mixed                 $key
-     *
      * @psalm-param array-key       $key
      * @psalm-param list<StackItem> $stack
      *
      * @psalm-return StackItem
      */
-    public function makeStackItem($node, $key, array $stack): RecursiveVisitorStackItemInterface
+    public function makeStackItem(array|ValuesInterface $node, mixed $key, array $stack): RecursiveVisitorStackItemInterface
     {
         if (null === $this->state) {
             /** @psalm-suppress MissingThrowsDocblock */
@@ -174,18 +134,14 @@ final class RecursiveSelectorVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param array|ValuesInterface $node
-     * @param mixed                 $subject
-     * @param mixed                 $result
-     *
      * @psalm-param list<StackItem> $stack
      *
      * @psalm-param-out mixed $subject
      * @psalm-param-out mixed $result
      *
-     * @psalm-assert-if-true array|ActualValues $result
+     * @psalm-assert-if-true array|ValuesInterface $result
      */
-    private function selectIfIterable($node, array $stack, &$subject, &$result): bool
+    private function selectIfIterable(array|ValuesInterface $node, array $stack, mixed &$subject, mixed &$result): bool
     {
         if (0 === count($stack)) {
             return $this->selectValueIfIterable($node, $this->subject, $subject, $result);
@@ -195,18 +151,14 @@ final class RecursiveSelectorVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param array|ValuesInterface $node
-     * @param mixed                 $subject
-     * @param mixed                 $result
-     *
      * @psalm-param non-empty-list<StackItem> $stack
      *
      * @psalm-param-out mixed $subject
      * @psalm-param-out mixed $result
      *
-     * @psalm-assert-if-true array|ActualValues $result
+     * @psalm-assert-if-true array|ValuesInterface $result
      */
-    private function selectNestedIfIterable($node, array $stack, &$subject, &$result): bool
+    private function selectNestedIfIterable(array|ValuesInterface $node, array $stack, mixed &$subject, mixed &$result): bool
     {
         $last = count($stack) - 1;
 
@@ -240,11 +192,6 @@ final class RecursiveSelectorVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param array|ValuesInterface $node
-     * @param mixed                 $value
-     * @param mixed                 $subject
-     * @param mixed                 $result
-     *
      * @psalm-template T
      *
      * @psalm-param T $value
@@ -253,9 +200,9 @@ final class RecursiveSelectorVisitor implements RecursiveVisitorInterface
      * @psalm-param-out mixed $result
      *
      * @psalm-assert-if-true T $subject
-     * @psalm-assert-if-true array|ActualValues $result
+     * @psalm-assert-if-true array|ValuesInterface $result
      */
-    private function selectValueIfIterable($node, $value, &$subject, &$result): bool
+    private function selectValueIfIterable(array|ValuesInterface $node, mixed $value, mixed &$subject, mixed &$result): bool
     {
         if ($node instanceof ValuesInterface && !$node->actual()) {
             if (!$this->valueSelector->supports($value)) {
@@ -280,13 +227,11 @@ final class RecursiveSelectorVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param mixed $result
-     *
      * @psalm-param non-empty-list<StackItem> $stack
      *
      * @psalm-param-out mixed $result
      */
-    private function selectNested(array $stack, &$result): bool
+    private function selectNested(array $stack, mixed &$result): bool
     {
         $last = count($stack) - 1;
         $top = $stack[$last];
@@ -310,13 +255,11 @@ final class RecursiveSelectorVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @return never
-     *
      * @throws CircularDependencyException
      *
      * @psalm-param list<StackItem> $stack
      */
-    private static function throwCircular(array $stack): void
+    private static function throwCircular(array $stack): never
     {
         $pathString = self::pathString($stack);
 
@@ -330,9 +273,7 @@ final class RecursiveSelectorVisitor implements RecursiveVisitorInterface
      */
     private static function pathString(array $stack): string
     {
-        return implode('', array_map(function ($item) {
-            return '['.var_export($item->key(), true).']';
-        }, $stack));
+        return implode('', array_map(fn ($item) => '['.var_export($item->key(), true).']', $stack));
     }
 }
 

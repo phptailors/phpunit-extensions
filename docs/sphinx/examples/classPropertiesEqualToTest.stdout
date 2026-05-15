@@ -14,10 +14,10 @@ Failed asserting that classPropertiesEqualToTest is a class with properties equa
 --- Expected
 +++ Actual
 @@ @@
--Tailors\PHPUnit\Values\ExpectedValues Object #451 (
+-Tailors\PHPUnit\Properties\ExpectedClassProperties Object #451 (
 -    'attribute' => '123',
 -    'getValue()' => null,
-+Tailors\PHPUnit\Values\ActualValues Object #453 (
++Tailors\PHPUnit\Properties\ActualClassProperties Object #448 (
 +    'attribute' => 123,
 +    'getValue()' => 321,
  )
