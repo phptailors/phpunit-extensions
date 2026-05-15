@@ -50,9 +50,6 @@
             "bin-links": false,
             "forward-command": false,
             "target-directory": "vendor-bin"
-        },
-        "branch-alias": {
-            "dev-2.1": "2.1.x-dev"
         }
     },
     "config": {
