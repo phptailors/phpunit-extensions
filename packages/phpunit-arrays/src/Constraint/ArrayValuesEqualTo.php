@@ -16,7 +16,9 @@ use Tailors\PHPUnit\Comparator\EqualityComparator;
 use Tailors\PHPUnit\Values\AbstractConstraint;
 use Tailors\PHPUnit\Values\ArrayValueSelector;
 use Tailors\PHPUnit\Values\ConstraintImplementationTrait;
+use Tailors\PHPUnit\Values\ExpectedValues;
 use Tailors\PHPUnit\Values\ValueSelectorInterface;
+use Tailors\PHPUnit\Values\ValuesInterface;
 
 /**
  * Constraint that accepts arrays having values equal to specified ones.
@@ -53,6 +55,14 @@ final class ArrayValuesEqualTo extends AbstractConstraint
     protected static function makeSelector(): ValueSelectorInterface
     {
         return new ArrayValueSelector();
+    }
+
+    /**
+     * Creates instance of ValuesInterface to be used as expected values.
+     */
+    protected static function makeExpectedValues(array $array): ValuesInterface
+    {
+        return new ExpectedValues($array);
     }
 }
 

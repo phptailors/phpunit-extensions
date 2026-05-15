@@ -15,8 +15,10 @@ use Tailors\PHPUnit\Comparator\IdentityComparator;
 use Tailors\PHPUnit\Properties\ValidateExpectationsTrait;
 use Tailors\PHPUnit\Values\AbstractConstraint;
 use Tailors\PHPUnit\Values\ConstraintImplementationTrait;
+use Tailors\PHPUnit\Values\ExpectedValues;
 use Tailors\PHPUnit\Values\ObjectPropertySelector;
 use Tailors\PHPUnit\Values\ValueSelectorInterface;
+use Tailors\PHPUnit\Values\ValuesInterface;
 
 /**
  * Constraint that accepts objects having properties identical to specified ones.
@@ -61,6 +63,14 @@ final class ObjectPropertiesIdenticalTo extends AbstractConstraint
     protected static function makeSelector(): ValueSelectorInterface
     {
         return new ObjectPropertySelector();
+    }
+
+    /**
+     * Creates instance of ValuesInterface to be used as expected values.
+     */
+    protected static function makeExpectedValues(array $array): ValuesInterface
+    {
+        return new ExpectedValues($array);
     }
 }
 
