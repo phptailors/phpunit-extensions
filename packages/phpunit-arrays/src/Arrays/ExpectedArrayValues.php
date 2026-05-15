@@ -8,19 +8,24 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Values;
+namespace Tailors\PHPUnit\Arrays;
 
 /**
- * @internal This interface is not covered by the backward compatibility promise
+ * An array of expected array values.
+ *
+ * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-interface ValueSelectorWrapperInterface
+final class ExpectedArrayValues extends AbstractArrayValues
 {
     /**
-     * Returns an instance of ValueSelectorInterface.
+     * @psalm-mutation-free
      */
-    public function getValueSelector(): ValueSelectorInterface;
+    public function actual(): bool
+    {
+        return false;
+    }
 }
 
 // vim: syntax=php sw=4 ts=4 et:

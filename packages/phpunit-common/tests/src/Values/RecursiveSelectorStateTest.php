@@ -10,19 +10,20 @@
 
 namespace Tailors\PHPUnit\Values;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\Values\RecursiveSelectorState
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-type CtorArgs = list{0:mixed, 1:array|ValuesInterface}
  */
+#[CoversClass(RecursiveSelectorState::class)]
+#[Small]
 final class RecursiveSelectorStateTest extends TestCase
 {
     /**
@@ -70,11 +71,10 @@ final class RecursiveSelectorStateTest extends TestCase
     }
 
     /**
-     * @dataProvider provRecursiveSelectorState
-     *
      * @psalm-param CtorArgs                             $ctor
      * @psalm-param array{subject: mixed, result: mixed} $expect
      */
+    #[DataProvider('provRecursiveSelectorState')]
     public function testRecursiveSelectorState(array $ctor, array $expect): void
     {
         $state = new RecursiveSelectorState(...$ctor);

@@ -8,20 +8,24 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Values;
+namespace Tailors\PHPUnit\Arrays;
 
 /**
+ * An array of actual values.
+ *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final readonly class DummyValueSelectorWrapper implements ValueSelectorWrapperInterface
+final class ActualArrayValues extends AbstractArrayValues
 {
-    public function __construct(private ValueSelectorInterface $valueSelector) {}
-
-    public function getValueSelector(): ValueSelectorInterface
+    /**
+     * @psalm-mutation-free
+     */
+    public function actual(): bool
     {
-        return $this->valueSelector;
+        return true;
     }
 }
+
 // vim: syntax=php sw=4 ts=4 et:

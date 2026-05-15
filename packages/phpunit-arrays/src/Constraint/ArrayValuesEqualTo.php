@@ -10,13 +10,13 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
+use Tailors\PHPUnit\Arrays\ExpectedArrayValues;
 use Tailors\PHPUnit\Arrays\ValidateExpectationsTrait;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\EqualityComparator;
 use Tailors\PHPUnit\Values\AbstractConstraint;
 use Tailors\PHPUnit\Values\ArrayValueSelector;
 use Tailors\PHPUnit\Values\ConstraintImplementationTrait;
-use Tailors\PHPUnit\Values\ExpectedValues;
 use Tailors\PHPUnit\Values\ValueSelectorInterface;
 use Tailors\PHPUnit\Values\ValuesInterface;
 
@@ -62,7 +62,7 @@ final class ArrayValuesEqualTo extends AbstractConstraint
      */
     protected static function makeExpectedValues(array $array): ValuesInterface
     {
-        return new ExpectedValues($array);
+        return new ExpectedArrayValues($array);
     }
 }
 

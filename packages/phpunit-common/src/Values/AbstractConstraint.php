@@ -28,7 +28,7 @@ use Tailors\PHPUnit\InternalErrorException;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-abstract class AbstractConstraint extends Constraint implements ComparatorWrapperInterface, ValueSelectorWrapperInterface, ValuesWrapperInterface
+abstract class AbstractConstraint extends Constraint implements ComparatorWrapperInterface, ValuesWrapperInterface
 {
     use ShortFailureDescriptionTrait;
 
@@ -48,14 +48,6 @@ abstract class AbstractConstraint extends Constraint implements ComparatorWrappe
     final public function getComparator(): ComparatorInterface
     {
         return $this->comparator;
-    }
-
-    /**
-     * Returns an instance of ValueSelectiorInterface.
-     */
-    final public function getValueSelector(): ValueSelectorInterface
-    {
-        return $this->valueSelector;
     }
 
     /**
@@ -165,7 +157,7 @@ abstract class AbstractConstraint extends Constraint implements ComparatorWrappe
         $result = $visitor->result();
 
         if (!$result instanceof ValuesInterface) {
-            $type = is_object($result) ? get_class($result) : gettype($result);
+            $type = get_debug_type($result);
 
             /** @psalm-suppress MissingThrowsDocblock */
             throw InternalErrorException::fromBackTrace("recursive walk resulted with {$type}", 0);

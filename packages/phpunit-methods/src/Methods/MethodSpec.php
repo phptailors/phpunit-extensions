@@ -59,27 +59,10 @@ final readonly class MethodSpec implements MethodSpecInterface
      * @psalm-param non-empty-string $name
      */
     public function __construct(
-        /**
-         * @psalm-var non-empty-string
-         *
-         * @psalm-readonly
-         */
         private string $name,
-        /**
-         * @psalm-readonly
-         */
         private ?bool $static = null,
-        /**
-         * @psalm-readonly
-         */
         private ?int $access = null,
-        /**
-         * @psalm-readonly
-         */
         private ?bool $abstract = null,
-        /**
-         * @psalm-readonly
-         */
         private ?bool $final = null
     ) {}
 
