@@ -25,10 +25,6 @@
         "psr-4": {
             "Tailors\\PHPUnit\\": "tests/src/"
         }
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "5.0-dev"
         }
     },
     "conflict": {
