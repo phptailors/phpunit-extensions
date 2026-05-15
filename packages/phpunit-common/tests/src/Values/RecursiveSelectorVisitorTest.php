@@ -98,7 +98,7 @@ final class RecursiveSelectorVisitorTest extends TestCase
         $this->expectExceptionMessageMatches("/^Circular dependency found in nested values at \\\$values{$rePath}\\.$/");
 
         $valueSelector = new DummyValueSelector();
-        (new RecursiveSelectorVisitor($valueSelector, null))->cycle([], $stack);
+        new RecursiveSelectorVisitor($valueSelector, null)->cycle([], $stack);
     }
 
     /**
@@ -363,12 +363,12 @@ final class RecursiveSelectorVisitorTest extends TestCase
 
         $expect = $result;
         if ($expect instanceof ActualValues) {
-            $expect = (new RecursiveUnwrapper())->unwrap($expect);
+            $expect = new RecursiveUnwrapper()->unwrap($expect);
         }
 
         $actual = $visitor->result();
         if ($actual instanceof ActualValues) {
-            $actual = (new RecursiveUnwrapper())->unwrap($actual);
+            $actual = new RecursiveUnwrapper()->unwrap($actual);
         }
 
         $this->assertSame($expect, $actual);
@@ -532,12 +532,12 @@ final class RecursiveSelectorVisitorTest extends TestCase
 
         $expect = $result;
         if ($expect instanceof ActualValues) {
-            $expect = (new RecursiveUnwrapper())->unwrap($expect);
+            $expect = new RecursiveUnwrapper()->unwrap($expect);
         }
 
         $actual = $visitor->result();
         if ($actual instanceof ActualValues) {
-            $actual = (new RecursiveUnwrapper())->unwrap($actual);
+            $actual = new RecursiveUnwrapper()->unwrap($actual);
         }
 
         $this->assertSame($expect, $actual);
@@ -716,12 +716,12 @@ final class RecursiveSelectorVisitorTest extends TestCase
 
         $expect = $result;
         if ($expect instanceof ActualValues) {
-            $expect = (new RecursiveUnwrapper())->unwrap($expect);
+            $expect = new RecursiveUnwrapper()->unwrap($expect);
         }
 
         $actual = $visitor->result();
         if ($actual instanceof ActualValues) {
-            $actual = (new RecursiveUnwrapper())->unwrap($actual);
+            $actual = new RecursiveUnwrapper()->unwrap($actual);
         }
 
         $this->assertSame($expect, $actual);

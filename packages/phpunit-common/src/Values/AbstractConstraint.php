@@ -158,7 +158,7 @@ abstract class AbstractConstraint extends Constraint implements ComparatorWrappe
     {
         $visitor = new RecursiveSelectorVisitor($this->valueSelector, $subject);
 
-        (new RecursiveTraversal())->walk($this->expected, $visitor);
+        new RecursiveTraversal()->walk($this->expected, $visitor);
 
         $result = $visitor->result();
 
