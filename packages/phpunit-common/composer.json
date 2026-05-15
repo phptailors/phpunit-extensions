@@ -6,8 +6,8 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "support": {
-      "issues": "https://github.com/phptailors/phpunit-extensions/issues",
-      "source": "https://github.com/phptailors/phpunit-extensions"
+        "issues": "https://github.com/phptailors/phpunit-extensions/issues",
+        "source": "https://github.com/phptailors/phpunit-extensions"
     },
     "authors": [
         {
@@ -28,16 +28,14 @@
         "sebastian/recursion-context": "^4 || ^5"
     },
     "autoload": {
-      "psr-4" : {
-        "Tailors\\PHPUnit\\" : "src/"
-      },
-      "files": [
-      ]
+        "psr-4": {
+            "Tailors\\PHPUnit\\": "src/"
+        }
     },
     "autoload-dev": {
-      "psr-4" : {
-        "Tailors\\PHPUnit\\" : "tests/src/"
-      }
+        "psr-4": {
+            "Tailors\\PHPUnit\\": "tests/src/"
+        }
     },
     "extra": {
         "branch-alias": {
