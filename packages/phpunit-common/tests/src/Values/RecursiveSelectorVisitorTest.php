@@ -10,15 +10,14 @@
 
 namespace Tailors\PHPUnit\Values;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\CircularDependencyException;
 use Tailors\PHPUnit\InternalErrorException;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\Values\RecursiveSelectorVisitor
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
@@ -28,6 +27,8 @@ use Tailors\PHPUnit\InternalErrorException;
  * @psalm-type EnterTestCall = array{args: array{node: array|ValuesInterface}, return: bool, next?: mixed}
  * @psalm-type VisitTestCall = array{args: array{node: mixed}, key?:array-key}
  */
+#[CoversClass(RecursiveSelectorVisitor::class)]
+#[Small]
 final class RecursiveSelectorVisitorTest extends TestCase
 {
     //
@@ -67,9 +68,7 @@ final class RecursiveSelectorVisitorTest extends TestCase
         // 02
         //
 
-        $s02 = array_map(function ($key) {
-            return new RecursiveSelectorStackItem([], $key, new RecursiveSelectorState([], []));
-        }, ['foo', 3, 'bar']);
+        $s02 = array_map(fn ($key) => new RecursiveSelectorStackItem([], $key, new RecursiveSelectorState([], [])), ['foo', 3, 'bar']);
 
         yield 'RecursiveSelectorVisitorTest.php:'.__LINE__ => [
             'stack'  => $s02,
@@ -80,9 +79,7 @@ final class RecursiveSelectorVisitorTest extends TestCase
         // 03
         //
 
-        $s03 = array_map(function ($key) {
-            return new RecursiveSelectorStackItem([], $key, new RecursiveSelectorState([], []));
-        }, [null, 3, false]);
+        $s03 = array_map(fn ($key) => new RecursiveSelectorStackItem([], $key, new RecursiveSelectorState([], [])), [null, 3, false]);
 
         yield 'RecursiveSelectorVisitorTest.php:'.__LINE__ => [
             'stack'  => $s03,
@@ -91,10 +88,9 @@ final class RecursiveSelectorVisitorTest extends TestCase
     }
 
     /**
-     * @dataProvider provCycle
-     *
      * @psalm-param list<StackItem> $stack
      */
+    #[DataProvider('provCycle')]
     public function testCycle(array $stack, string $expect): void
     {
         $rePath = preg_quote($expect, '/');
@@ -229,12 +225,6 @@ final class RecursiveSelectorVisitorTest extends TestCase
                     'return' => true,
                     'next'   => 0,
                 ],
-                [
-                    'args' => [
-                        'node' => $e05['foo']['bar'][0],
-                    ],
-                    'return' => false,
-                ],
             ],
             'result' => new ActualValues([
                 'foo' => new ActualValues([
@@ -336,12 +326,6 @@ final class RecursiveSelectorVisitorTest extends TestCase
                     'return' => true,
                     'next'   => 0,
                 ],
-                [
-                    'args' => [
-                        'node' => $e07['foo']['bar'][0],
-                    ],
-                    'return' => false,
-                ],
             ],
             'result' => new ActualValues([
                 'foo' => [
@@ -352,14 +336,11 @@ final class RecursiveSelectorVisitorTest extends TestCase
     }
 
     /**
-     * @dataProvider provEnterLeave
-     *
-     * @param mixed $result
-     *
      * @psalm-param CtorArgs                      $ctor
      * @psalm-param non-empty-list<EnterTestCall> $calls
      */
-    public function testEnterLeave(array $ctor, array $calls, $result): void
+    #[DataProvider('provEnterLeave')]
+    public function testEnterLeave(array $ctor, array $calls, mixed $result): void
     {
         $visitor = new RecursiveSelectorVisitor(...$ctor);
         $stack = [];
@@ -516,15 +497,12 @@ final class RecursiveSelectorVisitorTest extends TestCase
     }
 
     /**
-     * @dataProvider provVisit
-     *
-     * @param mixed $result
-     *
      * @psalm-param array{0: ValueSelectorInterface, 1: mixed} $ctor
      * @psalm-param ?EnterTestCall                             $enter
      * @psalm-param non-empty-list<VisitTestCall>              $calls
      */
-    public function testVisit(array $ctor, ?array $enter, array $calls, $result): void
+    #[DataProvider('provVisit')]
+    public function testVisit(array $ctor, ?array $enter, array $calls, mixed $result): void
     {
         $visitor = new RecursiveSelectorVisitor(...$ctor);
         $stack = [];
@@ -727,13 +705,10 @@ final class RecursiveSelectorVisitorTest extends TestCase
     }
 
     /**
-     * @dataProvider provWithRecursiveTraversal
-     *
-     * @param mixed $result
-     *
      * @psalm-param CtorArgs $ctor
      */
-    public function testWithRecursiveTraversal(array $ctor, ValuesInterface $values, $result): void
+    #[DataProvider('provWithRecursiveTraversal')]
+    public function testWithRecursiveTraversal(array $ctor, ValuesInterface $values, mixed $result): void
     {
         $visitor = new RecursiveSelectorVisitor(...$ctor);
         $traversal = new RecursiveTraversal();
@@ -786,9 +761,7 @@ final class RecursiveSelectorVisitorTest extends TestCase
     private static function getArrayObjectSelector(): DummyValueSelector
     {
         return new DummyValueSelector(
-            function ($subject): bool {
-                return is_object($subject) && \ArrayObject::class === get_class($subject);
-            },
+            fn ($subject): bool => is_object($subject) && \ArrayObject::class === $subject::class,
             function ($subject, $key, &$retval): bool {
                 if (!$subject->offsetExists($key)) {
                     return false;

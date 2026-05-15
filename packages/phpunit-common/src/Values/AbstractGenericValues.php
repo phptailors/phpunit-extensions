@@ -11,7 +11,7 @@
 namespace Tailors\PHPUnit\Values;
 
 /**
- * An array of expected values.
+ * An array of expected or actual values (generic).
  *
  * @internal This class is not covered by the backward compatibility promise
  *

@@ -10,13 +10,12 @@
 
 namespace Tailors\PHPUnit\Values;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\Values\RecursiveSelectorStackItem
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
@@ -25,6 +24,8 @@ use PHPUnit\Framework\TestCase;
  * @psalm-type CtorExpect = array{node: mixed, key: mixed, state: mixed}
  * @psalm-type SetExpect  = array{node: mixed, key: mixed, subject: mixed, result: mixed}
  */
+#[CoversClass(RecursiveSelectorStackItem::class)]
+#[Small]
 final class RecursiveSelectorStackItemTest extends TestCase
 {
     /**
@@ -63,11 +64,10 @@ final class RecursiveSelectorStackItemTest extends TestCase
     }
 
     /**
-     * @dataProvider provConstruct
-     *
      * @psalm-param CtorArgs   $ctor
      * @psalm-param CtorExpect $expect
      */
+    #[DataProvider('provConstruct')]
     public function testConstruct(array $ctor, array $expect): void
     {
         $item = new RecursiveSelectorStackItem(...$ctor);
@@ -133,14 +133,11 @@ final class RecursiveSelectorStackItemTest extends TestCase
     }
 
     /**
-     * @dataProvider provSet
-     *
-     * @param mixed $value
-     *
      * @psalm-param CtorArgs  $ctor
      * @psalm-param SetExpect $expect
      */
-    public function testSet(array $ctor, $value, array $expect): void
+    #[DataProvider('provSet')]
+    public function testSet(array $ctor, mixed $value, array $expect): void
     {
         $item = new RecursiveSelectorStackItem(...$ctor);
 

@@ -17,27 +17,7 @@ namespace Tailors\PHPUnit\Values;
  */
 final class RecursiveSelectorState
 {
-    /**
-     * @var mixed
-     *
-     * @psalm-readonly
-     */
-    public $subject;
-
-    /**
-     * @var array|ValuesInterface
-     */
-    public $result;
-
-    /**
-     * @param mixed                 $subject
-     * @param array|ValuesInterface $result
-     */
-    public function __construct($subject, $result)
-    {
-        $this->subject = $subject;
-        $this->result = $result;
-    }
+    public function __construct(public readonly mixed $subject, public array|ValuesInterface $result) {}
 }
 
 // vim: syntax=php sw=4 ts=4 et:

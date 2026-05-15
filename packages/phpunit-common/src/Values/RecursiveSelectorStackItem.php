@@ -15,72 +15,36 @@ namespace Tailors\PHPUnit\Values;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class RecursiveSelectorStackItem implements RecursiveVisitorStackItemInterface
+final readonly class RecursiveSelectorStackItem implements RecursiveVisitorStackItemInterface
 {
     /**
-     * @var array|ValuesInterface
-     *
-     * @psalm-readonly
-     */
-    private $node;
-
-    /**
-     * @var mixed
-     *
-     * @psalm-var array-key
-     *
-     * @psalm-readonly
-     */
-    private $key;
-
-    /**
-     * @var RecursiveSelectorState
-     *
-     * @psalm-readonly
-     */
-    private $state;
-
-    /**
-     * @param array|ValuesInterface $node
-     * @param mixed                 $key
-     *
      * @psalm-param array-key $key
      */
-    public function __construct($node, $key, RecursiveSelectorState $state)
-    {
-        $this->node = $node;
-        $this->key = $key;
-        $this->state = $state;
-    }
+    public function __construct(
+        private array|ValuesInterface $node,
+        private mixed $key,
+        private RecursiveSelectorState $state
+    ) {}
 
     /**
-     * @return mixed
-     *
-     * @psalm-return array|ValuesInterface
-     *
      * @psalm-mutation-free
      */
-    public function node()
+    public function node(): array|ValuesInterface
     {
         return $this->node;
     }
 
     /**
-     * @return mixed
-     *
      * @psalm-return array-key
      *
      * @psalm-mutation-free
      */
-    public function key()
+    public function key(): mixed
     {
         return $this->key;
     }
 
-    /**
-     * @param mixed $value
-     */
-    public function set($value): void
+    public function set(mixed $value): void
     {
         $this->state->result[$this->key] = $value;
     }
