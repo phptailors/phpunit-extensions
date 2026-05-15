@@ -10,26 +10,19 @@
 
 namespace Tailors\PHPUnit\Properties;
 
-use PHPUnit\Framework\TestCase;
-use Tailors\PHPUnit\Values\AbstractValuesTestTrait;
-
 /**
  * @small
  *
  * @covers \Tailors\PHPUnit\Properties\AbstractObjectProperties
  * @covers \Tailors\PHPUnit\Properties\ActualObjectProperties
- * @covers \Tailors\PHPUnit\Properties\ObjectPropertiesTestTrait
+ * @covers \Tailors\PHPUnit\Properties\ObjectPropertiesTestCase
  *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class ActualObjectPropertiesTest extends TestCase
+final class ActualObjectPropertiesTest extends ObjectPropertiesTestCase
 {
-    use AbstractValuesTestTrait;
-    use ObjectPropertiesTestTrait;
-
-    // required by ValuesTestTrait
     public static function getValuesClass(): string
     {
         return ActualObjectProperties::class;

@@ -10,26 +10,19 @@
 
 namespace Tailors\PHPUnit\Arrays;
 
-use PHPUnit\Framework\TestCase;
-use Tailors\PHPUnit\Values\AbstractValuesTestTrait;
-
 /**
  * @small
  *
  * @covers \Tailors\PHPUnit\Arrays\AbstractArrayValues
- * @covers \Tailors\PHPUnit\Arrays\ArrayValuesTestTrait
+ * @covers \Tailors\PHPUnit\Arrays\ArrayValuesTestCase
  * @covers \Tailors\PHPUnit\Arrays\ExpectedArrayValues
  *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class ExpectedArrayValuesTest extends TestCase
+final class ExpectedArrayValuesTest extends ArrayValuesTestCase
 {
-    use AbstractValuesTestTrait;
-    use ArrayValuesTestTrait;
-
-    // required by ValuesTestTrait
     public static function getValuesClass(): string
     {
         return ExpectedArrayValues::class;

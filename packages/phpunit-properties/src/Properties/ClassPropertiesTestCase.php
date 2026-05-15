@@ -10,16 +10,32 @@
 
 namespace Tailors\PHPUnit\Properties;
 
+use Tailors\PHPUnit\Values\AbstractValuesTestCase;
+use Tailors\PHPUnit\Values\ValuesInterface;
+
 /**
- * @small
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-import-type AbstractValuesCtorArgs from AbstractValuesTestCase as ClassPropertiesCtorArgs
  */
-trait ClassPropertiesTestTrait
+abstract class ClassPropertiesTestCase extends AbstractValuesTestCase
 {
+    /**
+     * @return class-string<AbstractClassProperties>
+     */
     abstract public static function getValuesClass(): string;
+
+    /**
+     * @psalm-param ClassPropertiesCtorArgs $ctorArgs
+     */
+    final public static function getValuesObject(array $ctorArgs): ValuesInterface
+    {
+        $class = static::getValuesClass();
+
+        return new $class(...$ctorArgs);
+    }
 
     public static function getValuesFamilyName(): string
     {
@@ -28,7 +44,7 @@ trait ClassPropertiesTestTrait
 
     public static function getValuesActual(): bool
     {
-        return ActualClassProperties::class === self::getValuesClass();
+        return ActualClassProperties::class === static::getValuesClass();
     }
 }
 // vim: syntax=php sw=4 ts=4 et:
