@@ -11,9 +11,7 @@
 namespace Tailors\PHPUnit\Values;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\Attributes\Small;
-use PHPUnit\Framework\TestCase;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -22,14 +20,12 @@ use PHPUnit\Framework\TestCase;
  */
 #[CoversClass(AbstractGenericValues::class)]
 #[CoversClass(AbstractValues::class)]
+#[CoversClass(AbstractValuesTestCase::class)]
 #[CoversClass(ActualValues::class)]
-#[CoversTrait(GenericValuesTestTrait::class)]
+#[CoversClass(GenericValuesTestCase::class)]
 #[Small]
-final class ActualValuesTest extends TestCase
+final class ActualValuesTest extends GenericValuesTestCase
 {
-    use GenericValuesTestTrait;
-
-    // required by ValuesTestTrait
     #[\Override]
     public static function getValuesClass(): string
     {

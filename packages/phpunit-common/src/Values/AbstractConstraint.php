@@ -19,6 +19,7 @@ use Tailors\PHPUnit\Common\Exporter;
 use Tailors\PHPUnit\Common\ShortFailureDescriptionTrait;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\ComparatorWrapperInterface;
+use Tailors\PHPUnit\InternalErrorException;
 
 /**
  * Abstract base for constraints that examine values.
@@ -27,7 +28,7 @@ use Tailors\PHPUnit\Comparator\ComparatorWrapperInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-abstract class AbstractConstraint extends Constraint implements ComparatorWrapperInterface, ValueSelectorWrapperInterface, ValuesWrapperInterface
+abstract class AbstractConstraint extends Constraint implements ComparatorWrapperInterface, ValuesWrapperInterface
 {
     use ShortFailureDescriptionTrait;
 
@@ -49,14 +50,6 @@ abstract class AbstractConstraint extends Constraint implements ComparatorWrappe
     final public function getComparator(): ComparatorInterface
     {
         return $this->comparator;
-    }
-
-    /**
-     * Returns an instance of ValueSelectiorInterface.
-     */
-    final public function getValueSelector(): ValueSelectorInterface
-    {
-        return $this->valueSelector;
     }
 
     /**
@@ -163,25 +156,20 @@ abstract class AbstractConstraint extends Constraint implements ComparatorWrappe
 
     private function select(mixed $subject): ValuesInterface
     {
-        $array = $this->selectArray($subject);
+        $visitor = new RecursiveSelectorVisitor($this->valueSelector, $subject);
 
-        return $this->expected->createActualValues($array);
-    }
+        new RecursiveTraversal()->walk($this->expected, $visitor);
 
-    private function selectArray(mixed $subject): array
-    {
-        $array = [];
+        $result = $visitor->result();
 
-        // order of keys in $array shall follow that of $this->selection
-        /** @psalm-var mixed $expect */
-        foreach ($this->expected as $key => $_) {
-            if ($this->valueSelector->select($subject, $key, $actual)) {
-                /** @psalm-var mixed */
-                $array[$key] = $actual;
-            }
+        if (!$result instanceof ValuesInterface) {
+            $type = get_debug_type($result);
+
+            /** @psalm-suppress MissingThrowsDocblock */
+            throw InternalErrorException::fromBackTrace("recursive walk resulted with {$type}", 0);
         }
 
-        return $array;
+        return $result;
     }
 }
 

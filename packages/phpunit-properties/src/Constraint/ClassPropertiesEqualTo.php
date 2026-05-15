@@ -12,11 +12,13 @@ namespace Tailors\PHPUnit\Constraint;
 
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\EqualityComparator;
+use Tailors\PHPUnit\Properties\ExpectedClassProperties;
 use Tailors\PHPUnit\Properties\ValidateExpectationsTrait;
 use Tailors\PHPUnit\Values\AbstractConstraint;
 use Tailors\PHPUnit\Values\ClassPropertySelector;
 use Tailors\PHPUnit\Values\ConstraintImplementationTrait;
 use Tailors\PHPUnit\Values\ValueSelectorInterface;
+use Tailors\PHPUnit\Values\ValuesInterface;
 
 /**
  * Constraint that accepts classes having properties equal to specified ones.
@@ -63,6 +65,14 @@ final class ClassPropertiesEqualTo extends AbstractConstraint
     protected static function makeSelector(): ValueSelectorInterface
     {
         return new ClassPropertySelector();
+    }
+
+    /**
+     * Creates instance of ValuesInterface to be used as expected values.
+     */
+    protected static function makeExpectedValues(array $array): ValuesInterface
+    {
+        return new ExpectedClassProperties($array);
     }
 }
 

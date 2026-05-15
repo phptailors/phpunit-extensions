@@ -11,11 +11,11 @@ Failed asserting that array is an array or ArrayAccess with values equal to spec
 --- Expected
 +++ Actual
 @@ @@
--Tailors\PHPUnit\Values\ExpectedValues Object &000000000000014d0000000000000000 (
+-Tailors\PHPUnit\Arrays\ExpectedArrayValues Object &000000000000014d0000000000000000 (
 -    'int' => 123
 -    1 => null
 -    'foo' => 'BAR'
-+Tailors\PHPUnit\Values\ActualValues Object &00000000000001450000000000000000 (
++Tailors\PHPUnit\Arrays\ActualArrayValues Object &00000000000001450000000000000000 (
 +    'int' => '123'
 +    1 => ''
 +    'foo' => 'FOO'
