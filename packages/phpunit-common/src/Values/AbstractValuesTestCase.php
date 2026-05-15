@@ -13,7 +13,6 @@ namespace Tailors\PHPUnit\Values;
 use PHPUnit\Framework\Exception;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
-use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use Tailors\PHPUnit\Common\StaticRandomStrings;
 
 /**
@@ -39,7 +38,6 @@ abstract class AbstractValuesTestCase extends TestCase
     /**
      * @throws Exception
      * @throws ExpectationFailedException
-     * @throws InvalidArgumentException
      */
     final public function testImplementsValuesInterface(): void
     {
@@ -49,7 +47,6 @@ abstract class AbstractValuesTestCase extends TestCase
     /**
      * @throws Exception
      * @throws ExpectationFailedException
-     * @throws InvalidArgumentException
      */
     final public function testExtendsArrayObject(): void
     {
@@ -96,7 +93,6 @@ abstract class AbstractValuesTestCase extends TestCase
      * @dataProvider provAbstractValues
      *
      * @throws ExpectationFailedException
-     * @throws InvalidArgumentException
      *
      * @psalm-param AbstractValuesCtorArgs $ctor
      */
@@ -125,7 +121,6 @@ abstract class AbstractValuesTestCase extends TestCase
      * @dataProvider provAbstractValuesTag
      *
      * @throws ExpectationFailedException
-     * @throws InvalidArgumentException
      *
      * @psalm-param AbstractValuesCtorArgs $ctor
      */
@@ -142,7 +137,6 @@ abstract class AbstractValuesTestCase extends TestCase
 
     /**
      * @throws ExpectationFailedException
-     * @throws InvalidArgumentException
      */
     final public function testAbstractValuesCreateActualValues(): void
     {
