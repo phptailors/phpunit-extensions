@@ -21,7 +21,7 @@ use Tailors\PHPUnit\Common\StaticRandomStrings;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type AbstractValuesCtorArgs = list{0?: array|\Traversable<array-key,mixed>}
+ * @psalm-type AbstractValuesCtorArgs = array{0?: array|\Traversable<array-key,mixed>}
  */
 abstract class AbstractValuesTestCase extends TestCase
 {
