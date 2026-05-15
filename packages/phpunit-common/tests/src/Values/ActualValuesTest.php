@@ -10,27 +10,21 @@
 
 namespace Tailors\PHPUnit\Values;
 
-use PHPUnit\Framework\TestCase;
-
 /**
  * @small
  *
  * @covers \Tailors\PHPUnit\Values\AbstractGenericValues
  * @covers \Tailors\PHPUnit\Values\AbstractValues
- * @covers \Tailors\PHPUnit\Values\AbstractValuesTestTrait
+ * @covers \Tailors\PHPUnit\Values\AbstractValuesTestCase
  * @covers \Tailors\PHPUnit\Values\ActualValues
- * @covers \Tailors\PHPUnit\Values\GenericValuesTestTrait
+ * @covers \Tailors\PHPUnit\Values\GenericValuesTestCase
  *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class ActualValuesTest extends TestCase
+final class ActualValuesTest extends GenericValuesTestCase
 {
-    use AbstractValuesTestTrait;
-    use GenericValuesTestTrait;
-
-    // required by ValuesTestTrait
     public static function getValuesClass(): string
     {
         return ActualValues::class;
