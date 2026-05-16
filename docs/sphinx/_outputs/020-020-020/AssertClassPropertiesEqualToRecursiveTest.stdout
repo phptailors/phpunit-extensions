@@ -1,0 +1,30 @@
+PHPUnit 10.5.63 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.2.30
+Configuration: phpunit.xml
+
+.F                                                                  2 / 2 (100%)
+
+Time: 00:00.010, Memory: 8.00 MB
+
+There was 1 failure:
+
+1) AssertClassPropertiesEqualToRecursiveTest::testFailure
+Failed asserting that AssertClassPropertiesEqualToRecursiveTest is a class with properties equal to specified.
+--- Expected
++++ Actual
+@@ @@
+-Tailors\PHPUnit\Properties\ExpectedClassProperties Object #462 (
+-    'attribute' => '123',
+-    'nested' => Array &0 [
+-        'other' => '321',
+-    ],
++Tailors\PHPUnit\Properties\ActualClassProperties Object #343 (
++    'attribute' => 123,
++    'nested' => 'AssertClassPropertiesEqualToRecursiveTest',
+ )
+
+AssertClassPropertiesEqualToRecursiveTest.php:24
+
+FAILURES!
+Tests: 2, Assertions: 2, Failures: 1.

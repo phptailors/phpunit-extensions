@@ -36,7 +36,9 @@ final class ExpectedClassProperties extends AbstractClassProperties implements V
     public function getValueSelector(): ValueSelectorInterface
     {
         if (null === self::$valueSelector) {
+            // @codeCoverageIgnoreStart
             self::$valueSelector = new ClassPropertySelector();
+            // @codeCoverageIgnoreEnd
         }
 
         return self::$valueSelector;

@@ -1,0 +1,26 @@
+PHPUnit 9.6.33 by Sebastian Bergmann and contributors.
+
+.F                                                                  2 / 2 (100%)
+
+Time: 00:00.005, Memory: 6.00 MB
+
+There was 1 failure:
+
+1) classPropertiesIdenticalToRecursiveTest::testFailure
+Failed asserting that classPropertiesIdenticalToRecursiveTest is a class with properties identical to specified.
+--- Expected
++++ Actual
+@@ @@
+-Tailors\PHPUnit\Properties\ExpectedClassProperties Object &00000000506e0cb2000000005bf4d9ba (
++Tailors\PHPUnit\Properties\ActualClassProperties Object &00000000506e0cb8000000005bf4d9ba (
+     'attribute' => 123
+-    'nested' => Array &0 (
+-        'other' => 321
+-    )
++    'nested' => 'classPropertiesIdenticalToRecursiveTest'
+ )
+
+classPropertiesIdenticalToRecursiveTest.php:25
+
+FAILURES!
+Tests: 2, Assertions: 2, Failures: 1.

@@ -1,0 +1,33 @@
+PHPUnit 9.6.33 by Sebastian Bergmann and contributors.
+
+.F                                                                  2 / 2 (100%)
+
+Time: 00:00.005, Memory: 6.00 MB
+
+There was 1 failure:
+
+1) AssertObjectPropertiesIdenticalToRecursiveTest::testFailure
+Failed asserting that object AssertObjectPropertiesIdenticalToRecursiveTest is an object with properties identical to specified.
+--- Expected
++++ Actual
+@@ @@
+-Tailors\PHPUnit\Properties\ExpectedObjectProperties Object &000000000000015f0000000000000000 (
++Tailors\PHPUnit\Properties\ActualObjectProperties Object &00000000000000350000000000000000 (
+     'attribute' => 123
+-    'nested()' => Array &0 (
+-        'getMessage()' => 'FOO'
+-        'getCode()' => 456
++    'nested()' => Exception Object &00000000000001570000000000000000 (
++        'message' => 'FOO'
++        'string' => ''
++        'code' => 456
++        'file' => 'AssertObjectPropertiesIdenticalToRecursiveTest.php'
++        'line' => 13
++        'previous' => null
+     )
+ )
+
+AssertObjectPropertiesIdenticalToRecursiveTest.php:29
+
+FAILURES!
+Tests: 2, Assertions: 2, Failures: 1.
