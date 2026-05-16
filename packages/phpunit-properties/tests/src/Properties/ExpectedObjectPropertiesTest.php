@@ -10,6 +10,9 @@
 
 namespace Tailors\PHPUnit\Properties;
 
+use Tailors\PHPUnit\Values\ObjectPropertySelector;
+use Tailors\PHPUnit\Values\ValueSelectorWrapperInterface;
+
 /**
  * @small
  *
@@ -26,6 +29,20 @@ final class ExpectedObjectPropertiesTest extends ObjectPropertiesTestCase
     public static function getValuesClass(): string
     {
         return ExpectedObjectProperties::class;
+    }
+
+    public function testImplementsValueSelectorWrapperInterface(): void
+    {
+        $this->assertInstanceOf(ValueSelectorWrapperInterface::class, new ExpectedObjectProperties());
+    }
+
+    public function testGetValueSelector(): void
+    {
+        $values = new ExpectedObjectProperties();
+        $selector = $values->getValueSelector();
+
+        $this->assertInstanceOf(ObjectPropertySelector::class, $selector);
+        $this->assertSame($selector, $values->getValueSelector());
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

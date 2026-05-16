@@ -10,6 +10,10 @@
 
 namespace Tailors\PHPUnit\Arrays;
 
+use Tailors\PHPUnit\Values\ArrayValueSelector;
+use Tailors\PHPUnit\Values\ValueSelectorInterface;
+use Tailors\PHPUnit\Values\ValueSelectorWrapperInterface;
+
 /**
  * An array of expected array values.
  *
@@ -17,14 +21,28 @@ namespace Tailors\PHPUnit\Arrays;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class ExpectedArrayValues extends AbstractArrayValues
+final class ExpectedArrayValues extends AbstractArrayValues implements ValueSelectorWrapperInterface
 {
+    /**
+     * @var ?ArrayValueSelector
+     */
+    private static $valueSelector;
+
     /**
      * @psalm-mutation-free
      */
     public function actual(): bool
     {
         return false;
+    }
+
+    public function getValueSelector(): ValueSelectorInterface
+    {
+        if (null === self::$valueSelector) {
+            self::$valueSelector = new ArrayValueSelector();
+        }
+
+        return self::$valueSelector;
     }
 }
 
