@@ -25,7 +25,6 @@
         "psr-4": {
             "Tailors\\PHPUnit\\": "tests/src/"
         }
-        }
     },
     "conflict": {
         "nikic/php-parser": "< 4.13.2"
