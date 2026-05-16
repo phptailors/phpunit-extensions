@@ -776,11 +776,11 @@ final class RecursiveSelectorVisitorTest extends TestCase
         $actual = $visitor->result();
 
         if ($expect instanceof ValuesInterface && $expect->actual()) {
-            $expect = (new RecursiveUnwrapper())->unwrap($expect);
+            $expect = new RecursiveUnwrapper()->unwrap($expect);
         }
 
         if ($actual instanceof ValuesInterface && $actual->actual()) {
-            $actual = (new RecursiveUnwrapper())->unwrap($actual);
+            $actual = new RecursiveUnwrapper()->unwrap($actual);
         }
 
         $this->assertSame($expect, $actual);
