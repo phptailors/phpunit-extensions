@@ -3,8 +3,6 @@
     "description": "PCRE assertions for PHPUnit-based tests",
     "type": "library",
     "license": "MIT",
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "support": {
         "issues": "https://github.com/phptailors/phpunit-extensions/issues",
         "source": "https://github.com/phptailors/phpunit-extensions"
@@ -19,7 +17,7 @@
         "nikic/php-parser": "< 4.13.2"
     },
     "require": {
-        "php": ">=7.3",
+        "php": "^7.3 || ^8",
         "phptailors/phpunit-common": "^1.1.x-dev"
     },
     "require-dev": {
@@ -34,5 +32,7 @@
         "psr-4": {
             "Tailors\\PHPUnit\\": "tests/src/"
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
