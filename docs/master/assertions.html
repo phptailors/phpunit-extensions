@@ -46,40 +46,23 @@
               <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">1. Assertions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#assertarrayvaluesequalto">assertArrayValuesEqualTo()</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#selecting-values-from-nested-arrays">Selecting values from nested arrays</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#assertarrayvaluesidenticalto">assertArrayValuesIdenticalTo()</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">Selecting values from nested arrays</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#assertclasspropertiesequalto">assertClassPropertiesEqualTo()</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#selecting-properties-of-nested-classes">Selecting properties of nested classes</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#assertclasspropertiesidenticalto">assertClassPropertiesIdenticalTo()</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id3">Selecting properties of nested classes</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#assertarrayvaluesequalto">assertArrayValuesEqualTo()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#assertarrayvaluesidenticalto">assertArrayValuesIdenticalTo()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#assertclasspropertiesequalto">assertClassPropertiesEqualTo()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#assertclasspropertiesidenticalto">assertClassPropertiesIdenticalTo()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#assertextendsclass">assertExtendsClass()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#asserthasmethod">assertHasMethod()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#asserthaspregcaptures">assertHasPregCaptures()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#assertimplementsinterface">assertImplementsInterface()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#assertksortedarrayequalto">assertKsortedArrayEqualTo()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#assertksortedarrayidenticalto">assertKsortedArrayIdenticalTo()</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#assertobjectpropertiesequalto">assertObjectPropertiesEqualTo()</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#selecting-properties-of-nested-objects">Selecting properties of nested objects</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#assertobjectpropertiesidenticalto">assertObjectPropertiesIdenticalTo()</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id4">Selecting properties of nested objects</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#assertobjectpropertiesequalto">assertObjectPropertiesEqualTo()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#assertobjectpropertiesidenticalto">assertObjectPropertiesIdenticalTo()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#assertusestrait">assertUsesTrait()</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="constraints.html">2. Constraints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utilities.html">3. Utilities</a></li>
 </ul>
 
         </div>
@@ -114,8 +97,8 @@ test class by including appropriate trait as shown in prerequisite tables
 below.</p>
 <section id="assertarrayvaluesequalto">
 <span id="assertions-assertarrayvaluesequalto"></span><h2>assertArrayValuesEqualTo()<a class="headerlink" href="#assertarrayvaluesequalto" title="Permalink to this heading"></a></h2>
-<table class="docutils align-default" id="id5" style="width: 100%">
-<caption><span class="caption-text">Prerequisites for assertArrayValuesEqualTo()</span><a class="headerlink" href="#id5" title="Permalink to this table"></a></caption>
+<table class="docutils align-default" id="id2" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for <a class="reference internal" href="#assertions-assertarrayvaluesequalto"><span class="std std-ref">assertArrayValuesEqualTo()</span></a></span><a class="headerlink" href="#id2" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 75%" />
@@ -150,7 +133,7 @@ array nor <a class="reference external" href="https://www.php.net/manual/en/clas
 </div>
 <p>is the inverse of this.</p>
 <div class="literal-block-wrapper docutils container" id="assertions-assertarrayvaluesequalto-example">
-<div class="code-block-caption"><span class="caption-text">Usage of assertArrayValuesEqualTo()</span><a class="headerlink" href="#assertions-assertarrayvaluesequalto-example" title="Permalink to this code"></a></div>
+<div class="code-block-caption"><span class="caption-text">Usage of <a class="reference internal" href="#assertions-assertarrayvaluesequalto"><span class="std std-ref">assertArrayValuesEqualTo()</span></a></span><a class="headerlink" href="#assertions-assertarrayvaluesequalto-example" title="Permalink to this code"></a></div>
 <div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
 <span class="linenos"> 2</span>
 <span class="linenos"> 3</span><span class="k">final</span> <span class="k">class</span> <span class="nc">AssertArrayValuesEqualToTest</span> <span class="k">extends</span> <span class="nx">\PHPUnit\Framework\TestCase</span>
@@ -208,31 +191,11 @@ array nor <a class="reference external" href="https://www.php.net/manual/en/clas
 <span class="linenos">30</span>Tests: 2, Assertions: 2, Failures: 1.
 </pre></div>
 </div>
-<section id="selecting-values-from-nested-arrays">
-<h3>Selecting values from nested arrays<a class="headerlink" href="#selecting-values-from-nested-arrays" title="Permalink to this heading"></a></h3>
-<table class="docutils align-default" id="id6" style="width: 100%">
-<caption><span class="caption-text">Prerequisites for nested selection</span><a class="headerlink" href="#id6" title="Permalink to this table"></a></caption>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 75%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p>Package</p></td>
-<td><p>phptailors/phpunit-arrays: <code class="docutils literal notranslate"><span class="pre">^1.1</span> <span class="pre">||</span> <span class="pre">^2.1</span> <span class="pre">||</span> <span class="pre">^3.1</span> <span class="pre">||</span> <span class="pre">^4.1</span> <span class="pre">||</span> <span class="pre">^5.1</span></code></p></td>
-</tr>
-<tr class="row-even"><td><p>Trait</p></td>
-<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/Tailors/PHPUnit/ArrayValuesTrait.html" title="Tailors\PHPUnit\ArrayValuesTrait"><span class="pre">ArrayValuesTrait</span></a></code></p></td>
-</tr>
-</tbody>
-</table>
-<p>Since versions <code class="docutils literal notranslate"><span class="pre">*.1</span></code> (<code class="docutils literal notranslate"><span class="pre">1.1</span></code>, <code class="docutils literal notranslate"><span class="pre">2.1</span></code>, <code class="docutils literal notranslate"><span class="pre">3.1</span></code>, …) it’s possible to
-specify sub-array selection in nested arrays of the <code class="docutils literal notranslate"><span class="pre">$expected</span></code> by using
-<code class="docutils literal notranslate"><span class="pre">$this-&gt;arrayValues([...])</span></code> instead of <code class="docutils literal notranslate"><span class="pre">[...]</span></code>. This changes the content
-taken for comparison – instead of matching the exact content of the sub-array
-from <code class="docutils literal notranslate"><span class="pre">$actual</span></code>, only the listed keys are selected from the sub-array for
-comparison. For example:</p>
+<p>Since versions <code class="docutils literal notranslate"><span class="pre">*.1</span></code> (<code class="docutils literal notranslate"><span class="pre">1.1</span></code>, <code class="docutils literal notranslate"><span class="pre">2.1</span></code>, <code class="docutils literal notranslate"><span class="pre">3.1</span></code>, …) it’s possible to nest
+recursively specification of array values. For more details, see
+<a class="reference internal" href="utilities.html#utilities-arrayvalues"><span class="std std-ref">arrayValues()</span></a>.</p>
 <div class="literal-block-wrapper docutils container" id="constraints-assertarrayvaluesequaltorecursive-example">
-<div class="code-block-caption"><span class="caption-text">Usage of assertArrayValuesEqualTo() with nested selectors</span><a class="headerlink" href="#constraints-assertarrayvaluesequaltorecursive-example" title="Permalink to this code"></a></div>
+<div class="code-block-caption"><span class="caption-text">Usage of <a class="reference internal" href="#assertions-assertarrayvaluesequalto"><span class="std std-ref">assertArrayValuesEqualTo()</span></a> with <a class="reference internal" href="utilities.html#utilities-arrayvalues"><span class="std std-ref">arrayValues()</span></a></span><a class="headerlink" href="#constraints-assertarrayvaluesequaltorecursive-example" title="Permalink to this code"></a></div>
 <div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
 <span class="linenos"> 2</span>
 <span class="linenos"> 3</span><span class="k">final</span> <span class="k">class</span> <span class="nc">AssertArrayValuesEqualToRecursiveTest</span> <span class="k">extends</span> <span class="nx">\PHPUnit\Framework\TestCase</span>
@@ -306,11 +269,10 @@ comparison. For example:</p>
 </pre></div>
 </div>
 </section>
-</section>
 <section id="assertarrayvaluesidenticalto">
 <span id="assertions-assertarrayvaluesidenticalto"></span><h2>assertArrayValuesIdenticalTo()<a class="headerlink" href="#assertarrayvaluesidenticalto" title="Permalink to this heading"></a></h2>
-<table class="docutils align-default" id="id7" style="width: 100%">
-<caption><span class="caption-text">Prerequisites for assertArrayValuesIdenticalTo()</span><a class="headerlink" href="#id7" title="Permalink to this table"></a></caption>
+<table class="docutils align-default" id="id3" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for <a class="reference internal" href="#assertions-assertarrayvaluesidenticalto"><span class="std std-ref">assertArrayValuesIdenticalTo()</span></a></span><a class="headerlink" href="#id3" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 75%" />
@@ -345,7 +307,7 @@ array nor an <a class="reference external" href="https://www.php.net/manual/en/c
 </div>
 <p>is the inverse of this.</p>
 <div class="literal-block-wrapper docutils container" id="assertions-assertarrayvaluesidenticalto-example">
-<div class="code-block-caption"><span class="caption-text">Usage of assertArrayValuesIdenticalTo()</span><a class="headerlink" href="#assertions-assertarrayvaluesidenticalto-example" title="Permalink to this code"></a></div>
+<div class="code-block-caption"><span class="caption-text">Usage of <a class="reference internal" href="#assertions-assertarrayvaluesidenticalto"><span class="std std-ref">assertArrayValuesIdenticalTo()</span></a></span><a class="headerlink" href="#assertions-assertarrayvaluesidenticalto-example" title="Permalink to this code"></a></div>
 <div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
 <span class="linenos"> 2</span>
 <span class="linenos"> 3</span><span class="k">final</span> <span class="k">class</span> <span class="nc">AssertArrayValuesIdenticalToTest</span> <span class="k">extends</span> <span class="nx">\PHPUnit\Framework\TestCase</span>
@@ -401,31 +363,11 @@ array nor an <a class="reference external" href="https://www.php.net/manual/en/c
 <span class="linenos">28</span>Tests: 2, Assertions: 2, Failures: 1.
 </pre></div>
 </div>
-<section id="id2">
-<h3>Selecting values from nested arrays<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
-<table class="docutils align-default" id="id8" style="width: 100%">
-<caption><span class="caption-text">Prerequisites for nested selection</span><a class="headerlink" href="#id8" title="Permalink to this table"></a></caption>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 75%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p>Package</p></td>
-<td><p>phptailors/phpunit-arrays: <code class="docutils literal notranslate"><span class="pre">^1.1</span> <span class="pre">||</span> <span class="pre">^2.1</span> <span class="pre">||</span> <span class="pre">^3.1</span> <span class="pre">||</span> <span class="pre">^4.1</span> <span class="pre">||</span> <span class="pre">^5.1</span></code></p></td>
-</tr>
-<tr class="row-even"><td><p>Trait</p></td>
-<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/Tailors/PHPUnit/ArrayValuesTrait.html" title="Tailors\PHPUnit\ArrayValuesTrait"><span class="pre">ArrayValuesTrait</span></a></code></p></td>
-</tr>
-</tbody>
-</table>
-<p>Since versions <code class="docutils literal notranslate"><span class="pre">*.1</span></code> (<code class="docutils literal notranslate"><span class="pre">1.1</span></code>, <code class="docutils literal notranslate"><span class="pre">2.1</span></code>, <code class="docutils literal notranslate"><span class="pre">3.1</span></code>, …) it’s possible to
-specify sub-array selection in nested arrays of the <code class="docutils literal notranslate"><span class="pre">$expected</span></code> by using
-<code class="docutils literal notranslate"><span class="pre">$this-&gt;arrayValues([...])</span></code> instead of <code class="docutils literal notranslate"><span class="pre">[...]</span></code>. This changes the content
-taken for comparison – instead of matching the exact content of the sub-array
-from <code class="docutils literal notranslate"><span class="pre">$actual</span></code>, only the listed keys are selected from the sub-array for
-comparison. For example:</p>
+<p>Since versions <code class="docutils literal notranslate"><span class="pre">*.1</span></code> (<code class="docutils literal notranslate"><span class="pre">1.1</span></code>, <code class="docutils literal notranslate"><span class="pre">2.1</span></code>, <code class="docutils literal notranslate"><span class="pre">3.1</span></code>, …) it’s possible to nest
+recursively specification of array values. For more details, see
+<a class="reference internal" href="utilities.html#utilities-arrayvalues"><span class="std std-ref">arrayValues()</span></a>.</p>
 <div class="literal-block-wrapper docutils container" id="constraints-assertarrayvaluesidenticaltorecursive-example">
-<div class="code-block-caption"><span class="caption-text">Usage of assertArrayValuesIdenticalTo() with nested selectors</span><a class="headerlink" href="#constraints-assertarrayvaluesidenticaltorecursive-example" title="Permalink to this code"></a></div>
+<div class="code-block-caption"><span class="caption-text">Usage of <a class="reference internal" href="#assertions-assertarrayvaluesidenticalto"><span class="std std-ref">assertArrayValuesIdenticalTo()</span></a> with <a class="reference internal" href="utilities.html#utilities-arrayvalues"><span class="std std-ref">arrayValues()</span></a></span><a class="headerlink" href="#constraints-assertarrayvaluesidenticaltorecursive-example" title="Permalink to this code"></a></div>
 <div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
 <span class="linenos"> 2</span>
 <span class="linenos"> 3</span><span class="k">final</span> <span class="k">class</span> <span class="nc">AssertArrayValuesIdenticalToRecursiveTest</span> <span class="k">extends</span> <span class="nx">\PHPUnit\Framework\TestCase</span>
@@ -497,11 +439,10 @@ comparison. For example:</p>
 </pre></div>
 </div>
 </section>
-</section>
 <section id="assertclasspropertiesequalto">
 <span id="assertions-assertclasspropertiesequalto"></span><h2>assertClassPropertiesEqualTo()<a class="headerlink" href="#assertclasspropertiesequalto" title="Permalink to this heading"></a></h2>
-<table class="docutils align-default" id="id9" style="width: 100%">
-<caption><span class="caption-text">Prerequisites for assertClassPropertiesEqualTo()</span><a class="headerlink" href="#id9" title="Permalink to this table"></a></caption>
+<table class="docutils align-default" id="id4" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for <a class="reference internal" href="#assertions-assertclasspropertiesequalto"><span class="std std-ref">assertClassPropertiesEqualTo()</span></a></span><a class="headerlink" href="#id4" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 75%" />
@@ -540,7 +481,7 @@ method <code class="docutils literal notranslate"><span class="pre">foo()</span>
 </div>
 <p>is the inverse of this.</p>
 <div class="literal-block-wrapper docutils container" id="assertions-assertclasspropertiesequalto-example">
-<div class="code-block-caption"><span class="caption-text">Usage of assertClassPropertiesEqualTo()</span><a class="headerlink" href="#assertions-assertclasspropertiesequalto-example" title="Permalink to this code"></a></div>
+<div class="code-block-caption"><span class="caption-text">Usage of <cite>assertions.assertClassPropertiesEqualTo</cite></span><a class="headerlink" href="#assertions-assertclasspropertiesequalto-example" title="Permalink to this code"></a></div>
 <div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
 <span class="linenos"> 2</span>
 <span class="linenos"> 3</span><span class="k">final</span> <span class="k">class</span> <span class="nc">AssertClassPropertiesEqualToTest</span> <span class="k">extends</span> <span class="nx">\PHPUnit\Framework\TestCase</span>
@@ -605,31 +546,11 @@ method <code class="docutils literal notranslate"><span class="pre">foo()</span>
 <span class="linenos">28</span>Tests: 2, Assertions: 2, Failures: 1.
 </pre></div>
 </div>
-<section id="selecting-properties-of-nested-classes">
-<h3>Selecting properties of nested classes<a class="headerlink" href="#selecting-properties-of-nested-classes" title="Permalink to this heading"></a></h3>
-<table class="docutils align-default" id="id10" style="width: 100%">
-<caption><span class="caption-text">Prerequisites for nested selection</span><a class="headerlink" href="#id10" title="Permalink to this table"></a></caption>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 75%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p>Package</p></td>
-<td><p>phptailors/phpunit-arrays: <code class="docutils literal notranslate"><span class="pre">^1.1</span> <span class="pre">||</span> <span class="pre">^2.1</span> <span class="pre">||</span> <span class="pre">^3.1</span> <span class="pre">||</span> <span class="pre">^4.1</span> <span class="pre">||</span> <span class="pre">^5.1</span></code></p></td>
-</tr>
-<tr class="row-even"><td><p>Trait</p></td>
-<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/Tailors/PHPUnit/ClassPropertiesTrait.html" title="Tailors\PHPUnit\ClassPropertiesTrait"><span class="pre">ClassPropertiesTrait</span></a></code></p></td>
-</tr>
-</tbody>
-</table>
-<p>Since versions <code class="docutils literal notranslate"><span class="pre">*.1</span></code> (<code class="docutils literal notranslate"><span class="pre">1.1</span></code>, <code class="docutils literal notranslate"><span class="pre">2.1</span></code>, <code class="docutils literal notranslate"><span class="pre">3.1</span></code>, …) it’s possible to
-specify nested selections by using <code class="docutils literal notranslate"><span class="pre">$this-&gt;classProperties([...])</span></code> instead of
-<code class="docutils literal notranslate"><span class="pre">[...]</span></code>. This changes the content taken for comparison – instead of treating
-a class name (nested in <code class="docutils literal notranslate"><span class="pre">$actual</span></code>) as a regular string, it’s being considered
-a class, and the properties of this class get selected for comparison. For
-example:</p>
+<p>Since versions <code class="docutils literal notranslate"><span class="pre">*.1</span></code> (<code class="docutils literal notranslate"><span class="pre">1.1</span></code>, <code class="docutils literal notranslate"><span class="pre">2.1</span></code>, <code class="docutils literal notranslate"><span class="pre">3.1</span></code>, …) it’s possible to nest
+recursively specifications of class properties. For more details, see
+<a class="reference internal" href="utilities.html#utilities-arrayvalues"><span class="std std-ref">arrayValues()</span></a>.</p>
 <div class="literal-block-wrapper docutils container" id="constraints-assertclasspropertiesequaltorecursive-example">
-<div class="code-block-caption"><span class="caption-text">Usage of AssertClassPropertiesEqualTo()</span><a class="headerlink" href="#constraints-assertclasspropertiesequaltorecursive-example" title="Permalink to this code"></a></div>
+<div class="code-block-caption"><span class="caption-text">Usage of <a class="reference internal" href="#assertions-assertclasspropertiesequalto"><span class="std std-ref">assertClassPropertiesEqualTo()</span></a></span><a class="headerlink" href="#constraints-assertclasspropertiesequaltorecursive-example" title="Permalink to this code"></a></div>
 <div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
 <span class="linenos"> 2</span>
 <span class="linenos"> 3</span><span class="k">final</span> <span class="k">class</span> <span class="nc">AssertClassPropertiesEqualToRecursiveTest</span> <span class="k">extends</span> <span class="nx">\PHPUnit\Framework\TestCase</span>
@@ -697,11 +618,10 @@ example:</p>
 </pre></div>
 </div>
 </section>
-</section>
 <section id="assertclasspropertiesidenticalto">
 <span id="assertions-assertclasspropertiesidenticalto"></span><h2>assertClassPropertiesIdenticalTo()<a class="headerlink" href="#assertclasspropertiesidenticalto" title="Permalink to this heading"></a></h2>
-<table class="docutils align-default" id="id11" style="width: 100%">
-<caption><span class="caption-text">Prerequisites for assertClassPropertiesIdenticalTo()</span><a class="headerlink" href="#id11" title="Permalink to this table"></a></caption>
+<table class="docutils align-default" id="id5" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for <a class="reference internal" href="#assertions-assertclasspropertiesidenticalto"><span class="std std-ref">assertClassPropertiesIdenticalTo()</span></a></span><a class="headerlink" href="#id5" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 75%" />
@@ -741,7 +661,7 @@ method <code class="docutils literal notranslate"><span class="pre">foo()</span>
 </div>
 <p>is the inverse of this.</p>
 <div class="literal-block-wrapper docutils container" id="assertions-assertclasspropertiesidenticalto-example">
-<div class="code-block-caption"><span class="caption-text">Usage of assertClassPropertiesIdenticalTo()</span><a class="headerlink" href="#assertions-assertclasspropertiesidenticalto-example" title="Permalink to this code"></a></div>
+<div class="code-block-caption"><span class="caption-text">Usage of <cite>assertions.assertClassPropertiesIdenticalTo</cite></span><a class="headerlink" href="#assertions-assertclasspropertiesidenticalto-example" title="Permalink to this code"></a></div>
 <div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
 <span class="linenos"> 2</span>
 <span class="linenos"> 3</span><span class="k">final</span> <span class="k">class</span> <span class="nc">AssertClassPropertiesIdenticalToTest</span> <span class="k">extends</span> <span class="nx">\PHPUnit\Framework\TestCase</span>
@@ -806,31 +726,11 @@ method <code class="docutils literal notranslate"><span class="pre">foo()</span>
 <span class="linenos">28</span>Tests: 2, Assertions: 2, Failures: 1.
 </pre></div>
 </div>
-<section id="id3">
-<h3>Selecting properties of nested classes<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
-<table class="docutils align-default" id="id12" style="width: 100%">
-<caption><span class="caption-text">Prerequisites for nested selection</span><a class="headerlink" href="#id12" title="Permalink to this table"></a></caption>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 75%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p>Package</p></td>
-<td><p>phptailors/phpunit-arrays: <code class="docutils literal notranslate"><span class="pre">^1.1</span> <span class="pre">||</span> <span class="pre">^2.1</span> <span class="pre">||</span> <span class="pre">^3.1</span> <span class="pre">||</span> <span class="pre">^4.1</span> <span class="pre">||</span> <span class="pre">^5.1</span></code></p></td>
-</tr>
-<tr class="row-even"><td><p>Trait</p></td>
-<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/Tailors/PHPUnit/ClassPropertiesTrait.html" title="Tailors\PHPUnit\ClassPropertiesTrait"><span class="pre">ClassPropertiesTrait</span></a></code></p></td>
-</tr>
-</tbody>
-</table>
-<p>Since versions <code class="docutils literal notranslate"><span class="pre">*.1</span></code> (<code class="docutils literal notranslate"><span class="pre">1.1</span></code>, <code class="docutils literal notranslate"><span class="pre">2.1</span></code>, <code class="docutils literal notranslate"><span class="pre">3.1</span></code>, …) it’s possible to
-specify nested selections by using <code class="docutils literal notranslate"><span class="pre">$this-&gt;classProperties([...])</span></code> instead of
-<code class="docutils literal notranslate"><span class="pre">[...]</span></code>. This changes the content taken for comparison – instead of treating
-a class name (nested in <code class="docutils literal notranslate"><span class="pre">$actual</span></code>) as a regular string, it’s being considered
-a class, and the properties of this class get selected for comparison. For
-example:</p>
+<p>Since versions <code class="docutils literal notranslate"><span class="pre">*.1</span></code> (<code class="docutils literal notranslate"><span class="pre">1.1</span></code>, <code class="docutils literal notranslate"><span class="pre">2.1</span></code>, <code class="docutils literal notranslate"><span class="pre">3.1</span></code>, …) it’s possible to nest
+recursively specifications of class properties. For more details, see
+<a class="reference internal" href="utilities.html#utilities-arrayvalues"><span class="std std-ref">arrayValues()</span></a>.</p>
 <div class="literal-block-wrapper docutils container" id="constraints-assertclasspropertiesidenticaltorecursive-example">
-<div class="code-block-caption"><span class="caption-text">Usage of AssertClassPropertiesIdenticalTo()</span><a class="headerlink" href="#constraints-assertclasspropertiesidenticaltorecursive-example" title="Permalink to this code"></a></div>
+<div class="code-block-caption"><span class="caption-text">Usage of <cite>assertions.assertClassPropertiesIdenticalTo</cite></span><a class="headerlink" href="#constraints-assertclasspropertiesidenticaltorecursive-example" title="Permalink to this code"></a></div>
 <div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
 <span class="linenos"> 2</span>
 <span class="linenos"> 3</span><span class="k">final</span> <span class="k">class</span> <span class="nc">AssertClassPropertiesIdenticalToRecursiveTest</span> <span class="k">extends</span> <span class="nx">\PHPUnit\Framework\TestCase</span>
@@ -897,11 +797,10 @@ example:</p>
 </pre></div>
 </div>
 </section>
-</section>
 <section id="assertextendsclass">
 <span id="assertions-assertextendsclass"></span><h2>assertExtendsClass()<a class="headerlink" href="#assertextendsclass" title="Permalink to this heading"></a></h2>
-<table class="docutils align-default" id="id13" style="width: 100%">
-<caption><span class="caption-text">Prerequisites for assertExtendsClass()</span><a class="headerlink" href="#id13" title="Permalink to this table"></a></caption>
+<table class="docutils align-default" id="id6" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for <a class="reference internal" href="#assertions-assertextendsclass"><span class="std std-ref">assertExtendsClass()</span></a></span><a class="headerlink" href="#id6" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 75%" />
@@ -940,7 +839,7 @@ succeeds only if the class extends the <code class="docutils literal notranslate
 </div>
 <p>is the inverse of this.</p>
 <div class="literal-block-wrapper docutils container" id="assertions-assertextendsclass-example">
-<div class="code-block-caption"><span class="caption-text">Usage of assertExtendsClass()</span><a class="headerlink" href="#assertions-assertextendsclass-example" title="Permalink to this code"></a></div>
+<div class="code-block-caption"><span class="caption-text">Usage of <a class="reference internal" href="#assertions-assertextendsclass"><span class="std std-ref">assertExtendsClass()</span></a></span><a class="headerlink" href="#assertions-assertextendsclass-example" title="Permalink to this code"></a></div>
 <div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
 <span class="linenos"> 2</span>
 <span class="linenos"> 3</span><span class="k">final</span> <span class="k">class</span> <span class="nc">AssertExtendsClassTest</span> <span class="k">extends</span> <span class="nx">\PHPUnit\Framework\TestCase</span>
@@ -984,8 +883,8 @@ succeeds only if the class extends the <code class="docutils literal notranslate
 </section>
 <section id="asserthasmethod">
 <span id="assertions-asserthasmethod"></span><h2>assertHasMethod()<a class="headerlink" href="#asserthasmethod" title="Permalink to this heading"></a></h2>
-<table class="docutils align-default" id="id14" style="width: 100%">
-<caption><span class="caption-text">Prerequisites for assertHasMethod()</span><a class="headerlink" href="#id14" title="Permalink to this table"></a></caption>
+<table class="docutils align-default" id="id7" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for <a class="reference internal" href="#assertions-asserthasmethod"><span class="std std-ref">assertHasMethod()</span></a></span><a class="headerlink" href="#id7" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 75%" />
@@ -1047,7 +946,7 @@ in a matched method.</p>
 </div>
 <p>is the inverse of this.</p>
 <div class="literal-block-wrapper docutils container" id="assertions-asserthasmethod-example">
-<div class="code-block-caption"><span class="caption-text">Usage of assertHasMethod()</span><a class="headerlink" href="#assertions-asserthasmethod-example" title="Permalink to this code"></a></div>
+<div class="code-block-caption"><span class="caption-text">Usage of <a class="reference internal" href="#assertions-asserthasmethod"><span class="std std-ref">assertHasMethod()</span></a></span><a class="headerlink" href="#assertions-asserthasmethod-example" title="Permalink to this code"></a></div>
 <div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
 <span class="linenos"> 2</span>
 <span class="linenos"> 3</span><span class="k">abstract</span> <span class="k">class</span> <span class="nc">ClassWithSomeMethods</span>
@@ -1107,8 +1006,8 @@ in a matched method.</p>
 </section>
 <section id="asserthaspregcaptures">
 <span id="assertions-asserthaspregcaptures"></span><h2>assertHasPregCaptures()<a class="headerlink" href="#asserthaspregcaptures" title="Permalink to this heading"></a></h2>
-<table class="docutils align-default" id="id15" style="width: 100%">
-<caption><span class="caption-text">Prerequisites for assertHasPregCaptures()</span><a class="headerlink" href="#id15" title="Permalink to this table"></a></caption>
+<table class="docutils align-default" id="id8" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for <a class="reference internal" href="#assertions-asserthaspregcaptures"><span class="std std-ref">assertHasPregCaptures()</span></a></span><a class="headerlink" href="#id8" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 75%" />
@@ -1153,7 +1052,7 @@ accepts any array of <code class="docutils literal notranslate"><span class="pre
 </div>
 <p>is the inverse of this.</p>
 <div class="literal-block-wrapper docutils container" id="assertions-asserthaspregcaptures-example">
-<div class="code-block-caption"><span class="caption-text">Usage of assertHasPregCaptures()</span><a class="headerlink" href="#assertions-asserthaspregcaptures-example" title="Permalink to this code"></a></div>
+<div class="code-block-caption"><span class="caption-text">Usage of <a class="reference internal" href="#assertions-asserthaspregcaptures"><span class="std std-ref">assertHasPregCaptures()</span></a></span><a class="headerlink" href="#assertions-asserthaspregcaptures-example" title="Permalink to this code"></a></div>
 <div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
 <span class="linenos"> 2</span>
 <span class="linenos"> 3</span><span class="k">final</span> <span class="k">class</span> <span class="nc">AssertHasPregCapturesTest</span> <span class="k">extends</span> <span class="nx">PHPUnit\Framework\TestCase</span>
@@ -1231,8 +1130,8 @@ accepts any array of <code class="docutils literal notranslate"><span class="pre
 </section>
 <section id="assertimplementsinterface">
 <span id="assertions-assertimplementsinterface"></span><h2>assertImplementsInterface()<a class="headerlink" href="#assertimplementsinterface" title="Permalink to this heading"></a></h2>
-<table class="docutils align-default" id="id16" style="width: 100%">
-<caption><span class="caption-text">Prerequisites for assertImplementsInterface()</span><a class="headerlink" href="#id16" title="Permalink to this table"></a></caption>
+<table class="docutils align-default" id="id9" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for <a class="reference internal" href="#assertions-assertimplementsinterface"><span class="std std-ref">assertImplementsInterface()</span></a></span><a class="headerlink" href="#id9" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 75%" />
@@ -1272,7 +1171,7 @@ succeeds only if the class implements the <code class="docutils literal notransl
 </div>
 <p>is the inverse of this.</p>
 <div class="literal-block-wrapper docutils container" id="assertions-assertimplementsinterface-example">
-<div class="code-block-caption"><span class="caption-text">Usage of assertImplementsInterface()</span><a class="headerlink" href="#assertions-assertimplementsinterface-example" title="Permalink to this code"></a></div>
+<div class="code-block-caption"><span class="caption-text">Usage of <a class="reference internal" href="#assertions-assertimplementsinterface"><span class="std std-ref">assertImplementsInterface()</span></a></span><a class="headerlink" href="#assertions-assertimplementsinterface-example" title="Permalink to this code"></a></div>
 <div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
 <span class="linenos"> 2</span>
 <span class="linenos"> 3</span><span class="k">final</span> <span class="k">class</span> <span class="nc">AssertImplementsInterfaceTest</span> <span class="k">extends</span> <span class="nx">\PHPUnit\Framework\TestCase</span>
@@ -1316,8 +1215,8 @@ succeeds only if the class implements the <code class="docutils literal notransl
 </section>
 <section id="assertksortedarrayequalto">
 <span id="assertions-assertksortedarrayequalto"></span><h2>assertKsortedArrayEqualTo()<a class="headerlink" href="#assertksortedarrayequalto" title="Permalink to this heading"></a></h2>
-<table class="docutils align-default" id="id17" style="width: 100%">
-<caption><span class="caption-text">Prerequisites for assertKsortedArrayEqualTo()</span><a class="headerlink" href="#id17" title="Permalink to this table"></a></caption>
+<table class="docutils align-default" id="id10" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for <a class="reference internal" href="#assertions-assertksortedarrayequalto"><span class="std std-ref">assertKsortedArrayEqualTo()</span></a></span><a class="headerlink" href="#id10" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 75%" />
@@ -1350,7 +1249,7 @@ is not an array, the constraint fails.</p>
 </div>
 <p>is the inverse of this.</p>
 <div class="literal-block-wrapper docutils container" id="assertions-assertksortedarrayequalto-example">
-<div class="code-block-caption"><span class="caption-text">Usage of assertKsortedArrayEqualTo()</span><a class="headerlink" href="#assertions-assertksortedarrayequalto-example" title="Permalink to this code"></a></div>
+<div class="code-block-caption"><span class="caption-text">Usage of <a class="reference internal" href="#assertions-assertksortedarrayequalto"><span class="std std-ref">assertKsortedArrayEqualTo()</span></a></span><a class="headerlink" href="#assertions-assertksortedarrayequalto-example" title="Permalink to this code"></a></div>
 <div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
 <span class="linenos"> 2</span>
 <span class="linenos"> 3</span><span class="k">final</span> <span class="k">class</span> <span class="nc">AssertKsortedArrayEqualToTest</span> <span class="k">extends</span> <span class="nx">\PHPUnit\Framework\TestCase</span>
@@ -1408,8 +1307,8 @@ is not an array, the constraint fails.</p>
 </section>
 <section id="assertksortedarrayidenticalto">
 <span id="assertions-assertksortedarrayidenticalto"></span><h2>assertKsortedArrayIdenticalTo()<a class="headerlink" href="#assertksortedarrayidenticalto" title="Permalink to this heading"></a></h2>
-<table class="docutils align-default" id="id18" style="width: 100%">
-<caption><span class="caption-text">Prerequisites for assertKsortedArrayIdenticalTo()</span><a class="headerlink" href="#id18" title="Permalink to this table"></a></caption>
+<table class="docutils align-default" id="id11" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for <a class="reference internal" href="#assertions-assertksortedarrayidenticalto"><span class="std std-ref">assertKsortedArrayIdenticalTo()</span></a></span><a class="headerlink" href="#id11" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 75%" />
@@ -1442,7 +1341,7 @@ is not an array, the constraint fails.</p>
 </div>
 <p>is the inverse of this.</p>
 <div class="literal-block-wrapper docutils container" id="assertions-assertksortedarrayidenticalto-example">
-<div class="code-block-caption"><span class="caption-text">Usage of assertKsortedArrayIdenticalTo()</span><a class="headerlink" href="#assertions-assertksortedarrayidenticalto-example" title="Permalink to this code"></a></div>
+<div class="code-block-caption"><span class="caption-text">Usage of <a class="reference internal" href="#assertions-assertksortedarrayidenticalto"><span class="std std-ref">assertKsortedArrayIdenticalTo()</span></a></span><a class="headerlink" href="#assertions-assertksortedarrayidenticalto-example" title="Permalink to this code"></a></div>
 <div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
 <span class="linenos"> 2</span>
 <span class="linenos"> 3</span><span class="k">final</span> <span class="k">class</span> <span class="nc">AssertKsortedArrayIdenticalToTest</span> <span class="k">extends</span> <span class="nx">\PHPUnit\Framework\TestCase</span>
@@ -1501,8 +1400,8 @@ is not an array, the constraint fails.</p>
 </section>
 <section id="assertobjectpropertiesequalto">
 <span id="assertions-assertobjectpropertiesequalto"></span><h2>assertObjectPropertiesEqualTo()<a class="headerlink" href="#assertobjectpropertiesequalto" title="Permalink to this heading"></a></h2>
-<table class="docutils align-default" id="id19" style="width: 100%">
-<caption><span class="caption-text">Prerequisites for assertObjectPropertiesEqualTo()</span><a class="headerlink" href="#id19" title="Permalink to this table"></a></caption>
+<table class="docutils align-default" id="id12" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for <a class="reference internal" href="#assertions-assertobjectpropertiesequalto"><span class="std std-ref">assertObjectPropertiesEqualTo()</span></a></span><a class="headerlink" href="#id12" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 75%" />
@@ -1540,7 +1439,7 @@ method <code class="docutils literal notranslate"><span class="pre">foo()</span>
 </div>
 <p>is the inverse of this.</p>
 <div class="literal-block-wrapper docutils container" id="assertions-assertobjectpropertiesequalto-example">
-<div class="code-block-caption"><span class="caption-text">Usage of assertObjectPropertiesEqualTo()</span><a class="headerlink" href="#assertions-assertobjectpropertiesequalto-example" title="Permalink to this code"></a></div>
+<div class="code-block-caption"><span class="caption-text">Usage of <a class="reference internal" href="#assertions-assertobjectpropertiesequalto"><span class="std std-ref">assertObjectPropertiesEqualTo()</span></a></span><a class="headerlink" href="#assertions-assertobjectpropertiesequalto-example" title="Permalink to this code"></a></div>
 <div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
 <span class="linenos"> 2</span>
 <span class="linenos"> 3</span><span class="k">final</span> <span class="k">class</span> <span class="nc">AssertObjectPropertiesEqualToTest</span> <span class="k">extends</span> <span class="nx">PHPUnit\Framework\TestCase</span>
@@ -1605,28 +1504,9 @@ method <code class="docutils literal notranslate"><span class="pre">foo()</span>
 <span class="linenos">28</span>Tests: 2, Assertions: 2, Failures: 1.
 </pre></div>
 </div>
-<section id="selecting-properties-of-nested-objects">
-<h3>Selecting properties of nested objects<a class="headerlink" href="#selecting-properties-of-nested-objects" title="Permalink to this heading"></a></h3>
-<table class="docutils align-default" id="id20" style="width: 100%">
-<caption><span class="caption-text">Prerequisites for nested selection</span><a class="headerlink" href="#id20" title="Permalink to this table"></a></caption>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 75%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p>Package</p></td>
-<td><p>phptailors/phpunit-arrays: <code class="docutils literal notranslate"><span class="pre">^1.1</span> <span class="pre">||</span> <span class="pre">^2.1</span> <span class="pre">||</span> <span class="pre">^3.1</span> <span class="pre">||</span> <span class="pre">^4.1</span> <span class="pre">||</span> <span class="pre">^5.1</span></code></p></td>
-</tr>
-<tr class="row-even"><td><p>Trait</p></td>
-<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/Tailors/PHPUnit/ObjectPropertiesTrait.html" title="Tailors\PHPUnit\ObjectPropertiesTrait"><span class="pre">ObjectPropertiesTrait</span></a></code></p></td>
-</tr>
-</tbody>
-</table>
-<p>Since versions <code class="docutils literal notranslate"><span class="pre">*.1</span></code> (<code class="docutils literal notranslate"><span class="pre">1.1</span></code>, <code class="docutils literal notranslate"><span class="pre">2.1</span></code>, <code class="docutils literal notranslate"><span class="pre">3.1</span></code>, …) it’s possible to
-specify nested selections by using <code class="docutils literal notranslate"><span class="pre">$this-&gt;objectProperties([...])</span></code> instead of
-<code class="docutils literal notranslate"><span class="pre">[...]</span></code>. This changes the content taken for comparison – instead of treating
-an object (nested in <code class="docutils literal notranslate"><span class="pre">$actual</span></code>) as an object, the properties of this object
-get selected for comparison. For example:</p>
+<p>Since versions <code class="docutils literal notranslate"><span class="pre">*.1</span></code> (<code class="docutils literal notranslate"><span class="pre">1.1</span></code>, <code class="docutils literal notranslate"><span class="pre">2.1</span></code>, <code class="docutils literal notranslate"><span class="pre">3.1</span></code>, …) it’s possible to nest
+recursively specifications of object properties. For more details, see
+<a class="reference internal" href="utilities.html#utilities-arrayvalues"><span class="std std-ref">arrayValues()</span></a>.</p>
 <div class="literal-block-wrapper docutils container" id="constraints-assertobjectpropertiesequaltorecursive-example">
 <div class="code-block-caption"><span class="caption-text">Usage of AssertObjectPropertiesEqualTo()</span><a class="headerlink" href="#constraints-assertobjectpropertiesequaltorecursive-example" title="Permalink to this code"></a></div>
 <div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
@@ -1710,11 +1590,10 @@ get selected for comparison. For example:</p>
 </pre></div>
 </div>
 </section>
-</section>
 <section id="assertobjectpropertiesidenticalto">
 <span id="assertions-assertobjectpropertiesidenticalto"></span><h2>assertObjectPropertiesIdenticalTo()<a class="headerlink" href="#assertobjectpropertiesidenticalto" title="Permalink to this heading"></a></h2>
-<table class="docutils align-default" id="id21" style="width: 100%">
-<caption><span class="caption-text">Prerequisites for assertObjectPropertiesIdenticalTo()</span><a class="headerlink" href="#id21" title="Permalink to this table"></a></caption>
+<table class="docutils align-default" id="id13" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for <a class="reference internal" href="#assertions-assertobjectpropertiesidenticalto"><span class="std std-ref">assertObjectPropertiesIdenticalTo()</span></a></span><a class="headerlink" href="#id13" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 75%" />
@@ -1752,7 +1631,7 @@ method <code class="docutils literal notranslate"><span class="pre">foo()</span>
 </div>
 <p>is the inverse of this.</p>
 <div class="literal-block-wrapper docutils container" id="assertions-assertobjectpropertiesidenticalto-example">
-<div class="code-block-caption"><span class="caption-text">Usage of assertObjectPropertiesIdenticalTo()</span><a class="headerlink" href="#assertions-assertobjectpropertiesidenticalto-example" title="Permalink to this code"></a></div>
+<div class="code-block-caption"><span class="caption-text">Usage of <a class="reference internal" href="#assertions-assertobjectpropertiesidenticalto"><span class="std std-ref">assertObjectPropertiesIdenticalTo()</span></a></span><a class="headerlink" href="#assertions-assertobjectpropertiesidenticalto-example" title="Permalink to this code"></a></div>
 <div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
 <span class="linenos"> 2</span>
 <span class="linenos"> 3</span><span class="k">final</span> <span class="k">class</span> <span class="nc">AssertObjectPropertiesIdenticalToTest</span> <span class="k">extends</span> <span class="nx">\PHPUnit\Framework\TestCase</span>
@@ -1817,28 +1696,9 @@ method <code class="docutils literal notranslate"><span class="pre">foo()</span>
 <span class="linenos">28</span>Tests: 2, Assertions: 2, Failures: 1.
 </pre></div>
 </div>
-<section id="id4">
-<h3>Selecting properties of nested objects<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
-<table class="docutils align-default" id="id22" style="width: 100%">
-<caption><span class="caption-text">Prerequisites for nested selection</span><a class="headerlink" href="#id22" title="Permalink to this table"></a></caption>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 75%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p>Package</p></td>
-<td><p>phptailors/phpunit-arrays: <code class="docutils literal notranslate"><span class="pre">^1.1</span> <span class="pre">||</span> <span class="pre">^2.1</span> <span class="pre">||</span> <span class="pre">^3.1</span> <span class="pre">||</span> <span class="pre">^4.1</span> <span class="pre">||</span> <span class="pre">^5.1</span></code></p></td>
-</tr>
-<tr class="row-even"><td><p>Trait</p></td>
-<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/Tailors/PHPUnit/ObjectPropertiesTrait.html" title="Tailors\PHPUnit\ObjectPropertiesTrait"><span class="pre">ObjectPropertiesTrait</span></a></code></p></td>
-</tr>
-</tbody>
-</table>
-<p>Since versions <code class="docutils literal notranslate"><span class="pre">*.1</span></code> (<code class="docutils literal notranslate"><span class="pre">1.1</span></code>, <code class="docutils literal notranslate"><span class="pre">2.1</span></code>, <code class="docutils literal notranslate"><span class="pre">3.1</span></code>, …) it’s possible to
-specify nested selections by using <code class="docutils literal notranslate"><span class="pre">$this-&gt;objectProperties([...])</span></code> instead of
-<code class="docutils literal notranslate"><span class="pre">[...]</span></code>. This changes the content taken for comparison – instead of treating
-an object (nested in <code class="docutils literal notranslate"><span class="pre">$actual</span></code>) as an object, the properties of this object
-get selected for comparison. For example:</p>
+<p>Since versions <code class="docutils literal notranslate"><span class="pre">*.1</span></code> (<code class="docutils literal notranslate"><span class="pre">1.1</span></code>, <code class="docutils literal notranslate"><span class="pre">2.1</span></code>, <code class="docutils literal notranslate"><span class="pre">3.1</span></code>, …) it’s possible to nest
+recursively specifications of object properties. For more details, see
+<a class="reference internal" href="utilities.html#utilities-arrayvalues"><span class="std std-ref">arrayValues()</span></a>.</p>
 <div class="literal-block-wrapper docutils container" id="constraints-assertobjectpropertiesidenticaltorecursive-example">
 <div class="code-block-caption"><span class="caption-text">Usage of AssertObjectPropertiesIdenticalTo()</span><a class="headerlink" href="#constraints-assertobjectpropertiesidenticaltorecursive-example" title="Permalink to this code"></a></div>
 <div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
@@ -1921,11 +1781,10 @@ get selected for comparison. For example:</p>
 </pre></div>
 </div>
 </section>
-</section>
 <section id="assertusestrait">
 <span id="assertions-assertusestrait"></span><h2>assertUsesTrait()<a class="headerlink" href="#assertusestrait" title="Permalink to this heading"></a></h2>
-<table class="docutils align-default" id="id23" style="width: 100%">
-<caption><span class="caption-text">Prerequisites for assertUsesTrait()</span><a class="headerlink" href="#id23" title="Permalink to this table"></a></caption>
+<table class="docutils align-default" id="id14" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for <a class="reference internal" href="#assertions-assertusestrait"><span class="std std-ref">assertUsesTrait()</span></a></span><a class="headerlink" href="#id14" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 75%" />
@@ -1963,7 +1822,7 @@ succeeds only if the class uses the <code class="docutils literal notranslate"><
 </div>
 <p>is the inverse of this.</p>
 <div class="literal-block-wrapper docutils container" id="assertions-assertusestrait-example">
-<div class="code-block-caption"><span class="caption-text">Usage of assertUsesTrait()</span><a class="headerlink" href="#assertions-assertusestrait-example" title="Permalink to this code"></a></div>
+<div class="code-block-caption"><span class="caption-text">Usage of <a class="reference internal" href="#assertions-assertusestrait"><span class="std std-ref">assertUsesTrait()</span></a></span><a class="headerlink" href="#assertions-assertusestrait-example" title="Permalink to this code"></a></div>
 <div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
 <span class="linenos"> 2</span>
 <span class="linenos"> 3</span><span class="k">trait</span> <span class="nx">ExampleTraitForAssertUsesTraitTest</span>
