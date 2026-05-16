@@ -1,4 +1,4 @@
-PHPUnit 9.6.34 by Sebastian Bergmann and contributors.
+PHPUnit 9.6.33 by Sebastian Bergmann and contributors.
 
 .F                                                                  2 / 2 (100%)
 
@@ -11,8 +11,8 @@ Failed asserting that array is an array or ArrayAccess with values equal to spec
 --- Expected
 +++ Actual
 @@ @@
--Tailors\PHPUnit\Arrays\ExpectedArrayValues Object &00000000280beaa10000000022ef1dbc (
-+Tailors\PHPUnit\Arrays\ActualArrayValues Object &00000000280beaab0000000022ef1dbc (
+-Tailors\PHPUnit\Arrays\ExpectedArrayValues Object &00000000630c6cfe000000001e2484bb (
++Tailors\PHPUnit\Arrays\ActualArrayValues Object &00000000630c6cf4000000001e2484bb (
      'sub' => Array &0 (
 -        'int' => '321'
 +        'int' => 321
@@ -23,7 +23,6 @@ Failed asserting that array is an array or ArrayAccess with values equal to spec
  )
 
 arrayValuesEqualToRecursiveTest.php:36
-phpvfscomposer:///home/ptomulik/projects/phptailors/phpunit-extensions/1.1/vendor/phpunit/phpunit/phpunit:106
 
 FAILURES!
 Tests: 2, Assertions: 2, Failures: 1.

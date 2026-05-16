@@ -1,8 +1,8 @@
-PHPUnit 9.6.34 by Sebastian Bergmann and contributors.
+PHPUnit 9.6.33 by Sebastian Bergmann and contributors.
 
 .F                                                                  2 / 2 (100%)
 
-Time: 00:00.005, Memory: 6.00 MB
+Time: 00:00.010, Memory: 6.00 MB
 
 There was 1 failure:
 
@@ -11,8 +11,8 @@ Failed asserting that array is an array or ArrayAccess with values identical to 
 --- Expected
 +++ Actual
 @@ @@
--Tailors\PHPUnit\Arrays\ExpectedArrayValues Object &000000000f81b9910000000040b47565 (
-+Tailors\PHPUnit\Arrays\ActualArrayValues Object &000000000f81b99b0000000040b47565 (
+-Tailors\PHPUnit\Arrays\ExpectedArrayValues Object &000000006f2e88c8000000004dd286cc (
++Tailors\PHPUnit\Arrays\ActualArrayValues Object &000000006f2e88c2000000004dd286cc (
      'sub' => Array &0 (
          'int' => 321
 +        'bar' => 'BAR'
@@ -21,7 +21,6 @@ Failed asserting that array is an array or ArrayAccess with values identical to 
  )
 
 arrayValuesIdenticalToRecursiveTest.php:36
-phpvfscomposer:///home/ptomulik/projects/phptailors/phpunit-extensions/1.1/vendor/phpunit/phpunit/phpunit:106
 
 FAILURES!
 Tests: 2, Assertions: 2, Failures: 1.

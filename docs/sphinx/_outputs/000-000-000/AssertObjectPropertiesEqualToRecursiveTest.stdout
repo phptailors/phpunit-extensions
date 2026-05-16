@@ -1,8 +1,8 @@
-PHPUnit 9.6.34 by Sebastian Bergmann and contributors.
+PHPUnit 9.6.33 by Sebastian Bergmann and contributors.
 
 .F                                                                  2 / 2 (100%)
 
-Time: 00:00.005, Memory: 6.00 MB
+Time: 00:00.010, Memory: 6.00 MB
 
 There was 1 failure:
 
@@ -11,14 +11,14 @@ Failed asserting that object AssertObjectPropertiesEqualToRecursiveTest is an ob
 --- Expected
 +++ Actual
 @@ @@
--Tailors\PHPUnit\Properties\ExpectedObjectProperties Object &000000006071501d000000005a224b6a (
+-Tailors\PHPUnit\Properties\ExpectedObjectProperties Object &000000000e613d370000000077e3f01e (
 -    'attribute' => '123'
 -    'nested()' => Array &0 (
 -        'getMessage()' => 'FOO'
 -        'getCode()' => '456'
-+Tailors\PHPUnit\Properties\ActualObjectProperties Object &0000000060715012000000005a224b6a (
++Tailors\PHPUnit\Properties\ActualObjectProperties Object &000000000e613d320000000077e3f01e (
 +    'attribute' => 123
-+    'nested()' => Exception Object &0000000060715029000000005a224b6a (
++    'nested()' => Exception Object &000000000e613d3f0000000077e3f01e (
 +        'message' => 'FOO'
 +        'string' => ''
 +        'code' => 456
@@ -29,7 +29,6 @@ Failed asserting that object AssertObjectPropertiesEqualToRecursiveTest is an ob
  )
 
 AssertObjectPropertiesEqualToRecursiveTest.php:30
-phpvfscomposer:///home/ptomulik/projects/phptailors/phpunit-extensions/1.1/vendor/phpunit/phpunit/phpunit:106
 
 FAILURES!
 Tests: 2, Assertions: 2, Failures: 1.

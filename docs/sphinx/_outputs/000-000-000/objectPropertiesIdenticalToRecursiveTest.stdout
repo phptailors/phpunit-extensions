@@ -1,8 +1,8 @@
-PHPUnit 9.6.34 by Sebastian Bergmann and contributors.
+PHPUnit 9.6.33 by Sebastian Bergmann and contributors.
 
 .F                                                                  2 / 2 (100%)
 
-Time: 00:00.012, Memory: 6.00 MB
+Time: 00:00.005, Memory: 6.00 MB
 
 There was 1 failure:
 
@@ -11,13 +11,13 @@ Failed asserting that object objectPropertiesIdenticalToRecursiveTest is an obje
 --- Expected
 +++ Actual
 @@ @@
--Tailors\PHPUnit\Properties\ExpectedObjectProperties Object &000000001229010d0000000066b1fb87 (
-+Tailors\PHPUnit\Properties\ActualObjectProperties Object &00000000122901020000000066b1fb87 (
+-Tailors\PHPUnit\Properties\ExpectedObjectProperties Object &000000007f999077000000006b8c9da4 (
++Tailors\PHPUnit\Properties\ActualObjectProperties Object &000000007f999072000000006b8c9da4 (
      'attribute' => 123
 -    'nested()' => Array &0 (
 -        'getMessage()' => 'FOO'
 -        'getCode()' => 456
-+    'nested()' => Exception Object &00000000122901390000000066b1fb87 (
++    'nested()' => Exception Object &000000007f99907f000000006b8c9da4 (
 +        'message' => 'FOO'
 +        'string' => ''
 +        'code' => 456
@@ -28,7 +28,6 @@ Failed asserting that object objectPropertiesIdenticalToRecursiveTest is an obje
  )
 
 objectPropertiesIdenticalToRecursiveTest.php:30
-phpvfscomposer:///home/ptomulik/projects/phptailors/phpunit-extensions/1.1/vendor/phpunit/phpunit/phpunit:106
 
 FAILURES!
 Tests: 2, Assertions: 2, Failures: 1.
