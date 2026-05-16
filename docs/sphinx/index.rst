@@ -13,6 +13,7 @@ Welcome to PHPUnit Extensions documentation!
 
    assertions
    constraints
+   utilities
 
 ******************
 Indices and tables
