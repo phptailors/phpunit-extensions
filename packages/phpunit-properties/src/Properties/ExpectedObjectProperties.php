@@ -23,10 +23,7 @@ use Tailors\PHPUnit\Values\ValueSelectorWrapperInterface;
  */
 final class ExpectedObjectProperties extends AbstractObjectProperties implements ValueSelectorWrapperInterface
 {
-    /**
-     * @var ?ObjectPropertySelector
-     */
-    private static $valueSelector;
+    private static ?ObjectPropertySelector $valueSelector = null;
 
     /**
      * @psalm-mutation-free

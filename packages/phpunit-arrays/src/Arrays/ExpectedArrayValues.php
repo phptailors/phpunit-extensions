@@ -23,10 +23,7 @@ use Tailors\PHPUnit\Values\ValueSelectorWrapperInterface;
  */
 final class ExpectedArrayValues extends AbstractArrayValues implements ValueSelectorWrapperInterface
 {
-    /**
-     * @var ?ArrayValueSelector
-     */
-    private static $valueSelector;
+    private static ?ArrayValueSelector $valueSelector = null;
 
     /**
      * @psalm-mutation-free
