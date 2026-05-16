@@ -185,10 +185,12 @@ abstract class AbstractConstraint extends Constraint implements ValuesWrapperInt
         $result = $visitor->result();
 
         if (!$result instanceof ValuesInterface) {
+            // @codeCoverageIgnoreStart
             $type = is_object($result) ? get_class($result) : gettype($result);
 
             /** @psalm-suppress MissingThrowsDocblock */
             throw InternalErrorException::fromBackTrace("recursive walk resulted with {$type}", 0);
+            // @codeCoverageIgnoreEnd
         }
 
         return $result;
