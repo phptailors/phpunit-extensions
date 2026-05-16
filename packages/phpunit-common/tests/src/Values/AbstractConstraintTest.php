@@ -16,7 +16,6 @@ use PHPUnit\Framework\Constraint\UnaryOperator;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
-use Tailors\PHPUnit\Comparator\ComparatorWrapperInterface;
 use Tailors\PHPUnit\Comparator\IdentityComparator;
 
 /**
@@ -85,12 +84,6 @@ final class AbstractConstraintTest extends TestCase
         $this->assertInstanceOf(ValuesWrapperInterface::class, $constraint);
     }
 
-    public function testImplementsComparatorWrapperInterface(): void
-    {
-        $constraint = self::createDummyConstraint($this);
-        $this->assertInstanceOf(ComparatorWrapperInterface::class, $constraint);
-    }
-
     public function testConstruct(): void
     {
         $expected = $this->createMock(ValuesInterface::class);
@@ -100,7 +93,6 @@ final class AbstractConstraintTest extends TestCase
         $constraint = self::createDummyConstraint($this, $expected, $comparator, $valueSelector);
 
         $this->assertSame($expected, $constraint->getValues());
-        $this->assertSame($comparator, $constraint->getComparator());
     }
 
     public function testToString(): void

@@ -20,12 +20,11 @@ use Tailors\PHPUnit\CircularDependencyException;
 use Tailors\PHPUnit\Common\Exporter;
 use Tailors\PHPUnit\Common\ShortFailureDescriptionTrait;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
-use Tailors\PHPUnit\Comparator\ComparatorWrapperInterface;
 
 /**
  * Abstract base class for constraints that compare key-sorted arrays.
  */
-abstract class AbstractKsortedConstraint extends Constraint implements ComparatorWrapperInterface
+abstract class AbstractKsortedConstraint extends Constraint
 {
     use ShortFailureDescriptionTrait;
 
@@ -49,14 +48,6 @@ abstract class AbstractKsortedConstraint extends Constraint implements Comparato
         $this->comparator = $comparator;
         $this->expected = $expected;
         $this->flags = $flags;
-    }
-
-    /**
-     * Returns an instance of ComparatorInterface which implements comparison operator.
-     */
-    final public function getComparator(): ComparatorInterface
-    {
-        return $this->comparator;
     }
 
     /**
