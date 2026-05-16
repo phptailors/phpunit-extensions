@@ -276,7 +276,7 @@ is the inverse of this.
 .. _assertions.assertHasMethod:
 
 assertHasMethod()
------------------------
+-----------------
 
 .. list-table:: Prerequisites for assertHasMethod()
    :width: 100%
@@ -474,7 +474,7 @@ is the inverse of this.
 .. _assertions.assertKsortedArrayEqualTo:
 
 assertKsortedArrayEqualTo()
---------------------------
+---------------------------
 
 .. list-table:: Prerequisites for assertKsortedArrayEqualTo()
    :width: 100%
@@ -523,7 +523,7 @@ is the inverse of this.
 .. _assertions.assertKsortedArrayIdenticalTo:
 
 assertKsortedArrayIdenticalTo()
-------------------------------
+-------------------------------
 
 .. list-table:: Prerequisites for assertKsortedArrayIdenticalTo()
    :width: 100%
