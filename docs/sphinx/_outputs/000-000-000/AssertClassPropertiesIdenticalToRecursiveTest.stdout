@@ -1,0 +1,27 @@
+PHPUnit 9.6.34 by Sebastian Bergmann and contributors.
+
+.F                                                                  2 / 2 (100%)
+
+Time: 00:00.006, Memory: 6.00 MB
+
+There was 1 failure:
+
+1) AssertClassPropertiesIdenticalToRecursiveTest::testFailure
+Failed asserting that AssertClassPropertiesIdenticalToRecursiveTest is a class with properties identical to specified.
+--- Expected
++++ Actual
+@@ @@
+-Tailors\PHPUnit\Properties\ExpectedClassProperties Object &00000000328251ff00000000789a4f4c (
++Tailors\PHPUnit\Properties\ActualClassProperties Object &00000000328251f500000000789a4f4c (
+     'attribute' => 123
+-    'nested' => Array &0 (
+-        'other' => 321
+-    )
++    'nested' => 'AssertClassPropertiesIdenticalToRecursiveTest'
+ )
+
+AssertClassPropertiesIdenticalToRecursiveTest.php:29
+phpvfscomposer:///home/ptomulik/projects/phptailors/phpunit-extensions/1.1/vendor/phpunit/phpunit/phpunit:106
+
+FAILURES!
+Tests: 2, Assertions: 2, Failures: 1.

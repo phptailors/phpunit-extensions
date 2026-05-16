@@ -1,0 +1,28 @@
+PHPUnit 9.6.34 by Sebastian Bergmann and contributors.
+
+.F                                                                  2 / 2 (100%)
+
+Time: 00:00.006, Memory: 6.00 MB
+
+There was 1 failure:
+
+1) classPropertiesEqualToRecursiveTest::testFailure
+Failed asserting that classPropertiesEqualToRecursiveTest is a class with properties equal to specified.
+--- Expected
++++ Actual
+@@ @@
+-Tailors\PHPUnit\Properties\ExpectedClassProperties Object &0000000043c2158b000000006eb46a40 (
+-    'attribute' => '123'
+-    'nested' => Array &0 (
+-        'other' => '321'
+-    )
++Tailors\PHPUnit\Properties\ActualClassProperties Object &0000000043c21581000000006eb46a40 (
++    'attribute' => 123
++    'nested' => 'classPropertiesEqualToRecursiveTest'
+ )
+
+classPropertiesEqualToRecursiveTest.php:25
+phpvfscomposer:///home/ptomulik/projects/phptailors/phpunit-extensions/1.1/vendor/phpunit/phpunit/phpunit:106
+
+FAILURES!
+Tests: 2, Assertions: 2, Failures: 1.
