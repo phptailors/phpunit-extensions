@@ -1,25 +1,16 @@
 {
     "name": "phptailors/phpunit-regexp",
     "description": "PCRE assertions for PHPUnit-based tests",
-    "type": "library",
     "license": "MIT",
-    "minimum-stability": "dev",
-    "prefer-stable": true,
-    "support": {
-        "issues": "https://github.com/phptailors/phpunit-extensions/issues",
-        "source": "https://github.com/phptailors/phpunit-extensions"
-    },
     "authors": [
         {
             "name": "Paweł Tomulik",
             "email": "pawel@tomulik.pl"
         }
     ],
-    "conflict": {
-        "nikic/php-parser": "< 4.13.2"
-    },
+    "type": "library",
     "require": {
-        "php": ">=8.3",
+        "php": "^8.3",
         "phptailors/phpunit-common": "^4.0.10"
     },
     "require-dev": {
@@ -39,5 +30,14 @@
         "branch-alias": {
             "dev-master": "4.0-dev"
         }
-    }
+    },
+    "conflict": {
+        "nikic/php-parser": "< 4.13.2"
+    },
+    "support": {
+        "issues": "https://github.com/phptailors/phpunit-extensions/issues",
+        "source": "https://github.com/phptailors/phpunit-extensions"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
