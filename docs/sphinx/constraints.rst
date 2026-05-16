@@ -9,10 +9,10 @@ including appropriate trait as shown in prerequisite tables below.
 
 .. _constraints.arrayValuesEqualTo:
 
-arrayValuesEqualTo
-------------------
+arrayValuesEqualTo()
+--------------------
 
-.. list-table:: Prerequisites for arrayValuesEqualTo()
+.. list-table:: Prerequisites for :ref:`constraints.arrayValuesEqualTo`
    :width: 100%
    :widths: 25 75
    :header-rows: 0
@@ -30,42 +30,26 @@ Synopsis:
 
 Creates :class:`Tailors\\PHPUnit\\Constraint\\ArrayValuesEqualTo` constraint.
 
-The constraint accepts arrays and ArrayAccess_ instances having selected values
-equal to ``$expected``.
+The constraint accepts arrays and ArrayAccess_ objects having values under
+certain keys equal to these specified in ``$expected``. The constraint uses
+operator ``==`` for comparison.
 
 .. literalinclude:: examples/arrayValuesEqualToTest.php
    :linenos:
-   :caption: Usage of arrayValuesEqualTo()
+   :caption: Usage of :ref:`constraints.arrayValuesEqualTo`
    :name: constraints.arrayValuesEqualTo.example
 
 .. literalinclude:: examples/arrayValuesEqualToTest.stdout
   :linenos:
   :language: none
 
-
-Selecting values from nested arrays
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. list-table:: Prerequisites for nested selection
-   :width: 100%
-   :widths: 25 75
-   :header-rows: 0
-
-   * - Package
-     - phptailors/phpunit-arrays: ``^1.1 || ^2.1 || ^3.1 || ^4.1 || ^5.1``
-   * - Trait
-     - :class:`Tailors\\PHPUnit\\ArrayValuesTrait`
-
-Since versions ``*.1`` (``1.1``, ``2.1``, ``3.1``, ...) it's possible to
-specify sub-array selection in nested arrays of the ``$expected`` by using
-``$this->arrayValues([...])`` instead of ``[...]``. This changes the content
-taken for comparison -- instead of matching the exact content of the sub-array
-from ``$actual``, only the listed keys are selected from the sub-array for
-comparison. For example:
+Since versions ``*.1`` (``1.1``, ``2.1``, ``3.1``, ...) it's possible to nest
+recursively specification of array values. For more details, see
+:ref:`utilities.arrayValues`.
 
 .. literalinclude:: examples/arrayValuesEqualToRecursiveTest.php
    :linenos:
-   :caption: Usage of arrayValuesEqualTo()
+   :caption: Usage of :ref:`constraints.arrayValuesEqualTo` with :ref:`utilities.arrayValues`
    :name: constraints.arrayValuesEqualToRecursive.example
 
 .. literalinclude:: examples/arrayValuesEqualToRecursiveTest.stdout
@@ -74,10 +58,10 @@ comparison. For example:
 
 .. _constraints.arrayValuesIdenticalTo:
 
-arrayValuesIdenticalTo
-----------------------
+arrayValuesIdenticalTo()
+------------------------
 
-.. list-table:: Prerequisites for arrayValuesIdenticalTo()
+.. list-table:: Prerequisites for :ref:`constraints.arrayValuesIdenticalTo`
    :width: 100%
    :widths: 25 75
    :header-rows: 0
@@ -100,36 +84,20 @@ identical to ``$expected``.
 
 .. literalinclude:: examples/arrayValuesIdenticalToTest.php
    :linenos:
-   :caption: Usage of arrayValuesIdenticalTo() with nested selectors
+   :caption: Usage of :ref:`constraints.arrayValuesIdenticalTo`
    :name: constraints.arrayValuesIdenticalTo.example
 
 .. literalinclude:: examples/arrayValuesIdenticalToTest.stdout
   :linenos:
   :language: none
 
-Selecting values from nested arrays
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. list-table:: Prerequisites for nested selection
-   :width: 100%
-   :widths: 25 75
-   :header-rows: 0
-
-   * - Package
-     - phptailors/phpunit-arrays: ``^1.1 || ^2.1 || ^3.1 || ^4.1 || ^5.1``
-   * - Trait
-     - :class:`Tailors\\PHPUnit\\ArrayValuesTrait`
-
-Since versions ``*.1`` (``1.1``, ``2.1``, ``3.1``, ...) it's possible to
-specify sub-array selection in nested arrays of the ``$expected`` by using
-``$this->arrayValues([...])`` instead of ``[...]``. This changes the content
-taken for comparison -- instead of matching the exact content of the sub-array
-from ``$actual``, only the listed keys are selected from the sub-array for
-comparison. For example:
+Since versions ``*.1`` (``1.1``, ``2.1``, ``3.1``, ...) it's possible to nest
+recursively specification of array values. For more details, see
+:ref:`utilities.arrayValues`.
 
 .. literalinclude:: examples/arrayValuesIdenticalToRecursiveTest.php
    :linenos:
-   :caption: Usage of arrayValuesIdenticalTo() with nested selectors
+   :caption: Usage of :ref:`constraints.arrayValuesIdenticalTo` with nested selectors
    :name: constraints.arrayValuesIdenticalToRecursive.example
 
 .. literalinclude:: examples/arrayValuesIdenticalToRecursiveTest.stdout
@@ -139,10 +107,10 @@ comparison. For example:
 
 .. _constraints.classPropertiesEqualTo:
 
-classPropertiesEqualTo
------------------------
+classPropertiesEqualTo()
+------------------------
 
-.. list-table:: Prerequisites for classPropertiesEqualTo()
+.. list-table:: Prerequisites for :ref:`constraints.classPropertiesEqualTo`
    :width: 100%
    :widths: 25 75
    :header-rows: 0
@@ -165,36 +133,20 @@ The constraint accepts classes having selected properties equal to
 
 .. literalinclude:: examples/classPropertiesEqualToTest.php
    :linenos:
-   :caption: Usage of classPropertiesEqualTo()
+   :caption: Usage of :ref:`constraints.classPropertiesEqualTo`
    :name: constraints.classPropertiesEqualTo.example
 
 .. literalinclude:: examples/classPropertiesEqualToTest.stdout
   :linenos:
   :language: none
 
-Selecting properties of nested classes
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. list-table:: Prerequisites for nested selection
-   :width: 100%
-   :widths: 25 75
-   :header-rows: 0
-
-   * - Package
-     - phptailors/phpunit-arrays: ``^1.1 || ^2.1 || ^3.1 || ^4.1 || ^5.1``
-   * - Trait
-     - :class:`Tailors\\PHPUnit\\ClassPropertiesTrait`
-
-Since versions ``*.1`` (``1.1``, ``2.1``, ``3.1``, ...) it's possible to
-specify nested selections by using ``$this->classProperties([...])`` instead of
-``[...]``. This changes the content taken for comparison -- instead of treating
-a class name (nested in ``$actual``) as a regular string, it's being considered
-a class, and the properties of this class get selected for comparison. For
-example:
+Since versions ``*.1`` (``1.1``, ``2.1``, ``3.1``, ...) it's possible to nest
+recursively specifications of class properties. For more details, see
+:ref:`utilities.arrayValues`.
 
 .. literalinclude:: examples/classPropertiesEqualToRecursiveTest.php
    :linenos:
-   :caption: Usage of classPropertiesEqualTo()
+   :caption: Usage of :ref:`constraints.classPropertiesEqualTo` with :ref:`utilities.classProperties`
    :name: constraints.classPropertiesEqualToRecursive.example
 
 .. literalinclude:: examples/classPropertiesEqualToRecursiveTest.stdout
@@ -204,10 +156,10 @@ example:
 
 .. _constraints.classPropertiesIdenticalTo:
 
-classPropertiesIdenticalTo
----------------------------
+classPropertiesIdenticalTo()
+----------------------------
 
-.. list-table:: Prerequisites for classPropertiesIdenticalTo()
+.. list-table:: Prerequisites for :ref:`constraints.classPropertiesIdenticalTo`
    :width: 100%
    :widths: 25 75
    :header-rows: 0
@@ -230,36 +182,20 @@ The constraint accepts classes having selected properties identical to
 
 .. literalinclude:: examples/classPropertiesIdenticalToTest.php
    :linenos:
-   :caption: Usage of classPropertiesIdenticalTo()
+   :caption: Usage of :ref:`constraints.classPropertiesIdenticalTo`
    :name: constraints.classPropertiesIdenticalTo.example
 
 .. literalinclude:: examples/classPropertiesIdenticalToTest.stdout
   :linenos:
   :language: none
 
-Selecting properties of nested classes
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. list-table:: Prerequisites for nested selection
-   :width: 100%
-   :widths: 25 75
-   :header-rows: 0
-
-   * - Package
-     - phptailors/phpunit-arrays: ``^1.1 || ^2.1 || ^3.1 || ^4.1 || ^5.1``
-   * - Trait
-     - :class:`Tailors\\PHPUnit\\ClassPropertiesTrait`
-
-Since versions ``*.1`` (``1.1``, ``2.1``, ``3.1``, ...) it's possible to
-specify nested selections by using ``$this->classProperties([...])`` instead of
-``[...]``. This changes the content taken for comparison -- instead of treating
-a class name (nested in ``$actual``) as a regular string, it's being considered
-a class, and the properties of this class get selected for comparison. For
-example:
+Since versions ``*.1`` (``1.1``, ``2.1``, ``3.1``, ...) it's possible to nest
+recursively specifications of class properties. For more details, see
+:ref:`utilities.arrayValues`.
 
 .. literalinclude:: examples/classPropertiesIdenticalToRecursiveTest.php
    :linenos:
-   :caption: Usage of classPropertiesIdenticalTo()
+   :caption: Usage of :ref:`constraints.classPropertiesIdenticalTo` with :ref:`utilities.classProperties`
    :name: constraints.classPropertiesIdenticalToRecursive.example
 
 .. literalinclude:: examples/classPropertiesIdenticalToRecursiveTest.stdout
@@ -269,10 +205,10 @@ example:
 
 .. _constraints.extendsClass:
 
-extendsClass
-------------
+extendsClass()
+--------------
 
-.. list-table:: Prerequisites for extendsClass()
+.. list-table:: Prerequisites for :ref:`constraints.extendsClass`
    :width: 100%
    :widths: 25 75
    :header-rows: 0
@@ -305,7 +241,7 @@ examined ``$subject`` may be an ``object`` or a class name as ``string``:
 
 .. literalinclude:: examples/extendsClassTest.php
    :linenos:
-   :caption: Usage of extendsClass()
+   :caption: Usage of :ref:`constraints.extendsClass`
    :name: constraints.extendsClass.example
 
 .. literalinclude:: examples/extendsClassTest.stdout
@@ -314,10 +250,10 @@ examined ``$subject`` may be an ``object`` or a class name as ``string``:
 
 .. _constraints.hasMethod:
 
-hasMethod
----------
+hasMethod()
+-----------
 
-.. list-table:: Prerequisites for hasMethod()
+.. list-table:: Prerequisites for :ref:`constraints.hasMethod`
    :width: 100%
    :widths: 25 75
    :header-rows: 0
@@ -381,7 +317,7 @@ in a matched method.
 
 .. literalinclude:: examples/hasMethodTest.php
    :linenos:
-   :caption: Usage of hasMethod()
+   :caption: Usage of :ref:`constraints.hasMethod`
    :name: constraints.hasMethod.example
 
 .. literalinclude:: examples/hasMethodTest.stdout
@@ -392,10 +328,10 @@ in a matched method.
 
 .. _constraints.hasPregCaptures:
 
-hasPregCaptures
----------------
+hasPregCaptures()
+-----------------
 
-.. list-table:: Prerequisites for hasPregCaptures()
+.. list-table:: Prerequisites for :ref:`constraints.hasPregCaptures`
    :width: 100%
    :widths: 25 75
    :header-rows: 0
@@ -428,7 +364,7 @@ properly only with arrays obtained from ``preg_match()`` invoked with
 
 .. literalinclude:: examples/hasPregCapturesTest.php
    :linenos:
-   :caption: Usage of hasPregCaptures()
+   :caption: Usage of :ref:`constraints.hasPregCaptures`
    :name: constraints.hasPregCaptures.example
 
 .. literalinclude:: examples/hasPregCapturesTest.stdout
@@ -438,10 +374,10 @@ properly only with arrays obtained from ``preg_match()`` invoked with
 
 .. _constraints.implementsInterface:
 
-implementsInterface
--------------------
+implementsInterface()
+---------------------
 
-.. list-table:: Prerequisites for implementsInterface()
+.. list-table:: Prerequisites for :ref:`constraints.implementsInterface`
    :width: 100%
    :widths: 25 75
    :header-rows: 0
@@ -464,7 +400,7 @@ The constraint accepts objects (and classes/interfaces) that implement given
 
 .. literalinclude:: examples/implementsInterfaceTest.php
    :linenos:
-   :caption: Usage of implementsInterface()
+   :caption: Usage of :ref:`constraints.implementsInterface`
    :name: constraints.implementsInterface.example
 
 .. literalinclude:: examples/implementsInterfaceTest.stdout
@@ -473,10 +409,10 @@ The constraint accepts objects (and classes/interfaces) that implement given
 
 .. _constraints.ksortedArrayEqualTo:
 
-ksortedArrayEqualTo
--------------------
+ksortedArrayEqualTo()
+---------------------
 
-.. list-table:: Prerequisites for ksortedArrayEqualTo()
+.. list-table:: Prerequisites for :ref:`constraints.ksortedArrayEqualTo`
    :width: 100%
    :widths: 25 75
    :header-rows: 0
@@ -498,7 +434,7 @@ The constraint accepts arrays that are equal to ``$expected`` when key-sorted.
 
 .. literalinclude:: examples/ksortedArrayEqualToTest.php
    :linenos:
-   :caption: Usage of ksortedArrayEqualTo()
+   :caption: Usage of :ref:`constraints.ksortedArrayEqualTo`
    :name: constraints.ksortedArrayEqualTo.example
 
 .. literalinclude:: examples/ksortedArrayEqualToTest.stdout
@@ -508,10 +444,10 @@ The constraint accepts arrays that are equal to ``$expected`` when key-sorted.
 
 .. _constraints.ksortedArrayIdenticalTo:
 
-ksortedArrayIdenticalTo
------------------------
+ksortedArrayIdenticalTo()
+-------------------------
 
-.. list-table:: Prerequisites for ksortedArrayIdenticalTo()
+.. list-table:: Prerequisites for :ref:`constraints.ksortedArrayIdenticalTo`
    :width: 100%
    :widths: 25 75
    :header-rows: 0
@@ -533,7 +469,7 @@ The constraint accepts arrays identical to ``$expected`` when key-sorted.
 
 .. literalinclude:: examples/ksortedArrayIdenticalToTest.php
    :linenos:
-   :caption: Usage of ksortedArrayIdenticalTo()
+   :caption: Usage of :ref:`constraints.ksortedArrayIdenticalTo`
    :name: constraints.ksortedArrayIdenticalTo.example
 
 .. literalinclude:: examples/ksortedArrayIdenticalToTest.stdout
@@ -543,10 +479,10 @@ The constraint accepts arrays identical to ``$expected`` when key-sorted.
 
 .. _constraints.objectPropertiesEqualTo:
 
-objectPropertiesEqualTo
------------------------
+objectPropertiesEqualTo()
+-------------------------
 
-.. list-table:: Prerequisites for objectPropertiesEqualTo()
+.. list-table:: Prerequisites for :ref:`constraints.objectPropertiesEqualTo`
    :width: 100%
    :widths: 25 75
    :header-rows: 0
@@ -569,35 +505,20 @@ The constraint accepts objects having selected properties equal to
 
 .. literalinclude:: examples/objectPropertiesEqualToTest.php
    :linenos:
-   :caption: Usage of objectPropertiesEqualTo()
+   :caption: Usage of :ref:`constraints.objectPropertiesEqualTo`
    :name: constraints.objectPropertiesEqualTo.example
 
 .. literalinclude:: examples/objectPropertiesEqualToTest.stdout
   :linenos:
   :language: none
 
-Selecting properties of nested objects
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. list-table:: Prerequisites for nested selection
-   :width: 100%
-   :widths: 25 75
-   :header-rows: 0
-
-   * - Package
-     - phptailors/phpunit-arrays: ``^1.1 || ^2.1 || ^3.1 || ^4.1 || ^5.1``
-   * - Trait
-     - :class:`Tailors\\PHPUnit\\ObjectPropertiesTrait`
-
-Since versions ``*.1`` (``1.1``, ``2.1``, ``3.1``, ...) it's possible to
-specify nested selections by using ``$this->objectProperties([...])`` instead of
-``[...]``. This changes the content taken for comparison -- instead of treating
-an object (nested in ``$actual``) as an object, the properties of this object
-get selected for comparison. For example:
+Since versions ``*.1`` (``1.1``, ``2.1``, ``3.1``, ...) it's possible to nest
+recursively specifications of object properties. For more details, see
+:ref:`utilities.arrayValues`.
 
 .. literalinclude:: examples/objectPropertiesEqualToRecursiveTest.php
    :linenos:
-   :caption: Usage of objectPropertiesEqualTo()
+   :caption: Usage of :ref:`constraints.objectPropertiesEqualTo` with :ref:`utilities.objectProperties`
    :name: constraints.objectPropertiesEqualToRecursive.example
 
 .. literalinclude:: examples/objectPropertiesEqualToRecursiveTest.stdout
@@ -608,10 +529,10 @@ get selected for comparison. For example:
 
 .. _constraints.objectPropertiesIdenticalTo:
 
-objectPropertiesIdenticalTo
----------------------------
+objectPropertiesIdenticalTo()
+-----------------------------
 
-.. list-table:: Prerequisites for objectPropertiesIdenticalTo()
+.. list-table:: Prerequisites for :ref:`constraints.objectPropertiesIdenticalTo`
    :width: 100%
    :widths: 25 75
    :header-rows: 0
@@ -634,35 +555,21 @@ The constraint accepts objects having selected properties identical to
 
 .. literalinclude:: examples/objectPropertiesIdenticalToTest.php
    :linenos:
-   :caption: Usage of objectPropertiesIdenticalTo()
+   :caption: Usage of :ref:`constraints.objectPropertiesIdenticalTo`
    :name: constraints.objectPropertiesIdenticalTo.example
 
 .. literalinclude:: examples/objectPropertiesIdenticalToTest.stdout
   :linenos:
   :language: none
 
-Selecting properties of nested objects
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. list-table:: Prerequisites for nested selection
-   :width: 100%
-   :widths: 25 75
-   :header-rows: 0
-
-   * - Package
-     - phptailors/phpunit-arrays: ``^1.1 || ^2.1 || ^3.1 || ^4.1 || ^5.1``
-   * - Trait
-     - :class:`Tailors\\PHPUnit\\ObjectPropertiesTrait`
-
-Since versions ``*.1`` (``1.1``, ``2.1``, ``3.1``, ...) it's possible to
-specify nested selections by using ``$this->objectProperties([...])`` instead of
-``[...]``. This changes the content taken for comparison -- instead of treating
-an object (nested in ``$actual``) as an object, the properties of this object
-get selected for comparison. For example:
+Since versions ``*.1`` (``1.1``, ``2.1``, ``3.1``, ...) it's possible to nest
+recursively specifications of object properties. For more details, see
+:ref:`utilities.arrayValues`.
 
 .. literalinclude:: examples/objectPropertiesIdenticalToRecursiveTest.php
    :linenos:
-   :caption: Usage of objectPropertiesIdenticalTo()
+   :caption: Usage of :ref:`constraints.objectPropertiesIdenticalTo` with :ref:`utilities.objectProperties`
    :name: constraints.objectPropertiesIdenticalToRecursive.example
 
 .. literalinclude:: examples/objectPropertiesIdenticalToRecursiveTest.stdout
@@ -671,10 +578,10 @@ get selected for comparison. For example:
 
 .. _constraints.usesTrait:
 
-usesTrait
----------
+usesTrait()
+-----------
 
-.. list-table:: Prerequisites for usesTrait()
+.. list-table:: Prerequisites for :ref:`constraints.usesTrait`
    :width: 100%
    :widths: 25 75
    :header-rows: 0
@@ -696,7 +603,7 @@ The constraint accepts objects (and classes) that use given ``$trait``.
 
 .. literalinclude:: examples/usesTraitTest.php
    :linenos:
-   :caption: Usage of usesTrait()
+   :caption: Usage of :ref:`constraints.usesTrait`
    :name: constraints.usesTrait.example
 
 .. literalinclude:: examples/usesTraitTest.stdout
