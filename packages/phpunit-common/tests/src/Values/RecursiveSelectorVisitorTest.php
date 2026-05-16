@@ -702,6 +702,64 @@ final class RecursiveSelectorVisitorTest extends TestCase
                 'bar' => 'BAR',
             ]),
         ];
+
+        //
+        // 07
+        //
+        $s07 = new DummyValueSelector(fn ($subject): bool => is_object($subject) && $subject instanceof \Exception, function ($subject, $key, &$retval): bool {
+            if (!is_object($subject) || !$subject instanceof \Exception) {
+                return false;
+            }
+
+            switch ($key) {
+                case 'message':
+                    $retval = $subject->getMessage();
+
+                    return true;
+
+                case 'code':
+                    $retval = $subject->getCode();
+
+                    return true;
+            }
+
+            return false;
+        });
+
+        yield 'RecursiveSelectorVisitorTest.php:'.__LINE__ => [
+            'ctor'   => [$selector, new \Exception('foo', 123)],
+            'values' => new DummyExpectedValues($s07, [
+                'message'  => 'unimportant',
+                'nonexist' => 'unimportant',
+            ]),
+            'result' => new DummyValues(true, [
+                'message' => 'foo',
+            ]),
+        ];
+
+        yield 'RecursiveSelectorVisitorTest.php:'.__LINE__ => [
+            'ctor' => [
+                $selector,
+                new \ArrayObject([
+                    'f' => 'F',
+                    'e' => new \Exception('foo', 123),
+                    'd' => 'D',
+                ]),
+            ],
+            'values' => new ExpectedValues([
+                'e' => new DummyExpectedValues($s07, [
+                    'message'  => 'unimportant',
+                    'nonexist' => 'unimportant',
+                ]),
+                'f' => 'unimportant',
+            ]),
+            'result' => new ActualValues([
+                'e' => new DummyValues(true, [
+                    'message' => 'foo',
+                ]),
+                'f' => 'F',
+            ]),
+        ];
     }
 
     /**
@@ -715,12 +773,13 @@ final class RecursiveSelectorVisitorTest extends TestCase
         $traversal->walk($values, $visitor);
 
         $expect = $result;
-        if ($expect instanceof ActualValues) {
+        $actual = $visitor->result();
+
+        if ($expect instanceof ValuesInterface && $expect->actual()) {
             $expect = (new RecursiveUnwrapper())->unwrap($expect);
         }
 
-        $actual = $visitor->result();
-        if ($actual instanceof ActualValues) {
+        if ($actual instanceof ValuesInterface && $actual->actual()) {
             $actual = (new RecursiveUnwrapper())->unwrap($actual);
         }
 
