@@ -1,0 +1,28 @@
+PHPUnit 9.6.33 by Sebastian Bergmann and contributors.
+
+.F                                                                  2 / 2 (100%)
+
+Time: 00:00.012, Memory: 6.00 MB
+
+There was 1 failure:
+
+1) arrayValuesEqualToRecursiveTest::testFailure
+Failed asserting that array is an array or ArrayAccess with values equal to specified.
+--- Expected
++++ Actual
+@@ @@
+-Tailors\PHPUnit\Arrays\ExpectedArrayValues Object &00000000630c6cfe000000001e2484bb (
++Tailors\PHPUnit\Arrays\ActualArrayValues Object &00000000630c6cf4000000001e2484bb (
+     'sub' => Array &0 (
+-        'int' => '321'
++        'int' => 321
++        'bar' => 'BAR'
+     )
+-    'int' => 123
++    'int' => '123'
+ )
+
+arrayValuesEqualToRecursiveTest.php:36
+
+FAILURES!
+Tests: 2, Assertions: 2, Failures: 1.

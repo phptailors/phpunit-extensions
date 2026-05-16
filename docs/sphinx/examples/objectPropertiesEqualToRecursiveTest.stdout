@@ -1,0 +1,38 @@
+PHPUnit 10.5.63 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.2.30
+Configuration: phpunit.xml
+
+.F                                                                  2 / 2 (100%)
+
+Time: 00:00.010, Memory: 8.00 MB
+
+There was 1 failure:
+
+1) objectPropertiesEqualToRecursiveTest::testFailure
+Failed asserting that object objectPropertiesEqualToRecursiveTest is an object with properties equal to specified.
+--- Expected
++++ Actual
+@@ @@
+-Tailors\PHPUnit\Properties\ExpectedObjectProperties Object #466 (
+-    'attribute' => '123',
+-    'nested()' => Array &0 [
+-        'getMessage()' => 'FOO',
+-        'getCode()' => '456',
+-    ],
++Tailors\PHPUnit\Properties\ActualObjectProperties Object #484 (
++    'attribute' => 123,
++    'nested()' => Exception Object #464 (
++        'message' => 'FOO',
++        'string' => '',
++        'code' => 456,
++        'file' => 'objectPropertiesEqualToRecursiveTest.php',
++        'line' => 13,
++        'previous' => null,
++    ),
+ )
+
+objectPropertiesEqualToRecursiveTest.php:29
+
+FAILURES!
+Tests: 2, Assertions: 2, Failures: 1.
