@@ -46,18 +46,36 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="assertions.html">1. Assertions</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">2. Constraints</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#arrayvaluesequalto">arrayValuesEqualTo</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#arrayvaluesidenticalto">arrayValuesIdenticalTo</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#classpropertiesequalto">classPropertiesEqualTo</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#classpropertiesidenticalto">classPropertiesIdenticalTo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#arrayvaluesequalto">arrayValuesEqualTo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#selecting-values-from-nested-arrays">Selecting values from nested arrays</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#arrayvaluesidenticalto">arrayValuesIdenticalTo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Selecting values from nested arrays</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#classpropertiesequalto">classPropertiesEqualTo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#selecting-properties-of-nested-classes">Selecting properties of nested classes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#classpropertiesidenticalto">classPropertiesIdenticalTo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Selecting properties of nested classes</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#extendsclass">extendsClass</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#hasmethod">hasMethod</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#haspregcaptures">hasPregCaptures</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#implementsinterface">implementsInterface</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ksortedarrayequalto">ksortedArrayEqualTo</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ksortedarrayidenticalto">ksortedArrayIdenticalTo</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#objectpropertiesequalto">objectPropertiesEqualTo</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#objectpropertiesidenticalto">objectPropertiesIdenticalTo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#objectpropertiesequalto">objectPropertiesEqualTo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#selecting-properties-of-nested-objects">Selecting properties of nested objects</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#objectpropertiesidenticalto">objectPropertiesIdenticalTo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Selecting properties of nested objects</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#usestrait">usesTrait</a></li>
 </ul>
 </li>
@@ -94,8 +112,8 @@ phptailors/phpunit-extensions. The methods may be added to your test class by
 including appropriate trait as shown in prerequisite tables below.</p>
 <section id="arrayvaluesequalto">
 <span id="constraints-arrayvaluesequalto"></span><h2>arrayValuesEqualTo<a class="headerlink" href="#arrayvaluesequalto" title="Permalink to this heading"></a></h2>
-<table class="docutils align-default" id="id2" style="width: 100%">
-<caption><span class="caption-text">Prerequisites for arrayValuesEqualTo()</span><a class="headerlink" href="#id2" title="Permalink to this table"></a></caption>
+<table class="docutils align-default" id="id5" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for arrayValuesEqualTo()</span><a class="headerlink" href="#id5" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 75%" />
@@ -173,13 +191,115 @@ equal to <code class="docutils literal notranslate"><span class="pre">$expected<
 <span class="linenos">30</span>Tests: 2, Assertions: 2, Failures: 1.
 </pre></div>
 </div>
-<p>The constraint may be used recursively, i.e. it may be used to require given
-nested value to be an array with prescribed properties.</p>
+<section id="selecting-values-from-nested-arrays">
+<h3>Selecting values from nested arrays<a class="headerlink" href="#selecting-values-from-nested-arrays" title="Permalink to this heading"></a></h3>
+<table class="docutils align-default" id="id6" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for nested selection</span><a class="headerlink" href="#id6" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Package</p></td>
+<td><p>phptailors/phpunit-arrays: <code class="docutils literal notranslate"><span class="pre">^1.1</span> <span class="pre">||</span> <span class="pre">^2.1</span> <span class="pre">||</span> <span class="pre">^3.1</span> <span class="pre">||</span> <span class="pre">^4.1</span> <span class="pre">||</span> <span class="pre">^5.1</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Trait</p></td>
+<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/Tailors/PHPUnit/ArrayValuesTrait.html" title="Tailors\PHPUnit\ArrayValuesTrait"><span class="pre">ArrayValuesTrait</span></a></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Since versions <code class="docutils literal notranslate"><span class="pre">*.1</span></code> (<code class="docutils literal notranslate"><span class="pre">1.1</span></code>, <code class="docutils literal notranslate"><span class="pre">2.1</span></code>, <code class="docutils literal notranslate"><span class="pre">3.1</span></code>, …) it’s possible to
+specify sub-array selection in nested arrays of the <code class="docutils literal notranslate"><span class="pre">$expected</span></code> by using
+<code class="docutils literal notranslate"><span class="pre">$this-&gt;arrayValues([...])</span></code> instead of <code class="docutils literal notranslate"><span class="pre">[...]</span></code>. This changes the content
+taken for comparison – instead of matching the exact content of the sub-array
+from <code class="docutils literal notranslate"><span class="pre">$actual</span></code>, only the listed keys are selected from the sub-array for
+comparison. For example:</p>
+<div class="literal-block-wrapper docutils container" id="constraints-arrayvaluesequaltorecursive-example">
+<div class="code-block-caption"><span class="caption-text">Usage of arrayValuesEqualTo()</span><a class="headerlink" href="#constraints-arrayvaluesequaltorecursive-example" title="Permalink to this code"></a></div>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">final</span> <span class="k">class</span> <span class="nc">arrayValuesEqualToRecursiveTest</span> <span class="k">extends</span> <span class="nx">\PHPUnit\Framework\TestCase</span>
+<span class="linenos"> 4</span><span class="p">{</span>
+<span class="linenos"> 5</span>    <span class="k">use</span> <span class="nx">\Tailors\PHPUnit\ArrayValuesEqualToTrait</span><span class="p">;</span>
+<span class="linenos"> 6</span>    <span class="k">use</span> <span class="nx">\Tailors\PHPUnit\ArrayValuesTrait</span><span class="p">;</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>    <span class="k">private</span> <span class="nv">$array</span> <span class="o">=</span> <span class="p">[</span>
+<span class="linenos"> 9</span>        <span class="s1">&#39;int&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;123&#39;</span><span class="p">,</span>
+<span class="linenos">10</span>        <span class="s1">&#39;sub&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<span class="linenos">11</span>            <span class="s1">&#39;int&#39;</span> <span class="o">=&gt;</span> <span class="mi">321</span><span class="p">,</span>
+<span class="linenos">12</span>            <span class="s1">&#39;bar&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;BAR&#39;</span><span class="p">,</span>
+<span class="linenos">13</span>        <span class="p">],</span>
+<span class="linenos">14</span>        <span class="s1">&#39;foo&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;FOO&#39;</span>
+<span class="linenos">15</span>    <span class="p">];</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testSuccess</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="linenos">18</span>    <span class="p">{</span>
+<span class="linenos">19</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertThat</span><span class="p">(</span>
+<span class="linenos">20</span>            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">array</span><span class="p">,</span>
+<span class="linenos">21</span>            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">arrayValuesEqualTo</span><span class="p">([</span>
+<span class="linenos">22</span>                <span class="s1">&#39;sub&#39;</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">arrayValues</span><span class="p">([</span>
+<span class="linenos">23</span>                    <span class="s1">&#39;int&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;321&#39;</span>
+<span class="linenos">24</span>                <span class="p">]),</span>
+<span class="linenos">25</span>                <span class="s1">&#39;int&#39;</span>  <span class="o">=&gt;</span> <span class="mi">123</span><span class="p">,</span>
+<span class="linenos">26</span>            <span class="p">])</span>
+<span class="linenos">27</span>        <span class="p">);</span>
+<span class="linenos">28</span>    <span class="p">}</span>
+<span class="linenos">29</span>
+<span class="linenos">30</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testFailure</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="linenos">31</span>    <span class="p">{</span>
+<span class="linenos">32</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertThat</span><span class="p">(</span>
+<span class="linenos">33</span>            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">array</span><span class="p">,</span>
+<span class="linenos">34</span>            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">arrayValuesEqualTo</span><span class="p">([</span>
+<span class="linenos">35</span>                <span class="s1">&#39;sub&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<span class="linenos">36</span>                    <span class="s1">&#39;int&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;321&#39;</span>
+<span class="linenos">37</span>                <span class="p">],</span>
+<span class="linenos">38</span>                <span class="s1">&#39;int&#39;</span>  <span class="o">=&gt;</span> <span class="mi">123</span><span class="p">,</span>
+<span class="linenos">39</span>            <span class="p">])</span>
+<span class="linenos">40</span>        <span class="p">);</span>
+<span class="linenos">41</span>    <span class="p">}</span>
+<span class="linenos">42</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.63 by Sebastian Bergmann and contributors.
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span>Runtime:       PHP 8.2.30
+<span class="linenos"> 4</span>Configuration: phpunit.xml
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>Time: 00:00.016, Memory: 8.00 MB
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>There was 1 failure:
+<span class="linenos">11</span>
+<span class="linenos">12</span>1) arrayValuesEqualToRecursiveTest::testFailure
+<span class="linenos">13</span>Failed asserting that array is an array or ArrayAccess with values equal to specified.
+<span class="linenos">14</span>--- Expected
+<span class="linenos">15</span>+++ Actual
+<span class="linenos">16</span>@@ @@
+<span class="linenos">17</span>-Tailors\PHPUnit\Arrays\ExpectedArrayValues Object #452 (
+<span class="linenos">18</span>+Tailors\PHPUnit\Arrays\ActualArrayValues Object #343 (
+<span class="linenos">19</span>     &#39;sub&#39; =&gt; Array &amp;0 [
+<span class="linenos">20</span>-        &#39;int&#39; =&gt; &#39;321&#39;,
+<span class="linenos">21</span>+        &#39;int&#39; =&gt; 321,
+<span class="linenos">22</span>+        &#39;bar&#39; =&gt; &#39;BAR&#39;,
+<span class="linenos">23</span>     ],
+<span class="linenos">24</span>-    &#39;int&#39; =&gt; 123,
+<span class="linenos">25</span>+    &#39;int&#39; =&gt; &#39;123&#39;,
+<span class="linenos">26</span> )
+<span class="linenos">27</span>
+<span class="linenos">28</span>arrayValuesEqualToRecursiveTest.php:32
+<span class="linenos">29</span>
+<span class="linenos">30</span>FAILURES!
+<span class="linenos">31</span>Tests: 2, Assertions: 2, Failures: 1.
+</pre></div>
+</div>
+</section>
 </section>
 <section id="arrayvaluesidenticalto">
 <span id="constraints-arrayvaluesidenticalto"></span><h2>arrayValuesIdenticalTo<a class="headerlink" href="#arrayvaluesidenticalto" title="Permalink to this heading"></a></h2>
-<table class="docutils align-default" id="id3" style="width: 100%">
-<caption><span class="caption-text">Prerequisites for arrayValuesIdenticalTo()</span><a class="headerlink" href="#id3" title="Permalink to this table"></a></caption>
+<table class="docutils align-default" id="id7" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for arrayValuesIdenticalTo()</span><a class="headerlink" href="#id7" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 75%" />
@@ -201,7 +321,7 @@ nested value to be an array with prescribed properties.</p>
 <p>The constraint accepts arrays and <a class="reference external" href="https://www.php.net/manual/en/class.arrayaccess.php">ArrayAccess</a> instances having selected values
 identical to <code class="docutils literal notranslate"><span class="pre">$expected</span></code>.</p>
 <div class="literal-block-wrapper docutils container" id="constraints-arrayvaluesidenticalto-example">
-<div class="code-block-caption"><span class="caption-text">Usage of arrayValuesIdenticalTo()</span><a class="headerlink" href="#constraints-arrayvaluesidenticalto-example" title="Permalink to this code"></a></div>
+<div class="code-block-caption"><span class="caption-text">Usage of arrayValuesIdenticalTo() with nested selectors</span><a class="headerlink" href="#constraints-arrayvaluesidenticalto-example" title="Permalink to this code"></a></div>
 <div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
 <span class="linenos"> 2</span>
 <span class="linenos"> 3</span><span class="k">final</span> <span class="k">class</span> <span class="nc">arrayValuesIdenticalToTest</span> <span class="k">extends</span> <span class="nx">\PHPUnit\Framework\TestCase</span>
@@ -254,13 +374,113 @@ identical to <code class="docutils literal notranslate"><span class="pre">$expec
 <span class="linenos">27</span>Tests: 2, Assertions: 2, Failures: 1.
 </pre></div>
 </div>
-<p>The constraint may be used recursively, i.e. it may be used to require a nested
-value to be an array with prescribed values.</p>
+<section id="id2">
+<h3>Selecting values from nested arrays<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<table class="docutils align-default" id="id8" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for nested selection</span><a class="headerlink" href="#id8" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Package</p></td>
+<td><p>phptailors/phpunit-arrays: <code class="docutils literal notranslate"><span class="pre">^1.1</span> <span class="pre">||</span> <span class="pre">^2.1</span> <span class="pre">||</span> <span class="pre">^3.1</span> <span class="pre">||</span> <span class="pre">^4.1</span> <span class="pre">||</span> <span class="pre">^5.1</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Trait</p></td>
+<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/Tailors/PHPUnit/ArrayValuesTrait.html" title="Tailors\PHPUnit\ArrayValuesTrait"><span class="pre">ArrayValuesTrait</span></a></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Since versions <code class="docutils literal notranslate"><span class="pre">*.1</span></code> (<code class="docutils literal notranslate"><span class="pre">1.1</span></code>, <code class="docutils literal notranslate"><span class="pre">2.1</span></code>, <code class="docutils literal notranslate"><span class="pre">3.1</span></code>, …) it’s possible to
+specify sub-array selection in nested arrays of the <code class="docutils literal notranslate"><span class="pre">$expected</span></code> by using
+<code class="docutils literal notranslate"><span class="pre">$this-&gt;arrayValues([...])</span></code> instead of <code class="docutils literal notranslate"><span class="pre">[...]</span></code>. This changes the content
+taken for comparison – instead of matching the exact content of the sub-array
+from <code class="docutils literal notranslate"><span class="pre">$actual</span></code>, only the listed keys are selected from the sub-array for
+comparison. For example:</p>
+<div class="literal-block-wrapper docutils container" id="constraints-arrayvaluesidenticaltorecursive-example">
+<div class="code-block-caption"><span class="caption-text">Usage of arrayValuesIdenticalTo() with nested selectors</span><a class="headerlink" href="#constraints-arrayvaluesidenticaltorecursive-example" title="Permalink to this code"></a></div>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">final</span> <span class="k">class</span> <span class="nc">arrayValuesIdenticalToRecursiveTest</span> <span class="k">extends</span> <span class="nx">\PHPUnit\Framework\TestCase</span>
+<span class="linenos"> 4</span><span class="p">{</span>
+<span class="linenos"> 5</span>    <span class="k">use</span> <span class="nx">\Tailors\PHPUnit\ArrayValuesIdenticalToTrait</span><span class="p">;</span>
+<span class="linenos"> 6</span>    <span class="k">use</span> <span class="nx">\Tailors\PHPUnit\ArrayValuesTrait</span><span class="p">;</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>    <span class="k">private</span> <span class="nv">$array</span> <span class="o">=</span> <span class="p">[</span>
+<span class="linenos"> 9</span>        <span class="s1">&#39;int&#39;</span> <span class="o">=&gt;</span> <span class="mi">123</span><span class="p">,</span>
+<span class="linenos">10</span>        <span class="s1">&#39;sub&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<span class="linenos">11</span>            <span class="s1">&#39;int&#39;</span> <span class="o">=&gt;</span> <span class="mi">321</span><span class="p">,</span>
+<span class="linenos">12</span>            <span class="s1">&#39;bar&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;BAR&#39;</span><span class="p">,</span>
+<span class="linenos">13</span>        <span class="p">],</span>
+<span class="linenos">14</span>        <span class="s1">&#39;foo&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;FOO&#39;</span>
+<span class="linenos">15</span>    <span class="p">];</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testSuccess</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="linenos">18</span>    <span class="p">{</span>
+<span class="linenos">19</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertThat</span><span class="p">(</span>
+<span class="linenos">20</span>            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">array</span><span class="p">,</span>
+<span class="linenos">21</span>            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">arrayValuesIdenticalTo</span><span class="p">([</span>
+<span class="linenos">22</span>                <span class="s1">&#39;sub&#39;</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">arrayValues</span><span class="p">([</span>
+<span class="linenos">23</span>                    <span class="s1">&#39;int&#39;</span> <span class="o">=&gt;</span> <span class="mi">321</span>
+<span class="linenos">24</span>                <span class="p">]),</span>
+<span class="linenos">25</span>                <span class="s1">&#39;int&#39;</span>  <span class="o">=&gt;</span> <span class="mi">123</span><span class="p">,</span>
+<span class="linenos">26</span>            <span class="p">])</span>
+<span class="linenos">27</span>        <span class="p">);</span>
+<span class="linenos">28</span>    <span class="p">}</span>
+<span class="linenos">29</span>
+<span class="linenos">30</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testFailure</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="linenos">31</span>    <span class="p">{</span>
+<span class="linenos">32</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertThat</span><span class="p">(</span>
+<span class="linenos">33</span>            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">array</span><span class="p">,</span>
+<span class="linenos">34</span>            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">arrayValuesIdenticalTo</span><span class="p">([</span>
+<span class="linenos">35</span>                <span class="s1">&#39;sub&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<span class="linenos">36</span>                    <span class="s1">&#39;int&#39;</span> <span class="o">=&gt;</span> <span class="mi">321</span>
+<span class="linenos">37</span>                <span class="p">],</span>
+<span class="linenos">38</span>                <span class="s1">&#39;int&#39;</span>  <span class="o">=&gt;</span> <span class="mi">123</span><span class="p">,</span>
+<span class="linenos">39</span>            <span class="p">])</span>
+<span class="linenos">40</span>        <span class="p">);</span>
+<span class="linenos">41</span>    <span class="p">}</span>
+<span class="linenos">42</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.63 by Sebastian Bergmann and contributors.
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span>Runtime:       PHP 8.2.30
+<span class="linenos"> 4</span>Configuration: phpunit.xml
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>Time: 00:00.016, Memory: 8.00 MB
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>There was 1 failure:
+<span class="linenos">11</span>
+<span class="linenos">12</span>1) arrayValuesIdenticalToRecursiveTest::testFailure
+<span class="linenos">13</span>Failed asserting that array is an array or ArrayAccess with values identical to specified.
+<span class="linenos">14</span>--- Expected
+<span class="linenos">15</span>+++ Actual
+<span class="linenos">16</span>@@ @@
+<span class="linenos">17</span>-Tailors\PHPUnit\Arrays\ExpectedArrayValues Object #426 (
+<span class="linenos">18</span>+Tailors\PHPUnit\Arrays\ActualArrayValues Object #343 (
+<span class="linenos">19</span>     &#39;sub&#39; =&gt; Array &amp;0 [
+<span class="linenos">20</span>         &#39;int&#39; =&gt; 321,
+<span class="linenos">21</span>+        &#39;bar&#39; =&gt; &#39;BAR&#39;,
+<span class="linenos">22</span>     ],
+<span class="linenos">23</span>     &#39;int&#39; =&gt; 123,
+<span class="linenos">24</span> )
+<span class="linenos">25</span>
+<span class="linenos">26</span>arrayValuesIdenticalToRecursiveTest.php:32
+<span class="linenos">27</span>
+<span class="linenos">28</span>FAILURES!
+<span class="linenos">29</span>Tests: 2, Assertions: 2, Failures: 1.
+</pre></div>
+</div>
+</section>
 </section>
 <section id="classpropertiesequalto">
 <span id="constraints-classpropertiesequalto"></span><h2>classPropertiesEqualTo<a class="headerlink" href="#classpropertiesequalto" title="Permalink to this heading"></a></h2>
-<table class="docutils align-default" id="id4" style="width: 100%">
-<caption><span class="caption-text">Prerequisites for classPropertiesEqualTo()</span><a class="headerlink" href="#id4" title="Permalink to this table"></a></caption>
+<table class="docutils align-default" id="id9" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for classPropertiesEqualTo()</span><a class="headerlink" href="#id9" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 75%" />
@@ -347,13 +567,103 @@ value to be an array with prescribed values.</p>
 <span class="linenos">28</span>Tests: 2, Assertions: 2, Failures: 1.
 </pre></div>
 </div>
-<p>The constraint may be used recursively, i.e. it may be used to require given
-property to be a class with prescribed properties.</p>
+<section id="selecting-properties-of-nested-classes">
+<h3>Selecting properties of nested classes<a class="headerlink" href="#selecting-properties-of-nested-classes" title="Permalink to this heading"></a></h3>
+<table class="docutils align-default" id="id10" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for nested selection</span><a class="headerlink" href="#id10" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Package</p></td>
+<td><p>phptailors/phpunit-arrays: <code class="docutils literal notranslate"><span class="pre">^1.1</span> <span class="pre">||</span> <span class="pre">^2.1</span> <span class="pre">||</span> <span class="pre">^3.1</span> <span class="pre">||</span> <span class="pre">^4.1</span> <span class="pre">||</span> <span class="pre">^5.1</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Trait</p></td>
+<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/Tailors/PHPUnit/ClassPropertiesTrait.html" title="Tailors\PHPUnit\ClassPropertiesTrait"><span class="pre">ClassPropertiesTrait</span></a></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Since versions <code class="docutils literal notranslate"><span class="pre">*.1</span></code> (<code class="docutils literal notranslate"><span class="pre">1.1</span></code>, <code class="docutils literal notranslate"><span class="pre">2.1</span></code>, <code class="docutils literal notranslate"><span class="pre">3.1</span></code>, …) it’s possible to
+specify nested selections by using <code class="docutils literal notranslate"><span class="pre">$this-&gt;classProperties([...])</span></code> instead of
+<code class="docutils literal notranslate"><span class="pre">[...]</span></code>. This changes the content taken for comparison – instead of treating
+a class name (nested in <code class="docutils literal notranslate"><span class="pre">$actual</span></code>) as a regular string, it’s being considered
+a class, and the properties of this class get selected for comparison. For
+example:</p>
+<div class="literal-block-wrapper docutils container" id="constraints-classpropertiesequaltorecursive-example">
+<div class="code-block-caption"><span class="caption-text">Usage of classPropertiesEqualTo()</span><a class="headerlink" href="#constraints-classpropertiesequaltorecursive-example" title="Permalink to this code"></a></div>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">final</span> <span class="k">class</span> <span class="nc">classPropertiesEqualToRecursiveTest</span> <span class="k">extends</span> <span class="nx">\PHPUnit\Framework\TestCase</span>
+<span class="linenos"> 4</span><span class="p">{</span>
+<span class="linenos"> 5</span>    <span class="k">use</span> <span class="nx">\Tailors\PHPUnit\ClassPropertiesEqualToTrait</span><span class="p">;</span>
+<span class="linenos"> 6</span>    <span class="k">use</span> <span class="nx">\Tailors\PHPUnit\ClassPropertiesTrait</span><span class="p">;</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>    <span class="k">public</span> <span class="k">static</span> <span class="nv">$attribute</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
+<span class="linenos"> 9</span>    <span class="k">public</span> <span class="k">static</span> <span class="nv">$nested</span> <span class="o">=</span> <span class="nx">self</span><span class="o">::</span><span class="na">class</span><span class="p">;</span>
+<span class="linenos">10</span>    <span class="k">public</span> <span class="k">static</span> <span class="nv">$other</span> <span class="o">=</span> <span class="mi">321</span><span class="p">;</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testSuccess</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="linenos">13</span>    <span class="p">{</span>
+<span class="linenos">14</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertThat</span><span class="p">(</span><span class="nx">self</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">classPropertiesEqualTo</span><span class="p">([</span>
+<span class="linenos">15</span>            <span class="s1">&#39;attribute&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;123&#39;</span><span class="p">,</span>
+<span class="linenos">16</span>            <span class="s1">&#39;nested&#39;</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">classProperties</span><span class="p">([</span>
+<span class="linenos">17</span>                <span class="s1">&#39;other&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;321&#39;</span><span class="p">,</span>
+<span class="linenos">18</span>            <span class="p">])</span>
+<span class="linenos">19</span>        <span class="p">]));</span>
+<span class="linenos">20</span>    <span class="p">}</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testFailure</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="linenos">23</span>    <span class="p">{</span>
+<span class="linenos">24</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertThat</span><span class="p">(</span><span class="nx">self</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">classPropertiesEqualTo</span><span class="p">([</span>
+<span class="linenos">25</span>            <span class="s1">&#39;attribute&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;123&#39;</span><span class="p">,</span>
+<span class="linenos">26</span>            <span class="s1">&#39;nested&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<span class="linenos">27</span>                <span class="s1">&#39;other&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;321&#39;</span><span class="p">,</span>
+<span class="linenos">28</span>            <span class="p">]</span>
+<span class="linenos">29</span>        <span class="p">]));</span>
+<span class="linenos">30</span>    <span class="p">}</span>
+<span class="linenos">31</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.63 by Sebastian Bergmann and contributors.
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span>Runtime:       PHP 8.2.30
+<span class="linenos"> 4</span>Configuration: phpunit.xml
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>Time: 00:00.016, Memory: 8.00 MB
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>There was 1 failure:
+<span class="linenos">11</span>
+<span class="linenos">12</span>1) classPropertiesEqualToRecursiveTest::testFailure
+<span class="linenos">13</span>Failed asserting that classPropertiesEqualToRecursiveTest is a class with properties equal to specified.
+<span class="linenos">14</span>--- Expected
+<span class="linenos">15</span>+++ Actual
+<span class="linenos">16</span>@@ @@
+<span class="linenos">17</span>-Tailors\PHPUnit\Properties\ExpectedClassProperties Object #461 (
+<span class="linenos">18</span>-    &#39;attribute&#39; =&gt; &#39;123&#39;,
+<span class="linenos">19</span>-    &#39;nested&#39; =&gt; Array &amp;0 [
+<span class="linenos">20</span>-        &#39;other&#39; =&gt; &#39;321&#39;,
+<span class="linenos">21</span>-    ],
+<span class="linenos">22</span>+Tailors\PHPUnit\Properties\ActualClassProperties Object #343 (
+<span class="linenos">23</span>+    &#39;attribute&#39; =&gt; 123,
+<span class="linenos">24</span>+    &#39;nested&#39; =&gt; &#39;classPropertiesEqualToRecursiveTest&#39;,
+<span class="linenos">25</span> )
+<span class="linenos">26</span>
+<span class="linenos">27</span>classPropertiesEqualToRecursiveTest.php:24
+<span class="linenos">28</span>
+<span class="linenos">29</span>FAILURES!
+<span class="linenos">30</span>Tests: 2, Assertions: 2, Failures: 1.
+</pre></div>
+</div>
+</section>
 </section>
 <section id="classpropertiesidenticalto">
 <span id="constraints-classpropertiesidenticalto"></span><h2>classPropertiesIdenticalTo<a class="headerlink" href="#classpropertiesidenticalto" title="Permalink to this heading"></a></h2>
-<table class="docutils align-default" id="id5" style="width: 100%">
-<caption><span class="caption-text">Prerequisites for classPropertiesIdenticalTo()</span><a class="headerlink" href="#id5" title="Permalink to this table"></a></caption>
+<table class="docutils align-default" id="id11" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for classPropertiesIdenticalTo()</span><a class="headerlink" href="#id11" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 75%" />
@@ -440,13 +750,102 @@ property to be a class with prescribed properties.</p>
 <span class="linenos">28</span>Tests: 2, Assertions: 2, Failures: 1.
 </pre></div>
 </div>
-<p>The constraint may be used recursively, i.e. it may be used to require given
-property to be a class with prescribed properties.</p>
+<section id="id3">
+<h3>Selecting properties of nested classes<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<table class="docutils align-default" id="id12" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for nested selection</span><a class="headerlink" href="#id12" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Package</p></td>
+<td><p>phptailors/phpunit-arrays: <code class="docutils literal notranslate"><span class="pre">^1.1</span> <span class="pre">||</span> <span class="pre">^2.1</span> <span class="pre">||</span> <span class="pre">^3.1</span> <span class="pre">||</span> <span class="pre">^4.1</span> <span class="pre">||</span> <span class="pre">^5.1</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Trait</p></td>
+<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/Tailors/PHPUnit/ClassPropertiesTrait.html" title="Tailors\PHPUnit\ClassPropertiesTrait"><span class="pre">ClassPropertiesTrait</span></a></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Since versions <code class="docutils literal notranslate"><span class="pre">*.1</span></code> (<code class="docutils literal notranslate"><span class="pre">1.1</span></code>, <code class="docutils literal notranslate"><span class="pre">2.1</span></code>, <code class="docutils literal notranslate"><span class="pre">3.1</span></code>, …) it’s possible to
+specify nested selections by using <code class="docutils literal notranslate"><span class="pre">$this-&gt;classProperties([...])</span></code> instead of
+<code class="docutils literal notranslate"><span class="pre">[...]</span></code>. This changes the content taken for comparison – instead of treating
+a class name (nested in <code class="docutils literal notranslate"><span class="pre">$actual</span></code>) as a regular string, it’s being considered
+a class, and the properties of this class get selected for comparison. For
+example:</p>
+<div class="literal-block-wrapper docutils container" id="constraints-classpropertiesidenticaltorecursive-example">
+<div class="code-block-caption"><span class="caption-text">Usage of classPropertiesIdenticalTo()</span><a class="headerlink" href="#constraints-classpropertiesidenticaltorecursive-example" title="Permalink to this code"></a></div>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">final</span> <span class="k">class</span> <span class="nc">classPropertiesIdenticalToRecursiveTest</span> <span class="k">extends</span> <span class="nx">\PHPUnit\Framework\TestCase</span>
+<span class="linenos"> 4</span><span class="p">{</span>
+<span class="linenos"> 5</span>    <span class="k">use</span> <span class="nx">\Tailors\PHPUnit\ClassPropertiesIdenticalToTrait</span><span class="p">;</span>
+<span class="linenos"> 6</span>    <span class="k">use</span> <span class="nx">\Tailors\PHPUnit\ClassPropertiesTrait</span><span class="p">;</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>    <span class="k">public</span> <span class="k">static</span> <span class="nv">$attribute</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
+<span class="linenos"> 9</span>    <span class="k">public</span> <span class="k">static</span> <span class="nv">$nested</span> <span class="o">=</span> <span class="nx">self</span><span class="o">::</span><span class="na">class</span><span class="p">;</span>
+<span class="linenos">10</span>    <span class="k">public</span> <span class="k">static</span> <span class="nv">$other</span> <span class="o">=</span> <span class="mi">321</span><span class="p">;</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testSuccess</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="linenos">13</span>    <span class="p">{</span>
+<span class="linenos">14</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertThat</span><span class="p">(</span><span class="nx">self</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">classPropertiesIdenticalTo</span><span class="p">([</span>
+<span class="linenos">15</span>            <span class="s1">&#39;attribute&#39;</span>  <span class="o">=&gt;</span> <span class="mi">123</span><span class="p">,</span>
+<span class="linenos">16</span>            <span class="s1">&#39;nested&#39;</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">classProperties</span><span class="p">([</span>
+<span class="linenos">17</span>                <span class="s1">&#39;other&#39;</span> <span class="o">=&gt;</span> <span class="mi">321</span><span class="p">,</span>
+<span class="linenos">18</span>            <span class="p">])</span>
+<span class="linenos">19</span>        <span class="p">]));</span>
+<span class="linenos">20</span>    <span class="p">}</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testFailure</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="linenos">23</span>    <span class="p">{</span>
+<span class="linenos">24</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertThat</span><span class="p">(</span><span class="nx">self</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">classPropertiesIdenticalTo</span><span class="p">([</span>
+<span class="linenos">25</span>            <span class="s1">&#39;attribute&#39;</span>  <span class="o">=&gt;</span> <span class="mi">123</span><span class="p">,</span>
+<span class="linenos">26</span>            <span class="s1">&#39;nested&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<span class="linenos">27</span>                <span class="s1">&#39;other&#39;</span> <span class="o">=&gt;</span> <span class="mi">321</span><span class="p">,</span>
+<span class="linenos">28</span>            <span class="p">]</span>
+<span class="linenos">29</span>        <span class="p">]));</span>
+<span class="linenos">30</span>    <span class="p">}</span>
+<span class="linenos">31</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.63 by Sebastian Bergmann and contributors.
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span>Runtime:       PHP 8.2.30
+<span class="linenos"> 4</span>Configuration: phpunit.xml
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>Time: 00:00.016, Memory: 8.00 MB
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>There was 1 failure:
+<span class="linenos">11</span>
+<span class="linenos">12</span>1) classPropertiesIdenticalToRecursiveTest::testFailure
+<span class="linenos">13</span>Failed asserting that classPropertiesIdenticalToRecursiveTest is a class with properties identical to specified.
+<span class="linenos">14</span>--- Expected
+<span class="linenos">15</span>+++ Actual
+<span class="linenos">16</span>@@ @@
+<span class="linenos">17</span>-Tailors\PHPUnit\Properties\ExpectedClassProperties Object #461 (
+<span class="linenos">18</span>+Tailors\PHPUnit\Properties\ActualClassProperties Object #343 (
+<span class="linenos">19</span>     &#39;attribute&#39; =&gt; 123,
+<span class="linenos">20</span>-    &#39;nested&#39; =&gt; Array &amp;0 [
+<span class="linenos">21</span>-        &#39;other&#39; =&gt; 321,
+<span class="linenos">22</span>-    ],
+<span class="linenos">23</span>+    &#39;nested&#39; =&gt; &#39;classPropertiesIdenticalToRecursiveTest&#39;,
+<span class="linenos">24</span> )
+<span class="linenos">25</span>
+<span class="linenos">26</span>classPropertiesIdenticalToRecursiveTest.php:24
+<span class="linenos">27</span>
+<span class="linenos">28</span>FAILURES!
+<span class="linenos">29</span>Tests: 2, Assertions: 2, Failures: 1.
+</pre></div>
+</div>
+</section>
 </section>
 <section id="extendsclass">
 <span id="constraints-extendsclass"></span><h2>extendsClass<a class="headerlink" href="#extendsclass" title="Permalink to this heading"></a></h2>
-<table class="docutils align-default" id="id6" style="width: 100%">
-<caption><span class="caption-text">Prerequisites for extendsClass()</span><a class="headerlink" href="#id6" title="Permalink to this table"></a></caption>
+<table class="docutils align-default" id="id13" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for extendsClass()</span><a class="headerlink" href="#id13" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 75%" />
@@ -525,8 +924,8 @@ that</p>
 </section>
 <section id="hasmethod">
 <span id="constraints-hasmethod"></span><h2>hasMethod<a class="headerlink" href="#hasmethod" title="Permalink to this heading"></a></h2>
-<table class="docutils align-default" id="id7" style="width: 100%">
-<caption><span class="caption-text">Prerequisites for hasMethod()</span><a class="headerlink" href="#id7" title="Permalink to this table"></a></caption>
+<table class="docutils align-default" id="id14" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for hasMethod()</span><a class="headerlink" href="#id14" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 75%" />
@@ -644,8 +1043,8 @@ in a matched method.</p>
 </section>
 <section id="haspregcaptures">
 <span id="constraints-haspregcaptures"></span><h2>hasPregCaptures<a class="headerlink" href="#haspregcaptures" title="Permalink to this heading"></a></h2>
-<table class="docutils align-default" id="id8" style="width: 100%">
-<caption><span class="caption-text">Prerequisites for hasPregCaptures()</span><a class="headerlink" href="#id8" title="Permalink to this table"></a></caption>
+<table class="docutils align-default" id="id15" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for hasPregCaptures()</span><a class="headerlink" href="#id15" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 75%" />
@@ -755,8 +1154,8 @@ properly only with arrays obtained from <code class="docutils literal notranslat
 </section>
 <section id="implementsinterface">
 <span id="constraints-implementsinterface"></span><h2>implementsInterface<a class="headerlink" href="#implementsinterface" title="Permalink to this heading"></a></h2>
-<table class="docutils align-default" id="id9" style="width: 100%">
-<caption><span class="caption-text">Prerequisites for implementsInterface()</span><a class="headerlink" href="#id9" title="Permalink to this table"></a></caption>
+<table class="docutils align-default" id="id16" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for implementsInterface()</span><a class="headerlink" href="#id16" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 75%" />
@@ -822,8 +1221,8 @@ properly only with arrays obtained from <code class="docutils literal notranslat
 </section>
 <section id="ksortedarrayequalto">
 <span id="constraints-ksortedarrayequalto"></span><h2>ksortedArrayEqualTo<a class="headerlink" href="#ksortedarrayequalto" title="Permalink to this heading"></a></h2>
-<table class="docutils align-default" id="id10" style="width: 100%">
-<caption><span class="caption-text">Prerequisites for ksortedArrayEqualTo()</span><a class="headerlink" href="#id10" title="Permalink to this table"></a></caption>
+<table class="docutils align-default" id="id17" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for ksortedArrayEqualTo()</span><a class="headerlink" href="#id17" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 75%" />
@@ -901,8 +1300,8 @@ properly only with arrays obtained from <code class="docutils literal notranslat
 </section>
 <section id="ksortedarrayidenticalto">
 <span id="constraints-ksortedarrayidenticalto"></span><h2>ksortedArrayIdenticalTo<a class="headerlink" href="#ksortedarrayidenticalto" title="Permalink to this heading"></a></h2>
-<table class="docutils align-default" id="id11" style="width: 100%">
-<caption><span class="caption-text">Prerequisites for ksortedArrayIdenticalTo()</span><a class="headerlink" href="#id11" title="Permalink to this table"></a></caption>
+<table class="docutils align-default" id="id18" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for ksortedArrayIdenticalTo()</span><a class="headerlink" href="#id18" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 75%" />
@@ -979,8 +1378,8 @@ properly only with arrays obtained from <code class="docutils literal notranslat
 </section>
 <section id="objectpropertiesequalto">
 <span id="constraints-objectpropertiesequalto"></span><h2>objectPropertiesEqualTo<a class="headerlink" href="#objectpropertiesequalto" title="Permalink to this heading"></a></h2>
-<table class="docutils align-default" id="id12" style="width: 100%">
-<caption><span class="caption-text">Prerequisites for objectPropertiesEqualTo()</span><a class="headerlink" href="#id12" title="Permalink to this table"></a></caption>
+<table class="docutils align-default" id="id19" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for objectPropertiesEqualTo()</span><a class="headerlink" href="#id19" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 75%" />
@@ -1067,13 +1466,116 @@ properly only with arrays obtained from <code class="docutils literal notranslat
 <span class="linenos">28</span>Tests: 2, Assertions: 2, Failures: 1.
 </pre></div>
 </div>
-<p>The constraint may be used recursively, i.e. it may be used to require given
-property to be an object with prescribed properties.</p>
+<section id="selecting-properties-of-nested-objects">
+<h3>Selecting properties of nested objects<a class="headerlink" href="#selecting-properties-of-nested-objects" title="Permalink to this heading"></a></h3>
+<table class="docutils align-default" id="id20" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for nested selection</span><a class="headerlink" href="#id20" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Package</p></td>
+<td><p>phptailors/phpunit-arrays: <code class="docutils literal notranslate"><span class="pre">^1.1</span> <span class="pre">||</span> <span class="pre">^2.1</span> <span class="pre">||</span> <span class="pre">^3.1</span> <span class="pre">||</span> <span class="pre">^4.1</span> <span class="pre">||</span> <span class="pre">^5.1</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Trait</p></td>
+<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/Tailors/PHPUnit/ObjectPropertiesTrait.html" title="Tailors\PHPUnit\ObjectPropertiesTrait"><span class="pre">ObjectPropertiesTrait</span></a></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Since versions <code class="docutils literal notranslate"><span class="pre">*.1</span></code> (<code class="docutils literal notranslate"><span class="pre">1.1</span></code>, <code class="docutils literal notranslate"><span class="pre">2.1</span></code>, <code class="docutils literal notranslate"><span class="pre">3.1</span></code>, …) it’s possible to
+specify nested selections by using <code class="docutils literal notranslate"><span class="pre">$this-&gt;objectProperties([...])</span></code> instead of
+<code class="docutils literal notranslate"><span class="pre">[...]</span></code>. This changes the content taken for comparison – instead of treating
+an object (nested in <code class="docutils literal notranslate"><span class="pre">$actual</span></code>) as an object, the properties of this object
+get selected for comparison. For example:</p>
+<div class="literal-block-wrapper docutils container" id="constraints-objectpropertiesequaltorecursive-example">
+<div class="code-block-caption"><span class="caption-text">Usage of objectPropertiesEqualTo()</span><a class="headerlink" href="#constraints-objectpropertiesequaltorecursive-example" title="Permalink to this code"></a></div>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">final</span> <span class="k">class</span> <span class="nc">objectPropertiesEqualToRecursiveTest</span> <span class="k">extends</span> <span class="nx">\PHPUnit\Framework\TestCase</span>
+<span class="linenos"> 4</span><span class="p">{</span>
+<span class="linenos"> 5</span>    <span class="k">use</span> <span class="nx">\Tailors\PHPUnit\ObjectPropertiesEqualToTrait</span><span class="p">;</span>
+<span class="linenos"> 6</span>    <span class="k">use</span> <span class="nx">\Tailors\PHPUnit\ObjectPropertiesTrait</span><span class="p">;</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>    <span class="k">public</span> <span class="nv">$attribute</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
+<span class="linenos"> 9</span>    <span class="k">public</span> <span class="nv">$other</span> <span class="o">=</span> <span class="mi">321</span><span class="p">;</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">nested</span><span class="p">()</span><span class="o">:</span> <span class="nx">\Exception</span>
+<span class="linenos">12</span>    <span class="p">{</span>
+<span class="linenos">13</span>        <span class="k">return</span> <span class="k">new</span> <span class="nx">\Exception</span><span class="p">(</span><span class="s1">&#39;FOO&#39;</span><span class="p">,</span> <span class="mi">456</span><span class="p">);</span>
+<span class="linenos">14</span>    <span class="p">}</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testSuccess</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="linenos">17</span>    <span class="p">{</span>
+<span class="linenos">18</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertThat</span><span class="p">(</span><span class="nv">$this</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">objectPropertiesEqualTo</span><span class="p">([</span>
+<span class="linenos">19</span>            <span class="s1">&#39;attribute&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;123&#39;</span><span class="p">,</span>
+<span class="linenos">20</span>            <span class="s1">&#39;nested()&#39;</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">objectProperties</span><span class="p">([</span>
+<span class="linenos">21</span>                <span class="s1">&#39;getMessage()&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;FOO&#39;</span><span class="p">,</span>
+<span class="linenos">22</span>                <span class="s1">&#39;getCode()&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;456&#39;</span><span class="p">,</span>
+<span class="linenos">23</span>            <span class="p">])</span>
+<span class="linenos">24</span>        <span class="p">]));</span>
+<span class="linenos">25</span>    <span class="p">}</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testFailure</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="linenos">28</span>    <span class="p">{</span>
+<span class="linenos">29</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertThat</span><span class="p">(</span><span class="nv">$this</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">objectPropertiesEqualTo</span><span class="p">([</span>
+<span class="linenos">30</span>            <span class="s1">&#39;attribute&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;123&#39;</span><span class="p">,</span>
+<span class="linenos">31</span>            <span class="s1">&#39;nested()&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<span class="linenos">32</span>                <span class="s1">&#39;getMessage()&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;FOO&#39;</span><span class="p">,</span>
+<span class="linenos">33</span>                <span class="s1">&#39;getCode()&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;456&#39;</span><span class="p">,</span>
+<span class="linenos">34</span>            <span class="p">]</span>
+<span class="linenos">35</span>        <span class="p">]));</span>
+<span class="linenos">36</span>    <span class="p">}</span>
+<span class="linenos">37</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.63 by Sebastian Bergmann and contributors.
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span>Runtime:       PHP 8.2.30
+<span class="linenos"> 4</span>Configuration: phpunit.xml
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>Time: 00:00.010, Memory: 8.00 MB
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>There was 1 failure:
+<span class="linenos">11</span>
+<span class="linenos">12</span>1) objectPropertiesEqualToRecursiveTest::testFailure
+<span class="linenos">13</span>Failed asserting that object objectPropertiesEqualToRecursiveTest is an object with properties equal to specified.
+<span class="linenos">14</span>--- Expected
+<span class="linenos">15</span>+++ Actual
+<span class="linenos">16</span>@@ @@
+<span class="linenos">17</span>-Tailors\PHPUnit\Properties\ExpectedObjectProperties Object #466 (
+<span class="linenos">18</span>-    &#39;attribute&#39; =&gt; &#39;123&#39;,
+<span class="linenos">19</span>-    &#39;nested()&#39; =&gt; Array &amp;0 [
+<span class="linenos">20</span>-        &#39;getMessage()&#39; =&gt; &#39;FOO&#39;,
+<span class="linenos">21</span>-        &#39;getCode()&#39; =&gt; &#39;456&#39;,
+<span class="linenos">22</span>-    ],
+<span class="linenos">23</span>+Tailors\PHPUnit\Properties\ActualObjectProperties Object #484 (
+<span class="linenos">24</span>+    &#39;attribute&#39; =&gt; 123,
+<span class="linenos">25</span>+    &#39;nested()&#39; =&gt; Exception Object #464 (
+<span class="linenos">26</span>+        &#39;message&#39; =&gt; &#39;FOO&#39;,
+<span class="linenos">27</span>+        &#39;string&#39; =&gt; &#39;&#39;,
+<span class="linenos">28</span>+        &#39;code&#39; =&gt; 456,
+<span class="linenos">29</span>+        &#39;file&#39; =&gt; &#39;objectPropertiesEqualToRecursiveTest.php&#39;,
+<span class="linenos">30</span>+        &#39;line&#39; =&gt; 13,
+<span class="linenos">31</span>+        &#39;previous&#39; =&gt; null,
+<span class="linenos">32</span>+    ),
+<span class="linenos">33</span> )
+<span class="linenos">34</span>
+<span class="linenos">35</span>objectPropertiesEqualToRecursiveTest.php:29
+<span class="linenos">36</span>
+<span class="linenos">37</span>FAILURES!
+<span class="linenos">38</span>Tests: 2, Assertions: 2, Failures: 1.
+</pre></div>
+</div>
+</section>
 </section>
 <section id="objectpropertiesidenticalto">
 <span id="constraints-objectpropertiesidenticalto"></span><h2>objectPropertiesIdenticalTo<a class="headerlink" href="#objectpropertiesidenticalto" title="Permalink to this heading"></a></h2>
-<table class="docutils align-default" id="id13" style="width: 100%">
-<caption><span class="caption-text">Prerequisites for objectPropertiesIdenticalTo()</span><a class="headerlink" href="#id13" title="Permalink to this table"></a></caption>
+<table class="docutils align-default" id="id21" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for objectPropertiesIdenticalTo()</span><a class="headerlink" href="#id21" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 75%" />
@@ -1160,13 +1662,115 @@ property to be an object with prescribed properties.</p>
 <span class="linenos">28</span>Tests: 2, Assertions: 2, Failures: 1.
 </pre></div>
 </div>
-<p>The constraint may be used recursively, i.e. it may be used to require given
-property to be an object with prescribed properties.</p>
+<section id="id4">
+<h3>Selecting properties of nested objects<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<table class="docutils align-default" id="id22" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for nested selection</span><a class="headerlink" href="#id22" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Package</p></td>
+<td><p>phptailors/phpunit-arrays: <code class="docutils literal notranslate"><span class="pre">^1.1</span> <span class="pre">||</span> <span class="pre">^2.1</span> <span class="pre">||</span> <span class="pre">^3.1</span> <span class="pre">||</span> <span class="pre">^4.1</span> <span class="pre">||</span> <span class="pre">^5.1</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Trait</p></td>
+<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/Tailors/PHPUnit/ObjectPropertiesTrait.html" title="Tailors\PHPUnit\ObjectPropertiesTrait"><span class="pre">ObjectPropertiesTrait</span></a></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Since versions <code class="docutils literal notranslate"><span class="pre">*.1</span></code> (<code class="docutils literal notranslate"><span class="pre">1.1</span></code>, <code class="docutils literal notranslate"><span class="pre">2.1</span></code>, <code class="docutils literal notranslate"><span class="pre">3.1</span></code>, …) it’s possible to
+specify nested selections by using <code class="docutils literal notranslate"><span class="pre">$this-&gt;objectProperties([...])</span></code> instead of
+<code class="docutils literal notranslate"><span class="pre">[...]</span></code>. This changes the content taken for comparison – instead of treating
+an object (nested in <code class="docutils literal notranslate"><span class="pre">$actual</span></code>) as an object, the properties of this object
+get selected for comparison. For example:</p>
+<div class="literal-block-wrapper docutils container" id="constraints-objectpropertiesidenticaltorecursive-example">
+<div class="code-block-caption"><span class="caption-text">Usage of objectPropertiesIdenticalTo()</span><a class="headerlink" href="#constraints-objectpropertiesidenticaltorecursive-example" title="Permalink to this code"></a></div>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">final</span> <span class="k">class</span> <span class="nc">objectPropertiesIdenticalToRecursiveTest</span> <span class="k">extends</span> <span class="nx">\PHPUnit\Framework\TestCase</span>
+<span class="linenos"> 4</span><span class="p">{</span>
+<span class="linenos"> 5</span>    <span class="k">use</span> <span class="nx">\Tailors\PHPUnit\ObjectPropertiesIdenticalToTrait</span><span class="p">;</span>
+<span class="linenos"> 6</span>    <span class="k">use</span> <span class="nx">\Tailors\PHPUnit\ObjectPropertiesTrait</span><span class="p">;</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>    <span class="k">public</span> <span class="nv">$attribute</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
+<span class="linenos"> 9</span>    <span class="k">public</span> <span class="nv">$other</span> <span class="o">=</span> <span class="mi">321</span><span class="p">;</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">nested</span><span class="p">()</span><span class="o">:</span> <span class="nx">\Exception</span>
+<span class="linenos">12</span>    <span class="p">{</span>
+<span class="linenos">13</span>        <span class="k">return</span> <span class="k">new</span> <span class="nx">\Exception</span><span class="p">(</span><span class="s1">&#39;FOO&#39;</span><span class="p">,</span> <span class="mi">456</span><span class="p">);</span>
+<span class="linenos">14</span>    <span class="p">}</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testSuccess</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="linenos">17</span>    <span class="p">{</span>
+<span class="linenos">18</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertThat</span><span class="p">(</span><span class="nv">$this</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">objectPropertiesIdenticalTo</span><span class="p">([</span>
+<span class="linenos">19</span>            <span class="s1">&#39;attribute&#39;</span>  <span class="o">=&gt;</span> <span class="mi">123</span><span class="p">,</span>
+<span class="linenos">20</span>            <span class="s1">&#39;nested()&#39;</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">objectProperties</span><span class="p">([</span>
+<span class="linenos">21</span>                <span class="s1">&#39;getMessage()&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;FOO&#39;</span><span class="p">,</span>
+<span class="linenos">22</span>                <span class="s1">&#39;getCode()&#39;</span> <span class="o">=&gt;</span> <span class="mi">456</span><span class="p">,</span>
+<span class="linenos">23</span>            <span class="p">])</span>
+<span class="linenos">24</span>        <span class="p">]));</span>
+<span class="linenos">25</span>    <span class="p">}</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testFailure</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="linenos">28</span>    <span class="p">{</span>
+<span class="linenos">29</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertThat</span><span class="p">(</span><span class="nv">$this</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">objectPropertiesIdenticalTo</span><span class="p">([</span>
+<span class="linenos">30</span>            <span class="s1">&#39;attribute&#39;</span>  <span class="o">=&gt;</span> <span class="mi">123</span><span class="p">,</span>
+<span class="linenos">31</span>            <span class="s1">&#39;nested()&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<span class="linenos">32</span>                <span class="s1">&#39;getMessage()&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;FOO&#39;</span><span class="p">,</span>
+<span class="linenos">33</span>                <span class="s1">&#39;getCode()&#39;</span> <span class="o">=&gt;</span> <span class="mi">456</span><span class="p">,</span>
+<span class="linenos">34</span>            <span class="p">]</span>
+<span class="linenos">35</span>        <span class="p">]));</span>
+<span class="linenos">36</span>    <span class="p">}</span>
+<span class="linenos">37</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.63 by Sebastian Bergmann and contributors.
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span>Runtime:       PHP 8.2.30
+<span class="linenos"> 4</span>Configuration: phpunit.xml
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>Time: 00:00.014, Memory: 8.00 MB
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>There was 1 failure:
+<span class="linenos">11</span>
+<span class="linenos">12</span>1) objectPropertiesIdenticalToRecursiveTest::testFailure
+<span class="linenos">13</span>Failed asserting that object objectPropertiesIdenticalToRecursiveTest is an object with properties identical to specified.
+<span class="linenos">14</span>--- Expected
+<span class="linenos">15</span>+++ Actual
+<span class="linenos">16</span>@@ @@
+<span class="linenos">17</span>-Tailors\PHPUnit\Properties\ExpectedObjectProperties Object #467 (
+<span class="linenos">18</span>+Tailors\PHPUnit\Properties\ActualObjectProperties Object #485 (
+<span class="linenos">19</span>     &#39;attribute&#39; =&gt; 123,
+<span class="linenos">20</span>-    &#39;nested()&#39; =&gt; Array &amp;0 [
+<span class="linenos">21</span>-        &#39;getMessage()&#39; =&gt; &#39;FOO&#39;,
+<span class="linenos">22</span>-        &#39;getCode()&#39; =&gt; 456,
+<span class="linenos">23</span>-    ],
+<span class="linenos">24</span>+    &#39;nested()&#39; =&gt; Exception Object #465 (
+<span class="linenos">25</span>+        &#39;message&#39; =&gt; &#39;FOO&#39;,
+<span class="linenos">26</span>+        &#39;string&#39; =&gt; &#39;&#39;,
+<span class="linenos">27</span>+        &#39;code&#39; =&gt; 456,
+<span class="linenos">28</span>+        &#39;file&#39; =&gt; &#39;objectPropertiesIdenticalToRecursiveTest.php&#39;,
+<span class="linenos">29</span>+        &#39;line&#39; =&gt; 13,
+<span class="linenos">30</span>+        &#39;previous&#39; =&gt; null,
+<span class="linenos">31</span>+    ),
+<span class="linenos">32</span> )
+<span class="linenos">33</span>
+<span class="linenos">34</span>objectPropertiesIdenticalToRecursiveTest.php:29
+<span class="linenos">35</span>
+<span class="linenos">36</span>FAILURES!
+<span class="linenos">37</span>Tests: 2, Assertions: 2, Failures: 1.
+</pre></div>
+</div>
+</section>
 </section>
 <section id="usestrait">
 <span id="constraints-usestrait"></span><h2>usesTrait<a class="headerlink" href="#usestrait" title="Permalink to this heading"></a></h2>
-<table class="docutils align-default" id="id14" style="width: 100%">
-<caption><span class="caption-text">Prerequisites for usesTrait()</span><a class="headerlink" href="#id14" title="Permalink to this table"></a></caption>
+<table class="docutils align-default" id="id23" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for usesTrait()</span><a class="headerlink" href="#id23" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 75%" />
