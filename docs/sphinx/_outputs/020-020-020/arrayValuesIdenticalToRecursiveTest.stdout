@@ -1,0 +1,29 @@
+PHPUnit 10.5.63 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.2.30
+Configuration: phpunit.xml
+
+.F                                                                  2 / 2 (100%)
+
+Time: 00:00.011, Memory: 8.00 MB
+
+There was 1 failure:
+
+1) arrayValuesIdenticalToRecursiveTest::testFailure
+Failed asserting that array is an array or ArrayAccess with values identical to specified.
+--- Expected
++++ Actual
+@@ @@
+-Tailors\PHPUnit\Arrays\ExpectedArrayValues Object #425 (
++Tailors\PHPUnit\Arrays\ActualArrayValues Object #343 (
+     'sub' => Array &0 [
+         'int' => 321,
++        'bar' => 'BAR',
+     ],
+     'int' => 123,
+ )
+
+arrayValuesIdenticalToRecursiveTest.php:32
+
+FAILURES!
+Tests: 2, Assertions: 2, Failures: 1.
