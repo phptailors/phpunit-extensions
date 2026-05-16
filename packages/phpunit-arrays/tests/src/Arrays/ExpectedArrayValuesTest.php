@@ -10,6 +10,9 @@
 
 namespace Tailors\PHPUnit\Arrays;
 
+use Tailors\PHPUnit\Values\ArrayValueSelector;
+use Tailors\PHPUnit\Values\ValueSelectorWrapperInterface;
+
 /**
  * @small
  *
@@ -26,6 +29,20 @@ final class ExpectedArrayValuesTest extends ArrayValuesTestCase
     public static function getValuesClass(): string
     {
         return ExpectedArrayValues::class;
+    }
+
+    public function testImplementsValueSelectorWrapperInterface(): void
+    {
+        $this->assertInstanceOf(ValueSelectorWrapperInterface::class, new ExpectedArrayValues());
+    }
+
+    public function testGetValueSelector(): void
+    {
+        $values = new ExpectedArrayValues();
+        $selector = $values->getValueSelector();
+
+        $this->assertInstanceOf(ArrayValueSelector::class, $selector);
+        $this->assertSame($selector, $values->getValueSelector());
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

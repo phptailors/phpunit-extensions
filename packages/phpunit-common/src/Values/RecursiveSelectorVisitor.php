@@ -219,7 +219,7 @@ final class RecursiveSelectorVisitor implements RecursiveVisitorInterface
 
         if ($parentNode instanceof ValuesInterface) {
             /** @psalm-suppress MissingThrowsDocblock */
-            if (!$this->valueSelector->select($parentSubject, $key, $value)) {
+            if (!$this->getValueSelector($parentNode)->select($parentSubject, $key, $value)) {
                 return false;
             }
         } elseif (is_array($parentSubject)) {
@@ -258,7 +258,7 @@ final class RecursiveSelectorVisitor implements RecursiveVisitorInterface
     private function selectValueIfIterable($node, $value, &$subject, &$result): bool
     {
         if ($node instanceof ValuesInterface && !$node->actual()) {
-            if (!$this->valueSelector->supports($value)) {
+            if (!$this->getValueSelector($node)->supports($value)) {
                 return false;
             }
 
@@ -302,7 +302,7 @@ final class RecursiveSelectorVisitor implements RecursiveVisitorInterface
         }
 
         /** @psalm-suppress MissingThrowsDocblock */
-        if (!$this->valueSelector->select($parentSubject, $key, $result)) {
+        if (!$this->getValueSelector($parentNode)->select($parentSubject, $key, $result)) {
             return false;
         }
 
@@ -333,6 +333,15 @@ final class RecursiveSelectorVisitor implements RecursiveVisitorInterface
         return implode('', array_map(function ($item) {
             return '['.var_export($item->key(), true).']';
         }, $stack));
+    }
+
+    private function getValueSelector(object $node): ValueSelectorInterface
+    {
+        if ($node instanceof ValueSelectorWrapperInterface) {
+            return $node->getValueSelector();
+        }
+
+        return $this->valueSelector;
     }
 }
 

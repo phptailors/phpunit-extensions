@@ -10,6 +10,10 @@
 
 namespace Tailors\PHPUnit\Properties;
 
+use Tailors\PHPUnit\Values\ObjectPropertySelector;
+use Tailors\PHPUnit\Values\ValueSelectorInterface;
+use Tailors\PHPUnit\Values\ValueSelectorWrapperInterface;
+
 /**
  * An array of expected object properties.
  *
@@ -17,14 +21,28 @@ namespace Tailors\PHPUnit\Properties;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class ExpectedObjectProperties extends AbstractObjectProperties
+final class ExpectedObjectProperties extends AbstractObjectProperties implements ValueSelectorWrapperInterface
 {
+    /**
+     * @var ?ObjectPropertySelector
+     */
+    private static $valueSelector;
+
     /**
      * @psalm-mutation-free
      */
     public function actual(): bool
     {
         return false;
+    }
+
+    public function getValueSelector(): ValueSelectorInterface
+    {
+        if (null === self::$valueSelector) {
+            self::$valueSelector = new ObjectPropertySelector();
+        }
+
+        return self::$valueSelector;
     }
 }
 
