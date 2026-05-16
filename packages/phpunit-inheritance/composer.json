@@ -10,7 +10,7 @@
     ],
     "type": "library",
     "require": {
-        "php": ">=8.4.1",
+        "php": "^8.4.1",
         "phptailors/phpunit-common": "^5.2.x-dev"
     },
     "require-dev": {
