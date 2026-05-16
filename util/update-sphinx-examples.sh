@@ -109,7 +109,7 @@ outdir=`$php_exe sphinx/behat/get-output-path --relative`
 
 test -e "$outdir" || mkdir -p "$outdir";
 
-for t_php in `find sphinx/examples -name "*Test.php"`; do
+for t_php in "${examples[@]}"; do
     if $opt_tests; then
         t_base=`echo "$t_php"|sed -e 's:^sphinx/examples/\(.\+\)\.php$:\1:'`;
         t_stdout=`$php_exe sphinx/behat/get-output-path --relative ${t_base}.stdout`
@@ -120,7 +120,7 @@ for t_php in `find sphinx/examples -name "*Test.php"`; do
 
     $php_exe ../vendor/bin/phpunit -c sphinx/examples/phpunit.xml $t_php \
       | sed -e "\\:^$abstop/packages/phpunit-\\w\\+:d" \
-            -e "s:^$abstop/docs/sphinx/examples/\\([^/]*/\\)*\\(\\w\\+.php\\):\\2:" \
+            -e "s:$abstop/docs/sphinx/examples/\\([^/]*/\\)*\\(\\w\\+.php\\):\\2:" \
             -e "s|^\\(Configuration:\\s*\\)\\($abstop\\(/docs\\)\\?/\\)\\?sphinx/examples/phpunit\.xml|\\1phpunit.xml|" \
       | tee "$t_stdout";
 done
