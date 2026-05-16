@@ -20,21 +20,15 @@ use PHPUnit\Framework\TestCase;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type CtorArgs = list{0?:bool,1?:array|\Traversable}
+ * @psalm-type CtorArgs    = list{0:bool,1?:array|\Traversable}
+ * @psalm-type ExpectArray = array{actual: mixed, array: mixed, tag: mixed}
  */
 #[CoversClass(DummyValues::class)]
 #[Small]
 final class DummyValuesTest extends TestCase
 {
     /**
-     * @psalm-return iterable<string,array{
-     *      ctor: list{0?:bool,1?:array|\Traversable}
-     *      expect: array{
-     *          array: mixed,
-     *          actual: mixed,
-     *          tag: mixed,
-     *      }
-     * }
+     * @psalm-return iterable<string,array{ctor: CtorArgs, expect: ExpecteArray}
      */
     public static function provDummyValues(): iterable
     {
@@ -69,8 +63,8 @@ final class DummyValuesTest extends TestCase
     }
 
     /**
-     * @psalm-param list{0?:bool,1?:array|\Traversable}            $ctor
-     * @psalm-param array{arary: mixed, actual: mixed, tag: mixed} $expect
+     * @psalm-param CtorArgs    $ctor
+     * @psalm-param ExpectArray $expect
      */
     #[DataProvider('provDummyValues')]
     public function testDummyValues(array $ctor, array $expect): void
