@@ -21,14 +21,6 @@ abstract class KsortedConstraintTestCase extends TestCase
 {
     abstract public static function adjective(): string;
 
-    abstract public static function getComparatorClass(): string;
-
-    final public function testCreateConstraint(): void
-    {
-        $constraint = $this->examineCreateConstraint([[]]);
-        $this->assertInstanceOf(static::getComparatorClass(), $constraint->getComparator());
-    }
-
     final public function testConstraintUnaryOperatorFailure(): void
     {
         $this->examineConstraintUnaryOperatorFailure([[]], null, self::message('null'));

@@ -19,7 +19,6 @@ use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use Tailors\PHPUnit\Common\Exporter;
 use Tailors\PHPUnit\Common\ShortFailureDescriptionTrait;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
-use Tailors\PHPUnit\Comparator\ComparatorWrapperInterface;
 
 /**
  * Abstract base for constraints that examine values.
@@ -28,7 +27,7 @@ use Tailors\PHPUnit\Comparator\ComparatorWrapperInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-abstract class AbstractConstraint extends Constraint implements ComparatorWrapperInterface, ValueSelectorWrapperInterface, ValuesWrapperInterface
+abstract class AbstractConstraint extends Constraint implements ValuesWrapperInterface
 {
     use ShortFailureDescriptionTrait;
 
@@ -70,22 +69,6 @@ abstract class AbstractConstraint extends Constraint implements ComparatorWrappe
     final public function getValues(): ValuesInterface
     {
         return $this->expected;
-    }
-
-    /**
-     * Returns an instance of ComparatorInterface which implements comparison operator.
-     */
-    final public function getComparator(): ComparatorInterface
-    {
-        return $this->comparator;
-    }
-
-    /**
-     * Returns an instance of ValueSelectiorInterface.
-     */
-    final public function getValueSelector(): ValueSelectorInterface
-    {
-        return $this->valueSelector;
     }
 
     /**
