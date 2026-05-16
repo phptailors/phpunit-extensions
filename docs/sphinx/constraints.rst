@@ -42,9 +42,6 @@ equal to ``$expected``.
   :linenos:
   :language: none
 
-The constraint may be used recursively, i.e. it may be used to require given
-nested value to be an array with prescribed properties.
-
 
 .. _constraints.arrayValuesIdenticalTo:
 
@@ -80,9 +77,6 @@ identical to ``$expected``.
 .. literalinclude:: examples/arrayValuesIdenticalToTest.stdout
   :linenos:
   :language: none
-
-The constraint may be used recursively, i.e. it may be used to require a nested
-value to be an array with prescribed values.
 
 
 .. _constraints.classPropertiesEqualTo:
@@ -120,9 +114,6 @@ The constraint accepts classes having selected properties equal to
   :linenos:
   :language: none
 
-The constraint may be used recursively, i.e. it may be used to require given
-property to be a class with prescribed properties.
-
 
 .. _constraints.classPropertiesIdenticalTo:
 
@@ -158,9 +149,6 @@ The constraint accepts classes having selected properties identical to
 .. literalinclude:: examples/classPropertiesIdenticalToTest.stdout
   :linenos:
   :language: none
-
-The constraint may be used recursively, i.e. it may be used to require given
-property to be a class with prescribed properties.
 
 
 .. _constraints.extendsClass:
@@ -472,9 +460,6 @@ The constraint accepts objects having selected properties equal to
   :linenos:
   :language: none
 
-The constraint may be used recursively, i.e. it may be used to require given
-property to be an object with prescribed properties.
-
 
 .. _constraints.objectPropertiesIdenticalTo:
 
@@ -510,9 +495,6 @@ The constraint accepts objects having selected properties identical to
 .. literalinclude:: examples/objectPropertiesIdenticalToTest.stdout
   :linenos:
   :language: none
-
-The constraint may be used recursively, i.e. it may be used to require given
-property to be an object with prescribed properties.
 
 .. _constraints.usesTrait:
 
