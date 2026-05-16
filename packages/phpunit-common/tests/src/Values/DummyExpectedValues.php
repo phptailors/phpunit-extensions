@@ -20,17 +20,10 @@ namespace Tailors\PHPUnit\Values;
 final class DummyExpectedValues extends \ArrayObject implements ValuesInterface, ValueSelectorWrapperInterface
 {
     /**
-     * @var ValueSelectorInterface
-     */
-    private $valueSelector;
-
-    /**
      * @param array|\Traversable $array
      */
-    public function __construct(ValueSelectorInterface $valueSelector, $array = [])
+    public function __construct(private readonly ValueSelectorInterface $valueSelector, $array = [])
     {
-        $this->valueSelector = $valueSelector;
-
         if (!is_array($array)) {
             $array = iterator_to_array($array);
         }

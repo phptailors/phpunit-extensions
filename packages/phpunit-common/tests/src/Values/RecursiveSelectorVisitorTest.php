@@ -708,9 +708,7 @@ final class RecursiveSelectorVisitorTest extends TestCase
         //
         // 07
         //
-        $s07 = new DummyValueSelector(function ($subject): bool {
-            return is_object($subject) && $subject instanceof \Exception;
-        }, function ($subject, $key, &$retval): bool {
+        $s07 = new DummyValueSelector(fn ($subject): bool => is_object($subject) && $subject instanceof \Exception, function ($subject, $key, &$retval): bool {
             if (!is_object($subject) || !$subject instanceof \Exception) {
                 return false;
             }
