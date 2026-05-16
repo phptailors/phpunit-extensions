@@ -7,15 +7,19 @@ Feature: Examples
     And I should see exit code <exit_code>
 
     Examples:
-      | example_file                            | stdout_file                                | stderr_file                                    | exit_code |
-      | "AssertArrayValuesEqualToTest.php"      | "AssertArrayValuesEqualToTest.stdout"      | "AssertArrayValuesEqualToTest.stderr"      | 1         |
-      | "AssertArrayValuesIdenticalToTest.php"  | "AssertArrayValuesIdenticalToTest.stdout"  | "AssertArrayValuesIdenticalToTest.stderr"  | 1         |
-      | "arrayValuesEqualToTest.php"            | "arrayValuesEqualToTest.stdout"            | "arrayValuesEqualToTest.stderr"            | 1         |
-      | "arrayValuesIdenticalToTest.php"        | "arrayValuesIdenticalToTest.stdout"        | "arrayValuesIdenticalToTest.stderr"        | 1         |
-      | "AssertKsortedArrayEqualToTest.php"     | "AssertKsortedArrayEqualToTest.stdout"     | "AssertKsortedArrayEqualToTest.stderr"     | 1         |
-      | "AssertKsortedArrayIdenticalToTest.php" | "AssertKsortedArrayIdenticalToTest.stdout" | "AssertKsortedArrayIdenticalToTest.stderr" | 1         |
-      | "ksortedArrayEqualToTest.php"           | "ksortedArrayEqualToTest.stdout"           | "ksortedArrayEqualToTest.stderr"           | 1         |
-      | "ksortedArrayIdenticalToTest.php"       | "ksortedArrayIdenticalToTest.stdout"       | "ksortedArrayIdenticalToTest.stderr"       | 1         |
+      | example_file                                     | stdout_file                                          | stderr_file                                           | exit_code |
+      | "AssertArrayValuesEqualToTest.php"               | "AssertArrayValuesEqualToTest.stdout"                | "AssertArrayValuesEqualToTest.stderr"                 | 1         |
+      | "AssertArrayValuesEqualToRecursiveTest.php"      | "AssertArrayValuesEqualToRecursiveTest.stdout"       | "AssertArrayValuesEqualToRecursiveTest.stderr"        | 1         |
+      | "AssertArrayValuesIdenticalToTest.php"           | "AssertArrayValuesIdenticalToTest.stdout"            | "AssertArrayValuesIdenticalToTest.stderr"             | 1         |
+      | "AssertArrayValuesIdenticalToRecursiveTest.php"  | "AssertArrayValuesIdenticalToRecursiveTest.stdout"   | "AssertArrayValuesIdenticalToRecursiveTest.stderr"    | 1         |
+      | "arrayValuesEqualToTest.php"                     | "arrayValuesEqualToTest.stdout"                      | "arrayValuesEqualToTest.stderr"                       | 1         |
+      | "arrayValuesEqualToRecursiveTest.php"            | "arrayValuesEqualToRecursiveTest.stdout"             | "arrayValuesEqualToRecursiveTest.stderr"              | 1         |
+      | "arrayValuesIdenticalToTest.php"                 | "arrayValuesIdenticalToTest.stdout"                  | "arrayValuesIdenticalToTest.stderr"                   | 1         |
+      | "arrayValuesIdenticalToRecursiveTest.php"        | "arrayValuesIdenticalToRecursiveTest.stdout"         | "arrayValuesIdenticalToRecursiveTest.stderr"          | 1         |
+      | "AssertKsortedArrayEqualToTest.php"              | "AssertKsortedArrayEqualToTest.stdout"               | "AssertKsortedArrayEqualToTest.stderr"                | 1         |
+      | "AssertKsortedArrayIdenticalToTest.php"          | "AssertKsortedArrayIdenticalToTest.stdout"           | "AssertKsortedArrayIdenticalToTest.stderr"            | 1         |
+      | "ksortedArrayEqualToTest.php"                    | "ksortedArrayEqualToTest.stdout"                     | "ksortedArrayEqualToTest.stderr"                      | 1         |
+      | "ksortedArrayIdenticalToTest.php"                | "ksortedArrayIdenticalToTest.stdout"                 | "ksortedArrayIdenticalToTest.stderr"                  | 1         |
 
   @phpunit-inheritance
   Scenario Outline: Examples for phptailors/phpunit-inheritance
@@ -65,12 +69,16 @@ Feature: Examples
     And I should see exit code <exit_code>
 
     Examples:
-      | example_file                                | stdout_file                                    | stderr_file                                    | exit_code |
-      | "AssertClassPropertiesEqualToTest.php"      | "AssertClassPropertiesEqualToTest.stdout"      | "AssertClassPropertiesEqualToTest.stderr"      | 1         |
-      | "AssertClassPropertiesIdenticalToTest.php"  | "AssertClassPropertiesIdenticalToTest.stdout"  | "AssertClassPropertiesIdenticalToTest.stderr"  | 1         |
-      | "AssertObjectPropertiesEqualToTest.php"     | "AssertObjectPropertiesEqualToTest.stdout"     | "AssertObjectPropertiesEqualToTest.stderr"     | 1         |
-      | "AssertObjectPropertiesIdenticalToTest.php" | "AssertObjectPropertiesIdenticalToTest.stdout" | "AssertObjectPropertiesIdenticalToTest.stderr" | 1         |
-      | "classPropertiesEqualToTest.php"            | "classPropertiesEqualToTest.stdout"            | "classPropertiesEqualToTest.stderr"            | 1         |
-      | "classPropertiesIdenticalToTest.php"        | "classPropertiesIdenticalToTest.stdout"        | "classPropertiesIdenticalToTest.stderr"        | 1         |
-      | "objectPropertiesEqualToTest.php"           | "objectPropertiesEqualToTest.stdout"           | "objectPropertiesEqualToTest.stderr"           | 1         |
-      | "objectPropertiesIdenticalToTest.php"       | "objectPropertiesIdenticalToTest.stdout"       | "objectPropertiesIdenticalToTest.stderr"       | 1         |
+      | example_file                                        | stdout_file                                               | stderr_file                                               | exit_code |
+      | "AssertClassPropertiesEqualToTest.php"              | "AssertClassPropertiesEqualToTest.stdout"                 | "AssertClassPropertiesEqualToTest.stderr"                 | 1         |
+      | "AssertClassPropertiesEqualToRecursiveTest.php"     | "AssertClassPropertiesEqualToRecursiveTest.stdout"        | "AssertClassPropertiesEqualToRecursiveTest.stderr"        | 1         |
+      | "AssertClassPropertiesIdenticalToTest.php"          | "AssertClassPropertiesIdenticalToTest.stdout"             | "AssertClassPropertiesIdenticalToTest.stderr"             | 1         |
+      | "AssertClassPropertiesIdenticalToRecursiveTest.php" | "AssertClassPropertiesIdenticalToRecursiveTest.stdout"    | "AssertClassPropertiesIdenticalToRecursiveTest.stderr"    | 1         |
+      | "AssertObjectPropertiesEqualToTest.php"             | "AssertObjectPropertiesEqualToTest.stdout"                | "AssertObjectPropertiesEqualToTest.stderr"                | 1         |
+      | "AssertObjectPropertiesIdenticalToTest.php"         | "AssertObjectPropertiesIdenticalToTest.stdout"            | "AssertObjectPropertiesIdenticalToTest.stderr"            | 1         |
+      | "classPropertiesEqualToTest.php"                    | "classPropertiesEqualToTest.stdout"                       | "classPropertiesEqualToTest.stderr"                       | 1         |
+      | "classPropertiesEqualToRecursiveTest.php"           | "classPropertiesEqualToRecursiveTest.stdout"              | "classPropertiesEqualToRecursiveTest.stderr"              | 1         |
+      | "classPropertiesIdenticalToTest.php"                | "classPropertiesIdenticalToTest.stdout"                   | "classPropertiesIdenticalToTest.stderr"                   | 1         |
+      | "classPropertiesIdenticalToRecursiveTest.php"       | "classPropertiesIdenticalToRecursiveTest.stdout"          | "classPropertiesIdenticalToRecursiveTest.stderr"          | 1         |
+      | "objectPropertiesEqualToTest.php"                   | "objectPropertiesEqualToTest.stdout"                      | "objectPropertiesEqualToTest.stderr"                      | 1         |
+      | "objectPropertiesIdenticalToTest.php"               | "objectPropertiesIdenticalToTest.stdout"                  | "objectPropertiesIdenticalToTest.stderr"                  | 1         |

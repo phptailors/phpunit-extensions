@@ -59,6 +59,35 @@ is the inverse of this.
    :linenos:
    :language: none
 
+Selecting values from nested arrays
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. list-table:: Prerequisites for nested selection
+   :width: 100%
+   :widths: 25 75
+   :header-rows: 0
+
+   * - Package
+     - phptailors/phpunit-arrays: ``^1.1 || ^2.1 || ^3.1 || ^4.1 || ^5.1``
+   * - Trait
+     - :class:`Tailors\\PHPUnit\\ArrayValuesTrait`
+
+Since versions ``*.1`` (``1.1``, ``2.1``, ``3.1``, ...) it's possible to
+specify sub-array selection in nested arrays of the ``$expected`` by using
+``$this->arrayValues([...])`` instead of ``[...]``. This changes the content
+taken for comparison -- instead of matching the exact content of the sub-array
+from ``$actual``, only the listed keys are selected from the sub-array for
+comparison. For example:
+
+.. literalinclude:: examples/AssertArrayValuesEqualToRecursiveTest.php
+   :linenos:
+   :caption: Usage of assertArrayValuesEqualTo() with nested selectors
+   :name: constraints.assertArrayValuesEqualToRecursive.example
+
+.. literalinclude:: examples/AssertArrayValuesEqualToRecursiveTest.stdout
+  :linenos:
+  :language: none
+
 .. _assertions.assertArrayValuesIdenticalTo:
 
 assertArrayValuesIdenticalTo()
@@ -109,6 +138,34 @@ is the inverse of this.
    :linenos:
    :language: none
 
+Selecting values from nested arrays
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. list-table:: Prerequisites for nested selection
+   :width: 100%
+   :widths: 25 75
+   :header-rows: 0
+
+   * - Package
+     - phptailors/phpunit-arrays: ``^1.1 || ^2.1 || ^3.1 || ^4.1 || ^5.1``
+   * - Trait
+     - :class:`Tailors\\PHPUnit\\ArrayValuesTrait`
+
+Since versions ``*.1`` (``1.1``, ``2.1``, ``3.1``, ...) it's possible to
+specify sub-array selection in nested arrays of the ``$expected`` by using
+``$this->arrayValues([...])`` instead of ``[...]``. This changes the content
+taken for comparison -- instead of matching the exact content of the sub-array
+from ``$actual``, only the listed keys are selected from the sub-array for
+comparison. For example:
+
+.. literalinclude:: examples/AssertArrayValuesIdenticalToRecursiveTest.php
+   :linenos:
+   :caption: Usage of assertArrayValuesIdenticalTo() with nested selectors
+   :name: constraints.assertArrayValuesIdenticalToRecursive.example
+
+.. literalinclude:: examples/AssertArrayValuesIdenticalToRecursiveTest.stdout
+  :linenos:
+  :language: none
 
 .. _assertions.assertClassPropertiesEqualTo:
 
@@ -163,6 +220,35 @@ is the inverse of this.
 .. literalinclude:: examples/AssertClassPropertiesEqualToTest.stdout
    :linenos:
    :language: none
+
+Selecting properties of nested classes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. list-table:: Prerequisites for nested selection
+   :width: 100%
+   :widths: 25 75
+   :header-rows: 0
+
+   * - Package
+     - phptailors/phpunit-arrays: ``^1.1 || ^2.1 || ^3.1 || ^4.1 || ^5.1``
+   * - Trait
+     - :class:`Tailors\\PHPUnit\\ClassPropertiesTrait`
+
+Since versions ``*.1`` (``1.1``, ``2.1``, ``3.1``, ...) it's possible to
+specify nested selections by using ``$this->classProperties([...])`` instead of
+``[...]``. This changes the content taken for comparison -- instead of treating
+a class name (nested in ``$actual``) as a regular string, it's being considered
+a class, and the properties of this class get selected for comparison. For
+example:
+
+.. literalinclude:: examples/AssertClassPropertiesEqualToRecursiveTest.php
+   :linenos:
+   :caption: Usage of AssertClassPropertiesEqualTo()
+   :name: constraints.AssertClassPropertiesEqualToRecursive.example
+
+.. literalinclude:: examples/AssertClassPropertiesEqualToRecursiveTest.stdout
+  :linenos:
+  :language: none
 
 .. _assertions.assertClassPropertiesIdenticalTo:
 
@@ -219,6 +305,34 @@ is the inverse of this.
    :linenos:
    :language: none
 
+Selecting properties of nested classes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. list-table:: Prerequisites for nested selection
+   :width: 100%
+   :widths: 25 75
+   :header-rows: 0
+
+   * - Package
+     - phptailors/phpunit-arrays: ``^1.1 || ^2.1 || ^3.1 || ^4.1 || ^5.1``
+   * - Trait
+     - :class:`Tailors\\PHPUnit\\ClassPropertiesTrait`
+
+Since versions ``*.1`` (``1.1``, ``2.1``, ``3.1``, ...) it's possible to
+specify nested selections by using ``$this->classProperties([...])`` instead of
+``[...]``. This changes the content taken for comparison -- instead of treating
+a class name (nested in ``$actual``) as a regular string, it's being considered
+a class, and the properties of this class get selected for comparison. For
+example:
+
+.. literalinclude:: examples/AssertClassPropertiesIdenticalToRecursiveTest.php
+   :linenos:
+   :caption: Usage of AssertClassPropertiesIdenticalTo()
+   :name: constraints.AssertClassPropertiesIdenticalToRecursive.example
+
+.. literalinclude:: examples/AssertClassPropertiesIdenticalToRecursiveTest.stdout
+  :linenos:
+  :language: none
 
 
 .. _assertions.assertExtendsClass:
@@ -622,6 +736,35 @@ is the inverse of this.
    :linenos:
    :language: none
 
+Selecting properties of nested objects
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. list-table:: Prerequisites for nested selection
+   :width: 100%
+   :widths: 25 75
+   :header-rows: 0
+
+   * - Package
+     - phptailors/phpunit-arrays: ``^1.1 || ^2.1 || ^3.1 || ^4.1 || ^5.1``
+   * - Trait
+     - :class:`Tailors\\PHPUnit\\ObjectPropertiesTrait`
+
+Since versions ``*.1`` (``1.1``, ``2.1``, ``3.1``, ...) it's possible to
+specify nested selections by using ``$this->objectProperties([...])`` instead of
+``[...]``. This changes the content taken for comparison -- instead of treating
+an object (nested in ``$actual``) as an object, the properties of this object
+get selected for comparison. For example:
+
+.. literalinclude:: examples/AssertObjectPropertiesEqualToRecursiveTest.php
+   :linenos:
+   :caption: Usage of AssertObjectPropertiesEqualTo()
+   :name: constraints.AssertObjectPropertiesEqualToRecursive.example
+
+.. literalinclude:: examples/AssertObjectPropertiesEqualToRecursiveTest.stdout
+  :linenos:
+  :language: none
+
+
 .. _assertions.assertObjectPropertiesIdenticalTo:
 
 assertObjectPropertiesIdenticalTo()
@@ -674,6 +817,34 @@ is the inverse of this.
 .. literalinclude:: examples/AssertObjectPropertiesIdenticalToTest.stdout
    :linenos:
    :language: none
+
+Selecting properties of nested objects
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. list-table:: Prerequisites for nested selection
+   :width: 100%
+   :widths: 25 75
+   :header-rows: 0
+
+   * - Package
+     - phptailors/phpunit-arrays: ``^1.1 || ^2.1 || ^3.1 || ^4.1 || ^5.1``
+   * - Trait
+     - :class:`Tailors\\PHPUnit\\ObjectPropertiesTrait`
+
+Since versions ``*.1`` (``1.1``, ``2.1``, ``3.1``, ...) it's possible to
+specify nested selections by using ``$this->objectProperties([...])`` instead of
+``[...]``. This changes the content taken for comparison -- instead of treating
+an object (nested in ``$actual``) as an object, the properties of this object
+get selected for comparison. For example:
+
+.. literalinclude:: examples/AssertObjectPropertiesIdenticalToRecursiveTest.php
+   :linenos:
+   :caption: Usage of AssertObjectPropertiesIdenticalTo()
+   :name: constraints.AssertObjectPropertiesIdenticalToRecursive.example
+
+.. literalinclude:: examples/AssertObjectPropertiesIdenticalToRecursiveTest.stdout
+  :linenos:
+  :language: none
 
 .. _assertions.assertUsesTrait:
 
