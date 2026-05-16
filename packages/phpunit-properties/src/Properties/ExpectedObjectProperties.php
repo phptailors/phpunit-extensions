@@ -36,7 +36,9 @@ final class ExpectedObjectProperties extends AbstractObjectProperties implements
     public function getValueSelector(): ValueSelectorInterface
     {
         if (null === self::$valueSelector) {
+            // @codeCoverageIgnoreStart
             self::$valueSelector = new ObjectPropertySelector();
+            // @codeCoverageIgnoreEnd
         }
 
         return self::$valueSelector;
