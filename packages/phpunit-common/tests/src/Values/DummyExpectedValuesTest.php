@@ -10,13 +10,12 @@
 
 namespace Tailors\PHPUnit\Values;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\Values\DummyExpectedValues
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
@@ -24,6 +23,8 @@ use PHPUnit\Framework\TestCase;
  * @psalm-type CtorArgs     = list{0:ValueSelectorInterface,1?:array|\Traversable}
  * @psalm-type ExpectArrary =  array{selector: mixed, array: mixed, actual: mixed, tag: mixed}
  */
+#[CoversClass(DummyExpectedValues::class)]
+#[Small]
 final class DummyExpectedValuesTest extends TestCase
 {
     /**
@@ -66,11 +67,10 @@ final class DummyExpectedValuesTest extends TestCase
     }
 
     /**
-     * @dataProvider provDummyExpectedValues
-     *
      * @psalm-param CtorArgs    $ctor
      * @psalm-param ExpectArray $expect
      */
+    #[DataProvider('provDummyExpectedValues')]
     public function testDummyExpectedValues(array $ctor, array $expect): void
     {
         $values = new DummyExpectedValues(...$ctor);
