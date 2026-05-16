@@ -3,8 +3,6 @@
     "description": "Common objects used by other phptailors/phunit-* packages",
     "type": "library",
     "license": "MIT",
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "support": {
         "issues": "https://github.com/phptailors/phpunit-extensions/issues",
         "source": "https://github.com/phptailors/phpunit-extensions"
@@ -19,7 +17,7 @@
         "nikic/php-parser": "< 4.13.2"
     },
     "require": {
-        "php": ">=7.3",
+        "php": "^7.3 || ^8",
         "ext-mbstring": "*"
     },
     "require-dev": {
@@ -41,5 +39,7 @@
         "branch-alias": {
             "dev-master": "1.0-dev"
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
