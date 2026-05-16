@@ -211,7 +211,7 @@ examined ``$subject`` may be an ``object`` or a class name as ``string``:
 .. _constraints.hasMethod:
 
 hasMethod
----------------
+---------
 
 .. list-table:: Prerequisites for hasMethod()
    :width: 100%
@@ -370,7 +370,7 @@ The constraint accepts objects (and classes/interfaces) that implement given
 .. _constraints.ksortedArrayEqualTo:
 
 ksortedArrayEqualTo
-------------------
+-------------------
 
 .. list-table:: Prerequisites for ksortedArrayEqualTo()
    :width: 100%
@@ -405,7 +405,7 @@ The constraint accepts arrays that are equal to ``$expected`` when key-sorted.
 .. _constraints.ksortedArrayIdenticalTo:
 
 ksortedArrayIdenticalTo
-----------------------
+-----------------------
 
 .. list-table:: Prerequisites for ksortedArrayIdenticalTo()
    :width: 100%
