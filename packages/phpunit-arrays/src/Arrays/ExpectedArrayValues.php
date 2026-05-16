@@ -36,7 +36,9 @@ final class ExpectedArrayValues extends AbstractArrayValues implements ValueSele
     public function getValueSelector(): ValueSelectorInterface
     {
         if (null === self::$valueSelector) {
+            // @codeCoverageIgnoreStart
             self::$valueSelector = new ArrayValueSelector();
+            // @codeCoverageIgnoreEnd
         }
 
         return self::$valueSelector;
