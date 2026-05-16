@@ -16,7 +16,6 @@ use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Constraint\Constraint;
 use Tailors\PHPUnit\Arrays\AbstractKsortedConstraint;
 use Tailors\PHPUnit\Arrays\KsortedConstraintTestCase;
-use Tailors\PHPUnit\Comparator\IdentityComparator;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -40,11 +39,6 @@ final class KsortedArrayIdenticalToTest extends KsortedConstraintTestCase
     public static function getConstraintClass(): string
     {
         return KsortedArrayIdenticalTo::class;
-    }
-
-    public static function getComparatorClass(): string
-    {
-        return IdentityComparator::class;
     }
 
     public static function createConstraint(...$args): Constraint
