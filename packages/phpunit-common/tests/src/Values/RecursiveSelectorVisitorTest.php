@@ -337,6 +337,61 @@ final class RecursiveSelectorVisitorTest extends TestCase
                 ],
             ]),
         ];
+
+        //
+        // 08
+        //
+
+        $c08 = [$selector, new \ArrayObject([
+            'foo' => [
+                'bar' => [],
+            ],
+        ])];
+        $e08 = new ExpectedValues([
+            'foo' => [
+                'bar' => [
+                    'baz' => [],
+                ],
+            ],
+        ]);
+
+        yield 'RecursiveSelectorVisitorTest.php:'.__LINE__ => [
+            'ctor'  => $c08,
+            'calls' => [
+                [
+                    'args' => [
+                        'node' => $e08,
+                    ],
+                    'return' => true,
+                    'next'   => 'foo',
+                ],
+                [
+                    'args' => [
+                        'node' => $e08['foo'],
+                    ],
+                    'return' => true,
+                    'next'   => 'bar',
+                ],
+                [
+                    'args' => [
+                        'node' => $e08['foo']['bar'],
+                    ],
+                    'return' => true,
+                    'next'   => 'baz',
+                ],
+                [
+                    'args' => [
+                        'node' => $e08['foo']['bar']['baz'],
+                    ],
+                    'return' => false,
+                ],
+            ],
+            'result' => new ActualValues([
+                'foo' => [
+                    'bar' => [],
+                ],
+            ]),
+        ];
     }
 
     /**
