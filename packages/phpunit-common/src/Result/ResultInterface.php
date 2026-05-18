@@ -8,7 +8,7 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Results;
+namespace Tailors\PHPUnit\Result;
 
 use Tailors\PHPUnit\Common\TagInterface;
 
