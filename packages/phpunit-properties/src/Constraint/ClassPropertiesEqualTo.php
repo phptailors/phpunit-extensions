@@ -14,10 +14,10 @@ use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\EqualityComparator;
 use Tailors\PHPUnit\Properties\ExpectedClassProperties;
 use Tailors\PHPUnit\Properties\ValidateExpectationsTrait;
+use Tailors\PHPUnit\Recursive\AbstractRecursiveConstraint;
+use Tailors\PHPUnit\Recursive\RecursiveConstraintSpecializationTrait;
 use Tailors\PHPUnit\Selector\ClassPropertySelector;
 use Tailors\PHPUnit\Selector\ValueSelectorInterface;
-use Tailors\PHPUnit\Values\AbstractConstraint;
-use Tailors\PHPUnit\Values\ConstraintImplementationTrait;
 use Tailors\PHPUnit\Values\ValuesInterface;
 
 /**
@@ -44,9 +44,9 @@ use Tailors\PHPUnit\Values\ValuesInterface;
  *          }
  *      }), $matcher);
  */
-final class ClassPropertiesEqualTo extends AbstractConstraint
+final class ClassPropertiesEqualTo extends AbstractRecursiveConstraint
 {
-    use ConstraintImplementationTrait;
+    use RecursiveConstraintSpecializationTrait;
     use ValidateExpectationsTrait;
 
     /**

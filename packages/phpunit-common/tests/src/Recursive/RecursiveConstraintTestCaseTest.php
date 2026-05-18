@@ -14,16 +14,17 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Constraint\Constraint;
+use Tailors\PHPUnit\Values\ExampleConstraint;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-#[CoversClass(ConstraintTestCase::class)]
+#[CoversClass(RecursiveConstraintTestCase::class)]
 #[CoversClass(ExampleConstraint::class)]
 #[Small]
-final class RecursiveConstraintTestCaseTest extends ConstraintTestCase
+final class RecursiveConstraintTestCaseTest extends RecursiveConstraintTestCase
 {
     public static function subject(): string
     {

@@ -14,26 +14,26 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
-use Tailors\PHPUnit\Recursive\RecursiveUnwrapperInterface;
 use Tailors\PHPUnit\Selector\ValueSelectorInterface;
+use Tailors\PHPUnit\Values\ValuesInterface;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
  */
-#[CoversClass(DummyAbstractConstraint::class)]
+#[CoversClass(DummyAbstractRecursiveConstraint::class)]
 #[Small]
 final class DummyAbstractRecursiveConstraintTest extends TestCase
 {
     public function testCreate(): void
     {
-        $constraint = DummyAbstractConstraint::create(
+        $constraint = DummyAbstractRecursiveConstraint::create(
             $this->createMock(ValuesInterface::class),
             $this->createMock(ComparatorInterface::class),
             $this->createMock(ValueSelectorInterface::class),
             $this->createMock(RecursiveUnwrapperInterface::class)
         );
 
-        $this->assertInstanceOf(DummyAbstractConstraint::class, $constraint);
+        $this->assertInstanceOf(DummyAbstractRecursiveConstraint::class, $constraint);
     }
 }
 // vim: syntax=php sw=4 ts=4 et:
