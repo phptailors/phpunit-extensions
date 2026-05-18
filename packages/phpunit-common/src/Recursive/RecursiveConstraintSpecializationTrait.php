@@ -12,8 +12,8 @@ namespace Tailors\PHPUnit\Recursive;
 
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\InvalidArgumentException;
-use Tailors\PHPUnit\Recursive\RecursiveUnwrapper;
 use Tailors\PHPUnit\Selector\ValueSelectorInterface;
+use Tailors\PHPUnit\Values\ValuesInterface;
 
 /**
  * @internal This trait is not covered by the backward compatibility promise

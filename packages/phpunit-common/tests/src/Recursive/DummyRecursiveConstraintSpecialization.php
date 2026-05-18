@@ -13,9 +13,10 @@ namespace Tailors\PHPUnit\Recursive;
 use PHPUnit\Framework\Attributes\Small;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\IdentityComparator;
-use Tailors\PHPUnit\Recursive\RecursiveUnwrapperInterface;
 use Tailors\PHPUnit\Selector\ArrayValueSelector;
 use Tailors\PHPUnit\Selector\ValueSelectorInterface;
+use Tailors\PHPUnit\Values\DummyValues;
+use Tailors\PHPUnit\Values\ValuesInterface;
 
 /**
  * @covers \Tailors\PHPUnit\Values\ConstraintImplementationTrait
@@ -27,7 +28,7 @@ use Tailors\PHPUnit\Selector\ValueSelectorInterface;
 #[Small]
 final class DummyRecursiveConstraintSpecialization
 {
-    use ConstraintImplementationTrait;
+    use RecursiveConstraintSpecializationTrait;
 
     public static ?ValueSelectorInterface $makeSelector;
     public static ?ComparatorInterface $makeComparator;
