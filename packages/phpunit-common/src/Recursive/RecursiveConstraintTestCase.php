@@ -22,7 +22,7 @@ use Tailors\PHPUnit\Constraint\TestCase;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-extends TestCase<AbstractRecursiveConstraint>
+ * @template-extends TestCase<AbstractRecursiveConstraint>
  */
 abstract class RecursiveConstraintTestCase extends TestCase
 {
