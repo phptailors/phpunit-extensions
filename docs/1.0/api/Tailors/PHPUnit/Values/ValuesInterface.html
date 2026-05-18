@@ -86,7 +86,7 @@
 
     
     <p>        interface
-    <strong>ValuesInterface</strong>        implements        <a target="_blank" rel="noopener" href="https://www.php.net/Traversable">Traversable</a>, <a target="_blank" rel="noopener" href="https://www.php.net/ArrayAccess">ArrayAccess</a>, <a target="_blank" rel="noopener" href="https://www.php.net/Countable">Countable</a>, <a href="../../../Tailors/PHPUnit/Common/TagInterface.html"><abbr title="Tailors\PHPUnit\Common\TagInterface">TagInterface</abbr></a>
+    <strong>ValuesInterface</strong>        implements        <a target="_blank" rel="noopener" href="https://www.php.net/Traversable">Traversable</a>, <a target="_blank" rel="noopener" href="https://www.php.net/ArrayAccess">ArrayAccess</a>, <a target="_blank" rel="noopener" href="https://www.php.net/Countable">Countable</a>, <a href="../../../Tailors/PHPUnit/Result/ResultInterface.html"><abbr title="Tailors\PHPUnit\Result\ResultInterface">ResultInterface</abbr></a>
 </p>
 
         
@@ -101,7 +101,7 @@
     
 
             <div class="description">
-            <p><p>An array of actual or expected values.</p></p>                    </div>
+            <p><p>An array of values.</p></p>                    </div>
             
         
     
@@ -128,8 +128,9 @@
                 <div class="col-md-8">
                     <a href="#method_actual">actual</a>()
         
-                                            <p><p>Returns true if this object represents actual values (as opposite to expected values).</p></p>                </div>
-                <div class="col-md-2"></div>
+                                            <p><p>Returns true if this object represents actual result (as opposite to expected one).</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Result/ResultInterface.html#method_actual">
+<abbr title="Tailors\PHPUnit\Result\ResultInterface">ResultInterface</abbr></a></small></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
@@ -184,7 +185,8 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_actual">
-        <div class="location">at line 30</div>
+        <div class="location">in <a href="../../../Tailors/PHPUnit/Result/ResultInterface.html#method_actual">
+<abbr title="Tailors\PHPUnit\Result\ResultInterface">ResultInterface</abbr></a> at line 27</div>
         <code>                    bool
     <strong>actual</strong>()
         </code>
@@ -194,7 +196,7 @@
             
 
         <div class="method-description">
-                            <p><p>Returns true if this object represents actual values (as opposite to expected values).</p></p>                        
+                            <p><p>Returns true if this object represents actual result (as opposite to expected one).</p></p>                        
         </div>
         <div class="tags">
             
@@ -216,7 +218,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_createActualValues">
-        <div class="location">at line 35</div>
+        <div class="location">at line 30</div>
         <code>                    <a href="../../../Tailors/PHPUnit/Values/ValuesInterface.html"><abbr title="Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr></a>
     <strong>createActualValues</strong>(array|<a target="_blank" rel="noopener" href="https://www.php.net/Traversable">Traversable</a> $array = [])
         </code>
