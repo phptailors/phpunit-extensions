@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="robots" content="index, follow, all" />
-    <title>Tailors\PHPUnit\Comparator\ComparatorWrapperInterface | API Documentation</title>
+    <title>Tailors\PHPUnit\Results\ResultInterface | API Documentation</title>
 
             <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-theme.min.css">
@@ -19,7 +19,7 @@
 
     </head>
 
-    <body id="class" data-name="class:Tailors_PHPUnit_Comparator_ComparatorWrapperInterface" data-root-path="../../../" data-search-index-url="../../../doctum-search.json">
+    <body id="class" data-name="class:Tailors_PHPUnit_Results_ResultInterface" data-root-path="../../../" data-search-index-url="../../../doctum-search.json">
             <div id="content">
         <div id="left-column">
                 <div id="control-panel">
@@ -75,18 +75,18 @@
                         <div class="namespace-breadcrumbs">
             <ol class="breadcrumb">
                 <li><span class="label label-default">interface</span></li>
-                        <li><a href="../../../Tailors.html">Tailors</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit.html">PHPUnit</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit/Comparator.html">Comparator</a></li><li class="backslash">\</li><li>ComparatorWrapperInterface</li>
+                        <li><a href="../../../Tailors.html">Tailors</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit.html">PHPUnit</a></li><li class="backslash">\</li><li><a href="../../../Tailors/PHPUnit/Results.html">Results</a></li><li class="backslash">\</li><li>ResultInterface</li>
             </ol>
         </div>
                 <div id="page-content">
     <div class="page-header">
-        <h1>ComparatorWrapperInterface    
+        <h1>ResultInterface    
             </h1>
     </div>
 
     
     <p>        interface
-    <strong>ComparatorWrapperInterface</strong>
+    <strong>ResultInterface</strong>        implements        <a href="../../../Tailors/PHPUnit/Common/TagInterface.html"><abbr title="Tailors\PHPUnit\Common\TagInterface">TagInterface</abbr></a>
 </p>
 
         
@@ -100,6 +100,8 @@
                 &nbsp;
     
 
+            <div class="description">
+            <p><p>A constraint evaluation result (either expected, or actual).</p></p>                    </div>
             
         
     
@@ -109,12 +111,24 @@
             <div class="container-fluid underlined">
                     <div class="row">
                 <div class="col-md-2 type">
-                    <a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a>
+                    string
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_getComparator">getComparator</a>()
+                    <a href="#method_tag">tag</a>()
         
-                                            <p><p>Returns an instance of ComparatorInterface.</p></p>                </div>
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Common/TagInterface.html#method_tag">
+<abbr title="Tailors\PHPUnit\Common\TagInterface">TagInterface</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    bool
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_actual">actual</a>()
+        
+                                            <p><p>Returns true if this object represents actual result (as opposite to expected one).</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -124,10 +138,11 @@
 
             <div id="method-details">
                     <div class="method-item">
-                    <h3 id="method_getComparator">
-        <div class="location">at line 23</div>
-        <code>                    <a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a>
-    <strong>getComparator</strong>()
+                    <h3 id="method_tag">
+        <div class="location">in <a href="../../../Tailors/PHPUnit/Common/TagInterface.html#method_tag">
+<abbr title="Tailors\PHPUnit\Common\TagInterface">TagInterface</abbr></a> at line 25</div>
+        <code>                    string
+    <strong>tag</strong>()
         </code>
     </h3>
     <div class="details">    
@@ -135,7 +150,8 @@
             
 
         <div class="method-description">
-                            <p><p>Returns an instance of ComparatorInterface.</p></p>                        
+                            <p class="no-description">No description</p>
+                    
         </div>
         <div class="tags">
             
@@ -143,7 +159,39 @@
 
                     <table class="table table-condensed">
         <tr>
-            <td><a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a></td>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_actual">
+        <div class="location">at line 27</div>
+        <code>                    bool
+    <strong>actual</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Returns true if this object represents actual result (as opposite to expected one).</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
             <td></td>
         </tr>
     </table>
