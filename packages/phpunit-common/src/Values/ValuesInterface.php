@@ -10,7 +10,7 @@
 
 namespace Tailors\PHPUnit\Values;
 
-use Tailors\PHPUnit\Results\ResultInterface;
+use Tailors\PHPUnit\Result\ResultInterface;
 
 /**
  * An array of values.
