@@ -15,7 +15,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Values\RecursiveUnwrapperStackItem
+ * @covers \Tailors\PHPUnit\Recursive\RecursiveUnwrapperStackItem
  *
  * @internal This class is not covered by the backward compatibility promise
  *

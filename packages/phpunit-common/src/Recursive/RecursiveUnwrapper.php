@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\Recursive;
 
 use Tailors\PHPUnit\CircularDependencyException;
+use Tailors\PHPUnit\Values\ValuesInterface;
 
 /**
  * @internal This class is not covered by the backward compatibility promise

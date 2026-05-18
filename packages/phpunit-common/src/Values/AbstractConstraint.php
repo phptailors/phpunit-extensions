@@ -19,6 +19,9 @@ use Tailors\PHPUnit\Common\Exporter;
 use Tailors\PHPUnit\Common\ShortFailureDescriptionTrait;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\InternalErrorException;
+use Tailors\PHPUnit\Recursive\RecursiveSelectorVisitor;
+use Tailors\PHPUnit\Recursive\RecursiveTraversal;
+use Tailors\PHPUnit\Recursive\RecursiveUnwrapperInterface;
 use Tailors\PHPUnit\Selector\ValueSelectorInterface;
 
 /**

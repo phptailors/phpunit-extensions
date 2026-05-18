@@ -12,13 +12,18 @@ namespace Tailors\PHPUnit\Recursive;
 
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\CircularDependencyException;
+use Tailors\PHPUnit\Values\ActualValues;
+use Tailors\PHPUnit\Values\DummyValues;
+use Tailors\PHPUnit\Values\DummyValuesWrapper;
+use Tailors\PHPUnit\Values\ExpectedValues;
+use Tailors\PHPUnit\Values\ValuesInterface;
 
 /**
  * @small
  *
+ * @covers \Tailors\PHPUnit\Recursive\RecursiveUnwrapper
+ * @covers \Tailors\PHPUnit\Recursive\RecursiveUnwrapperVisitor
  * @covers \Tailors\PHPUnit\Values\AbstractValues
- * @covers \Tailors\PHPUnit\Values\RecursiveUnwrapper
- * @covers \Tailors\PHPUnit\Values\RecursiveUnwrapperVisitor
  *
  * @internal This class is not covered by the backward compatibility promise
  *
@@ -40,7 +45,6 @@ final class RecursiveUnwrapperTest extends TestCase
     //
     // unwrap()
     //
-
     /**
      * @psalm-return iterable<string, array{args: array, values: ValuesInterface, expect: mixed}>
      */

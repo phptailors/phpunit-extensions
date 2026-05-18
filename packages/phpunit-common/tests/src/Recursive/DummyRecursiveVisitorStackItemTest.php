@@ -15,7 +15,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Values\DummyRecursiveVisitorStackItem
+ * @covers \Tailors\PHPUnit\Recursive\DummyRecursiveVisitorStackItem
  *
  * @internal This class is not covered by the backward compatibility promise
  *

@@ -11,6 +11,8 @@
 namespace Tailors\PHPUnit\Recursive;
 
 use Tailors\PHPUnit\Common\ReferenceStorage;
+use Tailors\PHPUnit\Values\ValuesInterface;
+use Tailors\PHPUnit\Values\ValuesWrapperInterface;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
