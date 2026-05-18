@@ -14,10 +14,10 @@ use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\EqualityComparator;
 use Tailors\PHPUnit\Properties\ExpectedObjectProperties;
 use Tailors\PHPUnit\Properties\ValidateExpectationsTrait;
+use Tailors\PHPUnit\Selector\ObjectPropertySelector;
+use Tailors\PHPUnit\Selector\ValueSelectorInterface;
 use Tailors\PHPUnit\Values\AbstractConstraint;
 use Tailors\PHPUnit\Values\ConstraintImplementationTrait;
-use Tailors\PHPUnit\Values\ObjectPropertySelector;
-use Tailors\PHPUnit\Values\ValueSelectorInterface;
 use Tailors\PHPUnit\Values\ValuesInterface;
 
 /**

@@ -19,6 +19,7 @@ use Tailors\PHPUnit\Common\Exporter;
 use Tailors\PHPUnit\Common\ShortFailureDescriptionTrait;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\InternalErrorException;
+use Tailors\PHPUnit\Selector\ValueSelectorInterface;
 
 /**
  * Abstract base for constraints that examine values.
