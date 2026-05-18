@@ -18,16 +18,16 @@ return RectorConfig::configure()
     ])
     ->withPreparedSets(
     )
-    ->withSets([
-        PHPUnitSetList::PHPUNIT_60,
-        PHPUnitSetList::PHPUNIT_70,
-        PHPUnitSetList::PHPUNIT_80,
-        PHPUnitSetList::PHPUNIT_90,
-        PHPUnitSetList::PHPUNIT_100,
+//    ->withSets([
+//        PHPUnitSetList::PHPUNIT_60,
+//        PHPUnitSetList::PHPUNIT_70,
+//        PHPUnitSetList::PHPUNIT_80,
+//        PHPUnitSetList::PHPUNIT_90,
+ //       PHPUnitSetList::PHPUNIT_100,
     ])
-    ->withPhpSets(
-        php82: true
-    )
+//    ->withPhpSets(
+//        php82: true
+//    )
     ->withSkip([
         AddDoesNotPerformAssertionToNonAssertingTestRector::class => [
             __DIR__.'/packages/phpunit-arrays/tests/src/Constraint/ArrayValuesEqualToTest.php',
@@ -44,12 +44,12 @@ return RectorConfig::configure()
         // We'll avoid first-class callables for the moment and prefer delegation.
         ArrowFunctionDelegatingCallToFirstClassCallableRector::class => true,
     ])
-    ->withRules([
-        RemoveUselessParamTagRector::class,
-        RemoveUselessReadOnlyTagRector::class,
-        RemoveUselessReturnTagRector::class,
-        RemoveUselessVarTagRector::class,
-    ])
+//    ->withRules([
+//        RemoveUselessParamTagRector::class,
+//        RemoveUselessReadOnlyTagRector::class,
+//        RemoveUselessReturnTagRector::class,
+//        RemoveUselessVarTagRector::class,
+//    ])
     ->withImportNames(
         importShortClasses: false,
         removeUnusedImports: true
