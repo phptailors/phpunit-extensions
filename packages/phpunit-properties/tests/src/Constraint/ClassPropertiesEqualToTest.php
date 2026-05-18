@@ -15,7 +15,7 @@ use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Constraint\Constraint;
-use Tailors\PHPUnit\Values\ConstraintTestCase;
+use Tailors\PHPUnit\Recursive\RecursiveConstraintTestCase;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -25,7 +25,7 @@ use Tailors\PHPUnit\Values\ConstraintTestCase;
 #[CoversClass(ClassPropertiesEqualTo::class)]
 #[CoversClass(PropertiesConstraintTestCase::class)]
 #[CoversTrait(ProvClassPropertiesTrait::class)]
-#[CoversClass(ConstraintTestCase::class)]
+#[CoversClass(RecursiveConstraintTestCase::class)]
 #[Small]
 final class ClassPropertiesEqualToTest extends PropertiesConstraintTestCase
 {

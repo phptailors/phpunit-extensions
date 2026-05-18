@@ -14,7 +14,6 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
-use Tailors\PHPUnit\Recursive\RecursiveUnwrapper;
 use Tailors\PHPUnit\Selector\ValueSelectorInterface;
 
 /**
@@ -22,10 +21,10 @@ use Tailors\PHPUnit\Selector\ValueSelectorInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-#[CoversTrait(ConstraintImplementationTrait::class)]
-#[CoversClass(DummyConstraintImplementation::class)]
+#[CoversTrait(RecursiveConstraintSpecializationTrait::class)]
+#[CoversClass(DummyRecursiveConstraintSpecialization::class)]
 #[Small]
-final class RecursiveConstraintImplementationTraitTest extends TestCase
+final class RecursiveConstraintSpecializationTraitTest extends TestCase
 {
     #[\Override]
     protected function setUp(): void
@@ -43,15 +42,15 @@ final class RecursiveConstraintImplementationTraitTest extends TestCase
     {
         $expected = ['foo' => 'FOO'];
 
-        $constraint = DummyConstraintImplementation::create($expected);
+        $constraint = DummyRecursiveConstraintSpecialization::create($expected);
 
-        $this->assertSame([$expected, 1, 1], DummyConstraintImplementation::$validateExpectations);
+        $this->assertSame([$expected, 1, 1], DummyRecursiveConstraintSpecialization::$validateExpectations);
 
-        $this->assertSame(DummyConstraintImplementation::$makeComparator, $constraint->comparator);
+        $this->assertSame(DummyRecursiveConstraintSpecialization::$makeComparator, $constraint->comparator);
         $this->assertInstanceOf(ValueSelectorInterface::class, $constraint->valueSelector);
         $this->assertInstanceOf(RecursiveUnwrapper::class, $constraint->unwrapper);
 
-        $this->assertSame(DummyConstraintImplementation::$makeSelector, $constraint->valueSelector);
+        $this->assertSame(DummyRecursiveConstraintSpecialization::$makeSelector, $constraint->valueSelector);
         $this->assertSame($expected, iterator_to_array($constraint->expected));
     }
 
@@ -63,9 +62,9 @@ final class RecursiveConstraintImplementationTraitTest extends TestCase
 
     private static function resetDummyConstraintImplementation(): void
     {
-        DummyConstraintImplementation::$validateExpectations = null;
-        DummyConstraintImplementation::$makeComparator = null;
-        DummyConstraintImplementation::$makeSelector = null;
+        DummyRecursiveConstraintSpecialization::$validateExpectations = null;
+        DummyRecursiveConstraintSpecialization::$makeComparator = null;
+        DummyRecursiveConstraintSpecialization::$makeSelector = null;
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

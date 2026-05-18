@@ -11,10 +11,10 @@
 namespace Tailors\PHPUnit\Recursive;
 
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
-use Tailors\PHPUnit\Recursive\RecursiveUnwrapperInterface;
 use Tailors\PHPUnit\Selector\ValueSelectorInterface;
+use Tailors\PHPUnit\Values\ValuesInterface;
 
-final class DummyAbstractRecursiveConstraint extends AbstractConstraint
+final class DummyAbstractRecursiveConstraint extends AbstractRecursiveConstraint
 {
     public static function create(
         ValuesInterface $expected,

@@ -20,17 +20,18 @@ use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\IdentityComparator;
-use Tailors\PHPUnit\Recursive\RecursiveUnwrapper;
-use Tailors\PHPUnit\Recursive\RecursiveUnwrapperInterface;
 use Tailors\PHPUnit\Selector\ArrayValueSelector;
 use Tailors\PHPUnit\Selector\ValueSelectorInterface;
+use Tailors\PHPUnit\Values\ExpectedValues;
+use Tailors\PHPUnit\Values\ValuesInterface;
+use Tailors\PHPUnit\Values\ValuesWrapperInterface;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-#[CoversClass(AbstractConstraint::class)]
+#[CoversClass(AbstractRecursiveConstraint::class)]
 #[Small]
 final class AbstractRecursiveConstraintTest extends TestCase
 {
@@ -57,7 +58,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
             $unwrapper = $test->createStub(RecursiveUnwrapperInterface::class);
         }
 
-        return DummyAbstractConstraint::create($expected, $comparator, $valueSelector, $unwrapper);
+        return DummyAbstractRecursiveConstraint::create($expected, $comparator, $valueSelector, $unwrapper);
     }
 
     public static function createArrayValuesIdentityConstraint(TestCase $test, array $expected)
