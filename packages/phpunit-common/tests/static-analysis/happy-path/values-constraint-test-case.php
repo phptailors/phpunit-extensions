@@ -17,7 +17,7 @@ use PHPUnit\Framework\MockObject\RuntimeException;
 use PHPUnit\Framework\TestCase;
 use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use Tailors\PHPUnit\CircularDependencyException;
-use Tailors\PHPUnit\Values\ConstraintTestCase;
+use Tailors\PHPUnit\Recursive\RecursiveConstraintTestCase;
 
 /**
  * @throws Exception
@@ -28,7 +28,7 @@ use Tailors\PHPUnit\Values\ConstraintTestCase;
  * @throws CircularDependencyException
  * @throws \Tailors\PHPUnit\InvalidArgumentException
  */
-function consume(ConstraintTestCase $test): ConstraintTestCase
+function consume(RecursiveConstraintTestCase $test): RecursiveConstraintTestCase
 {
     $test->provCreateConstraint();
     $test->testCreateConstraint([], ['values' => TestCase::identicalTo([])]);
