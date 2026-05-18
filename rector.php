@@ -8,6 +8,7 @@ use Rector\DeadCode\Rector\Property\RemoveUselessReadOnlyTagRector;
 use Rector\DeadCode\Rector\Property\RemoveUselessVarTagRector;
 use Rector\PHPUnit\PHPUnit60\Rector\ClassMethod\AddDoesNotPerformAssertionToNonAssertingTestRector;
 use Rector\PHPUnit\Set\PHPUnitSetList;
+use Rector\Renaming\Rector\Name\RenameClassRector;
 
 return RectorConfig::configure()
     ->withPaths([
@@ -52,4 +53,21 @@ return RectorConfig::configure()
         importShortClasses: false,
         removeUnusedImports: true
     )
+    ->withConfiguredRule(RenameClassRector::class, [
+         // phpunit-common/src
+        'Tailors\PHPUnit\Values\AbstractPropertySelector' => 'Tailors\PHPUnit\Selector\AbstractPropertySelector',
+        'Tailors\PHPUnit\Values\AbstractValueSelector' => 'Tailors\PHPUnit\Selector\AbstractValueSelector',
+        'Tailors\PHPUnit\Values\ArrayValueSelector' => 'Tailors\PHPUnit\Selector\ArrayValueSelector',
+        'Tailors\PHPUnit\Values\ClassPropertySelector' => 'Tailors\PHPUnit\Selector\ClassPropertySelector',
+        'Tailors\PHPUnit\Values\ObjectPropertySelector' => 'Tailors\PHPUnit\Selector\ObjectPropertySelector',
+        'Tailors\PHPUnit\Values\ValueSelectorInterface' => 'Tailors\PHPUnit\Selector\ValueSelectorInterface',
+        'Tailors\PHPUnit\Values\ValueSelectorWrapperInterface' => 'Tailors\PHPUnit\Selector\ValueSelectorWrapperInterface',
+
+         // phpunit-common/tests/src
+        'Tailors\PHPUnit\Values\ArrayValueSelectorTest' => 'Tailors\PHPUnit\Selector\ArrayValueSelectorTest',
+        'Tailors\PHPUnit\Values\ClassPropertySelectorTest' => 'Tailors\PHPUnit\Selector\ClassPropertySelectorTest',
+        'Tailors\PHPUnit\Values\DummyValueSelector' => 'Tailors\PHPUnit\Selector\DummyValueSelector',
+        'Tailors\PHPUnit\Values\DummyValueSelectorTest' => 'Tailors\PHPUnit\Selector\DummyValueSelectorTest',
+        'Tailors\PHPUnit\Values\ObjectPropertySelectorTest' => 'Tailors\PHPUnit\Selector\ObjectPropertySelectorTest',
+    ])
 ;
