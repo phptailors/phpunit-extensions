@@ -8,7 +8,7 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Values;
+namespace Tailors\PHPUnit\Recursive;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -17,6 +17,10 @@ use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\CircularDependencyException;
 use Tailors\PHPUnit\Common\StaticTagInterface;
 use Tailors\PHPUnit\InvalidArgumentException;
+use Tailors\PHPUnit\Values\ActualValues;
+use Tailors\PHPUnit\Values\DummyValues;
+use Tailors\PHPUnit\Values\ExpectedValues;
+use Tailors\PHPUnit\Values\ValuesInterface;
 
 /**
  * @internal This class is not covered by the backward compatibility promise

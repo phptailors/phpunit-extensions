@@ -20,6 +20,8 @@ use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\IdentityComparator;
+use Tailors\PHPUnit\Recursive\RecursiveUnwrapper;
+use Tailors\PHPUnit\Recursive\RecursiveUnwrapperInterface;
 use Tailors\PHPUnit\Selector\ArrayValueSelector;
 use Tailors\PHPUnit\Selector\ValueSelectorInterface;
 

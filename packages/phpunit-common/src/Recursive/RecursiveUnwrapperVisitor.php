@@ -8,12 +8,13 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Values;
+namespace Tailors\PHPUnit\Recursive;
 
 use Tailors\PHPUnit\CircularDependencyException;
 use Tailors\PHPUnit\Common\StaticRandomStrings;
 use Tailors\PHPUnit\Common\StaticTagInterface;
 use Tailors\PHPUnit\InvalidArgumentException;
+use Tailors\PHPUnit\Values\ValuesInterface;
 
 /**
  * @internal This interface is not covered by the backward compatibility promise

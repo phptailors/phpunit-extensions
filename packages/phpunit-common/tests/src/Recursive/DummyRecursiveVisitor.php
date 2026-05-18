@@ -8,7 +8,9 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Values;
+namespace Tailors\PHPUnit\Recursive;
+
+use Tailors\PHPUnit\Values\ValuesInterface;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -27,8 +29,8 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     private array $trace;
 
     /**
-     * @psalm-param bool|\Closure(array|ValuesInterface,list<StackItem>):bool $enter
-     * @psalm-param bool|\Closure(array|ValuesInterface,list<StackItem>):bool $cycle
+     * @psalm-param bool|\Closure((array|ValuesInterface), list<StackItem>):bool $enter
+     * @psalm-param bool|\Closure((array|ValuesInterface), list<StackItem>):bool $cycle
      */
     public function __construct(private readonly bool|\Closure $enter = true, private readonly bool|\Closure $cycle = false)
     {

@@ -8,16 +8,23 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Values;
+namespace Tailors\PHPUnit\Recursive;
+
+use Tailors\PHPUnit\Values\ValuesInterface;
 
 /**
  * @internal This interface is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-interface RecursiveUnwrapperInterface
+interface RecursiveTraversalInterface
 {
-    public function unwrap(ValuesInterface $values): array;
+    /**
+     * @psalm-template StackItem of RecursiveVisitorStackItemInterface
+     *
+     * @psalm-param RecursiveVisitorInterface<StackItem> $visitor
+     */
+    public function walk(ValuesInterface $values, RecursiveVisitorInterface $visitor): void;
 }
 
 // vim: syntax=php sw=4 ts=4 et:
