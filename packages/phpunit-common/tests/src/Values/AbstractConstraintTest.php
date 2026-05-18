@@ -17,6 +17,8 @@ use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\IdentityComparator;
+use Tailors\PHPUnit\Selector\ArrayValueSelector;
+use Tailors\PHPUnit\Selector\ValueSelectorInterface;
 
 /**
  * @small

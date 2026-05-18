@@ -10,9 +10,9 @@
 
 namespace Tailors\PHPUnit\Properties;
 
-use Tailors\PHPUnit\Values\ObjectPropertySelector;
-use Tailors\PHPUnit\Values\ValueSelectorInterface;
-use Tailors\PHPUnit\Values\ValueSelectorWrapperInterface;
+use Tailors\PHPUnit\Selector\ObjectPropertySelector;
+use Tailors\PHPUnit\Selector\ValueSelectorInterface;
+use Tailors\PHPUnit\Selector\ValueSelectorWrapperInterface;
 
 /**
  * An array of expected object properties.

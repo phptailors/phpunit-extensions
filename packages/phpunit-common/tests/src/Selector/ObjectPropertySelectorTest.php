@@ -16,9 +16,9 @@ use Tailors\PHPUnit\InvalidArgumentException;
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Values\AbstractPropertySelector
- * @covers \Tailors\PHPUnit\Values\AbstractValueSelector
- * @covers \Tailors\PHPUnit\Values\ObjectPropertySelector
+ * @covers \Tailors\PHPUnit\Selector\AbstractPropertySelector
+ * @covers \Tailors\PHPUnit\Selector\AbstractValueSelector
+ * @covers \Tailors\PHPUnit\Selector\ObjectPropertySelector
  *
  * @internal This class is not covered by the backward compatibility promise
  *

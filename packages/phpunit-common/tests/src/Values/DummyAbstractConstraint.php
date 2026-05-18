@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\Values;
 
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
+use Tailors\PHPUnit\Selector\ValueSelectorInterface;
 
 final class DummyAbstractConstraint extends AbstractConstraint
 {

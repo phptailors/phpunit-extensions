@@ -16,8 +16,8 @@ use Tailors\PHPUnit\InvalidArgumentException;
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Values\AbstractValueSelector
- * @covers \Tailors\PHPUnit\Values\ArrayValueSelector
+ * @covers \Tailors\PHPUnit\Selector\AbstractValueSelector
+ * @covers \Tailors\PHPUnit\Selector\ArrayValueSelector
  *
  * @internal This class is not covered by the backward compatibility promise
  *

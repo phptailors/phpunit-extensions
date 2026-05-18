@@ -10,8 +10,8 @@
 
 namespace Tailors\PHPUnit\Arrays;
 
-use Tailors\PHPUnit\Values\ArrayValueSelector;
-use Tailors\PHPUnit\Values\ValueSelectorWrapperInterface;
+use Tailors\PHPUnit\Selector\ArrayValueSelector;
+use Tailors\PHPUnit\Selector\ValueSelectorWrapperInterface;
 
 /**
  * @small

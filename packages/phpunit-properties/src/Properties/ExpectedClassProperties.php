@@ -10,9 +10,9 @@
 
 namespace Tailors\PHPUnit\Properties;
 
-use Tailors\PHPUnit\Values\ClassPropertySelector;
-use Tailors\PHPUnit\Values\ValueSelectorInterface;
-use Tailors\PHPUnit\Values\ValueSelectorWrapperInterface;
+use Tailors\PHPUnit\Selector\ClassPropertySelector;
+use Tailors\PHPUnit\Selector\ValueSelectorInterface;
+use Tailors\PHPUnit\Selector\ValueSelectorWrapperInterface;
 
 /**
  * An array of expected class properties.
