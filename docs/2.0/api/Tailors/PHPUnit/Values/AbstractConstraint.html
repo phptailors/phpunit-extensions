@@ -86,7 +86,7 @@
 
     
     <p>    abstract     class
-    <strong>AbstractConstraint</strong>        extends <abbr title="PHPUnit\Framework\Constraint\Constraint">Constraint</abbr>        implements        <a href="../../../Tailors/PHPUnit/Comparator/ComparatorWrapperInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorWrapperInterface">ComparatorWrapperInterface</abbr></a>, <a href="../../../Tailors/PHPUnit/Values/ValueSelectorWrapperInterface.html"><abbr title="Tailors\PHPUnit\Values\ValueSelectorWrapperInterface">ValueSelectorWrapperInterface</abbr></a>, <a href="../../../Tailors/PHPUnit/Values/ValuesWrapperInterface.html"><abbr title="Tailors\PHPUnit\Values\ValuesWrapperInterface">ValuesWrapperInterface</abbr></a>
+    <strong>AbstractConstraint</strong>        extends <abbr title="PHPUnit\Framework\Constraint\Constraint">Constraint</abbr>        implements        <a href="../../../Tailors/PHPUnit/Values/ValuesWrapperInterface.html"><abbr title="Tailors\PHPUnit\Values\ValuesWrapperInterface">ValuesWrapperInterface</abbr></a>
 </p>
 
         
@@ -186,26 +186,6 @@ appears in context of an $operator expression.</p></p>                </div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    <a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a>
-                </div>
-                <div class="col-md-8">
-                    <a href="#method_getComparator">getComparator</a>()
-        
-                                            <p><p>Returns an instance of ComparatorInterface which implements comparison operator.</p></p>                </div>
-                <div class="col-md-2"></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    <a href="../../../Tailors/PHPUnit/Values/ValueSelectorInterface.html"><abbr title="Tailors\PHPUnit\Values\ValueSelectorInterface">ValueSelectorInterface</abbr></a>
-                </div>
-                <div class="col-md-8">
-                    <a href="#method_getValueSelector">getValueSelector</a>()
-        
-                                            <p><p>Returns an instance of ValueSelectiorInterface.</p></p>                </div>
-                <div class="col-md-2"></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
                     bool|null
                 </div>
                 <div class="col-md-8">
@@ -233,7 +213,7 @@ constraint is met, false otherwise.</p></p>                </div>
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method_toString">
-        <div class="location">at line 63</div>
+        <div class="location">at line 46</div>
         <code>final                    string
     <strong>toString</strong>()
         </code>
@@ -368,7 +348,7 @@ customization by itself.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_toStringInContext">
-        <div class="location">at line 127</div>
+        <div class="location">at line 110</div>
         <code>final            protected        string
     <strong>toStringInContext</strong>(<abbr title="PHPUnit\Framework\Constraint\Operator">Operator</abbr> $operator, mixed $role)
         </code>
@@ -421,7 +401,7 @@ customization by itself.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method___construct">
-        <div class="location">at line 34</div>
+        <div class="location">at line 33</div>
         <code>final            protected        
     <strong>__construct</strong>(<a href="../../../Tailors/PHPUnit/Values/ValuesInterface.html"><abbr title="Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr></a> $expected, <a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a> $comparator, <a href="../../../Tailors/PHPUnit/Values/ValueSelectorInterface.html"><abbr title="Tailors\PHPUnit\Values\ValueSelectorInterface">ValueSelectorInterface</abbr></a> $valueSelector, <a href="../../../Tailors/PHPUnit/Values/RecursiveUnwrapperInterface.html"><abbr title="Tailors\PHPUnit\Values\RecursiveUnwrapperInterface">RecursiveUnwrapperInterface</abbr></a> $unwrapper)
         </code>
@@ -470,7 +450,7 @@ customization by itself.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_getValues">
-        <div class="location">at line 39</div>
+        <div class="location">at line 38</div>
         <code>final                    <a href="../../../Tailors/PHPUnit/Values/ValuesInterface.html"><abbr title="Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr></a>
     <strong>getValues</strong>()
         </code>
@@ -501,72 +481,8 @@ customization by itself.</p></p>
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_getComparator">
-        <div class="location">at line 47</div>
-        <code>final                    <a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a>
-    <strong>getComparator</strong>()
-        </code>
-    </h3>
-    <div class="details">    
-    
-            
-
-        <div class="method-description">
-                            <p><p>Returns an instance of ComparatorInterface which implements comparison operator.</p></p>                        
-        </div>
-        <div class="tags">
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td><a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a></td>
-            <td></td>
-        </tr>
-    </table>
-
-            
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
-                    <h3 id="method_getValueSelector">
-        <div class="location">at line 55</div>
-        <code>final                    <a href="../../../Tailors/PHPUnit/Values/ValueSelectorInterface.html"><abbr title="Tailors\PHPUnit\Values\ValueSelectorInterface">ValueSelectorInterface</abbr></a>
-    <strong>getValueSelector</strong>()
-        </code>
-    </h3>
-    <div class="details">    
-    
-            
-
-        <div class="method-description">
-                            <p><p>Returns an instance of ValueSelectiorInterface.</p></p>                        
-        </div>
-        <div class="tags">
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td><a href="../../../Tailors/PHPUnit/Values/ValueSelectorInterface.html"><abbr title="Tailors\PHPUnit\Values\ValueSelectorInterface">ValueSelectorInterface</abbr></a></td>
-            <td></td>
-        </tr>
-    </table>
-
-            
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
                     <h3 id="method_evaluate">
-        <div class="location">at line 85</div>
+        <div class="location">at line 68</div>
         <code>final                    bool|null
     <strong>evaluate</strong>(mixed $other, string $description = &#039;&#039;, bool $returnResult = false)
         </code>
@@ -631,7 +547,7 @@ failure.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_matches">
-        <div class="location">at line 147</div>
+        <div class="location">at line 130</div>
         <code>final            protected        bool
     <strong>matches</strong>(mixed $other)
         </code>
