@@ -13,6 +13,8 @@ namespace Tailors\PHPUnit\Values;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\CircularDependencyException;
 use Tailors\PHPUnit\InternalErrorException;
+use Tailors\PHPUnit\Selector\DummyValueSelector;
+use Tailors\PHPUnit\Selector\ValueSelectorInterface;
 
 /**
  * @small
@@ -431,11 +433,7 @@ final class RecursiveSelectorVisitorTest extends TestCase
     }
 
     /**
-     * @psalm-return iterable<string, array{
-     *      ctor: array{0: ValueSelectorInterface, 1: mixed},
-     *      calls: non-empty-list<VisitTestCall>,
-     *      result: mixed
-     *  }>
+     * @psalm-return iterable<string, array{ctor: array{0: ValueSelectorInterface, 1: mixed}, calls: non-empty-list<VisitTestCall>, result: mixed}>
      */
     public static function provVisit(): iterable
     {

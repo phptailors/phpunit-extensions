@@ -13,6 +13,8 @@ namespace Tailors\PHPUnit\Values;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\IdentityComparator;
 use Tailors\PHPUnit\InvalidArgumentException;
+use Tailors\PHPUnit\Selector\ArrayValueSelector;
+use Tailors\PHPUnit\Selector\ValueSelectorInterface;
 
 /**
  * Example constraint class that extends the AbstractConstraint.

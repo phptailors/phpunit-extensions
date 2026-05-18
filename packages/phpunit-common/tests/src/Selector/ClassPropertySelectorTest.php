@@ -26,9 +26,9 @@ final class ClassWithNonStaticMethodFooBLSGG
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Values\AbstractPropertySelector
- * @covers \Tailors\PHPUnit\Values\AbstractValueSelector
- * @covers \Tailors\PHPUnit\Values\ClassPropertySelector
+ * @covers \Tailors\PHPUnit\Selector\AbstractPropertySelector
+ * @covers \Tailors\PHPUnit\Selector\AbstractValueSelector
+ * @covers \Tailors\PHPUnit\Selector\ClassPropertySelector
  *
  * @internal This class is not covered by the backward compatibility promise
  *

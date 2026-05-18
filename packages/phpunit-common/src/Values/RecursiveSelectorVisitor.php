@@ -12,6 +12,8 @@ namespace Tailors\PHPUnit\Values;
 
 use Tailors\PHPUnit\CircularDependencyException;
 use Tailors\PHPUnit\InternalErrorException;
+use Tailors\PHPUnit\Selector\ValueSelectorInterface;
+use Tailors\PHPUnit\Selector\ValueSelectorWrapperInterface;
 
 /**
  * @internal This interface is not covered by the backward compatibility promise
