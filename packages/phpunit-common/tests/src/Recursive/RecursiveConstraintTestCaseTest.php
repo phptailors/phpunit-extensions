@@ -8,7 +8,7 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Values;
+namespace Tailors\PHPUnit\Recursive;
 
 use PHPUnit\Framework\Constraint\Constraint;
 
@@ -22,7 +22,7 @@ use PHPUnit\Framework\Constraint\Constraint;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class ConstraintTestCaseTest extends ConstraintTestCase
+final class RecursiveConstraintTestCaseTest extends ConstraintTestCase
 {
     public static function subject(): string
     {

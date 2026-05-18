@@ -8,7 +8,7 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Values;
+namespace Tailors\PHPUnit\Recursive;
 
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Exception;
@@ -26,7 +26,7 @@ use Tailors\PHPUnit\Constraint\TestCase;
  *
  * @extends TestCase<AbstractConstraint>
  */
-abstract class ConstraintTestCase extends TestCase
+abstract class RecursiveConstraintTestCase extends TestCase
 {
     abstract public static function subject(): string;
 
