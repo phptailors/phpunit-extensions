@@ -8,19 +8,19 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Values;
+namespace Tailors\PHPUnit\Recursive;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class DummyRecursiveVisitorStackItem implements RecursiveVisitorStackItemInterface
+final class RecursiveUnwrapperStackItem implements RecursiveVisitorStackItemInterface
 {
     /**
      * @psalm-param array-key $key
      */
-    public function __construct(private readonly array|ValuesInterface $node, private readonly mixed $key) {}
+    public function __construct(private readonly array|ValuesInterface $node, private readonly mixed $key, private array $result) {}
 
     /**
      * @psalm-mutation-free
@@ -38,6 +38,16 @@ final class DummyRecursiveVisitorStackItem implements RecursiveVisitorStackItemI
     public function key(): mixed
     {
         return $this->key;
+    }
+
+    public function result(): array
+    {
+        return $this->result;
+    }
+
+    public function set(mixed $value): void
+    {
+        $this->result[$this->key()] = $value;
     }
 }
 

@@ -8,16 +8,16 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Values;
+namespace Tailors\PHPUnit\Recursive;
 
 /**
- * @internal This interface is not covered by the backward compatibility promise
+ * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-interface RecursiveUnwrapperInterface
+final class RecursiveSelectorState
 {
-    public function unwrap(ValuesInterface $values): array;
+    public function __construct(public readonly mixed $subject, public array|ValuesInterface $result) {}
 }
 
 // vim: syntax=php sw=4 ts=4 et:
