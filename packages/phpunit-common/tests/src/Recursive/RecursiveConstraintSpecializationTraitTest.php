@@ -8,7 +8,7 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Values;
+namespace Tailors\PHPUnit\Recursive;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\CoversTrait;
@@ -25,7 +25,7 @@ use Tailors\PHPUnit\Selector\ValueSelectorInterface;
 #[CoversTrait(ConstraintImplementationTrait::class)]
 #[CoversClass(DummyConstraintImplementation::class)]
 #[Small]
-final class ConstraintImplementationTraitTest extends TestCase
+final class RecursiveConstraintImplementationTraitTest extends TestCase
 {
     protected function setUp(): void
     {

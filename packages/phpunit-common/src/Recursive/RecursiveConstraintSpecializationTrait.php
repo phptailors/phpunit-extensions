@@ -8,7 +8,7 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Values;
+namespace Tailors\PHPUnit\Recursive;
 
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\InvalidArgumentException;
@@ -20,7 +20,7 @@ use Tailors\PHPUnit\Selector\ValueSelectorInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-trait ConstraintImplementationTrait
+trait RecursiveConstraintSpecializationTrait
 {
     /**
      * @throws InvalidArgumentException

@@ -8,7 +8,7 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Values;
+namespace Tailors\PHPUnit\Recursive;
 
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\LogicalNot;
@@ -31,7 +31,7 @@ use Tailors\PHPUnit\Selector\ValueSelectorInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-abstract class AbstractConstraint extends Constraint implements ValuesWrapperInterface
+abstract class AbstractRecursiveConstraint extends Constraint implements ValuesWrapperInterface
 {
     use ShortFailureDescriptionTrait;
 
