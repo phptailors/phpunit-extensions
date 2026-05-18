@@ -18,7 +18,7 @@ use PHPUnit\Framework\Constraint\Constraint;
  * @covers \Tailors\PHPUnit\Constraint\ObjectPropertiesIdenticalTo
  * @covers \Tailors\PHPUnit\Constraint\PropertiesConstraintTestCase
  * @covers \Tailors\PHPUnit\Constraint\ProvObjectPropertiesTrait
- * @covers \Tailors\PHPUnit\Values\ConstraintTestCase
+ * @covers \Tailors\PHPUnit\Recursive\RecursiveConstraintTestCase
  *
  * @internal This class is not covered by the backward compatibility promise
  *

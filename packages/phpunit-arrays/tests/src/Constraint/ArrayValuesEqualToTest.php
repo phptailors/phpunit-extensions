@@ -11,20 +11,20 @@
 namespace Tailors\PHPUnit\Constraint;
 
 use PHPUnit\Framework\Constraint\Constraint;
-use Tailors\PHPUnit\Values\ConstraintTestCase;
+use Tailors\PHPUnit\Recursive\RecursiveConstraintTestCase;
 
 /**
  * @small
  *
  * @covers \Tailors\PHPUnit\Constraint\ArrayValuesEqualTo
  * @covers \Tailors\PHPUnit\Constraint\ProvArrayValuesTrait
- * @covers \Tailors\PHPUnit\Values\ConstraintTestCase
+ * @covers \Tailors\PHPUnit\Recursive\RecursiveConstraintTestCase
  *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class ArrayValuesEqualToTest extends ConstraintTestCase
+final class ArrayValuesEqualToTest extends RecursiveConstraintTestCase
 {
     use ProvArrayValuesTrait;
 

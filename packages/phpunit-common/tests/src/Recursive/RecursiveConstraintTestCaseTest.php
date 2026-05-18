@@ -11,18 +11,19 @@
 namespace Tailors\PHPUnit\Recursive;
 
 use PHPUnit\Framework\Constraint\Constraint;
+use Tailors\PHPUnit\Values\ExampleConstraint;
 
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Values\ConstraintTestCase
+ * @covers \Tailors\PHPUnit\Recursive\RecursiveConstraintTestCase
  * @covers \Tailors\PHPUnit\Values\ExampleConstraint
  *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class RecursiveConstraintTestCaseTest extends ConstraintTestCase
+final class RecursiveConstraintTestCaseTest extends RecursiveConstraintTestCase
 {
     public static function subject(): string
     {

@@ -12,14 +12,14 @@ namespace Tailors\PHPUnit\Constraint;
 
 use PHPUnit\Framework\ExpectationFailedException;
 use Tailors\PHPUnit\InvalidArgumentException;
-use Tailors\PHPUnit\Values\ConstraintTestCase;
+use Tailors\PHPUnit\Recursive\RecursiveConstraintTestCase;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-abstract class PropertiesConstraintTestCase extends ConstraintTestCase
+abstract class PropertiesConstraintTestCase extends RecursiveConstraintTestCase
 {
     // @codeCoverageIgnoreStart
 

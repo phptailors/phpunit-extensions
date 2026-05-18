@@ -13,6 +13,8 @@ namespace Tailors\PHPUnit\Values;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\IdentityComparator;
 use Tailors\PHPUnit\InvalidArgumentException;
+use Tailors\PHPUnit\Recursive\AbstractRecursiveConstraint;
+use Tailors\PHPUnit\Recursive\RecursiveConstraintSpecializationTrait;
 use Tailors\PHPUnit\Selector\ArrayValueSelector;
 use Tailors\PHPUnit\Selector\ValueSelectorInterface;
 
@@ -23,9 +25,9 @@ use Tailors\PHPUnit\Selector\ValueSelectorInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class ExampleConstraint extends AbstractConstraint
+final class ExampleConstraint extends AbstractRecursiveConstraint
 {
-    use ConstraintImplementationTrait;
+    use RecursiveConstraintSpecializationTrait;
 
     /**
      * @throws InvalidArgumentException
