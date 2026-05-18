@@ -14,6 +14,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
+use Tailors\PHPUnit\Recursive\RecursiveUnwrapperInterface;
 use Tailors\PHPUnit\Selector\ValueSelectorInterface;
 
 /**
