@@ -13,6 +13,8 @@ namespace Tailors\PHPUnit\Values;
 use PHPUnit\Framework\Attributes\Small;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\IdentityComparator;
+use Tailors\PHPUnit\Selector\ArrayValueSelector;
+use Tailors\PHPUnit\Selector\ValueSelectorInterface;
 
 /**
  * @covers \Tailors\PHPUnit\Values\ConstraintImplementationTrait

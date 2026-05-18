@@ -12,6 +12,7 @@ namespace Tailors\PHPUnit\Values;
 
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\InvalidArgumentException;
+use Tailors\PHPUnit\Selector\ValueSelectorInterface;
 
 /**
  * @internal This trait is not covered by the backward compatibility promise
