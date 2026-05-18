@@ -8,14 +8,14 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Values;
+namespace Tailors\PHPUnit\Recursive;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class RecursiveUnwrapperStackItem implements RecursiveVisitorStackItemInterface
+final class RecursiveSelectorStackItem implements RecursiveVisitorStackItemInterface
 {
     /**
      * @var array|ValuesInterface
@@ -34,9 +34,11 @@ final class RecursiveUnwrapperStackItem implements RecursiveVisitorStackItemInte
     private $key;
 
     /**
-     * @var array
+     * @var RecursiveSelectorState
+     *
+     * @psalm-readonly
      */
-    private $result;
+    private $state;
 
     /**
      * @param array|ValuesInterface $node
@@ -44,11 +46,11 @@ final class RecursiveUnwrapperStackItem implements RecursiveVisitorStackItemInte
      *
      * @psalm-param array-key $key
      */
-    public function __construct($node, $key, array $result)
+    public function __construct($node, $key, RecursiveSelectorState $state)
     {
         $this->node = $node;
         $this->key = $key;
-        $this->result = $result;
+        $this->state = $state;
     }
 
     /**
@@ -75,17 +77,17 @@ final class RecursiveUnwrapperStackItem implements RecursiveVisitorStackItemInte
         return $this->key;
     }
 
-    public function result(): array
-    {
-        return $this->result;
-    }
-
     /**
      * @param mixed $value
      */
     public function set($value): void
     {
-        $this->result[$this->key()] = $value;
+        $this->state->result[$this->key] = $value;
+    }
+
+    public function state(): RecursiveSelectorState
+    {
+        return $this->state;
     }
 }
 
