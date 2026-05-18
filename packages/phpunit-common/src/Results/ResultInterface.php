@@ -8,23 +8,23 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Values;
+namespace Tailors\PHPUnit\Results;
 
-use Tailors\PHPUnit\Results\ResultInterface;
+use Tailors\PHPUnit\Common\TagInterface;
 
 /**
- * An array of values.
- *
- * @template-extends \Traversable<array-key, mixed>
- * @template-extends \ArrayAccess<array-key, mixed>
+ * A constraint evaluation result (either expected, or actual).
  *
  * @internal This interface is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-interface ValuesInterface extends \Traversable, \ArrayAccess, \Countable, ResultInterface
+interface ResultInterface extends TagInterface
 {
-    public function createActualValues(array|\Traversable $array = []): ValuesInterface;
+    /**
+     * Returns true if this object represents actual result (as opposite to expected one).
+     */
+    public function actual(): bool;
 }
 
 // vim: syntax=php sw=4 ts=4 et:
