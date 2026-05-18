@@ -8,22 +8,23 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Values;
+namespace Tailors\PHPUnit\Recursive;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Constraint\Constraint;
+use Tailors\PHPUnit\Values\ExampleConstraint;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-#[CoversClass(ConstraintTestCase::class)]
+#[CoversClass(RecursiveConstraintTestCase::class)]
 #[CoversClass(ExampleConstraint::class)]
 #[Small]
-final class ConstraintTestCaseTest extends ConstraintTestCase
+final class RecursiveConstraintTestCaseTest extends RecursiveConstraintTestCase
 {
     #[\Override]
     public static function subject(): string

@@ -8,7 +8,7 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Values;
+namespace Tailors\PHPUnit\Recursive;
 
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\LogicalNot;
@@ -19,10 +19,9 @@ use Tailors\PHPUnit\Common\Exporter;
 use Tailors\PHPUnit\Common\ShortFailureDescriptionTrait;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\InternalErrorException;
-use Tailors\PHPUnit\Recursive\RecursiveSelectorVisitor;
-use Tailors\PHPUnit\Recursive\RecursiveTraversal;
-use Tailors\PHPUnit\Recursive\RecursiveUnwrapperInterface;
 use Tailors\PHPUnit\Selector\ValueSelectorInterface;
+use Tailors\PHPUnit\Values\ValuesInterface;
+use Tailors\PHPUnit\Values\ValuesWrapperInterface;
 
 /**
  * Abstract base for constraints that examine values.
@@ -31,7 +30,7 @@ use Tailors\PHPUnit\Selector\ValueSelectorInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-abstract class AbstractConstraint extends Constraint implements ValuesWrapperInterface
+abstract class AbstractRecursiveConstraint extends Constraint implements ValuesWrapperInterface
 {
     use ShortFailureDescriptionTrait;
 
