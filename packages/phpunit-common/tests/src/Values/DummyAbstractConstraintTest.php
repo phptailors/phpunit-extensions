@@ -12,6 +12,7 @@ namespace Tailors\PHPUnit\Values;
 
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
+use Tailors\PHPUnit\Recursive\RecursiveUnwrapperInterface;
 use Tailors\PHPUnit\Selector\ValueSelectorInterface;
 
 /**

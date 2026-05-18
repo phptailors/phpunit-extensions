@@ -15,11 +15,16 @@ use Tailors\PHPUnit\CircularDependencyException;
 use Tailors\PHPUnit\InternalErrorException;
 use Tailors\PHPUnit\Selector\DummyValueSelector;
 use Tailors\PHPUnit\Selector\ValueSelectorInterface;
+use Tailors\PHPUnit\Values\ActualValues;
+use Tailors\PHPUnit\Values\DummyExpectedValues;
+use Tailors\PHPUnit\Values\DummyValues;
+use Tailors\PHPUnit\Values\ExpectedValues;
+use Tailors\PHPUnit\Values\ValuesInterface;
 
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Values\RecursiveSelectorVisitor
+ * @covers \Tailors\PHPUnit\Recursive\RecursiveSelectorVisitor
  *
  * @internal This class is not covered by the backward compatibility promise
  *

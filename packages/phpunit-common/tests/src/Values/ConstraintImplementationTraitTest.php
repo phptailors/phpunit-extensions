@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\Values;
 
 use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\Recursive\RecursiveUnwrapper;
 use Tailors\PHPUnit\Selector\ValueSelectorInterface;
 
 /**

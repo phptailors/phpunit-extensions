@@ -11,11 +11,12 @@
 namespace Tailors\PHPUnit\Recursive;
 
 use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\Values\DummyValues;
 
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Values\RecursiveSelectorStackItem
+ * @covers \Tailors\PHPUnit\Recursive\RecursiveSelectorStackItem
  *
  * @internal This class is not covered by the backward compatibility promise
  *

@@ -11,11 +11,15 @@
 namespace Tailors\PHPUnit\Recursive;
 
 use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\Values\ActualValues;
+use Tailors\PHPUnit\Values\DummyValuesWrapper;
+use Tailors\PHPUnit\Values\ExpectedValues;
+use Tailors\PHPUnit\Values\ValuesInterface;
 
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Values\RecursiveTraversal
+ * @covers \Tailors\PHPUnit\Recursive\RecursiveTraversal
  *
  * @internal This class is not covered by the backward compatibility promise
  *
@@ -31,7 +35,7 @@ final class RecursiveTraversalTest extends TestCase
     }
 
     /**
-     * @psalm-return iterable<string, array{args: array, values: ValuesInterface, visitor: DummyRecursiveVisitor, expect:mixed}>
+     * @psalm-return iterable<string, array{args: array, values: ValuesInterface, visitor: DummyRecursiveVisitor, expect: mixed}>
      */
     public static function provWalk(): iterable
     {
