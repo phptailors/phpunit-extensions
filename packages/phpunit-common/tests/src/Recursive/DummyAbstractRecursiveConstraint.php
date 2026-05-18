@@ -8,13 +8,13 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Values;
+namespace Tailors\PHPUnit\Recursive;
 
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Recursive\RecursiveUnwrapperInterface;
 use Tailors\PHPUnit\Selector\ValueSelectorInterface;
 
-final class DummyAbstractConstraint extends AbstractConstraint
+final class DummyAbstractRecursiveConstraint extends AbstractConstraint
 {
     public static function create(
         ValuesInterface $expected,

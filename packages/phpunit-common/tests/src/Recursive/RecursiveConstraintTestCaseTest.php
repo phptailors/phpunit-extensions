@@ -8,7 +8,7 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Values;
+namespace Tailors\PHPUnit\Recursive;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -23,7 +23,7 @@ use PHPUnit\Framework\Constraint\Constraint;
 #[CoversClass(ConstraintTestCase::class)]
 #[CoversClass(ExampleConstraint::class)]
 #[Small]
-final class ConstraintTestCaseTest extends ConstraintTestCase
+final class RecursiveConstraintTestCaseTest extends ConstraintTestCase
 {
     public static function subject(): string
     {

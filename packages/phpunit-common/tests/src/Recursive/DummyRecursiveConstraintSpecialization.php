@@ -8,7 +8,7 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Values;
+namespace Tailors\PHPUnit\Recursive;
 
 use PHPUnit\Framework\Attributes\Small;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
@@ -25,7 +25,7 @@ use Tailors\PHPUnit\Selector\ValueSelectorInterface;
  * @psalm-internal Tailors\PHPUnit
  */
 #[Small]
-final class DummyConstraintImplementation
+final class DummyRecursiveConstraintSpecialization
 {
     use ConstraintImplementationTrait;
 

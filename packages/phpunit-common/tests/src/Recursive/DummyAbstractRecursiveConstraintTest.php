@@ -8,7 +8,7 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Values;
+namespace Tailors\PHPUnit\Recursive;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Small;
@@ -22,7 +22,7 @@ use Tailors\PHPUnit\Selector\ValueSelectorInterface;
  */
 #[CoversClass(DummyAbstractConstraint::class)]
 #[Small]
-final class DummyAbstractConstraintTest extends TestCase
+final class DummyAbstractRecursiveConstraintTest extends TestCase
 {
     public function testCreate(): void
     {
