@@ -8,7 +8,7 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Values;
+namespace Tailors\PHPUnit\Recursive;
 
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Recursive\RecursiveUnwrapper;
@@ -24,7 +24,7 @@ use Tailors\PHPUnit\Selector\ValueSelectorInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class ConstraintImplementationTraitTest extends TestCase
+final class RecursiveConstraintSpecializationTraitTest extends TestCase
 {
     protected function setUp(): void
     {
