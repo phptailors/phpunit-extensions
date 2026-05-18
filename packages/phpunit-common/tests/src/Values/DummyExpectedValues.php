@@ -10,6 +10,9 @@
 
 namespace Tailors\PHPUnit\Values;
 
+use Tailors\PHPUnit\Selector\ValueSelectorInterface;
+use Tailors\PHPUnit\Selector\ValueSelectorWrapperInterface;
+
 /**
  * @internal This class is not covered by the backward compatibility promise
  *
