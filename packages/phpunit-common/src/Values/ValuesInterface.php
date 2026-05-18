@@ -10,10 +10,10 @@
 
 namespace Tailors\PHPUnit\Values;
 
-use Tailors\PHPUnit\Common\TagInterface;
+use Tailors\PHPUnit\Results\ResultInterface;
 
 /**
- * An array of actual or expected values.
+ * An array of values.
  *
  * @template-extends \Traversable<array-key, mixed>
  * @template-extends \ArrayAccess<array-key, mixed>
@@ -22,13 +22,8 @@ use Tailors\PHPUnit\Common\TagInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-interface ValuesInterface extends \Traversable, \ArrayAccess, \Countable, TagInterface
+interface ValuesInterface extends \Traversable, \ArrayAccess, \Countable, ResultInterface
 {
-    /**
-     * Returns true if this object represents actual values (as opposite to expected values).
-     */
-    public function actual(): bool;
-
     /**
      * @param array|\Traversable $array
      */
