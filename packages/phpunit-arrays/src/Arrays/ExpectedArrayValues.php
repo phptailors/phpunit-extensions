@@ -10,9 +10,9 @@
 
 namespace Tailors\PHPUnit\Arrays;
 
-use Tailors\PHPUnit\Values\ArrayValueSelector;
-use Tailors\PHPUnit\Values\ValueSelectorInterface;
-use Tailors\PHPUnit\Values\ValueSelectorWrapperInterface;
+use Tailors\PHPUnit\Selector\ArrayValueSelector;
+use Tailors\PHPUnit\Selector\ValueSelectorInterface;
+use Tailors\PHPUnit\Selector\ValueSelectorWrapperInterface;
 
 /**
  * An array of expected array values.

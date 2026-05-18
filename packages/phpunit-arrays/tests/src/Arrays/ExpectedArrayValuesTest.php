@@ -12,8 +12,8 @@ namespace Tailors\PHPUnit\Arrays;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Small;
-use Tailors\PHPUnit\Values\ArrayValueSelector;
-use Tailors\PHPUnit\Values\ValueSelectorWrapperInterface;
+use Tailors\PHPUnit\Selector\ArrayValueSelector;
+use Tailors\PHPUnit\Selector\ValueSelectorWrapperInterface;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
