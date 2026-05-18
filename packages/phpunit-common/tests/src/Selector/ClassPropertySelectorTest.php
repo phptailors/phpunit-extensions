@@ -8,13 +8,23 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Values;
+namespace Tailors\PHPUnit\Selector;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\InvalidArgumentException;
+
+final class ClassWithNonStaticMethodFooBLSGG
+{
+    public function foo()
+    {
+        // @codeCoverageIgnoreStart
+    }
+
+    // @codeCoverageIgnoreEnd
+}
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -23,9 +33,9 @@ use Tailors\PHPUnit\InvalidArgumentException;
  */
 #[CoversClass(AbstractPropertySelector::class)]
 #[CoversClass(AbstractValueSelector::class)]
-#[CoversClass(ObjectPropertySelector::class)]
+#[CoversClass(ClassPropertySelector::class)]
 #[Small]
-final class ObjectPropertySelectorTest extends TestCase
+final class ClassPropertySelectorTest extends TestCase
 {
     //
     //
@@ -35,12 +45,12 @@ final class ObjectPropertySelectorTest extends TestCase
 
     public function testImplementsValueSelectorInterface(): void
     {
-        self::assertInstanceOf(ValueSelectorInterface::class, new ObjectPropertySelector());
+        self::assertInstanceOf(ValueSelectorInterface::class, new ClassPropertySelector());
     }
 
     public function testExtendsAbstractPropertySelector(): void
     {
-        self::assertInstanceOf(AbstractPropertySelector::class, new ObjectPropertySelector());
+        self::assertInstanceOf(AbstractPropertySelector::class, new ClassPropertySelector());
     }
 
     //
@@ -65,18 +75,18 @@ final class ObjectPropertySelectorTest extends TestCase
 
             'class' => [
                 'subject' => self::class,
-                'expect'  => false,
+                'expect'  => true,
             ],
 
             // #2
             'object' => [
-                'subject' => new class() {},
+                'subject' => (new class() {})::class,
                 'expect'  => true,
             ],
 
             // #3
-            'new ObjectPropertySelector' => [
-                'subject' => new ObjectPropertySelector(),
+            'new ClassPropertySelector' => [
+                'subject' => ClassPropertySelector::class,
                 'expect'  => true,
             ],
         ];
@@ -86,7 +96,7 @@ final class ObjectPropertySelectorTest extends TestCase
     #[DataProvider('provSupports')]
     public function testSupports(mixed $subject, bool $expect): void
     {
-        $selector = new ObjectPropertySelector();
+        $selector = new ClassPropertySelector();
         self::assertSame($expect, $selector->supports($subject));
     }
 
@@ -100,9 +110,9 @@ final class ObjectPropertySelectorTest extends TestCase
         return [
             // #0
             [
-                'object' => new class() {
-                    public $foo = 'FOO';
-                },
+                'class' => (new class() {
+                    public static $foo = 'FOO';
+                })::class,
                 'key'    => 'foo',
                 'return' => true,
                 'expect' => 'FOO',
@@ -110,9 +120,9 @@ final class ObjectPropertySelectorTest extends TestCase
 
             // #1
             [
-                'object' => new class() {
-                    public $foo = 'FOO';
-                },
+                'class' => (new class() {
+                    public static $foo = 'FOO';
+                })::class,
                 'key'    => 'bar',
                 'return' => false,
                 'expect' => null,
@@ -120,12 +130,12 @@ final class ObjectPropertySelectorTest extends TestCase
 
             // #2
             [
-                'object' => new class() {
-                    public function foo()
+                'class' => (new class() {
+                    public static function foo()
                     {
                         return 'FOO';
                     }
-                },
+                })::class,
                 'key'    => 'foo()',
                 'return' => true,
                 'expect' => 'FOO',
@@ -133,25 +143,12 @@ final class ObjectPropertySelectorTest extends TestCase
 
             // #3
             [
-                'object' => new class() {
+                'class' => (new class() {
                     public static function foo()
                     {
                         return 'FOO';
                     }
-                },
-                'key'    => 'foo()',
-                'return' => true,
-                'expect' => 'FOO',
-            ],
-
-            // #4
-            [
-                'object' => new class() {
-                    public function foo()
-                    {
-                        return 'FOO';
-                    }
-                },
+                })::class,
                 'key'    => 'bar()',
                 'return' => false,
                 'expect' => null,
@@ -161,29 +158,29 @@ final class ObjectPropertySelectorTest extends TestCase
 
     // @codeCoverageIgnoreEnd
     #[DataProvider('provSelect')]
-    public function testSelect(object $object, mixed $key, mixed $return, mixed $expect): void
+    public function testSelect(string $class, mixed $key, mixed $return, mixed $expect): void
     {
-        $selector = new ObjectPropertySelector();
-        self::assertSame($return, $selector->select($object, $key, $retval));
+        $selector = new ClassPropertySelector();
+        self::assertSame($return, $selector->select($class, $key, $retval));
         self::assertSame($expect, $retval);
     }
 
     public function testSelectThrowsOnPrivateMethod(): void
     {
-        $object = new class() {
-            private function foo()
+        $class = (new class() {
+            private static function foo()
             {
                 // @codeCoverageIgnoreStart
             }
 
             // @codeCoverageIgnoreEnd
-        };
-        $selector = new ObjectPropertySelector();
+        })::class;
+        $selector = new ClassPropertySelector();
 
         $this->expectException(\Error::class);
         $this->expectExceptionMessage('private method');
 
-        $selector->select($object, 'foo()');
+        $selector->select($class, 'foo()');
 
         // @codeCoverageIgnoreStart
     }
@@ -192,39 +189,43 @@ final class ObjectPropertySelectorTest extends TestCase
 
     public function testSelectThrowsOnPrivateAttribute(): void
     {
-        $object = new class() {
+        $class = (new class() {
             private $foo = 'FOO';
-        };
-        $selector = new ObjectPropertySelector();
+        })::class;
+        $selector = new ClassPropertySelector();
 
         $this->expectException(\Error::class);
         $this->expectExceptionMessage('private property');
 
-        $selector->select($object, 'foo');
+        $selector->select($class, 'foo');
 
         // @codeCoverageIgnoreStart
     }
 
     // @codeCoverageIgnoreEnd
 
-    public function testSelectThrowsOnStaticProperty(): void
+    public function testSelectThrowsOnNonStaticMethod(): void
     {
-        $object = new class() {
-            public static $foo = 'FOO';
-        };
-        $selector = new ObjectPropertySelector();
+        $class = ClassWithNonStaticMethodFooBLSGG::class;
+        $selector = new ClassPropertySelector();
 
-        // Because expectError() is removed in phpunit 10.
-        try {
-            set_error_handler(static function (int $severity, string $message): void {
-                throw new \ErrorException($message, $severity);
-            });
-            $this->expectException(\ErrorException::class);
-            $this->expectExceptionMessage('static property');
+        if (PHP_VERSION_ID < 80000) {
+            // Because expectDeprecation() is removed in phpunit 10.
+            try {
+                set_error_handler(static function (int $severity, string $message): void {
+                    throw new \ErrorException($message, $severity);
+                });
+                $this->expectException(\ErrorException::class);
+                $this->expectExceptionMessage('should not be called statically');
 
-            $selector->select($object, 'foo');
-        } finally {
-            restore_error_handler();
+                $selector->select($class, 'foo()');
+            } finally {
+                restore_error_handler();
+            }
+        } else {
+            $this->expectException(\TypeError::class);
+            $this->expectExceptionMessage('cannot be called statically');
+            $selector->select($class, 'foo()');
         }
 
         // @codeCoverageIgnoreStart
@@ -232,8 +233,25 @@ final class ObjectPropertySelectorTest extends TestCase
 
     // @codeCoverageIgnoreEnd
 
+    public function testSelectThrowsOnNonStaticProperty(): void
+    {
+        $class = (new class() {
+            public $foo = 'FOO';
+        })::class;
+        $selector = new ClassPropertySelector();
+
+        $this->expectException(\Error::class);
+        $this->expectExceptionMessage('undeclared static property');
+
+        $selector->select($class, 'foo');
+
+        // @codeCoverageIgnoreStart
+    }
+
+    // @codeCoverageIgnoreEnd
+
     // @codeCoverageIgnoreStart
-    public static function provSelectThrowsOnNonobject(): array
+    public static function provSelectThrowsOnNonClass(): array
     {
         return [
             // #0
@@ -251,13 +269,13 @@ final class ObjectPropertySelectorTest extends TestCase
     }
 
     // @codeCoverageIgnoreEnd
-    #[DataProvider('provSelectThrowsOnNonobject')]
-    public function testSelectThrowsOnNonobject(string $key, string $method): void
+    #[DataProvider('provSelectThrowsOnNonClass')]
+    public function testSelectThrowsOnNonClass(string $key, string $method): void
     {
-        $selector = new ObjectPropertySelector();
+        $selector = new ClassPropertySelector();
 
         $message = sprintf(
-            'Argument 1 passed to %s::select() must be an object, %s given',
+            'Argument 1 passed to %s::select() must be a class, %s given',
             AbstractValueSelector::class,
             gettype(123)
         );
@@ -273,13 +291,13 @@ final class ObjectPropertySelectorTest extends TestCase
 
     public function testSubject(): void
     {
-        $selector = new ObjectPropertySelector();
-        self::assertSame('an object', $selector->subject());
+        $selector = new ClassPropertySelector();
+        self::assertSame('a class', $selector->subject());
     }
 
     public function testSelectable(): void
     {
-        $selector = new ObjectPropertySelector();
+        $selector = new ClassPropertySelector();
         self::assertSame('properties', $selector->selectable());
     }
 }
