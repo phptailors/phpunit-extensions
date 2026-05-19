@@ -29,54 +29,55 @@ final class ImplementsInterfaceTraitTest extends TestCase
 {
     use ImplementsInterfaceTrait;
 
-    public static function provImplementsInterface(): array
+    public static function provImplementsInterface(): iterable
     {
         $template = 'Failed asserting that %s does not implement interface %s.';
 
-        return [
-            'ImplementsInterfaceTraitTest.php:'.__LINE__ => [
-                'interface' => \Throwable::class,
-                'subject'   => \Exception::class,
-                'message'   => sprintf($template, \Exception::class, \Throwable::class),
-            ],
-            'ImplementsInterfaceTraitTest.php:'.__LINE__ => [
-                'interface' => \Throwable::class,
-                'subject'   => new \Exception(),
-                'message'   => sprintf($template, 'object '.\Exception::class, \Throwable::class),
-            ],
-            'ImplementsInterfaceTraitTest.php:'.__LINE__ => [
-                'interface' => \Traversable::class,
-                'subject'   => \Iterator::class,
-                'message'   => sprintf($template, \Iterator::class, \Traversable::class),
-            ],
+        yield 'ImplementsInterfaceTraitTest.php:'.__LINE__ => [
+            'interface' => \Throwable::class,
+            'subject'   => \Exception::class,
+            'message'   => sprintf($template, \Exception::class, \Throwable::class),
+        ];
+
+        yield 'ImplementsInterfaceTraitTest.php:'.__LINE__ => [
+            'interface' => \Throwable::class,
+            'subject'   => new \Exception(),
+            'message'   => sprintf($template, 'object '.\Exception::class, \Throwable::class),
+        ];
+
+        yield 'ImplementsInterfaceTraitTest.php:'.__LINE__ => [
+            'interface' => \Traversable::class,
+            'subject'   => \Iterator::class,
+            'message'   => sprintf($template, \Iterator::class, \Traversable::class),
         ];
     }
 
-    public static function provNotImplementsInterface(): array
+    public static function provNotImplementsInterface(): iterable
     {
         $template = 'Failed asserting that %s implements interface %s.';
 
-        return [
-            'ImplementsInterfaceTraitTest.php:'.__LINE__ => [
-                'interface' => \Traversable::class,
-                'subject'   => \Exception::class,
-                'message'   => sprintf($template, \Exception::class, \Traversable::class),
-            ],
-            'ImplementsInterfaceTraitTest.php:'.__LINE__ => [
-                'interface' => \Traversable::class,
-                'subject'   => new \Exception(),
-                'message'   => sprintf($template, 'object '.\Exception::class, \Traversable::class),
-            ],
-            'ImplementsInterfaceTraitTest.php:'.__LINE__ => [
-                'interface' => \Traversable::class,
-                'subject'   => 'lorem ipsum',
-                'message'   => sprintf($template, "'lorem ipsum'", \Traversable::class),
-            ],
-            'ImplementsInterfaceTraitTest.php:'.__LINE__ => [
-                'interface' => \Traversable::class,
-                'subject'   => 123,
-                'message'   => sprintf($template, '123', \Traversable::class),
-            ],
+        yield 'ImplementsInterfaceTraitTest.php:'.__LINE__ => [
+            'interface' => \Traversable::class,
+            'subject'   => \Exception::class,
+            'message'   => sprintf($template, \Exception::class, \Traversable::class),
+        ];
+
+        yield 'ImplementsInterfaceTraitTest.php:'.__LINE__ => [
+            'interface' => \Traversable::class,
+            'subject'   => new \Exception(),
+            'message'   => sprintf($template, 'object '.\Exception::class, \Traversable::class),
+        ];
+
+        yield 'ImplementsInterfaceTraitTest.php:'.__LINE__ => [
+            'interface' => \Traversable::class,
+            'subject'   => 'lorem ipsum',
+            'message'   => sprintf($template, "'lorem ipsum'", \Traversable::class),
+        ];
+
+        yield 'ImplementsInterfaceTraitTest.php:'.__LINE__ => [
+            'interface' => \Traversable::class,
+            'subject'   => 123,
+            'message'   => sprintf($template, '123', \Traversable::class),
         ];
     }
 
@@ -116,25 +117,23 @@ final class ImplementsInterfaceTraitTest extends TestCase
         self::assertThat($subject, self::logicalNot(self::implementsInterface($interface)));
     }
 
-    public static function provImplementsInterfaceThrowsInvalidArgumentException(): array
+    public static function provImplementsInterfaceThrowsInvalidArgumentException(): iterable
     {
         $template = 'Argument 1 passed to %s::create() must be an interface-string, \'%s\' given';
 
-        return [
-            'ImplementsInterfaceTraitTest.php:'.__LINE__ => [
-                'argument' => 'non-interface string',
-                'message'  => sprintf($template, ImplementsInterface::class, 'non-interface string'),
-            ],
+        yield 'ImplementsInterfaceTraitTest.php:'.__LINE__ => [
+            'argument' => 'non-interface string',
+            'message'  => sprintf($template, ImplementsInterface::class, 'non-interface string'),
+        ];
 
-            'ImplementsInterfaceTraitTest.php:'.__LINE__ => [
-                'argument' => \Exception::class,
-                'message'  => sprintf($template, ImplementsInterface::class, addslashes(\Exception::class)),
-            ],
+        yield 'ImplementsInterfaceTraitTest.php:'.__LINE__ => [
+            'argument' => \Exception::class,
+            'message'  => sprintf($template, ImplementsInterface::class, addslashes(\Exception::class)),
+        ];
 
-            'ImplementsInterfaceTraitTest.php:'.__LINE__ => [
-                'argument' => ExampleTrait::class,
-                'message'  => sprintf($template, ImplementsInterface::class, addslashes(ExampleTrait::class)),
-            ],
+        yield 'ImplementsInterfaceTraitTest.php:'.__LINE__ => [
+            'argument' => ExampleTrait::class,
+            'message'  => sprintf($template, ImplementsInterface::class, addslashes(ExampleTrait::class)),
         ];
     }
 

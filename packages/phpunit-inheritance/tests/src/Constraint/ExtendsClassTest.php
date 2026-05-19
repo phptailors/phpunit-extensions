@@ -39,14 +39,12 @@ final class ExtendsClassTest extends TestCase
     #[\Override]
     public static function provFailureDescriptionOfCustomUnaryOperator(): iterable
     {
-        return [
-            'ExtendsClassTest.php:'.__LINE__ => [
-                'constraint' => ExtendsClass::create(\ErrorException::class),
-                'subject'    => \Exception::class,
-                'expect'     => [
-                    'exception' => ExpectationFailedException::class,
-                    'message'   => '/Exception extends class ErrorException/',
-                ],
+        yield 'ExtendsClassTest.php:'.__LINE__ => [
+            'constraint' => ExtendsClass::create(\ErrorException::class),
+            'subject'    => \Exception::class,
+            'expect'     => [
+                'exception' => ExpectationFailedException::class,
+                'message'   => '/Exception extends class ErrorException/',
             ],
         ];
     }
@@ -54,94 +52,89 @@ final class ExtendsClassTest extends TestCase
     // required by InheritanceConstraintTestTrait
     public static function provFailureDescriptionOfLogicalNotOperator(): iterable
     {
-        return [
-            'ExtendsClassTest.php:'.__LINE__ => [
-                'constraint' => ExtendsClass::create(\Exception::class),
-                'subject'    => \ErrorException::class,
-                'expect'     => [
-                    'exception' => ExpectationFailedException::class,
-                    'message'   => '/ErrorException does not extend class Exception/',
-                ],
+        yield 'ExtendsClassTest.php:'.__LINE__ => [
+            'constraint' => ExtendsClass::create(\Exception::class),
+            'subject'    => \ErrorException::class,
+            'expect'     => [
+                'exception' => ExpectationFailedException::class,
+                'message'   => '/ErrorException does not extend class Exception/',
             ],
         ];
     }
 
-    public static function provExtendsClass(): array
+    public static function provExtendsClass(): iterable
     {
-        return [
-            // class extends class
-            'ExtendsClassTest.php:'.__LINE__ => [
-                'class'   => \Exception::class,
-                'subject' => \ErrorException::class,
-            ],
+        // class extends class
+        yield 'ExtendsClassTest.php:'.__LINE__ => [
+            'class'   => \Exception::class,
+            'subject' => \ErrorException::class,
+        ];
 
-            // object of class that extends class
-            'ExtendsClassTest.php:'.__LINE__ => [
-                'class'   => \Exception::class,
-                'subject' => new \ErrorException(),
-            ],
+        // object of class that extends class
+        yield 'ExtendsClassTest.php:'.__LINE__ => [
+            'class'   => \Exception::class,
+            'subject' => new \ErrorException(),
+        ];
 
-            // class extends class - case insensitive match
-            'ExtendsClassTest.php:'.__LINE__ => [
-                'class'   => 'eXceptiOn',
-                'subject' => 'errOreXceptiOn',
-            ],
+        // class extends class - case insensitive match
+        yield 'ExtendsClassTest.php:'.__LINE__ => [
+            'class'   => 'eXceptiOn',
+            'subject' => 'errOreXceptiOn',
+        ];
 
-            // object of class that extends class -- case insensitive match
-            'ExtendsClassTest.php:'.__LINE__ => [
-                'class'   => 'eXceptiOn',
-                'subject' => new \ErrorException(),
-            ],
+        // object of class that extends class -- case insensitive match
+        yield 'ExtendsClassTest.php:'.__LINE__ => [
+            'class'   => 'eXceptiOn',
+            'subject' => new \ErrorException(),
         ];
     }
 
-    public static function provNotExtendsClass(): array
+    public static function provNotExtendsClass(): iterable
     {
         $template = 'Failed asserting that %s extends class %s.';
 
-        return [
-            'ExtendsClassTest.php:'.__LINE__ => [
-                'class'   => \Error::class,
-                'subject' => \ErrorException::class,
-                'message' => sprintf($template, \ErrorException::class, \Error::class),
-            ],
-            'ExtendsClassTest.php:'.__LINE__ => [
-                'class'   => \Error::class,
-                'subject' => new \ErrorException(),
-                'message' => sprintf($template, 'object '.\ErrorException::class, \Error::class),
-            ],
-            'ExtendsClassTest.php:'.__LINE__ => [
-                'class'   => \Error::class,
-                'subject' => 'lorem ipsum',
-                'message' => sprintf($template, "'lorem ipsum'", \Error::class),
-            ],
-            'ExtendsClassTest.php:'.__LINE__ => [
-                'class'   => \Error::class,
-                'subject' => 123,
-                'message' => sprintf($template, '123', \Error::class),
-            ],
+        yield 'ExtendsClassTest.php:'.__LINE__ => [
+            'class'   => \Error::class,
+            'subject' => \ErrorException::class,
+            'message' => sprintf($template, \ErrorException::class, \Error::class),
+        ];
+
+        yield 'ExtendsClassTest.php:'.__LINE__ => [
+            'class'   => \Error::class,
+            'subject' => new \ErrorException(),
+            'message' => sprintf($template, 'object '.\ErrorException::class, \Error::class),
+        ];
+
+        yield 'ExtendsClassTest.php:'.__LINE__ => [
+            'class'   => \Error::class,
+            'subject' => 'lorem ipsum',
+            'message' => sprintf($template, "'lorem ipsum'", \Error::class),
+        ];
+
+        yield 'ExtendsClassTest.php:'.__LINE__ => [
+            'class'   => \Error::class,
+            'subject' => 123,
+            'message' => sprintf($template, '123', \Error::class),
         ];
     }
 
-    public static function provThrowsInvalidArgumentException(): array
+    public static function provThrowsInvalidArgumentException(): iterable
     {
         $message = '/Argument 1 passed to \S+ must be a class-string/';
 
-        return [
-            'ExtendsClassTest.php:'.__LINE__ => [
-                'argument' => 'non-class string',
-                'message'  => $message,
-            ],
+        yield 'ExtendsClassTest.php:'.__LINE__ => [
+            'argument' => 'non-class string',
+            'message'  => $message,
+        ];
 
-            'ExtendsClassTest.php:'.__LINE__ => [
-                'argument' => \Throwable::class,
-                'message'  => $message,
-            ],
+        yield 'ExtendsClassTest.php:'.__LINE__ => [
+            'argument' => \Throwable::class,
+            'message'  => $message,
+        ];
 
-            'ExtendsClassTest.php:'.__LINE__ => [
-                'argument' => ExampleTrait::class,
-                'message'  => $message,
-            ],
+        yield 'ExtendsClassTest.php:'.__LINE__ => [
+            'argument' => ExampleTrait::class,
+            'message'  => $message,
         ];
     }
 

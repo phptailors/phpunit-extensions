@@ -32,54 +32,55 @@ final class UsesTraitTraitTest extends TestCase
 {
     use UsesTraitTrait;
 
-    public static function provUsesTrait(): array
+    public static function provUsesTrait(): iterable
     {
         $template = 'Failed asserting that %s does not use trait %s.';
 
-        return [
-            'UsesTraitTraitTest.php:'.__LINE__ => [
-                'trait'   => ExampleTrait::class,
-                'subject' => ExampleClassUsingTrait::class,
-                'message' => sprintf($template, ExampleClassUsingTrait::class, ExampleTrait::class),
-            ],
-            'UsesTraitTraitTest.php:'.__LINE__ => [
-                'trait'   => ExampleTrait::class,
-                'subject' => new ExampleClassUsingTrait(),
-                'message' => sprintf($template, 'object '.ExampleClassUsingTrait::class, ExampleTrait::class),
-            ],
-            'UsesTraitTraitTest.php:'.__LINE__ => [
-                'trait'   => ExampleTrait::class,
-                'subject' => ExampleTraitUsingTrait::class,
-                'message' => sprintf($template, ExampleTraitUsingTrait::class, ExampleTrait::class),
-            ],
+        yield 'UsesTraitTraitTest.php:'.__LINE__ => [
+            'trait'   => ExampleTrait::class,
+            'subject' => ExampleClassUsingTrait::class,
+            'message' => sprintf($template, ExampleClassUsingTrait::class, ExampleTrait::class),
+        ];
+
+        yield 'UsesTraitTraitTest.php:'.__LINE__ => [
+            'trait'   => ExampleTrait::class,
+            'subject' => new ExampleClassUsingTrait(),
+            'message' => sprintf($template, 'object '.ExampleClassUsingTrait::class, ExampleTrait::class),
+        ];
+
+        yield 'UsesTraitTraitTest.php:'.__LINE__ => [
+            'trait'   => ExampleTrait::class,
+            'subject' => ExampleTraitUsingTrait::class,
+            'message' => sprintf($template, ExampleTraitUsingTrait::class, ExampleTrait::class),
         ];
     }
 
-    public static function provNotUsesTrait(): array
+    public static function provNotUsesTrait(): iterable
     {
         $template = 'Failed asserting that %s uses trait %s.';
 
-        return [
-            'UsesTraitTraitTest.php:'.__LINE__ => [
-                'trait'   => ExampleTrait::class,
-                'subject' => ExampleClassNotUsingTrait::class,
-                'message' => sprintf($template, ExampleClassNotUsingTrait::class, ExampleTrait::class),
-            ],
-            'UsesTraitTraitTest.php:'.__LINE__ => [
-                'trait'   => ExampleTrait::class,
-                'subject' => new ExampleClassNotUsingTrait(),
-                'message' => sprintf($template, 'object '.ExampleClassNotUsingTrait::class, ExampleTrait::class),
-            ],
-            'UsesTraitTraitTest.php:'.__LINE__ => [
-                'trait'   => ExampleTrait::class,
-                'subject' => 'lorem ipsum',
-                'message' => sprintf($template, "'lorem ipsum'", ExampleTrait::class),
-            ],
-            'UsesTraitTraitTest.php:'.__LINE__ => [
-                'trait'   => ExampleTrait::class,
-                'subject' => 123,
-                'message' => sprintf($template, '123', ExampleTrait::class),
-            ],
+        yield 'UsesTraitTraitTest.php:'.__LINE__ => [
+            'trait'   => ExampleTrait::class,
+            'subject' => ExampleClassNotUsingTrait::class,
+            'message' => sprintf($template, ExampleClassNotUsingTrait::class, ExampleTrait::class),
+        ];
+
+        yield 'UsesTraitTraitTest.php:'.__LINE__ => [
+            'trait'   => ExampleTrait::class,
+            'subject' => new ExampleClassNotUsingTrait(),
+            'message' => sprintf($template, 'object '.ExampleClassNotUsingTrait::class, ExampleTrait::class),
+        ];
+
+        yield 'UsesTraitTraitTest.php:'.__LINE__ => [
+            'trait'   => ExampleTrait::class,
+            'subject' => 'lorem ipsum',
+            'message' => sprintf($template, "'lorem ipsum'", ExampleTrait::class),
+        ];
+
+        yield 'UsesTraitTraitTest.php:'.__LINE__ => [
+            'trait'   => ExampleTrait::class,
+            'subject' => 123,
+            'message' => sprintf($template, '123', ExampleTrait::class),
         ];
     }
 
@@ -125,25 +126,23 @@ final class UsesTraitTraitTest extends TestCase
         self::assertThat($subject, self::logicalNot(self::usesTrait($trait)));
     }
 
-    public static function provUsesTraitThrowsInvalidArgumentException(): array
+    public static function provUsesTraitThrowsInvalidArgumentException(): iterable
     {
         $template = 'Argument 1 passed to %s::create() must be a trait-string';
 
-        return [
-            'UsesTraitTraitTest.php:'.__LINE__ => [
-                'argument' => 'non-trait string',
-                'message'  => sprintf($template, UsesTrait::class),
-            ],
+        yield 'UsesTraitTraitTest.php:'.__LINE__ => [
+            'argument' => 'non-trait string',
+            'message'  => sprintf($template, UsesTrait::class),
+        ];
 
-            'UsesTraitTraitTest.php:'.__LINE__ => [
-                'argument' => \Exception::class,
-                'message'  => sprintf($template, UsesTrait::class),
-            ],
+        yield 'UsesTraitTraitTest.php:'.__LINE__ => [
+            'argument' => \Exception::class,
+            'message'  => sprintf($template, UsesTrait::class),
+        ];
 
-            'UsesTraitTraitTest.php:'.__LINE__ => [
-                'argument' => \Throwable::class,
-                'message'  => sprintf($template, UsesTrait::class),
-            ],
+        yield 'UsesTraitTraitTest.php:'.__LINE__ => [
+            'argument' => \Throwable::class,
+            'message'  => sprintf($template, UsesTrait::class),
         ];
     }
 

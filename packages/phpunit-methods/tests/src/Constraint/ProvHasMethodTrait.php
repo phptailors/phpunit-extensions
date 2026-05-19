@@ -41,70 +41,75 @@ trait ProvHasMethodTrait
     /**
      * @psalm-return array<array{0:string,1:mixed,2:string}>
      */
-    public static function provHasMethodSucceeds(): array
+    public static function provHasMethodSucceeds(): iterable
     {
-        return [
-            [
-                'foo',
-                InterfaceWithMethodFooV4C0Z::class,
-                "Failed asserting that '".InterfaceWithMethodFooV4C0Z::class."' does not have method foo().",
-            ],
-            [
-                'foo',
-                ClassWithMethodFooV4C0Z::class,
-                "Failed asserting that '".ClassWithMethodFooV4C0Z::class."' does not have method foo().",
-            ],
-            [
-                'foo',
-                TraitWithMethodFooV4C0Z::class,
-                "Failed asserting that '".TraitWithMethodFooV4C0Z::class."' does not have method foo().",
-            ],
-            [
-                'public function foo',
-                TraitWithMethodFooV4C0Z::class,
-                "Failed asserting that '".TraitWithMethodFooV4C0Z::class."' does not have public method foo().",
-            ],
-            [
-                'foo',
-                new ClassWithMethodFooV4C0Z(),
-                ClassWithMethodFooV4C0Z::class.' Object',
-            ],
+        yield 'ProvHasMethodTrait.php:'.__LINE__ => [
+            'foo',
+            InterfaceWithMethodFooV4C0Z::class,
+            "Failed asserting that '".InterfaceWithMethodFooV4C0Z::class."' does not have method foo().",
+        ];
+
+        yield 'ProvHasMethodTrait.php:'.__LINE__ => [
+            'foo',
+            ClassWithMethodFooV4C0Z::class,
+            "Failed asserting that '".ClassWithMethodFooV4C0Z::class."' does not have method foo().",
+        ];
+
+        yield 'ProvHasMethodTrait.php:'.__LINE__ => [
+            'foo',
+            TraitWithMethodFooV4C0Z::class,
+            "Failed asserting that '".TraitWithMethodFooV4C0Z::class."' does not have method foo().",
+        ];
+
+        yield 'ProvHasMethodTrait.php:'.__LINE__ => [
+            'public function foo',
+            TraitWithMethodFooV4C0Z::class,
+            "Failed asserting that '".TraitWithMethodFooV4C0Z::class."' does not have public method foo().",
+        ];
+
+        yield 'ProvHasMethodTrait.php:'.__LINE__ => [
+            'foo',
+            new ClassWithMethodFooV4C0Z(),
+            ClassWithMethodFooV4C0Z::class.' Object',
         ];
     }
 
     /**
      * @psalm-return array<array{0:string,1:mixed,2:string}>
      */
-    public static function provHasMethodFails(): array
+    public static function provHasMethodFails(): iterable
     {
-        return [
-            [
-                'bar',
-                InterfaceWithMethodFooV4C0Z::class,
-                "Failed asserting that '".InterfaceWithMethodFooV4C0Z::class."' has method bar().",
-            ],
-            [
-                'bar', ClassWithMethodFooV4C0Z::class,
-                "Failed asserting that '".ClassWithMethodFooV4C0Z::class."' has method bar().",
-            ],
-            [
-                'bar', TraitWithMethodFooV4C0Z::class,
-                "Failed asserting that '".TraitWithMethodFooV4C0Z::class."' has method bar().",
-            ],
-            [
-                'private function foo', TraitWithMethodFooV4C0Z::class,
-                "Failed asserting that '".TraitWithMethodFooV4C0Z::class."' has private method foo().",
-            ],
-            [
-                'bar',
-                new ClassWithMethodFooV4C0Z(),
-                ClassWithMethodFooV4C0Z::class.' Object',
-            ],
-            [
-                'foo',
-                123,
-                'Failed asserting that 123 has method foo()',
-            ],
+        yield 'ProvHasMethodTrait.php:'.__LINE__ => [
+            'bar',
+            InterfaceWithMethodFooV4C0Z::class,
+            "Failed asserting that '".InterfaceWithMethodFooV4C0Z::class."' has method bar().",
+        ];
+
+        yield 'ProvHasMethodTrait.php:'.__LINE__ => [
+            'bar', ClassWithMethodFooV4C0Z::class,
+            "Failed asserting that '".ClassWithMethodFooV4C0Z::class."' has method bar().",
+        ];
+
+        yield 'ProvHasMethodTrait.php:'.__LINE__ => [
+            'bar', TraitWithMethodFooV4C0Z::class,
+            "Failed asserting that '".TraitWithMethodFooV4C0Z::class."' has method bar().",
+        ];
+
+        yield 'ProvHasMethodTrait.php:'.__LINE__ => [
+            'private function foo', TraitWithMethodFooV4C0Z::class,
+            "Failed asserting that '".TraitWithMethodFooV4C0Z::class."' has private method foo().",
+        ];
+
+        yield 'ProvHasMethodTrait.php:'.__LINE__ => [
+            'bar',
+            new ClassWithMethodFooV4C0Z(),
+            ClassWithMethodFooV4C0Z::class.' Object',
+        ];
+
+        yield 'ProvHasMethodTrait.php:'.__LINE__ => [
+            'foo',
+            123,
+            'Failed asserting that 123 has method foo()',
         ];
     }
 

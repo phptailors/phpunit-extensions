@@ -297,73 +297,86 @@ final class MethodSpecTest extends TestCase
      *  1: string
      * }>
      */
-    public static function provToString(): array
+    public static function provToString(): iterable
     {
-        return [
-            [
-                ['foo'],
-                'method foo',
-            ],
-            [
-                ['foo', false],
-                '!static method foo',
-            ],
-            [
-                ['foo', true],
-                'static method foo',
-            ],
-            [
-                ['foo', null, self::IS_PUBLIC],
-                'public method foo',
-            ],
-            [
-                ['foo', null, self::IS_PROTECTED],
-                'protected method foo',
-            ],
-            [
-                ['foo', null, self::IS_PRIVATE],
-                'private method foo',
-            ],
-            [
-                ['foo', null, self::IS_PROTECTED | self::IS_PRIVATE],
-                '!public method foo',
-            ],
-            [
-                ['foo', null, self::IS_PUBLIC | self::IS_PRIVATE],
-                '!protected method foo',
-            ],
-            [
-                ['foo', null, self::IS_PUBLIC | self::IS_PROTECTED],
-                '!private method foo',
-            ],
-            [
-                ['foo', null, self::IS_PUBLIC | self::IS_PROTECTED | self::IS_PRIVATE],
-                'method foo',
-            ],
-            [
-                ['foo', true, self::IS_PUBLIC],
-                'public static method foo',
-            ],
-            [
-                ['foo', false, self::IS_PUBLIC],
-                'public !static method foo',
-            ],
-            [
-                ['foo', true, self::IS_PUBLIC, true],
-                'abstract public static method foo',
-            ],
-            [
-                ['foo', true, self::IS_PUBLIC, false],
-                '!abstract public static method foo',
-            ],
-            [
-                ['foo', true, self::IS_PUBLIC, null, true],
-                'final public static method foo',
-            ],
-            [
-                ['foo', true, self::IS_PUBLIC, null, false],
-                '!final public static method foo',
-            ],
+        yield 'MethodSpecTest.php:'.__LINE__ => [
+            ['foo'],
+            'method foo',
+        ];
+
+        yield 'MethodSpecTest.php:'.__LINE__ => [
+            ['foo', false],
+            '!static method foo',
+        ];
+
+        yield 'MethodSpecTest.php:'.__LINE__ => [
+            ['foo', true],
+            'static method foo',
+        ];
+
+        yield 'MethodSpecTest.php:'.__LINE__ => [
+            ['foo', null, self::IS_PUBLIC],
+            'public method foo',
+        ];
+
+        yield 'MethodSpecTest.php:'.__LINE__ => [
+            ['foo', null, self::IS_PROTECTED],
+            'protected method foo',
+        ];
+
+        yield 'MethodSpecTest.php:'.__LINE__ => [
+            ['foo', null, self::IS_PRIVATE],
+            'private method foo',
+        ];
+
+        yield 'MethodSpecTest.php:'.__LINE__ => [
+            ['foo', null, self::IS_PROTECTED | self::IS_PRIVATE],
+            '!public method foo',
+        ];
+
+        yield 'MethodSpecTest.php:'.__LINE__ => [
+            ['foo', null, self::IS_PUBLIC | self::IS_PRIVATE],
+            '!protected method foo',
+        ];
+
+        yield 'MethodSpecTest.php:'.__LINE__ => [
+            ['foo', null, self::IS_PUBLIC | self::IS_PROTECTED],
+            '!private method foo',
+        ];
+
+        yield 'MethodSpecTest.php:'.__LINE__ => [
+            ['foo', null, self::IS_PUBLIC | self::IS_PROTECTED | self::IS_PRIVATE],
+            'method foo',
+        ];
+
+        yield 'MethodSpecTest.php:'.__LINE__ => [
+            ['foo', true, self::IS_PUBLIC],
+            'public static method foo',
+        ];
+
+        yield 'MethodSpecTest.php:'.__LINE__ => [
+            ['foo', false, self::IS_PUBLIC],
+            'public !static method foo',
+        ];
+
+        yield 'MethodSpecTest.php:'.__LINE__ => [
+            ['foo', true, self::IS_PUBLIC, true],
+            'abstract public static method foo',
+        ];
+
+        yield 'MethodSpecTest.php:'.__LINE__ => [
+            ['foo', true, self::IS_PUBLIC, false],
+            '!abstract public static method foo',
+        ];
+
+        yield 'MethodSpecTest.php:'.__LINE__ => [
+            ['foo', true, self::IS_PUBLIC, null, true],
+            'final public static method foo',
+        ];
+
+        yield 'MethodSpecTest.php:'.__LINE__ => [
+            ['foo', true, self::IS_PUBLIC, null, false],
+            '!final public static method foo',
         ];
     }
 

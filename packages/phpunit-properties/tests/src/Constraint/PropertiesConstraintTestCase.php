@@ -24,26 +24,25 @@ abstract class PropertiesConstraintTestCase extends RecursiveConstraintTestCase
 {
     // @codeCoverageIgnoreStart
 
-    public static function provArrayWithNonStringKeys(): array
+    public static function provArrayWithNonStringKeys(): iterable
     {
-        return [
-            'PropertiesConstraintTestTrait.php:'.__LINE__ => [
-                'array' => [
-                    'a' => 'A',
-                    0   => 'B',
-                ],
-                'count' => 1,
+        yield 'PropertiesConstraintTestTrait.php:'.__LINE__ => [
+            'array' => [
+                'a' => 'A',
+                0   => 'B',
             ],
-            'PropertiesConstraintTestTrait.php:'.__LINE__ => [
-                'array' => [
-                    'a' => 'A',
-                    0   => 'B',
-                    2   => 'C',
-                    7   => 'D',
-                    'e' => 'E',
-                ],
-                'count' => 3,
+            'count' => 1,
+        ];
+
+        yield 'PropertiesConstraintTestTrait.php:'.__LINE__ => [
+            'array' => [
+                'a' => 'A',
+                0   => 'B',
+                2   => 'C',
+                7   => 'D',
+                'e' => 'E',
             ],
+            'count' => 3,
         ];
     }
 
