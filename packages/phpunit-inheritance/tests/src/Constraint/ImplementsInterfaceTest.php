@@ -39,112 +39,115 @@ final class ImplementsInterfaceTest extends TestCase
     #[\Override]
     public static function provFailureDescriptionOfCustomUnaryOperator(): iterable
     {
-            yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
-                'constraint' => ImplementsInterface::create(\Throwable::class),
-                'subject'    => \Iterator::class,
-                'expect'     => [
-                    'exception' => ExpectationFailedException::class,
-                    'message'   => '/Iterator implements interface Throwable/',
-                ],
-            ];
+        yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
+            'constraint' => ImplementsInterface::create(\Throwable::class),
+            'subject'    => \Iterator::class,
+            'expect'     => [
+                'exception' => ExpectationFailedException::class,
+                'message'   => '/Iterator implements interface Throwable/',
+            ],
+        ];
     }
 
     // required by InheritanceConstraintTestTrait
     public static function provFailureDescriptionOfLogicalNotOperator(): iterable
     {
-            yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
-                'constraint' => ImplementsInterface::create(\Throwable::class),
-                'subject'    => \Exception::class,
-                'expect'     => [
-                    'exception' => ExpectationFailedException::class,
-                    'message'   => '/Exception does not implement interface Throwable/',
-                ],
-            ];
+        yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
+            'constraint' => ImplementsInterface::create(\Throwable::class),
+            'subject'    => \Exception::class,
+            'expect'     => [
+                'exception' => ExpectationFailedException::class,
+                'message'   => '/Exception does not implement interface Throwable/',
+            ],
+        ];
     }
 
     public static function provImplementsInterface(): iterable
     {
-            // class implements interface
-            yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
-                'interface' => \Throwable::class,
-                'subject'   => \Exception::class,
-            ];
+        // class implements interface
+        yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
+            'interface' => \Throwable::class,
+            'subject'   => \Exception::class,
+        ];
 
-            // object of class that implements interface
-            yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
-                'interface' => \Throwable::class,
-                'subject'   => new \Exception(),
-            ];
+        // object of class that implements interface
+        yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
+            'interface' => \Throwable::class,
+            'subject'   => new \Exception(),
+        ];
 
-            // interface that extends interface
-            yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
-                'interface' => \Traversable::class,
-                'subject'   => \Iterator::class,
-            ];
+        // interface that extends interface
+        yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
+            'interface' => \Traversable::class,
+            'subject'   => \Iterator::class,
+        ];
 
-            // class implements interface -- case insensitive match
-            yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
-                'interface' => 'tHrowAble',
-                'subject'   => 'eXceptiOn',
-            ];
+        // class implements interface -- case insensitive match
+        yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
+            'interface' => 'tHrowAble',
+            'subject'   => 'eXceptiOn',
+        ];
 
-            // object of class that implements interface -- case insensitive match
-            yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
-                'interface' => 'tHrowAble',
-                'subject'   => new \Exception(),
-            ];
+        // object of class that implements interface -- case insensitive match
+        yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
+            'interface' => 'tHrowAble',
+            'subject'   => new \Exception(),
+        ];
 
-            // interface that extends interface -- case insensitive match
-            yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
-                'interface' => 'tRaversAble',
-                'subject'   => 'iteRator',
-            ];
+        // interface that extends interface -- case insensitive match
+        yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
+            'interface' => 'tRaversAble',
+            'subject'   => 'iteRator',
+        ];
     }
 
     public static function provNotImplementsInterface(): iterable
     {
         $template = 'Failed asserting that %s implements interface %s.';
 
-            yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
-                'interface' => \Traversable::class,
-                'subject'   => \Exception::class,
-                'message'   => sprintf($template, \Exception::class, \Traversable::class),
-            ];
-            yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
-                'interface' => \Traversable::class,
-                'subject'   => new \Exception(),
-                'message'   => sprintf($template, 'object '.\Exception::class, \Traversable::class),
-            ];
-            yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
-                'interface' => \Traversable::class,
-                'subject'   => 'lorem ipsum',
-                'message'   => sprintf($template, "'lorem ipsum'", \Traversable::class),
-            ];
-            yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
-                'interface' => \Traversable::class,
-                'subject'   => 123,
-                'message'   => sprintf($template, '123', \Traversable::class),
-            ];
+        yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
+            'interface' => \Traversable::class,
+            'subject'   => \Exception::class,
+            'message'   => sprintf($template, \Exception::class, \Traversable::class),
+        ];
+
+        yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
+            'interface' => \Traversable::class,
+            'subject'   => new \Exception(),
+            'message'   => sprintf($template, 'object '.\Exception::class, \Traversable::class),
+        ];
+
+        yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
+            'interface' => \Traversable::class,
+            'subject'   => 'lorem ipsum',
+            'message'   => sprintf($template, "'lorem ipsum'", \Traversable::class),
+        ];
+
+        yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
+            'interface' => \Traversable::class,
+            'subject'   => 123,
+            'message'   => sprintf($template, '123', \Traversable::class),
+        ];
     }
 
     public static function provConstraintThrowsInvalidArgumentException(): iterable
     {
         $message = '/Argument 1 passed to \S+ must be an interface-string/';
 
-            yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
-                'argument' => 'non-interface string',
-                'message'  => $message,
-            ];
+        yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
+            'argument' => 'non-interface string',
+            'message'  => $message,
+        ];
 
-            yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
-                'argument' => \Exception::class,
-                'message'  => $message,
-            ];
+        yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
+            'argument' => \Exception::class,
+            'message'  => $message,
+        ];
 
-            yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
-                'argument' => ExampleTrait::class,
-                'message'  => $message,
-            ];
+        yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
+            'argument' => ExampleTrait::class,
+            'message'  => $message,
+        ];
     }
 
     #[DataProvider('provImplementsInterface')]
