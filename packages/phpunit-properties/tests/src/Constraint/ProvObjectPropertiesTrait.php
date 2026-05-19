@@ -26,7 +26,7 @@ trait ProvObjectPropertiesTrait
 
     // @codeCoverageIgnoreStart
 
-    public static function provObjectPropertiesIdenticalTo(): array
+    public static function provObjectPropertiesIdenticalTo(): iterable
     {
         $esmith = new class() {
             public $name = 'Emily';
@@ -94,20 +94,19 @@ trait ProvObjectPropertiesTrait
 
         $registry->addFamily('smith', [$esmith, $jsmith]);
 
-        return [
-            'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+            yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => [],
                 'actual' => $jsmith,
                 'string' => 'object '.get_class($jsmith),
-            ],
+            ];
 
-            'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+            yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => ['name' => 'John', 'last' => 'Smith', 'age' => 21, 'wife' => $esmith],
                 'actual' => $jsmith,
                 'string' => 'object '.get_class($jsmith),
-            ],
+            ];
 
-            'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+            yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => [
                     'name' => 'John',
                     'last' => 'Smith',
@@ -116,41 +115,41 @@ trait ProvObjectPropertiesTrait
                 ],
                 'actual' => $jsmith,
                 'string' => 'object '.get_class($jsmith),
-            ],
+            ];
 
-            'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+            yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => ['name' => 'John', 'last' => 'Smith', 'age' => 21],
                 'actual' => $jsmith,
                 'string' => 'object '.get_class($jsmith),
-            ],
+            ];
 
-            'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+            yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => ['name' => 'John', 'last' => 'Smith'],
                 'actual' => $jsmith,
                 'string' => 'object '.get_class($jsmith),
-            ],
+            ];
 
-            'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+            yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => ['age' => 21],
                 'actual' => $jsmith,
                 'string' => 'object '.get_class($jsmith),
-            ],
+            ];
 
-            'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+            yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => ['age' => 21, 'getSalary()' => 123, 'getDebit()' => -123],
                 'actual' => $jsmith,
                 'string' => 'object '.get_class($jsmith),
-            ],
+            ];
 
-            'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+            yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => [
                     'family' => [$esmith],
                 ],
                 'actual' => $jsmith,
                 'string' => 'object '.get_class($jsmith),
-            ],
+            ];
 
-            'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+            yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => [
                     'persons' => [
                         $esmith,
@@ -165,11 +164,10 @@ trait ProvObjectPropertiesTrait
                 ],
                 'actual' => $registry,
                 'string' => 'object '.get_class($registry),
-            ],
-        ];
+            ];
     }
 
-    public static function provObjectPropertiesEqualButNotIdenticalTo(): array
+    public static function provObjectPropertiesEqualButNotIdenticalTo(): iterable
     {
         $object = new class() {
             public $emptyString = '';
@@ -179,8 +177,7 @@ trait ProvObjectPropertiesTrait
             public $boolFalse = false;
         };
 
-        return [
-            'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+            yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => [
                     'emptyString' => null,
                     'null'        => '',
@@ -190,11 +187,10 @@ trait ProvObjectPropertiesTrait
                 ],
                 'actual' => $object,
                 'string' => 'object '.get_class($object),
-            ],
-        ];
+            ];
     }
 
-    public static function provObjectPropertiesNotEqualTo(): array
+    public static function provObjectPropertiesNotEqualTo(): iterable
     {
         $hbrown = new class() {
             public $name = 'Helen';
@@ -268,50 +264,49 @@ trait ProvObjectPropertiesTrait
 
         $registry->addFamily('smith', [$esmith, $jsmith]);
 
-        return [
-            'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+            yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => ['name' => 'John', 'last' => 'Brown', 'age' => 21],
                 'actual' => $jsmith,
                 'string' => 'object '.get_class($jsmith),
-            ],
+            ];
 
-            'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+            yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => ['name' => 'John', 'last' => 'Smith', 'wife' => null],
                 'actual' => $jsmith,
                 'string' => 'object '.get_class($jsmith),
-            ],
+            ];
 
-            'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+            yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => ['name' => 'John', 'last' => 'Smith', 'wife' => 'Emily'],
                 'actual' => $jsmith,
                 'string' => 'object '.get_class($jsmith),
-            ],
+            ];
 
-            'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+            yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => ['name' => 'John', 'last' => 'Smith', 'wife' => $hbrown],
                 'actual' => $jsmith,
                 'string' => 'object '.get_class($jsmith),
-            ],
+            ];
 
-            'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+            yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => ['name' => 'John', 'last' => 'Brown'],
                 'actual' => $jsmith,
                 'string' => 'object '.get_class($jsmith),
-            ],
+            ];
 
-            'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+            yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => ['age' => 19],
                 'actual' => $jsmith,
                 'string' => 'object '.get_class($jsmith),
-            ],
+            ];
 
-            'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+            yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => ['age' => 21, 'getSalary()' => 1230],
                 'actual' => $jsmith,
                 'string' => 'object '.get_class($jsmith),
-            ],
+            ];
 
-            'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+            yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => [
                     'name' => 'John',
                     'last' => 'Smith',
@@ -331,9 +326,9 @@ trait ProvObjectPropertiesTrait
                 ],
                 'actual' => $jsmith,
                 'string' => 'object '.get_class($jsmith),
-            ],
+            ];
 
-            'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+            yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => [
                     'family' => [
                         ['name' => 'Emily', 'last' => 'Smith'],
@@ -341,9 +336,9 @@ trait ProvObjectPropertiesTrait
                 ],
                 'actual' => $jsmith,
                 'string' => 'object '.get_class($jsmith),
-            ],
+            ];
 
-            'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+            yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => [
                     'persons' => [
                         ['name' => 'Emily', 'last' => 'Smith'],
@@ -358,9 +353,9 @@ trait ProvObjectPropertiesTrait
                 ],
                 'actual' => $registry,
                 'string' => 'object '.get_class($registry),
-            ],
+            ];
 
-            'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+            yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => [
                     'persons' => [
                         $esmith,
@@ -376,37 +371,34 @@ trait ProvObjectPropertiesTrait
                 ],
                 'actual' => $registry,
                 'string' => 'object '.get_class($registry),
-            ],
-        ];
+            ];
     }
 
-    public static function provObjectPropertiesNotEqualToNonObject(): array
+    public static function provObjectPropertiesNotEqualToNonObject(): iterable
     {
-        return [
-            'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+            yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => ['foo' => 'FOO'],
                 'actual' => 123,
                 'string' => '123',
-            ],
+            ];
 
-            'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+            yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => ['foo' => 'FOO'],
                 'actual' => 'arbitrary string',
                 'string' => '\'arbitrary string\'',
-            ],
+            ];
 
-            'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+            yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => ['foo' => 'FOO'],
                 'actual' => null,
                 'string' => 'null',
-            ],
+            ];
 
-            'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+            yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
                 'expect' => ['foo' => 'FOO'],
                 'actual' => ['foo' => 'FOO'],
                 'string' => 'array',
-            ],
-        ];
+            ];
     }
 
     // @codeCoverageIgnoreEnd
