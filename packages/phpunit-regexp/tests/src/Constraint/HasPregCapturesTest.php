@@ -83,21 +83,20 @@ final class HasPregCapturesTest extends TestCase
         $constraint->evaluate($actual);
     }
 
-    public static function provCreateThrowsInvalidArgumentException(): array
+    public static function provCreateThrowsInvalidArgumentException(): iterable
     {
         $template = 'Argument 1 passed to '.HasPregCaptures::class.'::create() '.
             'must be an array of valid expectations, '.
             'invalid %s at %s given.';
 
-        return [
-            'HasPregCapturesTest.php:'.__LINE__ => [
+            yield 'HasPregCapturesTest.php:'.__LINE__ => [
                 'args' => [[
                     'foo' => new \stdClass(),
                 ]],
                 'message' => sprintf($template, 'expectation', 'key \'foo\''),
-            ],
+            ];
 
-            'HasPregCapturesTest.php:'.__LINE__ => [
+            yield 'HasPregCapturesTest.php:'.__LINE__ => [
                 'args' => [[
                     0 => 123.456,
                     1 => false,
@@ -107,8 +106,7 @@ final class HasPregCapturesTest extends TestCase
                     5 => ['', 123.456],
                 ]],
                 'message' => sprintf($template, 'expectations', 'keys 0, 2, 4, 5'),
-            ],
-        ];
+            ];
     }
 
     /**
