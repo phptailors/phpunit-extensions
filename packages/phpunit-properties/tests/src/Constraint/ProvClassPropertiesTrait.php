@@ -19,7 +19,7 @@ trait ProvClassPropertiesTrait
 {
     // @codeCoverageIgnoreStart
 
-    public static function provClassPropertiesIdenticalTo(): array
+    public static function provClassPropertiesIdenticalTo(): iterable
     {
         $classes = [
             (new class() {
@@ -31,14 +31,13 @@ trait ProvClassPropertiesTrait
             })::class,
         ];
 
-        return [
-            'ProvClassPropertiesTrait.php:'.__LINE__ => [
+            yield 'ProvClassPropertiesTrait.php:'.__LINE__ => [
                 'expect' => [],
                 'actual' => $classes[0],
                 'string' => $classes[0],
-            ],
+            ];
 
-            'ProvClassPropertiesTrait.php:'.__LINE__ => [
+            yield 'ProvClassPropertiesTrait.php:'.__LINE__ => [
                 'expect' => [
                     'emptyString' => '',
                     'null'        => null,
@@ -48,11 +47,10 @@ trait ProvClassPropertiesTrait
                 ],
                 'actual' => $classes[0],
                 'string' => $classes[0],
-            ],
-        ];
+            ];
     }
 
-    public static function provClassPropertiesEqualButNotIdenticalTo(): array
+    public static function provClassPropertiesEqualButNotIdenticalTo(): iterable
     {
         $classes = [
             (new class() {
@@ -65,7 +63,7 @@ trait ProvClassPropertiesTrait
         ];
 
         return [
-            'ProvClassPropertiesTrait.php:'.__LINE__ => [
+            yield 'ProvClassPropertiesTrait.php:'.__LINE__ => [
                 'expect' => [
                     'emptyString' => null,
                     'null'        => '',
@@ -79,7 +77,7 @@ trait ProvClassPropertiesTrait
         ];
     }
 
-    public static function provClassPropertiesNotEqualTo(): array
+    public static function provClassPropertiesNotEqualTo(): iterable
     {
         $classes = [
             (new class() {
@@ -91,8 +89,7 @@ trait ProvClassPropertiesTrait
             })::class,
         ];
 
-        return [
-            'ProvClassPropertiesTrait.php:'.__LINE__ => [
+            yield 'ProvClassPropertiesTrait.php:'.__LINE__ => [
                 'expect' => [
                     'emptyString' => 'foo',
                     'null'        => 1,
@@ -102,43 +99,40 @@ trait ProvClassPropertiesTrait
                 ],
                 'actual' => $classes[0],
                 'string' => $classes[0],
-            ],
-        ];
+            ];
     }
 
-    public static function provClassPropertiesNotEqualToNonClass(): array
+    public static function provClassPropertiesNotEqualToNonClass(): iterable
     {
-        return [
-            'ProvClassPropertiesTrait.php:'.__LINE__ => [
+            yield 'ProvClassPropertiesTrait.php:'.__LINE__ => [
                 'expect' => ['foo' => 'FOO'],
                 'actual' => 123,
                 'string' => '123',
-            ],
+            ];
 
-            'ProvClassPropertiesTrait.php:'.__LINE__ => [
+            yield 'ProvClassPropertiesTrait.php:'.__LINE__ => [
                 'expect' => ['foo' => 'FOO'],
                 'actual' => 'arbitrary string',
                 'string' => '\'arbitrary string\'',
-            ],
+            ];
 
-            'ProvClassPropertiesTrait.php:'.__LINE__ => [
+            yield 'ProvClassPropertiesTrait.php:'.__LINE__ => [
                 'expect' => ['foo' => 'FOO'],
                 'actual' => null,
                 'string' => 'null',
-            ],
+            ];
 
-            'ProvClassPropertiesTrait.php:'.__LINE__ => [
+            yield 'ProvClassPropertiesTrait.php:'.__LINE__ => [
                 'expect' => ['foo' => 'FOO'],
                 'actual' => ['foo' => 'FOO'],
                 'string' => 'array',
-            ],
+            ];
 
-            'ProvClassPropertiesTrait.php:'.__LINE__ => [
+            yield 'ProvClassPropertiesTrait.php:'.__LINE__ => [
                 'expect' => ['foo' => 'FOO'],
                 'actual' => new \stdClass(),
                 'string' => 'object stdClass',
-            ],
-        ];
+            ];
     }
 
     // @codeCoverageIgnoreEnd
