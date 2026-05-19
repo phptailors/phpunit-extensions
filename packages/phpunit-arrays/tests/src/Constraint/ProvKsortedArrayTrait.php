@@ -67,84 +67,84 @@ trait ProvKsortedArrayTrait
 
     public static function provKsortedArrayEqualButNotIdenticalTo(): iterable
     {
-            yield 'ProvKsortedArrayTrait.php:'.__LINE__ => [
-                'expect' => [
-                    'int321'    => '321',
-                    'empty'     => null,
-                    'null'      => '',
-                    'string123' => 123,
-                    'boolFalse' => 0,
-                ],
-                'actual' => [
-                    'empty'     => '',
-                    'null'      => null,
-                    'int321'    => 321,
-                    'boolFalse' => false,
-                    'string123' => '123',
-                ],
-                'string' => 'array',
-            ];
+        yield 'ProvKsortedArrayTrait.php:'.__LINE__ => [
+            'expect' => [
+                'int321'    => '321',
+                'empty'     => null,
+                'null'      => '',
+                'string123' => 123,
+                'boolFalse' => 0,
+            ],
+            'actual' => [
+                'empty'     => '',
+                'null'      => null,
+                'int321'    => 321,
+                'boolFalse' => false,
+                'string123' => '123',
+            ],
+            'string' => 'array',
+        ];
 
-            // Nested arrays are not sorted
-            yield 'ProvKsortedArrayTrait.php:'.__LINE__ => [
-                'expect' => ['foo' => 'FOO', 'arr' => ['bar' => 'BAR', 'gez' => 'GEZ']],
-                'actual' => ['foo' => 'FOO', 'arr' => ['gez' => 'GEZ', 'bar' => 'BAR']],
-                'string' => 'array',
-            ];
+        // Nested arrays are not sorted
+        yield 'ProvKsortedArrayTrait.php:'.__LINE__ => [
+            'expect' => ['foo' => 'FOO', 'arr' => ['bar' => 'BAR', 'gez' => 'GEZ']],
+            'actual' => ['foo' => 'FOO', 'arr' => ['gez' => 'GEZ', 'bar' => 'BAR']],
+            'string' => 'array',
+        ];
     }
 
     public static function provKsortedArrayNotEqualTo(): iterable
     {
-            yield 'ProvKsortedArrayTrait.php:'.__LINE__ => [
-                'expect' => ['foo' => 'FOO', 'bar' => 'GEZ', 'int' => 21],
-                'actual' => ['foo' => 'FOO', 'bar' => 'BAR', 'int' => 21],
-                'string' => 'array',
-            ];
+        yield 'ProvKsortedArrayTrait.php:'.__LINE__ => [
+            'expect' => ['foo' => 'FOO', 'bar' => 'GEZ', 'int' => 21],
+            'actual' => ['foo' => 'FOO', 'bar' => 'BAR', 'int' => 21],
+            'string' => 'array',
+        ];
 
-            yield 'ProvKsortedArrayTrait.php:'.__LINE__ => [
-                'expect' => ['foo' => 'FOO', 'arr' => ['bar' => 'GEZ']],
-                'actual' => ['foo' => 'FOO', 'arr' => ['bar' => 'BAR']],
-                'string' => 'array',
-            ];
+        yield 'ProvKsortedArrayTrait.php:'.__LINE__ => [
+            'expect' => ['foo' => 'FOO', 'arr' => ['bar' => 'GEZ']],
+            'actual' => ['foo' => 'FOO', 'arr' => ['bar' => 'BAR']],
+            'string' => 'array',
+        ];
 
-            yield 'ProvKsortedArrayTrait.php:'.__LINE__ => [
-                'expect' => ['foo' => 'FOO', 'arr' => ['bar' => 'GEZ']],
-                'actual' => 'arbitrary string',
-                'string' => '\'arbitrary string\'',
-            ];
+        yield 'ProvKsortedArrayTrait.php:'.__LINE__ => [
+            'expect' => ['foo' => 'FOO', 'arr' => ['bar' => 'GEZ']],
+            'actual' => 'arbitrary string',
+            'string' => '\'arbitrary string\'',
+        ];
 
-            yield 'ProvKsortedArrayTrait.php:'.__LINE__ => [
-                'expect' => ['foo' => 'FOO', 'arr' => ['bar' => 'GEZ']],
-                'actual' => \Exception::class,
-                'string' => \Exception::class,
-            ];
+        yield 'ProvKsortedArrayTrait.php:'.__LINE__ => [
+            'expect' => ['foo' => 'FOO', 'arr' => ['bar' => 'GEZ']],
+            'actual' => \Exception::class,
+            'string' => \Exception::class,
+        ];
     }
 
     public static function provKsortedArrayNotEqualToNonArray(): iterable
     {
-            yield 'ProvKsortedArrayTrait.php:'.__LINE__ => [
-                'expect' => ['foo' => 'FOO'],
-                'actual' => 123,
-                'string' => '123',
-            ];
+        yield 'ProvKsortedArrayTrait.php:'.__LINE__ => [
+            'expect' => ['foo' => 'FOO'],
+            'actual' => 123,
+            'string' => '123',
+        ];
 
-            yield 'ProvKsortedArrayTrait.php:'.__LINE__ => [
-                'expect' => ['foo' => 'FOO'],
-                'actual' => 'arbitrary string',
-                'string' => '\'arbitrary string\'',
-            ];
+        yield 'ProvKsortedArrayTrait.php:'.__LINE__ => [
+            'expect' => ['foo' => 'FOO'],
+            'actual' => 'arbitrary string',
+            'string' => '\'arbitrary string\'',
+        ];
 
-            yield 'ProvKsortedArrayTrait.php:'.__LINE__ => [
-                'expect' => ['foo' => 'FOO'],
-                'actual' => null,
-                'string' => 'null',
-            ];
+        yield 'ProvKsortedArrayTrait.php:'.__LINE__ => [
+            'expect' => ['foo' => 'FOO'],
+            'actual' => null,
+            'string' => 'null',
+        ];
 
-            yield 'ProvKsortedArrayTrait.php:'.__LINE__ => [
-                'expect' => ['foo' => 'FOO'],
-                'actual' => new \stdClass(),
-                'string' => 'object stdClass',
-            ];
+        yield 'ProvKsortedArrayTrait.php:'.__LINE__ => [
+            'expect' => ['foo' => 'FOO'],
+            'actual' => new \stdClass(),
+            'string' => 'object stdClass',
+        ];
     }
 
     // @codeCoverageIgnoreEnd
