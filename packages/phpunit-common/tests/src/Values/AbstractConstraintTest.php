@@ -122,7 +122,7 @@ final class AbstractConstraintTest extends TestCase
         $this->assertSame('is a tree with apples having colors specified', $constraint->toString());
     }
 
-    public static function provToStringInContext(): array
+    public static function provToStringInContext(): iterable
     {
         $constraint = function (TestCase $test): Constraint {
             $expected = $test->createMock(ValuesInterface::class);
@@ -148,15 +148,14 @@ final class AbstractConstraintTest extends TestCase
             return static::createDummyConstraint($test, $expected, $comparator, $valueSelector);
         };
 
-        return [
-            'AbstractConstraintTest.php:'.__LINE__ => [
-                'operator' => fn (TestCase $test): Operator => self::logicalNot($constraint($test)),
-                'expect'   => 'fails to be a tree with apples having colors specified',
-            ],
-            'AbstractConstraintTest.php:'.__LINE__ => [
-                'operator' => fn (TestCase $test): Operator => self::logicalOr($constraint($test)),
-                'expect'   => 'is a tree with apples having colors specified',
-            ],
+        yield 'AbstractConstraintTest.php:'.__LINE__ => [
+            'operator' => fn (TestCase $test): Operator => self::logicalNot($constraint($test)),
+            'expect'   => 'fails to be a tree with apples having colors specified',
+        ];
+
+        yield 'AbstractConstraintTest.php:'.__LINE__ => [
+            'operator' => fn (TestCase $test): Operator => self::logicalOr($constraint($test)),
+            'expect'   => 'is a tree with apples having colors specified',
         ];
     }
 
@@ -170,7 +169,7 @@ final class AbstractConstraintTest extends TestCase
         $this->assertSame($expect, $operator($this)->toString());
     }
 
-    public static function provEvaluate(): array
+    public static function provEvaluate(): iterable
     {
         $fooFOO = fn (TestCase $test) => self::createArrayValuesIdentityConstraint($test, ['foo' => 'FOO']);
         $gezGEZ = fn (TestCase $test) => self::createArrayValuesIdentityConstraint($test, ['gez' => 'GEZ']);
@@ -181,92 +180,90 @@ final class AbstractConstraintTest extends TestCase
             ->getMockForAbstractClass()
         ;
 
-        return [
-            'AbstractConstraintTest.php:'.__LINE__ => [
-                'constraint' => $fooFOO,
-                'args'       => [['foo' => 'FOO', 'bar' => 'BAR'], '', true],
-                'expect'     => true,
-            ],
+        yield 'AbstractConstraintTest.php:'.__LINE__ => [
+            'constraint' => $fooFOO,
+            'args'       => [['foo' => 'FOO', 'bar' => 'BAR'], '', true],
+            'expect'     => true,
+        ];
 
-            'AbstractConstraintTest.php:'.__LINE__ => [
-                'constraint' => $gezGEZ,
-                'args'       => [['foo' => 'FOO', 'bar' => 'BAR'], '', true],
-                'expect'     => false,
-            ],
+        yield 'AbstractConstraintTest.php:'.__LINE__ => [
+            'constraint' => $gezGEZ,
+            'args'       => [['foo' => 'FOO', 'bar' => 'BAR'], '', true],
+            'expect'     => false,
+        ];
 
-            'AbstractConstraintTest.php:'.__LINE__ => [
-                'constraint' => $gezGEZ,
-                'args'       => [123, '', true],
-                'expect'     => false,
-            ],
+        yield 'AbstractConstraintTest.php:'.__LINE__ => [
+            'constraint' => $gezGEZ,
+            'args'       => [123, '', true],
+            'expect'     => false,
+        ];
 
-            'AbstractConstraintTest.php:'.__LINE__ => [
-                'constraint' => $fooFOO,
-                'args'       => [['foo' => 'FOO', 'bar' => 'BAR'], '', false],
-                'expect'     => null,
-            ],
+        yield 'AbstractConstraintTest.php:'.__LINE__ => [
+            'constraint' => $fooFOO,
+            'args'       => [['foo' => 'FOO', 'bar' => 'BAR'], '', false],
+            'expect'     => null,
+        ];
 
-            'AbstractConstraintTest.php:'.__LINE__ => [
-                'constraint' => $gezGEZ,
-                'args'       => [['foo' => 'FOO', 'bar' => 'BAR']],
-                'expect'     => [
-                    'exception' => ExpectationFailedException::class,
-                    'message'   => 'array is an array or ArrayAccess with values identical to specified',
-                ],
+        yield 'AbstractConstraintTest.php:'.__LINE__ => [
+            'constraint' => $gezGEZ,
+            'args'       => [['foo' => 'FOO', 'bar' => 'BAR']],
+            'expect'     => [
+                'exception' => ExpectationFailedException::class,
+                'message'   => 'array is an array or ArrayAccess with values identical to specified',
             ],
+        ];
 
-            'AbstractConstraintTest.php:'.__LINE__ => [
-                'constraint' => $gezGEZ,
-                'args'       => [123],
-                'expect'     => [
-                    'exception' => ExpectationFailedException::class,
-                    'message'   => '123 is an array or ArrayAccess with values identical to specified',
-                ],
+        yield 'AbstractConstraintTest.php:'.__LINE__ => [
+            'constraint' => $gezGEZ,
+            'args'       => [123],
+            'expect'     => [
+                'exception' => ExpectationFailedException::class,
+                'message'   => '123 is an array or ArrayAccess with values identical to specified',
             ],
+        ];
 
-            'AbstractConstraintTest.php:'.__LINE__ => [
-                'constraint' => $gezGEZ,
-                'args'       => [new \stdClass()],
-                'expect'     => [
-                    'exception' => ExpectationFailedException::class,
-                    'message'   => 'object stdClass is an array or ArrayAccess with values identical to specified',
-                ],
+        yield 'AbstractConstraintTest.php:'.__LINE__ => [
+            'constraint' => $gezGEZ,
+            'args'       => [new \stdClass()],
+            'expect'     => [
+                'exception' => ExpectationFailedException::class,
+                'message'   => 'object stdClass is an array or ArrayAccess with values identical to specified',
             ],
+        ];
 
-            'AbstractConstraintTest.php:'.__LINE__ => [
-                'constraint' => $gezGEZ,
-                'args'       => [\stdClass::class],
-                'expect'     => [
-                    'exception' => ExpectationFailedException::class,
-                    'message'   => 'stdClass is an array or ArrayAccess with values identical to specified',
-                ],
+        yield 'AbstractConstraintTest.php:'.__LINE__ => [
+            'constraint' => $gezGEZ,
+            'args'       => [\stdClass::class],
+            'expect'     => [
+                'exception' => ExpectationFailedException::class,
+                'message'   => 'stdClass is an array or ArrayAccess with values identical to specified',
             ],
+        ];
 
-            'AbstractConstraintTest.php:'.__LINE__ => [
-                'constraint' => $gezGEZ,
-                'args'       => ['foo'],
-                'expect'     => [
-                    'exception' => ExpectationFailedException::class,
-                    'message'   => '\'foo\' is an array or ArrayAccess with values identical to specified',
-                ],
+        yield 'AbstractConstraintTest.php:'.__LINE__ => [
+            'constraint' => $gezGEZ,
+            'args'       => ['foo'],
+            'expect'     => [
+                'exception' => ExpectationFailedException::class,
+                'message'   => '\'foo\' is an array or ArrayAccess with values identical to specified',
             ],
+        ];
 
-            'AbstractConstraintTest.php:'.__LINE__ => [
-                'constraint' => fn (TestCase $test): Constraint => self::logicalNot($fooFOO($test)),
-                'args'       => [['foo' => 'FOO', 'bar' => 'BAR']],
-                'expect'     => [
-                    'exception' => ExpectationFailedException::class,
-                    'message'   => 'array fails to be an array or ArrayAccess with values identical to specified',
-                ],
+        yield 'AbstractConstraintTest.php:'.__LINE__ => [
+            'constraint' => fn (TestCase $test): Constraint => self::logicalNot($fooFOO($test)),
+            'args'       => [['foo' => 'FOO', 'bar' => 'BAR']],
+            'expect'     => [
+                'exception' => ExpectationFailedException::class,
+                'message'   => 'array fails to be an array or ArrayAccess with values identical to specified',
             ],
+        ];
 
-            'AbstractConstraintTest.php:'.__LINE__ => [
-                'constraint' => $unaryOp,
-                'args'       => [['foo' => 'FOO', 'bar' => 'BAR']],
-                'expect'     => [
-                    'exception' => ExpectationFailedException::class,
-                    'message'   => 'is an array or ArrayAccess with values identical to specified',
-                ],
+        yield 'AbstractConstraintTest.php:'.__LINE__ => [
+            'constraint' => $unaryOp,
+            'args'       => [['foo' => 'FOO', 'bar' => 'BAR']],
+            'expect'     => [
+                'exception' => ExpectationFailedException::class,
+                'message'   => 'is an array or ArrayAccess with values identical to specified',
             ],
         ];
     }

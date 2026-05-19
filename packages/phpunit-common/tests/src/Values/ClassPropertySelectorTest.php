@@ -57,37 +57,35 @@ final class ClassPropertySelectorTest extends TestCase
     //
 
     // @codeCoverageIgnoreStart
-    public static function provSupports(): array
+    public static function provSupports(): iterable
     {
-        return [
-            // #0
-            'string' => [
-                'subject' => 'foo',
-                'expect'  => false,
-            ],
+        // #0
+        yield 'string' => [
+            'subject' => 'foo',
+            'expect'  => false,
+        ];
 
-            // #1
-            'array' => [
-                'subject' => [],
-                'expect'  => false,
-            ],
+        // #1
+        yield 'array' => [
+            'subject' => [],
+            'expect'  => false,
+        ];
 
-            'class' => [
-                'subject' => self::class,
-                'expect'  => true,
-            ],
+        yield 'class' => [
+            'subject' => self::class,
+            'expect'  => true,
+        ];
 
-            // #2
-            'object' => [
-                'subject' => (new class() {})::class,
-                'expect'  => true,
-            ],
+        // #2
+        yield 'object' => [
+            'subject' => (new class() {})::class,
+            'expect'  => true,
+        ];
 
-            // #3
-            'new ClassPropertySelector' => [
-                'subject' => ClassPropertySelector::class,
-                'expect'  => true,
-            ],
+        // #3
+        yield 'new ClassPropertySelector' => [
+            'subject' => ClassPropertySelector::class,
+            'expect'  => true,
         ];
     }
 
@@ -106,54 +104,52 @@ final class ClassPropertySelectorTest extends TestCase
     //
 
     // @codeCoverageIgnoreStart
-    public static function provSelect(): array
+    public static function provSelect(): iterable
     {
-        return [
-            // #0
-            [
-                'class' => (new class() {
-                    public static $foo = 'FOO';
-                })::class,
-                'key'    => 'foo',
-                'return' => true,
-                'expect' => 'FOO',
-            ],
+        // #0
+        yield 'ClassPropertySelectorTest.php:'.__LINE__ => [
+            'class' => (new class() {
+                public static $foo = 'FOO';
+            })::class,
+            'key'    => 'foo',
+            'return' => true,
+            'expect' => 'FOO',
+        ];
 
-            // #1
-            [
-                'class' => (new class() {
-                    public static $foo = 'FOO';
-                })::class,
-                'key'    => 'bar',
-                'return' => false,
-                'expect' => null,
-            ],
+        // #1
+        yield 'ClassPropertySelectorTest.php:'.__LINE__ => [
+            'class' => (new class() {
+                public static $foo = 'FOO';
+            })::class,
+            'key'    => 'bar',
+            'return' => false,
+            'expect' => null,
+        ];
 
-            // #2
-            [
-                'class' => (new class() {
-                    public static function foo()
-                    {
-                        return 'FOO';
-                    }
-                })::class,
-                'key'    => 'foo()',
-                'return' => true,
-                'expect' => 'FOO',
-            ],
+        // #2
+        yield 'ClassPropertySelectorTest.php:'.__LINE__ => [
+            'class' => (new class() {
+                public static function foo()
+                {
+                    return 'FOO';
+                }
+            })::class,
+            'key'    => 'foo()',
+            'return' => true,
+            'expect' => 'FOO',
+        ];
 
-            // #3
-            [
-                'class' => (new class() {
-                    public static function foo()
-                    {
-                        return 'FOO';
-                    }
-                })::class,
-                'key'    => 'bar()',
-                'return' => false,
-                'expect' => null,
-            ],
+        // #3
+        yield 'ClassPropertySelectorTest.php:'.__LINE__ => [
+            'class' => (new class() {
+                public static function foo()
+                {
+                    return 'FOO';
+                }
+            })::class,
+            'key'    => 'bar()',
+            'return' => false,
+            'expect' => null,
         ];
     }
 
@@ -254,20 +250,18 @@ final class ClassPropertySelectorTest extends TestCase
     // @codeCoverageIgnoreEnd
 
     // @codeCoverageIgnoreStart
-    public static function provSelectThrowsOnNonClass(): array
+    public static function provSelectThrowsOnNonClass(): iterable
     {
-        return [
-            // #0
-            [
-                'key'    => 'foo',
-                'method' => 'selectWithAttribute',
-            ],
+        // #0
+        yield 'ClassPropertySelectorTest.php:'.__LINE__ => [
+            'key'    => 'foo',
+            'method' => 'selectWithAttribute',
+        ];
 
-            // #1
-            [
-                'key'    => 'foo()',
-                'method' => 'selectWithMethod',
-            ],
+        // #1
+        yield 'ClassPropertySelectorTest.php:'.__LINE__ => [
+            'key'    => 'foo()',
+            'method' => 'selectWithMethod',
         ];
     }
 
