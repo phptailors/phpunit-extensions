@@ -29,24 +29,22 @@ final class IdentityComparatorTest extends TestCase
         self::assertInstanceOf(ComparatorInterface::class, new IdentityComparator());
     }
 
-    public static function provCompare(): array
+    public static function provCompare(): iterable
     {
-        return [
-            'IdentityComparatorTest.php:'.__LINE__ => [
-                'a', 'a', true,
-            ],
+        yield 'IdentityComparatorTest.php:'.__LINE__ => [
+            'a', 'a', true,
+        ];
 
-            'IdentityComparatorTest.php:'.__LINE__ => [
-                '123', 123, false,
-            ],
+        yield 'IdentityComparatorTest.php:'.__LINE__ => [
+            '123', 123, false,
+        ];
 
-            'IdentityComparatorTest.php:'.__LINE__ => [
-                '', null, false,
-            ],
+        yield 'IdentityComparatorTest.php:'.__LINE__ => [
+            '', null, false,
+        ];
 
-            'IdentityComparatorTest.php:'.__LINE__ => [
-                'a', 'b', false,
-            ],
+        yield 'IdentityComparatorTest.php:'.__LINE__ => [
+            'a', 'b', false,
         ];
     }
 

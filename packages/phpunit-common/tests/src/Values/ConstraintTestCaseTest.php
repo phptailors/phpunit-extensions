@@ -50,45 +50,39 @@ final class ConstraintTestCaseTest extends ConstraintTestCase
         return ExampleConstraint::class;
     }
 
-    public static function provArrayValuesIdenticalTo(): array
+    public static function provArrayValuesIdenticalTo(): iterable
     {
-        return [
-            'ConstraintTestCaseTest.php:'.__LINE__ => [
-                'expect' => [
-                    'foo' => 'FOO',
-                ],
-                'actual' => [
-                    'foo' => 'FOO',
-                    'bar' => 'BAR',
-                ],
+        yield 'ConstraintTestCaseTest.php:'.__LINE__ => [
+            'expect' => [
+                'foo' => 'FOO',
+            ],
+            'actual' => [
+                'foo' => 'FOO',
+                'bar' => 'BAR',
             ],
         ];
     }
 
-    public static function provArrayValuesEqualButNotIdenticalTo(): array
+    public static function provArrayValuesEqualButNotIdenticalTo(): iterable
     {
-        return [
-            'ConstraintTestCaseTest.php:'.__LINE__ => [
-                'expect' => [
-                    'foo' => '',
-                ],
-                'actual' => [
-                    'foo' => null,
-                ],
+        yield 'ConstraintTestCaseTest.php:'.__LINE__ => [
+            'expect' => [
+                'foo' => '',
+            ],
+            'actual' => [
+                'foo' => null,
             ],
         ];
     }
 
-    public static function provArrayValuesNotEqualTo(): array
+    public static function provArrayValuesNotEqualTo(): iterable
     {
-        return [
-            'ConstraintTestCaseTest.php:'.__LINE__ => [
-                'expect' => [
-                    'foo' => 7,
-                ],
-                'actual' => [
-                    'foo' => 11,
-                ],
+        yield 'ConstraintTestCaseTest.php:'.__LINE__ => [
+            'expect' => [
+                'foo' => 7,
+            ],
+            'actual' => [
+                'foo' => 11,
             ],
         ];
     }
