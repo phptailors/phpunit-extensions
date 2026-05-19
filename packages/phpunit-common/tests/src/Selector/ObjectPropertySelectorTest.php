@@ -47,37 +47,35 @@ final class ObjectPropertySelectorTest extends TestCase
     //
 
     // @codeCoverageIgnoreStart
-    public static function provSupports(): array
+    public static function provSupports(): iterable
     {
-        return [
-            // #0
-            'string' => [
-                'subject' => 'foo',
-                'expect'  => false,
-            ],
+        // #0
+        yield 'string' => [
+            'subject' => 'foo',
+            'expect'  => false,
+        ];
 
-            // #1
-            'array' => [
-                'subject' => [],
-                'expect'  => false,
-            ],
+        // #1
+        yield 'array' => [
+            'subject' => [],
+            'expect'  => false,
+        ];
 
-            'class' => [
-                'subject' => self::class,
-                'expect'  => false,
-            ],
+        yield 'class' => [
+            'subject' => self::class,
+            'expect'  => false,
+        ];
 
-            // #2
-            'object' => [
-                'subject' => new class() {},
-                'expect'  => true,
-            ],
+        // #2
+        yield 'object' => [
+            'subject' => new class() {},
+            'expect'  => true,
+        ];
 
-            // #3
-            'new ObjectPropertySelector' => [
-                'subject' => new ObjectPropertySelector(),
-                'expect'  => true,
-            ],
+        // #3
+        yield 'new ObjectPropertySelector' => [
+            'subject' => new ObjectPropertySelector(),
+            'expect'  => true,
         ];
     }
 
@@ -96,67 +94,65 @@ final class ObjectPropertySelectorTest extends TestCase
     //
 
     // @codeCoverageIgnoreStart
-    public static function provSelect(): array
+    public static function provSelect(): iterable
     {
-        return [
-            // #0
-            [
-                'object' => new class() {
-                    public $foo = 'FOO';
-                },
-                'key'    => 'foo',
-                'return' => true,
-                'expect' => 'FOO',
-            ],
+        // #0
+        yield 'ObjectPropertySelectorTest.php:'.__LINE__ => [
+            'object' => new class() {
+                public $foo = 'FOO';
+            },
+            'key'    => 'foo',
+            'return' => true,
+            'expect' => 'FOO',
+        ];
 
-            // #1
-            [
-                'object' => new class() {
-                    public $foo = 'FOO';
-                },
-                'key'    => 'bar',
-                'return' => false,
-                'expect' => null,
-            ],
+        // #1
+        yield 'ObjectPropertySelectorTest.php:'.__LINE__ => [
+            'object' => new class() {
+                public $foo = 'FOO';
+            },
+            'key'    => 'bar',
+            'return' => false,
+            'expect' => null,
+        ];
 
-            // #2
-            [
-                'object' => new class() {
-                    public function foo()
-                    {
-                        return 'FOO';
-                    }
-                },
-                'key'    => 'foo()',
-                'return' => true,
-                'expect' => 'FOO',
-            ],
+        // #2
+        yield 'ObjectPropertySelectorTest.php:'.__LINE__ => [
+            'object' => new class() {
+                public function foo()
+                {
+                    return 'FOO';
+                }
+            },
+            'key'    => 'foo()',
+            'return' => true,
+            'expect' => 'FOO',
+        ];
 
-            // #3
-            [
-                'object' => new class() {
-                    public static function foo()
-                    {
-                        return 'FOO';
-                    }
-                },
-                'key'    => 'foo()',
-                'return' => true,
-                'expect' => 'FOO',
-            ],
+        // #3
+        yield 'ObjectPropertySelectorTest.php:'.__LINE__ => [
+            'object' => new class() {
+                public static function foo()
+                {
+                    return 'FOO';
+                }
+            },
+            'key'    => 'foo()',
+            'return' => true,
+            'expect' => 'FOO',
+        ];
 
-            // #4
-            [
-                'object' => new class() {
-                    public function foo()
-                    {
-                        return 'FOO';
-                    }
-                },
-                'key'    => 'bar()',
-                'return' => false,
-                'expect' => null,
-            ],
+        // #4
+        yield 'ObjectPropertySelectorTest.php:'.__LINE__ => [
+            'object' => new class() {
+                public function foo()
+                {
+                    return 'FOO';
+                }
+            },
+            'key'    => 'bar()',
+            'return' => false,
+            'expect' => null,
         ];
     }
 
@@ -236,20 +232,18 @@ final class ObjectPropertySelectorTest extends TestCase
     // @codeCoverageIgnoreEnd
 
     // @codeCoverageIgnoreStart
-    public static function provSelectThrowsOnNonobject(): array
+    public static function provSelectThrowsOnNonobject(): iterable
     {
-        return [
-            // #0
-            [
-                'key'    => 'foo',
-                'method' => 'selectWithAttribute',
-            ],
+        // #0
+        yield 'ObjectPropertySelectorTest.php:'.__LINE__ => [
+            'key'    => 'foo',
+            'method' => 'selectWithAttribute',
+        ];
 
-            // #1
-            [
-                'key'    => 'foo()',
-                'method' => 'selectWithMethod',
-            ],
+        // #1
+        yield 'ObjectPropertySelectorTest.php:'.__LINE__ => [
+            'key'    => 'foo()',
+            'method' => 'selectWithMethod',
         ];
     }
 

@@ -33,18 +33,16 @@ abstract class RecursiveConstraintTestCase extends TestCase
     abstract public static function adjective(): string;
 
     /**
-     * @psalm-return array<string,array{args:array,expect:array{values: Constraint}}>
+     * @psalm-return iterable<string,array{args:array,expect:array{values: Constraint}}>
      *
      * @codeCoverageIgnoreStart
      */
-    public static function provCreateConstraint(): array
+    public static function provCreateConstraint(): iterable
     {
-        return [
-            'ConstraintTestCase.php:'.__LINE__ => [
-                'args'   => [['foo' => 'FOO']],
-                'expect' => [
-                    'values' => self::identicalTo(['foo' => 'FOO']),
-                ],
+        yield 'ConstraintTestCase.php:'.__LINE__ => [
+            'args'   => [['foo' => 'FOO']],
+            'expect' => [
+                'values' => self::identicalTo(['foo' => 'FOO']),
             ],
         ];
     }
