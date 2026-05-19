@@ -33,43 +33,46 @@ final class ExtendsClassTraitTest extends TestCase
     {
         $template = 'Failed asserting that %s does not extend class %s.';
 
-            yield 'ExtendsClassTraitTest.php:'.__LINE__ => [
-                'class'   => \Exception::class,
-                'subject' => \ErrorException::class,
-                'message' => sprintf($template, \ErrorException::class, \Exception::class),
-            ];
+        yield 'ExtendsClassTraitTest.php:'.__LINE__ => [
+            'class'   => \Exception::class,
+            'subject' => \ErrorException::class,
+            'message' => sprintf($template, \ErrorException::class, \Exception::class),
+        ];
 
-            yield 'ExtendsClassTraitTest.php:'.__LINE__ => [
-                'class'   => \Exception::class,
-                'subject' => new \ErrorException(),
-                'message' => sprintf($template, 'object '.\ErrorException::class, \Exception::class),
-            ];
+        yield 'ExtendsClassTraitTest.php:'.__LINE__ => [
+            'class'   => \Exception::class,
+            'subject' => new \ErrorException(),
+            'message' => sprintf($template, 'object '.\ErrorException::class, \Exception::class),
+        ];
     }
 
     public static function provNotExtendsClass(): iterable
     {
         $template = 'Failed asserting that %s extends class %s.';
 
-            yield 'ExtendsClassTraitTest.php:'.__LINE__ => [
-                'class'   => \Error::class,
-                'subject' => \ErrorException::class,
-                'message' => sprintf($template, \ErrorException::class, \Error::class),
-            ];
-            yield 'ExtendsClassTraitTest.php:'.__LINE__ => [
-                'class'   => \Error::class,
-                'subject' => new \ErrorException(),
-                'message' => sprintf($template, 'object '.\ErrorException::class, \Error::class),
-            ];
-            yield 'ExtendsClassTraitTest.php:'.__LINE__ => [
-                'class'   => \Error::class,
-                'subject' => 'lorem ipsum',
-                'message' => sprintf($template, "'lorem ipsum'", \Error::class),
-            ];
-            yield 'ExtendsClassTraitTest.php:'.__LINE__ => [
-                'class'   => \Error::class,
-                'subject' => 123,
-                'message' => sprintf($template, '123', \Error::class),
-            ];
+        yield 'ExtendsClassTraitTest.php:'.__LINE__ => [
+            'class'   => \Error::class,
+            'subject' => \ErrorException::class,
+            'message' => sprintf($template, \ErrorException::class, \Error::class),
+        ];
+
+        yield 'ExtendsClassTraitTest.php:'.__LINE__ => [
+            'class'   => \Error::class,
+            'subject' => new \ErrorException(),
+            'message' => sprintf($template, 'object '.\ErrorException::class, \Error::class),
+        ];
+
+        yield 'ExtendsClassTraitTest.php:'.__LINE__ => [
+            'class'   => \Error::class,
+            'subject' => 'lorem ipsum',
+            'message' => sprintf($template, "'lorem ipsum'", \Error::class),
+        ];
+
+        yield 'ExtendsClassTraitTest.php:'.__LINE__ => [
+            'class'   => \Error::class,
+            'subject' => 123,
+            'message' => sprintf($template, '123', \Error::class),
+        ];
     }
 
     #[DataProvider('provExtendsClass')]
@@ -118,20 +121,20 @@ final class ExtendsClassTraitTest extends TestCase
     {
         $template = 'Argument 1 passed to %s::create() must be a class-string';
 
-            yield 'ExtendsClassTraitTest.php:'.__LINE__ => [
-                'argument' => 'non-class string',
-                'message'  => sprintf($template, ExtendsClass::class),
-            ];
+        yield 'ExtendsClassTraitTest.php:'.__LINE__ => [
+            'argument' => 'non-class string',
+            'message'  => sprintf($template, ExtendsClass::class),
+        ];
 
-            yield 'ExtendsClassTraitTest.php:'.__LINE__ => [
-                'argument' => \Throwable::class,
-                'message'  => sprintf($template, ExtendsClass::class),
-            ];
+        yield 'ExtendsClassTraitTest.php:'.__LINE__ => [
+            'argument' => \Throwable::class,
+            'message'  => sprintf($template, ExtendsClass::class),
+        ];
 
-            yield 'ExtendsClassTraitTest.php:'.__LINE__ => [
-                'argument' => ExampleTrait::class,
-                'message'  => sprintf($template, ExtendsClass::class),
-            ];
+        yield 'ExtendsClassTraitTest.php:'.__LINE__ => [
+            'argument' => ExampleTrait::class,
+            'message'  => sprintf($template, ExtendsClass::class),
+        ];
     }
 
     #[DataProvider('provExtendsClassThrowsInvalidArgumentException')]
