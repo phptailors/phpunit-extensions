@@ -20,13 +20,13 @@ namespace Tailors\PHPUnit\Selector;
 final class ObjectPropertySelector extends AbstractPropertySelector
 {
     /**
-     * @param mixed $subject
+     * @param mixed $input
      *
-     * @psalm-assert-if-true object $subject
+     * @psalm-assert-if-true object $input
      */
-    public function supports($subject): bool
+    public function supports($input): bool
     {
-        return is_object($subject);
+        return is_object($input);
     }
 
     /**

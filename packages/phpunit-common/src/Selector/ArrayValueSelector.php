@@ -22,13 +22,13 @@ use Tailors\PHPUnit\InvalidArgumentException;
 final class ArrayValueSelector extends AbstractValueSelector
 {
     /**
-     * @param mixed $subject
+     * @param mixed $input
      *
-     * @psalm-assert-if-true array|\ArrayAccess $subject
+     * @psalm-assert-if-true array|\ArrayAccess $input
      */
-    public function supports($subject): bool
+    public function supports($input): bool
     {
-        return is_array($subject) || $subject instanceof \ArrayAccess;
+        return is_array($input) || $input instanceof \ArrayAccess;
     }
 
     /**

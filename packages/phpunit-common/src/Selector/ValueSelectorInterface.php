@@ -10,20 +10,20 @@
 
 namespace Tailors\PHPUnit\Selector;
 
+use Tailors\PHPUnit\Common\SupportInterface;
 use Tailors\PHPUnit\InvalidArgumentException;
 
 /**
  * @internal This interface is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-template SupportedInput
+ *
+ * @template-extends SupportInterface<SupportedInput>
  */
-interface ValueSelectorInterface
+interface ValueSelectorInterface extends SupportInterface
 {
-    /**
-     * @param mixed $subject
-     */
-    public function supports($subject): bool;
-
     /**
      * @param mixed $subject
      * @param mixed $key
@@ -34,6 +34,8 @@ interface ValueSelectorInterface
      * @throws InvalidArgumentException
      *
      * @psalm-param array-key $key
+     *
+     * @psalm-assert SupportedInput $subject
      */
     public function select($subject, $key, &$retval): bool;
 

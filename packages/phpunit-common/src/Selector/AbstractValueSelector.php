@@ -18,6 +18,8 @@ use Tailors\PHPUnit\InvalidArgumentException;
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-template SubjectType
+ *
+ * @template-implements ValueSelectorInterface<SubjectType>
  */
 abstract class AbstractValueSelector implements ValueSelectorInterface
 {
@@ -29,6 +31,8 @@ abstract class AbstractValueSelector implements ValueSelectorInterface
      * @throws InvalidArgumentException
      *
      * @psalm-param array-key $key
+     *
+     * @psalm-assert SubjectType $subject
      */
     final public function select($subject, $key, &$retval = null): bool
     {

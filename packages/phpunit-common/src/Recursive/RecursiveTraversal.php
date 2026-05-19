@@ -11,8 +11,8 @@
 namespace Tailors\PHPUnit\Recursive;
 
 use Tailors\PHPUnit\Common\ReferenceStorage;
-use Tailors\PHPUnit\Values\ValuesInterface;
-use Tailors\PHPUnit\Values\ValuesWrapperInterface;
+use Tailors\PHPUnit\Spec\ArraySpecInterface;
+use Tailors\PHPUnit\Spec\ArraySpecWrapperInterface;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -38,12 +38,12 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
     /**
      * @var bool
      */
-    private $noUnwrapValuesWrappers;
+    private $noUnwrapArraySpecs;
 
     /**
      * @var bool
      */
-    private $noWalkNestedValuesInterface;
+    private $noWalkNestedArraySpecs;
 
     /**
      * @var bool
@@ -53,24 +53,24 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
     /**
      * Initializes the object.
      */
-    public function __construct(bool $noUnwrapValuesWrappers = false, bool $noWalkNestedValuesInterface = false, bool $noWalkNestedArrays = false)
+    public function __construct(bool $noUnwrapArraySpecs = false, bool $noWalkNestedArraySpecs = false, bool $noWalkNestedArrays = false)
     {
         $this->seen = new ReferenceStorage();
         $this->stack = [];
-        $this->noUnwrapValuesWrappers = $noUnwrapValuesWrappers;
-        $this->noWalkNestedValuesInterface = $noWalkNestedValuesInterface;
+        $this->noUnwrapArraySpecs = $noUnwrapArraySpecs;
+        $this->noWalkNestedArraySpecs = $noWalkNestedArraySpecs;
         $this->noWalkNestedArrays = $noWalkNestedArrays;
     }
 
     /**
      * Walk recursively through $values and unwrap nested instances of
-     * ValuesInterface when suitable.
+     * ArraySpecInterface when suitable.
      *
      * @psalm-template StackItem of RecursiveVisitorStackItemInterface
      *
      * @psalm-param RecursiveVisitorInterface<StackItem> $visitor
      */
-    public function walk(ValuesInterface $values, RecursiveVisitorInterface $visitor): void
+    public function walk(ArraySpecInterface $values, RecursiveVisitorInterface $visitor): void
     {
         $this->seen = new ReferenceStorage();
         $this->stack = [];
@@ -85,9 +85,9 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
     }
 
     /**
-     * @param array|ValuesInterface $node
+     * @param array|ArraySpecInterface $node
      *
-     * @psalm-template T of array|ValuesInterface
+     * @psalm-template T of array|ArraySpecInterface
      * @psalm-template StackItem of RecursiveVisitorStackItemInterface
      *
      * @psalm-param T                                    $node
@@ -121,7 +121,7 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
     }
 
     /**
-     * @param array|ValuesInterface $node
+     * @param array|ArraySpecInterface $node
      *
      * @psalm-template StackItem of RecursiveVisitorStackItemInterface
      *
@@ -166,13 +166,13 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
             return;
         }
 
-        if (!$this->noUnwrapValuesWrappers && $value instanceof ValuesWrapperInterface) {
-            $node = $value->getValues();
+        if (!$this->noUnwrapArraySpecs && $value instanceof ArraySpecWrapperInterface) {
+            $node = $value->getArraySpec();
         } else {
             $node = $value;
         }
 
-        if (!$this->noWalkNestedValuesInterface && $node instanceof ValuesInterface) {
+        if (!$this->noWalkNestedArraySpecs && $node instanceof ArraySpecInterface) {
             $this->walkRecursive($node, $visitor);
 
             return;

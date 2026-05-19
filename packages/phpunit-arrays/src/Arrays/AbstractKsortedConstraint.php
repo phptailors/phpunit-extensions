@@ -23,6 +23,8 @@ use Tailors\PHPUnit\Comparator\ComparatorInterface;
 
 /**
  * Abstract base class for constraints that compare key-sorted arrays.
+ *
+ * @psalm-type SupportedInput = array
  */
 abstract class AbstractKsortedConstraint extends Constraint
 {
@@ -88,7 +90,7 @@ abstract class AbstractKsortedConstraint extends Constraint
         if (!$success) {
             $f = null;
 
-            if ($this->supports($other)) {
+            if ($this->supportsValue($other)) {
                 $f = new ComparisonFailure(
                     $this->expected,
                     $other,
@@ -145,10 +147,12 @@ abstract class AbstractKsortedConstraint extends Constraint
      * constraint is met, false otherwise.
      *
      * @param mixed $other value or object to evaluate
+     *
+     * @psalm-assert-if-true SupportedInput $other
      */
     final protected function matches($other): bool
     {
-        if (!$this->supports($other)) {
+        if (!$this->supportsValue($other)) {
             return false;
         }
 
@@ -156,11 +160,11 @@ abstract class AbstractKsortedConstraint extends Constraint
     }
 
     /**
-     * @param mixed $other value or object to evaluate
+     * @param mixed $other
      *
-     * @psalm-assert-if-true array $other
+     * @psalm-assert-if-true SupportedInput $other
      */
-    final protected function supports($other): bool
+    final protected function supportsValue($other): bool
     {
         return is_array($other);
     }

@@ -8,24 +8,25 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Recursive;
-
-use Tailors\PHPUnit\Spec\ArraySpecInterface;
-
+namespace Tailors\PHPUnit\Common;
 
 /**
+ * An array of actual or expected values.
+ *
  * @internal This interface is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-template SupportedInput
  */
-interface RecursiveTraversalInterface
+interface SupportInterface
 {
     /**
-     * @psalm-template StackItem of RecursiveVisitorStackItemInterface
+     * @param mixed $input
      *
-     * @psalm-param RecursiveVisitorInterface<StackItem> $visitor
+     * @psalm-assert-if-true SupportedInput $input
      */
-    public function walk(ArraySpecInterface $values, RecursiveVisitorInterface $visitor): void;
+    public function supports($input): bool;
 }
 
 // vim: syntax=php sw=4 ts=4 et:

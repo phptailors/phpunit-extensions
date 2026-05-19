@@ -23,7 +23,7 @@ use Tailors\PHPUnit\StringArgumentValidator;
  *      private static $negatedVerb;    // for example $negatedVerb = 'does not extend class';
  *      private static $validation;     // for example $validation = ['class_exists', 'a class-string'];
  *      private static $inheritance;    // for example $validation = 'class_parents';
- *      private static $supports;       // for example $supports = ['class_exists'];
+ *      private static $supportsInheritance;       // for example $supportsInheritance = ['class_exists'];
  *
  * @internal This trait is not covered by the backward compatibility promise
  *
@@ -44,7 +44,7 @@ trait ConstraintImplementationTrait
     }
 
     /**
-     * Returns short description of what we examine, e.g. ``'impements interface'``.
+     * Returns short description of what we examine, e.g. ``'implements interface'``.
      */
     protected function verb(): string
     {
@@ -52,7 +52,7 @@ trait ConstraintImplementationTrait
     }
 
     /**
-     * Returns short negated description of what we examine, e.g. ``'does not impement interface'``.
+     * Returns short negated description of what we examine, e.g. ``'does not implement interface'``.
      */
     protected function negatedVerb(): string
     {
@@ -75,7 +75,7 @@ trait ConstraintImplementationTrait
     /**
      * Checks if *$subject* may be used as an argument to inheritance().
      */
-    protected function supports(string $subject): bool
+    protected function supportsValue(string $subject): bool
     {
         foreach (self::$supports as $function) {
             if (call_user_func($function, $subject)) {

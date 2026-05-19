@@ -10,6 +10,13 @@
 
 namespace Tailors\PHPUnit\Selector;
 
+/**
+ * @internal This class is not covered by the backward compatibility promise
+ *
+ * @psalm-internal Tailors\PHPUnit
+ *
+ * @template-implements ValueSelectorInterface<mixed>
+ */
 final class DummyValueSelector implements ValueSelectorInterface
 {
     /**

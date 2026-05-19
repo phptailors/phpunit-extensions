@@ -8,24 +8,19 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Recursive;
-
-use Tailors\PHPUnit\Spec\ArraySpecInterface;
-
+namespace Tailors\PHPUnit\Spec;
 
 /**
  * @internal This interface is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-interface RecursiveTraversalInterface
+interface ArraySpecWrapperInterface
 {
     /**
-     * @psalm-template StackItem of RecursiveVisitorStackItemInterface
-     *
-     * @psalm-param RecursiveVisitorInterface<StackItem> $visitor
+     * Returns an instance of ArraySpecInterface.
      */
-    public function walk(ArraySpecInterface $values, RecursiveVisitorInterface $visitor): void;
+    public function getArraySpec(): ArraySpecInterface;
 }
 
 // vim: syntax=php sw=4 ts=4 et:

@@ -8,24 +8,23 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Recursive;
-
-use Tailors\PHPUnit\Spec\ArraySpecInterface;
-
+namespace Tailors\PHPUnit\Result;
 
 /**
  * @internal This interface is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-template SupportedInput
  */
-interface RecursiveTraversalInterface
+interface ResultFactoryWrapperInterface
 {
     /**
-     * @psalm-template StackItem of RecursiveVisitorStackItemInterface
+     * Returns an instance of ResultFactoryInterface.
      *
-     * @psalm-param RecursiveVisitorInterface<StackItem> $visitor
+     * @psalm-return ResultFactoryInterface<SupportedInput>
      */
-    public function walk(ArraySpecInterface $values, RecursiveVisitorInterface $visitor): void;
+    public function getResultFactory(): ResultFactoryInterface;
 }
 
 // vim: syntax=php sw=4 ts=4 et:
