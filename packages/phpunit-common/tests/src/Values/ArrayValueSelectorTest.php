@@ -65,7 +65,7 @@ final class ArrayValueSelectorTest extends TestCase
 
         yield 'ArrayValueSelectorTest.php:'.__LINE__ => [
             'subject' => new class() {},
-                'expect'  => false,
+            'expect'  => false,
         ];
 
         yield 'ArrayValueSelectorTest.php:'.__LINE__ => [
@@ -126,7 +126,7 @@ final class ArrayValueSelectorTest extends TestCase
 
             public function offsetSet($offset, $value): void {}
 
-                public function offsetUnset($offset): void {}
+            public function offsetUnset($offset): void {}
         };
 
         yield 'ArrayValueSelectorTest.php:'.__LINE__ => [

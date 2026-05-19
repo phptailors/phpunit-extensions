@@ -64,25 +64,29 @@ final class InvalidReturnValueExceptionTest extends TestCase
 
     public static function provFromExpectedTypeAndActualValue(): iterable
     {
-            yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
-                'sprintf', 'string', 123,
-            ];
-            yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
-                'inexistentFunction', 'string', 123,
-            ];
-            yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
-                [self::class, 'provFromExpectedTypeAndActualValue'], 'string', null,
-            ];
-            yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
-                [self::class, 'inexistentMethod'], 'string', null,
-            ];
-            yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
-                '', 'string', new \stdClass(),
-            ];
+        yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
+            'sprintf', 'string', 123,
+        ];
 
-            yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
-                function (string $s): string { return 2; }, 'a string', 2,
-            ];
+        yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
+            'inexistentFunction', 'string', 123,
+        ];
+
+        yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
+            [self::class, 'provFromExpectedTypeAndActualValue'], 'string', null,
+        ];
+
+        yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
+            [self::class, 'inexistentMethod'], 'string', null,
+        ];
+
+        yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
+            '', 'string', new \stdClass(),
+        ];
+
+        yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
+            function (string $s): string { return 2; }, 'a string', 2,
+        ];
     }
 
     /**

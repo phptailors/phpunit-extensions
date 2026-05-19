@@ -154,6 +154,7 @@ final class AbstractConstraintTest extends TestCase
             },
             'expect' => 'fails to be a tree with apples having colors specified',
         ];
+
         yield 'AbstractConstraintTest.php:'.__LINE__ => [
             'operator' => function (TestCase $test) use ($constraint): Operator {
                 return self::logicalOr($constraint($test));
@@ -184,9 +185,9 @@ final class AbstractConstraintTest extends TestCase
         // an unary constraint, always false
         $unaryOp = function (TestCase $test) use ($fooFOO) {
             return $test->getMockBuilder(UnaryOperator::class)
-                        ->setConstructorArgs([$fooFOO($test)])
-                        ->getMockForAbstractClass()
-                    ;
+                ->setConstructorArgs([$fooFOO($test)])
+                ->getMockForAbstractClass()
+            ;
         };
 
         yield 'AbstractConstraintTest.php:'.__LINE__ => [

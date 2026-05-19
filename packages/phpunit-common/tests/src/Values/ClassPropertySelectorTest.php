@@ -79,7 +79,7 @@ final class ClassPropertySelectorTest extends TestCase
         // #2
         yield 'object' => [
             'subject' => get_class(new class() {}),
-                'expect'  => true,
+            'expect'  => true,
         ];
 
         // #3
