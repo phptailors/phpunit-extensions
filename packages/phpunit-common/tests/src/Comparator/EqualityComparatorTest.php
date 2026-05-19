@@ -28,24 +28,22 @@ final class EqualityComparatorTest extends TestCase
         self::assertInstanceOf(ComparatorInterface::class, new EqualityComparator());
     }
 
-    public static function provCompare(): array
+    public static function provCompare(): iterable
     {
-        return [
-            'EqualityComparatorTest.php:'.__LINE__ => [
-                'a', 'a', true,
-            ],
+        yield 'EqualityComparatorTest.php:'.__LINE__ => [
+            'a', 'a', true,
+        ];
 
-            'EqualityComparatorTest.php:'.__LINE__ => [
-                '123', 123, true,
-            ],
+        yield 'EqualityComparatorTest.php:'.__LINE__ => [
+            '123', 123, true,
+        ];
 
-            'EqualityComparatorTest.php:'.__LINE__ => [
-                '', null, true,
-            ],
+        yield 'EqualityComparatorTest.php:'.__LINE__ => [
+            '', null, true,
+        ];
 
-            'EqualityComparatorTest.php:'.__LINE__ => [
-                'a', 'b', false,
-            ],
+        yield 'EqualityComparatorTest.php:'.__LINE__ => [
+            'a', 'b', false,
         ];
     }
 

@@ -41,48 +41,46 @@ final class ArrayValueSelectorTest extends TestCase
     //
 
     // @codeCoverageIgnoreStart
-    public static function provSupports(): array
+    public static function provSupports(): iterable
     {
-        return [
-            'ArrayValueSelectorTest.php:'.__LINE__ => [
-                'subject' => 'foo',
+        yield 'ArrayValueSelectorTest.php:'.__LINE__ => [
+            'subject' => 'foo',
+            'expect'  => false,
+        ];
+
+        yield 'ArrayValueSelectorTest.php:'.__LINE__ => [
+            'subject' => 123,
+            'expect'  => false,
+        ];
+
+        yield 'ArrayValueSelectorTest.php:'.__LINE__ => [
+            'subject' => null,
+            'expect'  => false,
+        ];
+
+        yield 'ArrayValueSelectorTest.php:'.__LINE__ => [
+            'subject' => self::class,
+            'expect'  => false,
+        ];
+
+        yield 'ArrayValueSelectorTest.php:'.__LINE__ => [
+            'subject' => new class() {},
                 'expect'  => false,
-            ],
+        ];
 
-            'ArrayValueSelectorTest.php:'.__LINE__ => [
-                'subject' => 123,
-                'expect'  => false,
-            ],
+        yield 'ArrayValueSelectorTest.php:'.__LINE__ => [
+            'subject' => new ArrayValueSelector(),
+            'expect'  => false,
+        ];
 
-            'ArrayValueSelectorTest.php:'.__LINE__ => [
-                'subject' => null,
-                'expect'  => false,
-            ],
+        yield 'ArrayValueSelectorTest.php:'.__LINE__ => [
+            'subject' => [],
+            'expect'  => true,
+        ];
 
-            'ArrayValueSelectorTest.php:'.__LINE__ => [
-                'subject' => self::class,
-                'expect'  => false,
-            ],
-
-            'ArrayValueSelectorTest.php:'.__LINE__ => [
-                'subject' => new class() {},
-                'expect'  => false,
-            ],
-
-            'ArrayValueSelectorTest.php:'.__LINE__ => [
-                'subject' => new ArrayValueSelector(),
-                'expect'  => false,
-            ],
-
-            'ArrayValueSelectorTest.php:'.__LINE__ => [
-                'subject' => [],
-                'expect'  => true,
-            ],
-
-            'ArrayValueSelectorTest.php:'.__LINE__ => [
-                'subject' => new \ArrayObject(),
-                'expect'  => true,
-            ],
+        yield 'ArrayValueSelectorTest.php:'.__LINE__ => [
+            'subject' => new \ArrayObject(),
+            'expect'  => true,
         ];
     }
 
@@ -104,7 +102,7 @@ final class ArrayValueSelectorTest extends TestCase
     //
 
     // @codeCoverageIgnoreStart
-    public static function provSelect(): array
+    public static function provSelect(): iterable
     {
         $arrayAccessFoo = new class() implements \ArrayAccess {
             /** @var string */
@@ -128,59 +126,57 @@ final class ArrayValueSelectorTest extends TestCase
 
             public function offsetSet($offset, $value): void {}
 
-            public function offsetUnset($offset): void {}
+                public function offsetUnset($offset): void {}
         };
 
-        return [
-            'ArrayValueSelectorTest.php:'.__LINE__ => [
-                'subject' => [
-                    'foo' => 'FOO',
-                ],
-                'key'    => 'foo',
-                'return' => true,
-                'expect' => 'FOO',
+        yield 'ArrayValueSelectorTest.php:'.__LINE__ => [
+            'subject' => [
+                'foo' => 'FOO',
             ],
+            'key'    => 'foo',
+            'return' => true,
+            'expect' => 'FOO',
+        ];
 
-            'ArrayValueSelectorTest.php:'.__LINE__ => [
-                'subject' => [
-                    'foo' => 'FOO',
-                ],
-                'key'    => 'bar',
-                'return' => false,
-                'expect' => null,
+        yield 'ArrayValueSelectorTest.php:'.__LINE__ => [
+            'subject' => [
+                'foo' => 'FOO',
             ],
+            'key'    => 'bar',
+            'return' => false,
+            'expect' => null,
+        ];
 
-            'ArrayValueSelectorTest.php:'.__LINE__ => [
-                'subject' => new \ArrayObject([
-                    'foo' => 'FOO',
-                ]),
-                'key'    => 'foo',
-                'return' => true,
-                'expect' => 'FOO',
-            ],
+        yield 'ArrayValueSelectorTest.php:'.__LINE__ => [
+            'subject' => new \ArrayObject([
+                'foo' => 'FOO',
+            ]),
+            'key'    => 'foo',
+            'return' => true,
+            'expect' => 'FOO',
+        ];
 
-            'ArrayValueSelectorTest.php:'.__LINE__ => [
-                'subject' => new \ArrayObject([
-                    'foo' => 'FOO',
-                ]),
-                'key'    => 'bar',
-                'return' => false,
-                'expect' => null,
-            ],
+        yield 'ArrayValueSelectorTest.php:'.__LINE__ => [
+            'subject' => new \ArrayObject([
+                'foo' => 'FOO',
+            ]),
+            'key'    => 'bar',
+            'return' => false,
+            'expect' => null,
+        ];
 
-            'ArrayValueSelectorTest.php:'.__LINE__ => [
-                'subject' => $arrayAccessFoo,
-                'key'     => 'foo',
-                'return'  => true,
-                'expect'  => 'FOO',
-            ],
+        yield 'ArrayValueSelectorTest.php:'.__LINE__ => [
+            'subject' => $arrayAccessFoo,
+            'key'     => 'foo',
+            'return'  => true,
+            'expect'  => 'FOO',
+        ];
 
-            'ArrayValueSelectorTest.php:'.__LINE__ => [
-                'subject' => $arrayAccessFoo,
-                'key'     => 'bar',
-                'return'  => false,
-                'expect'  => null,
-            ],
+        yield 'ArrayValueSelectorTest.php:'.__LINE__ => [
+            'subject' => $arrayAccessFoo,
+            'key'     => 'bar',
+            'return'  => false,
+            'expect'  => null,
         ];
     }
 
