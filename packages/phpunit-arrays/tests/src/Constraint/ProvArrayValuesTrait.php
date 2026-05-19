@@ -26,51 +26,48 @@ trait ProvArrayValuesTrait
      */
     abstract public static function createConstraint(...$args): Constraint;
 
-    public static function provArrayValuesIdenticalTo(): array
+    public static function provArrayValuesIdenticalTo(): iterable
     {
-        return [
-            'ProvArrayValuesTrait.php:'.__LINE__ => [
+            yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
                 'expect' => [],
                 'actual' => [],
                 'string' => 'array',
-            ],
+            ];
 
-            'ProvArrayValuesTrait.php:'.__LINE__ => [
+            yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
                 'expect' => [],
                 'actual' => ['foo' => 'FOO', 'bar' => 'BAR'],
                 'string' => 'array',
-            ],
+            ];
 
-            'ProvArrayValuesTrait.php:'.__LINE__ => [
+            yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
                 'expect' => ['foo' => 'FOO'],
                 'actual' => ['foo' => 'FOO'],
                 'string' => 'array',
-            ],
+            ];
 
-            'ProvArrayValuesTrait.php:'.__LINE__ => [
+            yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
                 'expect' => ['foo' => 'FOO'],
                 'actual' => ['foo' => 'FOO', 'bar' => 'BAR'],
                 'string' => 'array',
-            ],
+            ];
 
-            'ProvArrayValuesTrait.php:'.__LINE__ => [
+            yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
                 'expect' => ['foo' => 'FOO'],
                 'actual' => new \ArrayObject(['foo' => 'FOO']),
                 'string' => 'object ArrayObject',
-            ],
+            ];
 
-            'ProvArrayValuesTrait.php:'.__LINE__ => [
+            yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
                 'expect' => ['foo' => 'FOO'],
                 'actual' => new \ArrayObject(['foo' => 'FOO', 'bar' => 'BAR']),
                 'string' => 'object ArrayObject',
-            ],
-        ];
+            ];
     }
 
-    public static function provArrayValuesEqualButNotIdenticalTo(): array
+    public static function provArrayValuesEqualButNotIdenticalTo(): iterable
     {
-        return [
-            'ProvArrayValuesTrait.php:'.__LINE__ => [
+            yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
                 'expect' => [
                     'emptyString' => null,
                     'null'        => '',
@@ -86,72 +83,67 @@ trait ProvArrayValuesTrait
                     'boolFalse'   => false,
                 ],
                 'string' => 'array',
-            ],
+            ];
 
-            'ProvArrayValuesTrait.php:'.__LINE__ => [
+            yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
                 'expect' => ['foo' => 'FOO', 'arr' => new \ArrayObject(['bar' => 'BAR'])],
                 'actual' => ['foo' => 'FOO', 'arr' => new \ArrayObject(['bar' => 'BAR'])],
                 'string' => 'array',
-            ],
-        ];
+            ];
     }
 
-    public static function provArrayValuesNotEqualTo(): array
+    public static function provArrayValuesNotEqualTo(): iterable
     {
-        return [
-            'ProvArrayValuesTrait.php:'.__LINE__ => [
+            yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
                 'expect' => ['foo' => 'FOO', 'bar' => 'GEZ', 'int' => 21],
                 'actual' => ['foo' => 'FOO', 'bar' => 'BAR', 'int' => 21],
                 'string' => 'array',
-            ],
+            ];
 
-            'ProvArrayValuesTrait.php:'.__LINE__ => [
+            yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
                 'expect' => ['foo' => 'FOO', 'arr' => ['bar' => 'GEZ']],
                 'actual' => ['foo' => 'FOO', 'arr' => ['bar' => 'BAR']],
                 'string' => 'array',
-            ],
+            ];
 
-            'ProvArrayValuesTrait.php:'.__LINE__ => [
+            yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
                 'expect' => ['foo' => 'FOO', 'arr' => ['bar' => 'BAR']],
                 'actual' => ['foo' => 'FOO', 'arr' => new \ArrayObject(['bar' => 'BAR'])],
                 'string' => 'array',
-            ],
+            ];
 
-            'ProvArrayValuesTrait.php:'.__LINE__ => [
+            yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
                 'expect' => ['foo' => 'FOO', 'arr' => new \ArrayObject(['bar' => 'BAR'])],
                 'actual' => ['foo' => 'FOO', 'arr' => ['bar' => 'BAR']],
                 'string' => 'array',
-            ],
-        ];
+            ];
     }
 
-    public static function provArrayValuesNotEqualToNonArray(): array
+    public static function provArrayValuesNotEqualToNonArray(): iterable
     {
-        return [
-            'ProvArrayValuesTrait.php:'.__LINE__ => [
+            yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
                 'expect' => ['foo' => 'FOO'],
                 'actual' => 123,
                 'string' => '123',
-            ],
+            ];
 
-            'ProvArrayValuesTrait.php:'.__LINE__ => [
+            yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
                 'expect' => ['foo' => 'FOO'],
                 'actual' => 'arbitrary string',
                 'string' => '\'arbitrary string\'',
-            ],
+            ];
 
-            'ProvArrayValuesTrait.php:'.__LINE__ => [
+            yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
                 'expect' => ['foo' => 'FOO'],
                 'actual' => null,
                 'string' => 'null',
-            ],
+            ];
 
-            'ProvArrayValuesTrait.php:'.__LINE__ => [
+            yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
                 'expect' => ['foo' => 'FOO'],
                 'actual' => new \stdClass(),
                 'string' => 'object stdClass',
-            ],
-        ];
+            ];
     }
 
     // @codeCoverageIgnoreEnd
