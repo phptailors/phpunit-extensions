@@ -37,23 +37,20 @@ final class UsesTraitTest extends TestCase
     // required by InheritanceConstraintTestTrait
     public static function provFailureDescriptionOfCustomUnaryOperator(): iterable
     {
-        return [
-            'UsesTraitTest.php:'.__LINE__ => [
+            yield 'UsesTraitTest.php:'.__LINE__ => [
                 'constraint' => UsesTrait::create(ExampleTrait::class),
                 'subject'    => \Exception::class,
                 'expect'     => [
                     'exception' => ExpectationFailedException::class,
                     'message'   => '/Exception uses trait '.preg_quote(ExampleTrait::class, '/').'/',
                 ],
-            ],
-        ];
+            ];
     }
 
     // required by InheritanceConstraintTestTrait
     public static function provFailureDescriptionOfLogicalNotOperator(): iterable
     {
-        return [
-            'UsesTraitTest.php:'.__LINE__ => [
+            yield 'UsesTraitTest.php:'.__LINE__ => [
                 'constraint' => UsesTrait::create(ExampleTrait::class),
                 'subject'    => ExampleClassUsingTrait::class,
                 'expect'     => [
@@ -64,89 +61,82 @@ final class UsesTraitTest extends TestCase
                         preg_quote(ExampleTrait::class, '/')
                     ),
                 ],
-            ],
-        ];
+            ];
     }
 
-    public static function provUsesTrait(): array
+    public static function provUsesTrait(): iterable
     {
-        return [
-            'UsesTraitTest.php:'.__LINE__ => [
+            yield 'UsesTraitTest.php:'.__LINE__ => [
                 'trait'   => ExampleTrait::class,
                 'subject' => ExampleClassUsingTrait::class,
-            ],
-            'UsesTraitTest.php:'.__LINE__ => [
+            ];
+            yield 'UsesTraitTest.php:'.__LINE__ => [
                 'trait'   => ExampleTrait::class,
                 'subject' => new ExampleClassUsingTrait(),
-            ],
-            'UsesTraitTest.php:'.__LINE__ => [
+            ];
+            yield 'UsesTraitTest.php:'.__LINE__ => [
                 'trait'   => ExampleTrait::class,
                 'subject' => ExampleTraitUsingTrait::class,
-            ],
+            ];
             // case-insensitive match
-            'UsesTraitTest.php:'.__LINE__ => [
+            yield 'UsesTraitTest.php:'.__LINE__ => [
                 'trait'   => 'tailors\\PhPunit\\eXamples\\inhEritance\eXampletRait',
                 'subject' => 'tailors\\PhPunit\\eXamples\\inhEritance\eXampleclAssuSingtRait',
-            ],
-            'UsesTraitTest.php:'.__LINE__ => [
+            ];
+            yield 'UsesTraitTest.php:'.__LINE__ => [
                 'trait'   => 'tailors\\PhPunit\\eXamples\\inhEritance\eXampletRait',
                 'subject' => new ExampleClassUsingTrait(),
-            ],
-            'UsesTraitTest.php:'.__LINE__ => [
+            ];
+            yield 'UsesTraitTest.php:'.__LINE__ => [
                 'trait'   => 'tailors\\PhPunit\\eXamples\\inhEritance\eXampletRait',
                 'subject' => 'tailors\\PhPunit\\eXamples\\inhEritance\eXampletRaituSingtRait',
-            ],
-        ];
+            ];
     }
 
-    public static function provNotUsesTrait(): array
+    public static function provNotUsesTrait(): iterable
     {
         $template = 'Failed asserting that %s uses trait %s.';
 
-        return [
-            'UsesTraitTest.php:'.__LINE__ => [
+            yield 'UsesTraitTest.php:'.__LINE__ => [
                 'trait'   => ExampleTrait::class,
                 'subject' => ExampleClassNotUsingTrait::class,
                 'message' => sprintf($template, ExampleClassNotUsingTrait::class, ExampleTrait::class),
-            ],
-            'UsesTraitTest.php:'.__LINE__ => [
+            ];
+            yield 'UsesTraitTest.php:'.__LINE__ => [
                 'trait'   => ExampleTrait::class,
                 'subject' => new ExampleClassNotUsingTrait(),
                 'message' => sprintf($template, 'object '.ExampleClassNotUsingTrait::class, ExampleTrait::class),
-            ],
-            'UsesTraitTest.php:'.__LINE__ => [
+            ];
+            yield 'UsesTraitTest.php:'.__LINE__ => [
                 'trait'   => ExampleTrait::class,
                 'subject' => 'lorem ipsum',
                 'message' => sprintf($template, "'lorem ipsum'", ExampleTrait::class),
-            ],
-            'UsesTraitTest.php:'.__LINE__ => [
+            ];
+            yield 'UsesTraitTest.php:'.__LINE__ => [
                 'trait'   => ExampleTrait::class,
                 'subject' => 123,
                 'message' => sprintf($template, '123', ExampleTrait::class),
-            ],
-        ];
+            ];
     }
 
-    public static function provConstraintThrowsInvalidArgumentException(): array
+    public static function provConstraintThrowsInvalidArgumentException(): iterable
     {
         $message = '/Argument 1 passed to \S+ must be a trait-string/';
 
-        return [
-            'UsesTraitTest.php:'.__LINE__ => [
+            yield 'UsesTraitTest.php:'.__LINE__ => [
                 'argument' => 'non-trait string',
                 'message'  => $message,
-            ],
+            ];
 
-            'UsesTraitTest.php:'.__LINE__ => [
+            yield 'UsesTraitTest.php:'.__LINE__ => [
                 'argument' => \Exception::class,
                 'message'  => $message,
-            ],
+            ];
 
-            'UsesTraitTest.php:'.__LINE__ => [
+            yield 'UsesTraitTest.php:'.__LINE__ => [
                 'argument' => \Throwable::class,
                 'message'  => $message,
-            ],
-        ];
+            ];
     }
 
     /**
