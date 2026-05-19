@@ -24,17 +24,16 @@ abstract class PropertiesConstraintTestCase extends ConstraintTestCase
 {
     // @codeCoverageIgnoreStart
 
-    public static function provArrayWithNonStringKeys(): array
+    public static function provArrayWithNonStringKeys(): iterable
     {
-        return [
-            'PropertiesConstraintTestTrait.php:'.__LINE__ => [
+            yield 'PropertiesConstraintTestTrait.php:'.__LINE__ => [
                 'array' => [
                     'a' => 'A',
                     0   => 'B',
                 ],
                 'count' => 1,
-            ],
-            'PropertiesConstraintTestTrait.php:'.__LINE__ => [
+            ];
+            yield 'PropertiesConstraintTestTrait.php:'.__LINE__ => [
                 'array' => [
                     'a' => 'A',
                     0   => 'B',
@@ -43,8 +42,7 @@ abstract class PropertiesConstraintTestCase extends ConstraintTestCase
                     'e' => 'E',
                 ],
                 'count' => 3,
-            ],
-        ];
+            ];
     }
 
     // @codeCoverageIgnoreEnd
