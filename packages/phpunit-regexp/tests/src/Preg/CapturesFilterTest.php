@@ -23,18 +23,16 @@ use PHPUnit\Framework\TestCase;
  */
 final class CapturesFilterTest extends TestCase
 {
-    public static function provConstruct(): array
+    public static function provConstruct(): iterable
     {
-        return [
-            'CapturesFilterTest.php:'.__LINE__ => [
+            yield 'CapturesFilterTest.php:'.__LINE__ => [
                 'args'   => [],
                 'expect' => [],
-            ],
-            'CapturesFilterTest.php:'.__LINE__ => [
+            ];
+            yield 'CapturesFilterTest.php:'.__LINE__ => [
                 'args'   => [123],
                 'expect' => [],
-            ],
-        ];
+            ];
     }
 
     /**
@@ -46,139 +44,137 @@ final class CapturesFilterTest extends TestCase
         self::assertInstanceOf(CapturesFilterInterface::class, $filter);
     }
 
-    public static function provIsCapture(): array
+    public static function provIsCapture(): iterable
     {
-        return [
             // typical scalar values
-            'CapturesFilterTest.php:'.__LINE__ => [
+            yield 'CapturesFilterTest.php:'.__LINE__ => [
                 'args'   => [],
                 'value'  => null,
                 'expect' => false,
-            ],
+            ];
 
-            'CapturesFilterTest.php:'.__LINE__ => [
+            yield 'CapturesFilterTest.php:'.__LINE__ => [
                 'args'   => [PREG_UNMATCHED_AS_NULL],
                 'value'  => null,
                 'expect' => true,
-            ],
+            ];
 
-            'CapturesFilterTest.php:'.__LINE__ => [
+            yield 'CapturesFilterTest.php:'.__LINE__ => [
                 'args'   => [0xF0F0F0 | PREG_UNMATCHED_AS_NULL],
                 'value'  => null,
                 'expect' => true,
-            ],
+            ];
 
-            'CapturesFilterTest.php:'.__LINE__ => [
+            yield 'CapturesFilterTest.php:'.__LINE__ => [
                 'args'   => [],
                 'value'  => '',
                 'expect' => true,
-            ],
+            ];
 
             // typical array values
-            'CapturesFilterTest.php:'.__LINE__ => [
+            yield 'CapturesFilterTest.php:'.__LINE__ => [
                 'args'   => [],
                 'value'  => ['', 0],
                 'expect' => false,
-            ],
+            ];
 
-            'CapturesFilterTest.php:'.__LINE__ => [
+            yield 'CapturesFilterTest.php:'.__LINE__ => [
                 'args'   => [PREG_OFFSET_CAPTURE],
                 'value'  => ['', 0],
                 'expect' => true,
-            ],
+            ];
 
-            'CapturesFilterTest.php:'.__LINE__ => [
+            yield 'CapturesFilterTest.php:'.__LINE__ => [
                 'args'   => [PREG_OFFSET_CAPTURE],
                 'value'  => [null, 0],
                 'expect' => false,
-            ],
+            ];
 
-            'CapturesFilterTest.php:'.__LINE__ => [
+            yield 'CapturesFilterTest.php:'.__LINE__ => [
                 'args'   => [PREG_OFFSET_CAPTURE | PREG_UNMATCHED_AS_NULL],
                 'value'  => [null, 0],
                 'expect' => true,
-            ],
+            ];
 
-            'CapturesFilterTest.php:'.__LINE__ => [
+            yield 'CapturesFilterTest.php:'.__LINE__ => [
                 'args'   => [PREG_UNMATCHED_AS_NULL],
                 'value'  => [null, 0],
                 'expect' => false,
-            ],
+            ];
 
             // abnormal scalars
-            'CapturesFilterTest.php:'.__LINE__ => [
+            yield 'CapturesFilterTest.php:'.__LINE__ => [
                 'args'   => [],
                 'value'  => 123,
                 'expect' => false,
-            ],
+            ];
 
-            'CapturesFilterTest.php:'.__LINE__ => [
+            yield 'CapturesFilterTest.php:'.__LINE__ => [
                 'args'   => [],
                 'value'  => 123.456,
                 'expect' => false,
-            ],
+            ];
 
-            'CapturesFilterTest.php:'.__LINE__ => [
+            yield 'CapturesFilterTest.php:'.__LINE__ => [
                 'args'   => [],
                 'value'  => true,
                 'expect' => false,
-            ],
+            ];
 
-            'CapturesFilterTest.php:'.__LINE__ => [
+            yield 'CapturesFilterTest.php:'.__LINE__ => [
                 'args'   => [],
                 'value'  => false,
                 'expect' => false,
-            ],
+            ];
 
-            'CapturesFilterTest.php:'.__LINE__ => [
+            yield 'CapturesFilterTest.php:'.__LINE__ => [
                 'args'   => [],
                 'value'  => new \stdClass(),
                 'expect' => false,
-            ],
+            ];
 
             // abnomral arrays
-            'CapturesFilterTest.php:'.__LINE__ => [
+            yield 'CapturesFilterTest.php:'.__LINE__ => [
                 'args'   => [PREG_OFFSET_CAPTURE],
                 'value'  => [],
                 'expect' => false,
-            ],
+            ];
 
-            'CapturesFilterTest.php:'.__LINE__ => [
+            yield 'CapturesFilterTest.php:'.__LINE__ => [
                 'args'   => [PREG_OFFSET_CAPTURE],
                 'value'  => [''],
                 'expect' => false,
-            ],
+            ];
 
-            'CapturesFilterTest.php:'.__LINE__ => [
+            yield 'CapturesFilterTest.php:'.__LINE__ => [
                 'args'   => [PREG_OFFSET_CAPTURE | PREG_UNMATCHED_AS_NULL],
                 'value'  => [null],
                 'expect' => false,
-            ],
+            ];
 
-            'CapturesFilterTest.php:'.__LINE__ => [
+            yield 'CapturesFilterTest.php:'.__LINE__ => [
                 'args'   => [PREG_OFFSET_CAPTURE],
                 'value'  => ['', ''],
                 'expect' => false,
-            ],
+            ];
 
-            'CapturesFilterTest.php:'.__LINE__ => [
+            yield 'CapturesFilterTest.php:'.__LINE__ => [
                 'args'   => [PREG_OFFSET_CAPTURE],
                 'value'  => ['', true],
                 'expect' => false,
-            ],
+            ];
 
-            'CapturesFilterTest.php:'.__LINE__ => [
+            yield 'CapturesFilterTest.php:'.__LINE__ => [
                 'args'   => [PREG_OFFSET_CAPTURE],
                 'value'  => ['', false],
                 'expect' => false,
-            ],
+            ];
 
-            'CapturesFilterTest.php:'.__LINE__ => [
+            yield 'CapturesFilterTest.php:'.__LINE__ => [
                 'args'   => [PREG_OFFSET_CAPTURE],
                 'value'  => ['', 0, null],
                 'expect' => false,
-            ],
-        ];
+            ];
     }
 
     /**
@@ -192,7 +188,7 @@ final class CapturesFilterTest extends TestCase
         $this->assertSame($expect, $filter->accepts($value));
     }
 
-    public static function provFilter(): array
+    public static function provFilter(): iterable
     {
         $array = [
             '""'        => '',
@@ -205,17 +201,16 @@ final class CapturesFilterTest extends TestCase
             'object'    => new \stdClass(),
         ];
 
-        return [
-            'CapturesFilterTest.php:'.__LINE__ => [
+            yield 'CapturesFilterTest.php:'.__LINE__ => [
                 'args'   => [],
                 'array'  => $array,
                 'expect' => [
                     '""'    => '',
                     '"foo"' => 'foo',
                 ],
-            ],
+            ];
 
-            'CapturesFilterTest.php:'.__LINE__ => [
+            yield 'CapturesFilterTest.php:'.__LINE__ => [
                 'args'   => [PREG_UNMATCHED_AS_NULL],
                 'array'  => $array,
                 'expect' => [
@@ -223,9 +218,9 @@ final class CapturesFilterTest extends TestCase
                     'null'  => null,
                     '"foo"' => 'foo',
                 ],
-            ],
+            ];
 
-            'CapturesFilterTest.php:'.__LINE__ => [
+            yield 'CapturesFilterTest.php:'.__LINE__ => [
                 'args'   => [PREG_OFFSET_CAPTURE],
                 'array'  => $array,
                 'expect' => [
@@ -233,9 +228,9 @@ final class CapturesFilterTest extends TestCase
                     '"foo"'   => 'foo',
                     '["",-1]' => ['', -1],
                 ],
-            ],
+            ];
 
-            'CapturesFilterTest.php:'.__LINE__ => [
+            yield 'CapturesFilterTest.php:'.__LINE__ => [
                 'args'   => [PREG_OFFSET_CAPTURE | PREG_UNMATCHED_AS_NULL],
                 'array'  => $array,
                 'expect' => [
@@ -245,8 +240,7 @@ final class CapturesFilterTest extends TestCase
                     '["",-1]'  => ['', -1],
                     '[null,0]' => [null, -1],
                 ],
-            ],
-        ];
+            ];
     }
 
     /**
