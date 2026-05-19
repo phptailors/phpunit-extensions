@@ -45,12 +45,10 @@ if (!function_exists('Tailors\\PHPUnit\\testInvalidArgumentExceptionFromBackTrac
  */
 final class InvalidArgumentExceptionTest extends TestCase
 {
-    public static function provFromBackTrace(): array
+    public static function provFromBackTrace(): iterable
     {
-        return [
-            'InvalidArgumentExceptionTest.php:'.__LINE__ => [
-                1, 'a string', 'an integer',
-            ],
+        yield 'InvalidArgumentExceptionTest.php:'.__LINE__ => [
+            1, 'a string', 'an integer',
         ];
     }
 
