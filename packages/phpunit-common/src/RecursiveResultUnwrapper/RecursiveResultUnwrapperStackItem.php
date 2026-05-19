@@ -8,7 +8,7 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Recursive;
+namespace Tailors\PHPUnit\RecursiveResultUnwrapper;
 
 use Tailors\PHPUnit\Values\ValuesInterface;
 
@@ -17,7 +17,7 @@ use Tailors\PHPUnit\Values\ValuesInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class RecursiveUnwrapperStackItem implements RecursiveVisitorStackItemInterface
+final class RecursiveResultUnwrapperStackItem implements RecursiveVisitorStackItemInterface
 {
     /**
      * @var array|ValuesInterface

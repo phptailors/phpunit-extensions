@@ -63,8 +63,8 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
     }
 
     /**
-     * Walk recursively through $values and unwrap nested instances of
-     * ArraySpecInterface when suitable.
+     * Walk recursively through $values and apply methods defined by $visitor
+     * to all the visited elements.
      *
      * @psalm-template StackItem of RecursiveVisitorStackItemInterface
      *

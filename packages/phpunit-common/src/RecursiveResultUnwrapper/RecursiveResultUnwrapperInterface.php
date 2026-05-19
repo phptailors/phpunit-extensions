@@ -8,19 +8,21 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Spec;
+namespace Tailors\PHPUnit\RecursiveResultUnwrapper;
+
+use Tailors\PHPUnit\Values\ValuesInterface;
 
 /**
  * @internal This interface is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-interface ArraySpecWrapperInterface
+interface RecursiveResultUnwrapperInterface
 {
     /**
-     * Returns an instance of ArraySpecInterface.
+     * @psalm-return array
      */
-    public function getArraySpec(): ArraySpecInterface;
+    public function unwrap(ValuesInterface $values): array;
 }
 
 // vim: syntax=php sw=4 ts=4 et:

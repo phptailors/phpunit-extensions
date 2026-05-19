@@ -8,25 +8,25 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Selector;
+namespace Tailors\PHPUnit\ValueSelector;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @template-extends AbstractPropertySelector<object>
+ * @template-extends AbstractPropertySelector<class-string>
  */
-final class ObjectPropertySelector extends AbstractPropertySelector
+final class ClassPropertySelector extends AbstractPropertySelector
 {
     /**
      * @param mixed $input
      *
-     * @psalm-assert-if-true object $input
+     * @psalm-assert-if-true class-string $input
      */
     public function supports($input): bool
     {
-        return is_object($input);
+        return is_string($input) && class_exists($input);
     }
 
     /**
@@ -34,7 +34,7 @@ final class ObjectPropertySelector extends AbstractPropertySelector
      */
     public function subject(): string
     {
-        return 'an object';
+        return 'a class';
     }
 
     /**
@@ -43,12 +43,12 @@ final class ObjectPropertySelector extends AbstractPropertySelector
      *
      * @return mixed
      *
-     * @psalm-param object    $subject
-     * @psalm-param array-key $key
+     * @psalm-param class-string $subject
+     * @psalm-param array-key    $key
      */
     protected function getSubjectAttribute($subject, $key)
     {
-        return $subject->{$key};
+        return $subject::${$key};
     }
 }
 

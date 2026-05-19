@@ -17,7 +17,7 @@ use Tailors\PHPUnit\Values\ValuesInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class RecursiveSelectorState
+final class RecursiveResultFactoryState
 {
     /**
      * @var mixed

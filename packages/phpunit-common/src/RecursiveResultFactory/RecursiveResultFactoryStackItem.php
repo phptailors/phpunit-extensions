@@ -17,15 +17,8 @@ use Tailors\PHPUnit\Values\ValuesInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class RecursiveSelectorStackItem implements RecursiveVisitorStackItemInterface
+final class RecursiveResultFactoryStackItem implements RecursiveVisitorStackItemInterface
 {
-    /**
-     * @var array|ValuesInterface
-     *
-     * @psalm-readonly
-     */
-    private $node;
-
     /**
      * @var mixed
      *
@@ -36,21 +29,19 @@ final class RecursiveSelectorStackItem implements RecursiveVisitorStackItemInter
     private $key;
 
     /**
-     * @var RecursiveSelectorState
+     * @var RecursiveResultFactoryState
      *
      * @psalm-readonly
      */
     private $state;
 
     /**
-     * @param array|ValuesInterface $node
      * @param mixed                 $key
      *
      * @psalm-param array-key $key
      */
-    public function __construct($node, $key, RecursiveSelectorState $state)
+    public function __construct($key, RecursiveResultFactoryState $state)
     {
-        $this->node = $node;
         $this->key = $key;
         $this->state = $state;
     }
@@ -64,7 +55,7 @@ final class RecursiveSelectorStackItem implements RecursiveVisitorStackItemInter
      */
     public function node()
     {
-        return $this->node;
+        return $this->state->node;
     }
 
     /**
@@ -87,7 +78,7 @@ final class RecursiveSelectorStackItem implements RecursiveVisitorStackItemInter
         $this->state->result[$this->key] = $value;
     }
 
-    public function state(): RecursiveSelectorState
+    public function state(): RecursiveResultFactoryState
     {
         return $this->state;
     }

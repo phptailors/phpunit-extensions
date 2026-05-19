@@ -8,7 +8,7 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Selector;
+namespace Tailors\PHPUnit\ValueSelector;
 
 use Tailors\PHPUnit\Common\SupportInterface;
 use Tailors\PHPUnit\InvalidArgumentException;

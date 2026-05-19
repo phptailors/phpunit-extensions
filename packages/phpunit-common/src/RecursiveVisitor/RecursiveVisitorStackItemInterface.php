@@ -22,7 +22,7 @@ interface RecursiveVisitorStackItemInterface
     /**
      * @return mixed
      *
-     * @psalm-return array|ValuesInterface
+     * @psalm-return array|ArraySpecInterface
      *
      * @psalm-mutation-free
      */

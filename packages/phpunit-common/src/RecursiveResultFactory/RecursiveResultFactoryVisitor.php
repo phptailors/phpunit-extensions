@@ -12,27 +12,36 @@ namespace Tailors\PHPUnit\Recursive;
 
 use Tailors\PHPUnit\CircularDependencyException;
 use Tailors\PHPUnit\InternalErrorException;
+use Tailors\PHPUnit\Result\ResultFactoryInterface;
+use Tailors\PHPUnit\Result\ResultFactoryWrapperInterface;
 use Tailors\PHPUnit\Selector\ValueSelectorInterface;
 use Tailors\PHPUnit\Selector\ValueSelectorWrapperInterface;
-use Tailors\PHPUnit\Values\ValuesInterface;
+use Tailors\PHPUnit\Spec\ArraySpecInterface;
 
 /**
  * @internal This interface is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type StackItem RecursiveSelectorStackItem
+ * @psalm-type StackItem RecursiveResultFactoryStackItem
  *
- * @template-implements RecursiveVisitorInterface<RecursiveSelectorStackItem>
+ * @template-implements RecursiveVisitorInterface<RecursiveResultFactoryStackItem>
  */
-final class RecursiveSelectorVisitor implements RecursiveVisitorInterface
+final class RecursiveResultFactoryVisitor implements RecursiveVisitorInterface
 {
     /**
-     * @var ValueSelectorInterface
+     * @var ArraySpecInterface
      *
      * @psalm-readonly
      */
-    private $valueSelector;
+    private $node;
+
+    /**
+     * @var bool
+     *
+     * @psalm-readonly
+     */
+    private $actual;
 
     /**
      * @var mixed
@@ -47,16 +56,17 @@ final class RecursiveSelectorVisitor implements RecursiveVisitorInterface
     private $result;
 
     /**
-     * @var ?RecursiveSelectorState
+     * @var ?RecursiveResultFactoryState
      */
     private $state;
 
     /**
      * @param mixed $subject
      */
-    public function __construct(ValueSelectorInterface $valueSelector, $subject)
+    public function __construct(bool $actual, ArraySpecInterface $node, $subject)
     {
-        $this->valueSelector = $valueSelector;
+        $this->actual = $actual;
+        $this->node = $node;
         $this->subject = $subject;
     }
 
@@ -71,7 +81,7 @@ final class RecursiveSelectorVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param array|ValuesInterface $node
+     * @param array|ArraySpecInterface $node
      *
      * @psalm-param list<StackItem> $stack
      */
@@ -81,13 +91,13 @@ final class RecursiveSelectorVisitor implements RecursiveVisitorInterface
             return false;
         }
 
-        $this->state = new RecursiveSelectorState($subject, $result);
+        $this->state = new RecursiveResultFactoryState($subject, $result);
 
         return true;
     }
 
     /**
-     * @param array|ValuesInterface $node
+     * @param array|ArraySpecInterface $node
      *
      * @psalm-param list<StackItem> $stack
      */
@@ -137,7 +147,7 @@ final class RecursiveSelectorVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param array|ValuesInterface $node
+     * @param array|ArraySpecInterface $node
      *
      * @throws CircularDependencyException
      *
@@ -149,7 +159,7 @@ final class RecursiveSelectorVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param array|ValuesInterface $node
+     * @param array|ArraySpecInterface $node
      * @param mixed                 $key
      *
      * @psalm-param array-key       $key
@@ -164,7 +174,7 @@ final class RecursiveSelectorVisitor implements RecursiveVisitorInterface
             throw InternalErrorException::fromBackTrace('$this->state is null');
         }
 
-        return new RecursiveSelectorStackItem($node, $key, $this->state);
+        return new RecursiveResultFactoryStackItem($node, $key, $this->state);
     }
 
     /**
@@ -177,7 +187,7 @@ final class RecursiveSelectorVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param array|ValuesInterface $node
+     * @param array|ArraySpecInterface $node
      * @param mixed                 $subject
      * @param mixed                 $result
      *
@@ -186,10 +196,18 @@ final class RecursiveSelectorVisitor implements RecursiveVisitorInterface
      * @psalm-param-out mixed $subject
      * @psalm-param-out mixed $result
      *
-     * @psalm-assert-if-true array|ValuesInterface $result
+     * @psalm-assert-if-true array|ArraySpecInterface $result
      */
     private function selectIfIterable($node, array $stack, &$subject, &$result): bool
     {
+        $parentState = $this->getParentState($stack);
+
+
+
+        if ($parentNode instanceof ValueSelectorWrapperInterface) {
+            $valueSelector = $parentNode->getValueSelector();
+        }
+
         if (0 === count($stack)) {
             return $this->selectValueIfIterable($node, $this->subject, $subject, $result);
         }
@@ -198,7 +216,7 @@ final class RecursiveSelectorVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param array|ValuesInterface $node
+     * @param array|ArraySpecInterface $node
      * @param mixed                 $subject
      * @param mixed                 $result
      *
@@ -207,7 +225,7 @@ final class RecursiveSelectorVisitor implements RecursiveVisitorInterface
      * @psalm-param-out mixed $subject
      * @psalm-param-out mixed $result
      *
-     * @psalm-assert-if-true array|ValuesInterface $result
+     * @psalm-assert-if-true array|ArraySpecInterface $result
      */
     private function selectNestedIfIterable($node, array $stack, &$subject, &$result): bool
     {
@@ -220,9 +238,9 @@ final class RecursiveSelectorVisitor implements RecursiveVisitorInterface
         /** @psalm-var mixed */
         $parentSubject = $top->state()->subject;
 
-        if ($parentNode instanceof ValuesInterface) {
+        if ($parentNode instanceof ArraySpecInterface) {
             /** @psalm-suppress MissingThrowsDocblock */
-            if (!$this->getValueSelector($parentNode)->select($parentSubject, $key, $value)) {
+            if (!$this->getResultFactory($parentNode)->select($parentSubject, $key, $value)) {
                 return false;
             }
         } elseif (is_array($parentSubject)) {
@@ -243,7 +261,7 @@ final class RecursiveSelectorVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param array|ValuesInterface $node
+     * @param array|ArraySpecInterface $node
      * @param mixed                 $value
      * @param mixed                 $subject
      * @param mixed                 $result
@@ -256,30 +274,30 @@ final class RecursiveSelectorVisitor implements RecursiveVisitorInterface
      * @psalm-param-out mixed $result
      *
      * @psalm-assert-if-true T $subject
-     * @psalm-assert-if-true array|ValuesInterface $result
+     * @psalm-assert-if-true array|ArraySpecInterface $result
      */
     private function selectValueIfIterable($node, $value, &$subject, &$result): bool
     {
-        if ($node instanceof ValuesInterface && !$node->actual()) {
-            if (!$this->getValueSelector($node)->supports($value)) {
-                return false;
-            }
-
-            $subject = $value;
-            $result = $node->createActualValues();
-
-            return true;
-        }
-
-        if (!is_array($node) || !is_array($value)) {
-            return false;
-        }
-
-        // Just copy the array.
-        $subject = $value;
-        $result = $value;
-
-        return true;
+//        if ($node instanceof ArraySpecInterface && !$node->actual()) {
+//            if (!$this->getResultFactory($node)->supports($value)) {
+//                return false;
+//            }
+//
+//            $subject = $value;
+//            $result = $node->createActualValues();
+//
+//            return true;
+//        }
+//
+//        if (!is_array($node) || !is_array($value)) {
+//            return false;
+//        }
+//
+//        // Just copy the array.
+//        $subject = $value;
+//        $result = $value;
+//
+//        return true;
     }
 
     /**
@@ -299,13 +317,13 @@ final class RecursiveSelectorVisitor implements RecursiveVisitorInterface
         /** @psalm-var mixed */
         $parentSubject = $top->state()->subject;
 
-        if (!$parentNode instanceof ValuesInterface) {
+        if (!$parentNode instanceof ArraySpecInterface) {
             // array, leave its terminal item as is.
             return false;
         }
 
         /** @psalm-suppress MissingThrowsDocblock */
-        if (!$this->getValueSelector($parentNode)->select($parentSubject, $key, $result)) {
+        if (!$this->getResultFactory($parentNode)->select($parentSubject, $key, $result)) {
             return false;
         }
 
@@ -338,14 +356,18 @@ final class RecursiveSelectorVisitor implements RecursiveVisitorInterface
         }, $stack));
     }
 
-    private function getValueSelector(object $node): ValueSelectorInterface
+    /**
+     * @param list<RecursiveResultFactoryStackItem> $stack
+     */
+    private function getParentState(array $stack): RecursiveResultFactoryState
     {
-        if ($node instanceof ValueSelectorWrapperInterface) {
-            return $node->getValueSelector();
+        if (0 === ($count = count($stack))) {
+            return new RecursiveResultFactoryState($this->node, $this->subject, $this->result);
         }
 
-        return $this->valueSelector;
+        return $stack[$count - 1]->state();
     }
+
 }
 
 // vim: syntax=php sw=4 ts=4 et:

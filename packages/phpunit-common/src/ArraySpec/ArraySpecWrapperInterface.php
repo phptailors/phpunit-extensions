@@ -8,19 +8,16 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Selector;
+namespace Tailors\PHPUnit\ArraySpec;
 
 /**
  * @internal This interface is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-interface ValueSelectorWrapperInterface
+interface ArraySpecWrapperInterface
 {
-    /**
-     * Returns an instance of ValueSelectorInterface.
-     */
-    public function getValueSelector(): ValueSelectorInterface;
+    public function getArraySpec(): ArraySpecInterface;
 }
 
 // vim: syntax=php sw=4 ts=4 et:
