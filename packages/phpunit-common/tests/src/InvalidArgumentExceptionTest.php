@@ -14,6 +14,11 @@ use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 
 if (!function_exists('Tailors\\PHPUnit\\testInvalidArgumentExceptionFromBackTrace')) {
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     *
+     * @codeCoverageIgnore
+     */
     function testInvalidArgumentExceptionFromBackTrace(
         int $argument,
         string $expected,
@@ -38,6 +43,7 @@ if (!function_exists('Tailors\\PHPUnit\\testInvalidArgumentExceptionFromBackTrac
  * @small
  *
  * @covers \Tailors\PHPUnit\InvalidArgumentException
+ * @covers \Tailors\PHPUnit\InvalidArgumentExceptionTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *
@@ -45,15 +51,22 @@ if (!function_exists('Tailors\\PHPUnit\\testInvalidArgumentExceptionFromBackTrac
  */
 final class InvalidArgumentExceptionTest extends TestCase
 {
+    /**
+     * @psalm-return iterable<string, list{int, string, string}>
+     *
+     * @codeCoverageIgnore
+     */
     public static function provFromBackTrace(): iterable
     {
-        yield 'InvalidArgumentExceptionTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             1, 'a string', 'an integer',
         ];
     }
 
     /**
      * @dataProvider provFromBackTrace
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testFromBackTrace(int $argument, string $expected, string $provided): void
     {
@@ -71,6 +84,8 @@ final class InvalidArgumentExceptionTest extends TestCase
 
     /**
      * @dataProvider provFromBackTrace
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testFromBackTraceFromFunction(int $argument, string $expected, string $provided): void
     {

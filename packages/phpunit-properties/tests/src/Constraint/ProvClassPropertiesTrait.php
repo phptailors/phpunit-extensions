@@ -17,27 +17,43 @@ namespace Tailors\PHPUnit\Constraint;
  */
 trait ProvClassPropertiesTrait
 {
-    // @codeCoverageIgnoreStart
-
+    /**
+     * @psalm-return iterable<string, array{
+     *      expect: array<string, mixed>,
+     *      actual: string,
+     *      string: string
+     * }>
+     *
+     * @codeCoverageIgnore
+     */
     public static function provClassPropertiesIdenticalTo(): iterable
     {
         $classes = [
             get_class(new class() {
+                /** @var string */
                 public static $emptyString = '';
+
+                /** @var mixed */
                 public static $null;
+
+                /** @var string */
                 public static $string123 = '123';
+
+                /** @var int */
                 public static $int321 = 321;
+
+                /** @var bool */
                 public static $boolFalse = false;
             }),
         ];
 
-        yield 'ProvClassPropertiesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => [],
             'actual' => $classes[0],
             'string' => $classes[0],
         ];
 
-        yield 'ProvClassPropertiesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => [
                 'emptyString' => '',
                 'null'        => null,
@@ -50,46 +66,80 @@ trait ProvClassPropertiesTrait
         ];
     }
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      expect: array<string, mixed>,
+     *      actual: string,
+     *      string: string
+     * }>
+     *
+     * @codeCoverageIgnore
+     */
     public static function provClassPropertiesEqualButNotIdenticalTo(): iterable
     {
         $classes = [
             get_class(new class() {
+                /** @var string */
                 public static $emptyString = '';
+
+                /** @var mixed */
                 public static $null;
+
+                /** @var string */
                 public static $string123 = '123';
+
+                /** @var int */
                 public static $int321 = 321;
+
+                /** @var bool */
                 public static $boolFalse = false;
             }),
         ];
 
-        return [
-            yield 'ProvClassPropertiesTrait.php:'.__LINE__ => [
-                'expect' => [
-                    'emptyString' => null,
-                    'null'        => '',
-                    'string123'   => 123,
-                    'int321'      => '321',
-                    'boolFalse'   => 0,
-                ],
-                'actual' => $classes[0],
-                'string' => $classes[0],
+        yield basename(__FILE__).':'.__LINE__ => [
+            'expect' => [
+                'emptyString' => null,
+                'null'        => '',
+                'string123'   => 123,
+                'int321'      => '321',
+                'boolFalse'   => 0,
             ],
+            'actual' => $classes[0],
+            'string' => $classes[0],
         ];
     }
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      expect: array<string, mixed>,
+     *      actual: class-string,
+     *      string: string
+     * }>
+     *
+     * @codeCoverageIgnore
+     */
     public static function provClassPropertiesNotEqualTo(): iterable
     {
         $classes = [
             get_class(new class() {
+                /** @var string */
                 public static $emptyString = '';
+
+                /** @var mixed */
                 public static $null;
+
+                /** @var string */
                 public static $string123 = '123';
+
+                /** @var int */
                 public static $int321 = 321;
+
+                /** @var bool */
                 public static $boolFalse = false;
             }),
         ];
 
-        yield 'ProvClassPropertiesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => [
                 'emptyString' => 'foo',
                 'null'        => 1,
@@ -102,38 +152,45 @@ trait ProvClassPropertiesTrait
         ];
     }
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      expect: array<string, mixed>,
+     *      actual: mixed,
+     *      string: string
+     * }>
+     *
+     * @codeCoverageIgnore
+     */
     public static function provClassPropertiesNotEqualToNonClass(): iterable
     {
-        yield 'ProvClassPropertiesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['foo' => 'FOO'],
             'actual' => 123,
             'string' => '123',
         ];
 
-        yield 'ProvClassPropertiesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['foo' => 'FOO'],
             'actual' => 'arbitrary string',
             'string' => '\'arbitrary string\'',
         ];
 
-        yield 'ProvClassPropertiesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['foo' => 'FOO'],
             'actual' => null,
             'string' => 'null',
         ];
 
-        yield 'ProvClassPropertiesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['foo' => 'FOO'],
             'actual' => ['foo' => 'FOO'],
             'string' => 'array',
         ];
 
-        yield 'ProvClassPropertiesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['foo' => 'FOO'],
             'actual' => new \stdClass(),
             'string' => 'object stdClass',
         ];
     }
-
-    // @codeCoverageIgnoreEnd
 }

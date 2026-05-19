@@ -13,30 +13,100 @@ namespace Tailors\PHPUnit\Constraint;
 use PHPUnit\Framework\Constraint\LogicalNot;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\InvalidArgumentException;
 
 /**
  * @small
  *
  * @covers \Tailors\PHPUnit\Constraint\HasPregCaptures
- * @covers \Tailors\PHPUnit\Constraint\ProvHasPregCapturesTrait
+ * @covers \Tailors\PHPUnit\Constraint\HasPregCapturesTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-import-type ArrayLike from TypesInterface
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 final class HasPregCapturesTest extends TestCase
 {
     use ProvHasPregCapturesTrait;
 
     /**
-     * @dataProvider provHasPregCaptures
+     * @psalm-return iterable<string, array{
+     *      expect: array,
+     *      actual: array
+     * }>
+     *
+     * @codeCoverageIgnore
+     */
+    public static function provHasPregCapturesSucceeds(): iterable
+    {
+        $cases = (function (): iterable {
+            yield from self::provHasPregCaptures();
+        })();
+
+        foreach ($cases as $key => $case) {
+            yield $key => [
+                'expect' => $case['expect'],
+                'actual' => $case['actual'],
+            ];
+        }
+    }
+
+    /**
+     * @psalm-return iterable<string, array{
+     *      expect: array,
+     *      actual: mixed
+     * }>
+     *
+     * @codeCoverageIgnore
+     */
+    public static function provNotHasPregCapturesSucceeds(): iterable
+    {
+        $cases = (function (): iterable {
+            yield from self::provNotHasPregCaptures();
+
+            yield from self::provNotHasPregCapturesNonArray();
+        })();
+
+        foreach ($cases as $key => $case) {
+            yield $key => [
+                'expect' => $case['expect'],
+                'actual' => $case['actual'],
+            ];
+        }
+    }
+
+    /**
+     * @dataProvider provHasPregCapturesSucceeds
      *
      * @param mixed $actual
+     *
+     * @psalm-param array $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testHasPregCapturesSucceeds(array $expect, $actual, string $message): void
+    public function testHasPregCapturesSucceeds(array $expect, $actual): void
     {
         $constraint = HasPregCaptures::create($expect);
+        self::assertThat($actual, $constraint);
+    }
+
+    /**
+     * @dataProvider provNotHasPregCapturesSucceeds
+     *
+     * @param mixed $actual
+     *
+     * @psalm-param array $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testNotHasPregCapturesSucceeds(array $expect, $actual): void
+    {
+        $constraint = new LogicalNot(HasPregCaptures::create($expect));
         self::assertThat($actual, $constraint);
     }
 
@@ -45,6 +115,10 @@ final class HasPregCapturesTest extends TestCase
      * @dataProvider provNotHasPregCapturesNonArray
      *
      * @param mixed $actual
+     *
+     * @psalm-param array $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testHasPregCapturesFails(array $expect, $actual, string $message): void
     {
@@ -53,25 +127,17 @@ final class HasPregCapturesTest extends TestCase
         $this->expectException(ExpectationFailedException::class);
         $this->expectExceptionMessage($message);
 
-        $constraint->evaluate($actual);
-    }
-
-    /**
-     * @dataProvider provNotHasPregCaptures
-     * @dataProvider provNotHasPregCapturesNonArray
-     *
-     * @param mixed $actual
-     */
-    public function testNotHasPregCapturesSucceeds(array $expect, $actual, string $message): void
-    {
-        $constraint = new LogicalNot(HasPregCaptures::create($expect));
-        self::assertThat($actual, $constraint);
+        $this->assertNull($constraint->evaluate($actual));
     }
 
     /**
      * @dataProvider provHasPregCaptures
      *
      * @param mixed $actual
+     *
+     * @psalm-param array $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testNotHasPregCapturesFails(array $expect, $actual, string $message): void
     {
@@ -80,24 +146,32 @@ final class HasPregCapturesTest extends TestCase
         $this->expectException(ExpectationFailedException::class);
         $this->expectExceptionMessage($message);
 
-        $constraint->evaluate($actual);
+        $this->assertNull($constraint->evaluate($actual));
     }
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      args: list{array},
+     *      message: string
+     * }>
+     *
+     * @codeCoverageIgnore
+     */
     public static function provCreateThrowsInvalidArgumentException(): iterable
     {
         $template = 'Argument 1 passed to '.HasPregCaptures::class.'::create() '.
             'must be an array of valid expectations, '.
             'invalid %s at %s given.';
 
-        yield 'HasPregCapturesTest.php:'.__LINE__ => [
-            'args' => [[
+        yield basename(__FILE__).':'.__LINE__ => [
+            'args'    => [[
                 'foo' => new \stdClass(),
             ]],
             'message' => sprintf($template, 'expectation', 'key \'foo\''),
         ];
 
-        yield 'HasPregCapturesTest.php:'.__LINE__ => [
-            'args' => [[
+        yield basename(__FILE__).':'.__LINE__ => [
+            'args'    => [[
                 0 => 123.456,
                 1 => false,
                 2 => ['', 1, ''],
@@ -111,6 +185,10 @@ final class HasPregCapturesTest extends TestCase
 
     /**
      * @dataProvider provCreateThrowsInvalidArgumentException
+     *
+     * @psalm-param list{array} $args
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testCreateThrowsInvalidArgumentException(array $args, string $message): void
     {

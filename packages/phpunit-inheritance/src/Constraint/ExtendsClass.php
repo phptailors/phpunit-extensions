@@ -10,46 +10,54 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
-use Tailors\PHPUnit\Inheritance\AbstractConstraint;
-use Tailors\PHPUnit\Inheritance\ConstraintImplementationTrait;
+use Tailors\PHPUnit\Inheritance\AbstractInheritanceConstraint;
+use Tailors\PHPUnit\InvalidArgumentException;
+use Tailors\PHPUnit\InvalidReturnValueException;
+use Tailors\PHPUnit\StringArgumentValidator;
 
 /**
  * Constraint that accepts classes that extend given class.
  */
-final class ExtendsClass extends AbstractConstraint
+final class ExtendsClass extends AbstractInheritanceConstraint
 {
-    use ConstraintImplementationTrait;
-
     /**
-     * @var string
-     */
-    private static $verb = 'extends class';
-
-    /**
-     * @var string
-     */
-    private static $negatedVerb = 'does not extend class';
-
-    /**
-     * @var array
+     * @throws InvalidArgumentException
      *
-     * @psalm-var array{0:callable, 1:string}
+     * @psalm-assert class-string $expected
      */
-    private static $validation = ['class_exists', 'a class-string'];
+    public static function create(string $expected): self
+    {
+        (new StringArgumentValidator('class_exists', 'a class-string'))->validate(1, $expected);
+
+        return new self($expected);
+    }
+
+    protected function verb(): string
+    {
+        return 'extends class';
+    }
+
+    protected function negatedVerb(): string
+    {
+        return 'does not extend class';
+    }
 
     /**
-     * @var callable
+     * @throws InvalidReturnValueException
      *
-     * @psalm-var callable
+     * @psalm-return array<class-string, class-string>
      */
-    private static $inheritance = 'class_parents';
+    protected function inheritance(string $class): array
+    {
+        $value = class_parents($class);
 
-    /**
-     * @var array
-     *
-     * @psalm-var array{0:callable}
-     */
-    private static $supports = ['class_exists'];
+        return false === $value ? [] : $value;
+    }
+
+    protected function supports(string $subject): bool
+    {
+        return class_exists($subject);
+    }
 }
 
 // vim: syntax=php sw=4 ts=4 et:

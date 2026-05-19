@@ -16,32 +16,41 @@ use PHPUnit\Framework\TestCase;
  * @small
  *
  * @covers \Tailors\PHPUnit\InvalidReturnValueException
+ * @covers \Tailors\PHPUnit\InvalidReturnValueExceptionTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type FunctionSpec = array{0:object|string,1:string}|\Closure|string|int|null
  */
 final class InvalidReturnValueExceptionTest extends TestCase
 {
+    /**
+     * @psalm-return iterable<string, list{FunctionSpec, string, string}>
+     *
+     * @codeCoverageIgnore
+     */
     public static function provFromExpectedAndActual(): iterable
     {
-        yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'sprintf', 'a string', 'integer',
         ];
 
-        yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'inexistentFunction', 'a string', 'integer',
         ];
 
-        yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
-            function (string $s): string { return 2; }, 'a string', 'integer',
+        yield basename(__FILE__).':'.__LINE__ => [
+            /** @psalm-suppress InvalidReturnStatement,InvalidReturnType */
+            function (): string { return 2; }, 'a string', 'integer',
         ];
 
-        yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             123, 'a string', 'integer',
         ];
 
-        yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             null, 'a string', 'integer',
         ];
     }
@@ -51,7 +60,9 @@ final class InvalidReturnValueExceptionTest extends TestCase
      *
      * @param mixed $function
      *
-     * @psalm-param array{0:object|string,1:string}|callable|string $function
+     * @psalm-param FunctionSpec $function
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testFromExpectedAndActual($function, string $expected, string $actual): void
     {
@@ -62,30 +73,36 @@ final class InvalidReturnValueExceptionTest extends TestCase
         self::assertSame($message, $exception->getMessage());
     }
 
+    /**
+     * @psalm-return iterable<string, list{FunctionSpec, string, mixed}>
+     *
+     * @codeCoverageIgnore
+     */
     public static function provFromExpectedTypeAndActualValue(): iterable
     {
-        yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'sprintf', 'string', 123,
         ];
 
-        yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'inexistentFunction', 'string', 123,
         ];
 
-        yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             [self::class, 'provFromExpectedTypeAndActualValue'], 'string', null,
         ];
 
-        yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             [self::class, 'inexistentMethod'], 'string', null,
         ];
 
-        yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             '', 'string', new \stdClass(),
         ];
 
-        yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
-            function (string $s): string { return 2; }, 'a string', 2,
+        yield basename(__FILE__).':'.__LINE__ => [
+            /** @psalm-suppress InvalidReturnStatement,InvalidReturnType */
+            function (): string { return 2; }, 'a string', 2,
         ];
     }
 
@@ -95,7 +112,9 @@ final class InvalidReturnValueExceptionTest extends TestCase
      * @param mixed $function
      * @param mixed $actual
      *
-     * @psalm-param array{0:object|string,1:string}|callable|string $function
+     * @psalm-param FunctionSpec $function
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testFromExpectedTypeAndActualValue($function, string $expected, $actual): void
     {
@@ -110,7 +129,7 @@ final class InvalidReturnValueExceptionTest extends TestCase
     /**
      * @param mixed $function
      *
-     * @psalm-param array{0:object|string,1:string}|callable|string $function
+     * @psalm-param FunctionSpec $function
      */
     protected static function getFunctionName($function): string
     {

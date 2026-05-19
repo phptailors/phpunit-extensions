@@ -12,62 +12,131 @@ namespace Tailors\PHPUnit;
 
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
-use Tailors\PHPUnit\Constraint\ObjectPropertiesIdenticalTo;
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Constraint\ProvObjectPropertiesTrait;
 
 /**
  * @small
  *
  * @covers \Tailors\PHPUnit\ObjectPropertiesIdenticalToTrait
+ * @covers \Tailors\PHPUnit\ObjectPropertiesIdenticalToTraitTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-import-type ArrayLike from TypesInterface
+ *
+ * @psalm-type CtorArgs = list{ArrayLike}
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 final class ObjectPropertiesIdenticalToTraitTest extends TestCase
 {
     use ObjectPropertiesIdenticalToTrait;
     use ProvObjectPropertiesTrait;
 
-    public static function createConstraint(...$args): ObjectPropertiesIdenticalTo
+    /**
+     * @psalm-return iterable<string, array{expect: array, actual: object}>
+     *
+     * @codeCoverageIgnore
+     */
+    public static function provObjectPropertiesIdenticalToSucceeds(): iterable
     {
-        return ObjectPropertiesIdenticalTo::create(...$args);
+        $cases = (function (): iterable {
+            yield from self::provObjectPropertiesIdenticalTo();
+        })();
+
+        foreach ($cases as $key => $case) {
+            yield $key => [
+                'expect' => $case['expect'],
+                'actual' => $case['actual'],
+            ];
+        }
     }
 
     /**
-     * @dataProvider provObjectPropertiesIdenticalTo
+     * @psalm-return iterable<string, array{expect: array, actual: object}>
+     *
+     * @codeCoverageIgnore
      */
-    public function testObjectPropertiesIdenticalTo(array $expect, object $actual, string $string)
+    public static function provNotObjectPropertiesIdenticalToSucceeds(): iterable
+    {
+        $cases = (function (): iterable {
+            yield from self::provObjectPropertiesNotEqualTo();
+
+            yield from self::provObjectPropertiesEqualButNotIdenticalTo();
+        })();
+
+        foreach ($cases as $key => $case) {
+            yield $key => [
+                'expect' => $case['expect'],
+                'actual' => $case['actual'],
+            ];
+        }
+    }
+
+    /**
+     * @dataProvider provObjectPropertiesIdenticalToSucceeds
+     *
+     * @psalm-param array $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testObjectPropertiesIdenticalToSucceeds(array $expect, object $actual): void
     {
         self::assertThat($actual, self::objectPropertiesIdenticalTo($expect));
     }
 
     /**
-     * @dataProvider provObjectPropertiesNotEqualTo
-     * @dataProvider provObjectPropertiesEqualButNotIdenticalTo
+     * @dataProvider provObjectPropertiesIdenticalToSucceeds
+     *
+     * @psalm-param array $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testLogicalNotObjectPropertiesIdenticalTo(array $expect, object $actual, string $string)
-    {
-        self::assertThat($actual, self::logicalNot(self::objectPropertiesIdenticalTo($expect)));
-    }
-
-    /**
-     * @dataProvider provObjectPropertiesIdenticalTo
-     */
-    public function testAssertObjectPropertiesIdenticalTo(array $expect, object $actual, string $string)
+    public function testAssertObjectPropertiesIdenticalToSucceeds(array $expect, object $actual): void
     {
         self::assertObjectPropertiesIdenticalTo($expect, $actual);
     }
 
     /**
+     * @dataProvider provNotObjectPropertiesIdenticalToSucceeds
+     *
+     * @psalm-param array $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testLogicalNotObjectPropertiesIdenticalToSucceeds(array $expect, object $actual): void
+    {
+        self::assertThat($actual, self::logicalNot(self::objectPropertiesIdenticalTo($expect)));
+    }
+
+    /**
+     * @dataProvider provNotObjectPropertiesIdenticalToSucceeds
+     *
+     * @psalm-param array $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testAssertNotObjectPropertiesIdenticalToSucceeds(array $expect, object $actual): void
+    {
+        self::assertNotObjectPropertiesIdenticalTo($expect, $actual);
+    }
+
+    /**
      * @dataProvider provObjectPropertiesNotEqualTo
      * @dataProvider provObjectPropertiesEqualButNotIdenticalTo
+     *
+     * @psalm-param array $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertObjectPropertiesIdenticalToFails(array $expect, object $actual, string $string)
+    public function testAssertObjectPropertiesIdenticalToFails(array $expect, object $actual, string $string): void
     {
         $regexp = '/^Lorem ipsum.\n'.
-            'Failed asserting that object class\@.+ is an object '.
-            'with properties identical to specified./';
+            'Failed asserting that '.preg_quote($string, '/').' is an object '.
+            'with properties identical to the specified ones./';
         self::expectException(ExpectationFailedException::class);
         self::expectExceptionMessageMatches($regexp);
 
@@ -75,21 +144,17 @@ final class ObjectPropertiesIdenticalToTraitTest extends TestCase
     }
 
     /**
-     * @dataProvider provObjectPropertiesNotEqualTo
-     */
-    public function testAssertNotObjectPropertiesIdenticalTo(array $expect, object $actual, string $string)
-    {
-        self::assertNotObjectPropertiesIdenticalTo($expect, $actual);
-    }
-
-    /**
      * @dataProvider provObjectPropertiesIdenticalTo
+     *
+     * @psalm-param array $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertNotObjectPropertiesIdenticalToFails(array $expect, object $actual, string $string)
+    public function testAssertNotObjectPropertiesIdenticalToFails(array $expect, object $actual, string $string): void
     {
         $regexp = '/^Lorem ipsum.\n'.
-            'Failed asserting that object class@.+ fails to be an object '.
-            'with properties identical to specified./';
+            'Failed asserting that '.preg_quote($string, '/').' fails to be an object '.
+            'with properties identical to the specified ones./';
         self::expectException(ExpectationFailedException::class);
         self::expectExceptionMessageMatches($regexp);
 

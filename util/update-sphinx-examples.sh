@@ -120,9 +120,11 @@ for t_php in "${examples[@]}"; do
 
     $php_exe ../vendor/bin/phpunit -c sphinx/examples/phpunit.xml $t_php \
       | sed -e "\\:^$abstop/packages/phpunit-\\w\\+:d" \
+            -e "\\#^\\(\\(phpvfscomposer://\\)\\?${abstop}/\\)\\?\\(packages\\|vendor\\)\\(/[^/]\\+\\)\\+\\(\\.php\\)\\?:[0-9]\\+\\s*\$#d" \
             -e "s:$abstop/docs/sphinx/examples/\\([^/]*/\\)*\\(\\w\\+.php\\):\\2:" \
             -e "s|^\\(Configuration:\\s*\\)\\($abstop\\(/docs\\)\\?/\\)\\?sphinx/examples/phpunit\.xml|\\1phpunit.xml|" \
       | tee "$t_stdout";
 done
+            #-e "s|^\\(\\(phpvfscomposer://\\)\\?$abstop/\\)\\?\\(packages\\|vendor\\)\\(/[\\w-]\\+\\)\\+\\(\\.php\\)\\?:\\d\\+[\\r\\n]\\?||" \
 
 popd > /dev/null

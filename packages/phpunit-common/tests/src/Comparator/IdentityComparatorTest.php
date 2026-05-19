@@ -16,6 +16,7 @@ use PHPUnit\Framework\TestCase;
  * @small
  *
  * @covers \Tailors\PHPUnit\Comparator\IdentityComparator
+ * @covers \Tailors\PHPUnit\Comparator\IdentityComparatorTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *
@@ -23,26 +24,34 @@ use PHPUnit\Framework\TestCase;
  */
 final class IdentityComparatorTest extends TestCase
 {
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testImplementsComparatorInterface(): void
     {
         self::assertInstanceOf(ComparatorInterface::class, new IdentityComparator());
     }
 
+    /**
+     * @psalm-return iterable<string, list{mixed, mixed, bool}>
+     *
+     * @codeCoverageIgnore
+     */
     public static function provCompare(): iterable
     {
-        yield 'IdentityComparatorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'a', 'a', true,
         ];
 
-        yield 'IdentityComparatorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             '123', 123, false,
         ];
 
-        yield 'IdentityComparatorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             '', null, false,
         ];
 
-        yield 'IdentityComparatorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'a', 'b', false,
         ];
     }
@@ -52,6 +61,8 @@ final class IdentityComparatorTest extends TestCase
      *
      * @param mixed $left
      * @param mixed $right
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testCompare($left, $right, bool $expect): void
     {
@@ -59,6 +70,9 @@ final class IdentityComparatorTest extends TestCase
         self::assertSame($expect, $comparator->compare($left, $right));
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testAdjective(): void
     {
         $comparator = new IdentityComparator();

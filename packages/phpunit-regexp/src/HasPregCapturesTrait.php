@@ -87,6 +87,8 @@ trait HasPregCapturesTrait
      * properly only with arrays obtained from ``preg_match()`` invoked with
      * ``PREG_UNMATCHED_AS_NULL`` flag.
      *
+     * @param array $expected An array of expectations
+     *
      * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function hasPregCaptures(array $expected): HasPregCaptures

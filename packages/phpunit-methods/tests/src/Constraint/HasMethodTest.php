@@ -11,81 +11,147 @@
 namespace Tailors\PHPUnit\Constraint;
 
 use PHPUnit\Framework\Constraint\Constraint;
+use Tailors\PHPUnit\Common\AbstractConstraintTestCase;
 use Tailors\PHPUnit\InvalidArgumentException;
 
 /**
  * @small
  *
  * @covers \Tailors\PHPUnit\Constraint\HasMethod
+ * @covers \Tailors\PHPUnit\Constraint\HasMethodTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type ConstraintClass = HasMethod
+ * @psalm-type CtorArgs        = list{string}
+ *
+ * @template-extends AbstractConstraintTestCase<HasMethod, list{string}>
  */
-final class HasMethodTest extends TestCase
+final class HasMethodTest extends AbstractConstraintTestCase
 {
     use ProvHasMethodTrait;
 
     /**
-     * @param mixed $args
+     * @throws InvalidArgumentException
+     *
+     * @psalm-param CtorArgs $ctorArgs
      */
-    public static function createConstraint(...$args): Constraint
+    public static function createConstraint(array $ctorArgs): Constraint
     {
-        return HasMethod::create(...$args);
+        return HasMethod::create(...$ctorArgs);
     }
 
     /**
-     * Returns constraint's class name.
+     * @psalm-return iterable<string, array{
+     *      ctorArgs: CtorArgs,
+     *      actual: mixed,
+     *      message: string
+     * }>
      *
-     * @psalm-return class-string<ConstraintClass>
-     *
-     * @psalm-pure
+     * @codeCoverageIgnore
      */
-    public static function getConstraintClass(): string
+    public static function provConstraintUnaryOperatorFailure(): iterable
     {
-        return HasMethod::class;
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctorArgs' => ['foo'],
+            'actual'   => null,
+            'message'  => 'Failed asserting that null has method foo()',
+        ];
     }
 
     /**
-     * @dataProvider provHasMethodSucceeds
+     * @psalm-return iterable<string, array{
+     *      ctorArgs: CtorArgs,
+     *      actual: mixed
+     * }>
      *
-     * @param mixed $subject
+     * @codeCoverageIgnore
      */
-    public function testHasMethodMatchSucceeds(string $method, $subject): void
+    public static function provConstraintEvaluationSucceeds(): iterable
     {
-        parent::examineConstraintMatchSucceeds([$method], $subject);
+        foreach (self::provHasMethod() as $key => $case) {
+            yield $key => [
+                'ctorArgs' => [$case['method']],
+                'actual'   => $case['subject'],
+            ];
+        }
     }
 
     /**
-     * @dataProvider provHasMethodSucceeds
+     * @psalm-return iterable<string, array{
+     *      ctorArgs: CtorArgs,
+     *      actual: mixed,
+     *      message: string
+     * }>
      *
-     * @param mixed $subject
+     * @codeCoverageIgnore
      */
-    public function testNotHasMethodMatchFails(string $method, $subject, string $string): void
+    public static function provConstraintEvaluationFails(): iterable
     {
-        parent::examineNotConstraintMatchFails([$method], $subject, $string);
+        $cases = (function (): iterable {
+            yield from self::provNotHasMethod();
+        })();
+
+        foreach ($cases as $key => $case) {
+            yield $key => [
+                'ctorArgs' => [$case['method']],
+                'actual'   => $case['subject'],
+                'message'  => $case['message'],
+            ];
+        }
     }
 
     /**
-     * @dataProvider provHasMethodFails
+     * @psalm-return iterable<string, array{
+     *      ctorArgs: CtorArgs,
+     *      actual: mixed
+     * }>
      *
-     * @param mixed $subject
+     * @codeCoverageIgnore
      */
-    public function testHasMethodMatchFails(string $method, $subject, string $string): void
+    public static function provNotConstraintEvaluationSucceeds(): iterable
     {
-        parent::examineConstraintMatchFails([$method], $subject, $string);
+        $cases = (function (): iterable {
+            yield from self::provNotHasMethod();
+        })();
+
+        foreach ($cases as $key => $case) {
+            yield $key => [
+                'ctorArgs' => [$case['method']],
+                'actual'   => $case['subject'],
+            ];
+        }
     }
 
     /**
-     * @dataProvider provHasMethodFails
+     * @psalm-return iterable<string, array{
+     *      ctorArgs: CtorArgs,
+     *      actual: mixed,
+     *      message: string
+     * }>
      *
-     * @param mixed $subject
+     * @codeCoverageIgnore
      */
-    public function testNotHasMethodMatchSucceeds(string $method, $subject): void
+    public static function provNotConstraintEvaluationFails(): iterable
     {
-        parent::examineNotConstraintMatchSucceeds([$method], $subject);
+        $cases = (function (): iterable {
+            yield from self::provHasMethod();
+        })();
+
+        foreach ($cases as $key => $case) {
+            yield $key => [
+                'ctorArgs' => [$case['method']],
+                'actual'   => $case['subject'],
+                'message'  => $case['message'],
+            ];
+        }
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testCreateThrowsInvalidArgumentException(): void
     {
         $this->expectException(InvalidArgumentException::class);

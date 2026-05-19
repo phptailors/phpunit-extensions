@@ -56,6 +56,7 @@ recursively specification of array values. For more details, see
   :linenos:
   :language: none
 
+
 .. _constraints.arrayValuesIdenticalTo:
 
 arrayValuesIdenticalTo()
@@ -575,6 +576,78 @@ recursively specifications of object properties. For more details, see
 .. literalinclude:: examples/objectPropertiesIdenticalToRecursiveTest.stdout
   :linenos:
   :language: none
+
+
+.. _constraints.recursivelyKsortedArrayEqualTo:
+
+recursivelyKsortedArrayEqualTo()
+--------------------------------
+
+.. list-table:: Prerequisites for :ref:`constraints.recursivelyKsortedArrayEqualTo`
+   :width: 100%
+   :widths: 25 75
+   :header-rows: 0
+
+   * - Package
+     - phptailors/phpunit-arrays
+   * - Trait
+     - :class:`Tailors\\PHPUnit\\RecursivelyKsortedArrayEqualToTrait`
+
+Synopsis:
+
+.. code:: php
+
+  function recursivelyKsortedArrayEqualTo(array $expected)
+
+Creates :class:`Tailors\\PHPUnit\\Constraint\\RecursivelyKsortedArrayEqualTo` constraint.
+
+The constraint accepts arrays that are equal to ``$expected`` when key-sorted **recursively**.
+
+.. literalinclude:: examples/recursivelyKsortedArrayEqualToTest.php
+   :linenos:
+   :caption: Usage of :ref:`constraints.recursivelyKsortedArrayEqualTo`
+   :name: constraints.recursivelyKsortedArrayEqualTo.example
+
+.. literalinclude:: examples/recursivelyKsortedArrayEqualToTest.stdout
+  :linenos:
+  :language: none
+
+
+.. _constraints.recursivelyKsortedArrayIdenticalTo:
+
+recursivelyKsortedArrayIdenticalTo()
+------------------------------------
+
+.. list-table:: Prerequisites for :ref:`constraints.recursivelyKsortedArrayIdenticalTo`
+   :width: 100%
+   :widths: 25 75
+   :header-rows: 0
+
+   * - Package
+     - phptailors/phpunit-arrays
+   * - Trait
+     - :class:`Tailors\\PHPUnit\\RecursivelyKsortedArrayIdenticalToTrait`
+
+Synopsis:
+
+.. code:: php
+
+  function recursivelyKsortedArrayIdenticalTo(array $expected)
+
+Creates :class:`Tailors\\PHPUnit\\Constraint\\RecursivelyKsortedArrayIdenticalTo` constraint.
+
+The constraint accepts arrays identical to ``$expected`` when key-sorted **recursively**.
+
+.. literalinclude:: examples/recursivelyKsortedArrayIdenticalToTest.php
+   :linenos:
+   :caption: Usage of :ref:`constraints.recursivelyKsortedArrayIdenticalTo`
+   :name: constraints.recursivelyKsortedArrayIdenticalTo.example
+
+.. literalinclude:: examples/recursivelyKsortedArrayIdenticalToTest.stdout
+  :linenos:
+  :language: none
+
+
 
 .. _constraints.usesTrait:
 

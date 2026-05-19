@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit\Common;
 
+use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use SebastianBergmann\Exporter\Exporter as SebastianExporter;
 
@@ -17,34 +18,49 @@ use SebastianBergmann\Exporter\Exporter as SebastianExporter;
  * @small
  *
  * @covers \Tailors\PHPUnit\Common\Exporter
+ * @covers \Tailors\PHPUnit\Common\ExporterTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type ExportArgs = list{0:mixed, 1?:bool}
  */
 final class ExporterTest extends TestCase
 {
+    /**
+     * @psalm-return iterable<string, list{ExportArgs, string}>
+     *
+     * @codeCoverageIgnore
+     */
     public static function provExport(): iterable
     {
-        yield [[null], 'null'];
+        yield basename(__FILE__).':'.__LINE__ => [[null], 'null'];
 
-        yield [[null, true], 'null'];
+        yield basename(__FILE__).':'.__LINE__ => [[null, true], 'null'];
 
-        yield [[new \stdClass()], '{enable export of objects to see this value}'];
+        yield basename(__FILE__).':'.__LINE__ => [[new \stdClass()], '{enable export of objects to see this value}'];
 
-        yield [[['foo' => ['bar' => new \stdClass()]]], '{enable export of objects to see this value}'];
+        yield basename(__FILE__).':'.__LINE__ => [[['foo' => ['bar' => new \stdClass()]]], '{enable export of objects to see this value}'];
 
-        yield [[new \stdClass(), true], 'stdClass Object %s'];
+        yield basename(__FILE__).':'.__LINE__ => [[new \stdClass(), true], 'stdClass Object %s'];
     }
 
     /**
      * @dataProvider provExport
+     *
+     * @psalm-param ExportArgs $args
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testExport(array $args, string $format): void
     {
         $this->assertStringMatchesFormat($format, Exporter::export(...$args));
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testExportWithRecursiveArrayOfScalars(): void
     {
         $array = [];
@@ -53,6 +69,9 @@ final class ExporterTest extends TestCase
         $this->assertStringMatchesFormat($format, Exporter::export($array));
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testExportWithRecursiveArrayWithObject(): void
     {
         $array = ['foo' => new \ArrayObject()];
@@ -60,6 +79,106 @@ final class ExporterTest extends TestCase
         $format = (new SebastianExporter())->export($array);
         $this->assertStringMatchesFormat('{enable export of objects to see this value}', Exporter::export($array));
         $this->assertStringMatchesFormat($format, Exporter::export($array, true));
+    }
+
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testExporterWithExportableNameObject(): void
+    {
+        $top = new DummyNamedArray();
+        $top['foo'] = [
+            'bar' => new DummyNamedArray(),
+            'rec' => $top,
+        ];
+
+        $expected = [];
+        $expected[] = <<<'EOD'
+        DummyNamedArray &0 (
+            'foo' => Array &0 (
+                'bar' => DummyNamedArray &1 ()
+                'rec' => DummyNamedArray &0
+            )
+        )
+        EOD;
+
+        $expected[] = <<<'EOD'
+        DummyNamedArray &0 (
+            'foo' => Array &0 (
+                'bar' => DummyNamedArray &1 (),
+                'rec' => DummyNamedArray &0,
+            ),
+        )
+        EOD;
+
+        $expected[] = <<<'EOD'
+        DummyNamedArray &0 (
+            'foo' => Array &0 [
+                'bar' => DummyNamedArray &1 (),
+                'rec' => DummyNamedArray &0,
+            ],
+        )
+        EOD;
+
+        $exported = str_replace("\r", '', Exporter::export($top, true));
+
+        $this->assertThat($exported, $this->logicalOr(
+            $this->identicalTo(str_replace("\r", '', $expected[0])),
+            $this->identicalTo(str_replace("\r", '', $expected[1])),
+            $this->identicalTo(str_replace("\r", '', $expected[2]))
+        ));
+    }
+
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testExporterWithObjectLikeString(): void
+    {
+        $data = 'Tailors\InExistent\Class Object #123 ()';
+        $expected = (new SebastianExporter())->export($data);
+        $this->assertSame($expected, Exporter::export($data, true));
+    }
+
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testExporterWithObjectLikeStringOfNonExportableNameClass(): void
+    {
+        $data = self::class.' Object #123 ()';
+        $expected = (new SebastianExporter())->export($data);
+        $this->assertSame($expected, Exporter::export($data, true));
+    }
+
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testExporterWithObjectLikeStringContainingExportableName(): void
+    {
+        $data = DummyNamedArray::class.' Object #123 ()';
+        $expected = (new SebastianExporter())->export($data);
+        $this->assertSame($expected, Exporter::export($data, true));
+    }
+
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     *
+     * @codeCoverageIgnore
+     */
+    public function testExporterWithObjectLikeMultilineStringContainingExportableName(): void
+    {
+        $class = DummyNamedArray::class;
+
+        $data = "\n{$class} Object #123 ()\n";
+
+        $expected = (new SebastianExporter())->export($data);
+
+        try {
+            $this->assertSame($expected, Exporter::export($data, true));
+        } catch (ExpectationFailedException $e) {
+            $this->markTestSkipped(
+                'Multiline strings containing ExportableNameInterface objects cannot be handled correctly with this version of Exporter'
+            );
+        }
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

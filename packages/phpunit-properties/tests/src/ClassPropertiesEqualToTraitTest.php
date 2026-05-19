@@ -18,6 +18,7 @@ use Tailors\PHPUnit\Constraint\ProvClassPropertiesTrait;
  * @small
  *
  * @covers \Tailors\PHPUnit\ClassPropertiesEqualToTrait
+ * @covers \Tailors\PHPUnit\ClassPropertiesEqualToTraitTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *
@@ -29,31 +30,105 @@ final class ClassPropertiesEqualToTraitTest extends TestCase
     use ProvClassPropertiesTrait;
 
     /**
-     * @dataProvider provClassPropertiesIdenticalTo
-     * @dataProvider provClassPropertiesEqualButNotIdenticalTo
+     * @psalm-return iterable<string, array{expect: array, actual: string}>
+     *
+     * @codeCoverageIgnore
      */
-    public function testClassPropertiesEqualToSucceeds(array $expect, string $actual, string $string)
+    public static function provClassPropertiesEqualToSucceeds(): iterable
+    {
+        $cases = (function (): iterable {
+            yield from self::provClassPropertiesIdenticalTo();
+
+            yield from self::provClassPropertiesEqualButNotIdenticalTo();
+        })();
+
+        foreach ($cases as $key => $case) {
+            yield $key => [
+                'expect' => $case['expect'],
+                'actual' => $case['actual'],
+            ];
+        }
+    }
+
+    /**
+     * @psalm-return iterable<string, array{expect: array, actual: string}>
+     *
+     * @codeCoverageIgnore
+     */
+    public static function provNotClassPropertiesEqualToSucceeds(): iterable
+    {
+        $cases = (function (): iterable {
+            yield from self::provClassPropertiesNotEqualTo();
+        })();
+
+        foreach ($cases as $key => $case) {
+            yield $key => [
+                'expect' => $case['expect'],
+                'actual' => $case['actual'],
+            ];
+        }
+    }
+
+    /**
+     * @dataProvider provClassPropertiesEqualToSucceeds
+     *
+     * @psalm-param array $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testClassPropertiesEqualToSucceeds(array $expect, string $actual): void
     {
         self::assertThat($actual, self::classPropertiesEqualTo($expect));
     }
 
     /**
-     * @dataProvider provClassPropertiesIdenticalTo
-     * @dataProvider provClassPropertiesEqualButNotIdenticalTo
+     * @dataProvider provClassPropertiesEqualToSucceeds
+     *
+     * @psalm-param array $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertClassPropertiesEqualToSucceeds(array $expect, string $actual, string $string)
+    public function testAssertClassPropertiesEqualToSucceeds(array $expect, string $actual): void
     {
         self::assertClassPropertiesEqualTo($expect, $actual);
     }
 
     /**
-     * @dataProvider provClassPropertiesNotEqualTo
+     * @dataProvider provNotClassPropertiesEqualToSucceeds
+     *
+     * @psalm-param array $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertClassPropertiesEqualToFails(array $expect, string $actual, string $string)
+    public function testNotClassPropertiesEqualToSucceeds(array $expect, string $actual): void
+    {
+        self::assertThat($actual, self::logicalNot(self::classPropertiesEqualTo($expect)));
+    }
+
+    /**
+     * @dataProvider provNotClassPropertiesEqualToSucceeds
+     *
+     * @psalm-param array $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testAssertNotClassPropertiesEqualToSucceeds(array $expect, string $actual): void
+    {
+        self::assertNotClassPropertiesEqualTo($expect, $actual);
+    }
+
+    /**
+     * @dataProvider provClassPropertiesNotEqualTo
+     *
+     * @psalm-param array $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testAssertClassPropertiesEqualToFails(array $expect, string $actual, string $string): void
     {
         $regexp = '/^Lorem ipsum.\n'.
-            'Failed asserting that .+ is a class '.
-            'with properties equal to specified./';
+            'Failed asserting that '.preg_quote($string, '/').' is a class '.
+            'with properties equal to the specified ones./';
         self::expectException(ExpectationFailedException::class);
         self::expectExceptionMessageMatches($regexp);
 
@@ -61,30 +136,18 @@ final class ClassPropertiesEqualToTraitTest extends TestCase
     }
 
     /**
-     * @dataProvider provClassPropertiesNotEqualTo
-     */
-    public function testNotClassPropertiesEqualToSucceeds(array $expect, string $actual, string $string)
-    {
-        self::assertThat($actual, self::logicalNot(self::classPropertiesEqualTo($expect)));
-    }
-
-    /**
-     * @dataProvider provClassPropertiesNotEqualTo
-     */
-    public function testAssertNotClassPropertiesEqualToSucceeds(array $expect, string $actual, string $string)
-    {
-        self::assertNotClassPropertiesEqualTo($expect, $actual);
-    }
-
-    /**
      * @dataProvider provClassPropertiesIdenticalTo
      * @dataProvider provClassPropertiesEqualButNotIdenticalTo
+     *
+     * @psalm-param array $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertNotClassPropertiesEqualToFails(array $expect, string $actual, string $string)
+    public function testAssertNotClassPropertiesEqualToFails(array $expect, string $actual, string $string): void
     {
         $regexp = '/^Lorem ipsum.\n'.
-            'Failed asserting that .+ fails to be a class '.
-            'with properties equal to specified./';
+            'Failed asserting that '.preg_quote($string, '/').' fails to be a class '.
+            'with properties equal to the specified ones./';
         self::expectException(ExpectationFailedException::class);
         self::expectExceptionMessageMatches($regexp);
 

@@ -19,6 +19,7 @@ use Tailors\PHPUnit\Examples\Inheritance\ExampleTrait;
  * @small
  *
  * @covers \Tailors\PHPUnit\ImplementsInterfaceTrait
+ * @covers \Tailors\PHPUnit\ImplementsInterfaceTraitTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *
@@ -28,52 +29,70 @@ final class ImplementsInterfaceTraitTest extends TestCase
 {
     use ImplementsInterfaceTrait;
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      interface: string,
+     *      subject: mixed,
+     *      message: string
+     * }>
+     *
+     * @codeCoverageIgnore
+     */
     public static function provImplementsInterface(): iterable
     {
         $template = 'Failed asserting that %s does not implement interface %s.';
 
-        yield 'ImplementsInterfaceTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'interface' => \Throwable::class,
             'subject'   => \Exception::class,
             'message'   => sprintf($template, \Exception::class, \Throwable::class),
         ];
 
-        yield 'ImplementsInterfaceTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'interface' => \Throwable::class,
             'subject'   => new \Exception(),
             'message'   => sprintf($template, 'object '.\Exception::class, \Throwable::class),
         ];
 
-        yield 'ImplementsInterfaceTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'interface' => \Traversable::class,
             'subject'   => \Iterator::class,
             'message'   => sprintf($template, \Iterator::class, \Traversable::class),
         ];
     }
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      interface: string,
+     *      subject: mixed,
+     *      message: string
+     * }>
+     *
+     * @codeCoverageIgnore
+     */
     public static function provNotImplementsInterface(): iterable
     {
         $template = 'Failed asserting that %s implements interface %s.';
 
-        yield 'ImplementsInterfaceTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'interface' => \Traversable::class,
             'subject'   => \Exception::class,
             'message'   => sprintf($template, \Exception::class, \Traversable::class),
         ];
 
-        yield 'ImplementsInterfaceTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'interface' => \Traversable::class,
             'subject'   => new \Exception(),
             'message'   => sprintf($template, 'object '.\Exception::class, \Traversable::class),
         ];
 
-        yield 'ImplementsInterfaceTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'interface' => \Traversable::class,
             'subject'   => 'lorem ipsum',
             'message'   => sprintf($template, "'lorem ipsum'", \Traversable::class),
         ];
 
-        yield 'ImplementsInterfaceTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'interface' => \Traversable::class,
             'subject'   => 123,
             'message'   => sprintf($template, '123', \Traversable::class),
@@ -81,19 +100,89 @@ final class ImplementsInterfaceTraitTest extends TestCase
     }
 
     /**
-     * @dataProvider provImplementsInterface
+     * @psalm-return iterable<string, array{interface: string, subject: mixed}>
      *
-     * @param object|string $subject
+     * @codeCoverageIgnore
      */
-    public function testAssertImplementsInterfaceSucceeds(string $interface, $subject, string $message): void
+    public static function provImplementsInterfaceSucceeds(): iterable
+    {
+        foreach (self::provImplementsInterface() as $key => $case) {
+            yield $key => [
+                'interface' => $case['interface'],
+                'subject'   => $case['subject'],
+            ];
+        }
+    }
+
+    /**
+     * @psalm-return iterable<string, array{interface: string, subject: mixed}>
+     *
+     * @codeCoverageIgnore
+     */
+    public static function provNotImplementsInterfaceSucceeds(): iterable
+    {
+        foreach (self::provNotImplementsInterface() as $key => $case) {
+            yield $key => [
+                'interface' => $case['interface'],
+                'subject'   => $case['subject'],
+            ];
+        }
+    }
+
+    /**
+     * @dataProvider provImplementsInterfaceSucceeds
+     *
+     * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testImplementsInterfaceSucceeds(string $interface, $subject): void
+    {
+        self::assertThat($subject, self::implementsInterface($interface));
+    }
+
+    /**
+     * @dataProvider provImplementsInterfaceSucceeds
+     *
+     * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testAssertImplementsInterfaceSucceeds(string $interface, $subject): void
     {
         self::assertImplementsInterface($interface, $subject);
+    }
+
+    /**
+     * @dataProvider provNotImplementsInterfaceSucceeds
+     *
+     * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testLogicalNotImplementsInterfaceSucceeds(string $interface, $subject): void
+    {
+        self::assertThat($subject, self::logicalNot(self::implementsInterface($interface)));
+    }
+
+    /**
+     * @dataProvider provNotImplementsInterfaceSucceeds
+     *
+     * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testAssertNotImplementsInterfaceSucceeds(string $interface, $subject): void
+    {
+        self::assertNotImplementsInterface($interface, $subject);
     }
 
     /**
      * @dataProvider provNotImplementsInterface
      *
      * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testAssertImplementsInterfaceFails(string $interface, $subject, string $message): void
     {
@@ -104,19 +193,11 @@ final class ImplementsInterfaceTraitTest extends TestCase
     }
 
     /**
-     * @dataProvider provNotImplementsInterface
-     *
-     * @param mixed $subject
-     */
-    public function testAssertNotImplementsInterfaceSucceeds(string $interface, $subject, string $message): void
-    {
-        self::assertNotImplementsInterface($interface, $subject);
-    }
-
-    /**
      * @dataProvider provImplementsInterface
      *
      * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testAssertNotImplementsInterfaceFails(string $interface, $subject, string $message): void
     {
@@ -127,30 +208,28 @@ final class ImplementsInterfaceTraitTest extends TestCase
     }
 
     /**
-     * @dataProvider provNotImplementsInterface
+     * @psalm-return iterable<string, array{
+     *      argument: string,
+     *      message: string
+     * }>
      *
-     * @param mixed $subject
+     * @codeCoverageIgnore
      */
-    public function testImplementsInterfaceFails(string $interface, $subject, string $message): void
-    {
-        self::assertThat($subject, self::logicalNot(self::implementsInterface($interface)));
-    }
-
     public static function provImplementsInterfaceThrowsInvalidArgumentException(): iterable
     {
         $template = 'Argument 1 passed to %s::create() must be an interface-string, \'%s\' given';
 
-        yield 'ImplementsInterfaceTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'argument' => 'non-interface string',
             'message'  => sprintf($template, ImplementsInterface::class, 'non-interface string'),
         ];
 
-        yield 'ImplementsInterfaceTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'argument' => \Exception::class,
             'message'  => sprintf($template, ImplementsInterface::class, addslashes(\Exception::class)),
         ];
 
-        yield 'ImplementsInterfaceTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'argument' => ExampleTrait::class,
             'message'  => sprintf($template, ImplementsInterface::class, addslashes(ExampleTrait::class)),
         ];
@@ -158,6 +237,8 @@ final class ImplementsInterfaceTraitTest extends TestCase
 
     /**
      * @dataProvider provImplementsInterfaceThrowsInvalidArgumentException
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testImplementsInterfaceThrowsInvalidArgumentException(string $argument, string $message): void
     {

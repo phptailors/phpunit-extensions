@@ -27,8 +27,6 @@ final class Exporter
      * @param mixed $value
      *
      * @throws InvalidArgumentException
-     *
-     * @psalm-param mixed $value
      */
     public static function export($value, bool $exportObjects = false): string
     {
@@ -38,13 +36,13 @@ final class Exporter
             /**
              * @psalm-suppress InternalClass
              * @psalm-suppress InternalMethod
-             * @psalm-suppress MixedReturnStatement
+             * @psalm-suppress MixedArgument
              */
-            return \PHPUnit\Util\Exporter::export($value, $exportObjects);
+            return self::postprocessOutput(\PHPUnit\Util\Exporter::export($value, $exportObjects));
         }
 
         if (self::isExportable($value) || $exportObjects) {
-            return (new SebastianExporter())->export($value);
+            return self::postprocessOutput((new SebastianExporter())->export($value));
         }
 
         return '{enable export of objects to see this value}';
@@ -89,6 +87,44 @@ final class Exporter
 
         return true;
         // @codeCoverageIgnoreEnd
+    }
+
+    private static function postprocessOutput(string $output): string
+    {
+        return self::handleExportableNames($output);
+    }
+
+    private static function handleExportableNames(string $output): string
+    {
+        $counters = [];
+
+        /** @psalm-var string */
+        return preg_replace_callback(
+            '/^(\s*(?:(?:\'[^\']*\'|\"[^\"]*\"|\d+)\s*=>\s*)?)(\w+(?:\\\\\w+)*)\s+Object\s+(#\d+|&[0-9a-fA-f]+)/m',
+            function (array $matches) use (&$counters): string {
+                $class = $matches[2];
+
+                if (!class_exists($class) || !is_subclass_of($class, ExportableNameInterface::class, true)) {
+                    return $matches[0];
+                }
+
+                if (!array_key_exists($class, $counters)) {
+                    $counters[$class] = [];
+                }
+
+                $objId = $matches[3];
+                if (!array_key_exists($objId, $counters[$class])) {
+                    $counters[$class][$objId] = count($counters[$class]);
+                }
+
+                $name = $class::exportableName();
+
+                $level = $counters[$class][$objId];
+
+                return $matches[1].$name.' &'.((string) $level);
+            },
+            $output
+        );
     }
 }
 

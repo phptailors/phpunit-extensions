@@ -22,6 +22,7 @@ use Tailors\PHPUnit\Examples\Inheritance\ExampleTraitUsingTrait;
  * @small
  *
  * @covers \Tailors\PHPUnit\UsesTraitTrait
+ * @covers \Tailors\PHPUnit\UsesTraitTraitTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *
@@ -31,52 +32,70 @@ final class UsesTraitTraitTest extends TestCase
 {
     use UsesTraitTrait;
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      trait: string,
+     *      subject: mixed,
+     *      message: string
+     * }>
+     *
+     * @codeCoverageIgnore
+     */
     public static function provUsesTrait(): iterable
     {
         $template = 'Failed asserting that %s does not use trait %s.';
 
-        yield 'UsesTraitTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'trait'   => ExampleTrait::class,
             'subject' => ExampleClassUsingTrait::class,
             'message' => sprintf($template, ExampleClassUsingTrait::class, ExampleTrait::class),
         ];
 
-        yield 'UsesTraitTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'trait'   => ExampleTrait::class,
             'subject' => new ExampleClassUsingTrait(),
             'message' => sprintf($template, 'object '.ExampleClassUsingTrait::class, ExampleTrait::class),
         ];
 
-        yield 'UsesTraitTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'trait'   => ExampleTrait::class,
             'subject' => ExampleTraitUsingTrait::class,
             'message' => sprintf($template, ExampleTraitUsingTrait::class, ExampleTrait::class),
         ];
     }
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      trait: string,
+     *      subject: mixed,
+     *      message: string
+     * }>
+     *
+     * @codeCoverageIgnore
+     */
     public static function provNotUsesTrait(): iterable
     {
         $template = 'Failed asserting that %s uses trait %s.';
 
-        yield 'UsesTraitTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'trait'   => ExampleTrait::class,
             'subject' => ExampleClassNotUsingTrait::class,
             'message' => sprintf($template, ExampleClassNotUsingTrait::class, ExampleTrait::class),
         ];
 
-        yield 'UsesTraitTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'trait'   => ExampleTrait::class,
             'subject' => new ExampleClassNotUsingTrait(),
             'message' => sprintf($template, 'object '.ExampleClassNotUsingTrait::class, ExampleTrait::class),
         ];
 
-        yield 'UsesTraitTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'trait'   => ExampleTrait::class,
             'subject' => 'lorem ipsum',
             'message' => sprintf($template, "'lorem ipsum'", ExampleTrait::class),
         ];
 
-        yield 'UsesTraitTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'trait'   => ExampleTrait::class,
             'subject' => 123,
             'message' => sprintf($template, '123', ExampleTrait::class),
@@ -84,34 +103,79 @@ final class UsesTraitTraitTest extends TestCase
     }
 
     /**
-     * @dataProvider provUsesTrait
+     * @psalm-return iterable<string, array{trait: string, subject: mixed}>
+     *
+     * @codeCoverageIgnore
+     */
+    public static function provUsesTraitSucceeds(): iterable
+    {
+        foreach (self::provUsesTrait() as $key => $case) {
+            yield $key => [
+                'trait'   => $case['trait'],
+                'subject' => $case['subject'],
+            ];
+        }
+    }
+
+    /**
+     * @psalm-return iterable<string, array{trait: string, subject: mixed}>
+     *
+     * @codeCoverageIgnore
+     */
+    public static function provNotUsesTraitSucceeds(): iterable
+    {
+        foreach (self::provNotUsesTrait() as $key => $case) {
+            yield $key => [
+                'trait'   => $case['trait'],
+                'subject' => $case['subject'],
+            ];
+        }
+    }
+
+    /**
+     * @dataProvider provUsesTraitSucceeds
      *
      * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertUsesTraitSucceeds(string $trait, $subject, string $message): void
+    public function testUsesTraitSucceeds(string $trait, $subject): void
+    {
+        self::assertThat($subject, self::usesTrait($trait));
+    }
+
+    /**
+     * @dataProvider provUsesTraitSucceeds
+     *
+     * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testAssertUsesTraitSucceeds(string $trait, $subject): void
     {
         self::assertUsesTrait($trait, $subject);
     }
 
     /**
-     * @dataProvider provNotUsesTrait
+     * @dataProvider provNotUsesTraitSucceeds
      *
      * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertUsesTraitFails(string $trait, $subject, string $message): void
+    public function testLogicalNotUsesTraitSucceeds(string $trait, $subject): void
     {
-        self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessage($message);
-
-        self::assertUsesTrait($trait, $subject);
+        self::assertThat($subject, self::logicalNot(self::usesTrait($trait)));
     }
 
     /**
-     * @dataProvider provNotUsesTrait
+     * @dataProvider provNotUsesTraitSucceeds
      *
      * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertNotUsesTraitSucceeds(string $trait, $subject, string $message): void
+    public function testAssertNotUsesTraitSucceeds(string $trait, $subject): void
     {
         self::assertNotUsesTrait($trait, $subject);
     }
@@ -120,6 +184,8 @@ final class UsesTraitTraitTest extends TestCase
      * @dataProvider provUsesTrait
      *
      * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testAssertNotUsesTraitFails(string $trait, $subject, string $message): void
     {
@@ -130,40 +196,43 @@ final class UsesTraitTraitTest extends TestCase
     }
 
     /**
-     * @dataProvider provUsesTrait
-     *
-     * @param mixed $subject
-     */
-    public function testUsesTrait(string $trait, $subject, string $message): void
-    {
-        self::assertThat($subject, self::usesTrait($trait));
-    }
-
-    /**
      * @dataProvider provNotUsesTrait
      *
      * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testNotUsesTrait(string $trait, $subject, string $message): void
+    public function testAssertUsesTraitFails(string $trait, $subject, string $message): void
     {
-        self::assertThat($subject, self::logicalNot(self::usesTrait($trait)));
+        self::expectException(ExpectationFailedException::class);
+        self::expectExceptionMessage($message);
+
+        self::assertUsesTrait($trait, $subject);
     }
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      argument: string,
+     *      message: string
+     * }>
+     *
+     * @codeCoverageIgnore
+     */
     public static function provUsesTraitThrowsInvalidArgumentException(): iterable
     {
         $template = 'Argument 1 passed to %s::create() must be a trait-string';
 
-        yield 'UsesTraitTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'argument' => 'non-trait string',
             'message'  => sprintf($template, UsesTrait::class),
         ];
 
-        yield 'UsesTraitTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'argument' => \Exception::class,
             'message'  => sprintf($template, UsesTrait::class),
         ];
 
-        yield 'UsesTraitTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'argument' => \Throwable::class,
             'message'  => sprintf($template, UsesTrait::class),
         ];
@@ -171,6 +240,8 @@ final class UsesTraitTraitTest extends TestCase
 
     /**
      * @dataProvider provUsesTraitThrowsInvalidArgumentException
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testUsesTraitThrowsInvalidArgumentException(string $argument, string $message): void
     {

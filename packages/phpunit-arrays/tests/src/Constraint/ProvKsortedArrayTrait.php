@@ -10,64 +10,81 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
-use PHPUnit\Framework\Constraint\Constraint;
+use Tailors\PHPUnit\Common\TypesInterface;
 
 /**
  * @internal This trait is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-import-type ArrayLike from TypesInterface
+ *
+ * @psalm-type CtorArgs = list{0: array, 1?: int}
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 trait ProvKsortedArrayTrait
 {
-    // @codeCoverageIgnoreStart
-
     /**
-     * @param mixed $args
+     * @psalm-return iterable<string, array{
+     *      expect: array,
+     *      actual: mixed,
+     *      string: string
+     * }>
+     *
+     * @codeCoverageIgnore
      */
-    abstract public static function createConstraint(...$args): Constraint;
-
     public static function provKsortedArrayIdenticalTo(): iterable
     {
-        yield 'ProvKsortedArrayTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => [],
             'actual' => [],
             'string' => 'array',
         ];
 
-        yield 'ProvKsortedArrayTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['a' => 'A', 'b' => 'B'],
             'actual' => ['a' => 'A', 'b' => 'B'],
             'string' => 'array',
         ];
 
-        yield 'ProvKsortedArrayTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['b' => 'B', 'a' => 'A'],
             'actual' => ['a' => 'A', 'b' => 'B'],
             'string' => 'array',
         ];
 
-        yield 'ProvKsortedArrayTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['a' => 'A', 'b' => 'B'],
             'actual' => ['b' => 'B', 'a' => 'A'],
             'string' => 'array',
         ];
 
-        yield 'ProvKsortedArrayTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['a' => false, 'b' => 0, 'c' => '', 'd' => null],
             'actual' => ['a' => false, 'b' => 0, 'c' => '', 'd' => null],
             'string' => 'array',
         ];
 
-        yield 'ProvKsortedArrayTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['a' => ['b' => 'B']],
             'actual' => ['a' => ['b' => 'B']],
             'string' => 'array',
         ];
     }
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      expect: array,
+     *      actual: mixed,
+     *      string: string
+     * }>
+     *
+     * @codeCoverageIgnore
+     */
     public static function provKsortedArrayEqualButNotIdenticalTo(): iterable
     {
-        yield 'ProvKsortedArrayTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => [
                 'int321'    => '321',
                 'empty'     => null,
@@ -86,66 +103,82 @@ trait ProvKsortedArrayTrait
         ];
 
         // Nested arrays are not sorted
-        yield 'ProvKsortedArrayTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['foo' => 'FOO', 'arr' => ['bar' => 'BAR', 'gez' => 'GEZ']],
             'actual' => ['foo' => 'FOO', 'arr' => ['gez' => 'GEZ', 'bar' => 'BAR']],
             'string' => 'array',
         ];
     }
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      expect: array,
+     *      actual: mixed,
+     *      string: string
+     * }>
+     *
+     * @codeCoverageIgnore
+     */
     public static function provKsortedArrayNotEqualTo(): iterable
     {
-        yield 'ProvKsortedArrayTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['foo' => 'FOO', 'bar' => 'GEZ', 'int' => 21],
             'actual' => ['foo' => 'FOO', 'bar' => 'BAR', 'int' => 21],
             'string' => 'array',
         ];
 
-        yield 'ProvKsortedArrayTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['foo' => 'FOO', 'arr' => ['bar' => 'GEZ']],
             'actual' => ['foo' => 'FOO', 'arr' => ['bar' => 'BAR']],
             'string' => 'array',
         ];
 
-        yield 'ProvKsortedArrayTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['foo' => 'FOO', 'arr' => ['bar' => 'GEZ']],
             'actual' => 'arbitrary string',
             'string' => '\'arbitrary string\'',
         ];
 
-        yield 'ProvKsortedArrayTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['foo' => 'FOO', 'arr' => ['bar' => 'GEZ']],
             'actual' => \Exception::class,
             'string' => \Exception::class,
         ];
     }
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      expect: array,
+     *      actual: mixed,
+     *      string: string
+     * }>
+     *
+     * @codeCoverageIgnore
+     */
     public static function provKsortedArrayNotEqualToNonArray(): iterable
     {
-        yield 'ProvKsortedArrayTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['foo' => 'FOO'],
             'actual' => 123,
             'string' => '123',
         ];
 
-        yield 'ProvKsortedArrayTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['foo' => 'FOO'],
             'actual' => 'arbitrary string',
             'string' => '\'arbitrary string\'',
         ];
 
-        yield 'ProvKsortedArrayTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['foo' => 'FOO'],
             'actual' => null,
             'string' => 'null',
         ];
 
-        yield 'ProvKsortedArrayTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['foo' => 'FOO'],
             'actual' => new \stdClass(),
             'string' => 'object stdClass',
         ];
     }
-
-    // @codeCoverageIgnoreEnd
 }

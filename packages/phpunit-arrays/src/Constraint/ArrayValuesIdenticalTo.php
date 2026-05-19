@@ -10,59 +10,35 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
-use Tailors\PHPUnit\Arrays\ExpectedArrayValues;
-use Tailors\PHPUnit\Arrays\ValidateExpectationsTrait;
-use Tailors\PHPUnit\Comparator\ComparatorInterface;
+use Tailors\PHPUnit\Arrays\ArrayValuesSelection;
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Comparator\IdentityComparator;
-use Tailors\PHPUnit\Recursive\AbstractRecursiveConstraint;
-use Tailors\PHPUnit\Recursive\RecursiveConstraintSpecializationTrait;
-use Tailors\PHPUnit\Selector\ArrayValueSelector;
-use Tailors\PHPUnit\Selector\ValueSelectorInterface;
-use Tailors\PHPUnit\Values\ValuesInterface;
+use Tailors\PHPUnit\RecursiveConstraint\AbstractRecursiveConstraint;
+use Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactory;
+use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapper;
 
 /**
- * Constraint that accepts arrays having values identical to specified ones.
+ * @internal This trait is not covered by the backward compatibility promise
  *
- * Compares only values present in the array of expectations. The ``===``
- * operator (identity) is used for comparison.
+ * @psalm-internal Tailors\PHPUnit
  *
+ * @psalm-import-type ArrayLike from TypesInterface
  *
- *      $matcher = ArrayValuesIdenticalTo::create([
- *          'name' => 'John', 'age' => '21'
- *      ]);
- *
- *      self::assertThat([
- *          'age' => '21',
- *          'name' => 'John',
- *      ], $matcher);
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 final class ArrayValuesIdenticalTo extends AbstractRecursiveConstraint
 {
-    use RecursiveConstraintSpecializationTrait;
-    use ValidateExpectationsTrait;
-
     /**
-     * Creates instance of IdentityComparator.
+     * @psalm-param ArrayLike $expectations
      */
-    protected static function makeComparator(): ComparatorInterface
+    public static function create(iterable $expectations): self
     {
-        return new IdentityComparator();
-    }
-
-    /**
-     * Creates instance of ArrayValueSelector.
-     */
-    protected static function makeSelector(): ValueSelectorInterface
-    {
-        return new ArrayValueSelector();
-    }
-
-    /**
-     * Creates instance of ValuesInterface to be used as expected values.
-     */
-    protected static function makeExpectedValues(array $array): ValuesInterface
-    {
-        return new ExpectedArrayValues($array);
+        return new self(
+            new ArrayValuesSelection($expectations),
+            new IdentityComparator(),
+            RecursiveResultFactory::create(),
+            RecursiveResultUnwrapper::create()
+        );
     }
 }
 

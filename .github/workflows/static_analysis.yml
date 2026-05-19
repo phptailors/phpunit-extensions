@@ -27,6 +27,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
+      - name: Install extra PHP 7.4 (PHP 7.3 only)
+        if: matrix.php-version == '7.3'
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 7.4
+          coverage: none
+          tools: composer:v2
+
       - name: Install PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -40,8 +48,18 @@ jobs:
       - if: matrix.dependencies == 'lowest'
         run: composer update --no-interaction --no-progress --ansi --prefer-lowest
 
+      - name: Install psalm with PHP 7.4 and composer (PHP 7.3 only)
+        if: matrix.php-version == '7.3'
+        run: php7.4 `which composer` bin psalm update --no-interaction --ansi --no-progress
+
       - name: Install psalm with composer
+        if: matrix.php-version != '7.3'
         run: composer bin psalm update --no-interaction --ansi --no-progress
 
+      - name: Run vimeo/psalm on packages (PHP 7.3 only)
+        if: matrix.php-version == '7.3'
+        run: php7.4 bin/psalm --php-version=${{ matrix.php-version }} --no-progress --shepherd --show-info=true --stats
+
       - name: Run vimeo/psalm on packages
+        if: matrix.php-version != '7.3'
         run: bin/psalm --php-version=${{ matrix.php-version }} --no-progress --shepherd --show-info=true --stats

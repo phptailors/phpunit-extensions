@@ -10,10 +10,17 @@
         "psr-4": {
             "Tailors\\PHPUnit\\": [
                 "packages/phpunit-arrays/src/",
+                "packages/phpunit-arrays/utils/src/",
+                "packages/phpunit-common/dummy/src/",
                 "packages/phpunit-common/src/",
+                "packages/phpunit-common/utils/src/",
                 "packages/phpunit-inheritance/src/",
                 "packages/phpunit-methods/src/",
                 "packages/phpunit-properties/src/",
+                "packages/phpunit-properties/utils/src/",
+                "packages/phpunit-recursive/dummy/src/",
+                "packages/phpunit-recursive/src/",
+                "packages/phpunit-recursive/utils/src/",
                 "packages/phpunit-regexp/src/"
             ]
         }
@@ -26,6 +33,7 @@
                 "packages/phpunit-inheritance/tests/src/",
                 "packages/phpunit-methods/tests/src/",
                 "packages/phpunit-properties/tests/src/",
+                "packages/phpunit-recursive/tests/src/",
                 "packages/phpunit-regexp/tests/src/"
             ],
             "Tailors\\PHPUnit\\Docs\\Behat\\": "docs/sphinx/behat/"
@@ -66,6 +74,7 @@
         "phptailors/phpunit-inheritance": "1.1.x-dev",
         "phptailors/phpunit-methods": "1.1.x-dev",
         "phptailors/phpunit-properties": "1.1.x-dev",
+        "phptailors/phpunit-recursive": "1.1.x-dev",
         "phptailors/phpunit-regexp": "1.1.x-dev"
     },
     "minimum-stability": "dev",
