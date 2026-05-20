@@ -15,7 +15,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Recursive\DummyRecursiveVisitorStackItem
+ * @covers \Tailors\PHPUnit\RecursiveVisitor\DummyRecursiveVisitorStackItem
  *
  * @internal This class is not covered by the backward compatibility promise
  *
@@ -23,6 +23,9 @@ use PHPUnit\Framework\TestCase;
  */
 final class DummyRecursiveVisitorStackItemTest extends TestCase
 {
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testDummyRecursiveVisitorStackItem(): void
     {
         $item = new DummyRecursiveVisitorStackItem(['node'], 'key');

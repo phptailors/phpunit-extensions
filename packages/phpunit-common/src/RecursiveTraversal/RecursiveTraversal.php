@@ -12,6 +12,7 @@ namespace Tailors\PHPUnit\RecursiveTraversal;
 
 use Tailors\PHPUnit\Common\ReferenceStorage;
 use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorInterface;
+use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorStackItemInterface;
 
 /**
  * @internal This class is not covered by the backward compatibility promise

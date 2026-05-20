@@ -11,29 +11,33 @@
 namespace Tailors\PHPUnit\RecursiveVisitor;
 
 use PHPUnit\Framework\TestCase;
-use Tailors\PHPUnit\Values\ExpectedValues;
+use Tailors\PHPUnit\Values\DummyValues;
 
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Recursive\DummyRecursiveVisitor
+ * @covers \Tailors\PHPUnit\RecursiveVisitor\DummyRecursiveVisitor
  *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ClosureT = \Closure(array|\Traversable,list<array-key>):bool
- * @psalm-type ArgT     = bool|ClosureT
+ * @psalm-type StackItem = DummyRecursiveVisitorStackItem
+ * @psalm-type CtorArgClosure = \Closure(array|\Traversable,list<StackItem>):bool
+ * @psalm-type CtorArg  = bool|CtorArgClosure
+ * @psalm-type CtorArgs = list{0?: CtorArg, 1?: CtorArg}
+ * @psalm-type Expect = array{enter: mixed, cycle: mixed}
  */
 final class DummyRecursiveVisitorTest extends TestCase
 {
     /**
-     * @psalm-return iterable<string,array{args: array<ArgT>, expect: array{enter: mixed, cycle: mixed}}>
+     * @psalm-return \Generator<string,array{ctor: CtorArgs, expect: Expect}>
+     * @psalm-suppress UnusedClosureParam
      */
     public static function provDummyRecursiveVisitor(): iterable
     {
         yield 'DummyRecursiveVisitorTest.php:'.__LINE__ => [
-            'args'   => [],
+            'ctor'   => [],
             'expect' => [
                 'enter' => true,
                 'cycle' => false,
@@ -41,7 +45,7 @@ final class DummyRecursiveVisitorTest extends TestCase
         ];
 
         yield 'DummyRecursiveVisitorTest.php:'.__LINE__ => [
-            'args'   => [false, true],
+            'ctor'   => [false, true],
             'expect' => [
                 'enter' => false,
                 'cycle' => true,
@@ -49,11 +53,13 @@ final class DummyRecursiveVisitorTest extends TestCase
         ];
 
         yield 'DummyRecursiveVisitorTest.php:'.__LINE__ => [
-            'args' => [
+            'ctor' => [
+                /** @psalm-param mixed $node */
                 function ($node, array $stack): bool {
                     return false;
                 },
 
+                /** @psalm-param mixed $node */
                 function ($node, array $stack): bool {
                     return true;
                 },
@@ -68,16 +74,18 @@ final class DummyRecursiveVisitorTest extends TestCase
     /**
      * @dataProvider provDummyRecursiveVisitor
      *
-     * @psalm-param array<ArgT>                       $args
-     * @psalm-param array{enter: mixed, cycle: mixed} $expect
+     * @psalm-param CtorArgs                       $ctor
+     * @psalm-param Expect $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testDummyRecursiveVisitor(array $args, array $expect): void
+    public function testDummyRecursiveVisitor(array $ctor, array $expect): void
     {
-        $node = new ExpectedValues(['foo' => 'FOO']);
+        $node = new DummyValues(false, ['foo' => 'FOO']);
         $stack = [];
 
         // Mostly for code coverage.
-        $visitor = new DummyRecursiveVisitor(...$args);
+        $visitor = new DummyRecursiveVisitor(...$ctor);
         $this->assertSame($expect['enter'], $visitor->enter($node, $stack));
         array_push($stack, $visitor->makeStackItem($node, 'foo', $stack));
         $this->assertNull($visitor->visit($node['foo'], $stack, true));
