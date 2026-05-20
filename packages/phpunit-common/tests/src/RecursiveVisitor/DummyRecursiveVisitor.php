@@ -8,9 +8,7 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Recursive;
-
-use Tailors\PHPUnit\Values\ValuesInterface;
+namespace Tailors\PHPUnit\RecursiveVisitor;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -19,6 +17,8 @@ use Tailors\PHPUnit\Values\ValuesInterface;
  *
  * @template-implements RecursiveVisitorInterface<DummyRecursiveVisitorStackItem>
  *
+ * @psalm-type TraceItem = array{func: string, node: mixed, key?: array-key, path: list<array-key>}
+ * @psalm-type Trace = list<TraceItem>
  * @psalm-type StackItem = DummyRecursiveVisitorStackItem
  */
 final class DummyRecursiveVisitor implements RecursiveVisitorInterface
@@ -26,21 +26,21 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     /**
      * @var array
      *
-     * @psalm-var list<array{func: string, node:mixed, path:list<array-key>}>
+     * @psalm-var Trace
      */
     private $trace;
 
     /**
      * @var bool|\Closure
      *
-     * @psalm-var bool|\Closure((array|ValuesInterface), list<StackItem>):bool
+     * @psalm-var bool|\Closure((array|\Traversable), list<StackItem>):bool
      */
     private $enter;
 
     /**
      * @var bool|\Closure
      *
-     * @psalm-var bool|\Closure((array|ValuesInterface), list<StackItem>):bool
+     * @psalm-var bool|\Closure((array|\Traversable), list<StackItem>):bool
      */
     private $cycle;
 
@@ -48,8 +48,8 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
      * @param bool|\Closure $enter
      * @param bool|\Closure $cycle
      *
-     * @psalm-param bool|\Closure((array|ValuesInterface), list<StackItem>):bool $enter
-     * @psalm-param bool|\Closure((array|ValuesInterface), list<StackItem>):bool $cycle
+     * @psalm-param bool|\Closure((array|\Traversable), list<StackItem>):bool $enter
+     * @psalm-param bool|\Closure((array|\Traversable), list<StackItem>):bool $cycle
      */
     public function __construct($enter = true, $cycle = false)
     {
@@ -59,7 +59,7 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param array|ValuesInterface $node
+     * @param array|\Traversable $node
      *
      * @psalm-param list<StackItem> $stack
      */
@@ -75,7 +75,7 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param array|ValuesInterface $node
+     * @param array|\Traversable $node
      *
      * @psalm-param list<StackItem> $stack
      */
@@ -85,7 +85,7 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param array|ValuesInterface $node
+     * @param mixed $node
      *
      * @psalm-param list<StackItem> $stack
      */
@@ -95,7 +95,7 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param array|ValuesInterface $node
+     * @param array|\Traversable $node
      *
      * @psalm-param list<StackItem> $stack
      */
@@ -111,7 +111,7 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param array|ValuesInterface $node
+     * @param array|\Traversable $node
      * @param mixed                 $key
      *
      * @psalm-param array-key       $key
@@ -136,7 +136,7 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @psalm-return list<array{func: string, node:mixed, path:list<array-key>}>
+     * @psalm-return Trace
      *
      * @psalm-mutation-free
      */
@@ -147,6 +147,8 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
 
     /**
      * @psalm-param list<StackItem> $stack
+     *
+     * @psalm-return list<array-key>
      *
      * @psalm-pure
      */

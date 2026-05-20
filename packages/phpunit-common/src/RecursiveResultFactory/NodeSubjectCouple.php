@@ -8,17 +8,25 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Recursive;
+namespace Tailors\PHPUnit\RecursiveResultFactory;
 
-use Tailors\PHPUnit\Values\ValuesInterface;
+use Tailors\PHPUnit\ArraySpec\ArraySpecInterface;
+
 
 /**
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class RecursiveResultFactoryState
+final class NodeSubjectCouple
 {
+    /**
+     * @var array|ArraySpecInterface
+     *
+     * @psalm-readonly
+     */
+    public $node;
+
     /**
      * @var mixed
      *
@@ -27,18 +35,13 @@ final class RecursiveResultFactoryState
     public $subject;
 
     /**
-     * @var array|ValuesInterface
+     * @param array|ArraySpecInterface $node
+     * @param mixed $subject
      */
-    public $result;
-
-    /**
-     * @param mixed                 $subject
-     * @param array|ValuesInterface $result
-     */
-    public function __construct($subject, $result)
+    public function __construct($node, $subject)
     {
+        $this->node = $node;
         $this->subject = $subject;
-        $this->result = $result;
     }
 }
 

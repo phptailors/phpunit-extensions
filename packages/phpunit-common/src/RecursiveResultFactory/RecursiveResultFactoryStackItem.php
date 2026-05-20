@@ -8,8 +8,9 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Recursive;
+namespace Tailors\PHPUnit\RecursiveResultFactory;
 
+use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorStackItemInterface;
 use Tailors\PHPUnit\Values\ValuesInterface;
 
 /**
@@ -29,21 +30,21 @@ final class RecursiveResultFactoryStackItem implements RecursiveVisitorStackItem
     private $key;
 
     /**
-     * @var RecursiveResultFactoryState
+     * @var SubjectResultCouple
      *
      * @psalm-readonly
      */
-    private $state;
+    private $subjectResultCouple;
 
     /**
      * @param mixed                 $key
      *
      * @psalm-param array-key $key
      */
-    public function __construct($key, RecursiveResultFactoryState $state)
+    public function __construct($key, SubjectResultCouple $subjectResultCouple)
     {
         $this->key = $key;
-        $this->state = $state;
+        $this->subjectResultCouple = $subjectResultCouple;
     }
 
     /**
@@ -55,7 +56,7 @@ final class RecursiveResultFactoryStackItem implements RecursiveVisitorStackItem
      */
     public function node()
     {
-        return $this->state->node;
+        return $this->subjectResultCouple->node;
     }
 
     /**
@@ -71,16 +72,29 @@ final class RecursiveResultFactoryStackItem implements RecursiveVisitorStackItem
     }
 
     /**
+     * @return mixed
+     */
+    public function subject()
+    {
+        return $this->subjectResultCouple->subject;
+    }
+
+    public function result(): ValuesInterface
+    {
+        return $this->subjectResultCouple->result;
+    }
+
+    /**
      * @param mixed $value
      */
     public function set($value): void
     {
-        $this->state->result[$this->key] = $value;
+        $this->subjectResultCouple->result[$this->key] = $value;
     }
 
-    public function state(): RecursiveResultFactoryState
+    public function subjectResultCouple(): SubjectResultCouple
     {
-        return $this->state;
+        return $this->subjectResultCouple;
     }
 }
 

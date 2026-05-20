@@ -13,22 +13,34 @@ namespace Tailors\PHPUnit\RecursiveResultUnwrapper;
 use Tailors\PHPUnit\CircularDependencyException;
 use Tailors\PHPUnit\Common\StaticRandomStrings;
 use Tailors\PHPUnit\Common\StaticTagInterface;
+use Tailors\PHPUnit\Common\TagInterface;
 use Tailors\PHPUnit\InvalidArgumentException;
-use Tailors\PHPUnit\Values\ValuesInterface;
+use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorStackItemInterface;
+use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorInterface;
+use Tailors\PHPUnit\Result\ResultInterface;
 
 /**
  * @internal This interface is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @template-implements RecursiveVisitorInterface<RecursiveUnwrapperStackItem>
+ * @template-implements RecursiveVisitorInterface<RecursiveResultUnwrapperStackItem>
  *
- * @psalm-type StackItem = RecursiveUnwrapperStackItem
+ * @psalm-type StackItem = RecursiveResultUnwrapperStackItem
  */
 final class RecursiveResultUnwrapperVisitor implements RecursiveVisitorInterface, StaticTagInterface
 {
     /**
      * @var bool
+     *
+     * @psalm-readonly
+     */
+    private $actual;
+
+    /**
+     * @var bool
+     *
+     * @psalm-readonly
      */
     private $tagging;
 
@@ -42,8 +54,9 @@ final class RecursiveResultUnwrapperVisitor implements RecursiveVisitorInterface
      */
     private $current;
 
-    public function __construct(bool $tagging = true)
+    public function __construct(bool $actual, bool $tagging = true)
     {
+        $this->actual = $actual;
         $this->tagging = $tagging;
         $this->result = [];
         $this->current = [];
@@ -58,7 +71,7 @@ final class RecursiveResultUnwrapperVisitor implements RecursiveVisitorInterface
     {
         $hex = StaticRandomStrings::get(self::class, '4694a81d074f3386a9b8c7c2ad04914e120f1a10');
 
-        return __NAMESPACE__."\UnwrappedValues:{$hex}";
+        return __NAMESPACE__."\UnwrappedResult:{$hex}";
     }
 
     /**
@@ -70,23 +83,14 @@ final class RecursiveResultUnwrapperVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param array|ValuesInterface $node
+     * @param array|\Traversable $node
      *
      * @psalm-param list<StackItem> $stack
      */
     public function enter($node, array $stack): bool
     {
-        if ($node instanceof ValuesInterface) {
-            $root = $node;
-            foreach ($stack as $item) {
-                $inode = $item->node();
-                if ($inode instanceof ValuesInterface) {
-                    $root = $inode;
-
-                    break;
-                }
-            }
-            $iterate = $root->actual() === $node->actual();
+        if ($node instanceof ResultInterface) {
+            $iterate = $node->actual() === $this->actual;
         } else {
             $iterate = true;
         }
@@ -99,7 +103,7 @@ final class RecursiveResultUnwrapperVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param array|ValuesInterface $node
+     * @param array|\Traversable $node
      *
      * @psalm-param list<StackItem> $stack
      */
@@ -109,7 +113,7 @@ final class RecursiveResultUnwrapperVisitor implements RecursiveVisitorInterface
             return;
         }
 
-        if ($node instanceof ValuesInterface && $this->tagging) {
+        if ($node instanceof TagInterface && $this->tagging) {
             // Distinguish unwrapped values from regular arrays
             // by adding UNIQUE TAG AT THE END of $array.
             $this->current[self::tag()] = $node->tag();
@@ -129,7 +133,7 @@ final class RecursiveResultUnwrapperVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param array|ValuesInterface $node
+     * @param array|\Traversable $node
      *
      * @return never
      *
@@ -143,7 +147,7 @@ final class RecursiveResultUnwrapperVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param array|ValuesInterface $node
+     * @param array|\Traversable $node
      * @param mixed                 $key
      *
      * @psalm-param array-key       $key
@@ -153,7 +157,7 @@ final class RecursiveResultUnwrapperVisitor implements RecursiveVisitorInterface
      */
     public function makeStackItem($node, $key, array $stack): RecursiveVisitorStackItemInterface
     {
-        return new RecursiveUnwrapperStackItem($node, $key, $this->current);
+        return new RecursiveResultUnwrapperStackItem($node, $key, $this->current);
     }
 
     /**
@@ -186,9 +190,7 @@ final class RecursiveResultUnwrapperVisitor implements RecursiveVisitorInterface
             return;
         }
 
-        $last = $count - 1;
-        $top = $stack[$last];
-        $top->set($value);
+        $stack[$count - 1]->set($value);
     }
 
     /**

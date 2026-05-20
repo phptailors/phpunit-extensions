@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit\RecursiveResultUnwrapper;
 
+use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorStackItemInterface;
 use Tailors\PHPUnit\Values\ValuesInterface;
 
 /**
@@ -20,7 +21,7 @@ use Tailors\PHPUnit\Values\ValuesInterface;
 final class RecursiveResultUnwrapperStackItem implements RecursiveVisitorStackItemInterface
 {
     /**
-     * @var array|ValuesInterface
+     * @var array|ArraySpecInterface
      *
      * @psalm-readonly
      */
@@ -41,7 +42,7 @@ final class RecursiveResultUnwrapperStackItem implements RecursiveVisitorStackIt
     private $result;
 
     /**
-     * @param array|ValuesInterface $node
+     * @param array|ArraySpecInterface $node
      * @param mixed                 $key
      *
      * @psalm-param array-key $key
@@ -54,9 +55,7 @@ final class RecursiveResultUnwrapperStackItem implements RecursiveVisitorStackIt
     }
 
     /**
-     * @return mixed
-     *
-     * @psalm-return array|ValuesInterface
+     * @return array|ArraySpecInterface
      *
      * @psalm-mutation-free
      */
@@ -87,7 +86,7 @@ final class RecursiveResultUnwrapperStackItem implements RecursiveVisitorStackIt
      */
     public function set($value): void
     {
-        $this->result[$this->key()] = $value;
+        $this->result[$this->key] = $value;
     }
 }
 

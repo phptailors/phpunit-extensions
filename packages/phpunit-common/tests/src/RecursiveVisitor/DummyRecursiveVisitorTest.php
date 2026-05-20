@@ -8,7 +8,7 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Recursive;
+namespace Tailors\PHPUnit\RecursiveVisitor;
 
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Values\ExpectedValues;
@@ -22,7 +22,7 @@ use Tailors\PHPUnit\Values\ExpectedValues;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ClosureT = \Closure(array|ValuesInterface,list<array-key>):bool
+ * @psalm-type ClosureT = \Closure(array|\Traversable,list<array-key>):bool
  * @psalm-type ArgT     = bool|ClosureT
  */
 final class DummyRecursiveVisitorTest extends TestCase

@@ -16,7 +16,11 @@
 >
     <projectFiles>
         <directory name="packages/*/src" />
+        <directory name="packages/*/tests/src" />
         <directory name="packages/*/tests/static-analysis" />
+        <ignoreFiles>
+            <file name="packages/*/tests/src/**/*Test.php"/>
+        </ignoreFiles>
     </projectFiles>
     <plugins>
         <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>

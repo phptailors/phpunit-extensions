@@ -8,9 +8,7 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Recursive;
-
-use Tailors\PHPUnit\Values\ValuesInterface;
+namespace Tailors\PHPUnit\RecursiveVisitor;
 
 /**
  * @internal This interface is not covered by the backward compatibility promise
@@ -22,14 +20,14 @@ use Tailors\PHPUnit\Values\ValuesInterface;
 interface RecursiveVisitorInterface
 {
     /**
-     * @param array|ValuesInterface $node
+     * @param array|\Traversable $node
      *
      * @psalm-param list<StackItem> $stack
      */
     public function enter($node, array $stack): bool;
 
     /**
-     * @param array|ValuesInterface $node
+     * @param array|\Traversable $node
      *
      * @psalm-param list<StackItem> $stack
      */
@@ -43,14 +41,14 @@ interface RecursiveVisitorInterface
     public function visit($node, array $stack, bool $iterating): void;
 
     /**
-     * @param array|ValuesInterface $node
+     * @param array|\Traversable $node
      *
      * @psalm-param list<StackItem> $stack
      */
     public function cycle($node, array $stack): bool;
 
     /**
-     * @param array|ValuesInterface $node
+     * @param array|\Traversable $node
      * @param mixed                 $key
      *
      * @psalm-param array-key       $key

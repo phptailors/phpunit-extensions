@@ -8,24 +8,24 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Recursive;
+namespace Tailors\PHPUnit\RecursiveResultUnwrapper;
 
 use PHPUnit\Framework\TestCase;
 
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Recursive\RecursiveUnwrapperStackItem
+ * @covers \Tailors\PHPUnit\Recursive\RecursiveResultUnwrapperStackItem
  *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class RecursiveUnwrapperStackItemTest extends TestCase
+final class RecursiveResultUnwrapperStackItemTest extends TestCase
 {
-    public function testRecursiveUnwrapperStackItem(): void
+    public function testRecursiveResultUnwrapperStackItem(): void
     {
-        $item = new RecursiveUnwrapperStackItem(['node'], 'key', ['result']);
+        $item = new RecursiveResultUnwrapperStackItem(['node'], 'key', ['result']);
 
         $this->assertSame(['node'], $item->node());
         $this->assertSame('key', $item->key());
@@ -34,7 +34,7 @@ final class RecursiveUnwrapperStackItemTest extends TestCase
 
     public function testSet(): void
     {
-        $item = new RecursiveUnwrapperStackItem(['node'], 'key', ['result']);
+        $item = new RecursiveResultUnwrapperStackItem(['node'], 'key', ['result']);
 
         $this->assertSame(['result'], $item->result());
 

@@ -24,10 +24,6 @@ use Tailors\PHPUnit\Result\ResultInterface;
  */
 interface ValuesInterface extends \Traversable, \ArrayAccess, \Countable, ResultInterface
 {
-    /**
-     * @param array|\Traversable $array
-     */
-    public function createActualValues($array = []): ValuesInterface;
 }
 
 // vim: syntax=php sw=4 ts=4 et:

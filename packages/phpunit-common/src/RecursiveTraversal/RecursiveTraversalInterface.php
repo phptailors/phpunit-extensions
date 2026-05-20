@@ -8,10 +8,9 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Recursive;
+namespace Tailors\PHPUnit\RecursiveTraversal;
 
-use Tailors\PHPUnit\Spec\ArraySpecInterface;
-
+use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorInterface;
 
 /**
  * @internal This interface is not covered by the backward compatibility promise
@@ -21,11 +20,13 @@ use Tailors\PHPUnit\Spec\ArraySpecInterface;
 interface RecursiveTraversalInterface
 {
     /**
+     * @param array|\Traversable $values
+     *
      * @psalm-template StackItem of RecursiveVisitorStackItemInterface
      *
      * @psalm-param RecursiveVisitorInterface<StackItem> $visitor
      */
-    public function walk(ArraySpecInterface $values, RecursiveVisitorInterface $visitor): void;
+    public function walk($values, RecursiveVisitorInterface $visitor): void;
 }
 
 // vim: syntax=php sw=4 ts=4 et:

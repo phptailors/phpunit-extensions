@@ -8,9 +8,7 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Recursive;
-
-use Tailors\PHPUnit\Values\ValuesInterface;
+namespace Tailors\PHPUnit\RecursiveVisitor;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -20,7 +18,7 @@ use Tailors\PHPUnit\Values\ValuesInterface;
 final class DummyRecursiveVisitorStackItem implements RecursiveVisitorStackItemInterface
 {
     /**
-     * @var array|ValuesInterface
+     * @var array|\Traversable
      *
      * @psalm-readonly
      */
@@ -36,7 +34,7 @@ final class DummyRecursiveVisitorStackItem implements RecursiveVisitorStackItemI
     private $key;
 
     /**
-     * @param array|ValuesInterface $node
+     * @param array|\Traversable $node
      * @param mixed                 $key
      *
      * @psalm-param array-key $key
@@ -50,7 +48,7 @@ final class DummyRecursiveVisitorStackItem implements RecursiveVisitorStackItemI
     /**
      * @return mixed
      *
-     * @psalm-return array|ValuesInterface
+     * @psalm-return array|\Traversable
      *
      * @psalm-mutation-free
      */
