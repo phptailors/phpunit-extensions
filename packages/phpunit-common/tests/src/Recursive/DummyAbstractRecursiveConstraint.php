@@ -10,14 +10,14 @@
 
 namespace Tailors\PHPUnit\Recursive;
 
+use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Selector\ValueSelectorInterface;
-use Tailors\PHPUnit\Values\ValuesInterface;
 
 final class DummyAbstractRecursiveConstraint extends AbstractRecursiveConstraint
 {
     public static function create(
-        ValuesInterface $expected,
+        ArrayResultInterface $expected,
         ComparatorInterface $comparator,
         ValueSelectorInterface $valueSelector,
         RecursiveUnwrapperInterface $unwrapper

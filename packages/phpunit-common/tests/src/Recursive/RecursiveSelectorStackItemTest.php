@@ -10,8 +10,8 @@
 
 namespace Tailors\PHPUnit\Recursive;
 
+use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
 use PHPUnit\Framework\TestCase;
-use Tailors\PHPUnit\Values\DummyValues;
 
 /**
  * @small
@@ -50,7 +50,7 @@ final class RecursiveSelectorStackItemTest extends TestCase
         //
         // 02
         //
-        $n02 = new DummyValues(false);
+        $n02 = new DummyArrayResult(false);
         $s02 = new RecursiveSelectorState(null, []);
 
         yield 'RecursiveSelectorStackItemTest.php:'.__LINE__ => [
@@ -119,7 +119,7 @@ final class RecursiveSelectorStackItemTest extends TestCase
         // 03
         //
         $s03 = new RecursiveSelectorState('s', ['v' => null, 'r' => 'R']);
-        $n03 = new DummyValues(false, ['n' => 'N']);
+        $n03 = new DummyArrayResult(false, ['n' => 'N']);
 
         yield 'RecursiveSelectorStackItemTest.php:'.__LINE__ => [
             'ctor'   => [$n03, 'v', $s03],

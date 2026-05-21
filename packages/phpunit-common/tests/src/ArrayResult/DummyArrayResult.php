@@ -8,7 +8,9 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Values;
+namespace Tailors\PHPUnit\ArrayResult;
+
+use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -17,7 +19,7 @@ namespace Tailors\PHPUnit\Values;
  *
  * @template-extends \ArrayObject<mixed,mixed>
  */
-final class DummyValues extends \ArrayObject implements ValuesInterface
+final class DummyArrayResult extends \ArrayObject implements ArrayResultInterface
 {
     /**
      * @var bool

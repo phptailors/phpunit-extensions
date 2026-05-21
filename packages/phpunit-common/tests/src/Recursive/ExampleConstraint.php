@@ -8,15 +8,17 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Values;
+namespace Tailors\PHPUnit\Recursive;
 
+use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
+use Tailors\PHPUnit\ArrayResult\ExpectedArrayResult;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\IdentityComparator;
 use Tailors\PHPUnit\InvalidArgumentException;
-use Tailors\PHPUnit\Recursive\AbstractRecursiveConstraint;
-use Tailors\PHPUnit\Recursive\RecursiveConstraintSpecializationTrait;
-use Tailors\PHPUnit\Selector\ArrayValueSelector;
-use Tailors\PHPUnit\Selector\ValueSelectorInterface;
+use Tailors\PHPUnit\RecursiveConstraint\AbstractRecursiveConstraint;
+use Tailors\PHPUnit\ValueSelector\ArrayValueSelector;
+use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
+
 
 /**
  * Example constraint class that extends the AbstractConstraint.
@@ -50,9 +52,9 @@ class ExampleConstraint extends AbstractRecursiveConstraint
         return new IdentityComparator();
     }
 
-    protected static function makeExpectedValues(array $array): ValuesInterface
+    protected static function makeExpectedValues(array $array): ArrayResultInterface
     {
-        return new ExpectedValues($array);
+        return new ExpectedArrayResult($array);
     }
 }
 

@@ -8,7 +8,7 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Values;
+namespace Tailors\PHPUnit\ArrayResult;
 
 use Tailors\PHPUnit\Result\ResultInterface;
 
@@ -22,7 +22,7 @@ use Tailors\PHPUnit\Result\ResultInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-interface ValuesInterface extends \Traversable, \ArrayAccess, \Countable, ResultInterface
+interface ArrayResultInterface extends \Traversable, \ArrayAccess, \Countable, ResultInterface
 {
 }
 

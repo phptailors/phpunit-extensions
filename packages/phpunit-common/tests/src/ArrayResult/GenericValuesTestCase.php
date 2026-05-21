@@ -10,6 +10,10 @@
 
 namespace Tailors\PHPUnit\Values;
 
+use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
+use Tailors\PHPUnit\ArrayResult\ActualArrayResult;
+use Tailors\PHPUnit\ArrayResult\AbstractGenericArrayResult;
+
 /**
  * @internal This class is not covered by the backward compatibility promise
  *
@@ -20,14 +24,14 @@ namespace Tailors\PHPUnit\Values;
 abstract class GenericValuesTestCase extends AbstractValuesTestCase
 {
     /**
-     * @psalm-return class-string<AbstractGenericValues>
+     * @psalm-return class-string<AbstractGenericArrayResult>
      */
     abstract public static function getValuesClass(): string;
 
     /**
      * @psalm-param GenericValuesCtorArgs $ctorArgs
      */
-    final public static function getValuesObject(array $ctorArgs): ValuesInterface
+    final public static function getValuesObject(array $ctorArgs): ArrayResultInterface
     {
         $class = static::getValuesClass();
 
@@ -41,7 +45,7 @@ abstract class GenericValuesTestCase extends AbstractValuesTestCase
 
     final public static function getValuesActual(): bool
     {
-        return ActualValues::class === static::getValuesClass();
+        return ActualArrayResult::class === static::getValuesClass();
     }
 
     // @codeCoverageIgnoreStart

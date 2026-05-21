@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit\RecursiveResultUnwrapper;
 
+use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
 use Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversalInterface;
 
 /**
@@ -24,7 +25,14 @@ final class RecursiveResultUnwrapper implements RecursiveResultUnwrapperInterfac
      *
      * @psalm-readonly
      */
-    private $recursiveVisitor;
+    private $expectedResultUnwrapperVisitor;
+
+    /**
+     * @var RecursiveResultUnwrapperVisitor
+     *
+     * @psalm-readonly
+     */
+    private $actualResultUnwrapperVisitor;
 
     /**
      * @var RecursiveTraversalInterface
@@ -34,23 +42,43 @@ final class RecursiveResultUnwrapper implements RecursiveResultUnwrapperInterfac
     private $recursiveTraversal;
 
     public function __construct(
-        RecursiveResultUnwrapperVisitorInterface $recursiveVisitor,
+        RecursiveResultUnwrapperVisitorInterface $expectedResultUnwrapperVisitor,
+        RecursiveResultUnwrapperVisitorInterface $actualResultUnwrapperVisitor,
         RecursiveTraversalInterface $recursiveTraversal
     ) {
-        $this->recursiveVisitor = $recursiveVisitor;
+        $this->expectedResultUnwrapperVisitor = $expectedResultUnwrapperVisitor;
+        $this->actualResultUnwrapperVisitor = $actualResultUnwrapperVisitor;
         $this->recursiveTraversal = $recursiveTraversal;
     }
 
     /**
-     * @param array|\Traversable $array
+     * @psalm-return array
      */
-    public function unwrap($array): array
+    public function unwrapExpectedResult(ArrayResultInterface $array): array
     {
-        $this->recursiveVisitor->reset();
+        return $this->unwrap($array, $this->expectedResultUnwrapperVisitor);
+    }
 
-        $this->recursiveTraversal->walk($array, $this->recursiveVisitor);
+    /**
+     * @psalm-return array
+     */
+    public function unwrapActualResult(ArrayResultInterface $array): array
+    {
+        return $this->unwrap($array, $this->actualResultUnwrapperVisitor);
+    }
 
-        return $this->recursiveVisitor->result();
+    /**
+     * @psalm-return array
+     */
+    private function unwrap(ArrayResultInterface $array, RecursiveResultUnwrapperVisitorInterface $recursiveResultUnwrapperVisitor): array
+    {
+        $recursiveResultUnwrapperVisitor->reset();
+
+        $this->recursiveTraversal->walk($array, $recursiveResultUnwrapperVisitor);
+
+        $unwrapped = $recursiveResultUnwrapperVisitor->result();
+
+        return $unwrapped;
     }
 }
 

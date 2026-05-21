@@ -10,8 +10,8 @@
 
 namespace Tailors\PHPUnit\Recursive;
 
+use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
 use PHPUnit\Framework\TestCase;
-use Tailors\PHPUnit\Values\DummyValues;
 
 /**
  * @small
@@ -59,7 +59,7 @@ final class RecursiveSelectorStateTest extends TestCase
         //
         // 03
         //
-        $v03 = new DummyValues(true);
+        $v03 = new DummyArrayResult(true);
 
         yield 'RecursiveSelectorStateTest.php:'.__LINE__ => [
             'ctor'   => [['s'], $v03],

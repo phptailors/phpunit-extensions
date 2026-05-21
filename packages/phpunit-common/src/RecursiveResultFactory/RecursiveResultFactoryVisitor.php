@@ -12,13 +12,10 @@ namespace Tailors\PHPUnit\RecursiveResultFactory;
 
 use Tailors\PHPUnit\ArraySpec\ArraySpecInterface;
 use Tailors\PHPUnit\CircularDependencyException;
-use Tailors\PHPUnit\Common\SupportInterface;
 use Tailors\PHPUnit\InternalErrorException;
 use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorInterface;
 use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorUtils;
-use Tailors\PHPUnit\Result\ResultFactoryInterface;
 use Tailors\PHPUnit\Result\ResultFactoryWrapperInterface;
-use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
 use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
 
 /**
@@ -84,7 +81,7 @@ final class RecursiveResultFactoryVisitor implements RecursiveVisitorInterface
      */
     public function enter($node, array $stack): bool
     {
-        if (!$this->selectIfSupported($node, $stack, $subject, $result)) {
+        if (!$this->selectIfSupported($node, $stack)) {
             return false;
         }
 
@@ -231,7 +228,7 @@ final class RecursiveResultFactoryVisitor implements RecursiveVisitorInterface
             );
         }
 
-        return $this->selectSubjectIfSupported($node, $value, $subject, $result);
+        return $this->selectSubjectIfSupported($node);
     }
 
     private function selectSubjectIfSupported(NodeSubjectCouple $nodeSubjectCouple): ?SubjectResultCouple

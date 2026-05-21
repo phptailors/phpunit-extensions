@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
+use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\IdentityComparator;
 use Tailors\PHPUnit\Properties\ExpectedClassProperties;
@@ -18,7 +19,6 @@ use Tailors\PHPUnit\Recursive\AbstractRecursiveConstraint;
 use Tailors\PHPUnit\Recursive\RecursiveConstraintSpecializationTrait;
 use Tailors\PHPUnit\Selector\ClassPropertySelector;
 use Tailors\PHPUnit\Selector\ValueSelectorInterface;
-use Tailors\PHPUnit\Values\ValuesInterface;
 
 /**
  * Constraint that accepts classes having properties identical to specified ones.
@@ -68,7 +68,7 @@ final class ClassPropertiesIdenticalTo extends AbstractRecursiveConstraint
     /**
      * Creates instance of ValuesInterface to be used as expected values.
      */
-    protected static function makeExpectedValues(array $array): ValuesInterface
+    protected static function makeExpectedValues(array $array): ArrayResultInterface
     {
         return new ExpectedClassProperties($array);
     }

@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit\Values;
 
+use Tailors\PHPUnit\ArrayResult\ActualArrayResult;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -26,7 +27,7 @@ final class DummyValuesWrapperTest extends TestCase
     public function testDummyValuesWrapper(): void
     {
         // Mostly for code coverage.
-        $values = new ActualValues();
+        $values = new ActualArrayResult();
         $wrapper = new DummyValuesWrapper($values);
         $this->assertSame($values, $wrapper->getValues());
     }

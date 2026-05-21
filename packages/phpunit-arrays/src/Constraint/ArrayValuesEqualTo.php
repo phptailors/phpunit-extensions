@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
+use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
 use Tailors\PHPUnit\Arrays\ExpectedArrayValues;
 use Tailors\PHPUnit\Arrays\ValidateExpectationsTrait;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
@@ -18,7 +19,6 @@ use Tailors\PHPUnit\Recursive\AbstractRecursiveConstraint;
 use Tailors\PHPUnit\Recursive\RecursiveConstraintSpecializationTrait;
 use Tailors\PHPUnit\Selector\ArrayValueSelector;
 use Tailors\PHPUnit\Selector\ValueSelectorInterface;
-use Tailors\PHPUnit\Values\ValuesInterface;
 
 /**
  * Constraint that accepts arrays having values equal to specified ones.
@@ -60,7 +60,7 @@ final class ArrayValuesEqualTo extends AbstractRecursiveConstraint
     /**
      * Creates instance of ValuesInterface to be used as expected values.
      */
-    protected static function makeExpectedValues(array $array): ValuesInterface
+    protected static function makeExpectedValues(array $array): ArrayResultInterface
     {
         return new ExpectedArrayValues($array);
     }

@@ -10,11 +10,11 @@
 
 namespace Tailors\PHPUnit\StaticAnalysis\HappyPath\ExpectedValues;
 
-use Tailors\PHPUnit\Values\ExpectedValues;
+use Tailors\PHPUnit\ArrayResult\ExpectedArrayResult;
 
-function consume(): ExpectedValues
+function consume(): ExpectedArrayResult
 {
-    return new ExpectedValues();
+    return new ExpectedArrayResult();
 }
 
 // vim: syntax=php sw=4 ts=4 et:

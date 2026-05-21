@@ -28,7 +28,7 @@ final class RecursiveVisitorUtils
 
         return implode('', array_map(function ($key) {
             return '['.var_export($key, true).']';
-        }), $path);
+        }));
     }
 
     /**

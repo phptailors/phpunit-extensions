@@ -8,19 +8,24 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Values;
+namespace Tailors\PHPUnit\ArrayResult;
 
 /**
- * @internal This interface is not covered by the backward compatibility promise
+ * An array of actual values.
+ *
+ * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-interface ValuesWrapperInterface
+final class ActualArrayResult extends AbstractGenericArrayResult
 {
     /**
-     * Returns an instance of ValuesInterface.
+     * @psalm-mutation-free
      */
-    public function getValues(): ValuesInterface;
+    public function actual(): bool
+    {
+        return true;
+    }
 }
 
 // vim: syntax=php sw=4 ts=4 et:

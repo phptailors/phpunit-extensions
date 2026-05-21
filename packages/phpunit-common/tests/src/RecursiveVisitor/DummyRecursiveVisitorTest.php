@@ -10,8 +10,8 @@
 
 namespace Tailors\PHPUnit\RecursiveVisitor;
 
+use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
 use PHPUnit\Framework\TestCase;
-use Tailors\PHPUnit\Values\DummyValues;
 
 /**
  * @small
@@ -81,7 +81,7 @@ final class DummyRecursiveVisitorTest extends TestCase
      */
     public function testDummyRecursiveVisitor(array $ctor, array $expect): void
     {
-        $node = new DummyValues(false, ['foo' => 'FOO']);
+        $node = new DummyArrayResult(false, ['foo' => 'FOO']);
         $stack = [];
 
         // Mostly for code coverage.

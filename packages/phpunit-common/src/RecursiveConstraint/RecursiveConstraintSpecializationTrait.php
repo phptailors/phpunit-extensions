@@ -10,10 +10,10 @@
 
 namespace Tailors\PHPUnit\Recursive;
 
+use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\InvalidArgumentException;
 use Tailors\PHPUnit\Selector\ValueSelectorInterface;
-use Tailors\PHPUnit\Values\ValuesInterface;
 
 /**
  * @internal This trait is not covered by the backward compatibility promise
@@ -54,7 +54,7 @@ trait RecursiveConstraintSpecializationTrait
     /**
      * Creates instance of ValuesInterface to be used as expected values.
      */
-    abstract protected static function makeExpectedValues(array $array): ValuesInterface;
+    abstract protected static function makeExpectedValues(array $array): ArrayResultInterface;
 }
 
 // vim: syntax=php sw=4 ts=4 et:

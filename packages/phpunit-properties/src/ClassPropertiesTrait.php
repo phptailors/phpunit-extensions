@@ -10,8 +10,8 @@
 
 namespace Tailors\PHPUnit;
 
+use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
 use Tailors\PHPUnit\Properties\ExpectedClassProperties;
-use Tailors\PHPUnit\Values\ValuesInterface;
 
 trait ClassPropertiesTrait
 {
@@ -20,7 +20,7 @@ trait ClassPropertiesTrait
      *
      * @param array|\Traversable $array
      */
-    public static function classProperties($array): ValuesInterface
+    public static function classProperties($array): ArrayResultInterface
     {
         return new ExpectedClassProperties($array);
     }

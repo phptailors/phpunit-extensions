@@ -8,7 +8,7 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Values;
+namespace Tailors\PHPUnit\ArrayResult;
 
 /**
  * An array of expected or actual values (generic).
@@ -17,7 +17,7 @@ namespace Tailors\PHPUnit\Values;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-abstract class AbstractGenericArrayResult extends AbstractValues
+abstract class AbstractGenericArrayResult extends AbstractArrayResult
 {
     /**
      * @var ?string
@@ -57,9 +57,9 @@ abstract class AbstractGenericArrayResult extends AbstractValues
     /**
      * @param array|\Traversable $array
      */
-    final public function createActualValues($array = []): ValuesInterface
+    final public function createActualValues($array = []): ArrayResultInterface
     {
-        return new ActualValues($array, $this->tag);
+        return new ActualArrayResult($array, $this->tag);
     }
 
     final protected function fallbackFamilyString(): string

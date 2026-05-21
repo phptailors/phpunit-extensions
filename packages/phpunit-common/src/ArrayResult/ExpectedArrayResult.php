@@ -8,28 +8,24 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Values;
+namespace Tailors\PHPUnit\ArrayResult;
 
 /**
+ * An array of expected values.
+ *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class DummyValuesWrapper implements ValuesWrapperInterface
+final class ExpectedArrayResult extends AbstractGenericArrayResult
 {
     /**
-     * @var ValuesInterface
+     * @psalm-mutation-free
      */
-    private $values;
-
-    public function __construct(ValuesInterface $values)
+    public function actual(): bool
     {
-        $this->values = $values;
-    }
-
-    public function getValues(): ValuesInterface
-    {
-        return $this->values;
+        return false;
     }
 }
+
 // vim: syntax=php sw=4 ts=4 et:

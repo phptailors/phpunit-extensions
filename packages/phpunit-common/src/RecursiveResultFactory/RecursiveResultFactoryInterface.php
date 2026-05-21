@@ -12,7 +12,6 @@ namespace Tailors\PHPUnit\RecursiveResultFactory;
 
 use Tailors\PHPUnit\ArraySpec\ArraySpecInterface;
 use Tailors\PHPUnit\Result\ResultFactoryInterface;
-use Tailors\PHPUnit\Result\ResultInterface;
 
 /**
  * @internal This interface is not covered by the backward compatibility promise

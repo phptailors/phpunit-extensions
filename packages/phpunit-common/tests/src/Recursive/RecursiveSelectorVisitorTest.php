@@ -10,15 +10,16 @@
 
 namespace Tailors\PHPUnit\Recursive;
 
+use Tailors\PHPUnit\ArrayResult\DummyExpectedArrayResult;
+use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
+use Tailors\PHPUnit\ArrayResult\ExpectedArrayResult;
+use Tailors\PHPUnit\ArrayResult\ActualArrayResult;
+use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\CircularDependencyException;
 use Tailors\PHPUnit\InternalErrorException;
 use Tailors\PHPUnit\Selector\DummyValueSelector;
 use Tailors\PHPUnit\Selector\ValueSelectorInterface;
-use Tailors\PHPUnit\Values\ActualValues;
-use Tailors\PHPUnit\Values\DummyExpectedValues;
-use Tailors\PHPUnit\Values\DummyValues;
-use Tailors\PHPUnit\Values\ExpectedValues;
 use Tailors\PHPUnit\Values\ValuesInterface;
 
 /**
@@ -128,14 +129,14 @@ final class RecursiveSelectorVisitorTest extends TestCase
         //
 
         $c01 = [new DummyValueSelector(), 'FOO'];
-        $e01 = new ExpectedValues();
+        $e01 = new ExpectedArrayResult();
 
         yield 'RecursiveSelectorVisitorTest.php:'.__LINE__ => [
             'ctor'  => [new DummyValueSelector(false), 'FOO'],
             'calls' => [
                 [
                     'args' => [
-                        'node' => new ExpectedValues(),
+                        'node' => new ExpectedArrayResult(),
                     ],
                     'return' => false,
                 ],
@@ -152,7 +153,7 @@ final class RecursiveSelectorVisitorTest extends TestCase
             'calls' => [
                 [
                     'args' => [
-                        'node' => new ActualValues(),
+                        'node' => new ActualArrayResult(),
                     ],
                     'return' => false,
                 ],
@@ -186,12 +187,12 @@ final class RecursiveSelectorVisitorTest extends TestCase
             'calls' => [
                 [
                     'args' => [
-                        'node' => new ExpectedValues(),
+                        'node' => new ExpectedArrayResult(),
                     ],
                     'return' => true,
                 ],
             ],
-            'result' => new ActualValues(),
+            'result' => new ActualArrayResult(),
         ];
 
         //
@@ -206,8 +207,8 @@ final class RecursiveSelectorVisitorTest extends TestCase
                 ]),
             ]),
         ];
-        $e05 = new ExpectedValues([
-            'foo' => new ExpectedValues([
+        $e05 = new ExpectedArrayResult([
+            'foo' => new ExpectedArrayResult([
                 'bar' => ['unimportant'],
             ]),
         ]);
@@ -237,8 +238,8 @@ final class RecursiveSelectorVisitorTest extends TestCase
                     'next'   => 0,
                 ],
             ],
-            'result' => new ActualValues([
-                'foo' => new ActualValues([
+            'result' => new ActualArrayResult([
+                'foo' => new ActualArrayResult([
                     'bar' => [],
                 ]),
             ]),
@@ -256,8 +257,8 @@ final class RecursiveSelectorVisitorTest extends TestCase
                 ]),
             ]),
         ];
-        $e06 = new ExpectedValues([
-            'foo' => new ExpectedValues([
+        $e06 = new ExpectedArrayResult([
+            'foo' => new ExpectedArrayResult([
                 'bar' => ['unimportant'],
             ]),
         ]);
@@ -286,8 +287,8 @@ final class RecursiveSelectorVisitorTest extends TestCase
                     'return' => false,
                 ],
             ],
-            'result' => new ActualValues([
-                'foo' => new ActualValues([]),
+            'result' => new ActualArrayResult([
+                'foo' => new ActualArrayResult([]),
             ]),
         ];
 
@@ -305,9 +306,9 @@ final class RecursiveSelectorVisitorTest extends TestCase
                 ],
             ]),
         ];
-        $e07 = new ExpectedValues([
+        $e07 = new ExpectedArrayResult([
             'foo' => [
-                'bar' => new ExpectedValues([
+                'bar' => new ExpectedArrayResult([
                     'unimportant',
                 ]),
             ],
@@ -338,9 +339,9 @@ final class RecursiveSelectorVisitorTest extends TestCase
                     'next'   => 0,
                 ],
             ],
-            'result' => new ActualValues([
+            'result' => new ActualArrayResult([
                 'foo' => [
-                    'bar' => new ActualValues([]),
+                    'bar' => new ActualArrayResult([]),
                 ],
             ]),
         ];
@@ -354,7 +355,7 @@ final class RecursiveSelectorVisitorTest extends TestCase
                 'bar' => [],
             ],
         ])];
-        $e08 = new ExpectedValues([
+        $e08 = new ExpectedArrayResult([
             'foo' => [
                 'bar' => [
                     'baz' => [],
@@ -393,7 +394,7 @@ final class RecursiveSelectorVisitorTest extends TestCase
                     'return' => false,
                 ],
             ],
-            'result' => new ActualValues([
+            'result' => new ActualArrayResult([
                 'foo' => [
                     'bar' => [],
                 ],
@@ -431,12 +432,12 @@ final class RecursiveSelectorVisitorTest extends TestCase
         }
 
         $expect = $result;
-        if ($expect instanceof ActualValues) {
+        if ($expect instanceof ActualArrayResult) {
             $expect = (new RecursiveUnwrapper())->unwrap($expect);
         }
 
         $actual = $visitor->result();
-        if ($actual instanceof ActualValues) {
+        if ($actual instanceof ActualArrayResult) {
             $actual = (new RecursiveUnwrapper())->unwrap($actual);
         }
 
@@ -479,7 +480,7 @@ final class RecursiveSelectorVisitorTest extends TestCase
             'xx2' => 'ignored',
         ]);
 
-        $e02 = new ExpectedValues([
+        $e02 = new ExpectedArrayResult([
             'foo' => 'unimportant',
             'bar' => 'unimportant',
             'gez' => 'unimportant',
@@ -513,7 +514,7 @@ final class RecursiveSelectorVisitorTest extends TestCase
                     'key' => 'gez',
                 ],
             ],
-            'result' => new ActualValues([
+            'result' => new ActualArrayResult([
                 'foo' => 'FOO',
                 'bar' => 'BAR',
             ]),
@@ -599,12 +600,12 @@ final class RecursiveSelectorVisitorTest extends TestCase
         }
 
         $expect = $result;
-        if ($expect instanceof ActualValues) {
+        if ($expect instanceof ActualArrayResult) {
             $expect = (new RecursiveUnwrapper())->unwrap($expect);
         }
 
         $actual = $visitor->result();
-        if ($actual instanceof ActualValues) {
+        if ($actual instanceof ActualArrayResult) {
             $actual = (new RecursiveUnwrapper())->unwrap($actual);
         }
 
@@ -612,7 +613,7 @@ final class RecursiveSelectorVisitorTest extends TestCase
     }
 
     /**
-     * @psalm-return iterable<string, array{ctor: CtorArgs, values: ValuesInterface, result: mixed}>
+     * @psalm-return iterable<string, array{ctor: CtorArgs, values: ArrayResultInterface, result: mixed}>
      */
     public static function provWithRecursiveTraversal(): iterable
     {
@@ -624,7 +625,7 @@ final class RecursiveSelectorVisitorTest extends TestCase
 
         yield 'RecursiveSelectorVisitorTest.php:'.__LINE__ => [
             'ctor'   => [new DummyValueSelector(), 'FOO'],
-            'values' => new ExpectedValues([]),
+            'values' => new ExpectedArrayResult([]),
             'result' => 'FOO',
         ];
 
@@ -634,8 +635,8 @@ final class RecursiveSelectorVisitorTest extends TestCase
 
         yield 'RecursiveSelectorVisitorTest.php:'.__LINE__ => [
             'ctor'   => [$selector, new \ArrayObject([])],
-            'values' => new ExpectedValues([]),
-            'result' => new ActualValues([]),
+            'values' => new ExpectedArrayResult([]),
+            'result' => new ActualArrayResult([]),
         ];
 
         //
@@ -652,11 +653,11 @@ final class RecursiveSelectorVisitorTest extends TestCase
                     'yyy' => 'YYY',
                 ]),
             ],
-            'values' => new ExpectedValues([
+            'values' => new ExpectedArrayResult([
                 'foo' => 'unimportant',
                 'bar' => 'unimportant',
             ]),
-            'result' => new ActualValues([
+            'result' => new ActualArrayResult([
                 'foo' => 'FOO',
                 'bar' => 'BAR',
             ]),
@@ -676,11 +677,11 @@ final class RecursiveSelectorVisitorTest extends TestCase
                     'yyy' => 'YYY',
                 ]),
             ],
-            'values' => new ExpectedValues([
+            'values' => new ExpectedArrayResult([
                 'foo' => ['unimportant'],
-                'bar' => new ExpectedValues([]),
+                'bar' => new ExpectedArrayResult([]),
             ]),
-            'result' => new ActualValues([
+            'result' => new ActualArrayResult([
                 'foo' => 'FOO',
                 'bar' => 'BAR',
             ]),
@@ -703,15 +704,15 @@ final class RecursiveSelectorVisitorTest extends TestCase
                     'yyy' => 'YYY',
                 ]),
             ],
-            'values' => new ExpectedValues([
+            'values' => new ExpectedArrayResult([
                 'foo' => [
-                    'qux' => new ExpectedValues([
+                    'qux' => new ExpectedArrayResult([
                         'cez' => 'unimportant',
                     ]),
                 ],
-                'bar' => new ExpectedValues(['unimportant']),
+                'bar' => new ExpectedArrayResult(['unimportant']),
             ]),
-            'result' => new ActualValues([
+            'result' => new ActualArrayResult([
                 'foo' => [
                     'baz' => 'FOO.BAZ',
                     'qux' => 'FOO.QUX',
@@ -745,24 +746,24 @@ final class RecursiveSelectorVisitorTest extends TestCase
                     'yyy' => 'YYY',
                 ]),
             ],
-            'values' => new ExpectedValues([
+            'values' => new ExpectedArrayResult([
                 'foo' => [
-                    'gez' => new ExpectedValues([
+                    'gez' => new ExpectedArrayResult([
                         'kik' => 'unimportant',
                     ]),
-                    'qux' => new ExpectedValues([
+                    'qux' => new ExpectedArrayResult([
                         'cez' => 'unimportant',
                     ]),
                 ],
-                'bar' => new ExpectedValues(['unimportant']),
+                'bar' => new ExpectedArrayResult(['unimportant']),
             ]),
-            'result' => new ActualValues([
+            'result' => new ActualArrayResult([
                 'foo' => [
                     'baz' => 'FOO.BAZ',
-                    'qux' => new ActualValues([
+                    'qux' => new ActualArrayResult([
                         'cez' => 'FOO.QUX.CEZ',
                     ]),
-                    'gez' => new ActualValues([
+                    'gez' => new ActualArrayResult([
                         'kik' => 'FOO.GEZ.KIK',
                     ]),
                     'bam' => 'FOO.BAM',
@@ -778,11 +779,11 @@ final class RecursiveSelectorVisitorTest extends TestCase
 
         yield 'RecursiveSelectorVisitorTest.php:'.__LINE__ => [
             'ctor'   => [$selector, new \Exception('foo', 123)],
-            'values' => new DummyExpectedValues($s07, [
+            'values' => new DummyExpectedArrayResult($s07, [
                 'message'  => 'unimportant',
                 'nonexist' => 'unimportant',
             ]),
-            'result' => new DummyValues(true, [
+            'result' => new DummyArrayResult(true, [
                 'message' => 'foo',
             ]),
         ];
@@ -796,15 +797,15 @@ final class RecursiveSelectorVisitorTest extends TestCase
                     'd' => 'D',
                 ]),
             ],
-            'values' => new ExpectedValues([
-                'e' => new DummyExpectedValues($s07, [
+            'values' => new ExpectedArrayResult([
+                'e' => new DummyExpectedArrayResult($s07, [
                     'message'  => 'unimportant',
                     'nonexist' => 'unimportant',
                 ]),
                 'f' => 'unimportant',
             ]),
-            'result' => new ActualValues([
-                'e' => new DummyValues(true, [
+            'result' => new ActualArrayResult([
+                'e' => new DummyArrayResult(true, [
                     'message' => 'foo',
                 ]),
                 'f' => 'F',
@@ -819,7 +820,7 @@ final class RecursiveSelectorVisitorTest extends TestCase
      *
      * @psalm-param CtorArgs $ctor
      */
-    public function testWithRecursiveTraversal(array $ctor, ValuesInterface $values, $result): void
+    public function testWithRecursiveTraversal(array $ctor, ArrayResultInterface $values, $result): void
     {
         $visitor = new RecursiveSelectorVisitor(...$ctor);
         $traversal = new RecursiveTraversal();
@@ -828,11 +829,11 @@ final class RecursiveSelectorVisitorTest extends TestCase
         $expect = $result;
         $actual = $visitor->result();
 
-        if ($expect instanceof ValuesInterface && $expect->actual()) {
+        if ($expect instanceof ArrayResultInterface && $expect->actual()) {
             $expect = (new RecursiveUnwrapper())->unwrap($expect);
         }
 
-        if ($actual instanceof ValuesInterface && $actual->actual()) {
+        if ($actual instanceof ArrayResultInterface && $actual->actual()) {
             $actual = (new RecursiveUnwrapper())->unwrap($actual);
         }
 

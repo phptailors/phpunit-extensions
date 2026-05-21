@@ -8,7 +8,7 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Values;
+namespace Tailors\PHPUnit\ArrayResult;
 
 use Tailors\PHPUnit\Common\StaticRandomStrings;
 
@@ -21,7 +21,7 @@ use Tailors\PHPUnit\Common\StaticRandomStrings;
  *
  * @template-extends \ArrayObject<array-key,mixed>
  */
-abstract class AbstractArrayResult extends \ArrayObject implements ValuesInterface
+abstract class AbstractArrayResult extends \ArrayObject implements ArrayResultInterface
 {
     /**
      * @param array|\Traversable $array

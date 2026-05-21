@@ -10,6 +10,8 @@
 
 namespace Tailors\PHPUnit\Recursive;
 
+use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
+use Tailors\PHPUnit\ArrayResult\ExpectedArrayResult;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\Operator;
 use PHPUnit\Framework\Constraint\UnaryOperator;
@@ -19,9 +21,6 @@ use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\IdentityComparator;
 use Tailors\PHPUnit\Selector\ArrayValueSelector;
 use Tailors\PHPUnit\Selector\ValueSelectorInterface;
-use Tailors\PHPUnit\Values\ExpectedValues;
-use Tailors\PHPUnit\Values\ValuesInterface;
-use Tailors\PHPUnit\Values\ValuesWrapperInterface;
 
 /**
  * @small
@@ -36,13 +35,13 @@ final class AbstractRecursiveConstraintTest extends TestCase
 {
     public static function createDummyConstraint(
         TestCase $test,
-        ?ValuesInterface $expected = null,
+        ?ArrayResultInterface $expected = null,
         ?ComparatorInterface $comparator = null,
         ?ValueSelectorInterface $valueSelector = null,
         ?RecursiveUnwrapperInterface $unwrapper = null
     ) {
         if (null === $expected) {
-            $expected = $test->createMock(ValuesInterface::class);
+            $expected = $test->createMock(ArrayResultInterface::class);
         }
 
         if (null === $comparator) {
@@ -64,7 +63,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
     {
         return self::createDummyConstraint(
             $test,
-            new ExpectedValues($expected),
+            new ExpectedArrayResult($expected),
             new IdentityComparator(),
             new ArrayValueSelector(),
             new RecursiveUnwrapper()
@@ -83,15 +82,9 @@ final class AbstractRecursiveConstraintTest extends TestCase
         $this->assertInstanceOf(Constraint::class, $constraint);
     }
 
-    public function testImplementsValuesWrapperInterface(): void
-    {
-        $constraint = self::createDummyConstraint($this);
-        $this->assertInstanceOf(ValuesWrapperInterface::class, $constraint);
-    }
-
     public function testConstruct(): void
     {
-        $expected = $this->createMock(ValuesInterface::class);
+        $expected = $this->createMock(ArrayResultInterface::class);
         $comparator = $this->createMock(ComparatorInterface::class);
         $valueSelector = $this->createMock(ValueSelectorInterface::class);
 
@@ -102,7 +95,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
 
     public function testToString(): void
     {
-        $expected = $this->createMock(ValuesInterface::class);
+        $expected = $this->createMock(ArrayResultInterface::class);
         $comparator = $this->createMock(ComparatorInterface::class);
 
         $valueSelector = $this->createMock(ValueSelectorInterface::class);
@@ -130,7 +123,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
     public static function provToStringInContext(): iterable
     {
         $constraint = function (TestCase $test): Constraint {
-            $expected = $test->createMock(ValuesInterface::class);
+            $expected = $test->createMock(ArrayResultInterface::class);
             $comparator = $test->createMock(ComparatorInterface::class);
 
             $valueSelector = $test->createMock(ValueSelectorInterface::class);

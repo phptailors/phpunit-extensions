@@ -10,8 +10,8 @@
 
 namespace Tailors\PHPUnit\Properties;
 
+use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
 use Tailors\PHPUnit\Values\AbstractValuesTestCase;
-use Tailors\PHPUnit\Values\ValuesInterface;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -30,7 +30,7 @@ abstract class ClassPropertiesTestCase extends AbstractValuesTestCase
     /**
      * @psalm-param ClassPropertiesCtorArgs $ctorArgs
      */
-    final public static function getValuesObject(array $ctorArgs): ValuesInterface
+    final public static function getValuesObject(array $ctorArgs): ArrayResultInterface
     {
         $class = static::getValuesClass();
 

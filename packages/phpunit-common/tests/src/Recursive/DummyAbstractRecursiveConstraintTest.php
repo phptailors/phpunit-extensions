@@ -10,10 +10,10 @@
 
 namespace Tailors\PHPUnit\Recursive;
 
+use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Selector\ValueSelectorInterface;
-use Tailors\PHPUnit\Values\ValuesInterface;
 
 /**
  * @small
@@ -27,7 +27,7 @@ final class DummyAbstractRecursiveConstraintTest extends TestCase
     public function testCreate(): void
     {
         $constraint = DummyAbstractRecursiveConstraint::create(
-            $this->createMock(ValuesInterface::class),
+            $this->createMock(ArrayResultInterface::class),
             $this->createMock(ComparatorInterface::class),
             $this->createMock(ValueSelectorInterface::class),
             $this->createMock(RecursiveUnwrapperInterface::class)

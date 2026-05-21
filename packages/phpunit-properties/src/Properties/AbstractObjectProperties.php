@@ -10,8 +10,8 @@
 
 namespace Tailors\PHPUnit\Properties;
 
-use Tailors\PHPUnit\Values\AbstractValues;
-use Tailors\PHPUnit\Values\ValuesInterface;
+use Tailors\PHPUnit\ArrayResult\AbstractArrayResult;
+use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
 
 /**
  * An array of expected or actual object properties.
@@ -20,7 +20,7 @@ use Tailors\PHPUnit\Values\ValuesInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-abstract class AbstractObjectProperties extends AbstractValues
+abstract class AbstractObjectProperties extends AbstractArrayResult
 {
     /**
      * @param array|\Traversable $array
@@ -49,7 +49,7 @@ abstract class AbstractObjectProperties extends AbstractValues
     /**
      * @param array|\Traversable $array
      */
-    final public function createActualValues($array = []): ValuesInterface
+    final public function createActualValues($array = []): ArrayResultInterface
     {
         return new ActualObjectProperties($array);
     }

@@ -10,12 +10,12 @@
 
 namespace Tailors\PHPUnit\Recursive;
 
+use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
+use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\IdentityComparator;
 use Tailors\PHPUnit\Selector\ArrayValueSelector;
 use Tailors\PHPUnit\Selector\ValueSelectorInterface;
-use Tailors\PHPUnit\Values\DummyValues;
-use Tailors\PHPUnit\Values\ValuesInterface;
 
 /**
  * @small
@@ -31,7 +31,7 @@ final class DummyRecursiveConstraintSpecialization
     use RecursiveConstraintSpecializationTrait;
 
     /**
-     * @var ValuesInterface
+     * @var ArrayResultInterface
      */
     public $expected;
 
@@ -66,7 +66,7 @@ final class DummyRecursiveConstraintSpecialization
     public static $validateExpectations;
 
     protected function __construct(
-        ValuesInterface $expected,
+        ArrayResultInterface $expected,
         ComparatorInterface $comparator,
         ValueSelectorInterface $valueSelector,
         RecursiveUnwrapperInterface $unwrapper
@@ -100,9 +100,9 @@ final class DummyRecursiveConstraintSpecialization
         return self::$makeComparator;
     }
 
-    protected static function makeExpectedValues(array $array): ValuesInterface
+    protected static function makeExpectedValues(array $array): ArrayResultInterface
     {
-        return new DummyValues(false, $array);
+        return new DummyArrayResult(false, $array);
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

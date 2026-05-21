@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit\Values;
 
+use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -31,7 +32,7 @@ final class DummyValuesTest extends TestCase
      */
     public function testExtendsArrayObject(): void
     {
-        $this->assertInstanceOf(\ArrayObject::class, new DummyValues(false));
+        $this->assertInstanceOf(\ArrayObject::class, new DummyArrayResult(false));
     }
 
     /**
@@ -39,7 +40,7 @@ final class DummyValuesTest extends TestCase
      */
     public static function provDummyValues(): iterable
     {
-        $tag = DummyValues::class.':a1a44e79c791a1fe22ac49067eef00b222d10131';
+        $tag = DummyArrayResult::class.':a1a44e79c791a1fe22ac49067eef00b222d10131';
 
         yield 'DummyValuesTest.php:'.__LINE__ => [
             'ctor'   => [false],
@@ -88,7 +89,7 @@ final class DummyValuesTest extends TestCase
      */
     public function testDummyValues(array $ctor, array $expect): void
     {
-        $values = new DummyValues(...$ctor);
+        $values = new DummyArrayResult(...$ctor);
 
         $this->assertSame($expect['actual'], $values->actual());
         $this->assertSame($expect['array'], iterator_to_array($values));

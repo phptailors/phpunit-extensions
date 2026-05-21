@@ -8,7 +8,7 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Values;
+namespace Tailors\PHPUnit\ArrayResult;
 
 use PHPUnit\Framework\Exception;
 use PHPUnit\Framework\ExpectationFailedException;
@@ -34,7 +34,7 @@ abstract class AbstractValuesTestCase extends TestCase
      *
      * @psalm-param CtorArgs $ctorArgs
      */
-    abstract public static function getValuesObject(array $ctorArgs): ValuesInterface;
+    abstract public static function getValuesObject(array $ctorArgs): ArrayResultInterface;
 
     /**
      * @throws Exception
@@ -43,7 +43,7 @@ abstract class AbstractValuesTestCase extends TestCase
      */
     final public function testImplementsValuesInterface(): void
     {
-        self::assertInstanceOf(ValuesInterface::class, static::getValuesObject([]));
+        self::assertInstanceOf(ArrayResultInterface::class, static::getValuesObject([]));
     }
 
     /**

@@ -10,8 +10,8 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
+use Tailors\PHPUnit\ArrayResult\ExpectedArrayResult;
 use PHPUnit\Framework\Constraint\Constraint;
-use Tailors\PHPUnit\Values\ExpectedValues;
 
 /**
  * @internal This trait is not covered by the backward compatibility promise
@@ -66,25 +66,25 @@ trait ProvArrayValuesTrait
         ];
 
         yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
-            'expect' => ['foo' => 'FOO', 'bar' => new ExpectedValues(['gez' => 'GEZ'])],
+            'expect' => ['foo' => 'FOO', 'bar' => new ExpectedArrayResult(['gez' => 'GEZ'])],
             'actual' => ['foo' => 'FOO', 'bar' => ['baz' => 'BAZ', 'gez' => 'GEZ', 'qux' => 'QUX']],
             'string' => 'array',
         ];
 
         yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
-            'expect' => ['foo' => 'FOO', 'bar' => new ExpectedValues(['gez' => 'GEZ'])],
+            'expect' => ['foo' => 'FOO', 'bar' => new ExpectedArrayResult(['gez' => 'GEZ'])],
             'actual' => ['foo' => 'FOO', 'bar' => new \ArrayObject(['baz' => 'BAZ', 'gez' => 'GEZ', 'qux' => 'QUX'])],
             'string' => 'array',
         ];
 
         yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
-            'expect' => ['foo' => 'FOO', 'bar' => new ExpectedValues(['gez' => 'GEZ'])],
+            'expect' => ['foo' => 'FOO', 'bar' => new ExpectedArrayResult(['gez' => 'GEZ'])],
             'actual' => new \ArrayObject(['foo' => 'FOO', 'bar' => ['baz' => 'BAZ', 'gez' => 'GEZ', 'qux' => 'QUX']]),
             'string' => 'object ArrayObject',
         ];
 
         yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
-            'expect' => ['foo' => 'FOO', 'bar' => ['baz' => 'BAZ', 'gez' => new ExpectedValues(['qux' => 'QUX'])]],
+            'expect' => ['foo' => 'FOO', 'bar' => ['baz' => 'BAZ', 'gez' => new ExpectedArrayResult(['qux' => 'QUX'])]],
             'actual' => ['foo' => 'FOO', 'bar' => ['baz' => 'BAZ', 'gez' => ['cop' => 'COP', 'qux' => 'QUX', 'dig' => 'DIG']]],
             'string' => 'array',
         ];
@@ -144,7 +144,7 @@ trait ProvArrayValuesTrait
         ];
 
         yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
-            'expect' => ['foo' => 'FOO', 'bar' => ['baz' => 'BAZ', 'gez' => new ExpectedValues(['qux' => 'QUX'])]],
+            'expect' => ['foo' => 'FOO', 'bar' => ['baz' => 'BAZ', 'gez' => new ExpectedArrayResult(['qux' => 'QUX'])]],
             'actual' => ['foo' => 'FOO', 'bar' => ['baz' => 'BAZ', 'gez' => ['qux' => 'QUX'], 'ext' => 'EXT']],
             'string' => 'array',
         ];

@@ -10,24 +10,26 @@
 
 namespace Tailors\PHPUnit\Values;
 
+use Tailors\PHPUnit\ArrayResult\ExpectedArrayResult;
+
 /**
  * @small
  *
  * @covers \Tailors\PHPUnit\Values\AbstractGenericValues
  * @covers \Tailors\PHPUnit\Values\AbstractValues
  * @covers \Tailors\PHPUnit\Values\AbstractValuesTestCase
- * @covers \Tailors\PHPUnit\Values\ActualValues
+ * @covers \Tailors\PHPUnit\Values\ExpectedValues
  * @covers \Tailors\PHPUnit\Values\GenericValuesTestCase
  *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class ActualValuesTest extends GenericValuesTestCase
+final class ExpectedValuesTest extends GenericValuesTestCase
 {
     public static function getValuesClass(): string
     {
-        return ActualValues::class;
+        return ExpectedArrayResult::class;
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

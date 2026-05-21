@@ -20,12 +20,8 @@ use Tailors\PHPUnit\ArraySpec\ArraySpecInterface;
 use Tailors\PHPUnit\Common\Exporter;
 use Tailors\PHPUnit\Common\ShortFailureDescriptionTrait;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
-use Tailors\PHPUnit\InternalErrorException;
 use Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactoryInterface;
 use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapperInterface;
-use Tailors\PHPUnit\Selector\ValueSelectorInterface;
-use Tailors\PHPUnit\Values\ValuesInterface;
-use Tailors\PHPUnit\Values\ValuesWrapperInterface;
 
 /**
  * Abstract base for constraints that examine values.
@@ -51,37 +47,23 @@ abstract class AbstractRecursiveConstraint extends Constraint
     /**
      * @var RecursiveResultFactoryInterface
      */
-    private $expectedResultFactory;
-
-    /**
-     * @var RecursiveResultFactoryInterface
-     */
-    private $actualResultFactory;
+    private $recursiveResultFactory;
 
     /**
      * @var RecursiveResultUnwrapperInterface
      */
-    private $expectedResultUnwrapper;
-
-    /**
-     * @var RecursiveResultUnwrapperInterface
-     */
-    private $actualResultUnwrapper;
+    private $recursiveResultUnwrapper;
 
     final protected function __construct(
         ArraySpecInterface $arraySpec,
         ComparatorInterface $comparator,
-        RecursiveResultFactoryInterface $expectedResultFactory,
-        RecursiveResultFactoryInterface $actualResultFactory,
-        RecursiveResultUnwrapperInterface $expectedResultUnwrapper,
-        RecursiveResultUnwrapperInterface $actualResultUnwrapper,
+        RecursiveResultFactoryInterface $recursiveResultFactory,
+        RecursiveResultUnwrapperInterface $recursiveResultUnwrapper,
     ) {
         $this->arraySpec = $arraySpec;
         $this->comparator = $comparator;
-        $this->expectedResultFactory = $expectedResultFactory;
-        $this->actualResultFactory = $actualResultFactory;
-        $this->expectedResultUnwrapper = $expectedResultUnwrapper;
-        $this->actualResultUnwrapper = $actualResultUnwrapper;
+        $this->recursiveResultFactory = $recursiveResultFactory;
+        $this->recursiveResultUnwrapper = $recursiveResultUnwrapper;
     }
 
     /**
@@ -179,8 +161,9 @@ abstract class AbstractRecursiveConstraint extends Constraint
         if (!$this->valueSelector->supports($other)) {
             return false;
         }
-        $actual = $this->actualResultUnwrapper->unwrap($this->actualResultFactory->getResult($other));
-        $expect = $this->expectedResultUnwrapper->unwrap($this->expectedResultFactory->getResult($this->arraySpec));
+
+        $expect = $this->recursiveResultUnwrapper->unwrapExpectedResult($this->recursiveResultFactory->getExpectedResult($this->arraySpec));
+        $actual = $this->recursiveResultUnwrapper->unwrapActualResult($this->recursiveResultFactory->getActualResult($other));
 
         return $this->comparator->compare($expect, $actual);
     }

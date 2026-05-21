@@ -10,15 +10,13 @@
 
 namespace Tailors\PHPUnit\RecursiveResultUnwrapper;
 
+use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
 use PHPUnit\Framework\TestCase;
-use Tailors\PHPUnit\Common\StaticRandomStrings;
 use Tailors\PHPUnit\Common\StaticTagInterface;
 use Tailors\PHPUnit\InvalidArgumentException;
 use Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversal;
 use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorInterface;
 use Tailors\PHPUnit\Result\ResultInterface;
-use Tailors\PHPUnit\Values\DummyValues;
-use Tailors\PHPUnit\Values\DummyValuesWrapper;
 
 /**
  * @small
@@ -83,14 +81,14 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
                 ],
                 [
                     'args' => [
-                        'node' => new DummyValues(false, []),
+                        'node' => new DummyArrayResult(false, []),
                         'stack' => [],
                     ],
                     'return' => false,
                 ],
                 [
                     'args' => [
-                        'node' => new DummyValues(true, []),
+                        'node' => new DummyArrayResult(true, []),
                         'stack' => [],
                     ],
                     'return' => false,
@@ -111,14 +109,14 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
                 ],
                 [
                     'args' => [
-                        'node' => new DummyValues(false, []),
+                        'node' => new DummyArrayResult(false, []),
                         'stack' => [],
                     ],
                     'return' => false,
                 ],
                 [
                     'args' => [
-                        'node' => new DummyValues(true, []),
+                        'node' => new DummyArrayResult(true, []),
                         'stack' => [],
                     ],
                     'return' => false,
@@ -158,7 +156,7 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
     public static function provEnterLeave(): iterable
     {
         $tagk = RecursiveResultUnwrapperVisitor::tag();
-        $tagd = (new DummyValues(false))->tag();
+        $tagd = (new DummyArrayResult(false))->tag();
 
         //
         // 01
@@ -216,7 +214,7 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
         $calls02e = [
             [
                 'args' => [
-                    'node' => new DummyValues(false),
+                    'node' => new DummyArrayResult(false),
                 ],
                 'return' => true,
             ],
@@ -270,7 +268,7 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
         $calls03a = [
             [
                 'args' => [
-                    'node' => new DummyValues(true),
+                    'node' => new DummyArrayResult(true),
                 ],
                 'return' => true,
             ],
@@ -321,7 +319,7 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
         // 04
         //
 
-        $s04 = [new DummyValues(false), [], new DummyValues(false)];
+        $s04 = [new DummyArrayResult(false), [], new DummyArrayResult(false)];
 
         // __construct(false, ...) --> unwrapping only expected values
         $calls04e = [
@@ -396,7 +394,7 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
         //
         // 05
         //
-        $s05 = [new DummyValues(false), [], new DummyValues(true)];
+        $s05 = [new DummyArrayResult(false), [], new DummyArrayResult(true)];
 
         // __construct(false, ...) --> unwrapping only expected values
         $calls05e = [
@@ -458,7 +456,7 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
         // 06
         //
 
-        $s06 = [new DummyValues(false, [], 'tag1'), [], new DummyValues(false, [], 'tag2')];
+        $s06 = [new DummyArrayResult(false, [], 'tag1'), [], new DummyArrayResult(false, [], 'tag2')];
 
         // __construct(false, ...) --> unwrapping only expected values
         $calls06e = [
@@ -572,7 +570,7 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
     public static function provVisit(): iterable
     {
         $tagk = RecursiveResultUnwrapperVisitor::tag();
-        $tagg = (new DummyValues(false))->tag();
+        $tagg = (new DummyArrayResult(false))->tag();
 
         //
         // 01
@@ -626,7 +624,7 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
 
         yield 'RecursiveResultUnwrapperVisitorTest.php:'.__LINE__ => [
             'ctor' => [true],
-            'root'  => new DummyValues(true),
+            'root'  => new DummyArrayResult(true),
             'iter'  => true,
             'calls' => [
                 [
@@ -717,24 +715,24 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
     public static function provUnwrapAcyclic(): iterable
     {
         $actualValues = [
-            '[]' => new DummyValues(true, []),
-            '[foo => FOO]' => new DummyValues(true, ['foo' => 'FOO']),
-            '[baz => BAZ]' => new DummyValues(true, ['baz' => 'BAZ']),
+            '[]' => new DummyArrayResult(true, []),
+            '[foo => FOO]' => new DummyArrayResult(true, ['foo' => 'FOO']),
+            '[baz => BAZ]' => new DummyArrayResult(true, ['baz' => 'BAZ']),
         ];
 
         $expectedValues = [
-            '[]' => new DummyValues(false, []),
-            '[foo => FOO]' => new DummyValues(false, ['foo' => 'FOO']),
-            '[baz => BAZ]' => new DummyValues(false, ['baz' => 'BAZ']),
+            '[]' => new DummyArrayResult(false, []),
+            '[foo => FOO]' => new DummyArrayResult(false, ['foo' => 'FOO']),
+            '[baz => BAZ]' => new DummyArrayResult(false, ['baz' => 'BAZ']),
         ];
         $arrayObject = ['[baz => BAZ]' => new \ArrayObject(['baz' => 'BAZ'])];
 
         $tagk = RecursiveResultUnwrapperVisitor::tag();
-        $tagd = (new DummyValues(false))->tag();
+        $tagd = (new DummyArrayResult(false))->tag();
 
         yield 'RecursiveResultUnwrapperVisitorTest.php:'.__LINE__ => [
             'ctor' => [false],
-            'array' => new DummyValues(false, []),
+            'array' => new DummyArrayResult(false, []),
             'result' => [
                 $tagk => $tagd,
             ],
@@ -742,7 +740,7 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
 
         yield 'RecursiveResultUnwrapperVisitorTest.php:'.__LINE__ => [
             'ctor' => [false],
-            'array' => new DummyValues(false, [], 'TAG'),
+            'array' => new DummyArrayResult(false, [], 'TAG'),
             'result' => [
                 $tagk => 'TAG',
             ],
@@ -774,7 +772,7 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
 
         yield 'RecursiveResultUnwrapperVisitorTest.php:'.__LINE__ => [
             'ctor' => [false],
-            'array' => new DummyValues(false, [
+            'array' => new DummyArrayResult(false, [
                 'foo' => 'FOO',
             ]),
             'result' => [
@@ -785,7 +783,7 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
 
         yield 'RecursiveResultUnwrapperVisitorTest.php:'.__LINE__ => [
             'ctor' => [false],
-            'array' => new DummyValues(false, [
+            'array' => new DummyArrayResult(false, [
                 'foo' => 'FOO',
                 'bar' => [
                     'baz' => 'BAZ',
@@ -804,9 +802,9 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
 
         yield 'RecursiveResultUnwrapperVisitorTest.php:'.__LINE__ => [
             'ctor' => [false],
-            'array' => new DummyValues(false, [
+            'array' => new DummyArrayResult(false, [
                 'foo' => 'FOO',
-                'bar' => new DummyValues(false, [
+                'bar' => new DummyArrayResult(false, [
                     'baz' => 'BAZ',
                 ]),
             ]),
@@ -822,11 +820,11 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
 
         yield 'RecursiveResultUnwrapperVisitorTest.php:'.__LINE__ => [
             'ctor' => [false],
-            'array' => new DummyValues(false, [
+            'array' => new DummyArrayResult(false, [
                 'foo' => 'FOO',
-                'bar' => new DummyValues(false, [
-                    'qux' => new DummyValues(false, ['baz' => 'BAZ']),
-                    new DummyValues(false, ['fred' => 'FRED']),
+                'bar' => new DummyArrayResult(false, [
+                    'qux' => new DummyArrayResult(false, ['baz' => 'BAZ']),
+                    new DummyArrayResult(false, ['fred' => 'FRED']),
                 ]),
             ]),
             'result' => [
@@ -848,7 +846,7 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
 
         yield 'RecursiveResultUnwrapperVisitorTest.php:'.__LINE__ => [
             'ctor' => [false],
-            'array' => new DummyValues(false, [
+            'array' => new DummyArrayResult(false, [
                 'foo' => 'FOO',
                 'bar' => $actualValues['[baz => BAZ]'],
             ]),
@@ -861,7 +859,7 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
 
         yield 'RecursiveResultUnwrapperVisitorTest.php:'.__LINE__ => [
             'ctor' => [true],
-            'array' => new DummyValues(true, [
+            'array' => new DummyArrayResult(true, [
                 'foo' => 'FOO',
                 'bar' => $expectedValues['[baz => BAZ]'],
             ]),
@@ -874,7 +872,7 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
 
         yield 'RecursiveResultUnwrapperVisitorTest.php:'.__LINE__ => [
             'ctor' => [false],
-            'array' => new DummyValues(false, [
+            'array' => new DummyArrayResult(false, [
                 'foo' => 'FOO',
                 'bar' => $arrayObject['[baz => BAZ]'],
             ]),
@@ -887,7 +885,7 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
 
         yield 'RecursiveResultUnwrapperVisitorTest.php:'.__LINE__ => [
             'ctor' => [false, false], // no tagging
-            'array' => new DummyValues(false, [
+            'array' => new DummyArrayResult(false, [
                 'foo' => 'FOO',
             ]),
             'result' => [
@@ -897,8 +895,8 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
 
         yield 'RecursiveResultUnwrapperVisitorTest.php:'.__LINE__ => [
             'ctor' => [false, false], // no tagging
-            'array' => new DummyValues(false, [
-                'foo' => new DummyValues(false, []),
+            'array' => new DummyArrayResult(false, [
+                'foo' => new DummyArrayResult(false, []),
             ]),
             'result' => [
                 'foo' => [],
@@ -907,9 +905,9 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
 
         yield 'RecursiveResultUnwrapperVisitorTest.php:'.__LINE__ => [
             'ctor' => [false, false], // no tagging
-            'array' => new DummyValues(false, [
+            'array' => new DummyArrayResult(false, [
                 'foo' => 'FOO',
-                'bar' => new DummyValues(false, [
+                'bar' => new DummyArrayResult(false, [
                     'baz' => 'BAZ',
                 ]),
             ]),
@@ -956,12 +954,12 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
     public static function provUnwrapCyclic(): iterable
     {
         $tagk = RecursiveResultUnwrapperVisitor::tag();
-        $tagd = (new DummyValues(false))->tag();
+        $tagd = (new DummyArrayResult(false))->tag();
 
         //
         // 01
         //
-        $v01 = new DummyValues(true, [
+        $v01 = new DummyArrayResult(true, [
             'foo' => [],
         ]);
         $v01['foo']['bar'] = $v01;
@@ -981,7 +979,7 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
         // 02
         //
 
-        $v02 = new DummyValues(true, [
+        $v02 = new DummyArrayResult(true, [
             'foo' => [
                 'bar' => [],
             ],
@@ -1005,9 +1003,9 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
         // 03
         //
 
-        $v03 = new DummyValues(true, [
+        $v03 = new DummyArrayResult(true, [
             'foo' => [
-                'bar' => new DummyValues(true, [
+                'bar' => new DummyArrayResult(true, [
                     'baz' => 'BAZ',
                 ]),
             ],
@@ -1033,10 +1031,10 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
         // 04
         //
 
-        $v04 = new DummyValues(true, [
+        $v04 = new DummyArrayResult(true, [
             'foo' => [
-                'bar' => new DummyValues(true, []),
-                'baz' => new DummyValues(true, []),
+                'bar' => new DummyArrayResult(true, []),
+                'baz' => new DummyArrayResult(true, []),
             ],
         ]);
         $v04['foo']['bar']['qux'] = $v04['foo']['baz'];
@@ -1070,7 +1068,7 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
         // 05
         //
 
-        $v05 = new DummyValues(true, [
+        $v05 = new DummyArrayResult(true, [
             'foo' => [
                 'bar' => [],
             ],
@@ -1094,7 +1092,7 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
         //
 
         $v06 = [
-            'foo' => new DummyValues(true, [
+            'foo' => new DummyArrayResult(true, [
                 'bar' => [],
             ]),
         ];

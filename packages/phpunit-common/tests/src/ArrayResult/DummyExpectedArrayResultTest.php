@@ -10,6 +10,8 @@
 
 namespace Tailors\PHPUnit\Values;
 
+use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
+use Tailors\PHPUnit\ArrayResult\DummyExpectedArrayResult;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Selector\DummyValueSelector;
 
@@ -32,7 +34,7 @@ final class DummyExpectedValuesTest extends TestCase
      */
     public static function provDummyExpectedValues(): iterable
     {
-        $tag = DummyValues::class.':a1a44e79c791a1fe22ac49067eef00b222d10131';
+        $tag = DummyArrayResult::class.':a1a44e79c791a1fe22ac49067eef00b222d10131';
         $selector = new DummyValueSelector();
 
         yield 'DummyExpectedValuesTest.php:'.__LINE__ => [
@@ -74,7 +76,7 @@ final class DummyExpectedValuesTest extends TestCase
      */
     public function testDummyExpectedValues(array $ctor, array $expect): void
     {
-        $values = new DummyExpectedValues(...$ctor);
+        $values = new DummyExpectedArrayResult(...$ctor);
 
         $this->assertSame($expect['selector'], $values->getValueSelector());
         $this->assertSame($expect['actual'], $values->actual());
@@ -86,7 +88,7 @@ final class DummyExpectedValuesTest extends TestCase
     public function testCreateActualValues(): void
     {
         $selector = new DummyValueSelector();
-        $expect = new DummyExpectedValues($selector, ['e' => 'E']);
+        $expect = new DummyExpectedArrayResult($selector, ['e' => 'E']);
 
         $actual = $expect->createActualValues(['a' => 'A']);
 
