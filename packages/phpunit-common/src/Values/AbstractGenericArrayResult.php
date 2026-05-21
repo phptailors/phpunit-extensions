@@ -17,7 +17,7 @@ namespace Tailors\PHPUnit\Values;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-abstract class AbstractGenericValues extends AbstractValues
+abstract class AbstractGenericArrayResult extends AbstractValues
 {
     /**
      * @var ?string

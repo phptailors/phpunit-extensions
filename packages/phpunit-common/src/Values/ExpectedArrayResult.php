@@ -17,7 +17,7 @@ namespace Tailors\PHPUnit\Values;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class ExpectedValues extends AbstractGenericValues
+final class ExpectedArrayResult extends AbstractGenericValues
 {
     /**
      * @psalm-mutation-free

@@ -17,7 +17,7 @@ namespace Tailors\PHPUnit\Values;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class ActualValues extends AbstractGenericValues
+final class ActualArrayResult extends AbstractGenericValues
 {
     /**
      * @psalm-mutation-free

@@ -21,7 +21,7 @@ use Tailors\PHPUnit\Common\StaticRandomStrings;
  *
  * @template-extends \ArrayObject<array-key,mixed>
  */
-abstract class AbstractValues extends \ArrayObject implements ValuesInterface
+abstract class AbstractArrayResult extends \ArrayObject implements ValuesInterface
 {
     /**
      * @param array|\Traversable $array
