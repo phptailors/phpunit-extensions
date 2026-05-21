@@ -106,11 +106,12 @@ abstract class AbstractRecursiveConstraint extends Constraint
             $f = null;
 
             if ($this->valueSelector->supports($other)) {
-                $actual = $this->select($other);
+                $expect = $this->recursiveResultFactory->getExpectedResult($this->arraySpec);
+                $actual = $this->recursiveResultFactory->getActualResult($other);
                 $f = new ComparisonFailure(
                     $this->arraySpec,
                     $other,
-                    Exporter::export($this->arraySpec, true),
+                    Exporter::export($expect, true),
                     Exporter::export($actual, true)
                 );
             }
@@ -158,14 +159,17 @@ abstract class AbstractRecursiveConstraint extends Constraint
      */
     final protected function matches($other): bool
     {
-        if (!$this->valueSelector->supports($other)) {
+        if (!$this->recursiveResultFactory->supports($other)) {
             return false;
         }
 
-        $expect = $this->recursiveResultUnwrapper->unwrapExpectedResult($this->recursiveResultFactory->getExpectedResult($this->arraySpec));
-        $actual = $this->recursiveResultUnwrapper->unwrapActualResult($this->recursiveResultFactory->getActualResult($other));
+        $expectResult = $this->recursiveResultFactory->getExpectedResult($this->arraySpec);
+        $actualResult = $this->recursiveResultFactory->getActualResult($other);
 
-        return $this->comparator->compare($expect, $actual);
+        $expectComparable = $this->recursiveResultUnwrapper->unwrapExpectedResult($expectResult);
+        $actualComparable = $this->recursiveResultUnwrapper->unwrapActualResult($actualResult);
+
+        return $this->comparator->compare($expectComparable, $actualComparable);
     }
 //
 //    /**
