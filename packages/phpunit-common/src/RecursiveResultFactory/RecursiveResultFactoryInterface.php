@@ -10,19 +10,19 @@
 
 namespace Tailors\PHPUnit\RecursiveResultFactory;
 
+use Tailors\PHPUnit\ArraySpec\ArraySpecInterface;
+use Tailors\PHPUnit\Result\ResultFactoryInterface;
 use Tailors\PHPUnit\Result\ResultInterface;
 
 /**
  * @internal This interface is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @template-extends ResultFactoryInterface<array|ArraySpecInterface>
  */
-interface RecursiveResultFactoryInterface
+interface RecursiveResultFactoryInterface extends ResultFactoryInterface
 {
-    /**
-     * @param mixed $subject
-     */
-    public function getResult($subject): ResultInterface;
 }
 
 // vim: syntax=php sw=4 ts=4 et:
