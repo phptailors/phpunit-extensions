@@ -16,10 +16,13 @@ use PHPUnit\Framework\Constraint\Operator;
 use PHPUnit\Framework\ExpectationFailedException;
 use SebastianBergmann\Comparator\ComparisonFailure;
 use SebastianBergmann\RecursionContext\InvalidArgumentException;
+use Tailors\PHPUnit\ArraySpec\ArraySpecInterface;
 use Tailors\PHPUnit\Common\Exporter;
 use Tailors\PHPUnit\Common\ShortFailureDescriptionTrait;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\InternalErrorException;
+use Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactoryInterface;
+use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapperInterface;
 use Tailors\PHPUnit\Selector\ValueSelectorInterface;
 use Tailors\PHPUnit\Values\ValuesInterface;
 use Tailors\PHPUnit\Values\ValuesWrapperInterface;
@@ -31,14 +34,14 @@ use Tailors\PHPUnit\Values\ValuesWrapperInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-abstract class AbstractRecursiveConstraint extends Constraint implements ValuesWrapperInterface
+abstract class AbstractRecursiveConstraint extends Constraint
 {
     use ShortFailureDescriptionTrait;
 
     /**
-     * @var ValuesInterface
+     * @var ArraySpecInterface
      */
-    private $expected;
+    private $arraySpec;
 
     /**
      * @var ComparatorInterface
@@ -46,33 +49,39 @@ abstract class AbstractRecursiveConstraint extends Constraint implements ValuesW
     private $comparator;
 
     /**
-     * @var ValueSelectorInterface
+     * @var RecursiveResultFactoryInterface
      */
-    private $valueSelector;
+    private $expectedResultFactory;
 
     /**
-     * @var RecursiveUnwrapperInterface
+     * @var RecursiveResultFactoryInterface
      */
-    private $unwrapper;
+    private $actualResultFactory;
+
+    /**
+     * @var RecursiveResultUnwrapperInterface
+     */
+    private $expectedResultUnwrapper;
+
+    /**
+     * @var RecursiveResultUnwrapperInterface
+     */
+    private $actualResultUnwrapper;
 
     final protected function __construct(
-        ValuesInterface $expected,
+        ArraySpecInterface $arraySpec,
         ComparatorInterface $comparator,
-        ValueSelectorInterface $valueSelector,
-        RecursiveUnwrapperInterface $unwrapper
+        RecursiveResultFactoryInterface $expectedResultFactory,
+        RecursiveResultFactoryInterface $actualResultFactory,
+        RecursiveResultUnwrapperInterface $expectedResultUnwrapper,
+        RecursiveResultUnwrapperInterface $actualResultUnwrapper,
     ) {
-        $this->expected = $expected;
+        $this->arraySpec = $arraySpec;
         $this->comparator = $comparator;
-        $this->valueSelector = $valueSelector;
-        $this->unwrapper = $unwrapper;
-    }
-
-    /**
-     * Returns an instance of ValuesInterface which defines expected values.
-     */
-    final public function getValues(): ValuesInterface
-    {
-        return $this->expected;
+        $this->expectedResultFactory = $expectedResultFactory;
+        $this->actualResultFactory = $actualResultFactory;
+        $this->expectedResultUnwrapper = $expectedResultUnwrapper;
+        $this->actualResultUnwrapper = $actualResultUnwrapper;
     }
 
     /**
@@ -117,9 +126,9 @@ abstract class AbstractRecursiveConstraint extends Constraint implements ValuesW
             if ($this->valueSelector->supports($other)) {
                 $actual = $this->select($other);
                 $f = new ComparisonFailure(
-                    $this->expected,
+                    $this->arraySpec,
                     $other,
-                    Exporter::export($this->expected, true),
+                    Exporter::export($this->arraySpec, true),
                     Exporter::export($actual, true)
                 );
             }
@@ -170,34 +179,34 @@ abstract class AbstractRecursiveConstraint extends Constraint implements ValuesW
         if (!$this->valueSelector->supports($other)) {
             return false;
         }
-        $actual = $this->unwrapper->unwrap($this->select($other));
-        $expect = $this->unwrapper->unwrap($this->expected);
+        $actual = $this->actualResultUnwrapper->unwrap($this->actualResultFactory->getResult($other));
+        $expect = $this->expectedResultUnwrapper->unwrap($this->expectedResultFactory->getResult($this->arraySpec));
 
         return $this->comparator->compare($expect, $actual);
     }
-
-    /**
-     * @param mixed $subject
-     */
-    private function select($subject): ValuesInterface
-    {
-        $visitor = new RecursiveSelectorVisitor($this->valueSelector, $subject);
-
-        (new RecursiveTraversal())->walk($this->expected, $visitor);
-
-        $result = $visitor->result();
-
-        if (!$result instanceof ValuesInterface) {
-            // @codeCoverageIgnoreStart
-            $type = is_object($result) ? get_class($result) : gettype($result);
-
-            /** @psalm-suppress MissingThrowsDocblock */
-            throw InternalErrorException::fromBackTrace("recursive walk resulted with {$type}", 0);
-            // @codeCoverageIgnoreEnd
-        }
-
-        return $result;
-    }
+//
+//    /**
+//     * @param mixed $subject
+//     */
+//    private function select($subject): ValuesInterface
+//    {
+//        $visitor = new RecursiveSelectorVisitor($this->valueSelector, $subject);
+//
+//        (new RecursiveTraversal())->walk($this->arraySpec, $visitor);
+//
+//        $result = $visitor->result();
+//
+//        if (!$result instanceof ValuesInterface) {
+//            // @codeCoverageIgnoreStart
+//            $type = is_object($result) ? get_class($result) : gettype($result);
+//
+//            /** @psalm-suppress MissingThrowsDocblock */
+//            throw InternalErrorException::fromBackTrace("recursive walk resulted with {$type}", 0);
+//            // @codeCoverageIgnoreEnd
+//        }
+//
+//        return $result;
+//    }
 }
 
 // vim: syntax=php sw=4 ts=4 et:

@@ -15,6 +15,7 @@ use Tailors\PHPUnit\CircularDependencyException;
 use Tailors\PHPUnit\Common\SupportInterface;
 use Tailors\PHPUnit\InternalErrorException;
 use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorInterface;
+use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorUtils;
 use Tailors\PHPUnit\Result\ResultFactoryInterface;
 use Tailors\PHPUnit\Result\ResultFactoryWrapperInterface;
 use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
@@ -311,21 +312,9 @@ final class RecursiveResultFactoryVisitor implements RecursiveVisitorInterface
      */
     private static function throwCircular(array $stack): void
     {
-        $pathString = self::pathString($stack);
+        $pathString = RecursiveVisitorUtils::pathAsString($stack);
 
         throw new CircularDependencyException("Circular dependency found in nested values at \$values{$pathString}.");
-    }
-
-    /**
-     * @psalm-param list<StackItem> $stack
-     *
-     * @psalm-mutation-free
-     */
-    private static function pathString(array $stack): string
-    {
-        return implode('', array_map(function ($item) {
-            return '['.var_export($item->key(), true).']';
-        }, $stack));
     }
 }
 

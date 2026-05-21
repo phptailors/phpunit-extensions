@@ -27,11 +27,17 @@ final class DummyValues extends \ArrayObject implements ValuesInterface
     private $actual;
 
     /**
+     * @var ?string
+     */
+    private $tag;
+
+    /**
      * @param array|\Traversable $array
      */
-    public function __construct(bool $actual, $array = [])
+    public function __construct(bool $actual, $array = [], ?string $tag = null)
     {
         $this->actual = $actual;
+        $this->tag = $tag;
 
         if (!is_array($array)) {
             $array = iterator_to_array($array);
@@ -55,19 +61,7 @@ final class DummyValues extends \ArrayObject implements ValuesInterface
      */
     public function tag(): string
     {
-        return self::class.':a1a44e79c791a1fe22ac49067eef00b222d10131';
-    }
-
-    /**
-     * @param array|\Traversable $array
-     *
-     * @psalm-param array|\Traversable<array-key,mixed> $array
-     *
-     * @psalm-mutation-free
-     */
-    public function createActualValues($array = []): ValuesInterface
-    {
-        return new self(true, $array);
+        return $this->tag ?? self::class.':a1a44e79c791a1fe22ac49067eef00b222d10131';
     }
 }
 

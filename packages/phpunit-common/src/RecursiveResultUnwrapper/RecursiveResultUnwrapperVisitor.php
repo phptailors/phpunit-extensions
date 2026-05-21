@@ -10,13 +10,14 @@
 
 namespace Tailors\PHPUnit\RecursiveResultUnwrapper;
 
-use Tailors\PHPUnit\CircularDependencyException;
 use Tailors\PHPUnit\Common\StaticRandomStrings;
 use Tailors\PHPUnit\Common\StaticTagInterface;
 use Tailors\PHPUnit\Common\TagInterface;
+use Tailors\PHPUnit\InternalErrorException;
 use Tailors\PHPUnit\InvalidArgumentException;
 use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorStackItemInterface;
 use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorInterface;
+use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorUtils;
 use Tailors\PHPUnit\Result\ResultInterface;
 
 /**
@@ -28,7 +29,7 @@ use Tailors\PHPUnit\Result\ResultInterface;
  *
  * @psalm-type StackItem = RecursiveResultUnwrapperStackItem
  */
-final class RecursiveResultUnwrapperVisitor implements RecursiveVisitorInterface, StaticTagInterface
+final class RecursiveResultUnwrapperVisitor implements RecursiveResultUnwrapperVisitorInterface, StaticTagInterface
 {
     /**
      * @var bool
@@ -45,7 +46,7 @@ final class RecursiveResultUnwrapperVisitor implements RecursiveVisitorInterface
     private $tagging;
 
     /**
-     * @var array
+     * @var array|null|ResultInterface
      */
     private $result;
 
@@ -58,8 +59,7 @@ final class RecursiveResultUnwrapperVisitor implements RecursiveVisitorInterface
     {
         $this->actual = $actual;
         $this->tagging = $tagging;
-        $this->result = [];
-        $this->current = [];
+        $this->reset();
     }
 
     /**
@@ -74,10 +74,18 @@ final class RecursiveResultUnwrapperVisitor implements RecursiveVisitorInterface
         return __NAMESPACE__."\UnwrappedResult:{$hex}";
     }
 
+    public function reset(): void
+    {
+        $this->result = null;
+        $this->current = [];
+    }
+
     /**
+     * @return array|null|ResultInterface
+     *
      * @psalm-mutation-free
      */
-    public function result(): array
+    public function result()
     {
         return $this->result;
     }
@@ -92,7 +100,7 @@ final class RecursiveResultUnwrapperVisitor implements RecursiveVisitorInterface
         if ($node instanceof ResultInterface) {
             $iterate = $node->actual() === $this->actual;
         } else {
-            $iterate = true;
+            $iterate = is_array($node);
         }
 
         if ($iterate) {
@@ -113,10 +121,19 @@ final class RecursiveResultUnwrapperVisitor implements RecursiveVisitorInterface
             return;
         }
 
-        if ($node instanceof TagInterface && $this->tagging) {
+        if ($node instanceof \Traversable && $this->tagging) {
+            $tag = self::tag();
+            if (array_key_exists($tag, $this->current)) {
+                $path = (RecursiveVisitorUtils::pathAsString($stack))."[{$tag}]";
+                /** @psalm-suppress MissingThrowsDocblock */
+                throw InternalErrorException::fromBackTrace(
+                    'Failed to set $array'.$path.': key already exists. Please re-run your tests.'
+                );
+            }
+
             // Distinguish unwrapped values from regular arrays
-            // by adding UNIQUE TAG AT THE END of $array.
-            $this->current[self::tag()] = $node->tag();
+            // by adding object's tag at the end of $array.
+            $this->current[$tag] = $this->getNodeTag($node);
         }
 
         $this->set($stack, $this->current);
@@ -135,15 +152,13 @@ final class RecursiveResultUnwrapperVisitor implements RecursiveVisitorInterface
     /**
      * @param array|\Traversable $node
      *
-     * @return never
-     *
-     * @throws CircularDependencyException
-     *
      * @psalm-param list<StackItem> $stack
      */
     public function cycle($node, array $stack): bool
     {
-        self::throwCircular($stack);
+        $this->set($stack, $node);
+
+        return false;
     }
 
     /**
@@ -179,11 +194,12 @@ final class RecursiveResultUnwrapperVisitor implements RecursiveVisitorInterface
         $count = count($stack);
 
         if (0 === $count) {
-            if (!is_array($value)) {
+            if (!is_array($value) && ! $value instanceof ResultInterface) {
+                $expected = 'an array or '.ResultInterface::class.' object';
                 $actual = is_object($value) ? get_class($value) : gettype($value);
 
                 /** @psalm-suppress MissingThrowsDocblock */
-                throw InvalidArgumentException::fromBackTrace(2, 'an array', $actual);
+                throw InvalidArgumentException::fromBackTrace(2, $expected, $actual);
             }
             $this->result = $value;
 
@@ -194,29 +210,15 @@ final class RecursiveResultUnwrapperVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @return never
-     *
-     * @throws CircularDependencyException
-     *
-     * @psalm-param list<StackItem> $stack
+     * @psalm-return non-empty-string
      */
-    private static function throwCircular(array $stack): void
+    private function getNodeTag(object $node): string
     {
-        $pathString = self::pathString($stack);
+        if ($node instanceof TagInterface) {
+            return $node->tag();
+        }
 
-        throw new CircularDependencyException("Circular dependency found in nested values at \$values{$pathString}.");
-    }
-
-    /**
-     * @psalm-param list<StackItem> $stack
-     *
-     * @psalm-mutation-free
-     */
-    private static function pathString(array $stack): string
-    {
-        return implode('', array_map(function ($item) {
-            return '['.var_export($item->key(), true).']';
-        }, $stack));
+        return StaticRandomStrings::classTag($node);
     }
 }
 

@@ -21,9 +21,6 @@ use Tailors\PHPUnit\Common\TagInterface;
  */
 interface ResultInterface extends TagInterface
 {
-    /**
-     * Returns true if this object represents actual result (as opposite to expected one).
-     */
     public function actual(): bool;
 }
 

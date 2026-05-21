@@ -10,46 +10,47 @@
 
 namespace Tailors\PHPUnit\RecursiveResultUnwrapper;
 
-use Tailors\PHPUnit\CircularDependencyException;
-use Tailors\PHPUnit\Values\ValuesInterface;
+use Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversalInterface;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class RecursiveResultUnwrapper implements RecursiveUnwrapperInterface
+final class RecursiveResultUnwrapper implements RecursiveResultUnwrapperInterface
 {
     /**
-     * @var bool
+     * @var RecursiveResultUnwrapperVisitor
+     *
+     * @psalm-readonly
      */
-    private $tagging;
+    private $recursiveVisitor;
 
     /**
-     * Initializes the object.
+     * @var RecursiveTraversalInterface
      *
-     * @param bool $tagging If true, then a unique tag will be appended to the
-     *                      end of every array that results from unwrapping of
-     *                      array of properties
+     * @psalm-readonly
      */
-    public function __construct(bool $tagging = true)
-    {
-        $this->tagging = $tagging;
+    private $recursiveTraversal;
+
+    public function __construct(
+        RecursiveResultUnwrapperVisitorInterface $recursiveVisitor,
+        RecursiveTraversalInterface $recursiveTraversal
+    ) {
+        $this->recursiveVisitor = $recursiveVisitor;
+        $this->recursiveTraversal = $recursiveTraversal;
     }
 
     /**
-     * Walk recursively through $values and unwrap nested instances of
-     * ValuesInterface when suitable.
-     *
-     * @throws CircularDependencyException
+     * @param array|\Traversable $array
      */
-    public function unwrap(ValuesInterface $values): array
+    public function unwrap($array): array
     {
-        $traversal = new RecursiveTraversal();
-        $visitor = new RecursiveUnwrapperVisitor($this->tagging);
-        $traversal->walk($values, $visitor);
+        $this->recursiveVisitor->reset();
 
-        return $visitor->result();
+        $this->recursiveTraversal->walk($array, $this->recursiveVisitor);
+
+        return $this->recursiveVisitor->result();
     }
 }
 

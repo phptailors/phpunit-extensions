@@ -8,21 +8,21 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\RecursiveResultUnwrapper;
+namespace Tailors\PHPUnit\RecursiveResultFactory;
+
+use Tailors\PHPUnit\Result\ResultInterface;
 
 /**
  * @internal This interface is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-interface RecursiveResultUnwrapperInterface
+interface RecursiveResultFactoryInterface
 {
     /**
-     * @param array|\Traversable $array
-     *
-     * @psalm-return array|null|ResultInterface
+     * @param mixed $subject
      */
-    public function unwrap($array): array;
+    public function getResult($subject): ResultInterface;
 }
 
 // vim: syntax=php sw=4 ts=4 et:

@@ -21,13 +21,21 @@ use PHPUnit\Framework\TestCase;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type CtorArgs    = list{0:bool,1?:array|\Traversable}
+ * @psalm-type CtorArgs    = list{0:bool,1?:array|\Traversable,2?:null|string}
  * @psalm-type ExpectArray = array{actual: mixed, array: mixed, tag: mixed}
  */
 final class DummyValuesTest extends TestCase
 {
     /**
-     * @psalm-return iterable<string,array{ctor: CtorArgs, expect: ExpecteArray}
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testExtendsArrayObject(): void
+    {
+        $this->assertInstanceOf(\ArrayObject::class, new DummyValues(false));
+    }
+
+    /**
+     * @psalm-return \Generator<string,array{ctor: CtorArgs, expect: ExpectArray}>
      */
     public static function provDummyValues(): iterable
     {
@@ -59,6 +67,15 @@ final class DummyValuesTest extends TestCase
                 'tag'    => $tag,
             ],
         ];
+
+        yield 'DummyValuesTest.php'.__LINE__ => [
+            'ctor'   => [false, [], 'FOO'],
+            'expect' => [
+                'actual' => false,
+                'array'  => [],
+                'tag'    => 'FOO',
+            ],
+        ];
     }
 
     /**
@@ -66,6 +83,8 @@ final class DummyValuesTest extends TestCase
      *
      * @psalm-param CtorArgs    $ctor
      * @psalm-param ExpectArray $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testDummyValues(array $ctor, array $expect): void
     {
@@ -75,17 +94,6 @@ final class DummyValuesTest extends TestCase
         $this->assertSame($expect['array'], iterator_to_array($values));
         $this->assertSame($expect['array'], (array) $values);
         $this->assertSame($expect['tag'], $values->tag());
-    }
-
-    public function testCreateActualValues(): void
-    {
-        $expect = new DummyValues(false, ['e' => 'E']);
-
-        $actual = $expect->createActualValues(['a' => 'A']);
-
-        $this->assertTrue($actual->actual());
-        $this->assertSame(['a' => 'A'], (array) $actual);
-        $this->assertSame($expect->tag(), $actual->tag());
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

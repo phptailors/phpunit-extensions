@@ -25,13 +25,13 @@ final class StaticRandomStrings
      * @param mixed $key
      *
      * @psalm-param array-key         $key
-     * @psalm-param ?non-empty-string $fallback
+     * @psalm-param ?non-falsy-string $fallback
      *
-     * @psalm-return non-empty-string
+     * @psalm-return non-falsy-string
      */
     public static function get($key, ?string $fallback = null): string
     {
-        /** @psalm-var array<mixed,non-empty-string> */
+        /** @psalm-var array<mixed,non-falsy-string> */
         static $strings = [];
 
         if (null === ($strings[$key] ?? null)) {
@@ -50,6 +50,22 @@ final class StaticRandomStrings
         }
 
         return $strings[$key];
+    }
+
+    /**
+     * @param object|class-string $objectOrClass
+     *
+     * @psalm-return non-falsy-string
+     */
+    public static function classTag($objectOrClass, ?string $fallback = null): string
+    {
+        $class = is_object($objectOrClass) ? get_class($objectOrClass) : $objectOrClass;
+
+        if (null === $fallback) {
+            $fallback = sha1($class);
+        }
+
+        return "{$class}:".self::get($class, $fallback);
     }
 }
 

@@ -15,7 +15,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Recursive\RecursiveResultUnwrapperStackItem
+ * @covers \Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapperStackItem
  *
  * @internal This class is not covered by the backward compatibility promise
  *
@@ -23,6 +23,9 @@ use PHPUnit\Framework\TestCase;
  */
 final class RecursiveResultUnwrapperStackItemTest extends TestCase
 {
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testRecursiveResultUnwrapperStackItem(): void
     {
         $item = new RecursiveResultUnwrapperStackItem(['node'], 'key', ['result']);
@@ -32,6 +35,9 @@ final class RecursiveResultUnwrapperStackItemTest extends TestCase
         $this->assertSame(['result'], $item->result());
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testSet(): void
     {
         $item = new RecursiveResultUnwrapperStackItem(['node'], 'key', ['result']);
