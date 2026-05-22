@@ -8,14 +8,14 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Selector;
+namespace Tailors\PHPUnit\ValueSelector;
 
 use PHPUnit\Framework\TestCase;
 
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Selector\DummyValueSelector
+ * @covers \Tailors\PHPUnit\ValueSelector\DummyValueSelector
  *
  * @internal This class is not covered by the backward compatibility promise
  *

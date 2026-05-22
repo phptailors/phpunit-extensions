@@ -8,7 +8,7 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Recursive;
+namespace Tailors\PHPUnit\RecursiveConstraint;
 
 use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
 use Tailors\PHPUnit\ArrayResult\ExpectedArrayResult;

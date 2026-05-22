@@ -8,7 +8,7 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Recursive;
+namespace Tailors\PHPUnit\RecursiveResultFactory;
 
 use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
 use PHPUnit\Framework\TestCase;
@@ -16,7 +16,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Recursive\RecursiveSelectorState
+ * @covers \Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactoryState
  *
  * @internal This class is not covered by the backward compatibility promise
  *
@@ -24,7 +24,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @psalm-type CtorArgs = list{0:mixed, 1:array|ValuesInterface}
  */
-final class RecursiveSelectorStateTest extends TestCase
+final class RecursiveResultFactoryStateTest extends TestCase
 {
     /**
      * @psalm-return iterable<string,array{
@@ -32,12 +32,12 @@ final class RecursiveSelectorStateTest extends TestCase
      *      expect: array{subject: mixed, result: mixed}
      * }>
      */
-    public static function provRecursiveSelectorState(): iterable
+    public static function provRecursiveResultFactoryState(): iterable
     {
         //
         // 01
         //
-        yield 'RecursiveSelectorStateTest.php:'.__LINE__ => [
+        yield 'RecursiveResultFactoryStateTest.php:'.__LINE__ => [
             'ctor'   => [null, []],
             'expect' => [
                 'subject' => null,
@@ -48,7 +48,7 @@ final class RecursiveSelectorStateTest extends TestCase
         //
         // 02
         //
-        yield 'RecursiveSelectorStateTest.php:'.__LINE__ => [
+        yield 'RecursiveResultFactoryStateTest.php:'.__LINE__ => [
             'ctor'   => ['s', ['r' => 'R']],
             'expect' => [
                 'subject' => 's',
@@ -61,7 +61,7 @@ final class RecursiveSelectorStateTest extends TestCase
         //
         $v03 = new DummyArrayResult(true);
 
-        yield 'RecursiveSelectorStateTest.php:'.__LINE__ => [
+        yield 'RecursiveResultFactoryStateTest.php:'.__LINE__ => [
             'ctor'   => [['s'], $v03],
             'expect' => [
                 'subject' => ['s'],
@@ -71,14 +71,14 @@ final class RecursiveSelectorStateTest extends TestCase
     }
 
     /**
-     * @dataProvider provRecursiveSelectorState
+     * @dataProvider provRecursiveResultFactoryState
      *
      * @psalm-param CtorArgs                             $ctor
      * @psalm-param array{subject: mixed, result: mixed} $expect
      */
-    public function testRecursiveSelectorState(array $ctor, array $expect): void
+    public function testRecursiveResultFactoryState(array $ctor, array $expect): void
     {
-        $state = new RecursiveSelectorState(...$ctor);
+        $state = new RecursiveResultFactoryState(...$ctor);
 
         $this->assertSame($expect['subject'], $state->subject);
         $this->assertSame($expect['result'], $state->result);

@@ -8,7 +8,7 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Recursive;
+namespace Tailors\PHPUnit\RecursiveResultFactory;
 
 use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
 use PHPUnit\Framework\TestCase;
@@ -16,17 +16,17 @@ use PHPUnit\Framework\TestCase;
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Recursive\RecursiveSelectorStackItem
+ * @covers \Tailors\PHPUnit\RecursiveConstraint\RecursiveResultFactoryStackItem
  *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type CtorArgs   = list{0:array|ValuesInterface, 1:array-key, 2: RecursiveSelectorState}
+ * @psalm-type CtorArgs   = list{0:array|ValuesInterface, 1:array-key, 2: RecursiveResultFactoryState}
  * @psalm-type CtorExpect = array{node: mixed, key: mixed, state: mixed}
  * @psalm-type SetExpect  = array{node: mixed, key: mixed, subject: mixed, result: mixed}
  */
-final class RecursiveSelectorStackItemTest extends TestCase
+final class RecursiveResultFactoryStackItemTest extends TestCase
 {
     /**
      * @psalm-return iterable<string,array{ctor: CtorArgs, expect: CtorExpect}>
@@ -36,9 +36,9 @@ final class RecursiveSelectorStackItemTest extends TestCase
         //
         // 01
         //
-        $s01 = new RecursiveSelectorState(null, []);
+        $s01 = new RecursiveResultFactoryState(null, []);
 
-        yield 'RecursiveSelectorStackItemTest.php:'.__LINE__ => [
+        yield 'RecursiveResultFactoryStackItemTest.php:'.__LINE__ => [
             'ctor'   => [['n' => 'N'], null, $s01],
             'expect' => [
                 'node'  => ['n' => 'N'],
@@ -51,9 +51,9 @@ final class RecursiveSelectorStackItemTest extends TestCase
         // 02
         //
         $n02 = new DummyArrayResult(false);
-        $s02 = new RecursiveSelectorState(null, []);
+        $s02 = new RecursiveResultFactoryState(null, []);
 
-        yield 'RecursiveSelectorStackItemTest.php:'.__LINE__ => [
+        yield 'RecursiveResultFactoryStackItemTest.php:'.__LINE__ => [
             'ctor'   => [$n02, 'k', $s02],
             'expect' => [
                 'node'  => $n02,
@@ -71,7 +71,7 @@ final class RecursiveSelectorStackItemTest extends TestCase
      */
     public function testConstruct(array $ctor, array $expect): void
     {
-        $item = new RecursiveSelectorStackItem(...$ctor);
+        $item = new RecursiveResultFactoryStackItem(...$ctor);
 
         $this->assertSame($expect['node'], $item->node());
         $this->assertSame($expect['key'], $item->key());
@@ -86,9 +86,9 @@ final class RecursiveSelectorStackItemTest extends TestCase
         //
         // 01
         //
-        $s01 = new RecursiveSelectorState(null, ['r' => 'R']);
+        $s01 = new RecursiveResultFactoryState(null, ['r' => 'R']);
 
-        yield 'RecursiveSelectorStackItemTest.php:'.__LINE__ => [
+        yield 'RecursiveResultFactoryStackItemTest.php:'.__LINE__ => [
             'ctor'   => [['n' => 'N'], null, $s01],
             'value'  => 'V',
             'expect' => [
@@ -102,9 +102,9 @@ final class RecursiveSelectorStackItemTest extends TestCase
         //
         // 02
         //
-        $s02 = new RecursiveSelectorState('s', ['r' => 'R']);
+        $s02 = new RecursiveResultFactoryState('s', ['r' => 'R']);
 
-        yield 'RecursiveSelectorStackItemTest.php:'.__LINE__ => [
+        yield 'RecursiveResultFactoryStackItemTest.php:'.__LINE__ => [
             'ctor'   => [['n' => 'N'], 'v', $s02],
             'value'  => 'V',
             'expect' => [
@@ -118,10 +118,10 @@ final class RecursiveSelectorStackItemTest extends TestCase
         //
         // 03
         //
-        $s03 = new RecursiveSelectorState('s', ['v' => null, 'r' => 'R']);
+        $s03 = new RecursiveResultFactoryState('s', ['v' => null, 'r' => 'R']);
         $n03 = new DummyArrayResult(false, ['n' => 'N']);
 
-        yield 'RecursiveSelectorStackItemTest.php:'.__LINE__ => [
+        yield 'RecursiveResultFactoryStackItemTest.php:'.__LINE__ => [
             'ctor'   => [$n03, 'v', $s03],
             'value'  => 'V',
             'expect' => [
@@ -143,7 +143,7 @@ final class RecursiveSelectorStackItemTest extends TestCase
      */
     public function testSet(array $ctor, $value, array $expect): void
     {
-        $item = new RecursiveSelectorStackItem(...$ctor);
+        $item = new RecursiveResultFactoryStackItem(...$ctor);
 
         $item->set($value);
 

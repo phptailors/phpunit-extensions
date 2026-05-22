@@ -15,10 +15,10 @@ use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\IdentityComparator;
 use Tailors\PHPUnit\Properties\ExpectedClassProperties;
 use Tailors\PHPUnit\Properties\ValidateExpectationsTrait;
-use Tailors\PHPUnit\Recursive\AbstractRecursiveConstraint;
-use Tailors\PHPUnit\Recursive\RecursiveConstraintSpecializationTrait;
-use Tailors\PHPUnit\Selector\ClassPropertySelector;
-use Tailors\PHPUnit\Selector\ValueSelectorInterface;
+use Tailors\PHPUnit\RecursiveConstraint\AbstractRecursiveConstraint;
+use Tailors\PHPUnit\RecursiveConstraint\RecursiveConstraintSpecializationTrait;
+use Tailors\PHPUnit\ValueSelector\ClassPropertySelector;
+use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
 
 /**
  * Constraint that accepts classes having properties identical to specified ones.

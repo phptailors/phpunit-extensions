@@ -10,8 +10,8 @@
 
 namespace Tailors\PHPUnit\Properties;
 
-use Tailors\PHPUnit\Selector\ObjectPropertySelector;
-use Tailors\PHPUnit\Selector\ValueSelectorWrapperInterface;
+use Tailors\PHPUnit\ValueSelector\ObjectPropertySelector;
+use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
 
 /**
  * @small

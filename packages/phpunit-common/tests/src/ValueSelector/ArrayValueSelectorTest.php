@@ -8,7 +8,7 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Selector;
+namespace Tailors\PHPUnit\ValueSelector;
 
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\InvalidArgumentException;
@@ -16,8 +16,8 @@ use Tailors\PHPUnit\InvalidArgumentException;
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Selector\AbstractValueSelector
- * @covers \Tailors\PHPUnit\Selector\ArrayValueSelector
+ * @covers \Tailors\PHPUnit\ValueSelector\AbstractValueSelector
+ * @covers \Tailors\PHPUnit\ValueSelector\ArrayValueSelector
  *
  * @internal This class is not covered by the backward compatibility promise
  *

@@ -8,7 +8,7 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Recursive;
+namespace Tailors\PHPUnit\RecursiveResultFactory;
 
 use Tailors\PHPUnit\ArrayResult\DummyExpectedArrayResult;
 use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
@@ -18,25 +18,25 @@ use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\CircularDependencyException;
 use Tailors\PHPUnit\InternalErrorException;
-use Tailors\PHPUnit\Selector\DummyValueSelector;
-use Tailors\PHPUnit\Selector\ValueSelectorInterface;
+use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
+use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
 use Tailors\PHPUnit\Values\ValuesInterface;
 
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Recursive\RecursiveSelectorVisitor
+ * @covers \Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactoryVisitor
  *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type StackItem     = RecursiveSelectorStackItem
+ * @psalm-type StackItem     = RecursiveResultFactoryStackItem
  * @psalm-type CtorArgs      = list{ValueSelectorInterface, mixed}
  * @psalm-type EnterTestCall = array{args: array{node: array|ValuesInterface}, return: bool, next?: mixed}
  * @psalm-type VisitTestCall = array{args: array{node: mixed}, key?:array-key}
  */
-final class RecursiveSelectorVisitorTest extends TestCase
+final class RecursiveResultFactoryVisitorTest extends TestCase
 {
     //
     //
@@ -47,13 +47,13 @@ final class RecursiveSelectorVisitorTest extends TestCase
     public function testImplementsRecursiveVisitorInterface(): void
     {
         $valueSelector = new DummyValueSelector();
-        self::assertInstanceOf(RecursiveVisitorInterface::class, new RecursiveSelectorVisitor($valueSelector, null));
+        self::assertInstanceOf(RecursiveVisitorInterface::class, new RecursiveResultFactoryVisitor($valueSelector, null));
     }
 
     public function testInitialResult(): void
     {
         $valueSelector = new DummyValueSelector();
-        $visitor = new RecursiveSelectorVisitor($valueSelector, null);
+        $visitor = new RecursiveResultFactoryVisitor($valueSelector, null);
         $this->assertNull($visitor->result());
     }
 
@@ -66,7 +66,7 @@ final class RecursiveSelectorVisitorTest extends TestCase
         // 01
         //
 
-        yield 'RecursiveSelectorVisitorTest.php:'.__LINE__ => [
+        yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
             'stack'  => [],
             'expect' => '',
         ];
@@ -76,10 +76,10 @@ final class RecursiveSelectorVisitorTest extends TestCase
         //
 
         $s02 = array_map(function ($key) {
-            return new RecursiveSelectorStackItem([], $key, new RecursiveSelectorState([], []));
+            return new RecursiveResultFactoryStackItem([], $key, new RecursiveSelectorState([], []));
         }, ['foo', 3, 'bar']);
 
-        yield 'RecursiveSelectorVisitorTest.php:'.__LINE__ => [
+        yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
             'stack'  => $s02,
             'expect' => "['foo'][3]['bar']",
         ];
@@ -89,10 +89,10 @@ final class RecursiveSelectorVisitorTest extends TestCase
         //
 
         $s03 = array_map(function ($key) {
-            return new RecursiveSelectorStackItem([], $key, new RecursiveSelectorState([], []));
+            return new RecursiveResultFactoryStackItem([], $key, new RecursiveSelectorState([], []));
         }, [null, 3, false]);
 
-        yield 'RecursiveSelectorVisitorTest.php:'.__LINE__ => [
+        yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
             'stack'  => $s03,
             'expect' => '[NULL][3][false]',
         ];
@@ -110,7 +110,7 @@ final class RecursiveSelectorVisitorTest extends TestCase
         $this->expectExceptionMessageMatches("/^Circular dependency found in nested values at \\\$values{$rePath}\\.$/");
 
         $valueSelector = new DummyValueSelector();
-        (new RecursiveSelectorVisitor($valueSelector, null))->cycle([], $stack);
+        (new RecursiveResultFactoryVisitor($valueSelector, null))->cycle([], $stack);
     }
 
     /**
@@ -131,7 +131,7 @@ final class RecursiveSelectorVisitorTest extends TestCase
         $c01 = [new DummyValueSelector(), 'FOO'];
         $e01 = new ExpectedArrayResult();
 
-        yield 'RecursiveSelectorVisitorTest.php:'.__LINE__ => [
+        yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
             'ctor'  => [new DummyValueSelector(false), 'FOO'],
             'calls' => [
                 [
@@ -148,7 +148,7 @@ final class RecursiveSelectorVisitorTest extends TestCase
         // 02
         //
 
-        yield 'RecursiveSelectorVisitorTest.php:'.__LINE__ => [
+        yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
             'ctor'  => [new DummyValueSelector(false), 'FOO'],
             'calls' => [
                 [
@@ -165,7 +165,7 @@ final class RecursiveSelectorVisitorTest extends TestCase
         // 03
         //
 
-        yield 'RecursiveSelectorVisitorTest.php:'.__LINE__ => [
+        yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
             'ctor'  => [new DummyValueSelector(true), 'FOO'],
             'calls' => [
                 [
@@ -182,7 +182,7 @@ final class RecursiveSelectorVisitorTest extends TestCase
         // 04
         //
 
-        yield 'RecursiveSelectorVisitorTest.php:'.__LINE__ => [
+        yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
             'ctor'  => [new DummyValueSelector(true), 'FOO'],
             'calls' => [
                 [
@@ -213,7 +213,7 @@ final class RecursiveSelectorVisitorTest extends TestCase
             ]),
         ]);
 
-        yield 'RecursiveSelectorVisitorTest.php:'.__LINE__ => [
+        yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
             'ctor'  => $c05,
             'calls' => [
                 [
@@ -263,7 +263,7 @@ final class RecursiveSelectorVisitorTest extends TestCase
             ]),
         ]);
 
-        yield 'RecursiveSelectorVisitorTest.php:'.__LINE__ => [
+        yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
             'ctor'  => $c06,
             'calls' => [
                 [
@@ -314,7 +314,7 @@ final class RecursiveSelectorVisitorTest extends TestCase
             ],
         ]);
 
-        yield 'RecursiveSelectorVisitorTest.php:'.__LINE__ => [
+        yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
             'ctor'  => $c07,
             'calls' => [
                 [
@@ -363,7 +363,7 @@ final class RecursiveSelectorVisitorTest extends TestCase
             ],
         ]);
 
-        yield 'RecursiveSelectorVisitorTest.php:'.__LINE__ => [
+        yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
             'ctor'  => $c08,
             'calls' => [
                 [
@@ -412,7 +412,7 @@ final class RecursiveSelectorVisitorTest extends TestCase
      */
     public function testEnterLeave(array $ctor, array $calls, $result): void
     {
-        $visitor = new RecursiveSelectorVisitor(...$ctor);
+        $visitor = new RecursiveResultFactoryVisitor(...$ctor);
         $stack = [];
 
         foreach ($calls as $call) {
@@ -455,7 +455,7 @@ final class RecursiveSelectorVisitorTest extends TestCase
         // 01
         //
 
-        yield 'RecursiveSelectorVisitorTest.php:'.__LINE__ => [
+        yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
             'ctor'  => [new DummyValueSelector(), 'FOO'],
             'enter' => null,
             'calls' => [
@@ -486,7 +486,7 @@ final class RecursiveSelectorVisitorTest extends TestCase
             'gez' => 'unimportant',
         ]);
 
-        yield 'RecursiveSelectorVisitorTest.php:'.__LINE__ => [
+        yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
             'ctor'  => [$selector, $a02],
             'enter' => [
                 'args' => [
@@ -527,7 +527,7 @@ final class RecursiveSelectorVisitorTest extends TestCase
         $a03 = ['foo' => 'FOO', 'bar' => 'BAR'];
         $e03 = ['unimportant'];
 
-        yield 'RecursiveSelectorVisitorTest.php:'.__LINE__ => [
+        yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
             'ctor'  => [$selector, $a03],
             'enter' => [
                 'args' => [
@@ -573,7 +573,7 @@ final class RecursiveSelectorVisitorTest extends TestCase
      */
     public function testVisit(array $ctor, ?array $enter, array $calls, $result): void
     {
-        $visitor = new RecursiveSelectorVisitor(...$ctor);
+        $visitor = new RecursiveResultFactoryVisitor(...$ctor);
         $stack = [];
 
         if (null !== $enter) {
@@ -623,7 +623,7 @@ final class RecursiveSelectorVisitorTest extends TestCase
         // 01
         //
 
-        yield 'RecursiveSelectorVisitorTest.php:'.__LINE__ => [
+        yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
             'ctor'   => [new DummyValueSelector(), 'FOO'],
             'values' => new ExpectedArrayResult([]),
             'result' => 'FOO',
@@ -633,7 +633,7 @@ final class RecursiveSelectorVisitorTest extends TestCase
         // 02
         //
 
-        yield 'RecursiveSelectorVisitorTest.php:'.__LINE__ => [
+        yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
             'ctor'   => [$selector, new \ArrayObject([])],
             'values' => new ExpectedArrayResult([]),
             'result' => new ActualArrayResult([]),
@@ -643,7 +643,7 @@ final class RecursiveSelectorVisitorTest extends TestCase
         // 03
         //
 
-        yield 'RecursiveSelectorVisitorTest.php:'.__LINE__ => [
+        yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
             'ctor' => [
                 $selector,
                 new \ArrayObject([
@@ -667,7 +667,7 @@ final class RecursiveSelectorVisitorTest extends TestCase
         // 04
         //
 
-        yield 'RecursiveSelectorVisitorTest.php:'.__LINE__ => [
+        yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
             'ctor' => [
                 $selector,
                 new \ArrayObject([
@@ -691,7 +691,7 @@ final class RecursiveSelectorVisitorTest extends TestCase
         // 05
         //
 
-        yield 'RecursiveSelectorVisitorTest.php:'.__LINE__ => [
+        yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
             'ctor' => [
                 $selector,
                 new \ArrayObject([
@@ -725,7 +725,7 @@ final class RecursiveSelectorVisitorTest extends TestCase
         // 06
         //
 
-        yield 'RecursiveSelectorVisitorTest.php:'.__LINE__ => [
+        yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
             'ctor' => [
                 $selector,
                 new \ArrayObject([
@@ -777,7 +777,7 @@ final class RecursiveSelectorVisitorTest extends TestCase
         //
         $s07 = self::getExceptionPropertySelector();
 
-        yield 'RecursiveSelectorVisitorTest.php:'.__LINE__ => [
+        yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
             'ctor'   => [$selector, new \Exception('foo', 123)],
             'values' => new DummyExpectedArrayResult($s07, [
                 'message'  => 'unimportant',
@@ -788,7 +788,7 @@ final class RecursiveSelectorVisitorTest extends TestCase
             ]),
         ];
 
-        yield 'RecursiveSelectorVisitorTest.php:'.__LINE__ => [
+        yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
             'ctor' => [
                 $selector,
                 new \ArrayObject([
@@ -822,7 +822,7 @@ final class RecursiveSelectorVisitorTest extends TestCase
      */
     public function testWithRecursiveTraversal(array $ctor, ArrayResultInterface $values, $result): void
     {
-        $visitor = new RecursiveSelectorVisitor(...$ctor);
+        $visitor = new RecursiveResultFactoryVisitor(...$ctor);
         $traversal = new RecursiveTraversal();
         $traversal->walk($values, $visitor);
 
@@ -842,8 +842,8 @@ final class RecursiveSelectorVisitorTest extends TestCase
 
     public function testEnterThrowsInternalError(): void
     {
-        $visitor = new RecursiveSelectorVisitor(new DummyValueSelector(), null);
-        $stack = [new RecursiveSelectorStackItem([], '', new RecursiveSelectorState(null, []))];
+        $visitor = new RecursiveResultFactoryVisitor(new DummyValueSelector(), null);
+        $stack = [new RecursiveResultFactoryStackItem([], '', new RecursiveSelectorState(null, []))];
 
         $this->expectException(InternalErrorException::class);
         $this->expectExceptionMessage('$stack[0]->node() is an array, but $stack[0]->state()->subject is not');
@@ -853,7 +853,7 @@ final class RecursiveSelectorVisitorTest extends TestCase
 
     public function testMakeStackItemThrowsInternalError(): void
     {
-        $visitor = new RecursiveSelectorVisitor(new DummyValueSelector(), null);
+        $visitor = new RecursiveResultFactoryVisitor(new DummyValueSelector(), null);
 
         $this->expectException(InternalErrorException::class);
         $this->expectExceptionMessage('$this->state is null');
@@ -863,7 +863,7 @@ final class RecursiveSelectorVisitorTest extends TestCase
 
     public function testLeaveThrowsInternalError(): void
     {
-        $visitor = new RecursiveSelectorVisitor(new DummyValueSelector(), null);
+        $visitor = new RecursiveResultFactoryVisitor(new DummyValueSelector(), null);
 
         $this->expectException(InternalErrorException::class);
         $this->expectExceptionMessage('$this->state is null while $iterating');

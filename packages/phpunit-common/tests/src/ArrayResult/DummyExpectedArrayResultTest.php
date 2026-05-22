@@ -13,7 +13,7 @@ namespace Tailors\PHPUnit\Values;
 use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
 use Tailors\PHPUnit\ArrayResult\DummyExpectedArrayResult;
 use PHPUnit\Framework\TestCase;
-use Tailors\PHPUnit\Selector\DummyValueSelector;
+use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
 
 /**
  * @small

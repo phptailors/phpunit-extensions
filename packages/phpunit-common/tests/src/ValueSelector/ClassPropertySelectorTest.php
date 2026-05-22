@@ -8,12 +8,12 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Selector;
+namespace Tailors\PHPUnit\ValueSelector;
 
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\InvalidArgumentException;
 
-final class ClassWithNonStaticMethodFooBLSGG
+final class ClassPropertySelectorTest
 {
     public function foo()
     {
@@ -26,9 +26,9 @@ final class ClassWithNonStaticMethodFooBLSGG
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Selector\AbstractPropertySelector
- * @covers \Tailors\PHPUnit\Selector\AbstractValueSelector
- * @covers \Tailors\PHPUnit\Selector\ClassPropertySelector
+ * @covers \Tailors\PHPUnit\ValueSelector\AbstractPropertySelector
+ * @covers \Tailors\PHPUnit\ValueSelector\AbstractValueSelector
+ * @covers \Tailors\PHPUnit\ValueSelector\ClassPropertySelector
  *
  * @internal This class is not covered by the backward compatibility promise
  *

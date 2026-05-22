@@ -8,7 +8,7 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Recursive;
+namespace Tailors\PHPUnit\RecursiveConstraint;
 
 use PHPUnit\Framework\Constraint\Constraint;
 use Tailors\PHPUnit\Values\ExampleConstraint;
@@ -16,8 +16,8 @@ use Tailors\PHPUnit\Values\ExampleConstraint;
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Recursive\RecursiveConstraintTestCase
- * @covers \Tailors\PHPUnit\Values\ExampleConstraint
+ * @covers \Tailors\PHPUnit\RecursiveConstraint\RecursiveConstraintTestCase
+ * @covers \Tailors\PHPUnit\RecursiveConstraint\ExampleConstraint
  *
  * @internal This class is not covered by the backward compatibility promise
  *

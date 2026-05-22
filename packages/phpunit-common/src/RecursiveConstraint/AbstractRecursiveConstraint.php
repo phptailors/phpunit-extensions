@@ -177,7 +177,7 @@ abstract class AbstractRecursiveConstraint extends Constraint
 //     */
 //    private function select($subject): ValuesInterface
 //    {
-//        $visitor = new RecursiveSelectorVisitor($this->valueSelector, $subject);
+//        $visitor = new RecursiveResultFactoryVisitor($this->valueSelector, $subject);
 //
 //        (new RecursiveTraversal())->walk($this->arraySpec, $visitor);
 //

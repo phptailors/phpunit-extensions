@@ -12,7 +12,7 @@ namespace Tailors\PHPUnit\Constraint;
 
 use PHPUnit\Framework\ExpectationFailedException;
 use Tailors\PHPUnit\InvalidArgumentException;
-use Tailors\PHPUnit\Recursive\RecursiveConstraintTestCase;
+use Tailors\PHPUnit\RecursiveConstraint\RecursiveConstraintTestCase;
 
 /**
  * @internal This class is not covered by the backward compatibility promise

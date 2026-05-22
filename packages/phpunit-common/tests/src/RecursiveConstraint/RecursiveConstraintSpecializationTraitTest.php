@@ -8,16 +8,16 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Recursive;
+namespace Tailors\PHPUnit\RecursiveConstraint;
 
 use PHPUnit\Framework\TestCase;
-use Tailors\PHPUnit\Selector\ValueSelectorInterface;
+use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
 
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Recursive\DummyRecursiveConstraintSpecialization
- * @covers \Tailors\PHPUnit\Recursive\RecursiveConstraintSpecializationTrait
+ * @covers \Tailors\PHPUnit\RecursiveConstraint\DummyRecursiveConstraintSpecialization
+ * @covers \Tailors\PHPUnit\RecursiveConstraint\RecursiveConstraintSpecializationTrait
  *
  * @internal This class is not covered by the backward compatibility promise
  *
