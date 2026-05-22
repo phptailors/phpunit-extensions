@@ -10,7 +10,7 @@
 
 namespace Tailors\PHPUnit\ArraySpec;
 
-use Tailors\PHPUnit\Result\ResultFactoryWrapperInterface;
+use Tailors\PHPUnit\ResultFactory\ResultFactoryWrapperInterface;
 
 
 /**

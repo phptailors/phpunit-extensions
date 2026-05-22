@@ -11,13 +11,13 @@
 namespace Tailors\PHPUnit\RecursiveConstraint;
 
 use PHPUnit\Framework\Constraint\Constraint;
-use Tailors\PHPUnit\Values\ExampleConstraint;
+use Tailors\PHPUnit\RecursiveConstraint\ExampleRecursiveConstraint;
 
 /**
  * @small
  *
  * @covers \Tailors\PHPUnit\RecursiveConstraint\RecursiveConstraintTestCase
- * @covers \Tailors\PHPUnit\RecursiveConstraint\ExampleConstraint
+ * @covers \Tailors\PHPUnit\RecursiveConstraint\ExampleRecursiveConstraint
  *
  * @internal This class is not covered by the backward compatibility promise
  *
@@ -42,12 +42,12 @@ final class RecursiveConstraintTestCaseTest extends RecursiveConstraintTestCase
 
     public static function createConstraint(...$args): Constraint
     {
-        return ExampleConstraint::create(...$args);
+        return ExampleRecursiveConstraint::create(...$args);
     }
 
     public static function getConstraintClass(): string
     {
-        return ExampleConstraint::class;
+        return ExampleRecursiveConstraint::class;
     }
 
     public static function provArrayValuesIdenticalTo(): iterable

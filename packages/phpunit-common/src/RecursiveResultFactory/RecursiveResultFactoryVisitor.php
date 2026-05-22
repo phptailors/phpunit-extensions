@@ -16,7 +16,8 @@ use Tailors\PHPUnit\InternalErrorException;
 use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorInterface;
 use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorStackItemInterface;
 use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorUtils;
-use Tailors\PHPUnit\Result\ResultFactoryWrapperInterface;
+use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
+use Tailors\PHPUnit\ResultFactory\ResultFactoryWrapperInterface;
 use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
 
 /**
@@ -39,11 +40,9 @@ final class RecursiveResultFactoryVisitor implements RecursiveVisitorInterface
     private $actual;
 
     /**
-     * @var NodeSubjectCouple
-     *
-     * @psalm-readonly
+     * @var mixed
      */
-    private $nodeSubjectCouple;
+    private $subject;
 
     /**
      * @var mixed
@@ -58,10 +57,10 @@ final class RecursiveResultFactoryVisitor implements RecursiveVisitorInterface
     /**
      * @param mixed $subject
      */
-    public function __construct(bool $actual, NodeSubjectCouple $nodeSubjectCouple)
+    public function __construct(bool $actual, $subject)
     {
         $this->actual = $actual;
-        $this->nodeSubjectCouple = $nodeSubjectCouple;
+        $this->subject = $subject;
         $this->subjectResultCouple = null;
     }
 
@@ -126,7 +125,7 @@ final class RecursiveResultFactoryVisitor implements RecursiveVisitorInterface
     {
         if (0 === ($count = count($stack))) {
             // FIXME: transform?
-            $this->result = $this->nodeSubjectCouple->subject;
+            $this->result = $this->subject;
 
             return;
         }
@@ -187,8 +186,8 @@ final class RecursiveResultFactoryVisitor implements RecursiveVisitorInterface
     private function selectIfSupported($node, array $stack): ?SubjectResultCouple
     {
         if (0 === count($stack)) {
-            $nodeSubjectCouple = new NodeSubjectCouple($node, $this->nodeSubjectCouple->subject);
-            return $this->selectSubjectIfSupported($nodeSubjectCouple);
+            $nodeSubjectCouple = new NodeSubjectCouple($node, $this->subject);
+            return $this->makeSubjectResultCouple($nodeSubjectCouple);
         }
 
         return $this->selectNestedIfIterable($node, $stack);
@@ -229,10 +228,10 @@ final class RecursiveResultFactoryVisitor implements RecursiveVisitorInterface
             );
         }
 
-        return $this->selectSubjectIfSupported($node);
+        return $this->makeSubjectResultCouple($node);
     }
 
-    private function selectSubjectIfSupported(NodeSubjectCouple $nodeSubjectCouple): ?SubjectResultCouple
+    private function makeSubjectResultCouple(NodeSubjectCouple $nodeSubjectCouple): ?SubjectResultCouple
     {
         $node = $nodeSubjectCouple->node;
         $subject = $nodeSubjectCouple->subject;
@@ -244,23 +243,13 @@ final class RecursiveResultFactoryVisitor implements RecursiveVisitorInterface
                 return null;
             }
 
-            if (!$node instanceof ResultFactoryWrapperInterface) {
-                return null;
-            }
-
-            $factory = $node->getResultFactory();
-
-            if (!$factory->supports([])) {
-                return null;
-            }
-
-            $result = $this->actual ? $factory->getActualResult([]) : $factory->getExpectedResult([]);
-
-            return new SubjectResultCouple($subject, $result);
+            return self::makeSubjectResultCoupleFromNode($node, []);
         }
 
-        if ($node instanceof ArraySpecInterface) {
+        if ($node instanceof ResultFactoryWrapperInterface) {
+            $factory = $node->getResultFactory();
 
+            return self::makeSubjectResultCoupleFromFactory($factory, $subject);
         }
 
         if (!is_array($node) || !is_array($subject)) {
@@ -269,6 +258,38 @@ final class RecursiveResultFactoryVisitor implements RecursiveVisitorInterface
 
         // Just copy the array
         return new SubjectResultCouple($subject, $subject);
+    }
+
+    /**
+     * @param mixed $node
+     * @param mixed $subject
+     */
+    private static function makeSubjectResultCoupleFromNode($node, $subject): ?SubjectResultCouple
+    {
+        if (!$node instanceof ResultFactoryWrapperInterface) {
+            return null;
+        }
+
+        $factory = $node->getResultFactory();
+
+        return $this->makeSubjectResultCoupleFromFactory($factory, $subject);
+    }
+
+    /**
+     * @param mixed $subject
+     *
+     * @psalm-template SupportedInput
+     * @psalm-param ResultFactoryInterface<SupportedInput> $factory
+     */
+    private static function makeSubjectResultCoupleFromFactory(ResultFactoryInterface $factory, $subject): ?SubjectResultCouple
+    {
+        if (!$factory->supports($subject)) {
+            return null;
+        }
+
+        $result = $this->actual ? $factory->getActualResult($subject) : $factory->getExpectedResult($subject);
+
+        return new SubjectResultCouple($subject, $result);
     }
 
     /**

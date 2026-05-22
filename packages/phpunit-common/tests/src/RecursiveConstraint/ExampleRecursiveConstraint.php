@@ -27,7 +27,7 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-class ExampleConstraint extends AbstractRecursiveConstraint
+class ExampleRecursiveConstraint extends AbstractRecursiveConstraint
 {
     use RecursiveConstraintSpecializationTrait;
 

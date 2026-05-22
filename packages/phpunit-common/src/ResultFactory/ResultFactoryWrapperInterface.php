@@ -8,7 +8,7 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Result;
+namespace Tailors\PHPUnit\ResultFactory;
 
 /**
  * @internal This interface is not covered by the backward compatibility promise
