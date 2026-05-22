@@ -21,14 +21,18 @@ use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
 interface RecursiveResultUnwrapperInterface
 {
     /**
+     * @param array|\Traversable $array
+     *
      * @psalm-return array
      */
-    public function unwrapExpectedResult(ArrayResultInterface $array): array;
+    public function unwrapExpectedResult($array): array;
 
     /**
+     * @param array|\Traversable $array
+     *
      * @psalm-return array
      */
-    public function unwrapActualResult(ArrayResultInterface $array): array;
+    public function unwrapActualResult($array): array;
 }
 
 // vim: syntax=php sw=4 ts=4 et:

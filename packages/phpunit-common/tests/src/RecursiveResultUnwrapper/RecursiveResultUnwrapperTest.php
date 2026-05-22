@@ -30,35 +30,51 @@ final class RecursiveResultUnwrapperTest extends TestCase
      */
     public function testImplementsRecursiveResultUnwrapperInterface(): void
     {
-        $traversal = $this->createStub(RecursiveTraversalInterface::class);
-        $visitor = $this->createStub(RecursiveResultUnwrapperVisitorInterface::class);
+        $expectedResultUnwrapperVisitor = $this->createStub(RecursiveResultUnwrapperVisitorInterface::class);
+        $actualResultUnwrapperVisitor = $this->createStub(RecursiveResultUnwrapperVisitorInterface::class);
+        $recursiveTraversal = $this->createStub(RecursiveTraversalInterface::class);
 
-        self::assertInstanceOf(RecursiveResultUnwrapperInterface::class, new RecursiveResultUnwrapper($visitor, $traversal));
+        $recursiveResultUnwrapper = new RecursiveResultUnwrapper(
+            $expectedResultUnwrapperVisitor,
+            $actualResultUnwrapperVisitor,
+            $recursiveTraversal
+        );
+
+        self::assertInstanceOf(RecursiveResultUnwrapperInterface::class, $recursiveResultUnwrapper);
     }
 
     /**
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testUnwrap(): void
+    public function testUnwrapExpectedResult(): void
     {
-        $traversal = $this->createMock(RecursiveTraversalInterface::class);
-        $visitor = $this->createMock(RecursiveResultUnwrapperVisitorInterface::class);
+        $expectedResultUnwrapperVisitor = $this->createMock(RecursiveResultUnwrapperVisitorInterface::class);
+        $actualResultUnwrapperVisitor = $this->createMock(RecursiveResultUnwrapperVisitorInterface::class);
 
-        $unwrapper = new RecursiveResultUnwrapper($visitor, $traversal);
+        $recursiveTraversal = $this->createMock(RecursiveTraversalInterface::class);
 
-        $visitor->expects($this->once())
+        $recursiveResultUnwrapper = new RecursiveResultUnwrapper(
+            $expectedResultUnwrapperVisitor,
+            $actualResultUnwrapperVisitor,
+            $recursiveTraversal
+        );
+
+        $expectedResultUnwrapperVisitor->expects($this->once())
             ->method('reset');
 
-        $traversal->expects($this->once())
+        $recursiveTraversal->expects($this->once())
             ->method('walk')
-            ->with(['in' => 'IN'], $visitor)
+            ->with(['in' => 'IN'], $expectedResultUnwrapperVisitor)
         ;
 
-        $visitor->expects($this->once())
+        $expectedResultUnwrapperVisitor->expects($this->once())
             ->method('result')
             ->willReturn(['out' => 'OUT']);
 
-        $this->assertSame(['out' => 'OUT'], $unwrapper->unwrap(['in' => 'IN']));
+        $actualResultUnwrapperVisitor->expects($this->never())->method('reset');
+        $actualResultUnwrapperVisitor->expects($this->never())->method('result');
+
+        $this->assertSame(['out' => 'OUT'], $recursiveResultUnwrapper->unwrapExpectedResult(['in' => 'IN']));
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

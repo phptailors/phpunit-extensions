@@ -52,25 +52,31 @@ final class RecursiveResultUnwrapper implements RecursiveResultUnwrapperInterfac
     }
 
     /**
+     * @param array|\Traversable $array
+     *
      * @psalm-return array
      */
-    public function unwrapExpectedResult(ArrayResultInterface $array): array
+    public function unwrapExpectedResult($array): array
     {
         return $this->unwrap($array, $this->expectedResultUnwrapperVisitor);
     }
 
     /**
+     * @param array|\Traversable $array
+     *
      * @psalm-return array
      */
-    public function unwrapActualResult(ArrayResultInterface $array): array
+    public function unwrapActualResult($array): array
     {
         return $this->unwrap($array, $this->actualResultUnwrapperVisitor);
     }
 
     /**
+     * @param array|\Traversable $array
+     *
      * @psalm-return array
      */
-    private function unwrap(ArrayResultInterface $array, RecursiveResultUnwrapperVisitorInterface $recursiveResultUnwrapperVisitor): array
+    private function unwrap($array, RecursiveResultUnwrapperVisitorInterface $recursiveResultUnwrapperVisitor): array
     {
         $recursiveResultUnwrapperVisitor->reset();
 
