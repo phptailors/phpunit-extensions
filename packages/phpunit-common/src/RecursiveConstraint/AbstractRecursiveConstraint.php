@@ -54,11 +54,14 @@ abstract class AbstractRecursiveConstraint extends Constraint
      */
     private $recursiveResultUnwrapper;
 
+    /**
+     * @param array|\Traversable $arraySpec
+     */
     final protected function __construct(
-        ArraySpecInterface $arraySpec,
+        $arraySpec,
         ComparatorInterface $comparator,
         RecursiveResultFactoryInterface $recursiveResultFactory,
-        RecursiveResultUnwrapperInterface $recursiveResultUnwrapper,
+        RecursiveResultUnwrapperInterface $recursiveResultUnwrapper
     ) {
         $this->arraySpec = $arraySpec;
         $this->comparator = $comparator;

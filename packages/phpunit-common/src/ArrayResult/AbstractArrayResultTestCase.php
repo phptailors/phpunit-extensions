@@ -15,35 +15,36 @@ use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use Tailors\PHPUnit\Common\StaticRandomStrings;
+use Tailors\PHPUnit\Result\ResultInterface;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type AbstractValuesCtorArgs = array{0?: array|\Traversable<array-key,mixed>}
+ * @psalm-type AbstractArrayResultCtorArgs = array{0?: array|\Traversable<array-key,mixed>}
  */
-abstract class AbstractValuesTestCase extends TestCase
+abstract class AbstractArrayResultTestCase extends TestCase
 {
-    abstract public static function getValuesFamilyName(): string;
+    abstract public static function getArrayResultFamilyName(): string;
 
-    abstract public static function getValuesActual(): bool;
+    abstract public static function getArrayResultActual(): bool;
 
     /**
-     * @psalm-template CtorArgs of AbstractValuesCtorArgs
+     * @psalm-template CtorArgs of AbstractArrayResultCtorArgs
      *
      * @psalm-param CtorArgs $ctorArgs
      */
-    abstract public static function getValuesObject(array $ctorArgs): ArrayResultInterface;
+    abstract public static function getArrayResultObject(array $ctorArgs): object;
 
     /**
      * @throws Exception
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
      */
-    final public function testImplementsValuesInterface(): void
+    final public function testImplementsResultInterface(): void
     {
-        self::assertInstanceOf(ArrayResultInterface::class, static::getValuesObject([]));
+        self::assertInstanceOf(ResultInterface::class, static::getArrayResultObject([]));
     }
 
     /**
@@ -53,38 +54,38 @@ abstract class AbstractValuesTestCase extends TestCase
      */
     final public function testExtendsArrayObject(): void
     {
-        self::assertInstanceOf(\ArrayObject::class, static::getValuesObject([]));
+        self::assertInstanceOf(\ArrayObject::class, static::getArrayResultObject([]));
     }
 
     // @codeCoverageIgnoreStart
     /**
      * @psalm-return iterable<string, array{
-     *      ctor:   AbstractValuesCtorArgs,
+     *      ctor:   AbstractArrayResultCtorArgs,
      *      expect: mixed
      * }>
      */
-    public static function provAbstractValues(): iterable
+    public static function provAbstractArrayResult(): iterable
     {
         // #0
-        yield 'AbstractValuesTestCase.php:'.__LINE__ => [
+        yield 'AbstractArrayResultTestCase.php:'.__LINE__ => [
             'ctor'   => [],
             'expect' => [],
         ];
 
         // #1
-        yield 'AbstractValuesTestCase.php:'.__LINE__ => [
+        yield 'AbstractArrayResultTestCase.php:'.__LINE__ => [
             'ctor'   => [[]],
             'expect' => [],
         ];
 
         // #2
-        yield 'AbstractValuesTestCase.php:'.__LINE__ => [
+        yield 'AbstractArrayResultTestCase.php:'.__LINE__ => [
             'ctor'   => [['foo' => 'FOO']],
             'expect' => ['foo' => 'FOO'],
         ];
 
         // #3
-        yield 'AbstractValuesTestCase.php:'.__LINE__ => [
+        yield 'AbstractArrayResultTestCase.php:'.__LINE__ => [
             'ctor'   => [new \ArrayObject(['foo' => 'FOO'])],
             'expect' => ['foo' => 'FOO'],
         ];
@@ -93,66 +94,53 @@ abstract class AbstractValuesTestCase extends TestCase
     // @codeCoverageIgnoreEnd
 
     /**
-     * @dataProvider provAbstractValues
+     * @dataProvider provAbstractArrayResult
      *
      * @param mixed $expect
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
      *
-     * @psalm-param AbstractValuesCtorArgs $ctor
+     * @psalm-param AbstractArrayResultCtorArgs $ctor
      */
-    final public function testAbstractValues(array $ctor, $expect): void
+    final public function testAbstractArrayResult(array $ctor, $expect): void
     {
-        $object = static::getValuesObject($ctor);
+        $object = static::getArrayResultObject($ctor);
 
         self::assertSame($expect, iterator_to_array($object));
         self::assertSame($expect, (array) $object);
-        self::assertSame(static::getValuesActual(), $object->actual());
+        self::assertSame(static::getArrayResultActual(), $object->actual());
     }
 
     // @codeCoverageIgnoreStart
     /**
-     * @psalm-return iterable<string,array{ctor: AbstractValuesCtorArgs}>
+     * @psalm-return iterable<string,array{ctor: AbstractArrayResultCtorArgs}>
      */
-    public static function provAbstractValuesTag(): iterable
+    public static function provAbstractArrayResultTag(): iterable
     {
-        yield 'AbstractValuesTestCase.php:'.__LINE__ => ['ctor' => []];
+        yield 'AbstractArrayResultTestCase.php:'.__LINE__ => ['ctor' => []];
 
-        yield 'AbstractValuesTestCase.php:'.__LINE__ => ['ctor' => [['foo' => 'FOO']]];
+        yield 'AbstractArrayResultTestCase.php:'.__LINE__ => ['ctor' => [['foo' => 'FOO']]];
     }
     // @codeCoverageIgnoreEnd
 
     /**
-     * @dataProvider provAbstractValuesTag
+     * @dataProvider provAbstractArrayResultTag
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
      *
-     * @psalm-param AbstractValuesCtorArgs $ctor
+     * @psalm-param AbstractArrayResultCtorArgs $ctor
      */
-    final public function testAbstractValuesTag(array $ctor): void
+    final public function testAbstractArrayResultTag(array $ctor): void
     {
-        $family = static::getValuesFamilyName();
+        $family = static::getArrayResultFamilyName();
         $familyHex = StaticRandomStrings::get($family);
         $familyTag = "{$family}:{$familyHex}";
 
-        $object = static::getValuesObject($ctor);
+        $object = static::getArrayResultObject($ctor);
 
         self::assertSame($familyTag, $object->tag());
-    }
-
-    /**
-     * @throws ExpectationFailedException
-     * @throws InvalidArgumentException
-     */
-    final public function testAbstractValuesCreateActualValues(): void
-    {
-        $object = static::getValuesObject([['o' => 'O']]);
-        $actual = $object->createActualValues(['a' => 'A']);
-
-        self::assertSame(['a' => 'A'], (array) $actual);
-        self::assertTrue($actual->actual());
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

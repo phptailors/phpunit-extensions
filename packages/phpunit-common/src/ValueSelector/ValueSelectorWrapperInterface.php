@@ -14,11 +14,15 @@ namespace Tailors\PHPUnit\ValueSelector;
  * @internal This interface is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-template SupportedSubject
  */
 interface ValueSelectorWrapperInterface
 {
     /**
      * Returns an instance of ValueSelectorInterface.
+     *
+     * @psalm-return ValueSelectorInterface<SupportedSubject>
      */
     public function getValueSelector(): ValueSelectorInterface;
 }

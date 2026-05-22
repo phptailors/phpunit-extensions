@@ -10,8 +10,6 @@
 
 namespace Tailors\PHPUnit\RecursiveResultFactory;
 
-use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
-
 /**
  * @internal This class is not covered by the backward compatibility promise
  *
@@ -27,13 +25,13 @@ final class SubjectResultCouple
     public $subject;
 
     /**
-     * @var array|ArrayResultInterface
+     * @var array|\Traversable
      */
     public $result;
 
     /**
      * @param mixed                 $subject
-     * @param array|ArrayResultInterface $result
+     * @param array|\Traversable $result
      */
     public function __construct($subject, $result)
     {

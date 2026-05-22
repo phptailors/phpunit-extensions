@@ -46,14 +46,6 @@ abstract class AbstractObjectProperties extends AbstractArrayResult
         return $this->familyTag();
     }
 
-    /**
-     * @param array|\Traversable $array
-     */
-    final public function createActualValues($array = []): ArrayResultInterface
-    {
-        return new ActualObjectProperties($array);
-    }
-
     final protected function fallbackFamilyString(): string
     {
         return '0f1d9297ad4259f9b8926b83329b4d82448592cd';

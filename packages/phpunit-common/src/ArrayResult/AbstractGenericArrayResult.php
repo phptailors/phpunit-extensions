@@ -43,7 +43,7 @@ abstract class AbstractGenericArrayResult extends AbstractArrayResult
      */
     final public function familyName(): string
     {
-        return __NAMESPACE__.'\GenericValues';
+        return __NAMESPACE__.'\GenericArrayResult';
     }
 
     /**
@@ -52,14 +52,6 @@ abstract class AbstractGenericArrayResult extends AbstractArrayResult
     final public function tag(): string
     {
         return $this->tag ?? $this->familyTag();
-    }
-
-    /**
-     * @param array|\Traversable $array
-     */
-    final public function createActualValues($array = []): ArrayResultInterface
-    {
-        return new ActualArrayResult($array, $this->tag);
     }
 
     final protected function fallbackFamilyString(): string

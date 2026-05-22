@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\ArrayResult;
 
 use Tailors\PHPUnit\Common\StaticRandomStrings;
+use Tailors\PHPUnit\Result\ResultInterface;
 
 /**
  * An array of expected values.
@@ -21,7 +22,7 @@ use Tailors\PHPUnit\Common\StaticRandomStrings;
  *
  * @template-extends \ArrayObject<array-key,mixed>
  */
-abstract class AbstractArrayResult extends \ArrayObject implements ArrayResultInterface
+abstract class AbstractArrayResult extends \ArrayObject implements ResultInterface
 {
     /**
      * @param array|\Traversable $array

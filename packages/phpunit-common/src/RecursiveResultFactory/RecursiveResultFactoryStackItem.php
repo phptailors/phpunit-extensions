@@ -10,7 +10,6 @@
 
 namespace Tailors\PHPUnit\RecursiveResultFactory;
 
-use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
 use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorStackItemInterface;
 
 /**
@@ -50,7 +49,7 @@ final class RecursiveResultFactoryStackItem implements RecursiveVisitorStackItem
     /**
      * @return mixed
      *
-     * @psalm-return array|ArrayResultInterface
+     * @psalm-return array|\Traversable
      *
      * @psalm-mutation-free
      */
@@ -79,7 +78,10 @@ final class RecursiveResultFactoryStackItem implements RecursiveVisitorStackItem
         return $this->subjectResultCouple->subject;
     }
 
-    public function result(): ArrayResultInterface
+    /**
+     * @return array|\Traversable
+     */
+    public function result()
     {
         return $this->subjectResultCouple->result;
     }

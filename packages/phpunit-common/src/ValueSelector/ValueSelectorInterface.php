@@ -18,9 +18,9 @@ use Tailors\PHPUnit\InvalidArgumentException;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-template SupportedInput
+ * @psalm-template SupportedSubject
  *
- * @template-extends SupportInterface<SupportedInput>
+ * @template-extends SupportInterface<SupportedSubject>
  */
 interface ValueSelectorInterface extends SupportInterface
 {
@@ -35,7 +35,7 @@ interface ValueSelectorInterface extends SupportInterface
      *
      * @psalm-param array-key $key
      *
-     * @psalm-assert SupportedInput $subject
+     * @psalm-assert SupportedSubject $subject
      */
     public function select($subject, $key, &$retval): bool;
 

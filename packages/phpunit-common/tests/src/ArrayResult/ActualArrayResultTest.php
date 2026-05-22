@@ -8,26 +8,26 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Values;
+namespace Tailors\PHPUnit\ArrayResult;
 
 use Tailors\PHPUnit\ArrayResult\ActualArrayResult;
 
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Values\AbstractGenericValues
- * @covers \Tailors\PHPUnit\Values\AbstractValues
- * @covers \Tailors\PHPUnit\Values\AbstractValuesTestCase
- * @covers \Tailors\PHPUnit\Values\ActualValues
- * @covers \Tailors\PHPUnit\Values\GenericValuesTestCase
+ * @covers \Tailors\PHPUnit\ArrayResult\AbstractGenericArrayResult
+ * @covers \Tailors\PHPUnit\ArrayResult\AbstractArrayResult
+ * @covers \Tailors\PHPUnit\ArrayResult\AbstractArrayResultTestCase
+ * @covers \Tailors\PHPUnit\ArrayResult\ActualArrayResult
+ * @covers \Tailors\PHPUnit\ArrayResult\GenericArrayResultTestCase
  *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class ActualValuesTest extends GenericValuesTestCase
+final class ActualArrayResultTest extends GenericArrayResultTestCase
 {
-    public static function getValuesClass(): string
+    public static function getArrayResultClass(): string
     {
         return ActualArrayResult::class;
     }

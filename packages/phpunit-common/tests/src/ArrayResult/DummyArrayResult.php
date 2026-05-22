@@ -10,7 +10,8 @@
 
 namespace Tailors\PHPUnit\ArrayResult;
 
-use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
+use Tailors\PHPUnit\Result\ResultInterface;
+
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -19,7 +20,7 @@ use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
  *
  * @template-extends \ArrayObject<mixed,mixed>
  */
-final class DummyArrayResult extends \ArrayObject implements ArrayResultInterface
+final class DummyArrayResult extends \ArrayObject implements ResultInterface
 {
     /**
      * @var bool

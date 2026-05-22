@@ -8,7 +8,7 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Values;
+namespace Tailors\PHPUnit\ArrayResult;
 
 use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
 use Tailors\PHPUnit\ArrayResult\DummyExpectedArrayResult;
@@ -18,7 +18,7 @@ use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Values\DummyExpectedValues
+ * @covers \Tailors\PHPUnit\ArrayResult\DummyExpectedArrayResult
  *
  * @internal This class is not covered by the backward compatibility promise
  *
@@ -27,17 +27,17 @@ use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
  * @psalm-type CtorArgs     = list{0:ValueSelectorInterface,1?:array|\Traversable}
  * @psalm-type ExpectArrary =  array{selector: mixed, array: mixed, actual: mixed, tag: mixed}
  */
-final class DummyExpectedValuesTest extends TestCase
+final class DummyExpectedArrayResultTest extends TestCase
 {
     /**
      * @psalm-return iterable<string,array{ctor: CtorArgs expect: ExpectArray}
      */
-    public static function provDummyExpectedValues(): iterable
+    public static function provDummyExpectedArrayResult(): iterable
     {
         $tag = DummyArrayResult::class.':a1a44e79c791a1fe22ac49067eef00b222d10131';
         $selector = new DummyValueSelector();
 
-        yield 'DummyExpectedValuesTest.php:'.__LINE__ => [
+        yield 'DummyExpectedArrayResultTest.php:'.__LINE__ => [
             'ctor'   => [$selector],
             'expect' => [
                 'selector' => $selector,
@@ -47,7 +47,7 @@ final class DummyExpectedValuesTest extends TestCase
             ],
         ];
 
-        yield 'DummyExpectedValuesTest.php:'.__LINE__ => [
+        yield 'DummyExpectedArrayResultTest.php:'.__LINE__ => [
             'ctor'   => [$selector, ['foo' => 'FOO']],
             'expect' => [
                 'selector' => $selector,
@@ -57,7 +57,7 @@ final class DummyExpectedValuesTest extends TestCase
             ],
         ];
 
-        yield 'DummyExpectedValuesTest.php:'.__LINE__ => [
+        yield 'DummyExpectedArrayResultTest.php:'.__LINE__ => [
             'ctor'   => [$selector, new \ArrayObject(['foo' => 'FOO'])],
             'expect' => [
                 'selector' => $selector,
@@ -69,12 +69,12 @@ final class DummyExpectedValuesTest extends TestCase
     }
 
     /**
-     * @dataProvider provDummyExpectedValues
+     * @dataProvider provDummyExpectedArrayResult
      *
      * @psalm-param CtorArgs    $ctor
      * @psalm-param ExpectArray $expect
      */
-    public function testDummyExpectedValues(array $ctor, array $expect): void
+    public function testDummyExpectedArrayResult(array $ctor, array $expect): void
     {
         $values = new DummyExpectedArrayResult(...$ctor);
 
@@ -83,19 +83,6 @@ final class DummyExpectedValuesTest extends TestCase
         $this->assertSame($expect['array'], iterator_to_array($values));
         $this->assertSame($expect['array'], (array) $values);
         $this->assertSame($expect['tag'], $values->tag());
-    }
-
-    public function testCreateActualValues(): void
-    {
-        $selector = new DummyValueSelector();
-        $expect = new DummyExpectedArrayResult($selector, ['e' => 'E']);
-
-        $actual = $expect->createActualValues(['a' => 'A']);
-
-        $this->assertSame($selector, $expect->getValueSelector());
-        $this->assertTrue($actual->actual());
-        $this->assertSame(['a' => 'A'], (array) $actual);
-        $this->assertSame($expect->tag(), $actual->tag());
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

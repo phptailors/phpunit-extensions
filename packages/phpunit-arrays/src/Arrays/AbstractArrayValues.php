@@ -46,14 +46,6 @@ abstract class AbstractArrayValues extends AbstractArrayResult
         return $this->familyTag();
     }
 
-    /**
-     * @param array|\Traversable $array
-     */
-    final public function createActualValues($array = []): ArrayResultInterface
-    {
-        return new ActualArrayValues($array);
-    }
-
     final protected function fallbackFamilyString(): string
     {
         return 'c225435bd5434279f77fb3cddf138302a5c826ec';

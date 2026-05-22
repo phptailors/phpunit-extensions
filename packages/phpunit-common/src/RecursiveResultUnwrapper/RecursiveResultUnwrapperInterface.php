@@ -10,8 +10,6 @@
 
 namespace Tailors\PHPUnit\RecursiveResultUnwrapper;
 
-use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
-
 
 /**
  * @internal This interface is not covered by the backward compatibility promise

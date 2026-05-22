@@ -10,7 +10,6 @@
 
 namespace Tailors\PHPUnit\RecursiveResultUnwrapper;
 
-use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
 use Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversalInterface;
 
 /**

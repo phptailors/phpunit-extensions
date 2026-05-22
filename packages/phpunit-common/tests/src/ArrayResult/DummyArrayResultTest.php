@@ -8,7 +8,7 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Values;
+namespace Tailors\PHPUnit\ArrayResult;
 
 use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
 use PHPUnit\Framework\TestCase;
@@ -16,7 +16,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Values\DummyValues
+ * @covers \Tailors\PHPUnit\ArrayResult\DummyArrayResult
  *
  * @internal This class is not covered by the backward compatibility promise
  *
@@ -25,7 +25,7 @@ use PHPUnit\Framework\TestCase;
  * @psalm-type CtorArgs    = list{0:bool,1?:array|\Traversable,2?:null|string}
  * @psalm-type ExpectArray = array{actual: mixed, array: mixed, tag: mixed}
  */
-final class DummyValuesTest extends TestCase
+final class DummyArrayResultTest extends TestCase
 {
     /**
      * @psalm-suppress MissingThrowsDocblock
@@ -38,11 +38,11 @@ final class DummyValuesTest extends TestCase
     /**
      * @psalm-return \Generator<string,array{ctor: CtorArgs, expect: ExpectArray}>
      */
-    public static function provDummyValues(): iterable
+    public static function provDummyArrayResult(): iterable
     {
         $tag = DummyArrayResult::class.':a1a44e79c791a1fe22ac49067eef00b222d10131';
 
-        yield 'DummyValuesTest.php:'.__LINE__ => [
+        yield 'DummyArrayResultTest.php:'.__LINE__ => [
             'ctor'   => [false],
             'expect' => [
                 'actual' => false,
@@ -51,7 +51,7 @@ final class DummyValuesTest extends TestCase
             ],
         ];
 
-        yield 'DummyValuesTest.php:'.__LINE__ => [
+        yield 'DummyArrayResultTest.php:'.__LINE__ => [
             'ctor'   => [false, ['foo' => 'FOO']],
             'expect' => [
                 'actual' => false,
@@ -60,7 +60,7 @@ final class DummyValuesTest extends TestCase
             ],
         ];
 
-        yield 'DummyValuesTest.php:'.__LINE__ => [
+        yield 'DummyArrayResultTest.php:'.__LINE__ => [
             'ctor'   => [false, new \ArrayObject(['foo' => 'FOO'])],
             'expect' => [
                 'actual' => false,
@@ -69,7 +69,7 @@ final class DummyValuesTest extends TestCase
             ],
         ];
 
-        yield 'DummyValuesTest.php'.__LINE__ => [
+        yield 'DummyArrayResultTest.php'.__LINE__ => [
             'ctor'   => [false, [], 'FOO'],
             'expect' => [
                 'actual' => false,
@@ -80,14 +80,14 @@ final class DummyValuesTest extends TestCase
     }
 
     /**
-     * @dataProvider provDummyValues
+     * @dataProvider provDummyArrayResult
      *
      * @psalm-param CtorArgs    $ctor
      * @psalm-param ExpectArray $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testDummyValues(array $ctor, array $expect): void
+    public function testDummyArrayResult(array $ctor, array $expect): void
     {
         $values = new DummyArrayResult(...$ctor);
 

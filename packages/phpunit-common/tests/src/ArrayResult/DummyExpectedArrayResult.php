@@ -10,7 +10,7 @@
 
 namespace Tailors\PHPUnit\ArrayResult;
 
-use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
+use Tailors\PHPUnit\Result\ResultInterface;
 use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
 use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
 
@@ -21,7 +21,7 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  *
  * @template-extends \ArrayObject<mixed,mixed>
  */
-final class DummyExpectedArrayResult extends \ArrayObject implements ArrayResultInterface, ValueSelectorWrapperInterface
+final class DummyExpectedArrayResult extends \ArrayObject implements ResultInterface, ValueSelectorWrapperInterface
 {
     /**
      * @var ValueSelectorInterface
@@ -58,18 +58,6 @@ final class DummyExpectedArrayResult extends \ArrayObject implements ArrayResult
     public function tag(): string
     {
         return DummyArrayResult::class.':a1a44e79c791a1fe22ac49067eef00b222d10131';
-    }
-
-    /**
-     * @param array|\Traversable $array
-     *
-     * @psalm-param array|\Traversable<array-key,mixed> $array
-     *
-     * @psalm-mutation-free
-     */
-    public function createActualValues($array = []): ArrayResultInterface
-    {
-        return new DummyArrayResult(true, $array);
     }
 
     /**
