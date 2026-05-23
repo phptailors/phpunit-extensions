@@ -10,6 +10,9 @@
 
 namespace Tailors\PHPUnit\ArraySpec;
 
+use PHPUnit\Framework\Constraint\LogicalNot;
+use PHPUnit\Framework\Constraint\Operator;
+use Tailors\PHPUnit\Expectation\ExpectationInterface;
 use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
 use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
 use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
@@ -28,7 +31,7 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  * @template-extends AbstractArraySpec<SupportedInput>
  * @template-implements ValueSelectorWrapperInterface<SupportedSubject>
  */
-abstract class AbstractArraySelectionSpec extends AbstractArraySpec implements ValueSelectorWrapperInterface
+abstract class AbstractArraySelectionSpec extends AbstractArraySpec implements ValueSelectorWrapperInterface, ExpectationInterface
 {
     /**
      * @var ValueSelectorInterface
@@ -60,6 +63,34 @@ abstract class AbstractArraySelectionSpec extends AbstractArraySpec implements V
     public function getValueSelector(): ValueSelectorInterface
     {
         return $this->valueSelector;
+    }
+
+
+    public function toString(): string
+    {
+        return sprintf(
+            'is %s with %s %s specified',
+            $this->valueSelector->subject(),
+            $this->valueSelector->selectable(),
+            $this->comparator->adjective()
+        );
+    }
+
+    /**
+     * @param mixed    $role
+     */
+    public function toStringInContext(Operator $operator, $role): string
+    {
+        if ($operator instanceof LogicalNot) {
+            return sprintf(
+                'fails to be %s with %s %s specified',
+                $this->valueSelector->subject(),
+                $this->valueSelector->selectable(),
+                $this->comparator->adjective()
+            );
+        }
+
+        return '';
     }
 }
 
