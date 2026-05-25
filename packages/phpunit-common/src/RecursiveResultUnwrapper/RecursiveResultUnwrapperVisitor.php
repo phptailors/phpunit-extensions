@@ -69,9 +69,7 @@ final class RecursiveResultUnwrapperVisitor implements RecursiveResultUnwrapperV
      */
     public static function tag(): string
     {
-        $hex = StaticRandomStrings::get(self::class, '4694a81d074f3386a9b8c7c2ad04914e120f1a10');
-
-        return __NAMESPACE__."\UnwrappedResult:{$hex}";
+        return StaticRandomStrings::familyTag(__NAMESPACE__."\UnwrappedResult", '4694a81d074f3386a9b8c7c2ad04914e120f1a10');
     }
 
     public function reset(): void
