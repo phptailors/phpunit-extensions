@@ -67,6 +67,16 @@ final class StaticRandomStrings
 
         return "{$class}:".self::get($class, $fallback);
     }
+
+    /**
+     * @psalm-param non-empty-string $family
+     *
+     * @psalm-return non-falsy-string
+     */
+    public static function familyTag(string $family, ?string $fallback = null): string
+    {
+        return "{$family}:".self::get($family, $fallback);
+    }
 }
 
 // vim: syntax=php sw=4 ts=4 et:

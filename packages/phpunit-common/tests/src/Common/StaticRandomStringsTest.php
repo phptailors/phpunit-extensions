@@ -34,5 +34,35 @@ final class StaticRandomStringsTest extends TestCase
         $this->assertSame($str0, StaticRandomStrings::get('str0'));
         $this->assertNotEquals($str0, $str1);
     }
+
+    public function testClassTag(): void
+    {
+        $tag0 = StaticRandomStrings::classTag(new \Exception(''));
+        $tag1 = StaticRandomStrings::classTag(self::class);
+
+        $this->assertSame(StaticRandomStrings::STRINGLEN + 1 + strlen(\Exception::class), strlen($tag0));
+        $this->assertSame(StaticRandomStrings::STRINGLEN + 1 + strlen(self::class), strlen($tag1));
+
+        $this->assertSame($tag0, StaticRandomStrings::classTag(\Exception::class));
+        $this->assertNotEquals($tag0, $tag1);
+
+        $this->assertStringStartsWith(\Exception::class.':', $tag0);
+        $this->assertStringStartsWith(self::class.':', $tag1);
+    }
+
+    public function testFamilyTag(): void
+    {
+        $tag0 = StaticRandomStrings::familyTag('Smith');
+        $tag1 = StaticRandomStrings::familyTag('Brown');
+
+        $this->assertSame(StaticRandomStrings::STRINGLEN + 1 + strlen('Smith'), strlen($tag0));
+        $this->assertSame(StaticRandomStrings::STRINGLEN + 1 + strlen('Brown'), strlen($tag1));
+
+        $this->assertSame($tag0, StaticRandomStrings::familyTag('Smith'));
+        $this->assertNotEquals($tag0, $tag1);
+
+        $this->assertStringStartsWith('Smith:', $tag0);
+        $this->assertStringStartsWith('Brown:', $tag1);
+    }
 }
 // vim: syntax=php sw=4 ts=4 et:

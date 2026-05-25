@@ -12,6 +12,8 @@ namespace Tailors\PHPUnit\Arrays;
 
 use Tailors\PHPUnit\ArrayResult\AbstractArrayResult;
 use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
+use Tailors\PHPUnit\Common\StaticRandomStrings;
+use Tailors\PHPUnit\Common\TagInterface;
 
 /**
  * An array of expected or actual array values.
@@ -20,7 +22,7 @@ use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-abstract class AbstractArrayValues extends AbstractArrayResult
+abstract class AbstractArrayValues extends AbstractArrayResult implements TagInterface
 {
     /**
      * @param array|\Traversable $array
@@ -33,22 +35,9 @@ abstract class AbstractArrayValues extends AbstractArrayResult
     /**
      * @psalm-return non-empty-string
      */
-    final public function familyName(): string
-    {
-        return __NAMESPACE__.'\ArrayValues';
-    }
-
-    /**
-     * @psalm-return non-empty-string
-     */
     final public function tag(): string
     {
-        return $this->familyTag();
-    }
-
-    final protected function fallbackFamilyString(): string
-    {
-        return 'c225435bd5434279f77fb3cddf138302a5c826ec';
+        StaticRandomStrings::familyTag(__NAMESPACE__.'\ArrayValues', 'c225435bd5434279f77fb3cddf138302a5c826ec');
     }
 }
 

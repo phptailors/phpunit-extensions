@@ -12,6 +12,8 @@ namespace Tailors\PHPUnit\Properties;
 
 use Tailors\PHPUnit\ArrayResult\AbstractArrayResult;
 use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
+use Tailors\PHPUnit\Common\StaticRandomStrings;
+use Tailors\PHPUnit\Common\TagInterface;
 
 /**
  * An array of expected or actual class properties.
@@ -20,7 +22,7 @@ use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-abstract class AbstractClassProperties extends AbstractArrayResult
+abstract class AbstractClassProperties extends AbstractArrayResult implements TagInterface
 {
     /**
      * @param array|\Traversable $array
@@ -33,22 +35,9 @@ abstract class AbstractClassProperties extends AbstractArrayResult
     /**
      * @psalm-return non-empty-string
      */
-    final public function familyName(): string
-    {
-        return __NAMESPACE__.'\ClassProperties';
-    }
-
-    /**
-     * @psalm-return non-empty-string
-     */
     final public function tag(): string
     {
-        return $this->familyTag();
-    }
-
-    final protected function fallbackFamilyString(): string
-    {
-        return '204ae0e60189915fbbb65c711dff84ddb77710c6';
+        return StaticRandomStrings::familyTag(__NAMESPACE__.'\ClassProperties', '204ae0e60189915fbbb65c711dff84ddb77710c6');
     }
 }
 

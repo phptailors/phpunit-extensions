@@ -10,6 +10,10 @@
 
 namespace Tailors\PHPUnit\ArrayResult;
 
+use Tailors\PHPUnit\Common\StaticRandomStrings;
+use Tailors\PHPUnit\Common\TagInterface;
+
+
 /**
  * An array of expected or actual values (generic).
  *
@@ -17,19 +21,19 @@ namespace Tailors\PHPUnit\ArrayResult;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-abstract class AbstractGenericArrayResult extends AbstractArrayResult
+abstract class AbstractGenericArrayResult extends AbstractArrayResult implements TagInterface
 {
     /**
      * @var ?string
      *
-     * @psalm-var ?non-empty-string
+     * @psalm-var ?non-falsy-string
      */
     private $tag;
 
     /**
      * @param array|\Traversable $array
      *
-     * @psalm-param ?non-empty-string $tag
+     * @psalm-param ?non-falsy-string $tag
      */
     final public function __construct($array = [], ?string $tag = null)
     {
@@ -41,22 +45,17 @@ abstract class AbstractGenericArrayResult extends AbstractArrayResult
     /**
      * @psalm-return non-empty-string
      */
-    final public function familyName(): string
-    {
-        return __NAMESPACE__.'\GenericArrayResult';
-    }
-
-    /**
-     * @psalm-return non-empty-string
-     */
     final public function tag(): string
     {
         return $this->tag ?? $this->familyTag();
     }
 
-    final protected function fallbackFamilyString(): string
+    /**
+     * @psalm-return non-falsy-string
+     */
+    private function familyTag(): string
     {
-        return 'b431aa5424c80003a46c769389f28d0bcde7bf21';
+        return StaticRandomStrings::familyTag(__NAMESPACE__.'\GenericArrayResult', 'b431aa5424c80003a46c769389f28d0bcde7bf21');
     }
 }
 

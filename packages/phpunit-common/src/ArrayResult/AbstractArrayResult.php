@@ -10,8 +10,6 @@
 
 namespace Tailors\PHPUnit\ArrayResult;
 
-use Tailors\PHPUnit\Common\StaticRandomStrings;
-use Tailors\PHPUnit\Common\TagInterface;
 use Tailors\PHPUnit\Result\ResultInterface;
 
 /**
@@ -23,7 +21,7 @@ use Tailors\PHPUnit\Result\ResultInterface;
  *
  * @template-extends \ArrayObject<array-key,mixed>
  */
-abstract class AbstractArrayResult extends \ArrayObject implements ResultInterface, TagInterface
+abstract class AbstractArrayResult extends \ArrayObject implements ResultInterface
 {
     /**
      * @param array|\Traversable $array
@@ -36,28 +34,6 @@ abstract class AbstractArrayResult extends \ArrayObject implements ResultInterfa
 
         parent::__construct($array);
     }
-
-    /**
-     * @psalm-return non-empty-string
-     */
-    final protected function familyTag(): string
-    {
-        $family = $this->familyName();
-
-        $random = StaticRandomStrings::get($family, $this->fallbackFamilyString());
-
-        return "{$family}:{$random}";
-    }
-
-    /**
-     * @psalm-return non-empty-string
-     */
-    abstract protected function familyName(): string;
-
-    /**
-     * @psalm-return non-empty-string
-     */
-    abstract protected function fallbackFamilyString(): string;
 }
 
 // vim: syntax=php sw=4 ts=4 et:
