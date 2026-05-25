@@ -19,7 +19,7 @@ use Tailors\PHPUnit\Common\TagInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-interface ResultInterface extends TagInterface
+interface ResultInterface
 {
     public function actual(): bool;
 }

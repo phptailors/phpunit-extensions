@@ -12,6 +12,8 @@ namespace Tailors\PHPUnit\ArrayResult;
 
 use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
 use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\Common\TagInterface;
+use Tailors\PHPUnit\Result\ResultInterface;
 
 /**
  * @small
@@ -33,6 +35,22 @@ final class DummyArrayResultTest extends TestCase
     public function testExtendsArrayObject(): void
     {
         $this->assertInstanceOf(\ArrayObject::class, new DummyArrayResult(false));
+    }
+
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testImplementsResultInterface(): void
+    {
+        $this->assertInstanceOf(ResultInterface::class, new DummyArrayResult(false));
+    }
+
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testImplementsTagInterface(): void
+    {
+        $this->assertInstanceOf(TagInterface::class, new DummyArrayResult(false));
     }
 
     /**

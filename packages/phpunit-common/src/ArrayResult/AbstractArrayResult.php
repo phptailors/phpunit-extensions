@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\ArrayResult;
 
 use Tailors\PHPUnit\Common\StaticRandomStrings;
+use Tailors\PHPUnit\Common\TagInterface;
 use Tailors\PHPUnit\Result\ResultInterface;
 
 /**
@@ -22,7 +23,7 @@ use Tailors\PHPUnit\Result\ResultInterface;
  *
  * @template-extends \ArrayObject<array-key,mixed>
  */
-abstract class AbstractArrayResult extends \ArrayObject implements ResultInterface
+abstract class AbstractArrayResult extends \ArrayObject implements ResultInterface, TagInterface
 {
     /**
      * @param array|\Traversable $array

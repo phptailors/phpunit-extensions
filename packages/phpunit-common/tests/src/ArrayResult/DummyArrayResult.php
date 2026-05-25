@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit\ArrayResult;
 
+use Tailors\PHPUnit\Common\TagInterface;
 use Tailors\PHPUnit\Result\ResultInterface;
 
 
@@ -20,7 +21,7 @@ use Tailors\PHPUnit\Result\ResultInterface;
  *
  * @template-extends \ArrayObject<mixed,mixed>
  */
-final class DummyArrayResult extends \ArrayObject implements ResultInterface
+final class DummyArrayResult extends \ArrayObject implements ResultInterface, TagInterface
 {
     /**
      * @var bool
