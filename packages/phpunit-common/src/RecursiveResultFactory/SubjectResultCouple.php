@@ -25,13 +25,13 @@ final class SubjectResultCouple
     public $subject;
 
     /**
-     * @var array|\Traversable
+     * @var array|\ArrayAccess
      */
     public $result;
 
     /**
      * @param mixed                 $subject
-     * @param array|\Traversable $result
+     * @param array|\ArrayAccess $result
      */
     public function __construct($subject, $result)
     {

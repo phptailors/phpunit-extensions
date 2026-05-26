@@ -10,7 +10,6 @@
 
 namespace Tailors\PHPUnit\RecursiveResultFactory;
 
-use Tailors\PHPUnit\ArraySpec\ArraySpecInterface;
 use Tailors\PHPUnit\CircularDependencyException;
 use Tailors\PHPUnit\InternalErrorException;
 use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorInterface;
@@ -26,7 +25,6 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-type StackItem RecursiveResultFactoryStackItem
- * @psalm-type ArrayNode array|ArraySpecInterface
  *
  * @template-implements RecursiveVisitorInterface<RecursiveResultFactoryStackItem>
  */
@@ -75,23 +73,21 @@ final class RecursiveResultFactoryVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param array|ArraySpecInterface $node
+     * @param array|\Traversable $node
      *
      * @psalm-param list<StackItem> $stack
      */
     public function enter($node, array $stack): bool
     {
-        if (!$this->selectIfSupported($node, $stack)) {
+        if (!$this->selectSubject($stack, $subject)) {
             return false;
         }
 
-        $this->subjectResultCouple = new SubjectResultCouple($subject, $result);
-
-        return true;
+        return $this->enterIfSpecYieldsArray($node, $subject);
     }
 
     /**
-     * @param array|ArraySpecInterface $node
+     * @param array|\Traversable $node
      *
      * @psalm-param list<StackItem> $stack
      */
@@ -103,17 +99,12 @@ final class RecursiveResultFactoryVisitor implements RecursiveVisitorInterface
 
         if (null === $this->subjectResultCouple) {
             /** @psalm-suppress MissingThrowsDocblock */
-            throw InternalErrorException::fromBackTrace('$this->subjectResultCouple is null while $iterating');
+            throw InternalErrorException::fromBackTrace('$this->subjectResultCouple is null');
         }
 
-        $count = count($stack);
-        if (0 === $count) {
-            $this->result = $this->subjectResultCouple->result;
+        $this->set($stack, $this->subjectResultCouple->result);
 
-            return;
-        }
-
-        $stack[$count - 1]->set($this->subjectResultCouple->result);
+        $this->subjectResultCouple = null;
     }
 
     /**
@@ -123,23 +114,27 @@ final class RecursiveResultFactoryVisitor implements RecursiveVisitorInterface
      */
     public function visit($node, array $stack, bool $iterating): void
     {
-        if (0 === ($count = count($stack))) {
-            // FIXME: transform?
-            $this->result = $this->subject;
-
+        if (!$this->selectSubject($stack, $subject)) {
             return;
         }
 
-        if (!$this->selectNested($stack, $result)) {
-            return;
+        if ($node instanceof ResultFactoryWrapperInterface) {
+            $factory = $node->getResultFactory();
+
+            if ($factory->supports($subject)) {
+                $result = $factory->getResult($this->actual, $subject);
+            } else {
+                $result = $subject;
+            }
+        } else {
+            $result = $subject;
         }
 
-        // FIXME: transform
-        $stack[$count - 1]->set($result);
+        $this->set($stack, $result);
     }
 
     /**
-     * @param array|ArraySpecInterface $node
+     * @param array|\Traversable $node
      *
      * @throws CircularDependencyException
      *
@@ -151,7 +146,7 @@ final class RecursiveResultFactoryVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param array|ArraySpecInterface $node
+     * @param array|\Traversable $node
      * @param mixed                 $key
      *
      * @psalm-param array-key       $key
@@ -179,150 +174,6 @@ final class RecursiveResultFactoryVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param array|ArraySpecInterface $node
-     *
-     * @psalm-param list<StackItem> $stack
-     */
-    private function selectIfSupported($node, array $stack): ?SubjectResultCouple
-    {
-        if (0 === count($stack)) {
-            $nodeSubjectCouple = new NodeSubjectCouple($node, $this->subject);
-            return $this->makeSubjectResultCouple($nodeSubjectCouple);
-        }
-
-        return $this->selectNestedIfIterable($node, $stack);
-    }
-
-    /**
-     * @param array|ArraySpecInterface $node
-     *
-     * @psalm-param non-empty-list<StackItem> $stack
-     */
-    private function selectNestedIfIterable($node, array $stack): ?SubjectResultCouple
-    {
-        $last = count($stack) - 1;
-
-        $top = $stack[$last];
-        $key = $top->key();
-        $parentNode = $top->node();
-
-        /** @psalm-var mixed */
-        $parentSubject = $top->subjectResultCouple()->subject;
-
-        if ($parentNode instanceof ArraySpecInterface) {
-            /** @psalm-suppress MissingThrowsDocblock */
-            if (!$this->getResultFactory($parentNode)->select($parentSubject, $key, $value)) {
-                return false;
-            }
-        } elseif (is_array($parentSubject)) {
-            if (!array_key_exists($key, $parentSubject)) {
-                return null;
-            }
-
-            /** @psalm-var mixed */
-            $value = $parentSubject[$key];
-        } else {
-            /** @psalm-suppress MissingThrowsDocblock */
-            throw InternalErrorException::fromBackTrace(
-                "\$stack[{$last}]->node() is an array, but \$stack[{$last}]->subjectResultCouple()->subject is not"
-            );
-        }
-
-        return $this->makeSubjectResultCouple($node);
-    }
-
-    private function makeSubjectResultCouple(NodeSubjectCouple $nodeSubjectCouple): ?SubjectResultCouple
-    {
-        $node = $nodeSubjectCouple->node;
-        $subject = $nodeSubjectCouple->subject;
-
-        if ($node instanceof ValueSelectorWrapperInterface) {
-            $valueSelector = $node->getValueSelector();
-
-            if (!$valueSelector->supports($subject)) {
-                return null;
-            }
-
-            return self::makeSubjectResultCoupleFromNode($node, []);
-        }
-
-        if ($node instanceof ResultFactoryWrapperInterface) {
-            $factory = $node->getResultFactory();
-
-            return self::makeSubjectResultCoupleFromFactory($factory, $subject);
-        }
-
-        if (!is_array($node) || !is_array($subject)) {
-            return null;
-        }
-
-        // Just copy the array
-        return new SubjectResultCouple($subject, $subject);
-    }
-
-    /**
-     * @param mixed $node
-     * @param mixed $subject
-     */
-    private static function makeSubjectResultCoupleFromNode($node, $subject): ?SubjectResultCouple
-    {
-        if (!$node instanceof ResultFactoryWrapperInterface) {
-            return null;
-        }
-
-        $factory = $node->getResultFactory();
-
-        return $this->makeSubjectResultCoupleFromFactory($factory, $subject);
-    }
-
-    /**
-     * @param mixed $subject
-     *
-     * @psalm-template SupportedInput
-     * @psalm-param ResultFactoryInterface<SupportedInput> $factory
-     */
-    private static function makeSubjectResultCoupleFromFactory(ResultFactoryInterface $factory, $subject): ?SubjectResultCouple
-    {
-        if (!$factory->supports($subject)) {
-            return null;
-        }
-
-        $result = $this->actual ? $factory->getActualResult($subject) : $factory->getExpectedResult($subject);
-
-        return new SubjectResultCouple($subject, $result);
-    }
-
-    /**
-     * @param mixed $result
-     *
-     * @psalm-param non-empty-list<StackItem> $stack
-     *
-     * @psalm-param-out mixed $result
-     */
-    private function selectNested(array $stack, &$result): bool
-    {
-        $last = count($stack) - 1;
-        $top = $stack[$last];
-        $key = $top->key();
-        $parentNode = $top->node();
-
-        /** @psalm-var mixed */
-        $parentSubject = $top->subjectResultCouple()->subject;
-
-        if (!$parentNode instanceof ArraySpecInterface) {
-            // array, leave its terminal item as is.
-            return false;
-        }
-
-        /** @psalm-suppress MissingThrowsDocblock */
-        if (!$this->getResultFactory($parentNode)->select($parentSubject, $key, $result)) {
-            return false;
-        }
-
-        return true;
-    }
-
-    /**
      * @return never
      *
      * @throws CircularDependencyException
@@ -333,7 +184,139 @@ final class RecursiveResultFactoryVisitor implements RecursiveVisitorInterface
     {
         $pathString = RecursiveVisitorUtils::pathAsString($stack);
 
-        throw new CircularDependencyException("Circular dependency found in nested values at \$values{$pathString}.");
+        throw new CircularDependencyException("Circular dependency found in nested array at \$array{$pathString}.");
+    }
+
+    /**
+     * @param array|\Traversable $spec
+     * @param mixed $subject
+     *
+     * @psalm-template SupportedSubject
+     * @psalm-template SupportedInput
+     *
+     * @psalm-param ValueSelectorWrapperInterface<SupportedSubject>|ResultFactoryWrapperInterface<SupportedInput>|array|mixed $subject
+     * @psalm-assert-if-true ValueSelectorWrapperInterface<SupportedSubject>|ResultFactoryWrapperInterface<SupportedInput>|array $subject
+     */
+    private function enterIfSpecYieldsArray($spec, $subject): bool
+    {
+        if ($spec instanceof ValueSelectorWrapperInterface) {
+            $valueSelector = $spec->getValueSelector();
+
+            if (!$valueSelector->supports($subject)) {
+                return false;
+            }
+
+            if (!$spec instanceof ResultFactoryWrapperInterface) {
+                return false;
+            }
+
+            $factory = $spec->getResultFactory();
+
+            return $this->enterIfFactoryYieldsArray($factory, []);
+        }
+
+        if ($spec instanceof ResultFactoryWrapperInterface) {
+            $factory = $spec->getResultFactory();
+
+            return $this->enterIfFactoryYieldsArray($factory, $subject);
+        }
+
+        if (!is_array($spec) || !is_array($subject)) {
+            return false;
+        }
+
+        $this->subjectResultCouple = new SubjectResultCouple($subject, $subject);
+
+        return true;
+    }
+
+    /**
+     * @param mixed $input
+     *
+     * @psalm-template SupportedInput
+     *
+     * @psalm-param ResultFactoryInterface<SupportedInput> $factory
+     *
+     * @psalm-assert-if-true SupportedInput $input
+     */
+    private function enterIfFactoryYieldsArray(ResultFactoryInterface $factory, $input): bool
+    {
+        if (!$factory->supports($input)) {
+            return false;
+        }
+
+        $result = $factory->getResult($this->actual, $input);
+
+        if (!$result instanceof \ArrayAccess) {
+            return false;
+        }
+
+        $this->subjectResultCouple = new SubjectResultCouple($input, $result);
+
+        return true;
+    }
+
+    /**
+     * @param mixed $subject
+     *
+     * @psalm-param list<StackItem> $stack
+     *
+     * @psalm-param-out mixed $subject
+     */
+    private function selectSubject(array $stack, &$subject): bool
+    {
+        if (0 === ($count = count($stack))) {
+            $subject = $this->subject;
+            return true;
+        }
+
+        $top = $stack[$count - 1];
+
+        $key = $top->key();
+        $parentNode = $top->node();
+        $parentSubject = $top->subjectResultCouple->subject;
+
+        if ($parentNode instanceof ValueSelectorWrapperInterface) {
+            $valueSelector = $parentNode->getValueSelector();
+            if (!$valueSelector->supports($parentSubject)) {
+                return false;
+            }
+
+            return $valueSelector->select($parentSubject, $key, $subject);
+        }
+
+        if ($parentSubject instanceof \ArrayAccess) {
+            if (!$parentSubject->offsetExists($key)) {
+                return false;
+            }
+
+            $subject = $parentSubject->offsetGet($key);
+
+            return true;
+        }
+
+        if (is_array($parentSubject) && array_key_exists($key, $parentSubject)) {
+            $subject = $parentSubject[$key];
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @param mixed $result
+     *
+     * @psalm-param list<StackItem> $stack
+     */
+    private function set(array $stack, $result): void
+    {
+        if (0 === ($count = count($stack))) {
+            $this->result = $result;
+            return;
+        }
+
+        $stack[$count - 1]->set($result);
     }
 }
 

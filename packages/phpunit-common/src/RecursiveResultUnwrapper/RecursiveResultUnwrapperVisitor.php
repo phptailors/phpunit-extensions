@@ -63,9 +63,7 @@ final class RecursiveResultUnwrapperVisitor implements RecursiveResultUnwrapperV
     }
 
     /**
-     * Returns random string generated once per process run.
-     *
-     * @psalm-return non-empty-string
+     * @psalm-return non-falsy-string
      */
     public static function tag(): string
     {

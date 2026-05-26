@@ -42,6 +42,15 @@ interface ResultFactoryInterface extends SupportInterface
      * @psalm-assert SupportedInput $input
      */
     public function getActualResult($input): ResultInterface;
+
+    /**
+     * @throws InvalidArgumentException
+     *
+     * @psalm-param mixed $input
+     *
+     * @psalm-assert SupportedInput $input
+     */
+    public function getResult(bool $actual, $input): ResultInterface;
 }
 
 // vim: syntax=php sw=4 ts=4 et:

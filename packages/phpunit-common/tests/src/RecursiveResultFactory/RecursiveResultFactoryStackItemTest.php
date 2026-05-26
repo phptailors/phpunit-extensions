@@ -16,14 +16,14 @@ use PHPUnit\Framework\TestCase;
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\RecursiveConstraint\RecursiveResultFactoryStackItem
+ * @covers \Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactoryStackItem
  *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type CtorArgs   = list{0:array|ValuesInterface, 1:array-key, 2: RecursiveResultFactoryState}
- * @psalm-type CtorExpect = array{node: mixed, key: mixed, state: mixed}
+ * @psalm-type CtorArgs   = list{0:array|ValuesInterface, 1:array-key, 2: SubjectResultCouple}
+ * @psalm-type CtorExpect = array{node: mixed, key: mixed, couple: mixed}
  * @psalm-type SetExpect  = array{node: mixed, key: mixed, subject: mixed, result: mixed}
  */
 final class RecursiveResultFactoryStackItemTest extends TestCase
@@ -36,14 +36,14 @@ final class RecursiveResultFactoryStackItemTest extends TestCase
         //
         // 01
         //
-        $s01 = new RecursiveResultFactoryState(null, []);
+        $c01 = new SubjectResultCouple(null, []);
 
         yield 'RecursiveResultFactoryStackItemTest.php:'.__LINE__ => [
-            'ctor'   => [['n' => 'N'], null, $s01],
+            'ctor'   => [['n' => 'N'], null, $c01],
             'expect' => [
                 'node'  => ['n' => 'N'],
                 'key'   => null,
-                'state' => $s01,
+                'couple' => $c01,
             ],
         ];
 
@@ -51,14 +51,14 @@ final class RecursiveResultFactoryStackItemTest extends TestCase
         // 02
         //
         $n02 = new DummyArrayResult(false);
-        $s02 = new RecursiveResultFactoryState(null, []);
+        $c02 = new SubjectResultCouple(null, []);
 
         yield 'RecursiveResultFactoryStackItemTest.php:'.__LINE__ => [
-            'ctor'   => [$n02, 'k', $s02],
+            'ctor'   => [$n02, 'k', $c02],
             'expect' => [
                 'node'  => $n02,
                 'key'   => 'k',
-                'state' => $s02,
+                'couple' => $c02,
             ],
         ];
     }
@@ -75,7 +75,7 @@ final class RecursiveResultFactoryStackItemTest extends TestCase
 
         $this->assertSame($expect['node'], $item->node());
         $this->assertSame($expect['key'], $item->key());
-        $this->assertSame($expect['state'], $item->state());
+        $this->assertSame($expect['couple'], $item->subjectResultCouple());
     }
 
     /**
@@ -86,7 +86,7 @@ final class RecursiveResultFactoryStackItemTest extends TestCase
         //
         // 01
         //
-        $s01 = new RecursiveResultFactoryState(null, ['r' => 'R']);
+        $s01 = new SubjectResultCouple(null, ['r' => 'R']);
 
         yield 'RecursiveResultFactoryStackItemTest.php:'.__LINE__ => [
             'ctor'   => [['n' => 'N'], null, $s01],
@@ -102,7 +102,7 @@ final class RecursiveResultFactoryStackItemTest extends TestCase
         //
         // 02
         //
-        $s02 = new RecursiveResultFactoryState('s', ['r' => 'R']);
+        $s02 = new SubjectResultCouple('s', ['r' => 'R']);
 
         yield 'RecursiveResultFactoryStackItemTest.php:'.__LINE__ => [
             'ctor'   => [['n' => 'N'], 'v', $s02],
@@ -118,7 +118,7 @@ final class RecursiveResultFactoryStackItemTest extends TestCase
         //
         // 03
         //
-        $s03 = new RecursiveResultFactoryState('s', ['v' => null, 'r' => 'R']);
+        $s03 = new SubjectResultCouple('s', ['v' => null, 'r' => 'R']);
         $n03 = new DummyArrayResult(false, ['n' => 'N']);
 
         yield 'RecursiveResultFactoryStackItemTest.php:'.__LINE__ => [
@@ -149,8 +149,8 @@ final class RecursiveResultFactoryStackItemTest extends TestCase
 
         $this->assertSame($expect['node'], $item->node());
         $this->assertSame($expect['key'], $item->key());
-        $this->assertSame($expect['subject'], $item->state()->subject);
-        $this->assertSame($expect['result'], $item->state()->result);
+        $this->assertSame($expect['subject'], $item->subjectResultCouple()->subject);
+        $this->assertSame($expect['result'], $item->subjectResultCouple()->result);
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\ResultFactory;
 
 use Tailors\PHPUnit\InvalidArgumentException;
+use Tailors\PHPUnit\Result\ResultInterface;
 
 
 /**
@@ -32,6 +33,21 @@ abstract class AbstractArrayWrappingFactory implements ResultFactoryInterface
     final public function supports($input): bool
     {
         return is_array($input) || $input instanceof \Traversable;
+    }
+
+    /**
+     * @throws InvalidArgumentException
+     *
+     * @psalm-param mixed $input
+     *
+     * @psalm-assert SupportedInput $input
+     */
+    final public function getResult(bool $actual, $input): ResultInterface
+    {
+        if ($actual) {
+            return $this->getActualResult($input);
+        }
+        return $this->getExpectedResult($input);
     }
 
     /**

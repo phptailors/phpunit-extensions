@@ -20,6 +20,13 @@ use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorStackItemInterface;
 final class RecursiveResultFactoryStackItem implements RecursiveVisitorStackItemInterface
 {
     /**
+     * @var array|\Traversable
+     *
+     * @psalm-readonly
+     */
+    private $node;
+
+    /**
      * @var mixed
      *
      * @psalm-var array-key
@@ -36,12 +43,14 @@ final class RecursiveResultFactoryStackItem implements RecursiveVisitorStackItem
     private $subjectResultCouple;
 
     /**
+     * @param array|\Traversable $node
      * @param mixed                 $key
      *
      * @psalm-param array-key $key
      */
-    public function __construct($key, SubjectResultCouple $subjectResultCouple)
+    public function __construct($node, $key, SubjectResultCouple $subjectResultCouple)
     {
+        $this->node = $node;
         $this->key = $key;
         $this->subjectResultCouple = $subjectResultCouple;
     }
@@ -55,7 +64,7 @@ final class RecursiveResultFactoryStackItem implements RecursiveVisitorStackItem
      */
     public function node()
     {
-        return $this->subjectResultCouple->node;
+        return $this->node;
     }
 
     /**
@@ -68,22 +77,6 @@ final class RecursiveResultFactoryStackItem implements RecursiveVisitorStackItem
     public function key()
     {
         return $this->key;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function subject()
-    {
-        return $this->subjectResultCouple->subject;
-    }
-
-    /**
-     * @return array|\Traversable
-     */
-    public function result()
-    {
-        return $this->subjectResultCouple->result;
     }
 
     /**
