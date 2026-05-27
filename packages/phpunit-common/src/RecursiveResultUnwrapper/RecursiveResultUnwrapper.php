@@ -10,7 +10,10 @@
 
 namespace Tailors\PHPUnit\RecursiveResultUnwrapper;
 
+use Tailors\PHPUnit\InternalErrorException;
+use Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversal;
 use Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversalInterface;
+use Tailors\PHPUnit\Result\ResultInterface;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -24,14 +27,7 @@ final class RecursiveResultUnwrapper implements RecursiveResultUnwrapperInterfac
      *
      * @psalm-readonly
      */
-    private $expectedResultUnwrapperVisitor;
-
-    /**
-     * @var RecursiveResultUnwrapperVisitor
-     *
-     * @psalm-readonly
-     */
-    private $actualResultUnwrapperVisitor;
+    private $recursiveResultUnwrapperVisitor;
 
     /**
      * @var RecursiveTraversalInterface
@@ -40,48 +36,39 @@ final class RecursiveResultUnwrapper implements RecursiveResultUnwrapperInterfac
      */
     private $recursiveTraversal;
 
+    public static function create(bool $actual, bool $tagging = true): self
+    {
+        $recursiveResultUnwrapperVisitor = new RecursiveResultUnwrapperVisitor($actual, $tagging);
+        $recursiveTraversal = new RecursiveTraversal();
+
+        return new self($recursiveResultUnwrapperVisitor, $recursiveTraversal);
+    }
+
     public function __construct(
-        RecursiveResultUnwrapperVisitorInterface $expectedResultUnwrapperVisitor,
-        RecursiveResultUnwrapperVisitorInterface $actualResultUnwrapperVisitor,
+        RecursiveResultUnwrapperVisitorInterface $recursiveResultUnwrapperVisitor,
         RecursiveTraversalInterface $recursiveTraversal
     ) {
-        $this->expectedResultUnwrapperVisitor = $expectedResultUnwrapperVisitor;
-        $this->actualResultUnwrapperVisitor = $actualResultUnwrapperVisitor;
+        $this->recursiveResultUnwrapperVisitor = $recursiveResultUnwrapperVisitor;
         $this->recursiveTraversal = $recursiveTraversal;
     }
 
     /**
      * @param array|\Traversable $array
      *
-     * @psalm-return array
+     * @return array|ResultInterface
      */
-    public function unwrapExpectedResult($array): array
+    public function unwrap($array)
     {
-        return $this->unwrap($array, $this->expectedResultUnwrapperVisitor);
-    }
+        $this->recursiveResultUnwrapperVisitor->reset();
 
-    /**
-     * @param array|\Traversable $array
-     *
-     * @psalm-return array
-     */
-    public function unwrapActualResult($array): array
-    {
-        return $this->unwrap($array, $this->actualResultUnwrapperVisitor);
-    }
+        $this->recursiveTraversal->walk($array, $this->recursiveResultUnwrapperVisitor);
 
-    /**
-     * @param array|\Traversable $array
-     *
-     * @psalm-return array
-     */
-    private function unwrap($array, RecursiveResultUnwrapperVisitorInterface $recursiveResultUnwrapperVisitor): array
-    {
-        $recursiveResultUnwrapperVisitor->reset();
+        $unwrapped = $this->recursiveResultUnwrapperVisitor->result();
 
-        $this->recursiveTraversal->walk($array, $recursiveResultUnwrapperVisitor);
-
-        $unwrapped = $recursiveResultUnwrapperVisitor->result();
+        if (null === $unwrapped) {
+            /** @psalm-suppress MissingThrowsDocblock */
+            throw InternalErrorException::fromBackTrace('$this->recursiveResultUnwrapperVisitor->result() returned null');
+        }
 
         return $unwrapped;
     }

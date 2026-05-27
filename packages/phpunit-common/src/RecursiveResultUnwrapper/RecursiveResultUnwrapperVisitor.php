@@ -120,7 +120,8 @@ final class RecursiveResultUnwrapperVisitor implements RecursiveResultUnwrapperV
         if ($node instanceof \Traversable && $this->tagging) {
             $tag = self::tag();
             if (array_key_exists($tag, $this->current)) {
-                $path = (RecursiveVisitorUtils::pathAsString($stack))."[{$tag}]";
+                $key = var_export($tag, true);
+                $path = (RecursiveVisitorUtils::pathAsString($stack))."[{$key}]";
                 /** @psalm-suppress MissingThrowsDocblock */
                 throw InternalErrorException::fromBackTrace(
                     'Failed to set $array'.$path.': key already exists. Please re-run your tests.'

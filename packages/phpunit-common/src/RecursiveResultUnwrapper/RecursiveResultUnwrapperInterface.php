@@ -10,6 +10,9 @@
 
 namespace Tailors\PHPUnit\RecursiveResultUnwrapper;
 
+use Tailors\PHPUnit\Result\ResultInterface;
+
+
 
 /**
  * @internal This interface is not covered by the backward compatibility promise
@@ -21,16 +24,9 @@ interface RecursiveResultUnwrapperInterface
     /**
      * @param array|\Traversable $array
      *
-     * @psalm-return array
+     * @return array|ResultInterface
      */
-    public function unwrapExpectedResult($array): array;
-
-    /**
-     * @param array|\Traversable $array
-     *
-     * @psalm-return array
-     */
-    public function unwrapActualResult($array): array;
+    public function unwrap($array);
 }
 
 // vim: syntax=php sw=4 ts=4 et:

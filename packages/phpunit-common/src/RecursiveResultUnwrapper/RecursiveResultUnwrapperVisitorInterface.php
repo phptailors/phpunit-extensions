@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\RecursiveResultUnwrapper;
 
 use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorInterface;
+use Tailors\PHPUnit\Result\ResultInterface;
 
 
 /**

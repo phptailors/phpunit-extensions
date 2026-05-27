@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\RecursiveResultUnwrapper;
 
 use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\InternalErrorException;
 use Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversalInterface;
 
 /**
@@ -30,13 +31,11 @@ final class RecursiveResultUnwrapperTest extends TestCase
      */
     public function testImplementsRecursiveResultUnwrapperInterface(): void
     {
-        $expectedResultUnwrapperVisitor = $this->createStub(RecursiveResultUnwrapperVisitorInterface::class);
-        $actualResultUnwrapperVisitor = $this->createStub(RecursiveResultUnwrapperVisitorInterface::class);
+        $recursiveResultUnwrapperVisitor = $this->createStub(RecursiveResultUnwrapperVisitorInterface::class);
         $recursiveTraversal = $this->createStub(RecursiveTraversalInterface::class);
 
         $recursiveResultUnwrapper = new RecursiveResultUnwrapper(
-            $expectedResultUnwrapperVisitor,
-            $actualResultUnwrapperVisitor,
+            $recursiveResultUnwrapperVisitor,
             $recursiveTraversal
         );
 
@@ -46,35 +45,60 @@ final class RecursiveResultUnwrapperTest extends TestCase
     /**
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testUnwrapExpectedResult(): void
+    public function testUnwrap(): void
     {
-        $expectedResultUnwrapperVisitor = $this->createMock(RecursiveResultUnwrapperVisitorInterface::class);
-        $actualResultUnwrapperVisitor = $this->createMock(RecursiveResultUnwrapperVisitorInterface::class);
+        $recursiveResultUnwrapperVisitor = $this->createMock(RecursiveResultUnwrapperVisitorInterface::class);
 
         $recursiveTraversal = $this->createMock(RecursiveTraversalInterface::class);
 
         $recursiveResultUnwrapper = new RecursiveResultUnwrapper(
-            $expectedResultUnwrapperVisitor,
-            $actualResultUnwrapperVisitor,
+            $recursiveResultUnwrapperVisitor,
             $recursiveTraversal
         );
 
-        $expectedResultUnwrapperVisitor->expects($this->once())
-            ->method('reset');
-
         $recursiveTraversal->expects($this->once())
             ->method('walk')
-            ->with(['in' => 'IN'], $expectedResultUnwrapperVisitor)
+            ->with(['in' => 'IN'], $recursiveResultUnwrapperVisitor)
         ;
 
-        $expectedResultUnwrapperVisitor->expects($this->once())
+        $recursiveResultUnwrapperVisitor->expects($this->once())
             ->method('result')
             ->willReturn(['out' => 'OUT']);
 
-        $actualResultUnwrapperVisitor->expects($this->never())->method('reset');
-        $actualResultUnwrapperVisitor->expects($this->never())->method('result');
+        $this->assertSame(['out' => 'OUT'], $recursiveResultUnwrapper->unwrap(['in' => 'IN']));
+    }
 
-        $this->assertSame(['out' => 'OUT'], $recursiveResultUnwrapper->unwrapExpectedResult(['in' => 'IN']));
+    public function testUnwrapThrowsInternalErrorException(): void
+    {
+        $recursiveResultUnwrapperVisitor = $this->createMock(RecursiveResultUnwrapperVisitorInterface::class);
+
+        $recursiveTraversal = $this->createMock(RecursiveTraversalInterface::class);
+
+        $recursiveResultUnwrapper = new RecursiveResultUnwrapper(
+            $recursiveResultUnwrapperVisitor,
+            $recursiveTraversal
+        );
+
+        $recursiveTraversal->expects($this->once())
+            ->method('walk')
+            ->with([], $recursiveResultUnwrapperVisitor)
+        ;
+
+        $recursiveResultUnwrapperVisitor->expects($this->once())
+            ->method('result')
+            ->willReturn(null);
+
+        $this->expectException(InternalErrorException::class);
+        $this->expectExceptionMessageMatches('/^(?:\\$\w+(?:->\w+)*)->result\(\) returned null$/');
+
+        $recursiveResultUnwrapper->unwrap([]);
+    }
+
+    public function testCreate(): void
+    {
+        $recursiveResultUnwrapper = RecursiveResultUnwrapper::create(false);
+
+        $this->assertSame(['x' => 'X'], $recursiveResultUnwrapper->unwrap(['x' => 'X']));
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

@@ -212,13 +212,13 @@ final class RecursiveResultFactoryVisitor implements RecursiveVisitorInterface
 
             $factory = $spec->getResultFactory();
 
-            return $this->enterIfFactoryYieldsArray($factory, []);
+            return $this->enterIfFactoryYieldsArray($factory, [], $subject);
         }
 
         if ($spec instanceof ResultFactoryWrapperInterface) {
             $factory = $spec->getResultFactory();
 
-            return $this->enterIfFactoryYieldsArray($factory, $subject);
+            return $this->enterIfFactoryYieldsArray($factory, $subject, $subject);
         }
 
         if (!is_array($spec) || !is_array($subject)) {
@@ -232,6 +232,7 @@ final class RecursiveResultFactoryVisitor implements RecursiveVisitorInterface
 
     /**
      * @param mixed $input
+     * @param mixed $subject
      *
      * @psalm-template SupportedInput
      *
@@ -239,7 +240,7 @@ final class RecursiveResultFactoryVisitor implements RecursiveVisitorInterface
      *
      * @psalm-assert-if-true SupportedInput $input
      */
-    private function enterIfFactoryYieldsArray(ResultFactoryInterface $factory, $input): bool
+    private function enterIfFactoryYieldsArray(ResultFactoryInterface $factory, $input, $subject): bool
     {
         if (!$factory->supports($input)) {
             return false;
@@ -251,7 +252,7 @@ final class RecursiveResultFactoryVisitor implements RecursiveVisitorInterface
             return false;
         }
 
-        $this->subjectResultCouple = new SubjectResultCouple($input, $result);
+        $this->subjectResultCouple = new SubjectResultCouple($subject, $result);
 
         return true;
     }
@@ -274,11 +275,13 @@ final class RecursiveResultFactoryVisitor implements RecursiveVisitorInterface
 
         $key = $top->key();
         $parentNode = $top->node();
-        $parentSubject = $top->subjectResultCouple->subject;
+        $parentSubject = $top->subjectResultCouple()->subject;
 
         if ($parentNode instanceof ValueSelectorWrapperInterface) {
             $valueSelector = $parentNode->getValueSelector();
             if (!$valueSelector->supports($parentSubject)) {
+                // FIXME: shouldn't happen, if the visitor is user properly.
+                //        This should be excluded by enterIfSpecYieldsArray().
                 return false;
             }
 

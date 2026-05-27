@@ -23,8 +23,13 @@ use Tailors\PHPUnit\Result\ResultInterface;
  *
  * @template-implements ResultFactoryInterface<array|\Traversable>
  */
-abstract class AbstractArrayWrappingFactory implements ResultFactoryInterface
+abstract class AbstractArrayResultFactory implements ResultFactoryInterface
 {
+    /**
+     * @param array|\Traversable $input
+     */
+    abstract protected function getArrayResult(bool $actual, $input): ResultInterface;
+
     /**
      * @param mixed $input
      *
@@ -44,10 +49,9 @@ abstract class AbstractArrayWrappingFactory implements ResultFactoryInterface
      */
     final public function getResult(bool $actual, $input): ResultInterface
     {
-        if ($actual) {
-            return $this->getActualResult($input);
-        }
-        return $this->getExpectedResult($input);
+        $this->assertSupports($input, 2);
+
+        return $this->getArrayResult($actual, $input);
     }
 
     /**

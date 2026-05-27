@@ -25,7 +25,7 @@ use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-type CtorArgs     = list{0:ValueSelectorInterface,1?:array|\Traversable}
- * @psalm-type ExpectArrary =  array{selector: mixed, array: mixed, actual: mixed, tag: mixed}
+ * @psalm-type ExpectArray =  array{selector: mixed, array: mixed, actual: mixed, tag: mixed}
  */
 final class DummyExpectedArrayResultTest extends TestCase
 {

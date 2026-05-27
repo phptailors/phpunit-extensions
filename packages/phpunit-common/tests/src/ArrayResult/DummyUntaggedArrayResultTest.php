@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit\ArrayResult;
 
+use Tailors\PHPUnit\ArrayResult\DummyUntaggedArrayResult;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Common\TagInterface;
 use Tailors\PHPUnit\Result\ResultInterface;
@@ -17,23 +18,23 @@ use Tailors\PHPUnit\Result\ResultInterface;
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\ArrayResult\DummyArrayResult
+ * @covers \Tailors\PHPUnit\ArrayResult\DummyUntaggedArrayResult
  *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-type CtorArgs    = list{0:bool,1?:array|\Traversable,2?:null|string}
- * @psalm-type ExpectArray = array{actual: mixed, array: mixed, tag: mixed}
+ * @psalm-type ExpectArray = array{actual: mixed, array: mixed}
  */
-final class DummyArrayResultTest extends TestCase
+final class DummyUntaggedArrayResultTest extends TestCase
 {
     /**
      * @psalm-suppress MissingThrowsDocblock
      */
     public function testExtendsArrayObject(): void
     {
-        $this->assertInstanceOf(\ArrayObject::class, new DummyArrayResult(false));
+        $this->assertInstanceOf(\ArrayObject::class, new DummyUntaggedArrayResult(false));
     }
 
     /**
@@ -41,77 +42,64 @@ final class DummyArrayResultTest extends TestCase
      */
     public function testImplementsResultInterface(): void
     {
-        $this->assertInstanceOf(ResultInterface::class, new DummyArrayResult(false));
+        $this->assertInstanceOf(ResultInterface::class, new DummyUntaggedArrayResult(false));
     }
 
     /**
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testImplementsTagInterface(): void
+    public function testNotImplementsTagInterface(): void
     {
-        $this->assertInstanceOf(TagInterface::class, new DummyArrayResult(false));
+        $this->assertNotInstanceOf(TagInterface::class, new DummyUntaggedArrayResult(false));
     }
 
     /**
      * @psalm-return \Generator<string,array{ctor: CtorArgs, expect: ExpectArray}>
      */
-    public static function provDummyArrayResult(): iterable
+    public static function provDummyUntaggedArrayResult(): iterable
     {
-        $tag = DummyArrayResult::class.':a1a44e79c791a1fe22ac49067eef00b222d10131';
+        $tag = DummyUntaggedArrayResult::class.':a1a44e79c791a1fe22ac49067eef00b222d10131';
 
-        yield 'DummyArrayResultTest.php:'.__LINE__ => [
+        yield 'DummyUntaggedArrayResultTest.php:'.__LINE__ => [
             'ctor'   => [false],
             'expect' => [
                 'actual' => false,
                 'array'  => [],
-                'tag'    => $tag,
             ],
         ];
 
-        yield 'DummyArrayResultTest.php:'.__LINE__ => [
+        yield 'DummyUntaggedArrayResultTest.php:'.__LINE__ => [
             'ctor'   => [false, ['foo' => 'FOO']],
             'expect' => [
                 'actual' => false,
                 'array'  => ['foo' => 'FOO'],
-                'tag'    => $tag,
             ],
         ];
 
-        yield 'DummyArrayResultTest.php:'.__LINE__ => [
+        yield 'DummyUntaggedArrayResultTest.php:'.__LINE__ => [
             'ctor'   => [false, new \ArrayObject(['foo' => 'FOO'])],
             'expect' => [
                 'actual' => false,
                 'array'  => ['foo' => 'FOO'],
-                'tag'    => $tag,
-            ],
-        ];
-
-        yield 'DummyArrayResultTest.php'.__LINE__ => [
-            'ctor'   => [false, [], 'FOO'],
-            'expect' => [
-                'actual' => false,
-                'array'  => [],
-                'tag'    => 'FOO',
             ],
         ];
     }
 
     /**
-     * @dataProvider provDummyArrayResult
+     * @dataProvider provDummyUntaggedArrayResult
      *
      * @psalm-param CtorArgs    $ctor
      * @psalm-param ExpectArray $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testDummyArrayResult(array $ctor, array $expect): void
+    public function testDummyUntaggedArrayResult(array $ctor, array $expect): void
     {
-        $arrayResult = new DummyArrayResult(...$ctor);
+        $arrayResult = new DummyUntaggedArrayResult(...$ctor);
 
         $this->assertSame($expect['actual'], $arrayResult->actual());
         $this->assertSame($expect['array'], iterator_to_array($arrayResult));
         $this->assertSame($expect['array'], (array) $arrayResult);
-        $this->assertSame($expect['tag'], $arrayResult->tag());
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

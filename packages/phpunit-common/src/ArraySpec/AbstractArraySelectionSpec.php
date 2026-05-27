@@ -19,8 +19,6 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
 
 
 /**
- * An array of actual class properties.
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
@@ -31,7 +29,7 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  * @template-extends AbstractArraySpec<SupportedInput>
  * @template-implements ValueSelectorWrapperInterface<SupportedSubject>
  */
-abstract class AbstractArraySelectionSpec extends AbstractArraySpec implements ValueSelectorWrapperInterface, ExpectationInterface
+abstract class AbstractArraySelectionSpec extends AbstractArraySpec implements ValueSelectorWrapperInterface
 {
     /**
      * @var ValueSelectorInterface
@@ -64,34 +62,34 @@ abstract class AbstractArraySelectionSpec extends AbstractArraySpec implements V
     {
         return $this->valueSelector;
     }
-
-
-    public function toString(): string
-    {
-        return sprintf(
-            'is %s with %s %s specified',
-            $this->valueSelector->subject(),
-            $this->valueSelector->selectable(),
-            $this->comparator->adjective()
-        );
-    }
-
-    /**
-     * @param mixed    $role
-     */
-    public function toStringInContext(Operator $operator, $role): string
-    {
-        if ($operator instanceof LogicalNot) {
-            return sprintf(
-                'fails to be %s with %s %s specified',
-                $this->valueSelector->subject(),
-                $this->valueSelector->selectable(),
-                $this->comparator->adjective()
-            );
-        }
-
-        return '';
-    }
+//
+//
+//    public function toString(): string
+//    {
+//        return sprintf(
+//            'is %s with %s %s specified',
+//            $this->valueSelector->subject(),
+//            $this->valueSelector->selectable(),
+//            $this->comparator->adjective()
+//        );
+//    }
+//
+//    /**
+//     * @param mixed    $role
+//     */
+//    public function toStringInContext(Operator $operator, $role): string
+//    {
+//        if ($operator instanceof LogicalNot) {
+//            return sprintf(
+//                'fails to be %s with %s %s specified',
+//                $this->valueSelector->subject(),
+//                $this->valueSelector->selectable(),
+//                $this->comparator->adjective()
+//            );
+//        }
+//
+//        return '';
+//    }
 }
 
 // vim: syntax=php sw=4 ts=4 et:

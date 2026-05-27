@@ -10,44 +10,22 @@
 
 namespace Tailors\PHPUnit\Arrays;
 
-use Tailors\PHPUnit\ResultFactory\AbstractArrayWrappingFactory;
+use Tailors\PHPUnit\ResultFactory\AbstractArrayResultFactory;
 use Tailors\PHPUnit\Result\ResultInterface;
 
 /**
- * An array of expected class properties.
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class ArrayValuesFactory extends AbstractArrayWrappingFactory
+final class ArrayValuesFactory extends AbstractArrayResultFactory
 {
     /**
-     * @throws InvalidArgumentException
-     *
-     * @psalm-param mixed $input
-     *
-     * @psalm-assert SupportedInput $input
+     * @param array|\Traversable $input
      */
-    public function getExpectedResult($input): ResultInterface
+    protected function getArrayResult(bool $actual, $input): ResultInterface
     {
-        self::assertSupports($input);
-
-        return new ExpectedArrayValues($input);
-    }
-
-    /**
-     * @throws InvalidArgumentException
-     *
-     * @psalm-param mixed $input
-     *
-     * @psalm-assert SupportedInput $input
-     */
-    public function getActualResult($input): ResultInterface
-    {
-        self::assertSupports($input);
-
-        return new ActualArrayValues($input);
+        return $actual ? new ActualArrayValues($input) : new ExpectedArrayValues($input);
     }
 }
 

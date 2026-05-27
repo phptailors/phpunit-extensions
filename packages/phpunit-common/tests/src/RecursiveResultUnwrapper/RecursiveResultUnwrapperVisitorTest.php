@@ -12,10 +12,15 @@ namespace Tailors\PHPUnit\RecursiveResultUnwrapper;
 
 use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
 use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\ArrayResult\DummyUntaggedArrayResult;
+use Tailors\PHPUnit\ArraySpec\DummyArraySelection;
+use Tailors\PHPUnit\Common\StaticRandomStrings;
 use Tailors\PHPUnit\Common\StaticTagInterface;
+use Tailors\PHPUnit\InternalErrorException;
 use Tailors\PHPUnit\InvalidArgumentException;
 use Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversal;
 use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorInterface;
+use Tailors\PHPUnit\ResultFactory\DummyArrayResultFactory;
 use Tailors\PHPUnit\Result\ResultInterface;
 
 /**
@@ -520,6 +525,27 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
             'calls' => $calls06a,
             'result' => null,
         ];
+
+        //
+        // 07
+        //
+
+        yield 'RecursiveResultUnwrapperVisitorTest.php:'.__LINE__ => [
+            'ctor'  => [false],
+            'calls' => [
+                [
+                    'args' => [
+                        'node' => new DummyUntaggedArrayResult(false, []),
+                    ],
+                    'return' => true,
+                ]
+            ],
+            'result' => [
+                $tagk => StaticRandomStrings::classTag(DummyUntaggedArrayResult::class),
+            ],
+        ];
+
+
     }
 
     /**
@@ -1132,5 +1158,30 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
         self::assertSame($result, $visitor->result());
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testLeaveThrowsInternalErrorException(): void
+    {
+        $visitor = new RecursiveResultUnwrapperVisitor(false);
+
+        $stack = [];
+        $node = new DummyArrayResult(false, [$visitor::tag() => 'ANYTHING']);
+
+        $iterating = $visitor->enter($node, $stack);
+        $this->assertTrue($iterating);
+        array_push($stack, $visitor->makeStackItem($node, $visitor::tag(), $stack));
+
+        $visitor->visit($node[$visitor::tag()], $stack, $iterating);
+
+        $visitor->freeStackItem(array_pop($stack), $stack);
+
+
+        $key = preg_quote(var_export($visitor::tag(), true), '/');
+        $this->expectException(InternalErrorException::class);
+        $this->expectExceptionMessageMatches("/^Failed to set \\\$array\\[{$key}\\]: key already exists. Please re-run your tests\.$/");
+
+        $visitor->leave($node, $stack, $iterating);
+    }
 }
 // vim: syntax=php sw=4 ts=4 et:
