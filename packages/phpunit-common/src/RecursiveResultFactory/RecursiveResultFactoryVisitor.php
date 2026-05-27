@@ -118,19 +118,7 @@ final class RecursiveResultFactoryVisitor implements RecursiveVisitorInterface
             return;
         }
 
-        if ($node instanceof ResultFactoryWrapperInterface) {
-            $factory = $node->getResultFactory();
-
-            if ($factory->supports($subject)) {
-                $result = $factory->getResult($this->actual, $subject);
-            } else {
-                $result = $subject;
-            }
-        } else {
-            $result = $subject;
-        }
-
-        $this->set($stack, $result);
+        $this->set($stack, $subject);
     }
 
     /**
@@ -188,14 +176,57 @@ final class RecursiveResultFactoryVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param array|\Traversable $spec
      * @param mixed $subject
      *
-     * @psalm-template SupportedSubject
-     * @psalm-template SupportedInput
+     * @psalm-param list<StackItem> $stack
      *
-     * @psalm-param ValueSelectorWrapperInterface<SupportedSubject>|ResultFactoryWrapperInterface<SupportedInput>|array|mixed $subject
-     * @psalm-assert-if-true ValueSelectorWrapperInterface<SupportedSubject>|ResultFactoryWrapperInterface<SupportedInput>|array $subject
+     * @psalm-param-out mixed $subject
+     */
+    private function selectSubject(array $stack, &$subject): bool
+    {
+        if (0 === ($count = count($stack))) {
+            $subject = $this->subject;
+            return true;
+        }
+
+        $top = $stack[$count - 1];
+
+        $key = $top->key();
+        $parentNode = $top->node();
+        $parentSubject = $top->subjectResultCouple()->subject;
+
+        if ($parentNode instanceof ValueSelectorWrapperInterface) {
+            $parentValueSelector = $parentNode->getValueSelector();
+            if (!$parentValueSelector->supports($parentSubject)) {
+                // How the heck we get here?!
+                return false;
+            }
+
+            return $parentValueSelector->select($parentSubject, $key, $subject);
+        }
+
+        if ($parentSubject instanceof \ArrayAccess) {
+            if (!$parentSubject->offsetExists($key)) {
+                return false;
+            }
+
+            $subject = $parentSubject->offsetGet($key);
+
+            return true;
+        }
+
+        if (is_array($parentSubject) && array_key_exists($key, $parentSubject)) {
+            $subject = $parentSubject[$key];
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @param array|\Traversable $spec
+     * @param mixed $subject
      */
     private function enterIfSpecYieldsArray($spec, $subject): bool
     {
@@ -255,56 +286,6 @@ final class RecursiveResultFactoryVisitor implements RecursiveVisitorInterface
         $this->subjectResultCouple = new SubjectResultCouple($subject, $result);
 
         return true;
-    }
-
-    /**
-     * @param mixed $subject
-     *
-     * @psalm-param list<StackItem> $stack
-     *
-     * @psalm-param-out mixed $subject
-     */
-    private function selectSubject(array $stack, &$subject): bool
-    {
-        if (0 === ($count = count($stack))) {
-            $subject = $this->subject;
-            return true;
-        }
-
-        $top = $stack[$count - 1];
-
-        $key = $top->key();
-        $parentNode = $top->node();
-        $parentSubject = $top->subjectResultCouple()->subject;
-
-        if ($parentNode instanceof ValueSelectorWrapperInterface) {
-            $valueSelector = $parentNode->getValueSelector();
-            if (!$valueSelector->supports($parentSubject)) {
-                // FIXME: shouldn't happen, if the visitor is user properly.
-                //        This should be excluded by enterIfSpecYieldsArray().
-                return false;
-            }
-
-            return $valueSelector->select($parentSubject, $key, $subject);
-        }
-
-        if ($parentSubject instanceof \ArrayAccess) {
-            if (!$parentSubject->offsetExists($key)) {
-                return false;
-            }
-
-            $subject = $parentSubject->offsetGet($key);
-
-            return true;
-        }
-
-        if (is_array($parentSubject) && array_key_exists($key, $parentSubject)) {
-            $subject = $parentSubject[$key];
-
-            return true;
-        }
-
-        return false;
     }
 
     /**

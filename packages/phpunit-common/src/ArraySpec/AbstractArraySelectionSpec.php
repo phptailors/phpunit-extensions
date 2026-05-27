@@ -62,34 +62,6 @@ abstract class AbstractArraySelectionSpec extends AbstractArraySpec implements V
     {
         return $this->valueSelector;
     }
-//
-//
-//    public function toString(): string
-//    {
-//        return sprintf(
-//            'is %s with %s %s specified',
-//            $this->valueSelector->subject(),
-//            $this->valueSelector->selectable(),
-//            $this->comparator->adjective()
-//        );
-//    }
-//
-//    /**
-//     * @param mixed    $role
-//     */
-//    public function toStringInContext(Operator $operator, $role): string
-//    {
-//        if ($operator instanceof LogicalNot) {
-//            return sprintf(
-//                'fails to be %s with %s %s specified',
-//                $this->valueSelector->subject(),
-//                $this->valueSelector->selectable(),
-//                $this->comparator->adjective()
-//            );
-//        }
-//
-//        return '';
-//    }
 }
 
 // vim: syntax=php sw=4 ts=4 et:

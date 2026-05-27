@@ -17,6 +17,7 @@ use Tailors\PHPUnit\ArrayResult\ActualArrayResult;
 // use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\ArraySpec\DummyArraySelection;
+use Tailors\PHPUnit\ArraySpec\DummyArraySelectionOnly;
 use Tailors\PHPUnit\ArraySpec\DummyArraySpec;
 use Tailors\PHPUnit\CircularDependencyException;
 use Tailors\PHPUnit\InternalErrorException;
@@ -25,6 +26,7 @@ use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapperVisitor;
 use Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversal;
 use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorInterface;
 use Tailors\PHPUnit\ResultFactory\DummyArrayResultFactory;
+use Tailors\PHPUnit\ResultFactory\DummyResultFactory;
 use Tailors\PHPUnit\Result\ResultInterface;
 use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
 use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
@@ -967,10 +969,10 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
         ];
 
         //
-        // 08
+        // 09
         //
 
-        $f08a = new DummyArrayResultFactory('TAG-A', function ($input) {
+        $f09a = new DummyArrayResultFactory('TAG-A', function ($input) {
             if ($input instanceof \Traversable) {
                 $input = iterator_to_array($input);
             }
@@ -978,8 +980,8 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
             return $input;
         });
 
-        $f08e = new DummyArrayResultFactory('TAG-E');
-        $s08e = self::getExceptionPropertySelector();
+        $f09e = new DummyArrayResultFactory('TAG-E');
+        $s09e = self::getExceptionPropertySelector();
 
         yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
             'ctor' => [
@@ -990,13 +992,14 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
                     'd' => 'D',
                 ]),
             ],
-            'array' => new DummyArraySpec($f08a, [
-                'e' => new DummyArraySelection($f08e, $s08e, [
+            'array' => new DummyArraySpec($f09a, [
+                'x' => 'UNIMPORTANT',
+                'e' => new DummyArraySelection($f09e, $s09e, [
                     'message'  => 'unimportant',
                     'nonexist' => 'unimportant',
                     'code' => 'unimportant',
                 ]),
-                'f' => 'unimportant',
+                'f' => 'UNIMPORTANT',
             ]),
             'result' => new DummyArrayResult(false, [
                 'd' => 'D',
@@ -1007,47 +1010,114 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
                 'f' => 'F',
             ], 'TAG-A'),
         ];
-//
-//        //
-//        // 09
-//        //
-//
-//        $f09a = new DummyArrayResultFactory('TAG-A');
-//        $s09a = self::getNamespaceVariableSelector([
-//            'ns1' => [
-//                'foo' => 'FOO',
-//                'bar' => 'BAR'
-//            ],
-//            'ns2' => [
-//                'baz' => 'BAZ',
-//                'gez' => 'GEZ'
-//            ],
-//        ]);
-//
-//        $f09b = new DummyArrayResultFactory('TAG-E');
-//
-//        yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
-//            'ctor' => [
-//                false,
-//                new \ArrayObject([
-//                    'ns1' => [
-//                        'foo' => 'FOO',
-//                        'bar' => 'BAR',
-//                    ],
-//                ]),
-//            ],
-//            'array' => new DummyArraySelection($f09a, $s09a, [
-//                'ns1' => new DummyArraySec
-//            ]),
-//            'result' => new DummyArrayResult(false, [
-//                'd' => 'D',
-//                'e' => new DummyArrayResult(false, [
-//                    'message' => 'foo',
-//                    'code' => 123,
-//                ], 'TAG-E'),
-//                'f' => 'F',
-//            ], 'TAG-A'),
-//        ];
+
+        //
+        // 10
+        //
+
+        $f10a = new DummyArrayResultFactory('TAG-A');
+        $s10a = self::getNamespaceVariableSelector([
+            'ns1' => [
+                'foo' => 'FOO',
+                'bar' => 'BAR'
+            ],
+            'ns2' => [
+                'baz' => 'BAZ',
+                'gez' => new \ArrayObject([
+                    'qux' => 'QUX',
+                    'cop' => 'COP',
+                ]),
+            ],
+        ]);
+
+        $f10b = new DummyArrayResultFactory('TAG-B');
+        $s10b = self::getArrayObjectSelector();
+
+        yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
+            'ctor' => [false, ['cez' => 'CEZ']],
+            'array' => new DummyArraySelection($f10a, $s10a, [
+                'foo' => 'UNIMPORTANT',
+                'baz' => 'UNIMPORTANT'
+            ]),
+            'result' => ['cez' => 'CEZ'],
+        ];
+
+        yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
+            'ctor' => [false, 'ns1'],
+            'array' => new DummyArraySelection($f10a, $s10a, [
+                'foo' => 'UNIMPORTANT',
+                'baz' => 'UNIMPORTANT'
+            ]),
+            'result' => new DummyArrayResult(false, [
+                'foo' => 'FOO'
+            ], 'TAG-A'),
+        ];
+
+        yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
+            'ctor' => [false, 'ns2'],
+            'array' => new DummyArraySelection($f10a, $s10a, [
+                'foo' => 'UNIMPORTANT',
+                'baz' => 'UNIMPORTANT'
+            ]),
+            'result' => new DummyArrayResult(false, [
+                'baz' => 'BAZ'
+            ], 'TAG-A'),
+        ];
+
+        yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
+            'ctor' => [false, 'ns2'],
+            'array' => new DummyArraySelection($f10a, $s10a, [
+                'gez' => new DummyArraySelection($f10b, $s10b, [
+                    'cop' => 'UNIMPORTANT',
+                    'qux' => [ 'UNIMPORTANT' ],
+                    'fix' => [ 'UNIMPORTANT' ],
+                ]),
+                'baz' => 'UNIMPORTANT'
+            ]),
+            'result' => new DummyArrayResult(false, [
+                'gez' => new DummyArrayResult(false, [
+                    'cop' => 'COP',
+                    'qux' => 'QUX',
+                ], 'TAG-B'),
+                'baz' => 'BAZ'
+            ], 'TAG-A'),
+        ];
+
+        //
+        // 11
+        //
+
+        $a11 = new  \ArrayObject([
+            'foo' => 'FOO',
+            'bar' => 'BAR',
+        ]);
+
+        $s11 = self::getArrayObjectSelector();
+
+        yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
+            'ctor' => [false, $a11],
+            'array' => new DummyArraySelectionOnly($s11, [
+                'foo' => 'UNIMPORTANT',
+                'baz' => 'UNIMPORTANT'
+            ]),
+            'result' => $a11,
+        ];
+
+        //
+        // 12
+        //
+
+        $f12 = new DummyResultFactory(true);
+
+        yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
+            'ctor' => [false, 'FOO'],
+            'array' => new DummyArraySpec($f12, [
+                'foo' => 'UNIMPORTANT',
+                'baz' => 'UNIMPORTANT'
+            ]),
+            'result' => 'FOO',
+        ];
+
     }
 
     /**

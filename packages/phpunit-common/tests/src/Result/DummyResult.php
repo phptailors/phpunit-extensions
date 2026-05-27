@@ -8,7 +8,7 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\ArrayResult;
+namespace Tailors\PHPUnit\Result;
 
 use Tailors\PHPUnit\Result\ResultInterface;
 
@@ -17,10 +17,8 @@ use Tailors\PHPUnit\Result\ResultInterface;
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
- *
- * @template-extends \ArrayObject<mixed,mixed>
  */
-final class DummyUntaggedArrayResult extends \ArrayObject implements ResultInterface
+final class DummyResult implements ResultInterface
 {
     /**
      * @var bool
@@ -30,17 +28,18 @@ final class DummyUntaggedArrayResult extends \ArrayObject implements ResultInter
     private $actual;
 
     /**
-     * @param array|\Traversable $array
+     * @var mixed
+     *
+     * @psalm-readonly
      */
-    public function __construct(bool $actual, $array = [])
+    private $value;
+
+    /**
+     * @param mixed $value
+     */
+    public function __construct(bool $actual)
     {
         $this->actual = $actual;
-
-        if (!is_array($array)) {
-            $array = iterator_to_array($array);
-        }
-
-        parent::__construct($array);
     }
 
     /**

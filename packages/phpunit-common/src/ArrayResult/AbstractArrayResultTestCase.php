@@ -34,6 +34,8 @@ abstract class AbstractArrayResultTestCase extends TestCase
      * @psalm-template CtorArgs of AbstractArrayResultCtorArgs
      *
      * @psalm-param CtorArgs $ctorArgs
+     *
+     * @psalm-return \ArrayObject&ResultInterface
      */
     abstract public static function getArrayResultObject(array $ctorArgs): object;
 

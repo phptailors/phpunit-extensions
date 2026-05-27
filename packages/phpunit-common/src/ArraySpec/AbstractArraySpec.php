@@ -53,6 +53,8 @@ abstract class AbstractArraySpec extends \ArrayObject implements ResultFactoryWr
 
     /**
      * @psalm-return ResultFactoryInterface<SupportedInput>
+     *
+     * @psalm-mutation-free
      */
     final public function getResultFactory(): ResultFactoryInterface
     {

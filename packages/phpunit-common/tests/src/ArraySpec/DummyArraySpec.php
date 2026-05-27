@@ -11,7 +11,7 @@
 namespace Tailors\PHPUnit\ArraySpec;
 
 use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
-use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
+use Tailors\PHPUnit\ResultFactory\ResultFactoryWrapperInterface;
 
 
 /**
@@ -21,19 +21,44 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
  *
  * @psalm-template SupportedInput
  *
- * @template-extends AbstractArraySelectionSpec<SupportedInput>
+ * @template-implements ResultFactoryWrapperInterface<SupportedInput>
+ * @template-extends \ArrayObject<array-key, mixed>
  */
-final class DummyArraySpec extends AbstractArraySpec
+final class DummyArraySpec extends \ArrayObject implements ResultFactoryWrapperInterface
 {
+    /**
+     * @var ResultFactoryInterface
+     *
+     * @psalm-param ResultFactoryInterface<SupportedInput>
+     *
+     * @psalm-readonly
+     */
+    private $resultFactory;
+
     /**
      * @param array|\Traversable $array
      *
      * @psalm-param ResultFactoryInterface<SupportedInput> $resultFactory
-     * @psalm-param ValueSelectorInterface<SupportedSubject> $valueSelector
      */
     public function __construct(ResultFactoryInterface $resultFactory, $array)
     {
-        parent::__construct($resultFactory, $array);
+        $this->resultFactory = $resultFactory;
+
+        if (!is_array($array)) {
+            $array = iterator_to_array($array);
+        }
+
+        parent::__construct($array);
+    }
+
+    /**
+     * @psalm-return ResultFactoryInterface<SupportedInput>
+     *
+     * @psalm-mutation-free
+     */
+    final public function getResultFactory(): ResultFactoryInterface
+    {
+        return $this->resultFactory;
     }
 }
 

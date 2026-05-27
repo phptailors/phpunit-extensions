@@ -10,8 +10,6 @@
 
 namespace Tailors\PHPUnit\ArraySpec;
 
-use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
-use Tailors\PHPUnit\ResultFactory\ResultFactoryWrapperInterface;
 use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
 use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
 
@@ -21,24 +19,13 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-template SupportedInput
  * @psalm-template SupportedSubject
  *
- * @template-implements ResultFactoryWrapperInterface<SupportedInput>
  * @template-implements ValueSelectorWrapperInterface<SupportedSubject>
  * @template-extends \ArrayObject<array-key,mixex>
  */
-final class DummyArraySelection extends \ArrayObject implements ResultFactoryWrapperInterface, ValueSelectorWrapperInterface
+final class DummyArraySelectionOnly extends \ArrayObject implements ValueSelectorWrapperInterface
 {
-    /**
-     * @var ResultFactoryInterface
-     *
-     * @psalm-param ResultFactoryInterface<SupportedInput>
-     *
-     * @psalm-readonly
-     */
-    private $resultFactory;
-
     /**
      * @var ValueSelectorInterface
      *
@@ -49,12 +36,10 @@ final class DummyArraySelection extends \ArrayObject implements ResultFactoryWra
     /**
      * @param array|\Traversable $array
      *
-     * @psalm-param ResultFactoryInterface<SupportedInput> $resultFactory
      * @psalm-param ValueSelectorInterface<SupportedSubject> $valueSelector
      */
-    public function __construct(ResultFactoryInterface $resultFactory, ValueSelectorInterface $valueSelector, $array)
+    public function __construct(ValueSelectorInterface $valueSelector, $array)
     {
-        $this->resultFactory = $resultFactory;
         $this->valueSelector = $valueSelector;
 
         if (!is_array($array)) {
@@ -62,16 +47,6 @@ final class DummyArraySelection extends \ArrayObject implements ResultFactoryWra
         }
 
         parent::__construct($array);
-    }
-
-    /**
-     * @psalm-return ResultFactoryInterface<SupportedInput>
-     *
-     * @psalm-mutation-free
-     */
-    final public function getResultFactory(): ResultFactoryInterface
-    {
-        return $this->resultFactory;
     }
 
     /**

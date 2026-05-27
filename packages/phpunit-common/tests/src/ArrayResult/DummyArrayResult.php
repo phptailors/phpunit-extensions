@@ -26,7 +26,7 @@ final class DummyArrayResult extends \ArrayObject implements ResultInterface, Ta
     /**
      * @var bool
      *
-     * @psalm-var readonly
+     * @psalm-readonly
      */
     private $actual;
 

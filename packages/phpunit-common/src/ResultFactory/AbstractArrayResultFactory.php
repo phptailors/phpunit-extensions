@@ -57,6 +57,8 @@ abstract class AbstractArrayResultFactory implements ResultFactoryInterface
     /**
      * @param mixed $input
      *
+     * @throws InvalidArgumentException
+     *
      * @psalm-assert SupportedInput $input
      */
     final protected function assertSupports($input, int $argument, int $distance = 1): void
