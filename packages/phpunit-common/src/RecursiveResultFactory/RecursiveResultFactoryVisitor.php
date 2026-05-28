@@ -25,7 +25,8 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type StackItem RecursiveResultFactoryStackItem
+ * @psalm-type StackItem = RecursiveResultFactoryStackItem
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
  *
  * @template-implements RecursiveVisitorInterface<RecursiveResultFactoryStackItem>
  */
@@ -74,11 +75,10 @@ final class RecursiveResultFactoryVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param array|\Traversable $node
-     *
+     * @psalm-param ArrayLike $node
      * @psalm-param list<StackItem> $stack
      */
-    public function enter($node, array $stack): bool
+    public function enter(iterable $node, array $stack): bool
     {
         if (!$this->selectSubject($stack, $subject)) {
             return false;
@@ -88,11 +88,10 @@ final class RecursiveResultFactoryVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param array|\Traversable $node
-     *
+     * @psalm-param ArrayLike $node
      * @psalm-param list<StackItem> $stack
      */
-    public function leave($node, array $stack, bool $iterating): void
+    public function leave(iterable $node, array $stack, bool $iterating): void
     {
         if (!$iterating) {
             return;
@@ -123,27 +122,26 @@ final class RecursiveResultFactoryVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param array|\Traversable $node
-     *
      * @throws CircularDependencyException
      *
+     * @psalm-param ArrayLike $node
      * @psalm-param list<StackItem> $stack
      */
-    public function cycle($node, array $stack): bool
+    public function cycle(iterable $node, array $stack): bool
     {
         self::throwCircular($stack);
     }
 
     /**
-     * @param array|\Traversable $node
      * @param mixed                 $key
      *
+     * @psalm-param ArrayLike $node
      * @psalm-param array-key       $key
      * @psalm-param list<StackItem> $stack
      *
      * @psalm-return StackItem
      */
-    public function makeStackItem($node, $key, array $stack): RecursiveVisitorStackItemInterface
+    public function makeStackItem(iterable $node, $key, array $stack): RecursiveVisitorStackItemInterface
     {
         if (null === $this->subjectResultCouple) {
             /** @psalm-suppress MissingThrowsDocblock */
@@ -248,10 +246,11 @@ final class RecursiveResultFactoryVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param array|\Traversable $spec
      * @param mixed $subject
+     *
+     * @psalm-param ArrayLike $spec
      */
-    private function enterIfSpecYieldsAnArray($spec, $subject): bool
+    private function enterIfSpecYieldsAnArray(iterable $spec, $subject): bool
     {
         if ($spec instanceof ValueSelectorWrapperInterface) {
             return $this->enterIfSelectionYieldsAnArray($spec, $subject);

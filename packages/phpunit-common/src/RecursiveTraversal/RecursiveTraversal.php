@@ -72,13 +72,9 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
     /**
      * @param array|\Traversable $node
      *
-     * @psalm-template T of array|\Traversable
      * @psalm-template StackItem of RecursiveVisitorStackItemInterface
      *
-     * @psalm-param T                                    $node
      * @psalm-param RecursiveVisitorInterface<StackItem> $visitor
-     *
-     * @psalm-param-out T $node
      *
      * @psalm-if-this-is self<StackItem>
      */
@@ -110,6 +106,7 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
      *
      * @psalm-template StackItem of RecursiveVisitorStackItemInterface
      *
+     * @psalm-param array<array-key,mixed>|\Traversable<array-key,mixed> $node
      * @psalm-param RecursiveVisitorInterface<StackItem> $visitor
      *
      * @psalm-if-this-is self<StackItem>
@@ -133,13 +130,9 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
     /**
      * @param mixed $value
      *
-     * @psalm-template T
      * @psalm-template StackItem of RecursiveVisitorStackItemInterface
      *
-     * @psalm-param T                                    $value
      * @psalm-param RecursiveVisitorInterface<StackItem> $visitor
-     *
-     * @psalm-param-out T $value
      *
      * @psalm-if-this-is self<StackItem>
      */

@@ -26,6 +26,7 @@ use Tailors\PHPUnit\Result\ResultInterface;
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-type StackItem = RecursiveResultUnwrapperStackItem
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
  */
 final class RecursiveResultUnwrapperVisitor implements RecursiveResultUnwrapperVisitorInterface, StaticTagInterface
 {
@@ -85,11 +86,10 @@ final class RecursiveResultUnwrapperVisitor implements RecursiveResultUnwrapperV
     }
 
     /**
-     * @param array|\Traversable $node
-     *
+     * @psalm-param ArrayLike $node
      * @psalm-param list<StackItem> $stack
      */
-    public function enter($node, array $stack): bool
+    public function enter(iterable $node, array $stack): bool
     {
         if ($node instanceof ResultInterface) {
             $iterate = $node->actual() === $this->actual;
@@ -105,11 +105,10 @@ final class RecursiveResultUnwrapperVisitor implements RecursiveResultUnwrapperV
     }
 
     /**
-     * @param array|\Traversable $node
-     *
+     * @psalm-param ArrayLike $node
      * @psalm-param list<StackItem> $stack
      */
-    public function leave($node, array $stack, bool $iterating): void
+    public function leave(iterable $node, array $stack, bool $iterating): void
     {
         if (!$iterating) {
             return;
@@ -145,11 +144,10 @@ final class RecursiveResultUnwrapperVisitor implements RecursiveResultUnwrapperV
     }
 
     /**
-     * @param array|\Traversable $node
-     *
+     * @psalm-param ArrayLike $node
      * @psalm-param list<StackItem> $stack
      */
-    public function cycle($node, array $stack): bool
+    public function cycle(iterable $node, array $stack): bool
     {
         $this->set($stack, $node);
 
@@ -157,15 +155,15 @@ final class RecursiveResultUnwrapperVisitor implements RecursiveResultUnwrapperV
     }
 
     /**
-     * @param array|\Traversable $node
      * @param mixed                 $key
      *
+     * @psalm-param ArrayLike $node
      * @psalm-param array-key       $key
      * @psalm-param list<StackItem> $stack
      *
      * @psalm-return StackItem
      */
-    public function makeStackItem($node, $key, array $stack): RecursiveVisitorStackItemInterface
+    public function makeStackItem(iterable $node, $key, array $stack): RecursiveVisitorStackItemInterface
     {
         return new RecursiveResultUnwrapperStackItem($node, $key, $this->current);
     }

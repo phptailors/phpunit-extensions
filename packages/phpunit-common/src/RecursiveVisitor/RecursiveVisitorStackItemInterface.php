@@ -18,13 +18,11 @@ namespace Tailors\PHPUnit\RecursiveVisitor;
 interface RecursiveVisitorStackItemInterface
 {
     /**
-     * @return mixed
-     *
-     * @psalm-return array|\Traversable
+     * @psalm-return iterable<array-key, mixed>
      *
      * @psalm-mutation-free
      */
-    public function node();
+    public function node(): iterable;
 
     /**
      * @return mixed

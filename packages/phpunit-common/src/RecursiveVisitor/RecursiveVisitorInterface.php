@@ -16,47 +16,45 @@ namespace Tailors\PHPUnit\RecursiveVisitor;
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-template StackItem of RecursiveVisitorStackItemInterface
+ *
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
  */
 interface RecursiveVisitorInterface
 {
     /**
-     * @param array|\Traversable $node
-     *
+     * @psalm-param ArrayLike $node
      * @psalm-param list<StackItem> $stack
      */
-    public function enter($node, array $stack): bool;
+    public function enter(iterable $node, array $stack): bool;
 
     /**
-     * @param array|\Traversable $node
-     *
+     * @psalm-param ArrayLike $node
      * @psalm-param list<StackItem> $stack
      */
-    public function leave($node, array $stack, bool $iterating): void;
+    public function leave(iterable $node, array $stack, bool $iterating): void;
 
     /**
-     * @param mixed $node
-     *
+     * @psalm-param ArrayLike $node
      * @psalm-param list<StackItem> $stack
      */
-    public function visit($node, array $stack, bool $iterating): void;
+    public function visit(iterable $node, array $stack, bool $iterating): void;
 
     /**
-     * @param array|\Traversable $node
-     *
+     * @psalm-param ArrayLike $node
      * @psalm-param list<StackItem> $stack
      */
-    public function cycle($node, array $stack): bool;
+    public function cycle(iterable $node, array $stack): bool;
 
     /**
-     * @param array|\Traversable $node
      * @param mixed                 $key
      *
+     * @psalm-param ArrayLike $node
      * @psalm-param array-key       $key
      * @psalm-param list<StackItem> $stack
      *
      * @psalm-return StackItem
      */
-    public function makeStackItem($node, $key, array $stack): RecursiveVisitorStackItemInterface;
+    public function makeStackItem(iterable $node, $key, array $stack): RecursiveVisitorStackItemInterface;
 
     /**
      * @psalm-param StackItem       $item

@@ -20,7 +20,9 @@ use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorStackItemInterface;
 final class RecursiveResultUnwrapperStackItem implements RecursiveVisitorStackItemInterface
 {
     /**
-     * @var array|\Traversable
+     * @var iterable
+     *
+     * @psalm-var iterable<array-key, mixed>
      *
      * @psalm-readonly
      */
@@ -37,16 +39,19 @@ final class RecursiveResultUnwrapperStackItem implements RecursiveVisitorStackIt
 
     /**
      * @var array
+     *
+     * @psalm-var array<array-key, mixed>
      */
     private $result;
 
     /**
-     * @param array|\Traversable $node
      * @param mixed                 $key
      *
+     * @psalm-param iterable<array-key, mixed> $node
      * @psalm-param array-key $key
+     * @psalm-param array<array-key, mixed> $result
      */
-    public function __construct($node, $key, array $result)
+    public function __construct(iterable $node, $key, array $result)
     {
         $this->node = $node;
         $this->key = $key;
@@ -54,11 +59,11 @@ final class RecursiveResultUnwrapperStackItem implements RecursiveVisitorStackIt
     }
 
     /**
-     * @return array|\Traversable
+     * @psalm-return iterable<array-key, mixed>
      *
      * @psalm-mutation-free
      */
-    public function node()
+    public function node(): iterable
     {
         return $this->node;
     }
