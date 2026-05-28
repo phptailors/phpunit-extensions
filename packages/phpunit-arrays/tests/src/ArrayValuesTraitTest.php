@@ -22,7 +22,8 @@ use Tailors\PHPUnit\Arrays\ExpectedArrayValues;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ArrayValuesArgs = list{0: array|\Traversable}
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
+ * @psalm-type ArrayValuesArgs = list{0: ArrayLike}
  */
 final class ArrayValuesTraitTest extends TestCase
 {
@@ -55,7 +56,6 @@ final class ArrayValuesTraitTest extends TestCase
      * @param mixed $expect
      *
      * @psalm-param ArrayValuesArgs $args
-     * @psalm-param mixed           $expect
      */
     public function testExpectedArrayValues(array $args, $expect): void
     {

@@ -34,10 +34,10 @@ interface RecursiveVisitorInterface
     public function leave(iterable $node, array $stack, bool $iterating): void;
 
     /**
-     * @psalm-param ArrayLike $node
+     * @param mixed $node
      * @psalm-param list<StackItem> $stack
      */
-    public function visit(iterable $node, array $stack, bool $iterating): void;
+    public function visit($node, array $stack, bool $iterating): void;
 
     /**
      * @psalm-param ArrayLike $node

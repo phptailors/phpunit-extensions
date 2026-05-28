@@ -17,17 +17,18 @@ use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorStackItemInterface;
  * @internal This interface is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
  */
 interface RecursiveTraversalInterface
 {
     /**
-     * @param array|\Traversable $array
-     *
      * @psalm-template StackItem of RecursiveVisitorStackItemInterface
      *
+     * @psalm-param ArrayLike $array
      * @psalm-param RecursiveVisitorInterface<StackItem> $visitor
      */
-    public function walk($array, RecursiveVisitorInterface $visitor): void;
+    public function walk(iterable $array, RecursiveVisitorInterface $visitor): void;
 }
 
 // vim: syntax=php sw=4 ts=4 et:

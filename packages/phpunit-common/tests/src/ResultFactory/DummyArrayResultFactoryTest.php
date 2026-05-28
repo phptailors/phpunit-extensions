@@ -28,8 +28,9 @@ use Tailors\PHPUnit\Result\ResultInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type CtorArgs     = list{0?:?non-falsy-string}
- * @psalm-type GetResultArgs = list{0:bool, 1:array|\Traversable}
+ * @psalm-type ArrayLike     = iterable<array-key, mixed>
+ * @psalm-type CtorArgs      = list{0?:?non-falsy-string}
+ * @psalm-type GetResultArgs = list{0:bool, 1:ArrayLike}
  *
  */
 final class DummyArrayResultFactoryTest extends TestCase

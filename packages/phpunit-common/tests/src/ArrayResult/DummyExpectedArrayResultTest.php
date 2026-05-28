@@ -24,13 +24,14 @@ use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type CtorArgs     = list{0:ValueSelectorInterface,1?:array|\Traversable}
- * @psalm-type ExpectArray =  array{selector: mixed, array: mixed, actual: mixed, tag: mixed}
+ * @psalm-type ArrayLike   = iterable<array-key, mixed>
+ * @psalm-type CtorArgs    = list{0:ValueSelectorInterface,1?:ArrayLike}
+ * @psalm-type ExpectArray = array{selector: mixed, array: mixed, actual: mixed, tag: mixed}
  */
 final class DummyExpectedArrayResultTest extends TestCase
 {
     /**
-     * @psalm-return iterable<string,array{ctor: CtorArgs expect: ExpectArray}
+     * @psalm-return \Generator<string,array{ctor: CtorArgs expect: ExpectArray}
      */
     public static function provDummyExpectedArrayResult(): iterable
     {

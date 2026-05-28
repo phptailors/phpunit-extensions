@@ -14,11 +14,15 @@ namespace Tailors\PHPUnit\RecursiveVisitor;
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
  */
 final class DummyRecursiveVisitorStackItem implements RecursiveVisitorStackItemInterface
 {
     /**
-     * @var array|\Traversable
+     * @var iterable
+     *
+     * @psalm-var ArrayLike
      *
      * @psalm-readonly
      */
@@ -34,25 +38,23 @@ final class DummyRecursiveVisitorStackItem implements RecursiveVisitorStackItemI
     private $key;
 
     /**
-     * @param array|\Traversable $node
      * @param mixed                 $key
      *
+     * @psalm-param ArrayLike $node
      * @psalm-param array-key $key
      */
-    public function __construct($node, $key)
+    public function __construct(iterable $node, $key)
     {
         $this->node = $node;
         $this->key = $key;
     }
 
     /**
-     * @return mixed
-     *
-     * @psalm-return array|\Traversable
+     * @psalm-return ArrayLike
      *
      * @psalm-mutation-free
      */
-    public function node()
+    public function node(): iterable
     {
         return $this->node;
     }

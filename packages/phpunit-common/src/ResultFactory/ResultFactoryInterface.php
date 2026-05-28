@@ -26,9 +26,9 @@ use Tailors\PHPUnit\Result\ResultInterface;
 interface ResultFactoryInterface extends SupportInterface
 {
     /**
-     * @throws InvalidArgumentException
+     * @param mixed $input
      *
-     * @psalm-param mixed $input
+     * @throws InvalidArgumentException
      *
      * @psalm-assert SupportedInput $input
      */

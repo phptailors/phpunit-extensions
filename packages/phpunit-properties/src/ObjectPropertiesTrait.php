@@ -10,14 +10,20 @@
 
 namespace Tailors\PHPUnit;
 
+use Tailors\PHPUnit\Properties\ObjectPropertiesSelection;
+
+
+/**
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
+ */
 trait ObjectPropertiesTrait
 {
     /**
      * Returns an object representing expected array values.
      *
-     * @param array|\Traversable $array
+     * @psalm-param ArrayLike $array
      */
-    public static function objectProperties($array): ObjectPropertiesSelection
+    public static function objectProperties(iterable $array): ObjectPropertiesSelection
     {
         return new ObjectPropertiesSelection($array);
     }

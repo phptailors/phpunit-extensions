@@ -20,13 +20,15 @@ use Tailors\PHPUnit\Result\ResultInterface;
  * @psalm-internal Tailors\PHPUnit
  *
  * @template-extends \ArrayObject<array-key,mixed>
+ *
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
  */
 abstract class AbstractArrayResult extends \ArrayObject implements ResultInterface
 {
     /**
-     * @param array|\Traversable $array
+     * @psalm-param ArrayLike $array
      */
-    protected function __construct($array = [])
+    protected function __construct(iterable $array = [])
     {
         if (!is_array($array)) {
             $array = iterator_to_array($array);

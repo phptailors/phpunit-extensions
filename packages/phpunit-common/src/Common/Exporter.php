@@ -27,8 +27,6 @@ final class Exporter
      * @param mixed $value
      *
      * @throws InvalidArgumentException
-     *
-     * @psalm-param mixed $value
      */
     public static function export($value, bool $exportObjects = false): string
     {

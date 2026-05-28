@@ -12,14 +12,17 @@ namespace Tailors\PHPUnit;
 
 use Tailors\PHPUnit\Properties\ClassPropertiesSelection;
 
+/**
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
+ */
 trait ClassPropertiesTrait
 {
     /**
      * Returns an object representing expected array values.
      *
-     * @param array|\Traversable $array
+     * @psalm-param ArrayLike $array
      */
-    public static function classProperties($array): ClassPropertiesSelection
+    public static function classProperties(iterable $array): ClassPropertiesSelection
     {
         return new ClassPropertiesSelection($array);
     }

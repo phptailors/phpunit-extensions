@@ -19,7 +19,12 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  *
+ * @psalm-template SupportedSubject
+ *
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
+ *
  * @template-extends \ArrayObject<mixed,mixed>
+ * @template-implements ValueSelectorWrapperInterface<SupportedSubject>
  */
 final class DummyExpectedArrayResult extends \ArrayObject implements ResultInterface, ValueSelectorWrapperInterface
 {
@@ -29,9 +34,9 @@ final class DummyExpectedArrayResult extends \ArrayObject implements ResultInter
     private $valueSelector;
 
     /**
-     * @param array|\Traversable $array
+     * @psalm-param ArrayLike $array
      */
-    public function __construct(ValueSelectorInterface $valueSelector, $array = [])
+    public function __construct(ValueSelectorInterface $valueSelector, iterable $array = [])
     {
         $this->valueSelector = $valueSelector;
 

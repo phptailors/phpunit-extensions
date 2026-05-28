@@ -19,16 +19,17 @@ use Tailors\PHPUnit\Result\ResultInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type SupportedInput = array|\Traversable
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
+ * @psalm-type SupportedInput = iterable<array-key, mixed>
  *
- * @template-implements ResultFactoryInterface<array|\Traversable>
+ * @template-implements ResultFactoryInterface<iterable<array-key,mixed>>
  */
 abstract class AbstractArrayResultFactory implements ResultFactoryInterface
 {
     /**
-     * @param array|\Traversable $input
+     * @psalm-param ArrayLike $input
      */
-    abstract protected function getArrayResult(bool $actual, $input): ResultInterface;
+    abstract protected function getArrayResult(bool $actual, iterable $input): ResultInterface;
 
     /**
      * @param mixed $input
@@ -41,9 +42,9 @@ abstract class AbstractArrayResultFactory implements ResultFactoryInterface
     }
 
     /**
-     * @throws InvalidArgumentException
+     * @param mixed $input
      *
-     * @psalm-param mixed $input
+     * @throws InvalidArgumentException
      *
      * @psalm-assert SupportedInput $input
      */

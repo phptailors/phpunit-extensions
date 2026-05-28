@@ -20,14 +20,16 @@ use Tailors\PHPUnit\ValueSelector\ArrayValueSelector;
  *
  * @psalm-internal Tailors\PHPUnit
  *
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
+ *
  * @template-extends AbstractArraySelectionSpec<\Traversable, class-string>
  */
 final class ArrayValuesSelection extends AbstractArraySelectionSpec
 {
     /**
-     * @param array|\Traversable
+     * @psalm-param ArrayLike $array
      */
-    public function __construct($array)
+    public function __construct(iterable $array)
     {
         parent::__construct(new ArrayValuesFactory(), new ArrayValueSelector(), $array);
     }

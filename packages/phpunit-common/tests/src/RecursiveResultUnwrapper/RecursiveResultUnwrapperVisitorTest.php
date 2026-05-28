@@ -30,10 +30,11 @@ use Tailors\PHPUnit\Result\ResultInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  *
+ * @psalm-type ArrayLike     = iterable<array-key, mixed>
  * @psalm-type StackItem     = RecursiveResultUnwrapperStackItem
  * @psalm-type CtorArgs      = list{0: bool, 1?: bool}
- * @psalm-type EnterTestCall = array{args: array{node: array|\Traversable}, return: bool, next?: array-key}
- * @psalm-type CycleTestCall = array{args: array{node: array|\Traversable, stack: list<StackItem>}, return: mixed}
+ * @psalm-type EnterTestCall = array{args: array{node: ArrayLike}, return: bool, next?: array-key}
+ * @psalm-type CycleTestCall = array{args: array{node: ArrayLike, stack: list<StackItem>}, return: mixed}
  * @psalm-type VisitTestCall = array{args: array{node: mixed}, key?: array-key}
  */
 final class RecursiveResultUnwrapperVisitorTest extends TestCase
@@ -585,7 +586,7 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
     /**
      * @psalm-return \Generator<non-falsy-string, array{
      *      ctor: CtorArgs,
-     *      root: array|\Traversable,
+     *      root: ArrayLike,
      *      iter: bool,
      *      calls: non-empty-list<VisitTestCall>,
      *      result: mixed
@@ -675,15 +676,15 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
     /**
      * @dataProvider provVisit
      *
-     * @param array|\Traversable $root
      * @param mixed                 $result
      *
      * @psalm-param CtorArgs $ctor
      * @psalm-param non-empty-list<VisitTestCall> $calls
+     * @psalm-param ArrayLike $root
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testVisit(array $ctor, $root, bool $iter, array $calls, $result): void
+    public function testVisit(array $ctor, iterable $root, bool $iter, array $calls, $result): void
     {
         $visitor = new RecursiveResultUnwrapperVisitor(...$ctor);
         $stack = [];
@@ -732,7 +733,7 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
     /**
      * @psalm-return \Generator<non-falsy-string, array{
      *      ctor: CtorArgs,
-     *      array: array|\Traversable,
+     *      array: ArrayLike,
      *      result: mixed
      *  }>
      */
@@ -947,14 +948,14 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
     /**
      * @dataProvider provUnwrapAcyclic
      *
-     * @param array|\Traversable $array
      * @param mixed $result
      *
      * @psalm-param CtorArgs $ctor
+     * @psalm-param ArrayLike $array
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testUnwrapAcyclic(array $ctor, $array, $result): void
+    public function testUnwrapAcyclic(array $ctor, iterable $array, $result): void
     {
         $traversal = new RecursiveTraversal();
         $visitor = new RecursiveResultUnwrapperVisitor(...$ctor);
@@ -967,7 +968,7 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
     /**
      * @psalm-return \Generator<non-falsy-string, array{
      *      ctor: CtorArgs,
-     *      array: array|\Traversable,
+     *      array: ArrayLike,
      *      result: mixed
      *  }>
      *
@@ -1139,14 +1140,14 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
     /**
      * @dataProvider provUnwrapCyclic
      *
-     * @param array|\Traversable $array
      * @param mixed $result
      *
      * @psalm-param CtorArgs $ctor
+     * @psalm-param ArrayLike $array
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testUnwrapCyclic(array $ctor, $array, $result): void
+    public function testUnwrapCyclic(array $ctor, iterable $array, $result): void
     {
         $traversal = new RecursiveTraversal();
         $visitor = new RecursiveResultUnwrapperVisitor(...$ctor);

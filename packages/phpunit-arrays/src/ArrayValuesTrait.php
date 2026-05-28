@@ -13,14 +13,17 @@ namespace Tailors\PHPUnit;
 use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
 use Tailors\PHPUnit\Arrays\ExpectedArrayValues;
 
+/**
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
+ */
 trait ArrayValuesTrait
 {
     /**
      * Returns an object representing array array values.
      *
-     * @param array|\Traversable $array
+     * @psalm-param ArrayLike $array
      */
-    public static function arrayValues($array): ArrayResultInterface
+    public static function arrayValues(iterable $array): ArrayResultInterface
     {
         return new ExpectedArrayValues($array);
     }

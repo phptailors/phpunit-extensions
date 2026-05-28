@@ -18,7 +18,8 @@ use Tailors\PHPUnit\ArrayResult\AbstractGenericArrayResult;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type GenericArrayResultCtorArgs = list{0?: array|\Traversable<array-key,mixed>, 1?: non-empty-string}
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
+ * @psalm-type GenericArrayResultCtorArgs = list{0?: ArrayLike, 1?: non-empty-string}
  */
 abstract class GenericArrayResultTestCase extends AbstractArrayResultTestCase
 {

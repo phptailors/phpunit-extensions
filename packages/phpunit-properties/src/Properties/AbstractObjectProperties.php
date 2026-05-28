@@ -20,13 +20,15 @@ use Tailors\PHPUnit\Common\TagInterface;
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
  */
 abstract class AbstractObjectProperties extends AbstractArrayResult implements TagInterface
 {
     /**
-     * @param array|\Traversable $array
+     * @psalm-param ArrayLike $array
      */
-    final public function __construct($array = [])
+    final public function __construct(iterable $array = [])
     {
         parent::__construct($array);
     }

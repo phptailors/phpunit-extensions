@@ -19,6 +19,8 @@ use Tailors\PHPUnit\Result\ResultInterface;
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
  */
 final class RecursiveResultUnwrapper implements RecursiveResultUnwrapperInterface
 {
@@ -53,11 +55,11 @@ final class RecursiveResultUnwrapper implements RecursiveResultUnwrapperInterfac
     }
 
     /**
-     * @param array|\Traversable $array
-     *
      * @return array|ResultInterface
+     *
+     * @psalm-param ArrayLike $array
      */
-    public function unwrap($array)
+    public function unwrap(iterable $array)
     {
         $this->recursiveResultUnwrapperVisitor->reset();
 

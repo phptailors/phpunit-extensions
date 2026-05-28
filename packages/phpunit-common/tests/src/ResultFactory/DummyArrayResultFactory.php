@@ -18,6 +18,8 @@ use Tailors\PHPUnit\Result\ResultInterface;
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
  */
 final class DummyArrayResultFactory extends AbstractArrayResultFactory
 {
@@ -33,7 +35,7 @@ final class DummyArrayResultFactory extends AbstractArrayResultFactory
     /**
      * @var \Closure
      *
-     * @psalm-var \Closure(array|\Traversable): array
+     * @psalm-var \Closure(ArrayLike): array
      *
      * @psalm-readonly
      */
@@ -46,9 +48,9 @@ final class DummyArrayResultFactory extends AbstractArrayResultFactory
     }
 
     /**
-     * @param array|\Traversable $input
+     * @psalm-param ArrayLike $input
      */
-    protected function getArrayResult(bool $actual, $input): ResultInterface
+    protected function getArrayResult(bool $actual, iterable $input): ResultInterface
     {
         if (null !== $this->modifier) {
             $input = call_user_func_array($this->modifier, [$input]);

@@ -24,11 +24,11 @@ use Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactoryInterface;
 use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapperInterface;
 
 /**
- * Abstract base for constraints that examine values.
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
  */
 abstract class AbstractRecursiveConstraint extends Constraint
 {
@@ -55,7 +55,7 @@ abstract class AbstractRecursiveConstraint extends Constraint
     private $recursiveResultUnwrapper;
 
     /**
-     * @param array|\Traversable $arraySpec
+     * @psalm-param ArrayLike $arraySpec
      */
     final protected function __construct(
         $arraySpec,

@@ -22,6 +22,7 @@ use Tailors\PHPUnit\RecursiveVisitor\DummyRecursiveVisitor;
  *
  * @psalm-internal Tailors\PHPUnit
  *
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
  * @psalm-type StackItem = DummyRecursiveVisitorStackItem
  */
 final class RecursiveTraversalTest extends TestCase
@@ -34,7 +35,7 @@ final class RecursiveTraversalTest extends TestCase
 
     /**
      * @psalm-return \Generator<non-falsy-string, array{
-     *      array: array|\Traversable,
+     *      array: ArrayLike,
      *      visitor: DummyRecursiveVisitor,
      *      expect: mixed
      *      }>
@@ -521,10 +522,11 @@ final class RecursiveTraversalTest extends TestCase
     /**
      * @dataProvider provWalk
      *
-     * @param array|\Traversable $array
      * @param mixed $expect
+     *
+     * @psalm-param ArrayLike $array
      */
-    public function testWalk($array, DummyRecursiveVisitor $visitor, $expect): void
+    public function testWalk(iterable $array, DummyRecursiveVisitor $visitor, $expect): void
     {
         $traversal = new RecursiveTraversal();
 

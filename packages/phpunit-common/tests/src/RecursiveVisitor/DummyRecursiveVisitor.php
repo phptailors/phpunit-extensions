@@ -17,6 +17,7 @@ namespace Tailors\PHPUnit\RecursiveVisitor;
  *
  * @template-implements RecursiveVisitorInterface<DummyRecursiveVisitorStackItem>
  *
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
  * @psalm-type TraceItem = array{func: string, node: mixed, key?: array-key, path: list<array-key>}
  * @psalm-type Trace = list<TraceItem>
  * @psalm-type StackItem = DummyRecursiveVisitorStackItem
@@ -33,14 +34,14 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     /**
      * @var bool|\Closure
      *
-     * @psalm-var bool|\Closure((array|\Traversable), list<StackItem>):bool
+     * @psalm-var bool|\Closure(ArrayLike, list<StackItem>):bool
      */
     private $enter;
 
     /**
      * @var bool|\Closure
      *
-     * @psalm-var bool|\Closure((array|\Traversable), list<StackItem>):bool
+     * @psalm-var bool|\Closure(ArrayLike, list<StackItem>):bool
      */
     private $cycle;
 
@@ -48,8 +49,8 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
      * @param bool|\Closure $enter
      * @param bool|\Closure $cycle
      *
-     * @psalm-param bool|\Closure((array|\Traversable), list<StackItem>):bool $enter
-     * @psalm-param bool|\Closure((array|\Traversable), list<StackItem>):bool $cycle
+     * @psalm-param bool|\Closure(ArrayLike, list<StackItem>):bool $enter
+     * @psalm-param bool|\Closure(ArrayLike, list<StackItem>):bool $cycle
      */
     public function __construct($enter = true, $cycle = false)
     {
@@ -59,11 +60,10 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param array|\Traversable $node
-     *
+     * @psalm-param ArrayLike $node
      * @psalm-param list<StackItem> $stack
      */
-    public function enter($node, array $stack): bool
+    public function enter(iterable $node, array $stack): bool
     {
         $this->trace[] = ['func' => 'enter', 'node' => $node, 'path' => self::path($stack)];
 
@@ -75,11 +75,10 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param array|\Traversable $node
-     *
+     * @psalm-param ArrayLike $node
      * @psalm-param list<StackItem> $stack
      */
-    public function leave($node, array $stack, bool $iterating): void
+    public function leave(iterable $node, array $stack, bool $iterating): void
     {
         $this->trace[] = ['func' => 'leave', 'node' => $node, 'path' => self::path($stack)];
     }
@@ -95,11 +94,10 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param array|\Traversable $node
-     *
+     * @psalm-param ArrayLike $node
      * @psalm-param list<StackItem> $stack
      */
-    public function cycle($node, array $stack): bool
+    public function cycle(iterable $node, array $stack): bool
     {
         $this->trace[] = ['func' => 'cycle', 'node' => $node, 'path' => self::path($stack)];
 
@@ -111,15 +109,15 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param array|\Traversable $node
      * @param mixed                 $key
      *
+     * @param ArrayLike $node
      * @psalm-param array-key       $key
      * @psalm-param list<StackItem> $stack
      *
      * @psalm-return StackItem
      */
-    public function makeStackItem($node, $key, array $stack): RecursiveVisitorStackItemInterface
+    public function makeStackItem(iterable $node, $key, array $stack): RecursiveVisitorStackItemInterface
     {
         $this->trace[] = ['func' => 'makeStackItem', 'node' => $node, 'key' => $key, 'path' => self::path($stack)];
 

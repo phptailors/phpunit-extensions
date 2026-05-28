@@ -22,7 +22,8 @@ use Tailors\PHPUnit\Properties\ExpectedClassProperties;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ClassPropertiesArgs = list{0: array|\Traversable}
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
+ * @psalm-type ClassPropertiesArgs = list{0: ArrayLike}
  */
 final class ClassPropertiesTraitTest extends TestCase
 {
@@ -55,7 +56,6 @@ final class ClassPropertiesTraitTest extends TestCase
      * @param mixed $expect
      *
      * @psalm-param ClassPropertiesArgs $args
-     * @psalm-param mixed               $expect
      */
     public function testExpectedClassProperties(array $args, $expect): void
     {

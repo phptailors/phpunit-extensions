@@ -20,6 +20,8 @@ use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorStackItemInterface;
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-template VisitorStackItem of RecursiveVisitorStackItemInterface
+ *
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
  */
 final class RecursiveTraversal implements RecursiveTraversalInterface
 {
@@ -48,14 +50,12 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
      * Walk recursively through $array and apply methods defined by $visitor
      * to all the visited elements.
      *
-     * @param array|\Traversable $array
-     *
      * @psalm-template StackItem of RecursiveVisitorStackItemInterface
      *
-     * @psalm-param array|\Traversable                   $array
+     * @psalm-param ArrayLike $array
      * @psalm-param RecursiveVisitorInterface<StackItem> $visitor
      */
-    public function walk($array, RecursiveVisitorInterface $visitor): void
+    public function walk(iterable $array, RecursiveVisitorInterface $visitor): void
     {
         $this->seen = new ReferenceStorage();
         $this->stack = [];
@@ -70,15 +70,14 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
     }
 
     /**
-     * @param array|\Traversable $node
-     *
      * @psalm-template StackItem of RecursiveVisitorStackItemInterface
      *
+     * @psalm-param ArrayLike $node
      * @psalm-param RecursiveVisitorInterface<StackItem> $visitor
      *
      * @psalm-if-this-is self<StackItem>
      */
-    private function walkRecursive(&$node, RecursiveVisitorInterface $visitor): void
+    private function walkRecursive(iterable &$node, RecursiveVisitorInterface $visitor): void
     {
         if ($this->seen->contains($node)) {
             if (!$visitor->cycle($node, $this->stack)) {
@@ -102,16 +101,14 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
     }
 
     /**
-     * @param array|\Traversable $node
-     *
      * @psalm-template StackItem of RecursiveVisitorStackItemInterface
      *
-     * @psalm-param array<array-key,mixed>|\Traversable<array-key,mixed> $node
+     * @psalm-param ArrayLike $node
      * @psalm-param RecursiveVisitorInterface<StackItem> $visitor
      *
      * @psalm-if-this-is self<StackItem>
      */
-    private function iterate($node, RecursiveVisitorInterface $visitor): void
+    private function iterate(iterable $node, RecursiveVisitorInterface $visitor): void
     {
         /** @var mixed $value */
         foreach ($node as $key => &$value) {
@@ -139,6 +136,7 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
     private function visitOrWalkRecursive(&$value, RecursiveVisitorInterface $visitor): void
     {
         if (is_iterable($value)) {
+            /** @psalm-var ArrayLike $value */
             $this->walkRecursive($value, $visitor);
 
             return;

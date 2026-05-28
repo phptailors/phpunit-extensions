@@ -17,13 +17,15 @@ use Tailors\PHPUnit\Result\ResultInterface;
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
  */
 final class ArrayValuesFactory extends AbstractArrayResultFactory
 {
     /**
-     * @param array|\Traversable $input
+     * @psalm-param ArrayLike $input
      */
-    protected function getArrayResult(bool $actual, $input): ResultInterface
+    protected function getArrayResult(bool $actual, iterable $input): ResultInterface
     {
         return $actual ? new ActualArrayValues($input) : new ExpectedArrayValues($input);
     }

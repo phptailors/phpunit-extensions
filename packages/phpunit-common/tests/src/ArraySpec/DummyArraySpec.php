@@ -21,6 +21,8 @@ use Tailors\PHPUnit\ResultFactory\ResultFactoryWrapperInterface;
  *
  * @psalm-template SupportedInput
  *
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
+ *
  * @template-implements ResultFactoryWrapperInterface<SupportedInput>
  * @template-extends \ArrayObject<array-key, mixed>
  */
@@ -36,11 +38,10 @@ final class DummyArraySpec extends \ArrayObject implements ResultFactoryWrapperI
     private $resultFactory;
 
     /**
-     * @param array|\Traversable $array
-     *
      * @psalm-param ResultFactoryInterface<SupportedInput> $resultFactory
+     * @psalm-param ArrayLike $array
      */
-    public function __construct(ResultFactoryInterface $resultFactory, $array)
+    public function __construct(ResultFactoryInterface $resultFactory, iterable $array)
     {
         $this->resultFactory = $resultFactory;
 

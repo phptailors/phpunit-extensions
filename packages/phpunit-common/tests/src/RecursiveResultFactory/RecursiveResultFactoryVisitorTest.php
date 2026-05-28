@@ -37,6 +37,7 @@ use Tailors\PHPUnit\Values\ValuesInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  *
+ * @psalm-type ArrayLike     = iterable<array-key, mixed>
  * @psalm-type StackItem     = RecursiveResultFactoryStackItem
  * @psalm-type CtorArgs      = list{bool, mixed}
  * @psalm-type EnterTestCall = array{args: array{node: array|ValuesInterface}, return: bool, next?: mixed}
@@ -745,7 +746,7 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
     }
 
     /**
-     * @psalm-return \Generator<non-falsy-string, array{ctor: CtorArgs, array: array|\Traversable, result: mixed}>
+     * @psalm-return \Generator<non-falsy-string, array{ctor: CtorArgs, array: ArrayLike, result: mixed}>
      */
     public static function provWithRecursiveTraversal(): iterable
     {
@@ -1165,11 +1166,11 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
      * @dataProvider provWithRecursiveTraversal
      *
      * @param mixed $result
-     * @param array|\Traversable $array
      *
      * @psalm-param CtorArgs $ctor
+     * @psalm-param ArrayLike $array
      */
-    public function testWithRecursiveTraversal(array $ctor, $array, $result): void
+    public function testWithRecursiveTraversal(array $ctor, iterable $array, $result): void
     {
         $visitor = new RecursiveResultFactoryVisitor(...$ctor);
         $traversal = new RecursiveTraversal();

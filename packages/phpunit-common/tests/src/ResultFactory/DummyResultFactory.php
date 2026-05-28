@@ -42,7 +42,7 @@ final class DummyResultFactory implements ResultFactoryInterface
     }
 
     /**
-     * @psalm-param mixed $input
+     * @param mixed $input
      *
      * @psalm-assert SupportedInput $input
      */

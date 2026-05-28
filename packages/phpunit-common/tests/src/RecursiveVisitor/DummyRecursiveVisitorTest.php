@@ -22,8 +22,9 @@ use PHPUnit\Framework\TestCase;
  *
  * @psalm-internal Tailors\PHPUnit
  *
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
  * @psalm-type StackItem = DummyRecursiveVisitorStackItem
- * @psalm-type CtorArgClosure = \Closure(array|\Traversable,list<StackItem>):bool
+ * @psalm-type CtorArgClosure = \Closure(ArrayLike,list<StackItem>):bool
  * @psalm-type CtorArg  = bool|CtorArgClosure
  * @psalm-type CtorArgs = list{0?: CtorArg, 1?: CtorArg}
  * @psalm-type Expect = array{enter: mixed, cycle: mixed}

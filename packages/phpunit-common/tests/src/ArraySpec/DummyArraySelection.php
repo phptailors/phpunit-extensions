@@ -24,9 +24,11 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  * @psalm-template SupportedInput
  * @psalm-template SupportedSubject
  *
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
+ *
  * @template-implements ResultFactoryWrapperInterface<SupportedInput>
  * @template-implements ValueSelectorWrapperInterface<SupportedSubject>
- * @template-extends \ArrayObject<array-key,mixex>
+ * @template-extends \ArrayObject<array-key,mixed>
  */
 final class DummyArraySelection extends \ArrayObject implements ResultFactoryWrapperInterface, ValueSelectorWrapperInterface
 {
@@ -47,12 +49,11 @@ final class DummyArraySelection extends \ArrayObject implements ResultFactoryWra
     private $valueSelector;
 
     /**
-     * @param array|\Traversable $array
-     *
      * @psalm-param ResultFactoryInterface<SupportedInput> $resultFactory
      * @psalm-param ValueSelectorInterface<SupportedSubject> $valueSelector
+     * @psalm-param ArrayLike $array
      */
-    public function __construct(ResultFactoryInterface $resultFactory, ValueSelectorInterface $valueSelector, $array)
+    public function __construct(ResultFactoryInterface $resultFactory, ValueSelectorInterface $valueSelector, iterable $array)
     {
         $this->resultFactory = $resultFactory;
         $this->valueSelector = $valueSelector;

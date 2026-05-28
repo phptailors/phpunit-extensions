@@ -19,6 +19,8 @@ use Tailors\PHPUnit\Result\ResultInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  *
+ * @psalm-type ArrayLike = iterable<array-key,mixed>
+ *
  * @template-extends \ArrayObject<mixed,mixed>
  */
 final class DummyArrayResult extends \ArrayObject implements ResultInterface, TagInterface
@@ -36,9 +38,9 @@ final class DummyArrayResult extends \ArrayObject implements ResultInterface, Ta
     private $tag;
 
     /**
-     * @param array|\Traversable $array
+     * @psalm-param ArrayLike $array
      */
-    public function __construct(bool $actual, $array = [], ?string $tag = null)
+    public function __construct(bool $actual, iterable $array = [], ?string $tag = null)
     {
         $this->actual = $actual;
         $this->tag = $tag;

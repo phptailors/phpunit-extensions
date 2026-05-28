@@ -23,7 +23,8 @@ use Tailors\PHPUnit\Result\ResultInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type AbstractArrayResultCtorArgs = array{0?: array|\Traversable<array-key,mixed>}
+ * @psalm-type ArrayLike = iterable<array-key,mixed>
+ * @psalm-type AbstractArrayResultCtorArgs = array{0?: ArrayLike}
  */
 abstract class AbstractArrayResultTestCase extends TestCase
 {

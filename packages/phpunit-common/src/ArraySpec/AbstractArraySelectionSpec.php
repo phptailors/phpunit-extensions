@@ -23,6 +23,8 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  * @psalm-template SupportedInput
  * @psalm-template SupportedSubject
  *
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
+ *
  * @template-extends AbstractArraySpec<SupportedInput>
  * @template-implements ValueSelectorWrapperInterface<SupportedSubject>
  */
@@ -36,12 +38,11 @@ abstract class AbstractArraySelectionSpec extends AbstractArraySpec implements V
     private $valueSelector;
 
     /**
-     * @param array|\Traversable $array
-     *
      * @psalm-param ResultFactoryInterface<SupportedInput> $resultFactory
      * @psalm-param ValueSelectorInterface<SupportedSubject> $valueSelector
+     * @psalm-param ArrayLike $array
      */
-    protected function __construct(ResultFactoryInterface $resultFactory, ValueSelectorInterface $valueSelector, $array)
+    protected function __construct(ResultFactoryInterface $resultFactory, ValueSelectorInterface $valueSelector, iterable $array)
     {
         parent::__construct($resultFactory, $array);
 

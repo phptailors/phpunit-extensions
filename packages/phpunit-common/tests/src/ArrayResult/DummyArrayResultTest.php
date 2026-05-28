@@ -23,7 +23,8 @@ use Tailors\PHPUnit\Result\ResultInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type CtorArgs    = list{0:bool,1?:array|\Traversable,2?:null|string}
+ * @psalm-type ArrayLike   = iterable<array-key, mixed>
+ * @psalm-type CtorArgs    = list{0:bool,1?:ArrayLike,2?:null|string}
  * @psalm-type ExpectArray = array{actual: mixed, array: mixed, tag: mixed}
  */
 final class DummyArrayResultTest extends TestCase
