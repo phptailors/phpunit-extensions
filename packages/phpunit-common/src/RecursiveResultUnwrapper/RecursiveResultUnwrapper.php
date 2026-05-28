@@ -23,7 +23,7 @@ use Tailors\PHPUnit\Result\ResultInterface;
 final class RecursiveResultUnwrapper implements RecursiveResultUnwrapperInterface
 {
     /**
-     * @var RecursiveResultUnwrapperVisitor
+     * @var RecursiveResultUnwrapperVisitorInterface
      *
      * @psalm-readonly
      */

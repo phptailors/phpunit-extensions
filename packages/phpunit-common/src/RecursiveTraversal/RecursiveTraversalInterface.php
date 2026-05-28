@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\RecursiveTraversal;
 
 use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorInterface;
+use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorStackItemInterface;
 
 /**
  * @internal This interface is not covered by the backward compatibility promise
@@ -20,13 +21,13 @@ use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorInterface;
 interface RecursiveTraversalInterface
 {
     /**
-     * @param array|\Traversable $values
+     * @param array|\Traversable $array
      *
      * @psalm-template StackItem of RecursiveVisitorStackItemInterface
      *
      * @psalm-param RecursiveVisitorInterface<StackItem> $visitor
      */
-    public function walk($values, RecursiveVisitorInterface $visitor): void;
+    public function walk($array, RecursiveVisitorInterface $visitor): void;
 }
 
 // vim: syntax=php sw=4 ts=4 et:

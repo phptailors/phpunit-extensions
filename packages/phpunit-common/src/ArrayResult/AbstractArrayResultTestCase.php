@@ -15,6 +15,7 @@ use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use Tailors\PHPUnit\Common\StaticRandomStrings;
+use Tailors\PHPUnit\Common\TagInterface;
 use Tailors\PHPUnit\Result\ResultInterface;
 
 /**
@@ -34,10 +35,8 @@ abstract class AbstractArrayResultTestCase extends TestCase
      * @psalm-template CtorArgs of AbstractArrayResultCtorArgs
      *
      * @psalm-param CtorArgs $ctorArgs
-     *
-     * @psalm-return \ArrayObject&ResultInterface
      */
-    abstract public static function getArrayResultObject(array $ctorArgs): object;
+    abstract public static function getArrayResultObject(array $ctorArgs): ResultInterface;
 
     /**
      * @throws Exception
@@ -100,6 +99,7 @@ abstract class AbstractArrayResultTestCase extends TestCase
      *
      * @param mixed $expect
      *
+     * @throws Exception
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
      *
@@ -109,6 +109,7 @@ abstract class AbstractArrayResultTestCase extends TestCase
     {
         $object = static::getArrayResultObject($ctor);
 
+        self::assertInstanceOf(\Traversable::class, $object);
         self::assertSame($expect, iterator_to_array($object));
         self::assertSame($expect, (array) $object);
         self::assertSame(static::getArrayResultActual(), $object->actual());
@@ -129,6 +130,7 @@ abstract class AbstractArrayResultTestCase extends TestCase
     /**
      * @dataProvider provAbstractArrayResultTag
      *
+     * @throws Exception
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
      *
@@ -142,6 +144,7 @@ abstract class AbstractArrayResultTestCase extends TestCase
 
         $object = static::getArrayResultObject($ctor);
 
+        self::assertInstanceOf(TagInterface::class, $object);
         self::assertSame($familyTag, $object->tag());
     }
 }

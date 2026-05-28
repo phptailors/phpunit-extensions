@@ -48,6 +48,8 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
      * Walk recursively through $array and apply methods defined by $visitor
      * to all the visited elements.
      *
+     * @param array|\Traversable $array
+     *
      * @psalm-template StackItem of RecursiveVisitorStackItemInterface
      *
      * @psalm-param array|\Traversable                   $array

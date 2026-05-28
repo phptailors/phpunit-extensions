@@ -18,6 +18,10 @@ use Tailors\PHPUnit\Result\ResultInterface;
  * @internal This interface is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type StackItem = RecursiveResultUnwrapperStackItem
+ *
+ * @template-extends RecursiveVisitorInterface<RecursiveResultUnwrapperStackItem>
  */
 interface RecursiveResultUnwrapperVisitorInterface extends RecursiveVisitorInterface
 {

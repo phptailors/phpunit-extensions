@@ -25,8 +25,6 @@ use Tailors\PHPUnit\Result\ResultInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @template-implements RecursiveVisitorInterface<RecursiveResultUnwrapperStackItem>
- *
  * @psalm-type StackItem = RecursiveResultUnwrapperStackItem
  */
 final class RecursiveResultUnwrapperVisitor implements RecursiveResultUnwrapperVisitorInterface, StaticTagInterface

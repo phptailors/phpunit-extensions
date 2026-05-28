@@ -14,7 +14,7 @@ use Tailors\PHPUnit\ArrayResult\DummyExpectedArrayResult;
 use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
 use Tailors\PHPUnit\ArrayResult\ExpectedArrayResult;
 use Tailors\PHPUnit\ArrayResult\ActualArrayResult;
-// use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
+use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\ArraySpec\DummyArraySelection;
 use Tailors\PHPUnit\ArraySpec\DummyArraySelectionOnly;
@@ -651,6 +651,51 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
                 'bar' => 'BAR',
             ],
         ];
+
+        //
+        // 04
+        //
+
+        $a04 = [
+            'foo' => 'FOO',
+            'bar' => 'BAR',
+        ];
+        $c04 = 0;
+        $f04 = new DummyArrayResultFactory();
+        $s04 = new DummyValueSelector(function ($subject) use (&$c04): bool{
+            // A selector which changes its mind everytime.
+            return (bool)((++$c04) % 2);
+        }, function ($subject, $key, &$retval) use ($c04): bool {
+            if (!($c04 % 2) || !is_array($subject) || !array_key_exists($key, $subject)) {
+                return false;
+            }
+            $retval = $subject[$key];
+            return true;
+        });
+        $e04 = new DummyArraySelection($f04, $s04, [
+            'foo' => 'UNIMPORTANT',
+            'bar' => 'UNIMPORTANT',
+        ]);
+
+        yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
+            'ctor'  => [false, $a04],
+            'enter' => [
+                'args' => [
+                    'node' => $e04,
+                ],
+                'return' => true,
+            ],
+            'calls' => [
+                [
+                    'args' => [
+                        'node' => $a04['foo'],
+                    ],
+                    'key' => 'foo',
+                ],
+            ],
+            'result' => new DummyArrayResult(false, [
+            ]),
+        ];
     }
 
     /**
@@ -704,7 +749,7 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
     }
 
     /**
-     * @psalm-return iterable<string, array{ctor: CtorArgs, array: array|\Traversable, result: mixed}>
+     * @psalm-return \Generator<non-falsy-string, array{ctor: CtorArgs, array: array|\Traversable, result: mixed}>
      */
     public static function provWithRecursiveTraversal(): iterable
     {

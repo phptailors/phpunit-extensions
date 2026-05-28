@@ -20,7 +20,7 @@ use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorStackItemInterface;
 final class RecursiveResultUnwrapperStackItem implements RecursiveVisitorStackItemInterface
 {
     /**
-     * @var array|ArraySpecInterface
+     * @var array|\Traversable
      *
      * @psalm-readonly
      */
@@ -41,7 +41,7 @@ final class RecursiveResultUnwrapperStackItem implements RecursiveVisitorStackIt
     private $result;
 
     /**
-     * @param array|ArraySpecInterface $node
+     * @param array|\Traversable $node
      * @param mixed                 $key
      *
      * @psalm-param array-key $key
@@ -54,7 +54,7 @@ final class RecursiveResultUnwrapperStackItem implements RecursiveVisitorStackIt
     }
 
     /**
-     * @return array|ArraySpecInterface
+     * @return array|\Traversable
      *
      * @psalm-mutation-free
      */

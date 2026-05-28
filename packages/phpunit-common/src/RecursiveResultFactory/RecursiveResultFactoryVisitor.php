@@ -17,6 +17,7 @@ use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorStackItemInterface;
 use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorUtils;
 use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
 use Tailors\PHPUnit\ResultFactory\ResultFactoryWrapperInterface;
+use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
 use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
 
 /**
@@ -83,7 +84,7 @@ final class RecursiveResultFactoryVisitor implements RecursiveVisitorInterface
             return false;
         }
 
-        return $this->enterIfSpecYieldsArray($node, $subject);
+        return $this->enterIfSpecYieldsAnArray($node, $subject);
     }
 
     /**
@@ -185,6 +186,7 @@ final class RecursiveResultFactoryVisitor implements RecursiveVisitorInterface
     private function selectSubject(array $stack, &$subject): bool
     {
         if (0 === ($count = count($stack))) {
+            /** @psalm-var mixed */
             $subject = $this->subject;
             return true;
         }
@@ -193,16 +195,13 @@ final class RecursiveResultFactoryVisitor implements RecursiveVisitorInterface
 
         $key = $top->key();
         $parentNode = $top->node();
+        /** @psalm-var mixed */
         $parentSubject = $top->subjectResultCouple()->subject;
 
         if ($parentNode instanceof ValueSelectorWrapperInterface) {
             $parentValueSelector = $parentNode->getValueSelector();
-            if (!$parentValueSelector->supports($parentSubject)) {
-                // How the heck we get here?!
-                return false;
-            }
 
-            return $parentValueSelector->select($parentSubject, $key, $subject);
+            return $this->selectWithValueSelector($parentValueSelector, $parentSubject, $key, $subject);
         }
 
         if ($parentSubject instanceof \ArrayAccess) {
@@ -210,12 +209,14 @@ final class RecursiveResultFactoryVisitor implements RecursiveVisitorInterface
                 return false;
             }
 
+            /** @psalm-var mixed */
             $subject = $parentSubject->offsetGet($key);
 
             return true;
         }
 
         if (is_array($parentSubject) && array_key_exists($key, $parentSubject)) {
+            /** @psalm-var mixed */
             $subject = $parentSubject[$key];
 
             return true;
@@ -225,31 +226,39 @@ final class RecursiveResultFactoryVisitor implements RecursiveVisitorInterface
     }
 
     /**
+     * @param mixed $subject
+     * @param mixed $key
+     * @param mixed $retval
+     *
+     * @psalm-template SupportedSubject
+     *
+     * @psalm-param ValueSelectorInterface<SupportedSubject> $valueSelector
+     * @psalm-param array-key $key
+     *
+     * @psalm-param-out mixed $retval
+     */
+    private function selectWithValueSelector(ValueSelectorInterface $valueSelector, $subject, $key, &$retval): bool
+    {
+        if (!$valueSelector->supports($subject)) {
+            return false;
+        }
+
+        /** @psalm-suppress MissingThrowsDocblock */
+        return $valueSelector->select($subject, $key, $retval);
+    }
+
+    /**
      * @param array|\Traversable $spec
      * @param mixed $subject
      */
-    private function enterIfSpecYieldsArray($spec, $subject): bool
+    private function enterIfSpecYieldsAnArray($spec, $subject): bool
     {
         if ($spec instanceof ValueSelectorWrapperInterface) {
-            $valueSelector = $spec->getValueSelector();
-
-            if (!$valueSelector->supports($subject)) {
-                return false;
-            }
-
-            if (!$spec instanceof ResultFactoryWrapperInterface) {
-                return false;
-            }
-
-            $factory = $spec->getResultFactory();
-
-            return $this->enterIfFactoryYieldsArray($factory, [], $subject);
+            return $this->enterIfSelectionYieldsAnArray($spec, $subject);
         }
 
         if ($spec instanceof ResultFactoryWrapperInterface) {
-            $factory = $spec->getResultFactory();
-
-            return $this->enterIfFactoryYieldsArray($factory, $subject, $subject);
+            return $this->enterIfFactoryYieldsAnArray($spec, $subject, $subject);
         }
 
         if (!is_array($spec) || !is_array($subject)) {
@@ -262,21 +271,46 @@ final class RecursiveResultFactoryVisitor implements RecursiveVisitorInterface
     }
 
     /**
+     * @param mixed $spec
+     * @param mixed $subject
+     *
+     * @psalm-template SupportedSubject
+     * @psalm-param ValueSelectorWrapperInterface<SupportedSubject> $spec
+     */
+    private function enterIfSelectionYieldsAnArray(ValueSelectorWrapperInterface $spec, $subject): bool
+    {
+        $valueSelector = $spec->getValueSelector();
+
+        if (!$valueSelector->supports($subject)) {
+            return false;
+        }
+
+        if (!$spec instanceof ResultFactoryWrapperInterface) {
+            return false;
+        }
+
+        return $this->enterIfFactoryYieldsAnArray($spec, [], $subject);
+    }
+
+    /**
      * @param mixed $input
      * @param mixed $subject
      *
      * @psalm-template SupportedInput
      *
-     * @psalm-param ResultFactoryInterface<SupportedInput> $factory
+     * @psalm-param ResultFactoryWrapperInterface<SupportedInput> $spec
      *
      * @psalm-assert-if-true SupportedInput $input
      */
-    private function enterIfFactoryYieldsArray(ResultFactoryInterface $factory, $input, $subject): bool
+    private function enterIfFactoryYieldsAnArray(ResultFactoryWrapperInterface $spec, $input, $subject): bool
     {
+        $factory = $spec->getResultFactory();
+
         if (!$factory->supports($input)) {
             return false;
         }
 
+        /** @psalm-suppress MissingThrowsDocblock */
         $result = $factory->getResult($this->actual, $input);
 
         if (!$result instanceof \ArrayAccess) {
