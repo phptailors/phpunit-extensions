@@ -10,11 +10,8 @@
 
 namespace Tailors\PHPUnit\RecursiveResultFactory;
 
-use Tailors\PHPUnit\ArrayResult\DummyExpectedArrayResult;
 use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
 use Tailors\PHPUnit\ArrayResult\ExpectedArrayResult;
-use Tailors\PHPUnit\ArrayResult\ActualArrayResult;
-use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\ArraySpec\DummyArraySelection;
 use Tailors\PHPUnit\ArraySpec\DummyArraySelectionOnly;
@@ -22,7 +19,6 @@ use Tailors\PHPUnit\ArraySpec\DummyArraySpec;
 use Tailors\PHPUnit\CircularDependencyException;
 use Tailors\PHPUnit\InternalErrorException;
 use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapper;
-use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapperVisitor;
 use Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversal;
 use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorInterface;
 use Tailors\PHPUnit\ResultFactory\DummyArrayResultFactory;

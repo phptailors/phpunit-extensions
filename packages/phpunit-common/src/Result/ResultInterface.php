@@ -10,8 +10,6 @@
 
 namespace Tailors\PHPUnit\Result;
 
-use Tailors\PHPUnit\Common\TagInterface;
-
 /**
  * A constraint evaluation result (either expected, or actual).
  *

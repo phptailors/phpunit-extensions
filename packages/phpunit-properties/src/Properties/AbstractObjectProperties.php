@@ -11,7 +11,6 @@
 namespace Tailors\PHPUnit\Properties;
 
 use Tailors\PHPUnit\ArrayResult\AbstractArrayResult;
-use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
 use Tailors\PHPUnit\Common\StaticRandomStrings;
 use Tailors\PHPUnit\Common\TagInterface;
 

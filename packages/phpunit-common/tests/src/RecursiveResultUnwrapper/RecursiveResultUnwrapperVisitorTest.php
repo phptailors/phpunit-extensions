@@ -13,14 +13,12 @@ namespace Tailors\PHPUnit\RecursiveResultUnwrapper;
 use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\ArrayResult\DummyUntaggedArrayResult;
-use Tailors\PHPUnit\ArraySpec\DummyArraySelection;
 use Tailors\PHPUnit\Common\StaticRandomStrings;
 use Tailors\PHPUnit\Common\StaticTagInterface;
 use Tailors\PHPUnit\InternalErrorException;
 use Tailors\PHPUnit\InvalidArgumentException;
 use Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversal;
 use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorInterface;
-use Tailors\PHPUnit\ResultFactory\DummyArrayResultFactory;
 use Tailors\PHPUnit\Result\ResultInterface;
 
 /**

@@ -60,10 +60,8 @@ final class RecursiveResultFactoryStackItem implements RecursiveVisitorStackItem
     }
 
     /**
-     * @return mixed
      *
      * @psalm-return ArrayLike
-     *
      * @psalm-mutation-free
      */
     public function node(): iterable

@@ -16,7 +16,6 @@ use Tailors\PHPUnit\Common\TagInterface;
 use Tailors\PHPUnit\InternalErrorException;
 use Tailors\PHPUnit\InvalidArgumentException;
 use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorStackItemInterface;
-use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorInterface;
 use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorUtils;
 use Tailors\PHPUnit\Result\ResultInterface;
 

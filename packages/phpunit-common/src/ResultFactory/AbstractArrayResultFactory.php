@@ -37,7 +37,7 @@ abstract class AbstractArrayResultFactory implements ResultFactoryInterface
      */
     final public function supports($input): bool
     {
-        return is_array($input) || $input instanceof \Traversable;
+        return is_iterable($input);
     }
 
     /**

@@ -10,9 +10,6 @@
 
 namespace Tailors\PHPUnit\ArraySpec;
 
-use PHPUnit\Framework\Constraint\LogicalNot;
-use PHPUnit\Framework\Constraint\Operator;
-use Tailors\PHPUnit\Expectation\ExpectationInterface;
 use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
 use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
 use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
