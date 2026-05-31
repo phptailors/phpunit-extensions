@@ -34,14 +34,12 @@ final class RecursiveResultUnwrapperVisitor implements RecursiveResultUnwrapperV
      *
      * @psalm-readonly
      */
-    private $actual;
+    private $tagging;
 
     /**
-     * @var bool
-     *
-     * @psalm-readonly
+     * @var ?bool
      */
-    private $tagging;
+    private $actual;
 
     /**
      * @var array|null|ResultInterface
@@ -53,11 +51,11 @@ final class RecursiveResultUnwrapperVisitor implements RecursiveResultUnwrapperV
      */
     private $current;
 
-    public function __construct(bool $actual, bool $tagging = true)
+    public function __construct(bool $tagging = true)
     {
-        $this->actual = $actual;
         $this->tagging = $tagging;
-        $this->reset();
+        $this->actual = null;
+        $this->current = [];
     }
 
     /**
@@ -68,9 +66,16 @@ final class RecursiveResultUnwrapperVisitor implements RecursiveResultUnwrapperV
         return StaticRandomStrings::familyTag(__NAMESPACE__.'\UnwrappedResult', '4694a81d074f3386a9b8c7c2ad04914e120f1a10');
     }
 
-    public function reset(): void
+    public function begin(bool $actual): void
     {
+        $this->actual = $actual;
         $this->result = null;
+        $this->current = [];
+    }
+
+    public function end(): void
+    {
+        $this->actual = null;
         $this->current = [];
     }
 

@@ -29,29 +29,29 @@ final class RecursiveResultUnwrapper implements RecursiveResultUnwrapperInterfac
      *
      * @psalm-readonly
      */
-    private $recursiveResultUnwrapperVisitor;
+    private $visitor;
 
     /**
      * @var RecursiveTraversalInterface
      *
      * @psalm-readonly
      */
-    private $recursiveTraversal;
+    private $traversal;
 
-    public static function create(bool $actual, bool $tagging = true): self
+    public static function create(bool $tagging = true): self
     {
-        $recursiveResultUnwrapperVisitor = new RecursiveResultUnwrapperVisitor($actual, $tagging);
-        $recursiveTraversal = new RecursiveTraversal();
+        $visitor = new RecursiveResultUnwrapperVisitor($tagging);
+        $traversal = new RecursiveTraversal();
 
-        return new self($recursiveResultUnwrapperVisitor, $recursiveTraversal);
+        return new self($visitor, $traversal);
     }
 
     public function __construct(
-        RecursiveResultUnwrapperVisitorInterface $recursiveResultUnwrapperVisitor,
-        RecursiveTraversalInterface $recursiveTraversal
+        RecursiveResultUnwrapperVisitorInterface $visitor,
+        RecursiveTraversalInterface $traversal
     ) {
-        $this->recursiveResultUnwrapperVisitor = $recursiveResultUnwrapperVisitor;
-        $this->recursiveTraversal = $recursiveTraversal;
+        $this->visitor = $visitor;
+        $this->traversal = $traversal;
     }
 
     /**
@@ -59,17 +59,19 @@ final class RecursiveResultUnwrapper implements RecursiveResultUnwrapperInterfac
      *
      * @psalm-param ArrayLike $array
      */
-    public function unwrap(iterable $array)
+    public function unwrap(bool $actual, iterable $array)
     {
-        $this->recursiveResultUnwrapperVisitor->reset();
+        $this->visitor->begin($actual);
 
-        $this->recursiveTraversal->walk($array, $this->recursiveResultUnwrapperVisitor);
+        $this->traversal->walk($array, $this->visitor);
 
-        $unwrapped = $this->recursiveResultUnwrapperVisitor->result();
+        $this->visitor->end();
+
+        $unwrapped = $this->visitor->result();
 
         if (null === $unwrapped) {
             /** @psalm-suppress MissingThrowsDocblock */
-            throw InternalErrorException::fromBackTrace('$this->recursiveResultUnwrapperVisitor->result() returned null');
+            throw InternalErrorException::fromBackTrace('$this->visitor->result() returned null');
         }
 
         return $unwrapped;

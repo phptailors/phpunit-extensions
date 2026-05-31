@@ -25,12 +25,14 @@ use Tailors\PHPUnit\Result\ResultInterface;
  */
 interface RecursiveResultUnwrapperVisitorInterface extends RecursiveVisitorInterface
 {
+    public function begin(bool $actual): void;
+
+    public function end(): void;
+
     /**
      * @return array|null|ResultInterface
      */
     public function result();
-
-    public function reset(): void;
 }
 
 // vim: syntax=php sw=4 ts=4 et:

@@ -28,7 +28,7 @@ interface RecursiveResultUnwrapperInterface
      *
      * @psalm-param ArrayLike $array
      */
-    public function unwrap(iterable $array);
+    public function unwrap(bool $actual, iterable $array);
 }
 
 // vim: syntax=php sw=4 ts=4 et:
