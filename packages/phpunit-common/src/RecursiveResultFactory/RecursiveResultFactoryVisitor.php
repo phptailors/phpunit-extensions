@@ -12,7 +12,6 @@ namespace Tailors\PHPUnit\RecursiveResultFactory;
 
 use Tailors\PHPUnit\CircularDependencyException;
 use Tailors\PHPUnit\InternalErrorException;
-use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorInterface;
 use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorStackItemInterface;
 use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorUtils;
 use Tailors\PHPUnit\ResultFactory\ResultFactoryWrapperInterface;
@@ -26,15 +25,11 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  *
  * @psalm-type StackItem = RecursiveResultFactoryStackItem
  * @psalm-type ArrayLike = iterable<array-key, mixed>
- *
- * @template-implements RecursiveVisitorInterface<RecursiveResultFactoryStackItem>
  */
-final class RecursiveResultFactoryVisitor implements RecursiveVisitorInterface
+final class RecursiveResultFactoryVisitor implements RecursiveResultFactoryVisitorInterface
 {
     /**
-     * @var bool
-     *
-     * @psalm-readonly
+     * @var ?bool
      */
     private $actual;
 
@@ -53,13 +48,30 @@ final class RecursiveResultFactoryVisitor implements RecursiveVisitorInterface
      */
     private $subjectResultCouple;
 
+    public function __construct()
+    {
+        $this->actual = null;
+        $this->subject = null;
+        $this->subjectResultCouple = null;
+    }
+
     /**
      * @param mixed $subject
+     *
+     * @psalm-assert bool $this->actual
      */
-    public function __construct(bool $actual, $subject)
+    public function begin(bool $actual, $subject): void
     {
         $this->actual = $actual;
         $this->subject = $subject;
+        $this->result = null;
+        $this->subjectResultCouple = null;
+    }
+
+    public function end(): void
+    {
+        $this->actual = null;
+        $this->subject = null;
         $this->subjectResultCouple = null;
     }
 
@@ -306,6 +318,11 @@ final class RecursiveResultFactoryVisitor implements RecursiveVisitorInterface
 
         if (!$factory->supports($input)) {
             return false;
+        }
+
+        if (null === $this->actual) {
+            /** @psalm-suppress MissingThrowsDocblock */
+            throw InternalErrorException::fromBackTrace('$this->actual is null, did you call begin()?');
         }
 
         /** @psalm-suppress MissingThrowsDocblock */
