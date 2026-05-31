@@ -46,10 +46,7 @@ final class RecursiveResultUnwrapper implements RecursiveResultUnwrapperInterfac
         return new self($visitor, $traversal);
     }
 
-    public function __construct(
-        RecursiveResultUnwrapperVisitorInterface $visitor,
-        RecursiveTraversalInterface $traversal
-    ) {
+    public function __construct(RecursiveResultUnwrapperVisitorInterface $visitor, RecursiveTraversalInterface $traversal) {
         $this->visitor = $visitor;
         $this->traversal = $traversal;
     }
