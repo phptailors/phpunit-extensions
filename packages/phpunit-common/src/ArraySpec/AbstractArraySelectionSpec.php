@@ -14,7 +14,6 @@ use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
 use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
 use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
 
-
 /**
  * @internal This class is not covered by the backward compatibility promise
  *
@@ -26,6 +25,7 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  * @psalm-type ArrayLike = iterable<array-key, mixed>
  *
  * @template-extends AbstractArraySpec<SupportedInput>
+ *
  * @template-implements ValueSelectorWrapperInterface<SupportedSubject>
  */
 abstract class AbstractArraySelectionSpec extends AbstractArraySpec implements ValueSelectorWrapperInterface
@@ -38,9 +38,9 @@ abstract class AbstractArraySelectionSpec extends AbstractArraySpec implements V
     private $valueSelector;
 
     /**
-     * @psalm-param ResultFactoryInterface<SupportedInput> $resultFactory
+     * @psalm-param ResultFactoryInterface<SupportedInput>   $resultFactory
      * @psalm-param ValueSelectorInterface<SupportedSubject> $valueSelector
-     * @psalm-param ArrayLike $array
+     * @psalm-param ArrayLike                                $array
      */
     protected function __construct(ResultFactoryInterface $resultFactory, ValueSelectorInterface $valueSelector, iterable $array)
     {

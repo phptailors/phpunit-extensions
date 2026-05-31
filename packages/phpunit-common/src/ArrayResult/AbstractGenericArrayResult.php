@@ -13,7 +13,6 @@ namespace Tailors\PHPUnit\ArrayResult;
 use Tailors\PHPUnit\Common\StaticRandomStrings;
 use Tailors\PHPUnit\Common\TagInterface;
 
-
 /**
  * An array of expected or actual values (generic).
  *
@@ -33,7 +32,7 @@ abstract class AbstractGenericArrayResult extends AbstractArrayResult implements
     private $tag;
 
     /**
-     * @psalm-param ArrayLike $array
+     * @psalm-param ArrayLike         $array
      * @psalm-param ?non-falsy-string $tag
      */
     final public function __construct(iterable $array = [], ?string $tag = null)

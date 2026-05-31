@@ -10,18 +10,23 @@
 
 namespace Tailors\PHPUnit\RecursiveResultFactory;
 
-use Tailors\PHPUnit\ArraySpec\ArraySpecInterface;
-use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
-
 /**
  * @internal This interface is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @template-extends ResultFactoryInterface<array|ArraySpecInterface>
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
  */
-interface RecursiveResultFactoryInterface extends ResultFactoryInterface
+interface RecursiveResultFactoryInterface
 {
+    /**
+     * @param mixed $input
+     *
+     * @return mixed
+     *
+     * @psalm-param ArrayLike $array
+     */
+    public function getResult(bool $actual, iterable $array, $input);
 }
 
 // vim: syntax=php sw=4 ts=4 et:

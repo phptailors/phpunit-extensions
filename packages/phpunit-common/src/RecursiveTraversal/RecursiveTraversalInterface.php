@@ -25,7 +25,7 @@ interface RecursiveTraversalInterface
     /**
      * @psalm-template StackItem of RecursiveVisitorStackItemInterface
      *
-     * @psalm-param ArrayLike $array
+     * @psalm-param ArrayLike                            $array
      * @psalm-param RecursiveVisitorInterface<StackItem> $visitor
      */
     public function walk(iterable $array, RecursiveVisitorInterface $visitor): void;

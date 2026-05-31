@@ -42,7 +42,7 @@ final class RecursiveResultUnwrapperVisitor implements RecursiveResultUnwrapperV
     private $actual;
 
     /**
-     * @var array|null|ResultInterface
+     * @var null|array|ResultInterface
      */
     private $result;
 
@@ -80,7 +80,7 @@ final class RecursiveResultUnwrapperVisitor implements RecursiveResultUnwrapperV
     }
 
     /**
-     * @return array|null|ResultInterface
+     * @return null|array|ResultInterface
      *
      * @psalm-mutation-free
      */
@@ -90,7 +90,7 @@ final class RecursiveResultUnwrapperVisitor implements RecursiveResultUnwrapperV
     }
 
     /**
-     * @psalm-param ArrayLike $node
+     * @psalm-param ArrayLike       $node
      * @psalm-param list<StackItem> $stack
      */
     public function enter(iterable $node, array $stack): bool
@@ -109,7 +109,7 @@ final class RecursiveResultUnwrapperVisitor implements RecursiveResultUnwrapperV
     }
 
     /**
-     * @psalm-param ArrayLike $node
+     * @psalm-param ArrayLike       $node
      * @psalm-param list<StackItem> $stack
      */
     public function leave(iterable $node, array $stack, bool $iterating): void
@@ -122,7 +122,8 @@ final class RecursiveResultUnwrapperVisitor implements RecursiveResultUnwrapperV
             $tag = self::tag();
             if (array_key_exists($tag, $this->current)) {
                 $key = var_export($tag, true);
-                $path = (RecursiveVisitorUtils::pathAsString($stack))."[{$key}]";
+                $path = RecursiveVisitorUtils::pathAsString($stack)."[{$key}]";
+
                 /** @psalm-suppress MissingThrowsDocblock */
                 throw InternalErrorException::fromBackTrace(
                     'Failed to set $array'.$path.': key already exists. Please re-run your tests.'
@@ -148,7 +149,7 @@ final class RecursiveResultUnwrapperVisitor implements RecursiveResultUnwrapperV
     }
 
     /**
-     * @psalm-param ArrayLike $node
+     * @psalm-param ArrayLike       $node
      * @psalm-param list<StackItem> $stack
      */
     public function cycle(iterable $node, array $stack): bool
@@ -159,9 +160,9 @@ final class RecursiveResultUnwrapperVisitor implements RecursiveResultUnwrapperV
     }
 
     /**
-     * @param mixed                 $key
+     * @param mixed $key
      *
-     * @psalm-param ArrayLike $node
+     * @psalm-param ArrayLike       $node
      * @psalm-param array-key       $key
      * @psalm-param list<StackItem> $stack
      *
@@ -191,7 +192,7 @@ final class RecursiveResultUnwrapperVisitor implements RecursiveResultUnwrapperV
         $count = count($stack);
 
         if (0 === $count) {
-            if (!is_array($value) && ! $value instanceof ResultInterface) {
+            if (!is_array($value) && !$value instanceof ResultInterface) {
                 $expected = 'an array or '.ResultInterface::class.' object';
                 $actual = is_object($value) ? get_class($value) : gettype($value);
 

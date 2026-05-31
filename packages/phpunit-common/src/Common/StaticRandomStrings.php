@@ -53,7 +53,7 @@ final class StaticRandomStrings
     }
 
     /**
-     * @param object|class-string $objectOrClass
+     * @param class-string|object $objectOrClass
      *
      * @psalm-param ?non-empty-string $fallback
      *

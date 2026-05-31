@@ -12,8 +12,6 @@ namespace Tailors\PHPUnit\RecursiveResultUnwrapper;
 
 use Tailors\PHPUnit\Result\ResultInterface;
 
-
-
 /**
  * @internal This interface is not covered by the backward compatibility promise
  *

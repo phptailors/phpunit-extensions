@@ -22,33 +22,34 @@ namespace Tailors\PHPUnit\RecursiveVisitor;
 interface RecursiveVisitorInterface
 {
     /**
-     * @psalm-param ArrayLike $node
+     * @psalm-param ArrayLike       $node
      * @psalm-param list<StackItem> $stack
      */
     public function enter(iterable $node, array $stack): bool;
 
     /**
-     * @psalm-param ArrayLike $node
+     * @psalm-param ArrayLike       $node
      * @psalm-param list<StackItem> $stack
      */
     public function leave(iterable $node, array $stack, bool $iterating): void;
 
     /**
      * @param mixed $node
+     *
      * @psalm-param list<StackItem> $stack
      */
     public function visit($node, array $stack, bool $iterating): void;
 
     /**
-     * @psalm-param ArrayLike $node
+     * @psalm-param ArrayLike       $node
      * @psalm-param list<StackItem> $stack
      */
     public function cycle(iterable $node, array $stack): bool;
 
     /**
-     * @param mixed                 $key
+     * @param mixed $key
      *
-     * @psalm-param ArrayLike $node
+     * @psalm-param ArrayLike       $node
      * @psalm-param array-key       $key
      * @psalm-param list<StackItem> $stack
      *

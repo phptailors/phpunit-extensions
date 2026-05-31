@@ -21,7 +21,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type CtorArgs = list{0: mixed, 1: array|\ArrayAccess}
+ * @psalm-type CtorArgs    = list{0: mixed, 1: array|\ArrayAccess}
  * @psalm-type ExpectArray = array{subject: mixed, result: mixed}
  */
 final class SubjectResultCoupleTest extends TestCase
@@ -36,10 +36,10 @@ final class SubjectResultCoupleTest extends TestCase
         //
 
         yield 'SubjectResultCoupleTest.php:'.__LINE__ => [
-            'ctor' => [null, ['A']],
+            'ctor'   => [null, ['A']],
             'expect' => [
                 'subject' => null,
-                'result' => ['A'],
+                'result'  => ['A'],
             ],
         ];
 
@@ -50,10 +50,10 @@ final class SubjectResultCoupleTest extends TestCase
         $a02 = new \ArrayObject(['Y']);
 
         yield 'SubjectResultCoupleTest.php:'.__LINE__ => [
-            'ctor' => ['X', $a02],
+            'ctor'   => ['X', $a02],
             'expect' => [
                 'subject' => 'X',
-                'result' => $a02,
+                'result'  => $a02,
             ],
         ];
     }
@@ -61,7 +61,7 @@ final class SubjectResultCoupleTest extends TestCase
     /**
      * @dataProvider provSubjectResultCouple
      *
-     * @psalm-param CtorArgs $ctor
+     * @psalm-param CtorArgs    $ctor
      * @psalm-param ExpectArray $expect
      *
      * @psalm-suppress MissingThrowsDocblock

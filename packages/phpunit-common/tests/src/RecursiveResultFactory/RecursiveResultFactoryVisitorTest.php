@@ -10,9 +10,9 @@
 
 namespace Tailors\PHPUnit\RecursiveResultFactory;
 
+use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
 use Tailors\PHPUnit\ArrayResult\ExpectedArrayResult;
-use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\ArraySpec\DummyArraySelection;
 use Tailors\PHPUnit\ArraySpec\DummyArraySelectionOnly;
 use Tailors\PHPUnit\ArraySpec\DummyArraySpec;
@@ -21,11 +21,11 @@ use Tailors\PHPUnit\InternalErrorException;
 use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapper;
 use Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversal;
 use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorInterface;
+use Tailors\PHPUnit\Result\ResultInterface;
 use Tailors\PHPUnit\ResultFactory\DummyArrayResultFactory;
 use Tailors\PHPUnit\ResultFactory\DummyResultFactory;
-use Tailors\PHPUnit\Result\ResultInterface;
-use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
 use Tailors\PHPUnit\Values\ValuesInterface;
+use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
 
 /**
  * @small
@@ -132,7 +132,7 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
 
         yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
             'ctor'  => [],
-            'begin'  => [false, 'FOO'],
+            'begin' => [false, 'FOO'],
             'calls' => [
                 [
                     'args' => [
@@ -147,7 +147,7 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
         //
         // 02
         //
-        $e02 =  new DummyArraySelection(
+        $e02 = new DummyArraySelection(
             new DummyArrayResultFactory(),
             new DummyValueSelector(false),
             ['unimportant' => 'UNIMPORTANT']
@@ -155,7 +155,7 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
 
         yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
             'ctor'  => [],
-            'begin'  => [false, 'FOO'],
+            'begin' => [false, 'FOO'],
             'calls' => [
                 [
                     'args' => [
@@ -171,7 +171,7 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
         // 03
         //
 
-        $e03 =  new DummyArraySelection(
+        $e03 = new DummyArraySelection(
             new DummyArrayResultFactory(),
             new DummyValueSelector(true),
             ['unimportant' => 'UNIMPORTANT']
@@ -179,7 +179,7 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
 
         yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
             'ctor'  => [],
-            'begin'  => [false, 'FOO'],
+            'begin' => [false, 'FOO'],
             'calls' => [
                 [
                     'args' => [
@@ -188,12 +188,12 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
                     'return' => true,
                 ],
             ],
-            'result' => new DummyArrayResult(false, [])
+            'result' => new DummyArrayResult(false, []),
         ];
 
         yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
             'ctor'  => [],
-            'begin'  => [true, 'FOO'],
+            'begin' => [true, 'FOO'],
             'calls' => [
                 [
                     'args' => [
@@ -202,7 +202,7 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
                     'return' => true,
                 ],
             ],
-            'result' => new DummyArrayResult(true, [])
+            'result' => new DummyArrayResult(true, []),
         ];
 
         //
@@ -216,7 +216,7 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
 
         yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
             'ctor'  => [],
-            'begin'  => [false, 'FOO'],
+            'begin' => [false, 'FOO'],
             'calls' => [
                 [
                     'args' => [
@@ -229,8 +229,8 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
         ];
 
         yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
-           'ctor'  => [],
-           'begin'  => [false, ['bar' => 'BAR']],
+            'ctor'  => [],
+            'begin' => [false, ['bar' => 'BAR']],
             'calls' => [
                 [
                     'args' => [
@@ -243,8 +243,8 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
         ];
 
         yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
-           'ctor'  => [],
-           'begin'  => [true, ['bar' => 'BAR']],
+            'ctor'  => [],
+            'begin' => [true, ['bar' => 'BAR']],
             'calls' => [
                 [
                     'args' => [
@@ -277,7 +277,7 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
 
         yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
             'ctor'  => [],
-            'begin'  => [false, $a05],
+            'begin' => [false, $a05],
             'calls' => [
                 [
                     'args' => [
@@ -310,7 +310,7 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
 
         yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
             'ctor'  => [],
-            'begin'  => [true, $a05],
+            'begin' => [true, $a05],
             'calls' => [
                 [
                     'args' => [
@@ -362,7 +362,7 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
 
         yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
             'ctor'  => [],
-            'begin'  => [false, $a06],
+            'begin' => [false, $a06],
             'calls' => [
                 [
                     'args' => [
@@ -415,7 +415,7 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
 
         yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
             'ctor'  => [],
-            'begin'  => [false, $a07],
+            'begin' => [false, $a07],
             'calls' => [
                 [
                     'args' => [
@@ -469,7 +469,7 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
 
         yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
             'ctor'  => [],
-            'begin'  => [false, $a08],
+            'begin' => [false, $a08],
             'calls' => [
                 [
                     'args' => [
@@ -573,7 +573,7 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
 
         yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
             'ctor'  => [],
-            'begin'  => [false, 'FOO'],
+            'begin' => [false, 'FOO'],
             'enter' => null,
             'calls' => [
                 [
@@ -608,7 +608,7 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
 
         yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
             'ctor'  => [],
-            'begin'  => [false, $a02],
+            'begin' => [false, $a02],
             'enter' => [
                 'args' => [
                     'node' => $e02,
@@ -650,7 +650,7 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
 
         yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
             'ctor'  => [],
-            'begin'  => [false, $a03],
+            'begin' => [false, $a03],
             'enter' => [
                 'args' => [
                     'node' => $e03,
@@ -693,14 +693,15 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
         ];
         $c04 = 0;
         $f04 = new DummyArrayResultFactory();
-        $s04 = new DummyValueSelector(function ($subject) use (&$c04): bool{
+        $s04 = new DummyValueSelector(function ($subject) use (&$c04): bool {
             // A selector which changes its mind everytime.
-            return (bool)((++$c04) % 2);
+            return (bool) ((++$c04) % 2);
         }, function ($subject, $key, &$retval) use ($c04): bool {
             if (!($c04 % 2) || !is_array($subject) || !array_key_exists($key, $subject)) {
                 return false;
             }
             $retval = $subject[$key];
+
             return true;
         });
         $e04 = new DummyArraySelection($f04, $s04, [
@@ -710,7 +711,7 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
 
         yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
             'ctor'  => [],
-            'begin'  => [false, $a04],
+            'begin' => [false, $a04],
             'enter' => [
                 'args' => [
                     'node' => $e04,
@@ -725,8 +726,7 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
                     'key' => 'foo',
                 ],
             ],
-            'result' => new DummyArrayResult(false, [
-            ]),
+            'result' => new DummyArrayResult(false, []),
         ];
     }
 
@@ -735,10 +735,10 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
      *
      * @param mixed $result
      *
-     * @psalm-param CtorArgs $ctor
-     * @psalm-param BeginArgs $begin
-     * @psalm-param ?EnterTestCall                             $enter
-     * @psalm-param non-empty-list<VisitTestCall>              $calls
+     * @psalm-param CtorArgs                      $ctor
+     * @psalm-param BeginArgs                     $begin
+     * @psalm-param ?EnterTestCall                $enter
+     * @psalm-param non-empty-list<VisitTestCall> $calls
      */
     public function testVisit(array $ctor, array $begin, ?array $enter, array $calls, $result): void
     {
@@ -798,7 +798,6 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
      */
     public static function provWithRecursiveTraversal(): iterable
     {
-
         //
         // 01
         //
@@ -808,8 +807,8 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
 
         yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
             'ctor'   => [],
-            'begin'   => [false, 'FOO'],
-            'array' => new DummyArraySelection($f01, $s01, []),
+            'begin'  => [false, 'FOO'],
+            'array'  => new DummyArraySelection($f01, $s01, []),
             'result' => 'FOO',
         ];
 
@@ -822,8 +821,8 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
 
         yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
             'ctor'   => [],
-            'begin'   => [false, new \ArrayObject([])],
-            'array' => new DummyArraySelection($f02, $s02, []),
+            'begin'  => [false, new \ArrayObject([])],
+            'array'  => new DummyArraySelection($f02, $s02, []),
             'result' => new DummyArrayResult(false, []),
         ];
 
@@ -835,7 +834,7 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
         $s03 = self::getArrayObjectSelector();
 
         yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
-            'ctor' => [],
+            'ctor'  => [],
             'begin' => [
                 false,
                 new \ArrayObject([
@@ -863,7 +862,7 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
         $s04 = self::getArrayObjectSelector();
 
         yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
-            'ctor' => [],
+            'ctor'  => [],
             'begin' => [
                 false,
                 new \ArrayObject([
@@ -891,7 +890,7 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
         $s05 = self::getArrayObjectSelector();
 
         yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
-            'ctor' => [],
+            'ctor'  => [],
             'begin' => [
                 false,
                 new \ArrayObject([
@@ -929,7 +928,7 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
         $s06 = self::getArrayObjectSelector();
 
         yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
-            'ctor' => [],
+            'ctor'  => [],
             'begin' => [
                 false,
                 new \ArrayObject([
@@ -985,11 +984,11 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
         $s07a = self::getArrayObjectSelector();
         $s07e = self::getExceptionPropertySelector();
 
-        $o06  = new \stdClass();
+        $o06 = new \stdClass();
 
         yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
-            'ctor'   => [],
-            'begin'   => [false, $o06],
+            'ctor'  => [],
+            'begin' => [false, $o06],
             'array' => new DummyArraySelection($f07e, $s07e, [
                 'message'  => 'unimportant',
                 'nonexist' => 'unimportant',
@@ -998,8 +997,8 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
         ];
 
         yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
-            'ctor'   => [],
-            'begin'   => [false, new \Exception('foo', 123)],
+            'ctor'  => [],
+            'begin' => [false, new \Exception('foo', 123)],
             'array' => new DummyArraySelection($f07e, $s07e, [
                 'message'  => 'unimportant',
                 'nonexist' => 'unimportant',
@@ -1010,7 +1009,7 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
         ];
 
         yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
-            'ctor' => [],
+            'ctor'  => [],
             'begin' => [
                 false,
                 new \ArrayObject([
@@ -1043,7 +1042,7 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
         $s08e = self::getExceptionPropertySelector();
 
         yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
-            'ctor' => [],
+            'ctor'  => [],
             'begin' => [
                 false,
                 new \ArrayObject([
@@ -1077,6 +1076,7 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
                 $input = iterator_to_array($input);
             }
             ksort($input);
+
             return $input;
         });
 
@@ -1084,7 +1084,7 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
         $s09e = self::getExceptionPropertySelector();
 
         yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
-            'ctor' => [],
+            'ctor'  => [],
             'begin' => [
                 false,
                 new \ArrayObject([
@@ -1098,7 +1098,7 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
                 'e' => new DummyArraySelection($f09e, $s09e, [
                     'message'  => 'unimportant',
                     'nonexist' => 'unimportant',
-                    'code' => 'unimportant',
+                    'code'     => 'unimportant',
                 ]),
                 'f' => 'UNIMPORTANT',
             ]),
@@ -1106,7 +1106,7 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
                 'd' => 'D',
                 'e' => new DummyArrayResult(false, [
                     'message' => 'foo',
-                    'code' => 123,
+                    'code'    => 123,
                 ], 'TAG-E'),
                 'f' => 'F',
             ], 'TAG-A'),
@@ -1120,7 +1120,7 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
         $s10a = self::getNamespaceVariableSelector([
             'ns1' => [
                 'foo' => 'FOO',
-                'bar' => 'BAR'
+                'bar' => 'BAR',
             ],
             'ns2' => [
                 'baz' => 'BAZ',
@@ -1135,56 +1135,56 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
         $s10b = self::getArrayObjectSelector();
 
         yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
-            'ctor' => [],
+            'ctor'  => [],
             'begin' => [false, ['cez' => 'CEZ']],
             'array' => new DummyArraySelection($f10a, $s10a, [
                 'foo' => 'UNIMPORTANT',
-                'baz' => 'UNIMPORTANT'
+                'baz' => 'UNIMPORTANT',
             ]),
             'result' => ['cez' => 'CEZ'],
         ];
 
         yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
-            'ctor' => [],
+            'ctor'  => [],
             'begin' => [false, 'ns1'],
             'array' => new DummyArraySelection($f10a, $s10a, [
                 'foo' => 'UNIMPORTANT',
-                'baz' => 'UNIMPORTANT'
+                'baz' => 'UNIMPORTANT',
             ]),
             'result' => new DummyArrayResult(false, [
-                'foo' => 'FOO'
+                'foo' => 'FOO',
             ], 'TAG-A'),
         ];
 
         yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
-            'ctor' => [],
+            'ctor'  => [],
             'begin' => [false, 'ns2'],
             'array' => new DummyArraySelection($f10a, $s10a, [
                 'foo' => 'UNIMPORTANT',
-                'baz' => 'UNIMPORTANT'
+                'baz' => 'UNIMPORTANT',
             ]),
             'result' => new DummyArrayResult(false, [
-                'baz' => 'BAZ'
+                'baz' => 'BAZ',
             ], 'TAG-A'),
         ];
 
         yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
-            'ctor' => [],
+            'ctor'  => [],
             'begin' => [false, 'ns2'],
             'array' => new DummyArraySelection($f10a, $s10a, [
                 'gez' => new DummyArraySelection($f10b, $s10b, [
                     'cop' => 'UNIMPORTANT',
-                    'qux' => [ 'UNIMPORTANT' ],
-                    'fix' => [ 'UNIMPORTANT' ],
+                    'qux' => ['UNIMPORTANT'],
+                    'fix' => ['UNIMPORTANT'],
                 ]),
-                'baz' => 'UNIMPORTANT'
+                'baz' => 'UNIMPORTANT',
             ]),
             'result' => new DummyArrayResult(false, [
                 'gez' => new DummyArrayResult(false, [
                     'cop' => 'COP',
                     'qux' => 'QUX',
                 ], 'TAG-B'),
-                'baz' => 'BAZ'
+                'baz' => 'BAZ',
             ], 'TAG-A'),
         ];
 
@@ -1192,7 +1192,7 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
         // 11
         //
 
-        $a11 = new  \ArrayObject([
+        $a11 = new \ArrayObject([
             'foo' => 'FOO',
             'bar' => 'BAR',
         ]);
@@ -1200,11 +1200,11 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
         $s11 = self::getArrayObjectSelector();
 
         yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
-            'ctor' => [],
+            'ctor'  => [],
             'begin' => [false, $a11],
             'array' => new DummyArraySelectionOnly($s11, [
                 'foo' => 'UNIMPORTANT',
-                'baz' => 'UNIMPORTANT'
+                'baz' => 'UNIMPORTANT',
             ]),
             'result' => $a11,
         ];
@@ -1216,15 +1216,14 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
         $f12 = new DummyResultFactory(true);
 
         yield 'RecursiveResultFactoryVisitorTest.php:'.__LINE__ => [
-            'ctor' => [],
+            'ctor'  => [],
             'begin' => [false, 'FOO'],
             'array' => new DummyArraySpec($f12, [
                 'foo' => 'UNIMPORTANT',
-                'baz' => 'UNIMPORTANT'
+                'baz' => 'UNIMPORTANT',
             ]),
             'result' => 'FOO',
         ];
-
     }
 
     /**
@@ -1232,7 +1231,7 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
      *
      * @param mixed $result
      *
-     * @psalm-param CtorArgs $ctor
+     * @psalm-param CtorArgs  $ctor
      * @psalm-param BeginArgs $begin
      * @psalm-param ArrayLike $array
      */
@@ -1279,6 +1278,20 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
         $this->expectExceptionMessage('$this->subjectResultCouple is null');
 
         $visitor->leave([], [], true);
+    }
+
+    public function testThrowsInternalErrorExceptionWithoutBegin(): void
+    {
+        $visitor = new RecursiveResultFactoryVisitor();
+
+        $this->expectException(InternalErrorException::class);
+        $this->expectExceptionMessage('$this->actual is null, did you call begin()?');
+
+        $factory = new DummyArrayResultFactory();
+        $selector = new DummyValueSelector(true);
+        $array = new DummyArraySelection($factory, $selector, []);
+
+        $visitor->enter($array, []);
     }
 
     private static function getArrayObjectSelector(): DummyValueSelector
@@ -1340,6 +1353,7 @@ final class RecursiveResultFactoryVisitorTest extends TestCase
             }
 
             $retval = $namespaces[$subject][$key];
+
             return true;
         });
     }

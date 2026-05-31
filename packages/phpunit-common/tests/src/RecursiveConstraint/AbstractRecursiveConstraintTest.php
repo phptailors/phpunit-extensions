@@ -10,13 +10,13 @@
 
 namespace Tailors\PHPUnit\RecursiveConstraint;
 
-use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
-use Tailors\PHPUnit\ArrayResult\ExpectedArrayResult;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\Operator;
 use PHPUnit\Framework\Constraint\UnaryOperator;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
+use Tailors\PHPUnit\ArrayResult\ExpectedArrayResult;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\IdentityComparator;
 use Tailors\PHPUnit\ValueSelector\ArrayValueSelector;

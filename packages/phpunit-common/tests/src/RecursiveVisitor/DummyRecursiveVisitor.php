@@ -19,7 +19,7 @@ namespace Tailors\PHPUnit\RecursiveVisitor;
  *
  * @psalm-type ArrayLike = iterable<array-key, mixed>
  * @psalm-type TraceItem = array{func: string, node: mixed, key?: array-key, path: list<array-key>}
- * @psalm-type Trace = list<TraceItem>
+ * @psalm-type Trace     = list<TraceItem>
  * @psalm-type StackItem = DummyRecursiveVisitorStackItem
  */
 final class DummyRecursiveVisitor implements RecursiveVisitorInterface
@@ -60,7 +60,7 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @psalm-param ArrayLike $node
+     * @psalm-param ArrayLike       $node
      * @psalm-param list<StackItem> $stack
      */
     public function enter(iterable $node, array $stack): bool
@@ -75,7 +75,7 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @psalm-param ArrayLike $node
+     * @psalm-param ArrayLike       $node
      * @psalm-param list<StackItem> $stack
      */
     public function leave(iterable $node, array $stack, bool $iterating): void
@@ -94,7 +94,7 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @psalm-param ArrayLike $node
+     * @psalm-param ArrayLike       $node
      * @psalm-param list<StackItem> $stack
      */
     public function cycle(iterable $node, array $stack): bool
@@ -109,9 +109,9 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param mixed                 $key
-     *
+     * @param mixed     $key
      * @param ArrayLike $node
+     *
      * @psalm-param array-key       $key
      * @psalm-param list<StackItem> $stack
      *

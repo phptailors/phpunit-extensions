@@ -86,7 +86,7 @@ final class RecursiveResultFactoryVisitor implements RecursiveResultFactoryVisit
     }
 
     /**
-     * @psalm-param ArrayLike $node
+     * @psalm-param ArrayLike       $node
      * @psalm-param list<StackItem> $stack
      */
     public function enter(iterable $node, array $stack): bool
@@ -99,7 +99,7 @@ final class RecursiveResultFactoryVisitor implements RecursiveResultFactoryVisit
     }
 
     /**
-     * @psalm-param ArrayLike $node
+     * @psalm-param ArrayLike       $node
      * @psalm-param list<StackItem> $stack
      */
     public function leave(iterable $node, array $stack, bool $iterating): void
@@ -114,8 +114,6 @@ final class RecursiveResultFactoryVisitor implements RecursiveResultFactoryVisit
         }
 
         $this->set($stack, $this->subjectResultCouple->result);
-
-        $this->subjectResultCouple = null;
     }
 
     /**
@@ -135,7 +133,7 @@ final class RecursiveResultFactoryVisitor implements RecursiveResultFactoryVisit
     /**
      * @throws CircularDependencyException
      *
-     * @psalm-param ArrayLike $node
+     * @psalm-param ArrayLike       $node
      * @psalm-param list<StackItem> $stack
      */
     public function cycle(iterable $node, array $stack): bool
@@ -144,9 +142,9 @@ final class RecursiveResultFactoryVisitor implements RecursiveResultFactoryVisit
     }
 
     /**
-     * @param mixed                 $key
+     * @param mixed $key
      *
-     * @psalm-param ArrayLike $node
+     * @psalm-param ArrayLike       $node
      * @psalm-param array-key       $key
      * @psalm-param list<StackItem> $stack
      *
@@ -197,6 +195,7 @@ final class RecursiveResultFactoryVisitor implements RecursiveResultFactoryVisit
         if (0 === ($count = count($stack))) {
             /** @psalm-var mixed */
             $subject = $this->subject;
+
             return true;
         }
 
@@ -204,6 +203,7 @@ final class RecursiveResultFactoryVisitor implements RecursiveResultFactoryVisit
 
         $key = $top->key();
         $parentNode = $top->node();
+
         /** @psalm-var mixed */
         $parentSubject = $top->subjectResultCouple()->subject;
 
@@ -242,7 +242,7 @@ final class RecursiveResultFactoryVisitor implements RecursiveResultFactoryVisit
      * @psalm-template SupportedSubject
      *
      * @psalm-param ValueSelectorInterface<SupportedSubject> $valueSelector
-     * @psalm-param array-key $key
+     * @psalm-param array-key                                $key
      *
      * @psalm-param-out mixed $retval
      */
@@ -285,6 +285,7 @@ final class RecursiveResultFactoryVisitor implements RecursiveResultFactoryVisit
      * @param mixed $subject
      *
      * @psalm-template SupportedSubject
+     *
      * @psalm-param ValueSelectorWrapperInterface<SupportedSubject> $spec
      */
     private function enterIfSelectionYieldsAnArray(ValueSelectorWrapperInterface $spec, $subject): bool
@@ -346,6 +347,7 @@ final class RecursiveResultFactoryVisitor implements RecursiveResultFactoryVisit
     {
         if (0 === ($count = count($stack))) {
             $this->result = $result;
+
             return;
         }
 

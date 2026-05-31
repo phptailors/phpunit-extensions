@@ -29,10 +29,10 @@ interface ValueSelectorInterface extends SupportInterface
      * @param mixed $key
      * @param mixed $retval
      *
-     *
      * @throws InvalidArgumentException
      *
      * @psalm-param array-key $key
+     *
      * @psalm-param-out mixed $retval
      *
      * @psalm-assert SupportedSubject $subject

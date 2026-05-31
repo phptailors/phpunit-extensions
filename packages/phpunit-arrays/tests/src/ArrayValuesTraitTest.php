@@ -22,7 +22,7 @@ use Tailors\PHPUnit\Arrays\ExpectedArrayValues;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ArrayLike = iterable<array-key, mixed>
+ * @psalm-type ArrayLike       = iterable<array-key, mixed>
  * @psalm-type ArrayValuesArgs = list{0: ArrayLike}
  */
 final class ArrayValuesTraitTest extends TestCase

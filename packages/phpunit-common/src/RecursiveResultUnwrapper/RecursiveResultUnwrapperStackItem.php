@@ -45,11 +45,11 @@ final class RecursiveResultUnwrapperStackItem implements RecursiveVisitorStackIt
     private $result;
 
     /**
-     * @param mixed                 $key
+     * @param mixed $key
      *
      * @psalm-param iterable<array-key, mixed> $node
-     * @psalm-param array-key $key
-     * @psalm-param array<array-key, mixed> $result
+     * @psalm-param array-key                  $key
+     * @psalm-param array<array-key, mixed>    $result
      */
     public function __construct(iterable $node, $key, array $result)
     {

@@ -10,8 +10,6 @@
 
 namespace Tailors\PHPUnit\ArrayResult;
 
-use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
-use Tailors\PHPUnit\ArrayResult\DummyExpectedArrayResult;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
 

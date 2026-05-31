@@ -30,7 +30,7 @@ final class SubjectResultCouple
     public $result;
 
     /**
-     * @param mixed                 $subject
+     * @param mixed              $subject
      * @param array|\ArrayAccess $result
      */
     public function __construct($subject, $result)

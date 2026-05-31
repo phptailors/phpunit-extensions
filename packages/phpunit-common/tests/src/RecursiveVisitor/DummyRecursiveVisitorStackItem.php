@@ -38,7 +38,7 @@ final class DummyRecursiveVisitorStackItem implements RecursiveVisitorStackItemI
     private $key;
 
     /**
-     * @param mixed                 $key
+     * @param mixed $key
      *
      * @psalm-param ArrayLike $node
      * @psalm-param array-key $key

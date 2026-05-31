@@ -10,8 +10,8 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
-use Tailors\PHPUnit\ArrayResult\ExpectedArrayResult;
 use PHPUnit\Framework\Constraint\Constraint;
+use Tailors\PHPUnit\ArrayResult\ExpectedArrayResult;
 
 /**
  * @internal This trait is not covered by the backward compatibility promise

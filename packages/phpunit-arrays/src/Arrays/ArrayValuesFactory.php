@@ -10,8 +10,8 @@
 
 namespace Tailors\PHPUnit\Arrays;
 
-use Tailors\PHPUnit\ResultFactory\AbstractArrayResultFactory;
 use Tailors\PHPUnit\Result\ResultInterface;
+use Tailors\PHPUnit\ResultFactory\AbstractArrayResultFactory;
 
 /**
  * @internal This class is not covered by the backward compatibility promise

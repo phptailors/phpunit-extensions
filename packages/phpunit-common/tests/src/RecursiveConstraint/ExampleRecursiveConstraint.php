@@ -15,10 +15,8 @@ use Tailors\PHPUnit\ArrayResult\ExpectedArrayResult;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\IdentityComparator;
 use Tailors\PHPUnit\InvalidArgumentException;
-use Tailors\PHPUnit\RecursiveConstraint\AbstractRecursiveConstraint;
 use Tailors\PHPUnit\ValueSelector\ArrayValueSelector;
 use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
-
 
 /**
  * Example constraint class that extends the AbstractConstraint.

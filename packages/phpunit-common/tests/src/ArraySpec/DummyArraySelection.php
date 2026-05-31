@@ -15,7 +15,6 @@ use Tailors\PHPUnit\ResultFactory\ResultFactoryWrapperInterface;
 use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
 use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
 
-
 /**
  * @internal This class is not covered by the backward compatibility promise
  *
@@ -28,6 +27,7 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  *
  * @template-implements ResultFactoryWrapperInterface<SupportedInput>
  * @template-implements ValueSelectorWrapperInterface<SupportedSubject>
+ *
  * @template-extends \ArrayObject<array-key,mixed>
  */
 final class DummyArraySelection extends \ArrayObject implements ResultFactoryWrapperInterface, ValueSelectorWrapperInterface
@@ -49,9 +49,9 @@ final class DummyArraySelection extends \ArrayObject implements ResultFactoryWra
     private $valueSelector;
 
     /**
-     * @psalm-param ResultFactoryInterface<SupportedInput> $resultFactory
+     * @psalm-param ResultFactoryInterface<SupportedInput>   $resultFactory
      * @psalm-param ValueSelectorInterface<SupportedSubject> $valueSelector
-     * @psalm-param ArrayLike $array
+     * @psalm-param ArrayLike                                $array
      */
     public function __construct(ResultFactoryInterface $resultFactory, ValueSelectorInterface $valueSelector, iterable $array)
     {

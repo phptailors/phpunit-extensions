@@ -31,14 +31,13 @@ final class RecursiveVisitorUtilsTest extends TestCase
     public static function provPathAsList(): iterable
     {
         yield 'RecursiveVisitorUtilsTest.php:'.__LINE__ => [
-            'stack' => [],
+            'stack'  => [],
             'expect' => [],
         ];
 
-
         yield 'RecursiveVisitorUtilsTest.php:'.__LINE__ => [
             'stack' => [
-                new DummyRecursiveVisitorStackItem([], 'foo')
+                new DummyRecursiveVisitorStackItem([], 'foo'),
             ],
             'expect' => ['foo'],
         ];
@@ -54,13 +53,13 @@ final class RecursiveVisitorUtilsTest extends TestCase
         ];
     }
 
-
     /**
      * @dataProvider provPathAsList
      *
      * @param mixed $expect
      *
      * @psalm-param list<StackItem> $stack
+     *
      * @psalm-suppress MissingThrowsDocblock
      */
     public function testPathAsList(array $stack, $expect): void
@@ -74,14 +73,13 @@ final class RecursiveVisitorUtilsTest extends TestCase
     public static function provPathAsString(): iterable
     {
         yield 'RecursiveVisitorUtilsTest.php:'.__LINE__ => [
-            'stack' => [],
+            'stack'  => [],
             'expect' => '',
         ];
 
-
         yield 'RecursiveVisitorUtilsTest.php:'.__LINE__ => [
             'stack' => [
-                new DummyRecursiveVisitorStackItem([], 'foo')
+                new DummyRecursiveVisitorStackItem([], 'foo'),
             ],
             'expect' => "['foo']",
         ];
@@ -97,13 +95,13 @@ final class RecursiveVisitorUtilsTest extends TestCase
         ];
     }
 
-
     /**
      * @dataProvider provPathAsString
      *
      * @param mixed $expect
      *
      * @psalm-param list<StackItem> $stack
+     *
      * @psalm-suppress MissingThrowsDocblock
      */
     public function testPathAsString(array $stack, $expect): void

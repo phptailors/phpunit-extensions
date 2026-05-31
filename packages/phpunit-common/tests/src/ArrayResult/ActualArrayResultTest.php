@@ -10,14 +10,12 @@
 
 namespace Tailors\PHPUnit\ArrayResult;
 
-use Tailors\PHPUnit\ArrayResult\ActualArrayResult;
-
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\ArrayResult\AbstractGenericArrayResult
  * @covers \Tailors\PHPUnit\ArrayResult\AbstractArrayResult
  * @covers \Tailors\PHPUnit\ArrayResult\AbstractArrayResultTestCase
+ * @covers \Tailors\PHPUnit\ArrayResult\AbstractGenericArrayResult
  * @covers \Tailors\PHPUnit\ArrayResult\ActualArrayResult
  * @covers \Tailors\PHPUnit\ArrayResult\GenericArrayResultTestCase
  *

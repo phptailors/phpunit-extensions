@@ -13,7 +13,6 @@ namespace Tailors\PHPUnit\RecursiveResultUnwrapper;
 use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorInterface;
 use Tailors\PHPUnit\Result\ResultInterface;
 
-
 /**
  * @internal This interface is not covered by the backward compatibility promise
  *
@@ -30,7 +29,7 @@ interface RecursiveResultUnwrapperVisitorInterface extends RecursiveVisitorInter
     public function end(): void;
 
     /**
-     * @return array|null|ResultInterface
+     * @return null|array|ResultInterface
      */
     public function result();
 }

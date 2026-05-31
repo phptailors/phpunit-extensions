@@ -55,7 +55,7 @@ final class RecursiveTraversalTest extends TestCase
         $a00 = [];
 
         yield 'RecursiveTraversalTest.php:'.__LINE__ => [
-            'array'  => $a00,
+            'array'   => $a00,
             'visitor' => new DummyRecursiveVisitor(true),
             'expect'  => [
                 ['func' => 'enter', 'node' => $a00, 'path' => []],
@@ -64,7 +64,7 @@ final class RecursiveTraversalTest extends TestCase
         ];
 
         yield 'RecursiveTraversalTest.php:'.__LINE__ => [
-            'array'  => $a00,
+            'array'   => $a00,
             'visitor' => new DummyRecursiveVisitor(false),
             'expect'  => [
                 ['func' => 'enter', 'node' => $a00, 'path' => []],
@@ -80,7 +80,7 @@ final class RecursiveTraversalTest extends TestCase
         $a01 = new \ArrayObject();
 
         yield 'RecursiveTraversalTest.php:'.__LINE__ => [
-            'array'  => $a01,
+            'array'   => $a01,
             'visitor' => new DummyRecursiveVisitor(true),
             'expect'  => [
                 ['func' => 'enter', 'node' => $a01, 'path' => []],
@@ -89,7 +89,7 @@ final class RecursiveTraversalTest extends TestCase
         ];
 
         yield 'RecursiveTraversalTest.php:'.__LINE__ => [
-            'array'  => $a01,
+            'array'   => $a01,
             'visitor' => new DummyRecursiveVisitor(false),
             'expect'  => [
                 ['func' => 'enter', 'node' => $a01, 'path' => []],
@@ -107,7 +107,7 @@ final class RecursiveTraversalTest extends TestCase
         ]);
 
         yield 'RecursiveTraversalTest.php:'.__LINE__ => [
-            'array'  => $a03,
+            'array'   => $a03,
             'visitor' => new DummyRecursiveVisitor(true),
             'expect'  => [
                 ['func' => 'enter', 'node' => $a03, 'path' => []],
@@ -119,7 +119,7 @@ final class RecursiveTraversalTest extends TestCase
         ];
 
         yield 'RecursiveTraversalTest.php:'.__LINE__ => [
-            'array'  => $a03,
+            'array'   => $a03,
             'visitor' => new DummyRecursiveVisitor(false),
             'expect'  => [
                 ['func' => 'enter', 'node' => $a03, 'path' => []],
@@ -138,7 +138,7 @@ final class RecursiveTraversalTest extends TestCase
         ]);
 
         yield 'RecursiveTraversalTest.php:'.__LINE__ => [
-            'array'  => $a04,
+            'array'   => $a04,
             'visitor' => new DummyRecursiveVisitor(true),
             'expect'  => [
                 ['func' => 'enter', 'node' => $a04, 'path' => []],
@@ -153,7 +153,7 @@ final class RecursiveTraversalTest extends TestCase
         ];
 
         yield 'RecursiveTraversalTest.php:'.__LINE__ => [
-            'array'  => $a04,
+            'array'   => $a04,
             'visitor' => new DummyRecursiveVisitor(false),
             'expect'  => [
                 ['func' => 'enter', 'node' => $a04, 'path' => []],
@@ -174,7 +174,7 @@ final class RecursiveTraversalTest extends TestCase
         $a06['baz']['qux'] = &$a06['baz'];
 
         yield 'RecursiveTraversalTest.php:'.__LINE__ => [
-            'array'  => $a06,
+            'array'   => $a06,
             'visitor' => new DummyRecursiveVisitor(true),
             'expect'  => [
                 ['func' => 'enter', 'node' => $a06, 'path' => []],
@@ -199,7 +199,7 @@ final class RecursiveTraversalTest extends TestCase
         ];
 
         yield 'RecursiveTraversalTest.php:'.__LINE__ => [
-            'array'  => $a06,
+            'array'   => $a06,
             'visitor' => new DummyRecursiveVisitor(false),
             'expect'  => [
                 ['func' => 'enter', 'node' => $a06, 'path' => []],
@@ -209,11 +209,11 @@ final class RecursiveTraversalTest extends TestCase
         ];
 
         yield 'RecursiveTraversalTest.php:'.__LINE__ => [
-            'array'  => $a06,
+            'array'   => $a06,
             'visitor' => new DummyRecursiveVisitor(function ($node, array $stack): bool {
                 return count($stack) < 1;
             }),
-            'expect'  => [
+            'expect' => [
                 ['func' => 'enter', 'node' => $a06, 'path' => []],
                 ['func' => 'makeStackItem', 'node' => $a06, 'key' => 'foo', 'path' => []],
                 ['func' => 'visit', 'node' => $a06['foo'], 'path' => ['foo']],
@@ -243,7 +243,7 @@ final class RecursiveTraversalTest extends TestCase
         $a07['baz']['cor'] = 'COR';
 
         yield 'RecursiveTraversalTest.php:'.__LINE__ => [
-            'array'  => $a07,
+            'array'   => $a07,
             'visitor' => new DummyRecursiveVisitor(true),
             'expect'  => [
                 ['func' => 'enter', 'node' => $a07, 'path' => []],
@@ -280,7 +280,7 @@ final class RecursiveTraversalTest extends TestCase
         $a08['baz']['cor'] = 'COR';
 
         yield 'RecursiveTraversalTest.php:'.__LINE__ => [
-            'array'  => $a08,
+            'array'   => $a08,
             'visitor' => new DummyRecursiveVisitor(function ($value, array $stack) {
                 return ['baz', 'qux', 'baz'] !== array_map(function ($item) { return $item->key(); }, $stack);
             }, true),
@@ -330,7 +330,7 @@ final class RecursiveTraversalTest extends TestCase
         ]);
 
         yield 'RecursiveTraversalTest.php:'.__LINE__ => [
-            'array'  => $a09,
+            'array'   => $a09,
             'visitor' => new DummyRecursiveVisitor(function ($values, array $stack) {
                 return count($stack) < 1;
             }),
@@ -351,7 +351,7 @@ final class RecursiveTraversalTest extends TestCase
         ];
 
         yield 'RecursiveTraversalTest.php:'.__LINE__ => [
-            'array'  => $a09,
+            'array'   => $a09,
             'visitor' => new DummyRecursiveVisitor(true),
             'expect'  => [
                 ['func' => 'enter', 'node' => $a09, 'path' => []],
@@ -383,7 +383,7 @@ final class RecursiveTraversalTest extends TestCase
         ]);
 
         yield 'RecursiveTraversalTest.php:'.__LINE__ => [
-            'array'  => $a10,
+            'array'   => $a10,
             'visitor' => new DummyRecursiveVisitor(function ($value, array $stack): bool {
                 return count($stack) < 2;
             }),
@@ -418,7 +418,7 @@ final class RecursiveTraversalTest extends TestCase
         ];
 
         yield 'RecursiveTraversalTest.php:'.__LINE__ => [
-            'array'  => $a10,
+            'array'   => $a10,
             'visitor' => new DummyRecursiveVisitor(function ($value, array $stack): bool {
                 return count($stack) < 1;
             }),
@@ -448,7 +448,7 @@ final class RecursiveTraversalTest extends TestCase
         ]);
 
         yield 'RecursiveTraversalTest.php:'.__LINE__ => [
-            'array'  => $a11,
+            'array'   => $a11,
             'visitor' => new DummyRecursiveVisitor(),
             'expect'  => [
                 ['func' => 'enter', 'node' => $a11, 'path' => []],
@@ -490,7 +490,7 @@ final class RecursiveTraversalTest extends TestCase
         $a12['baz']['qux'] = new \ArrayObject(['zot' => &$a12['baz']]);
 
         yield 'RecursiveTraversalTest.php:'.__LINE__ => [
-            'array'  => $a12,
+            'array'   => $a12,
             'visitor' => new DummyRecursiveVisitor(),
             'expect'  => [
                 ['func' => 'enter', 'node' => $a12, 'path' => []],

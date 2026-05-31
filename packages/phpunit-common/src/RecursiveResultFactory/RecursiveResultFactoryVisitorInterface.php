@@ -12,7 +12,6 @@ namespace Tailors\PHPUnit\RecursiveResultFactory;
 
 use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorInterface;
 
-
 /**
  * @internal This interface is not covered by the backward compatibility promise
  *

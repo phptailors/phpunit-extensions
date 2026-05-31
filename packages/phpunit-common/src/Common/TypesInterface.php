@@ -17,6 +17,6 @@ namespace Tailors\PHPUnit\Common;
  *
  * @psalm-type ArrayLike = iterable<array-key, mixed>
  */
-interface TypesInterface { }
+interface TypesInterface {}
 
 // vim: syntax=php sw=4 ts=4 et:

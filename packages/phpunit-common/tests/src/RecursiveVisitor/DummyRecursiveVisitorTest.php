@@ -10,8 +10,8 @@
 
 namespace Tailors\PHPUnit\RecursiveVisitor;
 
-use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
 use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
 
 /**
  * @small
@@ -22,17 +22,18 @@ use PHPUnit\Framework\TestCase;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ArrayLike = iterable<array-key, mixed>
- * @psalm-type StackItem = DummyRecursiveVisitorStackItem
+ * @psalm-type ArrayLike      = iterable<array-key, mixed>
+ * @psalm-type StackItem      = DummyRecursiveVisitorStackItem
  * @psalm-type CtorArgClosure = \Closure(ArrayLike,list<StackItem>):bool
- * @psalm-type CtorArg  = bool|CtorArgClosure
- * @psalm-type CtorArgs = list{0?: CtorArg, 1?: CtorArg}
- * @psalm-type Expect = array{enter: mixed, cycle: mixed}
+ * @psalm-type CtorArg        = bool|CtorArgClosure
+ * @psalm-type CtorArgs       = list{0?: CtorArg, 1?: CtorArg}
+ * @psalm-type Expect         = array{enter: mixed, cycle: mixed}
  */
 final class DummyRecursiveVisitorTest extends TestCase
 {
     /**
      * @psalm-return \Generator<string,array{ctor: CtorArgs, expect: Expect}>
+     *
      * @psalm-suppress UnusedClosureParam
      */
     public static function provDummyRecursiveVisitor(): iterable
@@ -75,8 +76,8 @@ final class DummyRecursiveVisitorTest extends TestCase
     /**
      * @dataProvider provDummyRecursiveVisitor
      *
-     * @psalm-param CtorArgs                       $ctor
-     * @psalm-param Expect $expect
+     * @psalm-param CtorArgs $ctor
+     * @psalm-param Expect   $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */

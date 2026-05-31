@@ -11,13 +11,12 @@
 namespace Tailors\PHPUnit\RecursiveConstraint;
 
 use PHPUnit\Framework\Constraint\Constraint;
-use Tailors\PHPUnit\RecursiveConstraint\ExampleRecursiveConstraint;
 
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\RecursiveConstraint\RecursiveConstraintTestCase
  * @covers \Tailors\PHPUnit\RecursiveConstraint\ExampleRecursiveConstraint
+ * @covers \Tailors\PHPUnit\RecursiveConstraint\RecursiveConstraintTestCase
  *
  * @internal This class is not covered by the backward compatibility promise
  *

@@ -13,24 +13,18 @@ namespace Tailors\PHPUnit\ResultFactory;
 use Tailors\PHPUnit\InvalidArgumentException;
 use Tailors\PHPUnit\Result\ResultInterface;
 
-
 /**
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ArrayLike = iterable<array-key, mixed>
+ * @psalm-type ArrayLike      = iterable<array-key, mixed>
  * @psalm-type SupportedInput = iterable<array-key, mixed>
  *
  * @template-implements ResultFactoryInterface<iterable<array-key,mixed>>
  */
 abstract class AbstractArrayResultFactory implements ResultFactoryInterface
 {
-    /**
-     * @psalm-param ArrayLike $input
-     */
-    abstract protected function getArrayResult(bool $actual, iterable $input): ResultInterface;
-
     /**
      * @param mixed $input
      *
@@ -54,6 +48,11 @@ abstract class AbstractArrayResultFactory implements ResultFactoryInterface
 
         return $this->getArrayResult($actual, $input);
     }
+
+    /**
+     * @psalm-param ArrayLike $input
+     */
+    abstract protected function getArrayResult(bool $actual, iterable $input): ResultInterface;
 
     /**
      * @param mixed $input

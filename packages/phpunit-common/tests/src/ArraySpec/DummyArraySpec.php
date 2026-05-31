@@ -13,7 +13,6 @@ namespace Tailors\PHPUnit\ArraySpec;
 use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
 use Tailors\PHPUnit\ResultFactory\ResultFactoryWrapperInterface;
 
-
 /**
  * @internal This class is not covered by the backward compatibility promise
  *
@@ -24,6 +23,7 @@ use Tailors\PHPUnit\ResultFactory\ResultFactoryWrapperInterface;
  * @psalm-type ArrayLike = iterable<array-key, mixed>
  *
  * @template-implements ResultFactoryWrapperInterface<SupportedInput>
+ *
  * @template-extends \ArrayObject<array-key, mixed>
  */
 final class DummyArraySpec extends \ArrayObject implements ResultFactoryWrapperInterface
@@ -39,7 +39,7 @@ final class DummyArraySpec extends \ArrayObject implements ResultFactoryWrapperI
 
     /**
      * @psalm-param ResultFactoryInterface<SupportedInput> $resultFactory
-     * @psalm-param ArrayLike $array
+     * @psalm-param ArrayLike                              $array
      */
     public function __construct(ResultFactoryInterface $resultFactory, iterable $array)
     {

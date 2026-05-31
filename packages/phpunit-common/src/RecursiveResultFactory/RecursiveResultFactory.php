@@ -8,7 +8,7 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\RecursiveResultUnwrapper;
+namespace Tailors\PHPUnit\RecursiveResultFactory;
 
 use Tailors\PHPUnit\InternalErrorException;
 use Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversal;
@@ -22,10 +22,10 @@ use Tailors\PHPUnit\Result\ResultInterface;
  *
  * @psalm-type ArrayLike = iterable<array-key, mixed>
  */
-final class RecursiveResultUnwrapper implements RecursiveResultUnwrapperInterface
+final class RecursiveResultFactory implements RecursiveResultFactoryInterface
 {
     /**
-     * @var RecursiveResultUnwrapperVisitorInterface
+     * @var RecursiveResultFactoryVisitorInterface
      *
      * @psalm-readonly
      */
@@ -38,41 +38,43 @@ final class RecursiveResultUnwrapper implements RecursiveResultUnwrapperInterfac
      */
     private $traversal;
 
-    public function __construct(RecursiveResultUnwrapperVisitorInterface $visitor, RecursiveTraversalInterface $traversal)
+    public function __construct(RecursiveResultFactoryVisitorInterface $visitor, RecursiveTraversalInterface $traversal)
     {
         $this->visitor = $visitor;
         $this->traversal = $traversal;
     }
 
-    public static function create(bool $tagging = true): self
+    public static function create(): self
     {
-        $visitor = new RecursiveResultUnwrapperVisitor($tagging);
+        $visitor = new RecursiveResultFactoryVisitor();
         $traversal = new RecursiveTraversal();
 
         return new self($visitor, $traversal);
     }
 
     /**
-     * @return array|ResultInterface
+     * @param mixed $input
+     *
+     * @return mixed
      *
      * @psalm-param ArrayLike $array
      */
-    public function unwrap(bool $actual, iterable $array)
+    public function getResult(bool $actual, iterable $array, $input)
     {
-        $this->visitor->begin($actual);
+        $this->visitor->begin($actual, $input);
 
         $this->traversal->walk($array, $this->visitor);
 
         $this->visitor->end();
 
-        $unwrapped = $this->visitor->result();
+        $result = $this->visitor->result();
 
-        if (null === $unwrapped) {
-            /** @psalm-suppress MissingThrowsDocblock */
-            throw InternalErrorException::fromBackTrace('$this->visitor->result() returned null');
-        }
+//        if (null === $result) {
+//            /** @psalm-suppress MissingThrowsDocblock */
+//            throw InternalErrorException::fromBackTrace('$this->visitor->result() returned null');
+//        }
 
-        return $unwrapped;
+        return $result;
     }
 }
 

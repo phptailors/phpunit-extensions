@@ -52,7 +52,7 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
      *
      * @psalm-template StackItem of RecursiveVisitorStackItemInterface
      *
-     * @psalm-param ArrayLike $array
+     * @psalm-param ArrayLike                            $array
      * @psalm-param RecursiveVisitorInterface<StackItem> $visitor
      */
     public function walk(iterable $array, RecursiveVisitorInterface $visitor): void
@@ -72,7 +72,7 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
     /**
      * @psalm-template StackItem of RecursiveVisitorStackItemInterface
      *
-     * @psalm-param ArrayLike $node
+     * @psalm-param ArrayLike                            $node
      * @psalm-param RecursiveVisitorInterface<StackItem> $visitor
      *
      * @psalm-if-this-is self<StackItem>
@@ -103,7 +103,7 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
     /**
      * @psalm-template StackItem of RecursiveVisitorStackItemInterface
      *
-     * @psalm-param ArrayLike $node
+     * @psalm-param ArrayLike                            $node
      * @psalm-param RecursiveVisitorInterface<StackItem> $visitor
      *
      * @psalm-if-this-is self<StackItem>

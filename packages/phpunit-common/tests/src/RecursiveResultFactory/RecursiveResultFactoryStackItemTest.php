@@ -10,8 +10,8 @@
 
 namespace Tailors\PHPUnit\RecursiveResultFactory;
 
-use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
 use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
 
 /**
  * @small
@@ -41,8 +41,8 @@ final class RecursiveResultFactoryStackItemTest extends TestCase
         yield 'RecursiveResultFactoryStackItemTest.php:'.__LINE__ => [
             'ctor'   => [['n' => 'N'], null, $c01],
             'expect' => [
-                'node'  => ['n' => 'N'],
-                'key'   => null,
+                'node'   => ['n' => 'N'],
+                'key'    => null,
                 'couple' => $c01,
             ],
         ];
@@ -56,8 +56,8 @@ final class RecursiveResultFactoryStackItemTest extends TestCase
         yield 'RecursiveResultFactoryStackItemTest.php:'.__LINE__ => [
             'ctor'   => [$n02, 'k', $c02],
             'expect' => [
-                'node'  => $n02,
-                'key'   => 'k',
+                'node'   => $n02,
+                'key'    => 'k',
                 'couple' => $c02,
             ],
         ];

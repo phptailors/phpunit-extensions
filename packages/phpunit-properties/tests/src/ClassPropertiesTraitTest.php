@@ -22,7 +22,7 @@ use Tailors\PHPUnit\Properties\ExpectedClassProperties;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ArrayLike = iterable<array-key, mixed>
+ * @psalm-type ArrayLike           = iterable<array-key, mixed>
  * @psalm-type ClassPropertiesArgs = list{0: ArrayLike}
  */
 final class ClassPropertiesTraitTest extends TestCase

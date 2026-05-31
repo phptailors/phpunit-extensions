@@ -12,7 +12,6 @@ namespace Tailors\PHPUnit;
 
 use Tailors\PHPUnit\Properties\ObjectPropertiesSelection;
 
-
 /**
  * @psalm-type ArrayLike = iterable<array-key, mixed>
  */

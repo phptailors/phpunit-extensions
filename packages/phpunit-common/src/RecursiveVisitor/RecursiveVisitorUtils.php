@@ -38,10 +38,10 @@ final class RecursiveVisitorUtils
      *
      * @psalm-mutation-free
      */
-    static public function pathAsList(array $stack): array
+    public static function pathAsList(array $stack): array
     {
-       return array_map(function ($item) {
-           return $item->key();
+        return array_map(function ($item) {
+            return $item->key();
         }, $stack);
     }
 }

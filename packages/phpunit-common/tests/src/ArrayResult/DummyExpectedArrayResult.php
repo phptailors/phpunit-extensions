@@ -24,6 +24,7 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  * @psalm-type ArrayLike = iterable<array-key, mixed>
  *
  * @template-extends \ArrayObject<mixed,mixed>
+ *
  * @template-implements ValueSelectorWrapperInterface<SupportedSubject>
  */
 final class DummyExpectedArrayResult extends \ArrayObject implements ResultInterface, ValueSelectorWrapperInterface

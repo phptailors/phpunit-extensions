@@ -13,7 +13,6 @@ namespace Tailors\PHPUnit\ResultFactory;
 use Tailors\PHPUnit\Result\DummyResult;
 use Tailors\PHPUnit\Result\ResultInterface;
 
-
 /**
  * @internal This class is not covered by the backward compatibility promise
  *

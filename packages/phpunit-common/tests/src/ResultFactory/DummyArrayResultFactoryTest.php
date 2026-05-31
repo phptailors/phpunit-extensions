@@ -17,12 +17,11 @@ use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapper;
 use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapperVisitor;
 use Tailors\PHPUnit\Result\ResultInterface;
 
-
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\ResultFactory\DummyArrayResultFactory
  * @covers \Tailors\PHPUnit\ResultFactory\AbstractArrayResultFactory
+ * @covers \Tailors\PHPUnit\ResultFactory\DummyArrayResultFactory
  *
  * @internal This class is not covered by the backward compatibility promise
  *
@@ -31,7 +30,6 @@ use Tailors\PHPUnit\Result\ResultInterface;
  * @psalm-type ArrayLike     = iterable<array-key, mixed>
  * @psalm-type CtorArgs      = list{0?:?non-falsy-string}
  * @psalm-type GetResultArgs = list{0:bool, 1:ArrayLike}
- *
  */
 final class DummyArrayResultFactoryTest extends TestCase
 {
@@ -58,33 +56,33 @@ final class DummyArrayResultFactoryTest extends TestCase
         $tagd = (new DummyArrayResult(false))->tag();
 
         yield 'DummyArrayResultFactoryTest.php:'.__LINE__ => [
-            'ctor' => [],
-            'args' => [false, []],
+            'ctor'   => [],
+            'args'   => [false, []],
             'expect' => [$tagk => $tagd],
         ];
 
         yield 'DummyArrayResultFactoryTest.php:'.__LINE__ => [
-            'ctor' => [],
-            'args' => [true, []],
+            'ctor'   => [],
+            'args'   => [true, []],
             'expect' => [$tagk => $tagd],
         ];
 
         yield 'DummyArrayResultFactoryTest.php:'.__LINE__ => [
-            'ctor' => [],
-            'args' => [false, new \ArrayObject()],
+            'ctor'   => [],
+            'args'   => [false, new \ArrayObject()],
             'expect' => [$tagk => $tagd],
         ];
 
         yield 'DummyArrayResultFactoryTest.php:'.__LINE__ => [
-            'ctor' => [],
-            'args' => [true, new \ArrayObject()],
+            'ctor'   => [],
+            'args'   => [true, new \ArrayObject()],
             'expect' => [$tagk => $tagd],
         ];
 
         yield 'DummyArrayResultFactoryTest.php:'.__LINE__ => [
             'ctor' => [],
             'args' => [false, [
-                'foo' => ['bar' => 'FOO.BAR']
+                'foo' => ['bar' => 'FOO.BAR'],
             ]],
             'expect' => [
                 'foo' => ['bar' => 'FOO.BAR'],
@@ -95,7 +93,7 @@ final class DummyArrayResultFactoryTest extends TestCase
         yield 'DummyArrayResultFactoryTest.php:'.__LINE__ => [
             'ctor' => ['TAG'],
             'args' => [false, [
-                'foo' => ['bar' => 'FOO.BAR']
+                'foo' => ['bar' => 'FOO.BAR'],
             ]],
             'expect' => [
                 'foo' => ['bar' => 'FOO.BAR'],
@@ -109,7 +107,7 @@ final class DummyArrayResultFactoryTest extends TestCase
      *
      * @param mixed $expect
      *
-     * @psalm-param CtorArgs    $ctor
+     * @psalm-param CtorArgs      $ctor
      * @psalm-param GetResultArgs $args
      *
      * @psalm-suppress MissingThrowsDocblock

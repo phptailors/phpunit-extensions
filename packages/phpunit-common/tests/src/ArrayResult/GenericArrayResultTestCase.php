@@ -10,15 +10,12 @@
 
 namespace Tailors\PHPUnit\ArrayResult;
 
-use Tailors\PHPUnit\ArrayResult\ActualArrayResult;
-use Tailors\PHPUnit\ArrayResult\AbstractGenericArrayResult;
-
 /**
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ArrayLike = iterable<array-key, mixed>
+ * @psalm-type ArrayLike                  = iterable<array-key, mixed>
  * @psalm-type GenericArrayResultCtorArgs = list{0?: ArrayLike, 1?: non-empty-string}
  */
 abstract class GenericArrayResultTestCase extends AbstractArrayResultTestCase

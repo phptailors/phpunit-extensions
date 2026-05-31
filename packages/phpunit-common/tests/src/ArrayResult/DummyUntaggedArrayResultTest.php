@@ -10,7 +10,6 @@
 
 namespace Tailors\PHPUnit\ArrayResult;
 
-use Tailors\PHPUnit\ArrayResult\DummyUntaggedArrayResult;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Common\TagInterface;
 use Tailors\PHPUnit\Result\ResultInterface;

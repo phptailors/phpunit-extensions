@@ -13,17 +13,16 @@ namespace Tailors\PHPUnit\ArraySpec;
 use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
 use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
 
-
 /**
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-template SupportedSubject
- *
  * @psalm-template ArrayLike = iterable<array-key,mixed>
  *
  * @template-implements ValueSelectorWrapperInterface<SupportedSubject>
+ *
  * @template-extends \ArrayObject<array-key,mixed>
  */
 final class DummyArraySelectionOnly extends \ArrayObject implements ValueSelectorWrapperInterface
@@ -37,7 +36,7 @@ final class DummyArraySelectionOnly extends \ArrayObject implements ValueSelecto
 
     /**
      * @psalm-param ValueSelectorInterface<SupportedSubject> $valueSelector
-     * @psalm-param ArrayLike $array
+     * @psalm-param ArrayLike                                $array
      */
     public function __construct(ValueSelectorInterface $valueSelector, iterable $array)
     {

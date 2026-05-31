@@ -63,14 +63,17 @@ final class RecursiveResultUnwrapperTest extends TestCase
 
         $recursiveResultUnwrapperVisitor->expects($this->once())
             ->method('begin')
-            ->with(true);
+            ->with(true)
+        ;
 
         $recursiveResultUnwrapperVisitor->expects($this->once())
-            ->method('end');
+            ->method('end')
+        ;
 
         $recursiveResultUnwrapperVisitor->expects($this->once())
             ->method('result')
-            ->willReturn(['out' => 'OUT']);
+            ->willReturn(['out' => 'OUT'])
+        ;
 
         $this->assertSame(['out' => 'OUT'], $recursiveResultUnwrapper->unwrap(true, ['in' => 'IN']));
     }
@@ -93,14 +96,17 @@ final class RecursiveResultUnwrapperTest extends TestCase
 
         $recursiveResultUnwrapperVisitor->expects($this->once())
             ->method('begin')
-            ->with(false);
+            ->with(false)
+        ;
 
         $recursiveResultUnwrapperVisitor->expects($this->once())
-            ->method('end');
+            ->method('end')
+        ;
 
         $recursiveResultUnwrapperVisitor->expects($this->once())
             ->method('result')
-            ->willReturn(null);
+            ->willReturn(null)
+        ;
 
         $this->expectException(InternalErrorException::class);
         $this->expectExceptionMessageMatches('/^(?:\\$\w+(?:->\w+)*)->result\(\) returned null$/');

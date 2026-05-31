@@ -12,7 +12,6 @@ namespace Tailors\PHPUnit\Expectation;
 
 use PHPUnit\Framework\Constraint\Operator;
 
-
 /**
  * @internal This interface is not covered by the backward compatibility promise
  *
@@ -23,7 +22,7 @@ interface ExpectationInterface
     public function toString(): string;
 
     /**
-     * @param mixed    $role
+     * @param mixed $role
      */
     public function toStringInContext(Operator $operator, $role): string;
 }

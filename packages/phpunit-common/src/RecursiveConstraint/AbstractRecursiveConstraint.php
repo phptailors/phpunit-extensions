@@ -55,6 +55,8 @@ abstract class AbstractRecursiveConstraint extends Constraint
     private $recursiveResultUnwrapper;
 
     /**
+     * @param mixed $arraySpec
+     *
      * @psalm-param ArrayLike $arraySpec
      */
     final protected function __construct(
@@ -174,29 +176,29 @@ abstract class AbstractRecursiveConstraint extends Constraint
 
         return $this->comparator->compare($expectComparable, $actualComparable);
     }
-//
-//    /**
-//     * @param mixed $subject
-//     */
-//    private function select($subject): ValuesInterface
-//    {
-//        $visitor = new RecursiveResultFactoryVisitor($this->valueSelector, $subject);
-//
-//        (new RecursiveTraversal())->walk($this->arraySpec, $visitor);
-//
-//        $result = $visitor->result();
-//
-//        if (!$result instanceof ValuesInterface) {
-//            // @codeCoverageIgnoreStart
-//            $type = is_object($result) ? get_class($result) : gettype($result);
-//
-//            /** @psalm-suppress MissingThrowsDocblock */
-//            throw InternalErrorException::fromBackTrace("recursive walk resulted with {$type}", 0);
-//            // @codeCoverageIgnoreEnd
-//        }
-//
-//        return $result;
-//    }
+    //
+    //    /**
+    //     * @param mixed $subject
+    //     */
+    //    private function select($subject): ValuesInterface
+    //    {
+    //        $visitor = new RecursiveResultFactoryVisitor($this->valueSelector, $subject);
+    //
+    //        (new RecursiveTraversal())->walk($this->arraySpec, $visitor);
+    //
+    //        $result = $visitor->result();
+    //
+    //        if (!$result instanceof ValuesInterface) {
+    //            // @codeCoverageIgnoreStart
+    //            $type = is_object($result) ? get_class($result) : gettype($result);
+    //
+    //            /** @psalm-suppress MissingThrowsDocblock */
+    //            throw InternalErrorException::fromBackTrace("recursive walk resulted with {$type}", 0);
+    //            // @codeCoverageIgnoreEnd
+    //        }
+    //
+    //        return $result;
+    //    }
 }
 
 // vim: syntax=php sw=4 ts=4 et:

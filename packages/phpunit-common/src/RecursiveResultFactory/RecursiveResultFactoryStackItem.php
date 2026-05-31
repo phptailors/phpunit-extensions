@@ -47,7 +47,7 @@ final class RecursiveResultFactoryStackItem implements RecursiveVisitorStackItem
     private $subjectResultCouple;
 
     /**
-     * @param mixed                 $key
+     * @param mixed $key
      *
      * @psalm-param ArrayLike $node
      * @psalm-param array-key $key
@@ -60,8 +60,8 @@ final class RecursiveResultFactoryStackItem implements RecursiveVisitorStackItem
     }
 
     /**
-     *
      * @psalm-return ArrayLike
+     *
      * @psalm-mutation-free
      */
     public function node(): iterable
