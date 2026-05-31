@@ -25,7 +25,6 @@ use Tailors\PHPUnit\ResultFactory\DummyArrayResultFactory;
 use Tailors\PHPUnit\ResultFactory\DummyResultFactory;
 use Tailors\PHPUnit\Result\ResultInterface;
 use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
-use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
 use Tailors\PHPUnit\Values\ValuesInterface;
 
 /**
