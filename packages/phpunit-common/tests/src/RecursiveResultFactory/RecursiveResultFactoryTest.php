@@ -11,7 +11,6 @@
 namespace Tailors\PHPUnit\RecursiveResultFactory;
 
 use PHPUnit\Framework\TestCase;
-use Tailors\PHPUnit\InternalErrorException;
 use Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversalInterface;
 
 /**
@@ -71,42 +70,6 @@ final class RecursiveResultFactoryTest extends TestCase
 
         $this->assertSame(['out' => 'OUT'], $recursiveResultFactory->getResult(true, ['foo' => 'FOO'], ['in' => 'IN']));
     }
-
-//    public function testGetResultThrowsInternalErrorException(): void
-//    {
-//        $visitor = $this->createMock(RecursiveResultFactoryVisitorInterface::class);
-//
-//        $traversal = $this->createMock(RecursiveTraversalInterface::class);
-//
-//        $recursiveResultFactory = new RecursiveResultFactory(
-//            $visitor,
-//            $traversal
-//        );
-//
-//        $traversal->expects($this->once())
-//            ->method('walk')
-//            ->with([], $visitor)
-//        ;
-//
-//        $visitor->expects($this->once())
-//            ->method('begin')
-//            ->with(false)
-//        ;
-//
-//        $visitor->expects($this->once())
-//            ->method('end')
-//        ;
-//
-//        $visitor->expects($this->once())
-//            ->method('result')
-//            ->willReturn(null)
-//        ;
-//
-//        $this->expectException(InternalErrorException::class);
-//        $this->expectExceptionMessageMatches('/^(?:\\$\w+(?:->\w+)*)->result\(\) returned null$/');
-//
-//        $recursiveResultFactory->getResult(false, [], []);
-//    }
 
     public function testCreate(): void
     {
