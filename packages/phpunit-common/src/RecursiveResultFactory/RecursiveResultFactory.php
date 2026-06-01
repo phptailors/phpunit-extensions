@@ -12,6 +12,8 @@ namespace Tailors\PHPUnit\RecursiveResultFactory;
 
 use Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversal;
 use Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversalInterface;
+use Tailors\PHPUnit\ResultFactory\ResultFactoryWrapperInterface;
+use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -48,6 +50,36 @@ final class RecursiveResultFactory implements RecursiveResultFactoryInterface
         $traversal = new RecursiveTraversal();
 
         return new self($visitor, $traversal);
+    }
+
+    /**
+     * @param mixed $input
+     *
+     * @psalm-param ArrayLike $array
+     */
+    public function supports(iterable $array, $input): bool
+    {
+        if ($array instanceof ValueSelectorWrapperInterface) {
+            $valueSelector = $array->getValueSelector();
+            if (!$valueSelector->supports($input)) {
+                return false;
+            }
+
+            if (!$array instanceof ResultFactoryWrapperInterface) {
+                return false;
+            }
+
+            $resultFactory = $array->getResultFactory();
+            return $resultFactory->supports([]);
+
+        }
+
+        if ($array instanceof ResultFactoryWrapperInterface) {
+            $resultFactory = $array->getResultFactory();
+            return $resultFactory->supports($input);
+        }
+
+        return is_array($array) && is_array($input);
     }
 
     /**

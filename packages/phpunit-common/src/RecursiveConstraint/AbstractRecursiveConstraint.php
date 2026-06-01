@@ -16,7 +16,6 @@ use PHPUnit\Framework\Constraint\Operator;
 use PHPUnit\Framework\ExpectationFailedException;
 use SebastianBergmann\Comparator\ComparisonFailure;
 use SebastianBergmann\RecursionContext\InvalidArgumentException;
-use Tailors\PHPUnit\ArraySpec\ArraySpecInterface;
 use Tailors\PHPUnit\Common\Exporter;
 use Tailors\PHPUnit\Common\ShortFailureDescriptionTrait;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
@@ -35,7 +34,11 @@ abstract class AbstractRecursiveConstraint extends Constraint
     use ShortFailureDescriptionTrait;
 
     /**
-     * @var ArraySpecInterface
+     * @var iterable
+     *
+     * @psalm-var ArrayLike
+     *
+     * @psalm-readonly
      */
     private $arraySpec;
 
@@ -60,7 +63,7 @@ abstract class AbstractRecursiveConstraint extends Constraint
      * @psalm-param ArrayLike $arraySpec
      */
     final protected function __construct(
-        $arraySpec,
+        iterable $arraySpec,
         ComparatorInterface $comparator,
         RecursiveResultFactoryInterface $recursiveResultFactory,
         RecursiveResultUnwrapperInterface $recursiveResultUnwrapper
@@ -110,14 +113,14 @@ abstract class AbstractRecursiveConstraint extends Constraint
         if (!$success) {
             $f = null;
 
-            if ($this->valueSelector->supports($other)) {
-                $expect = $this->recursiveResultFactory->getExpectedResult($this->arraySpec);
-                $actual = $this->recursiveResultFactory->getActualResult($other);
+            if ($this->recursiveResultFactory->supports($this->arraySpec, $other)) {
+                $expectResult = $this->recursiveResultFactory->getResult(false, $this->arraySpec, $this->arraySpec);
+                $actualResult = $this->recursiveResultFactory->getResult(true, $this->arraySpec, $other);
                 $f = new ComparisonFailure(
                     $this->arraySpec,
                     $other,
-                    Exporter::export($expect, true),
-                    Exporter::export($actual, true)
+                    Exporter::export($expectResult, true),
+                    Exporter::export($actualResult, true)
                 );
             }
 
@@ -164,41 +167,18 @@ abstract class AbstractRecursiveConstraint extends Constraint
      */
     final protected function matches($other): bool
     {
-        if (!$this->recursiveResultFactory->supports($other)) {
+        if (!$this->recursiveResultFactory->supports($this->arraySpec, $other)) {
             return false;
         }
 
-        $expectResult = $this->recursiveResultFactory->getExpectedResult($this->arraySpec);
-        $actualResult = $this->recursiveResultFactory->getActualResult($other);
+        $expectResult = $this->recursiveResultFactory->getResult(false, $this->arraySpec, $this->arraySpec);
+        $actualResult = $this->recursiveResultFactory->getResult(true, $this->arraySpec, $other);
 
-        $expectComparable = $this->recursiveResultUnwrapper->unwrapExpectedResult($expectResult);
-        $actualComparable = $this->recursiveResultUnwrapper->unwrapActualResult($actualResult);
+        $expectArray = $this->recursiveResultUnwrapper->unwrap(false, $expectResult);
+        $actualArray = $this->recursiveResultUnwrapper->unwrap(true, $actualResult);
 
-        return $this->comparator->compare($expectComparable, $actualComparable);
+        return $this->comparator->compare($expectArray, $actualArray);
     }
-    //
-    //    /**
-    //     * @param mixed $subject
-    //     */
-    //    private function select($subject): ValuesInterface
-    //    {
-    //        $visitor = new RecursiveResultFactoryVisitor($this->valueSelector, $subject);
-    //
-    //        (new RecursiveTraversal())->walk($this->arraySpec, $visitor);
-    //
-    //        $result = $visitor->result();
-    //
-    //        if (!$result instanceof ValuesInterface) {
-    //            // @codeCoverageIgnoreStart
-    //            $type = is_object($result) ? get_class($result) : gettype($result);
-    //
-    //            /** @psalm-suppress MissingThrowsDocblock */
-    //            throw InternalErrorException::fromBackTrace("recursive walk resulted with {$type}", 0);
-    //            // @codeCoverageIgnoreEnd
-    //        }
-    //
-    //        return $result;
-    //    }
 }
 
 // vim: syntax=php sw=4 ts=4 et:

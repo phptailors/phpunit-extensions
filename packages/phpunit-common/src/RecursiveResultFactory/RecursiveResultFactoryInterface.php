@@ -22,6 +22,13 @@ interface RecursiveResultFactoryInterface
     /**
      * @param mixed $input
      *
+     * @psalm-param ArrayLike $array
+     */
+    public function supports(iterable $array, $input): bool;
+
+    /**
+     * @param mixed $input
+     *
      * @return mixed
      *
      * @psalm-param ArrayLike $array
