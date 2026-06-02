@@ -10,41 +10,46 @@
 
 namespace Tailors\PHPUnit\RecursiveConstraint;
 
-use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\InvalidArgumentException;
-use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
+use Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactory;
+use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapper;
 
 /**
  * @internal This trait is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
+ *
+ * @psalm-require-extends AbstractRecursiveConstraint
  */
 trait RecursiveConstraintSpecializationTrait
 {
     /**
      * @throws InvalidArgumentException
+     *
+     * @psalm-param ArrayLike $expected
      */
-    public static function create(array $expected): self
+    public static function create(iterable $expected): self
     {
         self::validateExpectations($expected, 1);
 
+        $expected = self::makeExpectations($expected);
         $comparator = self::makeComparator();
-        $selector = self::makeSelector();
-        $values = self::makeExpectedValues($expected);
 
-        return new self($values, $comparator, $selector, new RecursiveUnwrapper());
+        $recursiveResultFactory = RecursiveResultFactory::create();
+        $recursiveResultUnwrapper = RecursiveResultUnwrapper::create();
+
+        return new self($expected, $comparator, $recursiveResultFactory, $recursiveResultUnwrapper);
     }
 
     /**
      * @throws InvalidArgumentException
+     *
+     * @psalm-param ArrayLike $expected
      */
-    abstract protected static function validateExpectations(array $expected, int $argument, int $distance = 1): void;
-
-    /**
-     * Creates instance of ValueSelectorInterface.
-     */
-    abstract protected static function makeSelector(): ValueSelectorInterface;
+    abstract protected static function validateExpectations(iterable $expected, int $argument, int $distance = 1): void;
 
     /**
      * Creates instance of ComparatorInterface.
@@ -53,8 +58,12 @@ trait RecursiveConstraintSpecializationTrait
 
     /**
      * Creates instance of ValuesInterface to be used as expected values.
+     *
+     * @psalm-param ArrayLike $expected
+     *
+     * @psalm-return ArrayLike
      */
-    abstract protected static function makeExpectedValues(array $array): ArrayResultInterface;
+    abstract protected static function makeExpectations(iterable $expected): iterable;
 }
 
 // vim: syntax=php sw=4 ts=4 et:

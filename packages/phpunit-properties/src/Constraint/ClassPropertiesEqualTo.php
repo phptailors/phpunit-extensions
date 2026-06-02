@@ -13,6 +13,7 @@ namespace Tailors\PHPUnit\Constraint;
 use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\EqualityComparator;
+use Tailors\PHPUnit\Properties\ClassPropertiesSelection;
 use Tailors\PHPUnit\Properties\ExpectedClassProperties;
 use Tailors\PHPUnit\Properties\ValidateExpectationsTrait;
 use Tailors\PHPUnit\RecursiveConstraint\AbstractRecursiveConstraint;
@@ -58,19 +59,13 @@ final class ClassPropertiesEqualTo extends AbstractRecursiveConstraint
     }
 
     /**
-     * Creates instance of ClassPropertySelector.
-     */
-    protected static function makeSelector(): ValueSelectorInterface
-    {
-        return new ClassPropertySelector();
-    }
-
-    /**
      * Creates instance of ValuesInterface to be used as expected values.
+     *
+     * @psalm-param ArrayLike $expected
      */
-    protected static function makeExpectedValues(array $array): ArrayResultInterface
+    protected static function makeExpectations(iterable $expected): ClassPropertiesSelection
     {
-        return new ExpectedClassProperties($array);
+        return new ClassPropertiesSelection($expected);
     }
 }
 

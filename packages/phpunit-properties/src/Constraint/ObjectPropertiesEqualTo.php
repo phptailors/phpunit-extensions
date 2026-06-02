@@ -14,6 +14,7 @@ use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\EqualityComparator;
 use Tailors\PHPUnit\Properties\ExpectedObjectProperties;
+use Tailors\PHPUnit\Properties\ObjectPropertiesSelection;
 use Tailors\PHPUnit\Properties\ValidateExpectationsTrait;
 use Tailors\PHPUnit\RecursiveConstraint\AbstractRecursiveConstraint;
 use Tailors\PHPUnit\RecursiveConstraint\RecursiveConstraintSpecializationTrait;
@@ -58,19 +59,13 @@ final class ObjectPropertiesEqualTo extends AbstractRecursiveConstraint
     }
 
     /**
-     * Creates instance of ObjectPropertySelector.
-     */
-    protected static function makeSelector(): ValueSelectorInterface
-    {
-        return new ObjectPropertySelector();
-    }
-
-    /**
      * Creates instance of ValuesInterface to be used as expected values.
+     *
+     * @psalm-param ArrayLike $expected
      */
-    protected static function makeExpectedValues(array $array): ArrayResultInterface
+    protected static function makeExpectations(iterable $expected): ObjectPropertiesSelection
     {
-        return new ExpectedObjectProperties($array);
+        return new ObjectPropertiesSelection($expected);
     }
 }
 

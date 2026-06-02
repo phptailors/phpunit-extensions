@@ -21,6 +21,7 @@ use Tailors\PHPUnit\Common\ShortFailureDescriptionTrait;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactoryInterface;
 use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapperInterface;
+use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -40,7 +41,7 @@ abstract class AbstractRecursiveConstraint extends Constraint
      *
      * @psalm-readonly
      */
-    private $arraySpec;
+    private $expected;
 
     /**
      * @var ComparatorInterface
@@ -58,17 +59,17 @@ abstract class AbstractRecursiveConstraint extends Constraint
     private $recursiveResultUnwrapper;
 
     /**
-     * @param mixed $arraySpec
+     * @param mixed $expected
      *
-     * @psalm-param ArrayLike $arraySpec
+     * @psalm-param ArrayLike $expected
      */
     final protected function __construct(
-        iterable $arraySpec,
+        iterable $expected,
         ComparatorInterface $comparator,
         RecursiveResultFactoryInterface $recursiveResultFactory,
         RecursiveResultUnwrapperInterface $recursiveResultUnwrapper
     ) {
-        $this->arraySpec = $arraySpec;
+        $this->expected = $expected;
         $this->comparator = $comparator;
         $this->recursiveResultFactory = $recursiveResultFactory;
         $this->recursiveResultUnwrapper = $recursiveResultUnwrapper;
@@ -79,12 +80,18 @@ abstract class AbstractRecursiveConstraint extends Constraint
      */
     final public function toString(): string
     {
-        return sprintf(
-            'is %s with %s %s specified',
-            $this->valueSelector->subject(),
-            $this->valueSelector->selectable(),
-            $this->comparator->adjective()
-        );
+        if ($this->expected instanceof ValueSelectorWrapperInterface) {
+            $valueSelector = $this->expected->getValueSelector();
+
+            return sprintf(
+                'is %s with %s %s specified',
+                $valueSelector->subject(),
+                $valueSelector->selectable(),
+                $this->comparator->adjective()
+            );
+        }
+
+        return 'satisfies the recursive constraint';
     }
 
     /**
@@ -113,11 +120,11 @@ abstract class AbstractRecursiveConstraint extends Constraint
         if (!$success) {
             $f = null;
 
-            if ($this->recursiveResultFactory->supports($this->arraySpec, $other)) {
-                $expectResult = $this->recursiveResultFactory->getResult(false, $this->arraySpec, $this->arraySpec);
-                $actualResult = $this->recursiveResultFactory->getResult(true, $this->arraySpec, $other);
+            if ($this->recursiveResultFactory->supports($this->expected, $other)) {
+                $expectResult = $this->recursiveResultFactory->getResult(false, $this->expected, $this->expected);
+                $actualResult = $this->recursiveResultFactory->getResult(true, $this->expected, $other);
                 $f = new ComparisonFailure(
-                    $this->arraySpec,
+                    $this->expected,
                     $other,
                     Exporter::export($expectResult, true),
                     Exporter::export($actualResult, true)
@@ -148,12 +155,18 @@ abstract class AbstractRecursiveConstraint extends Constraint
     final protected function toStringInContext(Operator $operator, $role): string
     {
         if ($operator instanceof LogicalNot) {
-            return sprintf(
-                'fails to be %s with %s %s specified',
-                $this->valueSelector->subject(),
-                $this->valueSelector->selectable(),
-                $this->comparator->adjective()
-            );
+            if ($this->expected instanceof  ValueSelectorWrapperInterface) {
+                $valueSelector = $this->expected->getValueSelector();
+
+                return sprintf(
+                    'fails to be %s with %s %s specified',
+                    $valueSelector->subject(),
+                    $valueSelector->selectable(),
+                    $this->comparator->adjective()
+                );
+            }
+
+            return 'fails to satisfy the recursive constraint';
         }
 
         return '';
@@ -167,12 +180,12 @@ abstract class AbstractRecursiveConstraint extends Constraint
      */
     final protected function matches($other): bool
     {
-        if (!$this->recursiveResultFactory->supports($this->arraySpec, $other)) {
+        if (!$this->recursiveResultFactory->supports($this->expected, $other)) {
             return false;
         }
 
-        $expectResult = $this->recursiveResultFactory->getResult(false, $this->arraySpec, $this->arraySpec);
-        $actualResult = $this->recursiveResultFactory->getResult(true, $this->arraySpec, $other);
+        $expectResult = $this->recursiveResultFactory->getResult(false, $this->expected, $this->expected);
+        $actualResult = $this->recursiveResultFactory->getResult(true, $this->expected, $other);
 
         $expectArray = $this->recursiveResultUnwrapper->unwrap(false, $expectResult);
         $actualArray = $this->recursiveResultUnwrapper->unwrap(true, $actualResult);

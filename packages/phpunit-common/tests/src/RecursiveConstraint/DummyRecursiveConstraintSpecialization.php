@@ -12,8 +12,11 @@ namespace Tailors\PHPUnit\RecursiveConstraint;
 
 use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
 use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
+use Tailors\PHPUnit\ArraySpec\DummyArraySpec;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\IdentityComparator;
+use Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactoryInterface;
+use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapperInterface;
 use Tailors\PHPUnit\ValueSelector\ArrayValueSelector;
 use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
 
@@ -25,13 +28,15 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
  */
 final class DummyRecursiveConstraintSpecialization
 {
     use RecursiveConstraintSpecializationTrait;
 
     /**
-     * @var ArrayResultInterface
+     * @var ArrayLike
      */
     public $expected;
 
@@ -41,19 +46,14 @@ final class DummyRecursiveConstraintSpecialization
     public $comparator;
 
     /**
-     * @var ValueSelectorInterface
+     * @var RecursiveResultFactoryInterface
      */
-    public $valueSelector;
+    public $recursiveResultFactory;
 
     /**
      * @var RecursiveUnwrapperInterface
      */
-    public $unwrapper;
-
-    /**
-     * @var null|ValueSelectorInterface
-     */
-    public static $makeSelector;
+    public $recursiveResultUnwrapper;
 
     /**
      * @var null|ComparatorInterface
@@ -65,30 +65,27 @@ final class DummyRecursiveConstraintSpecialization
      */
     public static $validateExpectations;
 
+    /**
+     * @psalm-param ArrayLike $expected
+     */
     protected function __construct(
-        ArrayResultInterface $expected,
+        iterable $expected,
         ComparatorInterface $comparator,
-        ValueSelectorInterface $valueSelector,
-        RecursiveUnwrapperInterface $unwrapper
+        RecursiveResultFactoryInterface $recursiveResultFactory,
+        RecursiveResultUnwrapperInterface $recursiveResultUnwrapper
     ) {
         $this->expected = $expected;
         $this->comparator = $comparator;
-        $this->valueSelector = $valueSelector;
-        $this->unwrapper = $unwrapper;
+        $this->recursiveResultFactory = $recursiveResultFactory;
+        $this->recursiveResultUnwrapper = $recursiveResultUnwrapper;
     }
 
-    protected static function validateExpectations(array $expected, int $argument, int $distance = 1): void
+    /**
+     * @psalm-param ArrayLike $expected
+     */
+    protected static function validateExpectations(iterable $expected, int $argument, int $distance = 1): void
     {
         self::$validateExpectations = [$expected, $argument, $distance];
-    }
-
-    protected static function makeSelector(): ValueSelectorInterface
-    {
-        if (null === self::$makeSelector) {
-            self::$makeSelector = new ArrayValueSelector();
-        }
-
-        return self::$makeSelector;
     }
 
     protected static function makeComparator(): ComparatorInterface
@@ -100,9 +97,14 @@ final class DummyRecursiveConstraintSpecialization
         return self::$makeComparator;
     }
 
-    protected static function makeExpectedValues(array $array): ArrayResultInterface
+    /**
+     * @psalm-param ArrayLike $expected
+     */
+    protected static function makeExpectations(iterable $expected): DummyArraySpec
     {
-        return new DummyArrayResult(false, $array);
+        if (null === self::$makeExpectations) {
+            new DummyArraySpec($resultFactory, $expected);
+        }
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

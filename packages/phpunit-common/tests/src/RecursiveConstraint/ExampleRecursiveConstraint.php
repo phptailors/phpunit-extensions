@@ -35,14 +35,6 @@ class ExampleRecursiveConstraint extends AbstractRecursiveConstraint
     protected static function validateExpectations(array $expected, int $argument, int $distance = 1): void {}
 
     /**
-     * Creates instance of ValueSelectorInterface.
-     */
-    protected static function makeSelector(): ValueSelectorInterface
-    {
-        return new ArrayValueSelector();
-    }
-
-    /**
      * Creates instance of ComparatorInterface.
      */
     protected static function makeComparator(): ComparatorInterface

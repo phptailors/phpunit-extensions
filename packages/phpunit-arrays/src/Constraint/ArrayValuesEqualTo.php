@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\Constraint;
 
 use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
+use Tailors\PHPUnit\Arrays\ArrayValuesSelection;
 use Tailors\PHPUnit\Arrays\ExpectedArrayValues;
 use Tailors\PHPUnit\Arrays\ValidateExpectationsTrait;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
@@ -50,19 +51,15 @@ final class ArrayValuesEqualTo extends AbstractRecursiveConstraint
     }
 
     /**
-     * Creates instance of ArrayValueSelector.
-     */
-    protected static function makeSelector(): ValueSelectorInterface
-    {
-        return new ArrayValueSelector();
-    }
-
-    /**
      * Creates instance of ValuesInterface to be used as expected values.
+     *
+     * @psalm-param ArrayLike $expected
+     *
+     * @psalm-return ArrayLike
      */
-    protected static function makeExpectedValues(array $array): ArrayResultInterface
+    protected static function makeExpectations(iterable $expected): ArrayValuesSelection
     {
-        return new ExpectedArrayValues($array);
+        return new ArrayValuesSelection($expected);
     }
 }
 

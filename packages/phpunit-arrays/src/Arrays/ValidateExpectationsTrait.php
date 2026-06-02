@@ -14,13 +14,17 @@ namespace Tailors\PHPUnit\Arrays;
  * @internal This trait is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
  */
 trait ValidateExpectationsTrait
 {
     /**
      * @psalm-suppress UnusedParam
+     *
+     * @psalm-param ArrayLike $expected
      */
-    protected static function validateExpectations(array $expected, int $argument, int $distance = 1): void {}
+    protected static function validateExpectations(iterable $expected, int $argument, int $distance = 1): void {}
 }
 
 // vim: syntax=php sw=4 ts=4 et:
