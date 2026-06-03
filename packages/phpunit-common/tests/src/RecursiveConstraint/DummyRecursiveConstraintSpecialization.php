@@ -66,6 +66,13 @@ final class DummyRecursiveConstraintSpecialization
     public static $validateExpectations;
 
     /**
+     * @var iterable
+     *
+     * @psalm-var ArrayLike
+     */
+    public static $makeExpectations;
+
+    /**
      * @psalm-param ArrayLike $expected
      */
     protected function __construct(
@@ -103,8 +110,10 @@ final class DummyRecursiveConstraintSpecialization
     protected static function makeExpectations(iterable $expected): DummyArraySpec
     {
         if (null === self::$makeExpectations) {
-            new DummyArraySpec($resultFactory, $expected);
+            self::$makeExpectations = new DummyArraySpec($resultFactory, $expected);
         }
+
+        return self::$makeExpectations;
     }
 }
 // vim: syntax=php sw=4 ts=4 et:
