@@ -51,7 +51,7 @@ final class RecursiveConstraintTestCaseTest extends RecursiveConstraintTestCase
 
     public static function provArrayValuesIdenticalTo(): iterable
     {
-        yield 'ConstraintTestCaseTest.php:'.__LINE__ => [
+        yield 'RecursiveConstraintTestCaseTest.php:'.__LINE__ => [
             'expect' => [
                 'foo' => 'FOO',
             ],
@@ -64,7 +64,7 @@ final class RecursiveConstraintTestCaseTest extends RecursiveConstraintTestCase
 
     public static function provArrayValuesEqualButNotIdenticalTo(): iterable
     {
-        yield 'ConstraintTestCaseTest.php:'.__LINE__ => [
+        yield 'RecursiveConstraintTestCaseTest.php:'.__LINE__ => [
             'expect' => [
                 'foo' => '',
             ],
@@ -76,7 +76,7 @@ final class RecursiveConstraintTestCaseTest extends RecursiveConstraintTestCase
 
     public static function provArrayValuesNotEqualTo(): iterable
     {
-        yield 'ConstraintTestCaseTest.php:'.__LINE__ => [
+        yield 'RecursiveConstraintTestCaseTest.php:'.__LINE__ => [
             'expect' => [
                 'foo' => 7,
             ],

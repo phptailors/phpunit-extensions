@@ -59,8 +59,6 @@ abstract class AbstractRecursiveConstraint extends Constraint
     private $recursiveResultUnwrapper;
 
     /**
-     * @param mixed $expected
-     *
      * @psalm-param ArrayLike $expected
      */
     final protected function __construct(

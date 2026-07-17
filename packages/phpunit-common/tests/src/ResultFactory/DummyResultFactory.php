@@ -23,11 +23,14 @@ use Tailors\PHPUnit\Result\ResultInterface;
 final class DummyResultFactory implements ResultFactoryInterface
 {
     /**
-     * @var bool
+     * @var bool|\Closure(mixed):bool
      */
     private $supports;
 
-    public function __construct(bool $supports)
+    /**
+     * @param bool|\Closure(mixed):bool $supports
+     */
+    public function __construct($supports)
     {
         $this->supports = $supports;
     }
@@ -37,6 +40,10 @@ final class DummyResultFactory implements ResultFactoryInterface
      */
     public function supports($input): bool
     {
+        if (is_callable($this->supports)) {
+            return call_user_func($this->supports, $input);
+        }
+
         return $this->supports;
     }
 

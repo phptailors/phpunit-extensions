@@ -41,7 +41,7 @@ abstract class RecursiveConstraintTestCase extends TestCase
      */
     public static function provCreateConstraint(): iterable
     {
-        yield 'ConstraintTestCase.php:'.__LINE__ => [
+        yield 'RecursiveConstraintTestCase.php:'.__LINE__ => [
             'args'   => [['foo' => 'FOO']],
             'expect' => [
                 'values' => self::identicalTo(['foo' => 'FOO']),

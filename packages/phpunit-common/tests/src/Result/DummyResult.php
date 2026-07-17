@@ -24,16 +24,6 @@ final class DummyResult implements ResultInterface
      */
     private $actual;
 
-    /**
-     * @var mixed
-     *
-     * @psalm-readonly
-     */
-    private $value;
-
-    /**
-     * @param mixed $value
-     */
     public function __construct(bool $actual)
     {
         $this->actual = $actual;

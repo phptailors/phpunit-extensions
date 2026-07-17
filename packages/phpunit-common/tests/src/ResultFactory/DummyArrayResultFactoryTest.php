@@ -124,10 +124,10 @@ final class DummyArrayResultFactoryTest extends TestCase
         $this->assertInstanceOf(ResultInterface::class, $result);
         $this->assertInstanceOf(\Traversable::class, $result);
 
-        $actual = $args[0];
-        $unwrapper = RecursiveResultUnwrapper::create($actual);
+        $unwrapper = RecursiveResultUnwrapper::create();
 
-        $array = $unwrapper->unwrap($result);
+        $actual = $args[0];
+        $array = $unwrapper->unwrap($actual, $result);
 
         $this->assertSame($expect, $array);
     }
