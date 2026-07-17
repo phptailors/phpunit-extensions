@@ -24,6 +24,8 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
  */
 class ExampleRecursiveConstraint extends AbstractRecursiveConstraint
 {
@@ -42,9 +44,14 @@ class ExampleRecursiveConstraint extends AbstractRecursiveConstraint
         return new IdentityComparator();
     }
 
-    protected static function makeExpectedValues(array $array): ArrayResultInterface
+    /**
+     * @psalm-param ArrayLike $expected
+     *
+     * @psalm-return ExpectedArrayResult
+     */
+    protected static function makeExpectations(iterable $expected): iterable
     {
-        return new ExpectedArrayResult($array);
+        return new ExpectedArrayResult($expected);
     }
 }
 

@@ -57,7 +57,7 @@ trait RecursiveConstraintSpecializationTrait
     abstract protected static function makeComparator(): ComparatorInterface;
 
     /**
-     * Creates instance of ValuesInterface to be used as expected values.
+     * Creates expectations.
      *
      * @psalm-param ArrayLike $expected
      *
