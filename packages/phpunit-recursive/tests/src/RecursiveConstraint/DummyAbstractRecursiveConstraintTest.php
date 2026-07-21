@@ -11,9 +11,9 @@
 namespace Tailors\PHPUnit\RecursiveConstraint;
 
 use PHPUnit\Framework\TestCase;
-use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
-use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
+use Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactoryInterface;
+use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapperInterface;
 
 /**
  * @small
@@ -24,13 +24,25 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
  */
 final class DummyAbstractRecursiveConstraintTest extends TestCase
 {
-    public function testCreate(): void
+    public function testCreateWithTraversable(): void
     {
         $constraint = DummyAbstractRecursiveConstraint::create(
-            $this->createMock(ArrayResultInterface::class),
+            $this->createMock(\Traversable::class),
             $this->createMock(ComparatorInterface::class),
-            $this->createMock(ValueSelectorInterface::class),
-            $this->createMock(RecursiveUnwrapperInterface::class)
+            $this->createMock(RecursiveResultFactoryInterface::class),
+            $this->createMock(RecursiveResultUnwrapperInterface::class)
+        );
+
+        $this->assertInstanceOf(DummyAbstractRecursiveConstraint::class, $constraint);
+    }
+
+    public function testCreateWithArray(): void
+    {
+        $constraint = DummyAbstractRecursiveConstraint::create(
+            [],
+            $this->createMock(ComparatorInterface::class),
+            $this->createMock(RecursiveResultFactoryInterface::class),
+            $this->createMock(RecursiveResultUnwrapperInterface::class)
         );
 
         $this->assertInstanceOf(DummyAbstractRecursiveConstraint::class, $constraint);
