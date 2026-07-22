@@ -10,13 +10,10 @@
 
 namespace Tailors\PHPUnit\RecursiveConstraint;
 
-use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
 use Tailors\PHPUnit\ArrayResult\ExpectedArrayResult;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\IdentityComparator;
 use Tailors\PHPUnit\InvalidArgumentException;
-use Tailors\PHPUnit\ValueSelector\ArrayValueSelector;
-use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
 
 /**
  * Example constraint class that extends the AbstractConstraint.
