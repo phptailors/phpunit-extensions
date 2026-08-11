@@ -22,6 +22,8 @@ use Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversalInterface;
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
  */
 final class RecursiveResultFactoryTest extends TestCase
 {
@@ -76,6 +78,58 @@ final class RecursiveResultFactoryTest extends TestCase
         $recursiveResultFactory = RecursiveResultFactory::create();
 
         $this->assertSame(['x' => 'X'], $recursiveResultFactory->getResult(false, ['a' => 'A'], ['x' => 'X']));
+    }
+
+    /**
+     * @psalm-return iterable<string, array{
+     *      array: ArrayLike,
+     *      input: mixed,
+     *      expect: mixed
+     * }>
+     */
+    public static function provSupports(): iterable
+    {
+        yield 'RecursiveResultFactoryTest.php:'.__LINE__ => [
+            'array' => [],
+            'input' => null,
+            'expect' => false,
+        ];
+
+        yield 'RecursiveResultFactoryTest.php:'.__LINE__ => [
+            'array' => [],
+            'input' => '',
+            'expect' => false,
+        ];
+
+        yield 'RecursiveResultFactoryTest.php:'.__LINE__ => [
+            'array' => [],
+            'input' => new \ArrayObject(),
+            'expect' => false,
+        ];
+
+        yield 'RecursiveResultFactoryTest.php:'.__LINE__ => [
+            'array' => [],
+            'input' => [],
+            'expect' => true,
+        ];
+    }
+
+    /**
+     * @dataProvider provSupports
+     *
+     * @param mixed $input
+     * @param mixed $expect
+     *
+     * @psalm-param ArrayLike $array
+     */
+    public function testSupports(iterable $array, $input, $expect): void
+    {
+        $visitor = $this->createStub(RecursiveResultFactoryVisitorInterface::class);
+        $traversal = $this->createStub(RecursiveTraversalInterface::class);
+
+        $recursiveResultFactory = new RecursiveResultFactory($visitor, $traversal);
+
+        $this->assertSame($expect, $recursiveResultFactory->supports($array, $input));
     }
 }
 // vim: syntax=php sw=4 ts=4 et:
