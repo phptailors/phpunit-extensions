@@ -11,7 +11,7 @@
 namespace Tailors\PHPUnit\Constraint;
 
 use PHPUnit\Framework\Constraint\Constraint;
-use Tailors\PHPUnit\ArrayResult\ExpectedArrayResult;
+use Tailors\PHPUnit\Arrays\ArrayValuesSelection;
 
 /**
  * @internal This trait is not covered by the backward compatibility promise
@@ -27,6 +27,13 @@ trait ProvArrayValuesTrait
      */
     abstract public static function createConstraint(...$args): Constraint;
 
+    /**
+     * @psalm-return iterable<string,array {
+     *      expect: array,
+     *      actual: array|\ArrayObject,
+     *      string: string
+     * }>
+     */
     public static function provArrayValuesIdenticalTo(): iterable
     {
         yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
@@ -66,30 +73,37 @@ trait ProvArrayValuesTrait
         ];
 
         yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
-            'expect' => ['foo' => 'FOO', 'bar' => new ExpectedArrayResult(['gez' => 'GEZ'])],
+            'expect' => ['foo' => 'FOO', 'bar' => new ArrayValuesSelection(['gez' => 'GEZ'])],
             'actual' => ['foo' => 'FOO', 'bar' => ['baz' => 'BAZ', 'gez' => 'GEZ', 'qux' => 'QUX']],
             'string' => 'array',
         ];
 
         yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
-            'expect' => ['foo' => 'FOO', 'bar' => new ExpectedArrayResult(['gez' => 'GEZ'])],
+            'expect' => ['foo' => 'FOO', 'bar' => new ArrayValuesSelection(['gez' => 'GEZ'])],
             'actual' => ['foo' => 'FOO', 'bar' => new \ArrayObject(['baz' => 'BAZ', 'gez' => 'GEZ', 'qux' => 'QUX'])],
             'string' => 'array',
         ];
 
         yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
-            'expect' => ['foo' => 'FOO', 'bar' => new ExpectedArrayResult(['gez' => 'GEZ'])],
+            'expect' => ['foo' => 'FOO', 'bar' => new ArrayValuesSelection(['gez' => 'GEZ'])],
             'actual' => new \ArrayObject(['foo' => 'FOO', 'bar' => ['baz' => 'BAZ', 'gez' => 'GEZ', 'qux' => 'QUX']]),
             'string' => 'object ArrayObject',
         ];
 
         yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
-            'expect' => ['foo' => 'FOO', 'bar' => ['baz' => 'BAZ', 'gez' => new ExpectedArrayResult(['qux' => 'QUX'])]],
+            'expect' => ['foo' => 'FOO', 'bar' => ['baz' => 'BAZ', 'gez' => new ArrayValuesSelection(['qux' => 'QUX'])]],
             'actual' => ['foo' => 'FOO', 'bar' => ['baz' => 'BAZ', 'gez' => ['cop' => 'COP', 'qux' => 'QUX', 'dig' => 'DIG']]],
             'string' => 'array',
         ];
     }
 
+    /**
+     * @psalm-return iterable<string,array {
+     *      expect: array,
+     *      actual: array|\ArrayObject,
+     *      string: string
+     * }>
+     */
     public static function provArrayValuesEqualButNotIdenticalTo(): iterable
     {
         yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
@@ -117,6 +131,13 @@ trait ProvArrayValuesTrait
         ];
     }
 
+    /**
+     * @psalm-return iterable<string,array {
+     *      expect: array,
+     *      actual: array|\ArrayObject,
+     *      string: string
+     * }>
+     */
     public static function provArrayValuesNotEqualTo(): iterable
     {
         yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
@@ -144,12 +165,19 @@ trait ProvArrayValuesTrait
         ];
 
         yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
-            'expect' => ['foo' => 'FOO', 'bar' => ['baz' => 'BAZ', 'gez' => new ExpectedArrayResult(['qux' => 'QUX'])]],
+            'expect' => ['foo' => 'FOO', 'bar' => ['baz' => 'BAZ', 'gez' => new ArrayValuesSelection(['qux' => 'QUX'])]],
             'actual' => ['foo' => 'FOO', 'bar' => ['baz' => 'BAZ', 'gez' => ['qux' => 'QUX'], 'ext' => 'EXT']],
             'string' => 'array',
         ];
     }
 
+    /**
+     * @psalm-return iterable<string,array {
+     *      expect: array,
+     *      actual: mixed,
+     *      string: string
+     * }>
+     */
     public static function provArrayValuesNotEqualToNonArray(): iterable
     {
         yield 'ProvArrayValuesTrait.php:'.__LINE__ => [

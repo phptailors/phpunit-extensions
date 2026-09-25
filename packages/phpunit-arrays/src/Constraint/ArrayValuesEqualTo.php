@@ -10,16 +10,12 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
-use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
 use Tailors\PHPUnit\Arrays\ArrayValuesSelection;
-use Tailors\PHPUnit\Arrays\ExpectedArrayValues;
 use Tailors\PHPUnit\Arrays\ValidateExpectationsTrait;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\EqualityComparator;
 use Tailors\PHPUnit\RecursiveConstraint\AbstractRecursiveConstraint;
 use Tailors\PHPUnit\RecursiveConstraint\RecursiveConstraintSpecializationTrait;
-use Tailors\PHPUnit\ValueSelector\ArrayValueSelector;
-use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
 
 /**
  * Constraint that accepts arrays having values equal to specified ones.
