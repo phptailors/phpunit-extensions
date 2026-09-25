@@ -23,7 +23,7 @@ trait ArrayValuesTrait
      *
      * @psalm-param ArrayLike $array
      */
-    public static function arrayValues(iterable $array): ArrayResultInterface
+    public static function arrayValues(iterable $array): ExpectedArrayValues
     {
         return new ExpectedArrayValues($array);
     }
