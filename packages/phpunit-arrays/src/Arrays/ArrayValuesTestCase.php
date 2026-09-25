@@ -11,7 +11,6 @@
 namespace Tailors\PHPUnit\Arrays;
 
 use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
-use Tailors\PHPUnit\Values\AbstractValuesTestCase;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -20,31 +19,37 @@ use Tailors\PHPUnit\Values\AbstractValuesTestCase;
  *
  * @psalm-import-type AbstractValuesCtorArgs from AbstractValuesTestCase as ArrayValuesCtorArgs
  */
-abstract class ArrayValuesTestCase extends AbstractValuesTestCase
+abstract class ArrayValuesTestCase extends AbstractArrayValuesTestCase
 {
-    /**
-     * @return class-string<AbstractArrayValues>
-     */
-    abstract public static function getValuesClass(): string;
-
-    /**
-     * @psalm-param ArrayValuesCtorArgs $ctorArgs
-     */
-    final public static function getValuesObject(array $ctorArgs): ArrayResultInterface
-    {
-        $class = static::getValuesClass();
-
-        return new $class(...$ctorArgs);
-    }
-
-    public static function getValuesFamilyName(): string
+    final public static function getArrayResultFamilyName(): string
     {
         return __NAMESPACE__.'\ArrayValues';
     }
 
-    public static function getValuesActual(): bool
-    {
-        return ActualArrayValues::class === static::getValuesClass();
-    }
+
+//    /**
+//     * @return class-string<AbstractArrayValues>
+//     */
+//    abstract public static function getValuesClass(): string;
+//
+//    /**
+//     * @psalm-param ArrayValuesCtorArgs $ctorArgs
+//     */
+//    final public static function getValuesObject(array $ctorArgs): ArrayResultInterface
+//    {
+//        $class = static::getValuesClass();
+//
+//        return new $class(...$ctorArgs);
+//    }
+//
+//    public static function getValuesFamilyName(): string
+//    {
+//        return __NAMESPACE__.'\ArrayValues';
+//    }
+//
+//    public static function getValuesActual(): bool
+//    {
+//        return ActualArrayValues::class === static::getValuesClass();
+//    }
 }
 // vim: syntax=php sw=4 ts=4 et:

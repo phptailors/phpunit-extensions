@@ -38,7 +38,7 @@ abstract class AbstractArrayValues extends AbstractArrayResult implements TagInt
      */
     final public function tag(): string
     {
-        StaticRandomStrings::familyTag(__NAMESPACE__.'\ArrayValues', 'c225435bd5434279f77fb3cddf138302a5c826ec');
+        return StaticRandomStrings::familyTag(__NAMESPACE__.'\ArrayValues', 'c225435bd5434279f77fb3cddf138302a5c826ec');
     }
 }
 
