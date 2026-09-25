@@ -16,21 +16,28 @@ use Tailors\PHPUnit\InvalidArgumentException;
  * @internal This trait is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
  */
 trait ValidateExpectationsTrait
 {
     /**
      * @throws InvalidArgumentException
+     *
+     * @psalm-param ArrayLike $expected
      */
-    protected static function validateExpectations(array $expected, int $argument, int $distance = 1): void
+    protected static function validateExpectations(iterable $expected, int $argument, int $distance = 1): void
     {
-        self::assertStringKeysOnly($expected, $argument, 1 + $distance);
+        $array = is_array($expected) ? $expected : iterator_to_array($expected);
+        self::assertStringKeysOnly($array, $argument, 1 + $distance);
     }
 
     /**
      * @psalm-assert array<string, mixed> $array
      *
      * @throws InvalidArgumentException
+     *
+     * @psalm-param ArrayLike $array
      */
     private static function assertStringKeysOnly(array $array, int $argument, int $distance = 1): void
     {

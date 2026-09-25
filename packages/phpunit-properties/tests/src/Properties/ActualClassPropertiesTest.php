@@ -23,9 +23,17 @@ namespace Tailors\PHPUnit\Properties;
  */
 final class ActualClassPropertiesTest extends ClassPropertiesTestCase
 {
-    public static function getValuesClass(): string
+    /**
+     * @psalm-param ClassPropertiesCtorArgs $ctorArgs
+     */
+    final public static function getArrayResultObject(array $ctorArgs): ActualClassProperties
     {
-        return ActualClassProperties::class;
+        return new ActualClassProperties(...$ctorArgs);
+    }
+
+    public static function getArrayResultActual(): bool
+    {
+        return true;
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

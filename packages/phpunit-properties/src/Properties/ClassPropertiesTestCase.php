@@ -10,8 +10,7 @@
 
 namespace Tailors\PHPUnit\Properties;
 
-use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
-use Tailors\PHPUnit\Values\AbstractValuesTestCase;
+use Tailors\PHPUnit\ArrayResult\AbstractArrayResultTestCase;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -20,31 +19,11 @@ use Tailors\PHPUnit\Values\AbstractValuesTestCase;
  *
  * @psalm-import-type AbstractValuesCtorArgs from AbstractValuesTestCase as ClassPropertiesCtorArgs
  */
-abstract class ClassPropertiesTestCase extends AbstractValuesTestCase
+abstract class ClassPropertiesTestCase extends AbstractArrayResultTestCase
 {
-    /**
-     * @return class-string<AbstractClassProperties>
-     */
-    abstract public static function getValuesClass(): string;
-
-    /**
-     * @psalm-param ClassPropertiesCtorArgs $ctorArgs
-     */
-    final public static function getValuesObject(array $ctorArgs): ArrayResultInterface
-    {
-        $class = static::getValuesClass();
-
-        return new $class(...$ctorArgs);
-    }
-
-    public static function getValuesFamilyName(): string
+    public static function getArrayResultFamilyName(): string
     {
         return __NAMESPACE__.'\ClassProperties';
-    }
-
-    public static function getValuesActual(): bool
-    {
-        return ActualClassProperties::class === static::getValuesClass();
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

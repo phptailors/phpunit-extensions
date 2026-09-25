@@ -10,6 +10,9 @@
 
 namespace Tailors\PHPUnit\Properties;
 
+use Tailors\PHPUnit\Result\ResultInterface;
+
+
 /**
  * @small
  *
@@ -23,9 +26,14 @@ namespace Tailors\PHPUnit\Properties;
  */
 final class ActualObjectPropertiesTest extends ObjectPropertiesTestCase
 {
-    public static function getValuesClass(): string
+    public static function getArrayResultObject(array $ctorArgs): ResultInterface
     {
-        return ActualObjectProperties::class;
+        return new ActualObjectProperties(...$ctorArgs);
+    }
+
+    public static function getArrayResultActual(): bool
+    {
+        return true;
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

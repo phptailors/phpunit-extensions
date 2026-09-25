@@ -62,18 +62,16 @@ trait ProvClassPropertiesTrait
             }),
         ];
 
-        return [
-            yield 'ProvClassPropertiesTrait.php:'.__LINE__ => [
-                'expect' => [
-                    'emptyString' => null,
-                    'null'        => '',
-                    'string123'   => 123,
-                    'int321'      => '321',
-                    'boolFalse'   => 0,
-                ],
-                'actual' => $classes[0],
-                'string' => $classes[0],
+        yield 'ProvClassPropertiesTrait.php:'.__LINE__ => [
+            'expect' => [
+                'emptyString' => null,
+                'null'        => '',
+                'string123'   => 123,
+                'int321'      => '321',
+                'boolFalse'   => 0,
             ],
+            'actual' => $classes[0],
+            'string' => $classes[0],
         ];
     }
 

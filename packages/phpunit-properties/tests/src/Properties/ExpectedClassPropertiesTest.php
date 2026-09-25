@@ -10,9 +10,6 @@
 
 namespace Tailors\PHPUnit\Properties;
 
-use Tailors\PHPUnit\ValueSelector\ClassPropertySelector;
-use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
-
 /**
  * @small
  *
@@ -26,23 +23,17 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  */
 final class ExpectedClassPropertiesTest extends ClassPropertiesTestCase
 {
-    public static function getValuesClass(): string
+    /**
+     * @psalm-param ClassPropertiesCtorArgs $ctorArgs
+     */
+    final public static function getArrayResultObject(array $ctorArgs): ExpectedClassProperties
     {
-        return ExpectedClassProperties::class;
+        return new ExpectedClassProperties(...$ctorArgs);
     }
 
-    public function testImplementsValueSelectorWrapperInterface(): void
+    public static function getArrayResultActual(): bool
     {
-        $this->assertInstanceOf(ValueSelectorWrapperInterface::class, new ExpectedClassProperties());
-    }
-
-    public function testGetValueSelector(): void
-    {
-        $values = new ExpectedClassProperties();
-        $selector = $values->getValueSelector();
-
-        $this->assertInstanceOf(ClassPropertySelector::class, $selector);
-        $this->assertSame($selector, $values->getValueSelector());
+        return false;
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

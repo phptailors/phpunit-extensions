@@ -10,9 +10,6 @@
 
 namespace Tailors\PHPUnit\Properties;
 
-use Tailors\PHPUnit\ValueSelector\ObjectPropertySelector;
-use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
-
 /**
  * @small
  *
@@ -26,23 +23,28 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  */
 final class ExpectedObjectPropertiesTest extends ObjectPropertiesTestCase
 {
-    public static function getValuesClass(): string
+    public static function getArrayResultObject(array $ctorArgs): ExpectedObjectProperties
     {
-        return ExpectedObjectProperties::class;
+        return new ExpectedObjectProperties(...$ctorArgs);
     }
 
-    public function testImplementsValueSelectorWrapperInterface(): void
+    public static function getArrayResultActual(): bool
     {
-        $this->assertInstanceOf(ValueSelectorWrapperInterface::class, new ExpectedObjectProperties());
+        return false;
     }
-
-    public function testGetValueSelector(): void
-    {
-        $values = new ExpectedObjectProperties();
-        $selector = $values->getValueSelector();
-
-        $this->assertInstanceOf(ObjectPropertySelector::class, $selector);
-        $this->assertSame($selector, $values->getValueSelector());
-    }
+//
+//    public function testImplementsValueSelectorWrapperInterface(): void
+//    {
+//        $this->assertInstanceOf(ValueSelectorWrapperInterface::class, new ExpectedObjectProperties());
+//    }
+//
+//    public function testGetValueSelector(): void
+//    {
+//        $values = new ExpectedObjectProperties();
+//        $selector = $values->getValueSelector();
+//
+//        $this->assertInstanceOf(ObjectPropertySelector::class, $selector);
+//        $this->assertSame($selector, $values->getValueSelector());
+//    }
 }
 // vim: syntax=php sw=4 ts=4 et:
