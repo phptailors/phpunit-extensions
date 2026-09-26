@@ -13,16 +13,6 @@ namespace Tailors\PHPUnit\ValueSelector;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\InvalidArgumentException;
 
-//final class ClassPropertySelectorTest
-//{
-//    public function foo()
-//    {
-//        // @codeCoverageIgnoreStart
-//    }
-//
-//    // @codeCoverageIgnoreEnd
-//}
-
 /**
  * @small
  *

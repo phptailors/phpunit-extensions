@@ -182,6 +182,9 @@ abstract class AbstractRecursiveConstraint extends Constraint
             return false;
         }
 
+        // BUG: For Selections - $this->expected not always supports $this->expected.
+        //      The ClassPropertySelection is an example. So the following
+        //      ...->getResult(...) call is based on wrong assumptions.
         $expectResult = $this->recursiveResultFactory->getResult(false, $this->expected, $this->expected);
         $actualResult = $this->recursiveResultFactory->getResult(true, $this->expected, $other);
 

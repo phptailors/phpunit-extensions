@@ -23,7 +23,7 @@ use Tailors\PHPUnit\ResultFactory\AbstractArrayResultFactory;
 final class ClassPropertiesFactory extends AbstractArrayResultFactory
 {
     /**
-     * @param ArrayLike $input
+     * @psalm-param ArrayLike $input
      */
     protected function getArrayResult(bool $actual, iterable $input): ResultInterface
     {

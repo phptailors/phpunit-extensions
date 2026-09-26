@@ -38,7 +38,7 @@ abstract class AbstractObjectProperties extends AbstractArrayResult implements T
      */
     final public function tag(): string
     {
-        StaticRandomStrings::familyTag(__NAMESPACE__.'\ObjectProperties', '0f1d9297ad4259f9b8926b83329b4d82448592cd');
+        return StaticRandomStrings::familyTag(__NAMESPACE__.'\ObjectProperties', '0f1d9297ad4259f9b8926b83329b4d82448592cd');
     }
 }
 
