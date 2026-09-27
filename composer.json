@@ -10,10 +10,12 @@
         "psr-4": {
             "Tailors\\PHPUnit\\": [
                 "packages/phpunit-arrays/src/",
+                "packages/phpunit-common/dummy/src/",
                 "packages/phpunit-common/src/",
                 "packages/phpunit-inheritance/src/",
                 "packages/phpunit-methods/src/",
                 "packages/phpunit-properties/src/",
+                "packages/phpunit-recursive/dummy/src/",
                 "packages/phpunit-recursive/src/",
                 "packages/phpunit-regexp/src/"
             ]

@@ -22,7 +22,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Tailors\\PHPUnit\\": "src/"
+            "Tailors\\PHPUnit\\": ["src/", "dummy/src/"]
         }
     },
     "autoload-dev": {
