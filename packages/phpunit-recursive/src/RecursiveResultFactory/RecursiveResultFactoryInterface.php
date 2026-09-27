@@ -33,7 +33,14 @@ interface RecursiveResultFactoryInterface
      *
      * @psalm-param ArrayLike $array
      */
-    public function getResult(bool $actual, iterable $array, $input);
+    public function getActualResult(iterable $array, $input);
+
+    /**
+     * @return mixed
+     *
+     * @psalm-param ArrayLike $array
+     */
+    public function getExpectedResult(iterable $array);
 }
 
 // vim: syntax=php sw=4 ts=4 et:

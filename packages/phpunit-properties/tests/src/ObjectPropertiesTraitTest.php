@@ -11,7 +11,7 @@
 namespace Tailors\PHPUnit;
 
 use PHPUnit\Framework\TestCase;
-use Tailors\PHPUnit\Properties\ExpectedObjectProperties;
+use Tailors\PHPUnit\Properties\ObjectPropertiesSelection;
 
 /**
  * @small
@@ -60,7 +60,7 @@ final class ObjectPropertiesTraitTest extends TestCase
     public function testExpectedObjectProperties(array $args, $expect): void
     {
         $values = self::objectProperties(...$args);
-        self::assertInstanceOf(ExpectedObjectProperties::class, $values);
+        self::assertInstanceOf(ObjectPropertiesSelection::class, $values);
         self::assertSame($expect, (array) $values);
     }
 }

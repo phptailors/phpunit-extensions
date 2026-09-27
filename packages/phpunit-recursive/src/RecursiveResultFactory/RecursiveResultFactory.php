@@ -25,11 +25,16 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
 final class RecursiveResultFactory implements RecursiveResultFactoryInterface
 {
     /**
-     * @var RecursiveResultFactoryVisitorInterface
+     * @var RecursiveActualResultFactoryVisitorInterface
      *
      * @psalm-readonly
      */
-    private $visitor;
+    private $actualResultVisitor;
+
+    /**
+     * @var RecursiveExpectedResultFactoryVisitorInterface
+     */
+    private $expectedResultVisitor;
 
     /**
      * @var RecursiveTraversalInterface
@@ -38,18 +43,20 @@ final class RecursiveResultFactory implements RecursiveResultFactoryInterface
      */
     private $traversal;
 
-    public function __construct(RecursiveResultFactoryVisitorInterface $visitor, RecursiveTraversalInterface $traversal)
+    public function __construct(RecursiveExpectedResultFactoryVisitorInterface $expectedResultVisitor, RecursiveActualResultFactoryVisitorInterface $actualResultVisitor, RecursiveTraversalInterface $traversal)
     {
-        $this->visitor = $visitor;
+        $this->expectedResultVisitor = $expectedResultVisitor;
+        $this->actualResultVisitor = $actualResultVisitor;
         $this->traversal = $traversal;
     }
 
     public static function create(): self
     {
-        $visitor = new RecursiveResultFactoryVisitor();
+        $expectedResultVisitor = new RecursiveExpectedResultFactoryVisitor();
+        $actualResultVisitor = new RecursiveActualResultFactoryVisitor();
         $traversal = new RecursiveTraversal();
 
-        return new self($visitor, $traversal);
+        return new self($expectedResultVisitor, $actualResultVisitor, $traversal);
     }
 
     /**
@@ -89,15 +96,31 @@ final class RecursiveResultFactory implements RecursiveResultFactoryInterface
      *
      * @psalm-param ArrayLike $array
      */
-    public function getResult(bool $actual, iterable $array, $input)
+    public function getActualResult(iterable $array, $input)
     {
-        $this->visitor->begin($actual, $input);
+        $this->actualResultVisitor->begin($input);
 
-        $this->traversal->walk($array, $this->visitor);
+        $this->traversal->walk($array, $this->actualResultVisitor);
 
-        $this->visitor->end();
+        $this->actualResultVisitor->end();
 
-        return $this->visitor->result();
+        return $this->actualResultVisitor->result();
+    }
+
+    /**
+     * @return mixed
+     *
+     * @psalm-param ArrayLike $array
+     */
+    public function getExpectedResult(iterable $array)
+    {
+        $this->expectedResultVisitor->begin();
+
+        $this->traversal->walk($array, $this->expectedResultVisitor);
+
+        $this->expectedResultVisitor->end();
+
+        return $this->expectedResultVisitor->result();
     }
 }
 
