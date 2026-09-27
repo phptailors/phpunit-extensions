@@ -11,9 +11,12 @@
 namespace Tailors\PHPUnit\RecursiveConstraint;
 
 use Tailors\PHPUnit\ArrayResult\ExpectedArrayResult;
+use Tailors\PHPUnit\ArraySpec\DummyArraySelection;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\IdentityComparator;
 use Tailors\PHPUnit\InvalidArgumentException;
+use Tailors\PHPUnit\ResultFactory\DummyArrayResultFactory;
+use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
 
 /**
  * Example constraint class that extends the AbstractConstraint.
@@ -29,13 +32,12 @@ class ExampleRecursiveConstraint extends AbstractRecursiveConstraint
     use RecursiveConstraintSpecializationTrait;
 
     /**
+     * @psalm-param ArrayLike $expected
+     *
      * @throws InvalidArgumentException
      */
-    protected static function validateExpectations(array $expected, int $argument, int $distance = 1): void {}
+    protected static function validateExpectations(iterable $expected, int $argument, int $distance = 1): void {}
 
-    /**
-     * Creates instance of ComparatorInterface.
-     */
     protected static function makeComparator(): ComparatorInterface
     {
         return new IdentityComparator();
@@ -48,7 +50,24 @@ class ExampleRecursiveConstraint extends AbstractRecursiveConstraint
      */
     protected static function makeExpectations(iterable $expected): iterable
     {
-        return new ExpectedArrayResult($expected);
+        return new DummyArraySelection(
+            new DummyArrayResultFactory(),
+            new DummyValueSelector(
+                function ($subject): bool {
+                    return is_array($subject);
+                },
+                function ($subject, $key, &$retval) {
+                    if (!array_key_exists($key, $subject)) {
+                        return false;
+                    }
+                    $retval = $subject[$key];
+                    return true;
+                },
+                'an array',
+                'values'
+            ),
+            $expected
+        );
     }
 }
 

@@ -17,7 +17,6 @@ use Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversalInterface;
  * @small
  *
  * @covers \Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactory
- * @covers \Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactoryVisitor
  *
  * @internal This class is not covered by the backward compatibility promise
  *
@@ -32,10 +31,11 @@ final class RecursiveResultFactoryTest extends TestCase
      */
     public function testImplementsRecursiveResultFactoryInterface(): void
     {
-        $visitor = $this->createStub(RecursiveResultFactoryVisitorInterface::class);
+        $expectedResultVisitor = $this->createStub(RecursiveExpectedResultFactoryVisitorInterface::class);
+        $actualResultVisitor = $this->createStub(RecursiveActualResultFactoryVisitorInterface::class);
         $traversal = $this->createStub(RecursiveTraversalInterface::class);
 
-        $recursiveResultFactory = new RecursiveResultFactory($visitor, $traversal);
+        $recursiveResultFactory = new RecursiveResultFactory($expectedResultVisitor, $actualResultVisitor, $traversal);
 
         self::assertInstanceOf(RecursiveResultFactoryInterface::class, $recursiveResultFactory);
     }
@@ -43,41 +43,75 @@ final class RecursiveResultFactoryTest extends TestCase
     /**
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testGetResult(): void
+    public function testGetExpectedResult(): void
     {
-        $visitor = $this->createMock(RecursiveResultFactoryVisitorInterface::class);
-
+        $expectedResultVisitor = $this->createStub(RecursiveExpectedResultFactoryVisitorInterface::class);
+        $actualResultVisitor = $this->createStub(RecursiveActualResultFactoryVisitorInterface::class);
         $traversal = $this->createMock(RecursiveTraversalInterface::class);
 
-        $recursiveResultFactory = new RecursiveResultFactory($visitor, $traversal);
+        $recursiveResultFactory = new RecursiveResultFactory($expectedResultVisitor, $actualResultVisitor, $traversal);
 
         $traversal->expects($this->once())
             ->method('walk')
-            ->with(['foo' => 'FOO'], $visitor)
+            ->with(['foo' => 'FOO'], $expectedResultVisitor)
         ;
 
-        $visitor->expects($this->once())
+        $expectedResultVisitor->expects($this->once())
             ->method('begin')
-            ->with(true, ['in' => 'IN'])
+            ->with()
         ;
 
-        $visitor->expects($this->once())
+        $expectedResultVisitor->expects($this->once())
             ->method('end')
         ;
 
-        $visitor->expects($this->once())
+        $expectedResultVisitor->expects($this->once())
             ->method('result')
             ->willReturn(['out' => 'OUT'])
         ;
 
-        $this->assertSame(['out' => 'OUT'], $recursiveResultFactory->getResult(true, ['foo' => 'FOO'], ['in' => 'IN']));
+        $this->assertSame(['out' => 'OUT'], $recursiveResultFactory->getExpectedResult(['foo' => 'FOO'], ['in' => 'IN']));
+    }
+
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testGetActualResult(): void
+    {
+        $expectedResultVisitor = $this->createStub(RecursiveExpectedResultFactoryVisitorInterface::class);
+        $actualResultVisitor = $this->createStub(RecursiveActualResultFactoryVisitorInterface::class);
+        $traversal = $this->createMock(RecursiveTraversalInterface::class);
+
+        $recursiveResultFactory = new RecursiveResultFactory($expectedResultVisitor, $actualResultVisitor, $traversal);
+
+        $traversal->expects($this->once())
+            ->method('walk')
+            ->with(['foo' => 'FOO'], $actualResultVisitor)
+        ;
+
+        $actualResultVisitor->expects($this->once())
+            ->method('begin')
+            ->with(['in' => 'IN'])
+        ;
+
+        $actualResultVisitor->expects($this->once())
+            ->method('end')
+        ;
+
+        $actualResultVisitor->expects($this->once())
+            ->method('result')
+            ->willReturn(['out' => 'OUT'])
+        ;
+
+        $this->assertSame(['out' => 'OUT'], $recursiveResultFactory->getActualResult(['foo' => 'FOO'], ['in' => 'IN']));
     }
 
     public function testCreate(): void
     {
         $recursiveResultFactory = RecursiveResultFactory::create();
 
-        $this->assertSame(['x' => 'X'], $recursiveResultFactory->getResult(false, ['a' => 'A'], ['x' => 'X']));
+        $this->assertSame(['a' => 'A'], $recursiveResultFactory->getExpectedResult(['a' => 'A'], ['x' => 'X']));
+        $this->assertSame(['x' => 'X'], $recursiveResultFactory->getActualResult(['a' => 'A'], ['x' => 'X']));
     }
 
     /**
@@ -124,10 +158,11 @@ final class RecursiveResultFactoryTest extends TestCase
      */
     public function testSupports(iterable $array, $input, $expect): void
     {
-        $visitor = $this->createStub(RecursiveResultFactoryVisitorInterface::class);
+        $expectedResultVisitor = $this->createStub(RecursiveExpectedResultFactoryVisitorInterface::class);
+        $actualResultVisitor = $this->createStub(RecursiveActualResultFactoryVisitorInterface::class);
         $traversal = $this->createStub(RecursiveTraversalInterface::class);
 
-        $recursiveResultFactory = new RecursiveResultFactory($visitor, $traversal);
+        $recursiveResultFactory = new RecursiveResultFactory($expectedResultVisitor, $actualResultVisitor, $traversal);
 
         $this->assertSame($expect, $recursiveResultFactory->supports($array, $input));
     }

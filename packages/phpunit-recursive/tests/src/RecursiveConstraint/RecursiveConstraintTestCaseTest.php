@@ -26,7 +26,7 @@ final class RecursiveConstraintTestCaseTest extends RecursiveConstraintTestCase
 {
     public static function subject(): string
     {
-        return 'an array or ArrayAccess';
+        return 'an array';
     }
 
     public static function selectable(): string
@@ -51,7 +51,7 @@ final class RecursiveConstraintTestCaseTest extends RecursiveConstraintTestCase
 
     public static function provArrayValuesIdenticalTo(): iterable
     {
-        yield 'RecursiveConstraintTestCaseTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => [
                 'foo' => 'FOO',
             ],
@@ -64,7 +64,7 @@ final class RecursiveConstraintTestCaseTest extends RecursiveConstraintTestCase
 
     public static function provArrayValuesEqualButNotIdenticalTo(): iterable
     {
-        yield 'RecursiveConstraintTestCaseTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => [
                 'foo' => '',
             ],
@@ -76,7 +76,7 @@ final class RecursiveConstraintTestCaseTest extends RecursiveConstraintTestCase
 
     public static function provArrayValuesNotEqualTo(): iterable
     {
-        yield 'RecursiveConstraintTestCaseTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => [
                 'foo' => 7,
             ],

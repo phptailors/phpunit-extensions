@@ -25,16 +25,16 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
 final class RecursiveResultFactory implements RecursiveResultFactoryInterface
 {
     /**
+     * @var RecursiveExpectedResultFactoryVisitorInterface
+     */
+    private $expectedResultVisitor;
+
+    /**
      * @var RecursiveActualResultFactoryVisitorInterface
      *
      * @psalm-readonly
      */
     private $actualResultVisitor;
-
-    /**
-     * @var RecursiveExpectedResultFactoryVisitorInterface
-     */
-    private $expectedResultVisitor;
 
     /**
      * @var RecursiveTraversalInterface
@@ -43,8 +43,11 @@ final class RecursiveResultFactory implements RecursiveResultFactoryInterface
      */
     private $traversal;
 
-    public function __construct(RecursiveExpectedResultFactoryVisitorInterface $expectedResultVisitor, RecursiveActualResultFactoryVisitorInterface $actualResultVisitor, RecursiveTraversalInterface $traversal)
-    {
+    public function __construct(
+        RecursiveExpectedResultFactoryVisitorInterface $expectedResultVisitor,
+        RecursiveActualResultFactoryVisitorInterface $actualResultVisitor,
+        RecursiveTraversalInterface $traversal
+    ) {
         $this->expectedResultVisitor = $expectedResultVisitor;
         $this->actualResultVisitor = $actualResultVisitor;
         $this->traversal = $traversal;

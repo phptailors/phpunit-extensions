@@ -12,9 +12,13 @@ namespace Tailors\PHPUnit\RecursiveConstraint;
 
 use Tailors\PHPUnit\ArraySpec\DummyArraySpec;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
+use Tailors\PHPUnit\Comparator\DummyComparator;
 use Tailors\PHPUnit\Comparator\IdentityComparator;
 use Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactoryInterface;
 use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapperInterface;
+use Tailors\PHPUnit\ResultFactory\DummyArrayResultFactory;
+use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
+use function Amp\Promise\wait;
 
 /**
  * @small
@@ -52,21 +56,46 @@ final class DummyRecursiveConstraintSpecialization
     public $recursiveResultUnwrapper;
 
     /**
-     * @var null|ComparatorInterface
+     * @var bool
      */
-    public static $makeComparator;
+    public static $defaultComparatorCompare = false;
 
     /**
-     * @var null|array
+     * @var string
      */
-    public static $validateExpectations;
+    public static $defaultComparatorAdjective = 'dummy';
 
     /**
-     * @var iterable
+     * @var ?ResultFactoryInterface
+     */
+    public static $defaultResultFactory;
+
+    /**
+     * @var ?array
+     */
+    public static $validateExpectationsLastCall;
+
+    /**
+     * @var ?array
+     */
+    public static $makeComparatorLastCall;
+
+    /**
+     * @var ?ComparatorInterface
+     */
+    public static $makeComparatorLastResult;
+
+    /**
+     * @var ?array
+     */
+    public static $makeExpectationsLastCall;
+
+    /**
+     * @var ?iterable
      *
-     * @psalm-var ArrayLike
+     * @psalm-var ?ArrayLike
      */
-    public static $makeExpectations;
+    public static $makeExpectationsLastResult;
 
     /**
      * @psalm-param ArrayLike $expected
@@ -88,16 +117,15 @@ final class DummyRecursiveConstraintSpecialization
      */
     protected static function validateExpectations(iterable $expected, int $argument, int $distance = 1): void
     {
-        self::$validateExpectations = [$expected, $argument, $distance];
+        self::$validateExpectationsLastCall = [$expected, $argument, $distance];
     }
 
     protected static function makeComparator(): ComparatorInterface
     {
-        if (null === self::$makeComparator) {
-            self::$makeComparator = new IdentityComparator();
-        }
+        self::$makeComparatorLastCall = [];
+        self::$makeComparatorLastResult = new DummyComparator(self::$defaultComparatorCompare, self::$defaultComparatorAdjective);
 
-        return self::$makeComparator;
+        return self::$makeComparatorLastResult;
     }
 
     /**
@@ -105,11 +133,30 @@ final class DummyRecursiveConstraintSpecialization
      */
     protected static function makeExpectations(iterable $expected): DummyArraySpec
     {
-        if (null === self::$makeExpectations) {
-            self::$makeExpectations = new DummyArraySpec($resultFactory, $expected);
-        }
+        self::$makeExpectationsLastCall = [$expected];
+        self::$makeExpectationsLastResult = new DummyArraySpec(self::defaultResultFactory(), $expected);
 
-        return self::$makeExpectations;
+        return self::$makeExpectationsLastResult;
+    }
+
+    private static function defaultResultFactory(): ResultFactoryInterface
+    {
+        if (null === self::$defaultResultFactory) {
+            self::$defaultResultFactory = new DummyArrayResultFactory();
+        }
+        return self::$defaultResultFactory;
+    }
+
+    public static function staticReset(): void
+    {
+        self::$defaultComparatorCompare = false;
+        self::$defaultComparatorAdjective = 'dummy';
+        self::$defaultResultFactory = null;
+        self::$validateExpectationsLastCall = null;
+        self::$makeComparatorLastCall = null;
+        self::$makeComparatorLastResult = null;
+        self::$makeExpectationsLastCall = null;
+        self::$makeExpectationsLastResult = null;
     }
 }
 // vim: syntax=php sw=4 ts=4 et:
