@@ -69,25 +69,25 @@ abstract class AbstractArrayResultTestCase extends TestCase
     public static function provAbstractArrayResult(): iterable
     {
         // #0
-        yield 'AbstractArrayResultTestCase.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [],
             'expect' => [],
         ];
 
         // #1
-        yield 'AbstractArrayResultTestCase.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [[]],
             'expect' => [],
         ];
 
         // #2
-        yield 'AbstractArrayResultTestCase.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [['foo' => 'FOO']],
             'expect' => ['foo' => 'FOO'],
         ];
 
         // #3
-        yield 'AbstractArrayResultTestCase.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [new \ArrayObject(['foo' => 'FOO'])],
             'expect' => ['foo' => 'FOO'],
         ];
@@ -122,9 +122,9 @@ abstract class AbstractArrayResultTestCase extends TestCase
      */
     public static function provAbstractArrayResultTag(): iterable
     {
-        yield 'AbstractArrayResultTestCase.php:'.__LINE__ => ['ctor' => []];
+        yield basename(__FILE__).':'.__LINE__ => ['ctor' => []];
 
-        yield 'AbstractArrayResultTestCase.php:'.__LINE__ => ['ctor' => [['foo' => 'FOO']]];
+        yield basename(__FILE__).':'.__LINE__ => ['ctor' => [['foo' => 'FOO']]];
     }
     // @codeCoverageIgnoreEnd
 

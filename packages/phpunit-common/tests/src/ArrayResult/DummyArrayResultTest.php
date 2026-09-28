@@ -60,7 +60,7 @@ final class DummyArrayResultTest extends TestCase
     {
         $tag = DummyArrayResult::class.':a1a44e79c791a1fe22ac49067eef00b222d10131';
 
-        yield 'DummyArrayResultTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [false],
             'expect' => [
                 'actual' => false,
@@ -69,7 +69,7 @@ final class DummyArrayResultTest extends TestCase
             ],
         ];
 
-        yield 'DummyArrayResultTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [false, ['foo' => 'FOO']],
             'expect' => [
                 'actual' => false,
@@ -78,7 +78,7 @@ final class DummyArrayResultTest extends TestCase
             ],
         ];
 
-        yield 'DummyArrayResultTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [false, new \ArrayObject(['foo' => 'FOO'])],
             'expect' => [
                 'actual' => false,

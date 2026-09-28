@@ -36,7 +36,7 @@ final class DummyExpectedArrayResultTest extends TestCase
         $tag = DummyArrayResult::class.':a1a44e79c791a1fe22ac49067eef00b222d10131';
         $selector = new DummyValueSelector();
 
-        yield 'DummyExpectedArrayResultTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [$selector],
             'expect' => [
                 'selector' => $selector,
@@ -46,7 +46,7 @@ final class DummyExpectedArrayResultTest extends TestCase
             ],
         ];
 
-        yield 'DummyExpectedArrayResultTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [$selector, ['foo' => 'FOO']],
             'expect' => [
                 'selector' => $selector,
@@ -56,7 +56,7 @@ final class DummyExpectedArrayResultTest extends TestCase
             ],
         ];
 
-        yield 'DummyExpectedArrayResultTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [$selector, new \ArrayObject(['foo' => 'FOO'])],
             'expect' => [
                 'selector' => $selector,

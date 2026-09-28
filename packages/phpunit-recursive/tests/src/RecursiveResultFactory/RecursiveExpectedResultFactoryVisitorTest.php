@@ -69,7 +69,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         // 01
         //
 
-        yield 'RecursiveExpectedResultFactoryVisitorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'stack'  => [],
             'expect' => '',
         ];
@@ -82,7 +82,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
             return new RecursiveExpectedResultFactoryStackItem([], $key, []);
         }, ['foo', 3, 'bar']);
 
-        yield 'RecursiveExpectedResultFactoryVisitorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'stack'  => $s02,
             'expect' => "['foo'][3]['bar']",
         ];
@@ -95,7 +95,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
             return new RecursiveExpectedResultFactoryStackItem([], $key, []);
         }, [null, 3, false]);
 
-        yield 'RecursiveExpectedResultFactoryVisitorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'stack'  => $s03,
             'expect' => '[NULL][3][false]',
         ];
@@ -128,7 +128,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         // 01
         //
 
-        yield 'RecursiveExpectedResultFactoryVisitorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'  => [],
             'calls' => [
                 [
@@ -150,7 +150,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
             ['foo' => 'FOO']
         );
 
-        yield 'RecursiveExpectedResultFactoryVisitorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'  => [],
             'calls' => [
                 [
@@ -173,7 +173,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
             ['foo' => 'FOO']
         );
 
-        yield 'RecursiveExpectedResultFactoryVisitorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'  => [],
             'calls' => [
                 [
@@ -195,7 +195,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
             ['foo' => 'FOO']
         );
 
-        yield 'RecursiveExpectedResultFactoryVisitorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'  => [],
             'calls' => [
                 [
@@ -221,7 +221,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
             ]),
         ]);
 
-        yield 'RecursiveExpectedResultFactoryVisitorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'  => [],
             'calls' => [
                 [
@@ -268,7 +268,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
             ],
         ]);
 
-        yield 'RecursiveExpectedResultFactoryVisitorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'  => [],
             'calls' => [
                 [
@@ -315,7 +315,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
             ],
         ]);
 
-        yield 'RecursiveExpectedResultFactoryVisitorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'  => [],
             'calls' => [
                 [
@@ -365,7 +365,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
             []
         );
 
-        yield 'RecursiveExpectedResultFactoryVisitorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'  => [],
             'calls' => [
                 [
@@ -388,7 +388,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
             []
         );
 
-        yield 'RecursiveExpectedResultFactoryVisitorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'  => [],
             'calls' => [
                 [
@@ -465,7 +465,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         // 01
         //
 
-        yield 'RecursiveExpectedResultFactoryVisitorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'  => [],
             'enter' => null,
             'calls' => [
@@ -492,7 +492,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
             'gez' => 'GEZ',
         ]);
 
-        yield 'RecursiveExpectedResultFactoryVisitorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'  => [],
             'enter' => [
                 'args' => [
@@ -533,7 +533,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
 
         $e03 = [];
 
-        yield 'RecursiveExpectedResultFactoryVisitorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'  => [],
             'enter' => [
                 'args' => [
@@ -647,7 +647,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         $f01 = new DummyArrayResultFactory();
         $s01 = new DummyValueSelector(false);
 
-        yield 'RecursiveExpectedResultFactoryVisitorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [],
             'array'  => new DummyArraySelection($f01, $s01, []),
             'result' => new DummyArrayResult(false, []),
@@ -660,7 +660,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         $f03 = new DummyArrayResultFactory();
         $s03 = new DummyValueSelector(false);
 
-        yield 'RecursiveExpectedResultFactoryVisitorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'  => [],
             'array' => new DummyArraySelection($f03, $s03, [
                 'foo' => 'FOO',
@@ -680,7 +680,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         $s04 = new DummyValueSelector(false);
         $b04 = new ExpectedArrayResult([]);
 
-        yield 'RecursiveExpectedResultFactoryVisitorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'  => [],
             'array' => new DummyArraySelection($f04, $s04, [
                 'foo' => ['FOO'],
@@ -699,7 +699,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         $f05 = new DummyArrayResultFactory();
         $s05 = new DummyValueSelector(false);
 
-        yield 'RecursiveExpectedResultFactoryVisitorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'  => [],
             'array' => new DummyArraySelection($f05, $s05, [
                 'foo' => [
@@ -734,7 +734,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
             'bar' => new DummyArraySelection($f06, $s06, ['baz' => 'BAZ']),
         ]);
 
-        yield 'RecursiveExpectedResultFactoryVisitorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'  => [],
             'array' => $a06,
             'result' => $a06,
@@ -757,7 +757,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
             'bar' => $bar07,
         ]);
 
-        yield 'RecursiveExpectedResultFactoryVisitorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'  => [],
             'array' => $a07,
             'result' => new DummyArrayResult(false, [
@@ -785,7 +785,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
             'bar' => $bar08,
         ]);
 
-        yield 'RecursiveExpectedResultFactoryVisitorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'  => [],
             'array' => $a08,
             'result' => new DummyArrayResult(false, [

@@ -38,7 +38,7 @@ final class DummyRecursiveVisitorTest extends TestCase
      */
     public static function provDummyRecursiveVisitor(): iterable
     {
-        yield 'DummyRecursiveVisitorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [],
             'expect' => [
                 'enter' => true,
@@ -46,7 +46,7 @@ final class DummyRecursiveVisitorTest extends TestCase
             ],
         ];
 
-        yield 'DummyRecursiveVisitorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [false, true],
             'expect' => [
                 'enter' => false,
@@ -54,7 +54,7 @@ final class DummyRecursiveVisitorTest extends TestCase
             ],
         ];
 
-        yield 'DummyRecursiveVisitorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor' => [
                 /** @psalm-param mixed $node */
                 function ($node, array $stack): bool {

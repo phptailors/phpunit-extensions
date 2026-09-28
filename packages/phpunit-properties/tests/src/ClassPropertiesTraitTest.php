@@ -34,17 +34,17 @@ final class ClassPropertiesTraitTest extends TestCase
      */
     public static function provExpectClassProperties(): iterable
     {
-        yield 'ClassPropertiesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'args'   => [[]],
             'expect' => [],
         ];
 
-        yield 'ClassPropertiesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'args'   => [['a' => 'A']],
             'expect' => ['a' => 'A'],
         ];
 
-        yield 'ClassPropertiesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'args'   => [new \ArrayObject(['o' => 'O'])],
             'expect' => ['o' => 'O'],
         ];

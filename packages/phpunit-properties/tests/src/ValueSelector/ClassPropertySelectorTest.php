@@ -100,7 +100,7 @@ final class ClassPropertySelectorTest extends TestCase
     public static function provSelect(): iterable
     {
         // #0
-        yield 'ClassPropertySelectorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'class' => get_class(new class() {
                 public static $foo = 'FOO';
             }),
@@ -110,7 +110,7 @@ final class ClassPropertySelectorTest extends TestCase
         ];
 
         // #1
-        yield 'ClassPropertySelectorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'class' => get_class(new class() {
                 public static $foo = 'FOO';
             }),
@@ -120,7 +120,7 @@ final class ClassPropertySelectorTest extends TestCase
         ];
 
         // #2
-        yield 'ClassPropertySelectorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'class' => get_class(new class() {
                 public static function foo()
                 {
@@ -133,7 +133,7 @@ final class ClassPropertySelectorTest extends TestCase
         ];
 
         // #3
-        yield 'ClassPropertySelectorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'class' => get_class(new class() {
                 public static function foo()
                 {
@@ -251,13 +251,13 @@ final class ClassPropertySelectorTest extends TestCase
     public static function provSelectThrowsOnNonClass(): iterable
     {
         // #0
-        yield 'ClassPropertySelectorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'key'    => 'foo',
             'method' => 'selectWithAttribute',
         ];
 
         // #1
-        yield 'ClassPropertySelectorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'key'    => 'foo()',
             'method' => 'selectWithMethod',
         ];

@@ -46,15 +46,15 @@ final class RecursiveConstraintSpecializationTraitTest extends TestCase
      */
     public function provCreate(): iterable
     {
-        yield 'RecursiveConstraintSpecializationTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expected' => [],
         ];
 
-        yield 'RecursiveConstraintSpecializationTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expected' => ['foo' => 'FOO'],
         ];
 
-        yield 'RecursiveConstraintSpecializationTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expected' => new \ArrayObject(['foo' => 'FOO']),
         ];
     }

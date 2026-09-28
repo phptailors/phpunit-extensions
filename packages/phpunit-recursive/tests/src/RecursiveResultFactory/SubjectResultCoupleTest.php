@@ -35,7 +35,7 @@ final class SubjectResultCoupleTest extends TestCase
         // 01
         //
 
-        yield 'SubjectResultCoupleTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [null, ['A']],
             'expect' => [
                 'subject' => null,
@@ -49,7 +49,7 @@ final class SubjectResultCoupleTest extends TestCase
 
         $a02 = new \ArrayObject(['Y']);
 
-        yield 'SubjectResultCoupleTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => ['X', $a02],
             'expect' => [
                 'subject' => 'X',

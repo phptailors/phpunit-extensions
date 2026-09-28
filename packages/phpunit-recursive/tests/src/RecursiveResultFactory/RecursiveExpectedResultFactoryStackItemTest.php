@@ -37,7 +37,7 @@ final class RecursiveExpectedResultFactoryStackItemTest extends TestCase
         // 01
         //
 
-        yield 'RecursiveExpectedResultFactoryStackItemTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [['n' => 'N'], null, []],
             'expect' => [
                 'node'   => ['n' => 'N'],
@@ -51,7 +51,7 @@ final class RecursiveExpectedResultFactoryStackItemTest extends TestCase
         //
         $n02 = new DummyArrayResult(false);
 
-        yield 'RecursiveExpectedResultFactoryStackItemTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [$n02, 'k', []],
             'expect' => [
                 'node'   => $n02,
@@ -85,7 +85,7 @@ final class RecursiveExpectedResultFactoryStackItemTest extends TestCase
         // 01
         //
 
-        yield 'RecursiveExpectedResultFactoryStackItemTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [['n' => 'N'], null, ['r' => 'R']],
             'value'  => 'V',
             'expect' => [
@@ -99,7 +99,7 @@ final class RecursiveExpectedResultFactoryStackItemTest extends TestCase
         // 02
         //
 
-        yield 'RecursiveExpectedResultFactoryStackItemTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [['n' => 'N'], 'v', ['r' => 'R']],
             'value'  => 'V',
             'expect' => [
@@ -114,7 +114,7 @@ final class RecursiveExpectedResultFactoryStackItemTest extends TestCase
         //
         $n03 = new DummyArrayResult(false, ['n' => 'N']);
 
-        yield 'RecursiveExpectedResultFactoryStackItemTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [$n03, 'v', ['v' => null, 'r' => 'R']],
             'value'  => 'V',
             'expect' => [

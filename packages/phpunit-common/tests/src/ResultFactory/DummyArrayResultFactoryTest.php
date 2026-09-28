@@ -55,31 +55,31 @@ final class DummyArrayResultFactoryTest extends TestCase
         $tagk = RecursiveResultUnwrapperVisitor::tag();
         $tagd = (new DummyArrayResult(false))->tag();
 
-        yield 'DummyArrayResultFactoryTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [],
             'args'   => [false, []],
             'expect' => [$tagk => $tagd],
         ];
 
-        yield 'DummyArrayResultFactoryTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [],
             'args'   => [true, []],
             'expect' => [$tagk => $tagd],
         ];
 
-        yield 'DummyArrayResultFactoryTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [],
             'args'   => [false, new \ArrayObject()],
             'expect' => [$tagk => $tagd],
         ];
 
-        yield 'DummyArrayResultFactoryTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [],
             'args'   => [true, new \ArrayObject()],
             'expect' => [$tagk => $tagd],
         ];
 
-        yield 'DummyArrayResultFactoryTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor' => [],
             'args' => [false, [
                 'foo' => ['bar' => 'FOO.BAR'],
@@ -90,7 +90,7 @@ final class DummyArrayResultFactoryTest extends TestCase
             ],
         ];
 
-        yield 'DummyArrayResultFactoryTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor' => ['TAG'],
             'args' => [false, [
                 'foo' => ['bar' => 'FOO.BAR'],

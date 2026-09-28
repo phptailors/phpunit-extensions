@@ -47,7 +47,7 @@ final class InvalidArgumentExceptionTest extends TestCase
 {
     public static function provFromBackTrace(): iterable
     {
-        yield 'InvalidArgumentExceptionTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             1, 'a string', 'an integer',
         ];
     }

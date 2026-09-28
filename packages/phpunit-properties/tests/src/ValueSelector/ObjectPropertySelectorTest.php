@@ -100,7 +100,7 @@ final class ObjectPropertySelectorTest extends TestCase
     public static function provSelect(): iterable
     {
         // #0
-        yield 'ObjectPropertySelectorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'object' => new class() {
                 public $foo = 'FOO';
             },
@@ -110,7 +110,7 @@ final class ObjectPropertySelectorTest extends TestCase
         ];
 
         // #1
-        yield 'ObjectPropertySelectorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'object' => new class() {
                 public $foo = 'FOO';
             },
@@ -120,7 +120,7 @@ final class ObjectPropertySelectorTest extends TestCase
         ];
 
         // #2
-        yield 'ObjectPropertySelectorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'object' => new class() {
                 public function foo()
                 {
@@ -133,7 +133,7 @@ final class ObjectPropertySelectorTest extends TestCase
         ];
 
         // #3
-        yield 'ObjectPropertySelectorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'object' => new class() {
                 public static function foo()
                 {
@@ -146,7 +146,7 @@ final class ObjectPropertySelectorTest extends TestCase
         ];
 
         // #4
-        yield 'ObjectPropertySelectorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'object' => new class() {
                 public function foo()
                 {
@@ -243,13 +243,13 @@ final class ObjectPropertySelectorTest extends TestCase
     public static function provSelectThrowsOnNonobject(): iterable
     {
         // #0
-        yield 'ObjectPropertySelectorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'key'    => 'foo',
             'method' => 'selectWithAttribute',
         ];
 
         // #1
-        yield 'ObjectPropertySelectorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'key'    => 'foo()',
             'method' => 'selectWithMethod',
         ];

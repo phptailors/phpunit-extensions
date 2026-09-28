@@ -34,17 +34,17 @@ final class ArrayValuesTraitTest extends TestCase
      */
     public static function provExpectArrayValues(): iterable
     {
-        yield 'ArrayValuesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'args'   => [[]],
             'expect' => [],
         ];
 
-        yield 'ArrayValuesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'args'   => [['a' => 'A']],
             'expect' => ['a' => 'A'],
         ];
 
-        yield 'ArrayValuesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'args'   => [new \ArrayObject(['o' => 'O'])],
             'expect' => ['o' => 'O'],
         ];

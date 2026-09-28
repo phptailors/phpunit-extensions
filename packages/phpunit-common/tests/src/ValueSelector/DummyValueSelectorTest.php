@@ -63,7 +63,7 @@ final class DummyValueSelectorTest extends TestCase
         // 01
         //
 
-        yield 'DummyValueSelectorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'       => [],
             'supports'   => ['args' => [null], 'return' => false],
             'select'     => ['args' => [['foo' => 'FOO'], 'foo'], 'return' => false],
@@ -75,7 +75,7 @@ final class DummyValueSelectorTest extends TestCase
         // 02
         //
 
-        yield 'DummyValueSelectorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'     => [true],
             'supports' => ['args' => [null], 'return' => true],
             'select'   => ['args' => [null, 'foo'], 'return' => false],
@@ -85,7 +85,7 @@ final class DummyValueSelectorTest extends TestCase
         // 03
         //
 
-        yield 'DummyValueSelectorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'     => [false, true],
             'supports' => ['args' => [null], 'return' => false],
             'select'   => ['args' => [null, 'foo'], 'return' => true],
@@ -95,7 +95,7 @@ final class DummyValueSelectorTest extends TestCase
         // 04
         //
 
-        yield 'DummyValueSelectorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'     => [true, true],
             'supports' => ['args' => [null], 'return' => true],
             'select'   => ['args' => [null, 'foo'], 'return' => true],
@@ -105,7 +105,7 @@ final class DummyValueSelectorTest extends TestCase
         // 05
         //
 
-        yield 'DummyValueSelectorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'       => [false, false, 'SUBJECT', 'SELECTABLE'],
             'supports'   => null,
             'select'     => null,
@@ -117,7 +117,7 @@ final class DummyValueSelectorTest extends TestCase
         // 06
         //
 
-        yield 'DummyValueSelectorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'       => [$supports, $select, 'array', 'value'],
             'supports'   => ['args' => [['foo' => 'FOO']], 'return' => true],
             'select'     => ['args' => [['foo' => 'FOO'], 'bar'], 'return' => false, 'retval' => null],
@@ -129,7 +129,7 @@ final class DummyValueSelectorTest extends TestCase
         // 07
         //
 
-        yield 'DummyValueSelectorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'       => [$supports, $select, 'array', 'value'],
             'supports'   => ['args' => [['foo' => 'FOO']], 'return' => true],
             'select'     => ['args' => [['foo' => 'FOO'], 'foo'], 'return' => true, 'retval' => 'FOO'],

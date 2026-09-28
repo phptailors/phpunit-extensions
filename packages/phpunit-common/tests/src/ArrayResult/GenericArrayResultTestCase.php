@@ -55,7 +55,7 @@ abstract class GenericArrayResultTestCase extends AbstractArrayResultTestCase
     public static function provGenericArrayResultTag(): iterable
     {
         // #1
-        yield 'GenericArrayResultTestCase.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [['foo' => 'FOO'], 'TAGFOO'],
             'expect' => 'TAGFOO',
         ];

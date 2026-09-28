@@ -37,7 +37,7 @@ final class UsesTraitTest extends TestCase
     // required by InheritanceConstraintTestTrait
     public static function provFailureDescriptionOfCustomUnaryOperator(): iterable
     {
-        yield 'UsesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'constraint' => UsesTrait::create(ExampleTrait::class),
             'subject'    => \Exception::class,
             'expect'     => [
@@ -50,7 +50,7 @@ final class UsesTraitTest extends TestCase
     // required by InheritanceConstraintTestTrait
     public static function provFailureDescriptionOfLogicalNotOperator(): iterable
     {
-        yield 'UsesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'constraint' => UsesTrait::create(ExampleTrait::class),
             'subject'    => ExampleClassUsingTrait::class,
             'expect'     => [
@@ -66,33 +66,33 @@ final class UsesTraitTest extends TestCase
 
     public static function provUsesTrait(): iterable
     {
-        yield 'UsesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'trait'   => ExampleTrait::class,
             'subject' => ExampleClassUsingTrait::class,
         ];
 
-        yield 'UsesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'trait'   => ExampleTrait::class,
             'subject' => new ExampleClassUsingTrait(),
         ];
 
-        yield 'UsesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'trait'   => ExampleTrait::class,
             'subject' => ExampleTraitUsingTrait::class,
         ];
 
         // case-insensitive match
-        yield 'UsesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'trait'   => 'tailors\\PhPunit\\eXamples\\inhEritance\eXampletRait',
             'subject' => 'tailors\\PhPunit\\eXamples\\inhEritance\eXampleclAssuSingtRait',
         ];
 
-        yield 'UsesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'trait'   => 'tailors\\PhPunit\\eXamples\\inhEritance\eXampletRait',
             'subject' => new ExampleClassUsingTrait(),
         ];
 
-        yield 'UsesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'trait'   => 'tailors\\PhPunit\\eXamples\\inhEritance\eXampletRait',
             'subject' => 'tailors\\PhPunit\\eXamples\\inhEritance\eXampletRaituSingtRait',
         ];
@@ -102,25 +102,25 @@ final class UsesTraitTest extends TestCase
     {
         $template = 'Failed asserting that %s uses trait %s.';
 
-        yield 'UsesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'trait'   => ExampleTrait::class,
             'subject' => ExampleClassNotUsingTrait::class,
             'message' => sprintf($template, ExampleClassNotUsingTrait::class, ExampleTrait::class),
         ];
 
-        yield 'UsesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'trait'   => ExampleTrait::class,
             'subject' => new ExampleClassNotUsingTrait(),
             'message' => sprintf($template, 'object '.ExampleClassNotUsingTrait::class, ExampleTrait::class),
         ];
 
-        yield 'UsesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'trait'   => ExampleTrait::class,
             'subject' => 'lorem ipsum',
             'message' => sprintf($template, "'lorem ipsum'", ExampleTrait::class),
         ];
 
-        yield 'UsesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'trait'   => ExampleTrait::class,
             'subject' => 123,
             'message' => sprintf($template, '123', ExampleTrait::class),
@@ -131,17 +131,17 @@ final class UsesTraitTest extends TestCase
     {
         $message = '/Argument 1 passed to \S+ must be a trait-string/';
 
-        yield 'UsesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'argument' => 'non-trait string',
             'message'  => $message,
         ];
 
-        yield 'UsesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'argument' => \Exception::class,
             'message'  => $message,
         ];
 
-        yield 'UsesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'argument' => \Throwable::class,
             'message'  => $message,
         ];

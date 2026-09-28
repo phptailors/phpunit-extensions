@@ -146,14 +146,14 @@ final class AbstractRecursiveConstraintTest extends TestCase
             return static::createDummyConstraint($test, $expected, $comparator, $valueSelector);
         };
 
-        yield 'AbstractConstraintTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'operator' => function (TestCase $test) use ($constraint): Operator {
                 return self::logicalNot($constraint($test));
             },
             'expect' => 'fails to be a tree with apples having colors specified',
         ];
 
-        yield 'AbstractConstraintTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'operator' => function (TestCase $test) use ($constraint): Operator {
                 return self::logicalOr($constraint($test));
             },
@@ -192,31 +192,31 @@ final class AbstractRecursiveConstraintTest extends TestCase
 //            ;
 //        };
 //
-//        yield 'AbstractConstraintTest.php:'.__LINE__ => [
+//        yield basename(__FILE__).':'.__LINE__ => [
 //            'constraint' => $fooFOO,
 //            'args'       => [['foo' => 'FOO', 'bar' => 'BAR'], '', true],
 //            'expect'     => true,
 //        ];
 //
-//        yield 'AbstractConstraintTest.php:'.__LINE__ => [
+//        yield basename(__FILE__).':'.__LINE__ => [
 //            'constraint' => $gezGEZ,
 //            'args'       => [['foo' => 'FOO', 'bar' => 'BAR'], '', true],
 //            'expect'     => false,
 //        ];
 //
-//        yield 'AbstractConstraintTest.php:'.__LINE__ => [
+//        yield basename(__FILE__).':'.__LINE__ => [
 //            'constraint' => $gezGEZ,
 //            'args'       => [123, '', true],
 //            'expect'     => false,
 //        ];
 //
-//        yield 'AbstractConstraintTest.php:'.__LINE__ => [
+//        yield basename(__FILE__).':'.__LINE__ => [
 //            'constraint' => $fooFOO,
 //            'args'       => [['foo' => 'FOO', 'bar' => 'BAR'], '', false],
 //            'expect'     => null,
 //        ];
 //
-//        yield 'AbstractConstraintTest.php:'.__LINE__ => [
+//        yield basename(__FILE__).':'.__LINE__ => [
 //            'constraint' => $gezGEZ,
 //            'args'       => [['foo' => 'FOO', 'bar' => 'BAR']],
 //            'expect'     => [
@@ -225,7 +225,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
 //            ],
 //        ];
 //
-//        yield 'AbstractConstraintTest.php:'.__LINE__ => [
+//        yield basename(__FILE__).':'.__LINE__ => [
 //            'constraint' => $gezGEZ,
 //            'args'       => [123],
 //            'expect'     => [
@@ -234,7 +234,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
 //            ],
 //        ];
 //
-//        yield 'AbstractConstraintTest.php:'.__LINE__ => [
+//        yield basename(__FILE__).':'.__LINE__ => [
 //            'constraint' => $gezGEZ,
 //            'args'       => [new \stdClass()],
 //            'expect'     => [
@@ -243,7 +243,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
 //            ],
 //        ];
 //
-//        yield 'AbstractConstraintTest.php:'.__LINE__ => [
+//        yield basename(__FILE__).':'.__LINE__ => [
 //            'constraint' => $gezGEZ,
 //            'args'       => [\stdClass::class],
 //            'expect'     => [
@@ -252,7 +252,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
 //            ],
 //        ];
 //
-//        yield 'AbstractConstraintTest.php:'.__LINE__ => [
+//        yield basename(__FILE__).':'.__LINE__ => [
 //            'constraint' => $gezGEZ,
 //            'args'       => ['foo'],
 //            'expect'     => [
@@ -261,7 +261,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
 //            ],
 //        ];
 //
-//        yield 'AbstractConstraintTest.php:'.__LINE__ => [
+//        yield basename(__FILE__).':'.__LINE__ => [
 //            'constraint' => function (TestCase $test) use ($fooFOO): Constraint {
 //                return self::logicalNot($fooFOO($test));
 //            },
@@ -272,7 +272,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
 //            ],
 //        ];
 //
-//        yield 'AbstractConstraintTest.php:'.__LINE__ => [
+//        yield basename(__FILE__).':'.__LINE__ => [
 //            'constraint' => $unaryOp,
 //            'args'       => [['foo' => 'FOO', 'bar' => 'BAR']],
 //            'expect'     => [

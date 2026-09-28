@@ -30,19 +30,19 @@ final class RecursiveVisitorUtilsTest extends TestCase
      */
     public static function provPathAsList(): iterable
     {
-        yield 'RecursiveVisitorUtilsTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'stack'  => [],
             'expect' => [],
         ];
 
-        yield 'RecursiveVisitorUtilsTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'stack' => [
                 new DummyRecursiveVisitorStackItem([], 'foo'),
             ],
             'expect' => ['foo'],
         ];
 
-        yield 'RecursiveVisitorUtilsTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'stack' => [
                 new DummyRecursiveVisitorStackItem([], 'foo'),
                 new DummyRecursiveVisitorStackItem([], 'bar'),
@@ -72,19 +72,19 @@ final class RecursiveVisitorUtilsTest extends TestCase
      */
     public static function provPathAsString(): iterable
     {
-        yield 'RecursiveVisitorUtilsTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'stack'  => [],
             'expect' => '',
         ];
 
-        yield 'RecursiveVisitorUtilsTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'stack' => [
                 new DummyRecursiveVisitorStackItem([], 'foo'),
             ],
             'expect' => "['foo']",
         ];
 
-        yield 'RecursiveVisitorUtilsTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'stack' => [
                 new DummyRecursiveVisitorStackItem([], 'foo'),
                 new DummyRecursiveVisitorStackItem([], 'bar'),

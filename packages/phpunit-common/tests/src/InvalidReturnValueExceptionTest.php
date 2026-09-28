@@ -25,23 +25,23 @@ final class InvalidReturnValueExceptionTest extends TestCase
 {
     public static function provFromExpectedAndActual(): iterable
     {
-        yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'sprintf', 'a string', 'integer',
         ];
 
-        yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'inexistentFunction', 'a string', 'integer',
         ];
 
-        yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             function (string $s): string { return 2; }, 'a string', 'integer',
         ];
 
-        yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             123, 'a string', 'integer',
         ];
 
-        yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             null, 'a string', 'integer',
         ];
     }
@@ -64,27 +64,27 @@ final class InvalidReturnValueExceptionTest extends TestCase
 
     public static function provFromExpectedTypeAndActualValue(): iterable
     {
-        yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'sprintf', 'string', 123,
         ];
 
-        yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'inexistentFunction', 'string', 123,
         ];
 
-        yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             [self::class, 'provFromExpectedTypeAndActualValue'], 'string', null,
         ];
 
-        yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             [self::class, 'inexistentMethod'], 'string', null,
         ];
 
-        yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             '', 'string', new \stdClass(),
         ];
 
-        yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             function (string $s): string { return 2; }, 'a string', 2,
         ];
     }

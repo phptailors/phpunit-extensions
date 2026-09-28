@@ -34,7 +34,7 @@ final class ImplementsInterfaceTest extends TestCase
     // required by InheritanceConstraintTestTrait
     public static function provFailureDescriptionOfCustomUnaryOperator(): iterable
     {
-        yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'constraint' => ImplementsInterface::create(\Throwable::class),
             'subject'    => \Iterator::class,
             'expect'     => [
@@ -47,7 +47,7 @@ final class ImplementsInterfaceTest extends TestCase
     // required by InheritanceConstraintTestTrait
     public static function provFailureDescriptionOfLogicalNotOperator(): iterable
     {
-        yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'constraint' => ImplementsInterface::create(\Throwable::class),
             'subject'    => \Exception::class,
             'expect'     => [
@@ -60,37 +60,37 @@ final class ImplementsInterfaceTest extends TestCase
     public static function provImplementsInterface(): iterable
     {
         // class implements interface
-        yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'interface' => \Throwable::class,
             'subject'   => \Exception::class,
         ];
 
         // object of class that implements interface
-        yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'interface' => \Throwable::class,
             'subject'   => new \Exception(),
         ];
 
         // interface that extends interface
-        yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'interface' => \Traversable::class,
             'subject'   => \Iterator::class,
         ];
 
         // class implements interface -- case insensitive match
-        yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'interface' => 'tHrowAble',
             'subject'   => 'eXceptiOn',
         ];
 
         // object of class that implements interface -- case insensitive match
-        yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'interface' => 'tHrowAble',
             'subject'   => new \Exception(),
         ];
 
         // interface that extends interface -- case insensitive match
-        yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'interface' => 'tRaversAble',
             'subject'   => 'iteRator',
         ];
@@ -100,25 +100,25 @@ final class ImplementsInterfaceTest extends TestCase
     {
         $template = 'Failed asserting that %s implements interface %s.';
 
-        yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'interface' => \Traversable::class,
             'subject'   => \Exception::class,
             'message'   => sprintf($template, \Exception::class, \Traversable::class),
         ];
 
-        yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'interface' => \Traversable::class,
             'subject'   => new \Exception(),
             'message'   => sprintf($template, 'object '.\Exception::class, \Traversable::class),
         ];
 
-        yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'interface' => \Traversable::class,
             'subject'   => 'lorem ipsum',
             'message'   => sprintf($template, "'lorem ipsum'", \Traversable::class),
         ];
 
-        yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'interface' => \Traversable::class,
             'subject'   => 123,
             'message'   => sprintf($template, '123', \Traversable::class),
@@ -129,17 +129,17 @@ final class ImplementsInterfaceTest extends TestCase
     {
         $message = '/Argument 1 passed to \S+ must be an interface-string/';
 
-        yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'argument' => 'non-interface string',
             'message'  => $message,
         ];
 
-        yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'argument' => \Exception::class,
             'message'  => $message,
         ];
 
-        yield 'ImplementsInterfaceTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'argument' => ExampleTrait::class,
             'message'  => $message,
         ];

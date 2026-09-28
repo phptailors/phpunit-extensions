@@ -43,31 +43,31 @@ trait ProvHasMethodTrait
      */
     public static function provHasMethodSucceeds(): iterable
     {
-        yield 'ProvHasMethodTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'foo',
             InterfaceWithMethodFooV4C0Z::class,
             "Failed asserting that '".InterfaceWithMethodFooV4C0Z::class."' does not have method foo().",
         ];
 
-        yield 'ProvHasMethodTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'foo',
             ClassWithMethodFooV4C0Z::class,
             "Failed asserting that '".ClassWithMethodFooV4C0Z::class."' does not have method foo().",
         ];
 
-        yield 'ProvHasMethodTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'foo',
             TraitWithMethodFooV4C0Z::class,
             "Failed asserting that '".TraitWithMethodFooV4C0Z::class."' does not have method foo().",
         ];
 
-        yield 'ProvHasMethodTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'public function foo',
             TraitWithMethodFooV4C0Z::class,
             "Failed asserting that '".TraitWithMethodFooV4C0Z::class."' does not have public method foo().",
         ];
 
-        yield 'ProvHasMethodTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'foo',
             new ClassWithMethodFooV4C0Z(),
             ClassWithMethodFooV4C0Z::class.' Object',
@@ -79,34 +79,34 @@ trait ProvHasMethodTrait
      */
     public static function provHasMethodFails(): iterable
     {
-        yield 'ProvHasMethodTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'bar',
             InterfaceWithMethodFooV4C0Z::class,
             "Failed asserting that '".InterfaceWithMethodFooV4C0Z::class."' has method bar().",
         ];
 
-        yield 'ProvHasMethodTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'bar', ClassWithMethodFooV4C0Z::class,
             "Failed asserting that '".ClassWithMethodFooV4C0Z::class."' has method bar().",
         ];
 
-        yield 'ProvHasMethodTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'bar', TraitWithMethodFooV4C0Z::class,
             "Failed asserting that '".TraitWithMethodFooV4C0Z::class."' has method bar().",
         ];
 
-        yield 'ProvHasMethodTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'private function foo', TraitWithMethodFooV4C0Z::class,
             "Failed asserting that '".TraitWithMethodFooV4C0Z::class."' has private method foo().",
         ];
 
-        yield 'ProvHasMethodTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'bar',
             new ClassWithMethodFooV4C0Z(),
             ClassWithMethodFooV4C0Z::class.' Object',
         ];
 
-        yield 'ProvHasMethodTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'foo',
             123,
             'Failed asserting that 123 has method foo()',

@@ -38,7 +38,7 @@ final class RecursiveActualResultFactoryStackItemTest extends TestCase
         //
         $c01 = new SubjectResultCouple(null, []);
 
-        yield 'RecursiveActualResultFactoryStackItemTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [['n' => 'N'], null, $c01],
             'expect' => [
                 'node'   => ['n' => 'N'],
@@ -53,7 +53,7 @@ final class RecursiveActualResultFactoryStackItemTest extends TestCase
         $n02 = new DummyArrayResult(false);
         $c02 = new SubjectResultCouple(null, []);
 
-        yield 'RecursiveActualResultFactoryStackItemTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [$n02, 'k', $c02],
             'expect' => [
                 'node'   => $n02,
@@ -88,7 +88,7 @@ final class RecursiveActualResultFactoryStackItemTest extends TestCase
         //
         $s01 = new SubjectResultCouple(null, ['r' => 'R']);
 
-        yield 'RecursiveActualResultFactoryStackItemTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [['n' => 'N'], null, $s01],
             'value'  => 'V',
             'expect' => [
@@ -104,7 +104,7 @@ final class RecursiveActualResultFactoryStackItemTest extends TestCase
         //
         $s02 = new SubjectResultCouple('s', ['r' => 'R']);
 
-        yield 'RecursiveActualResultFactoryStackItemTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [['n' => 'N'], 'v', $s02],
             'value'  => 'V',
             'expect' => [
@@ -121,7 +121,7 @@ final class RecursiveActualResultFactoryStackItemTest extends TestCase
         $s03 = new SubjectResultCouple('s', ['v' => null, 'r' => 'R']);
         $n03 = new DummyArrayResult(false, ['n' => 'N']);
 
-        yield 'RecursiveActualResultFactoryStackItemTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [$n03, 'v', $s03],
             'value'  => 'V',
             'expect' => [

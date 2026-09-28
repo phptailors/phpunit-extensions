@@ -43,42 +43,42 @@ final class ArrayValueSelectorTest extends TestCase
     // @codeCoverageIgnoreStart
     public static function provSupports(): iterable
     {
-        yield 'ArrayValueSelectorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'subject' => 'foo',
             'expect'  => false,
         ];
 
-        yield 'ArrayValueSelectorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'subject' => 123,
             'expect'  => false,
         ];
 
-        yield 'ArrayValueSelectorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'subject' => null,
             'expect'  => false,
         ];
 
-        yield 'ArrayValueSelectorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'subject' => self::class,
             'expect'  => false,
         ];
 
-        yield 'ArrayValueSelectorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'subject' => new class() {},
             'expect'  => false,
         ];
 
-        yield 'ArrayValueSelectorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'subject' => new ArrayValueSelector(),
             'expect'  => false,
         ];
 
-        yield 'ArrayValueSelectorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'subject' => [],
             'expect'  => true,
         ];
 
-        yield 'ArrayValueSelectorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'subject' => new \ArrayObject(),
             'expect'  => true,
         ];
@@ -129,7 +129,7 @@ final class ArrayValueSelectorTest extends TestCase
             public function offsetUnset($offset): void {}
         };
 
-        yield 'ArrayValueSelectorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'subject' => [
                 'foo' => 'FOO',
             ],
@@ -138,7 +138,7 @@ final class ArrayValueSelectorTest extends TestCase
             'expect' => 'FOO',
         ];
 
-        yield 'ArrayValueSelectorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'subject' => [
                 'foo' => 'FOO',
             ],
@@ -147,7 +147,7 @@ final class ArrayValueSelectorTest extends TestCase
             'expect' => null,
         ];
 
-        yield 'ArrayValueSelectorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'subject' => new \ArrayObject([
                 'foo' => 'FOO',
             ]),
@@ -156,7 +156,7 @@ final class ArrayValueSelectorTest extends TestCase
             'expect' => 'FOO',
         ];
 
-        yield 'ArrayValueSelectorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'subject' => new \ArrayObject([
                 'foo' => 'FOO',
             ]),
@@ -165,14 +165,14 @@ final class ArrayValueSelectorTest extends TestCase
             'expect' => null,
         ];
 
-        yield 'ArrayValueSelectorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'subject' => $arrayAccessFoo,
             'key'     => 'foo',
             'return'  => true,
             'expect'  => 'FOO',
         ];
 
-        yield 'ArrayValueSelectorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'subject' => $arrayAccessFoo,
             'key'     => 'bar',
             'return'  => false,

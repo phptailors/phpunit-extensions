@@ -148,23 +148,23 @@ final class ReferenceStorageTest extends TestCase
      */
     public static function provAddAndCount(): iterable
     {
-        yield 'ReferenceStorageTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'values' => [], 'expect' => 0,
         ];
 
-        yield 'ReferenceStorageTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'values' => ['a'], 'expect' => 1,
         ];
 
-        yield 'ReferenceStorageTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'values' => [new \stdClass()], 'expect' => 1,
         ];
 
-        yield 'ReferenceStorageTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'values' => ['a', new \stdClass()], 'expect' => 2,
         ];
 
-        yield 'ReferenceStorageTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'values' => ['a', new \stdClass(), ['x' => 'X', 'y' => ['z' => 'Z']]], 'expect' => 3,
         ];
     }
@@ -174,15 +174,15 @@ final class ReferenceStorageTest extends TestCase
      */
     public static function provAddRemoveContains(): iterable
     {
-        yield 'ReferenceStorageTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'values' => ['a'],
         ];
 
-        yield 'ReferenceStorageTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'values' => [new \stdClass()],
         ];
 
-        yield 'ReferenceStorageTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'values' => ['a', new \stdClass(), ['x' => 'X', 'y' => ['z' => 'Z']]],
         ];
     }

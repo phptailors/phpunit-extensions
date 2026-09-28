@@ -36,61 +36,61 @@ trait ProvArrayValuesTrait
      */
     public static function provArrayValuesIdenticalTo(): iterable
     {
-        yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => [],
             'actual' => [],
             'string' => 'array',
         ];
 
-        yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => [],
             'actual' => ['foo' => 'FOO', 'bar' => 'BAR'],
             'string' => 'array',
         ];
 
-        yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['foo' => 'FOO'],
             'actual' => ['foo' => 'FOO'],
             'string' => 'array',
         ];
 
-        yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['foo' => 'FOO'],
             'actual' => ['foo' => 'FOO', 'bar' => 'BAR'],
             'string' => 'array',
         ];
 
-        yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['foo' => 'FOO'],
             'actual' => new \ArrayObject(['foo' => 'FOO']),
             'string' => 'object ArrayObject',
         ];
 
-        yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['foo' => 'FOO'],
             'actual' => new \ArrayObject(['foo' => 'FOO', 'bar' => 'BAR']),
             'string' => 'object ArrayObject',
         ];
 
-        yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['foo' => 'FOO', 'bar' => new ArrayValuesSelection(['gez' => 'GEZ'])],
             'actual' => ['foo' => 'FOO', 'bar' => ['baz' => 'BAZ', 'gez' => 'GEZ', 'qux' => 'QUX']],
             'string' => 'array',
         ];
 
-        yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['foo' => 'FOO', 'bar' => new ArrayValuesSelection(['gez' => 'GEZ'])],
             'actual' => ['foo' => 'FOO', 'bar' => new \ArrayObject(['baz' => 'BAZ', 'gez' => 'GEZ', 'qux' => 'QUX'])],
             'string' => 'array',
         ];
 
-        yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['foo' => 'FOO', 'bar' => new ArrayValuesSelection(['gez' => 'GEZ'])],
             'actual' => new \ArrayObject(['foo' => 'FOO', 'bar' => ['baz' => 'BAZ', 'gez' => 'GEZ', 'qux' => 'QUX']]),
             'string' => 'object ArrayObject',
         ];
 
-        yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['foo' => 'FOO', 'bar' => ['baz' => 'BAZ', 'gez' => new ArrayValuesSelection(['qux' => 'QUX'])]],
             'actual' => ['foo' => 'FOO', 'bar' => ['baz' => 'BAZ', 'gez' => ['cop' => 'COP', 'qux' => 'QUX', 'dig' => 'DIG']]],
             'string' => 'array',
@@ -106,7 +106,7 @@ trait ProvArrayValuesTrait
      */
     public static function provArrayValuesEqualButNotIdenticalTo(): iterable
     {
-        yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => [
                 'emptyString' => null,
                 'null'        => '',
@@ -124,7 +124,7 @@ trait ProvArrayValuesTrait
             'string' => 'array',
         ];
 
-        yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['foo' => 'FOO', 'arr' => new \ArrayObject(['bar' => 'BAR'])],
             'actual' => ['foo' => 'FOO', 'arr' => new \ArrayObject(['bar' => 'BAR'])],
             'string' => 'array',
@@ -140,31 +140,31 @@ trait ProvArrayValuesTrait
      */
     public static function provArrayValuesNotEqualTo(): iterable
     {
-        yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['foo' => 'FOO', 'bar' => 'GEZ', 'int' => 21],
             'actual' => ['foo' => 'FOO', 'bar' => 'BAR', 'int' => 21],
             'string' => 'array',
         ];
 
-        yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['foo' => 'FOO', 'arr' => ['bar' => 'GEZ']],
             'actual' => ['foo' => 'FOO', 'arr' => ['bar' => 'BAR']],
             'string' => 'array',
         ];
 
-        yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['foo' => 'FOO', 'arr' => ['bar' => 'BAR']],
             'actual' => ['foo' => 'FOO', 'arr' => new \ArrayObject(['bar' => 'BAR'])],
             'string' => 'array',
         ];
 
-        yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['foo' => 'FOO', 'arr' => new \ArrayObject(['bar' => 'BAR'])],
             'actual' => ['foo' => 'FOO', 'arr' => ['bar' => 'BAR']],
             'string' => 'array',
         ];
 
-        yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['foo' => 'FOO', 'bar' => ['baz' => 'BAZ', 'gez' => new ArrayValuesSelection(['qux' => 'QUX'])]],
             'actual' => ['foo' => 'FOO', 'bar' => ['baz' => 'BAZ', 'gez' => ['qux' => 'QUX'], 'ext' => 'EXT']],
             'string' => 'array',
@@ -180,25 +180,25 @@ trait ProvArrayValuesTrait
      */
     public static function provArrayValuesNotEqualToNonArray(): iterable
     {
-        yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['foo' => 'FOO'],
             'actual' => 123,
             'string' => '123',
         ];
 
-        yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['foo' => 'FOO'],
             'actual' => 'arbitrary string',
             'string' => '\'arbitrary string\'',
         ];
 
-        yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['foo' => 'FOO'],
             'actual' => null,
             'string' => 'null',
         ];
 
-        yield 'ProvArrayValuesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['foo' => 'FOO'],
             'actual' => new \stdClass(),
             'string' => 'object stdClass',

@@ -30,19 +30,19 @@ final class IdentityComparatorTest extends TestCase
 
     public static function provCompare(): iterable
     {
-        yield 'IdentityComparatorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'a', 'a', true,
         ];
 
-        yield 'IdentityComparatorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             '123', 123, false,
         ];
 
-        yield 'IdentityComparatorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             '', null, false,
         ];
 
-        yield 'IdentityComparatorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'a', 'b', false,
         ];
     }

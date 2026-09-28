@@ -60,7 +60,7 @@ final class DummyUntaggedArrayResultTest extends TestCase
     {
         $tag = DummyUntaggedArrayResult::class.':a1a44e79c791a1fe22ac49067eef00b222d10131';
 
-        yield 'DummyUntaggedArrayResultTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [false],
             'expect' => [
                 'actual' => false,
@@ -68,7 +68,7 @@ final class DummyUntaggedArrayResultTest extends TestCase
             ],
         ];
 
-        yield 'DummyUntaggedArrayResultTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [false, ['foo' => 'FOO']],
             'expect' => [
                 'actual' => false,
@@ -76,7 +76,7 @@ final class DummyUntaggedArrayResultTest extends TestCase
             ],
         ];
 
-        yield 'DummyUntaggedArrayResultTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [false, new \ArrayObject(['foo' => 'FOO'])],
             'expect' => [
                 'actual' => false,

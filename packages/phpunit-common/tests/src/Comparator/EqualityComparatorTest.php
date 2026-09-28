@@ -30,19 +30,19 @@ final class EqualityComparatorTest extends TestCase
 
     public static function provCompare(): iterable
     {
-        yield 'EqualityComparatorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'a', 'a', true,
         ];
 
-        yield 'EqualityComparatorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             '123', 123, true,
         ];
 
-        yield 'EqualityComparatorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             '', null, true,
         ];
 
-        yield 'EqualityComparatorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'a', 'b', false,
         ];
     }
