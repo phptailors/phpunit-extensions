@@ -93,6 +93,25 @@ final class DummyArrayResultFactoryTest extends TestCase
                 'foo' => ['bar' => 'FOO.BAR'],
             ],
         ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor' => [
+                null,
+                function (iterable $input): array {
+                    $array = is_array($input) ? $input : iterator_to_array($input);
+                    ksort($array);
+                    return $array;
+                }
+            ],
+            'args' => [false, [
+                'foo' => 'FOO',
+                'bar' => 'BAR',
+            ]],
+            'expect' => [
+                'bar' => 'BAR',
+                'foo' => 'FOO'
+            ],
+        ];
     }
 
     /**
