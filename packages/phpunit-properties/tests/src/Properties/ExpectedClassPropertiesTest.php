@@ -10,6 +10,9 @@
 
 namespace Tailors\PHPUnit\Properties;
 
+use Tailors\PHPUnit\Result\ResultInterface;
+
+
 /**
  * @small
  *
@@ -26,7 +29,7 @@ final class ExpectedClassPropertiesTest extends ClassPropertiesTestCase
     /**
      * @psalm-param ClassPropertiesCtorArgs $ctorArgs
      */
-    final public static function getArrayResultObject(array $ctorArgs): ExpectedClassProperties
+    final public static function getArrayResultObject(array $ctorArgs): ResultInterface
     {
         return new ExpectedClassProperties(...$ctorArgs);
     }
