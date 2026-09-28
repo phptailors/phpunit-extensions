@@ -255,7 +255,8 @@ final class AbstractRecursiveConstraintTest extends TestCase
     public static function provEvaluate(): iterable
     {
         $foo = self::createArrayValuesIdentityConstraint(['foo' => 'FOO']);
-        $gez = self::createArrayValuesIdentityConstraint(['gez' => 'GEZ']);
+        $bar = self::createArrayValuesIdentityConstraint(['bar' => 'BAR']);
+        $baz = self::createArrayValuesEqualityConstraint(['baz' => 123]);
 
         yield basename(__FILE__).':'.__LINE__ => [
             'constraint' => $foo,
@@ -264,13 +265,37 @@ final class AbstractRecursiveConstraintTest extends TestCase
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'constraint' => $gez,
-            'args'       => [['foo' => 'FOO', 'bar' => 'BAR'], '', true],
+            'constraint' => $bar,
+            'args'       => [['foo' => 'FOO', 'gez' => 'GEZ'], '', true],
             'expect'     => false,
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'constraint' => $gez,
+            'constraint' => $baz,
+            'args'       => [['foo' => 'FOO', 'baz' => '123'], '', true],
+            'expect'     => true,
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'constraint' => $baz,
+            'args'       => [['foo' => 'FOO', 'baz' => 123], '', true],
+            'expect'     => true,
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'constraint' => $baz,
+            'args'       => [['123'], '', true],
+            'expect'     => false,
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'constraint' => $baz,
+            'args'       => [['baz' => 321], '', true],
+            'expect'     => false,
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'constraint' => $bar,
             'args'       => [123, '', true],
             'expect'     => false,
         ];
@@ -282,8 +307,8 @@ final class AbstractRecursiveConstraintTest extends TestCase
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'constraint' => $gez,
-            'args'       => [['foo' => 'FOO', 'bar' => 'BAR']],
+            'constraint' => $bar,
+            'args'       => [['foo' => 'FOO', 'gez' => 'GEZ']],
             'expect'     => [
                 'exception' => ExpectationFailedException::class,
                 'message'   => 'array is an array with values identical to specified',
@@ -291,7 +316,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'constraint' => $gez,
+            'constraint' => $bar,
             'args'       => [123],
             'expect'     => [
                 'exception' => ExpectationFailedException::class,
@@ -300,7 +325,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'constraint' => $gez,
+            'constraint' => $bar,
             'args'       => [new \stdClass()],
             'expect'     => [
                 'exception' => ExpectationFailedException::class,
@@ -309,7 +334,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'constraint' => $gez,
+            'constraint' => $bar,
             'args'       => [\stdClass::class],
             'expect'     => [
                 'exception' => ExpectationFailedException::class,
@@ -318,7 +343,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'constraint' => $gez,
+            'constraint' => $bar,
             'args'       => ['foo'],
             'expect'     => [
                 'exception' => ExpectationFailedException::class,
@@ -334,6 +359,16 @@ final class AbstractRecursiveConstraintTest extends TestCase
                 'message'   => 'array fails to be an array with values identical to specified',
             ],
         ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'constraint' => $baz,
+            'args'       => ['foo'],
+            'expect'     => [
+                'exception' => ExpectationFailedException::class,
+                'message'   => '\'foo\' is an array with values equal to specified',
+            ],
+        ];
+
 
         yield basename(__FILE__).':'.__LINE__ => [
             'constraint' => new class ($foo) extends UnaryOperator {
