@@ -10,6 +10,9 @@
 
 namespace Tailors\PHPUnit\ArrayResult;
 
+use Tailors\PHPUnit\Result\ResultInterface;
+
+
 /**
  * @internal This class is not covered by the backward compatibility promise
  *
@@ -28,7 +31,7 @@ abstract class GenericArrayResultTestCase extends AbstractArrayResultTestCase
     /**
      * @psalm-param GenericArrayResultCtorArgs $ctorArgs
      */
-    final public static function getArrayResultObject(array $ctorArgs): AbstractGenericArrayResult
+    final public static function getArrayResultObject(array $ctorArgs): ResultInterface
     {
         $class = static::getArrayResultClass();
 
