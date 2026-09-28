@@ -111,6 +111,7 @@ abstract class AbstractArrayResultTestCase extends TestCase
         $object = static::getArrayResultObject($ctor);
 
         self::assertInstanceOf(\Traversable::class, $object);
+        self::assertInstanceOf(ResultInterface::class, $object);
         self::assertSame($expect, iterator_to_array($object));
         self::assertSame($expect, (array) $object);
         self::assertSame(static::getArrayResultActual(), $object->actual());

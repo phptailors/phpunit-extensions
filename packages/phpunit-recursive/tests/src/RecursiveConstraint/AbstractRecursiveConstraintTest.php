@@ -14,6 +14,7 @@ use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\Operator;
 use PHPUnit\Framework\Constraint\UnaryOperator;
 use PHPUnit\Framework\ExpectationFailedException;
+use PHPUnit\Framework\SelfDescribing;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
 use Tailors\PHPUnit\ArrayResult\ExpectedArrayResult;
@@ -76,12 +77,6 @@ final class AbstractRecursiveConstraintTest extends TestCase
 //        );
 //    }
 
-    //
-    //
-    // TESTS
-    //
-    //
-
     public function testExtendsConstraint(): void
     {
         $constraint = $this->createDummyConstraint();
@@ -111,70 +106,90 @@ final class AbstractRecursiveConstraintTest extends TestCase
             ->willReturn('having colors')
         ;
 
-
         $constraint = $this->createDummyConstraint($expected, $comparator);
 
         $this->assertSame('is a tree with apples having colors specified', $constraint->toString());
     }
 
     /**
-     * @return iterable<string,array{operator: \Closure(TestCase):SelfDescribing, expect: mixed}>
+     * @return iterable<string,array{
+     *      subject: string,
+     *      selectable: string,
+     *      adjective: string,
+     *      operator: \Closure(Constraint):SelfDescribing,
+     *      expect: mixed
+     * }>
      */
     public static function provToStringInContext(): iterable
     {
-        $constraint = function (TestCase $test): Constraint {
-            $expected = $test->createMock(\Traversable::class);
-            $comparator = $test->createMock(ComparatorInterface::class);
-
-            $valueSelector = $test->createMock(ValueSelectorInterface::class);
-
-            $valueSelector->expects($test->any())
-                ->method('subject')
-                ->willReturn('a tree')
-            ;
-
-            $valueSelector->expects($test->any())
-                ->method('selectable')
-                ->willReturn('apples')
-            ;
-
-            $comparator->expects($test->any())
-                ->method('adjective')
-                ->willReturn('having colors')
-            ;
-
-            return static::createDummyConstraint($test, $expected, $comparator, $valueSelector);
-        };
+        yield basename(__FILE__).':'.__LINE__ => [
+            'subject' => 'a tree',
+            'selectable' => 'apples',
+            'adjective' => 'having colors',
+            'operator' => function (Constraint $constraint): SelfDescribing {
+                return $constraint;
+            },
+            'expect' => 'is a tree with apples having colors specified',
+        ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'operator' => function (TestCase $test) use ($constraint): Operator {
-                return self::logicalNot($constraint($test));
+            'subject' => 'a tree',
+            'selectable' => 'apples',
+            'adjective' => 'having colors',
+            'operator' => function (Constraint $constraint): SelfDescribing {
+                return self::logicalNot($constraint);
             },
             'expect' => 'fails to be a tree with apples having colors specified',
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'operator' => function (TestCase $test) use ($constraint): Operator {
-                return self::logicalOr($constraint($test));
+            'subject' => 'a tree',
+            'selectable' => 'apples',
+            'adjective' => 'having colors',
+            'operator' => function (Constraint $constraint): SelfDescribing {
+                return self::logicalOr($constraint);
             },
             'expect' => 'is a tree with apples having colors specified',
         ];
     }
-//
-//    /**
-//     * @psalm-param \Closure(TestCase $test):Operator $operator
-//     *
-//     * @dataProvider provToStringInContext
-//     *
-//     * @param mixed $expect
-//     *
-//     * @psalm-param \Closure(TestCase):SelfDescribing $operator
-//     */
-//    public function testToStringInContext(\Closure $operator, $expect): void
-//    {
-//        $this->assertSame($expect, $operator($this)->toString());
-//    }
-//
+
+    /**
+     * @psalm-param \Closure(TestCase $test):Operator $operator
+     *
+     * @dataProvider provToStringInContext
+     *
+     * @param mixed $expect
+     *
+     * @psalm-param \Closure(Constraint):SelfDescribing $operator
+     */
+    public function testToStringInContext(string $subject, string $selectable, string $adjective, \Closure $operator, $expect): void
+    {
+        $valueSelector = $this->createMock(ValueSelectorInterface::class);
+
+        $valueSelector->expects($this->any())
+                      ->method('subject')
+                      ->willReturn($subject)
+                  ;
+
+        $valueSelector->expects($this->any())
+                      ->method('selectable')
+                      ->willReturn($selectable)
+                  ;
+
+        $array = $this->createMock(\Traversable::class);
+        $expected = new DummyArraySelectionOnly($valueSelector, $array);
+
+        $comparator = $this->createMock(ComparatorInterface::class);
+        $comparator->expects($this->any())
+                   ->method('adjective')
+                   ->willReturn($adjective)
+               ;
+
+        $constraint = static::createDummyConstraint($expected, $comparator);
+
+        $this->assertSame($expect, $operator($constraint)->toString());
+    }
+
 //    public static function provEvaluate(): iterable
 //    {
 //        $fooFOO = function (TestCase $test) {

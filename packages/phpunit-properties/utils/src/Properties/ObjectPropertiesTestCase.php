@@ -11,8 +11,6 @@
 namespace Tailors\PHPUnit\Properties;
 
 use Tailors\PHPUnit\ArrayResult\AbstractArrayResultTestCase;
-use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
-use Tailors\PHPUnit\Values\AbstractValuesTestCase;
 
 /**
  * @internal This class is not covered by the backward compatibility promise

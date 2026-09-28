@@ -35,19 +35,5 @@ final class ExpectedObjectPropertiesTest extends ObjectPropertiesTestCase
     {
         return false;
     }
-//
-//    public function testImplementsValueSelectorWrapperInterface(): void
-//    {
-//        $this->assertInstanceOf(ValueSelectorWrapperInterface::class, new ExpectedObjectProperties());
-//    }
-//
-//    public function testGetValueSelector(): void
-//    {
-//        $values = new ExpectedObjectProperties();
-//        $selector = $values->getValueSelector();
-//
-//        $this->assertInstanceOf(ObjectPropertySelector::class, $selector);
-//        $this->assertSame($selector, $values->getValueSelector());
-//    }
 }
 // vim: syntax=php sw=4 ts=4 et:

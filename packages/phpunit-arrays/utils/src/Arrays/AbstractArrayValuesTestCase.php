@@ -19,33 +19,6 @@ use Tailors\PHPUnit\ArrayResult\AbstractArrayResultTestCase;
  */
 abstract class AbstractArrayValuesTestCase extends AbstractArrayResultTestCase
 {
-//    abstract public static function adjective(): string;
-//
-//    final public function testCreateConstraint(): void
-//    {
-//        $constraint = $this->examineCreateConstraint([[]]);
-//    }
-//
-//    final public function testConstraintUnaryOperatorFailure(): void
-//    {
-//        $this->examineConstraintUnaryOperatorFailure([[]], null, self::message('null'));
-//
-//        // @codeCoverageIgnoreStart
-//    }
-//
-//    // @codeCoverageIgnoreEnd
-//
-//    final protected static function message(string $export, bool $negative = false): string
-//    {
-//        return sprintf('Failed asserting that %s', self::statement($export, $negative));
-//    }
-//
-//    final protected static function statement(string $export, bool $negative = false): string
-//    {
-//        $verb = $negative ? 'fails to be' : 'is';
-//
-//        return sprintf('%s %s an array %s specified one when ksorted', $export, $verb, static::adjective());
-//    }
 }
 
 // vim: syntax=php sw=4 ts=4 et:
