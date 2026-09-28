@@ -13,8 +13,6 @@ namespace Tailors\PHPUnit\ResultFactory;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
 use Tailors\PHPUnit\InvalidArgumentException;
-use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapper;
-use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapperVisitor;
 use Tailors\PHPUnit\Result\ResultInterface;
 
 /**
@@ -52,31 +50,28 @@ final class DummyArrayResultFactoryTest extends TestCase
      */
     public static function provGetResult(): iterable
     {
-        $tagk = RecursiveResultUnwrapperVisitor::tag();
-        $tagd = (new DummyArrayResult(false))->tag();
-
         yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [],
             'args'   => [false, []],
-            'expect' => [$tagk => $tagd],
+            'expect' => [],
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [],
             'args'   => [true, []],
-            'expect' => [$tagk => $tagd],
+            'expect' => [],
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [],
             'args'   => [false, new \ArrayObject()],
-            'expect' => [$tagk => $tagd],
+            'expect' => [],
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [],
             'args'   => [true, new \ArrayObject()],
-            'expect' => [$tagk => $tagd],
+            'expect' => [],
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
@@ -86,7 +81,6 @@ final class DummyArrayResultFactoryTest extends TestCase
             ]],
             'expect' => [
                 'foo' => ['bar' => 'FOO.BAR'],
-                $tagk => $tagd,
             ],
         ];
 
@@ -97,7 +91,6 @@ final class DummyArrayResultFactoryTest extends TestCase
             ]],
             'expect' => [
                 'foo' => ['bar' => 'FOO.BAR'],
-                $tagk => 'TAG',
             ],
         ];
     }
@@ -123,13 +116,15 @@ final class DummyArrayResultFactoryTest extends TestCase
 
         $this->assertInstanceOf(ResultInterface::class, $result);
         $this->assertInstanceOf(\Traversable::class, $result);
-
-        $unwrapper = RecursiveResultUnwrapper::create();
+        $this->assertInstanceOf(DummyArrayResult::class, $result);
 
         $actual = $args[0];
-        $array = $unwrapper->unwrap($actual, $result);
 
-        $this->assertSame($expect, $array);
+        $this->assertSame($actual, $result->actual());
+        $this->assertSame($expect, iterator_to_array($result));
+
+        $tag = $ctor[0] ?? DummyArrayResult::class.':a1a44e79c791a1fe22ac49067eef00b222d10131';
+        $this->assertSame($tag, $result->tag());
     }
 
     /**
