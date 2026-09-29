@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
 use Tailors\PHPUnit\ArrayResult\ExpectedArrayResult;
 use Tailors\PHPUnit\ArraySpec\DummyArraySelection;
-use Tailors\PHPUnit\ArraySpec\DummyArraySpec;
+use Tailors\PHPUnit\ArraySpec\DummyResultFactoryWrapper;
 use Tailors\PHPUnit\ArraySpec\DummyValueSelectorWrapper;
 use Tailors\PHPUnit\CircularDependencyException;
 use Tailors\PHPUnit\InternalErrorException;
@@ -195,7 +195,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         // 04
         //
 
-        $e04 = new DummyArraySpec(
+        $e04 = new DummyResultFactoryWrapper(
             new DummyArrayResultFactory(),
             ['foo' => 'FOO']
         );
@@ -984,7 +984,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
                     'd' => 'D',
                 ]),
             ],
-            'array'  => new DummyArraySpec($f08a, [
+            'array'  => new DummyResultFactoryWrapper($f08a, [
                 'e' => new DummyArraySelection($f08e, $s08e, [
                     'message'  => 'unimportant',
                     'nonexist' => 'unimportant',
@@ -1025,7 +1025,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
                     'd' => 'D',
                 ]),
             ],
-            'array'  => new DummyArraySpec($f09a, [
+            'array'  => new DummyResultFactoryWrapper($f09a, [
                 'x' => 'UNIMPORTANT',
                 'e' => new DummyArraySelection($f09e, $s09e, [
                     'message'  => 'unimportant',
@@ -1150,7 +1150,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [],
             'begin'  => ['FOO'],
-            'array'  => new DummyArraySpec($f12, [
+            'array'  => new DummyResultFactoryWrapper($f12, [
                 'foo' => 'UNIMPORTANT',
                 'baz' => 'UNIMPORTANT',
             ]),

@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
 use Tailors\PHPUnit\ArrayResult\ExpectedArrayResult;
 use Tailors\PHPUnit\ArraySpec\DummyArraySelection;
-use Tailors\PHPUnit\ArraySpec\DummyArraySpec;
+use Tailors\PHPUnit\ArraySpec\DummyResultFactoryWrapper;
 use Tailors\PHPUnit\CircularDependencyException;
 use Tailors\PHPUnit\InternalErrorException;
 use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapper;
@@ -189,7 +189,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         // 04
         //
 
-        $e04 = new DummyArraySpec(
+        $e04 = new DummyResultFactoryWrapper(
             new DummyArrayResultFactory(),
             ['foo' => 'FOO']
         );

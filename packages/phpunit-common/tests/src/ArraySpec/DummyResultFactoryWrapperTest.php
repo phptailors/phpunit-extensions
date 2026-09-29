@@ -18,7 +18,7 @@ use Tailors\PHPUnit\ResultFactory\ResultFactoryWrapperInterface;
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\ArraySpec\DummyArraySpec
+ * @covers \Tailors\PHPUnit\ArraySpec\DummyResultFactoryWrapper
  *
  * @internal This class is not covered by the backward compatibility promise
  *
@@ -26,30 +26,30 @@ use Tailors\PHPUnit\ResultFactory\ResultFactoryWrapperInterface;
  *
  * @psalm-type ArrayLike = iterable<array-key, mixed>
  */
-final class DummyArraySpecTest extends TestCase
+final class DummyResultFactoryWrapperTest extends TestCase
 {
     /**
      * @psalm-param ArrayLike $array
      */
-    public static function createDummyArraySpec(
+    public static function createDummyResultFactoryWrapper(
         iterable $array,
         ?ResultFactoryInterface $resultFactory = null
-    ): DummyArraySpec {
+    ): DummyResultFactoryWrapper {
         if (null === $resultFactory) {
             $resultFactory = new DummyResultFactory(false);
         }
 
-        return new DummyArraySpec($resultFactory, $array);
+        return new DummyResultFactoryWrapper($resultFactory, $array);
     }
 
     public function testExtendsArrayObject(): void
     {
-        $this->assertInstanceOf(\ArrayObject::class, self::createDummyArraySpec([]));
+        $this->assertInstanceOf(\ArrayObject::class, self::createDummyResultFactoryWrapper([]));
     }
 
     public function testImplementsResultFactoryWrapperInterface(): void
     {
-        $this->assertInstanceOf(ResultFactoryWrapperInterface::class, self::createDummyArraySpec([]));
+        $this->assertInstanceOf(ResultFactoryWrapperInterface::class, self::createDummyResultFactoryWrapper([]));
     }
 
     /**
@@ -57,7 +57,7 @@ final class DummyArraySpecTest extends TestCase
      *      array: ArrayLike
      * }>
      */
-    public static function provDummyArraySpec(): iterable
+    public static function provDummyResultFactoryWrapper(): iterable
     {
         yield basename(__FILE__).':'.__LINE__ => [
             'array' => new \ArrayObject(),
@@ -77,19 +77,19 @@ final class DummyArraySpecTest extends TestCase
     }
 
     /**
-     * @dataProvider provDummyArraySpec
+     * @dataProvider provDummyResultFactoryWrapper
      *
      * @psalm-param ArrayLike $array
      */
-    public function testDummyArraySpec(iterable $array): void
+    public function testDummyResultFactoryWrapper(iterable $array): void
     {
         $resultFactory = $this->createMock(ResultFactoryInterface::class);
 
-        $dummyArraySpec = self::createDummyArraySpec($array, $resultFactory);
+        $dummyResultFactoryWrapper = self::createDummyResultFactoryWrapper($array, $resultFactory);
 
-        $this->assertSame($resultFactory, $dummyArraySpec->getResultFactory());
+        $this->assertSame($resultFactory, $dummyResultFactoryWrapper->getResultFactory());
 
         $expect = is_array($array) ? $array : iterator_to_array($array);
-        $this->assertSame($expect, iterator_to_array($dummyArraySpec));
+        $this->assertSame($expect, iterator_to_array($dummyResultFactoryWrapper));
     }
 }

@@ -10,7 +10,7 @@
 
 namespace Tailors\PHPUnit\RecursiveConstraint;
 
-use Tailors\PHPUnit\ArraySpec\DummyArraySpec;
+use Tailors\PHPUnit\ArraySpec\DummyResultFactoryWrapper;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\DummyComparator;
 use Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactoryInterface;
@@ -129,10 +129,10 @@ final class DummyRecursiveConstraintSpecialization
     /**
      * @psalm-param ArrayLike $expected
      */
-    protected static function makeExpectations(iterable $expected): DummyArraySpec
+    protected static function makeExpectations(iterable $expected): DummyResultFactoryWrapper
     {
         self::$makeExpectationsLastCall = [$expected];
-        self::$makeExpectationsLastResult = new DummyArraySpec(self::defaultResultFactory(), $expected);
+        self::$makeExpectationsLastResult = new DummyResultFactoryWrapper(self::defaultResultFactory(), $expected);
 
         return self::$makeExpectationsLastResult;
     }

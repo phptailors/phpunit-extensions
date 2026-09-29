@@ -26,7 +26,7 @@ use Tailors\PHPUnit\ResultFactory\ResultFactoryWrapperInterface;
  *
  * @template-extends \ArrayObject<array-key, mixed>
  */
-final class DummyArraySpec extends \ArrayObject implements ResultFactoryWrapperInterface
+final class DummyResultFactoryWrapper extends \ArrayObject implements ResultFactoryWrapperInterface
 {
     /**
      * @var ResultFactoryInterface
