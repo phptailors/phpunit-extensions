@@ -21,7 +21,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ArrayLike   = iterable<array-key, mixed>
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
  */
 final class DummyResultTest extends TestCase
 {
@@ -45,7 +45,6 @@ final class DummyResultTest extends TestCase
             'actual' => true,
         ];
     }
-
 
     /**
      * @dataProvider provDummyResult

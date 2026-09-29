@@ -32,9 +32,9 @@ class ExampleRecursiveConstraint extends AbstractRecursiveConstraint
     use RecursiveConstraintSpecializationTrait;
 
     /**
-     * @psalm-param ArrayLike $expected
-     *
      * @throws InvalidArgumentException
+     *
+     * @psalm-param ArrayLike $expected
      */
     protected static function validateExpectations(iterable $expected, int $argument, int $distance = 1): void {}
 
@@ -61,6 +61,7 @@ class ExampleRecursiveConstraint extends AbstractRecursiveConstraint
                         return false;
                     }
                     $retval = $subject[$key];
+
                     return true;
                 },
                 'an array',

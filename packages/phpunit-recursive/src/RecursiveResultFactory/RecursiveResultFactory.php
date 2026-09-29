@@ -80,12 +80,13 @@ final class RecursiveResultFactory implements RecursiveResultFactoryInterface
             }
 
             $resultFactory = $array->getResultFactory();
-            return $resultFactory->supports([]);
 
+            return $resultFactory->supports([]);
         }
 
         if ($array instanceof ResultFactoryWrapperInterface) {
             $resultFactory = $array->getResultFactory();
+
             return $resultFactory->supports($input);
         }
 

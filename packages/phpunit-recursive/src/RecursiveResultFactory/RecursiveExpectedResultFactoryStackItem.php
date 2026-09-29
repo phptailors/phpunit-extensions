@@ -47,7 +47,7 @@ final class RecursiveExpectedResultFactoryStackItem implements RecursiveVisitorS
     private $result;
 
     /**
-     * @param mixed $key
+     * @param mixed              $key
      * @param array|\ArrayAccess $result
      *
      * @psalm-param ArrayLike $node

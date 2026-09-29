@@ -91,6 +91,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
                     return false;
                 }
                 $retval = $subject[$key];
+
                 return true;
             },
             'an array',
@@ -174,30 +175,30 @@ final class AbstractRecursiveConstraintTest extends TestCase
     public static function provToStringInContext(): iterable
     {
         yield basename(__FILE__).':'.__LINE__ => [
-            'subject' => 'a tree',
+            'subject'    => 'a tree',
             'selectable' => 'apples',
-            'adjective' => 'having colors',
-            'operator' => function (Constraint $constraint): SelfDescribing {
+            'adjective'  => 'having colors',
+            'operator'   => function (Constraint $constraint): SelfDescribing {
                 return $constraint;
             },
             'expect' => 'is a tree with apples having colors specified',
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'subject' => 'a tree',
+            'subject'    => 'a tree',
             'selectable' => 'apples',
-            'adjective' => 'having colors',
-            'operator' => function (Constraint $constraint): SelfDescribing {
+            'adjective'  => 'having colors',
+            'operator'   => function (Constraint $constraint): SelfDescribing {
                 return self::logicalNot($constraint);
             },
             'expect' => 'fails to be a tree with apples having colors specified',
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'subject' => 'a tree',
+            'subject'    => 'a tree',
             'selectable' => 'apples',
-            'adjective' => 'having colors',
-            'operator' => function (Constraint $constraint): SelfDescribing {
+            'adjective'  => 'having colors',
+            'operator'   => function (Constraint $constraint): SelfDescribing {
                 return self::logicalOr($constraint);
             },
             'expect' => 'is a tree with apples having colors specified',
@@ -205,12 +206,11 @@ final class AbstractRecursiveConstraintTest extends TestCase
     }
 
     /**
-     * @psalm-param \Closure(TestCase $test):Operator $operator
-     *
      * @dataProvider provToStringInContext
      *
      * @param mixed $expect
      *
+     * @psalm-param \Closure(TestCase $test):Operator   $operator
      * @psalm-param \Closure(Constraint):SelfDescribing $operator
      */
     public function testToStringInContext(string $subject, string $selectable, string $adjective, \Closure $operator, $expect): void
@@ -218,23 +218,23 @@ final class AbstractRecursiveConstraintTest extends TestCase
         $valueSelector = $this->createMock(ValueSelectorInterface::class);
 
         $valueSelector->expects($this->any())
-                      ->method('subject')
-                      ->willReturn($subject)
-                  ;
+            ->method('subject')
+            ->willReturn($subject)
+        ;
 
         $valueSelector->expects($this->any())
-                      ->method('selectable')
-                      ->willReturn($selectable)
-                  ;
+            ->method('selectable')
+            ->willReturn($selectable)
+        ;
 
         $array = $this->createMock(\Traversable::class);
         $expected = new DummyArraySelectionOnly($valueSelector, $array);
 
         $comparator = $this->createMock(ComparatorInterface::class);
         $comparator->expects($this->any())
-                   ->method('adjective')
-                   ->willReturn($adjective)
-               ;
+            ->method('adjective')
+            ->willReturn($adjective)
+        ;
 
         $constraint = $this->createDummyConstraint($expected, $comparator);
 
@@ -349,8 +349,8 @@ final class AbstractRecursiveConstraintTest extends TestCase
 
         yield basename(__FILE__).':'.__LINE__ => [
             'constraint' => self::logicalNot($foo),
-            'args'   => [['foo' => 'FOO', 'bar' => 'BAR']],
-            'expect' => [
+            'args'       => [['foo' => 'FOO', 'bar' => 'BAR']],
+            'expect'     => [
                 'exception' => ExpectationFailedException::class,
                 'message'   => 'array fails to be an array with values identical to specified',
             ],
@@ -365,18 +365,20 @@ final class AbstractRecursiveConstraintTest extends TestCase
             ],
         ];
 
-
         yield basename(__FILE__).':'.__LINE__ => [
-            'constraint' => new class ($foo) extends UnaryOperator {
-                public function operator(): string {
+            'constraint' => new class($foo) extends UnaryOperator {
+                public function operator(): string
+                {
                     return '';
                 }
-                public function precedence(): int {
+
+                public function precedence(): int
+                {
                     return 0;
                 }
             },
-            'args'       => [['foo' => 'FOO', 'bar' => 'BAR']],
-            'expect'     => [
+            'args'   => [['foo' => 'FOO', 'bar' => 'BAR']],
+            'expect' => [
                 'exception' => ExpectationFailedException::class,
                 'message'   => 'is an array with values identical to specified',
             ],
@@ -388,8 +390,8 @@ final class AbstractRecursiveConstraintTest extends TestCase
      *
      * @param mixed $expect
      *
-     * @psalm-param Constraint $constraint
-     * @psalm-param non-empty-list                $args
+     * @psalm-param Constraint     $constraint
+     * @psalm-param non-empty-list $args
      */
     public function testEvaluate(Constraint $constraint, array $args, $expect): void
     {

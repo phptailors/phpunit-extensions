@@ -12,7 +12,6 @@ namespace Tailors\PHPUnit\Properties;
 
 use Tailors\PHPUnit\Result\ResultInterface;
 
-
 /**
  * @small
  *

@@ -27,7 +27,7 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ArrayLike   = iterable<array-key, mixed>
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
  */
 final class DummyArraySelectionTest extends TestCase
 {
@@ -80,15 +80,14 @@ final class DummyArraySelectionTest extends TestCase
             'array' => new \ArrayObject(['a' => 'A']),
         ];
 
-        yield basename(__file__).':'.__line__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'array' => [],
         ];
 
-        yield basename(__file__).':'.__line__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'array' => ['a' => 'A'],
         ];
     }
-
 
     /**
      * @dataProvider provDummyArraySelection

@@ -100,8 +100,9 @@ final class DummyArrayResultFactoryTest extends TestCase
                 function (iterable $input): array {
                     $array = is_array($input) ? $input : iterator_to_array($input);
                     ksort($array);
+
                     return $array;
-                }
+                },
             ],
             'args' => [false, [
                 'foo' => 'FOO',
@@ -109,7 +110,7 @@ final class DummyArrayResultFactoryTest extends TestCase
             ]],
             'expect' => [
                 'bar' => 'BAR',
-                'foo' => 'FOO'
+                'foo' => 'FOO',
             ],
         ];
     }

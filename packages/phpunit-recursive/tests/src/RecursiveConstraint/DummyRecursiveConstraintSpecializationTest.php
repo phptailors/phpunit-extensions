@@ -21,8 +21,6 @@ use PHPUnit\Framework\TestCase;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ArrayLike   = iterable<array-key, mixed>
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
  */
-final class DummyRecursiveConstraintSpecializationTest extends TestCase
-{
-}
+final class DummyRecursiveConstraintSpecializationTest extends TestCase {}

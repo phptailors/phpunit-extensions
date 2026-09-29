@@ -22,7 +22,7 @@ use Tailors\PHPUnit\Result\DummyResult;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ArrayLike   = iterable<array-key, mixed>
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
  */
 final class DummyResultFactoryTest extends TestCase
 {
@@ -45,36 +45,36 @@ final class DummyResultFactoryTest extends TestCase
     {
         yield basename(__FILE__).':'.__LINE__ => [
             'supports' => true,
-            'input' => null,
-            'actual' => false,
-            'expect' => [
+            'input'    => null,
+            'actual'   => false,
+            'expect'   => [
                 'supports' => true,
             ],
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
             'supports' => false,
-            'input' => null,
-            'actual' => false,
-            'expect' => [
+            'input'    => null,
+            'actual'   => false,
+            'expect'   => [
                 'supports' => false,
             ],
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
             'supports' => true,
-            'input' => null,
-            'actual' => true,
-            'expect' => [
+            'input'    => null,
+            'actual'   => true,
+            'expect'   => [
                 'supports' => true,
             ],
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
             'supports' => false,
-            'input' => null,
-            'actual' => true,
-            'expect' => [
+            'input'    => null,
+            'actual'   => true,
+            'expect'   => [
                 'supports' => false,
             ],
         ];
@@ -83,7 +83,7 @@ final class DummyResultFactoryTest extends TestCase
             'supports' => function ($input): bool {
                 return is_array($input);
             },
-            'input' => [],
+            'input'  => [],
             'actual' => false,
             'expect' => [
                 'supports' => true,
@@ -94,7 +94,7 @@ final class DummyResultFactoryTest extends TestCase
             'supports' => function ($input): bool {
                 return is_array($input);
             },
-            'input' => null,
+            'input'  => null,
             'actual' => false,
             'expect' => [
                 'supports' => false,
@@ -106,10 +106,10 @@ final class DummyResultFactoryTest extends TestCase
      * @dataProvider provDummyResultFactory
      *
      * @param bool|\Closure $supports
-     * @param mixed $input
+     * @param mixed         $input
      *
      * @psalm-param bool|\Closure(mixed):bool $supports
-     * @psalm-param array{supports: mixed} $expect
+     * @psalm-param array{supports: mixed}    $expect
      */
     public function testDummyResultFactory($supports, $input, bool $actual, array $expect): void
     {

@@ -16,9 +16,9 @@ use Tailors\PHPUnit\Result\ResultInterface;
  * @small
  *
  * @covers \Tailors\PHPUnit\Arrays\AbstractArrayValues
- * @covers \Tailors\PHPUnit\Arrays\ExpectedArrayValues
- * @covers \Tailors\PHPUnit\Arrays\ArrayValuesTestCase
  * @covers \Tailors\PHPUnit\Arrays\AbstractArrayValuesTestCase
+ * @covers \Tailors\PHPUnit\Arrays\ArrayValuesTestCase
+ * @covers \Tailors\PHPUnit\Arrays\ExpectedArrayValues
  *
  * @internal This class is not covered by the backward compatibility promise
  *

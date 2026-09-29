@@ -124,26 +124,26 @@ final class RecursiveResultFactoryTest extends TestCase
     public static function provSupports(): iterable
     {
         yield basename(__FILE__).':'.__LINE__ => [
-            'array' => [],
-            'input' => null,
+            'array'  => [],
+            'input'  => null,
             'expect' => false,
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'array' => [],
-            'input' => '',
+            'array'  => [],
+            'input'  => '',
             'expect' => false,
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'array' => [],
-            'input' => new \ArrayObject(),
+            'array'  => [],
+            'input'  => new \ArrayObject(),
             'expect' => false,
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'array' => [],
-            'input' => [],
+            'array'  => [],
+            'input'  => [],
             'expect' => true,
         ];
     }

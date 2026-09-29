@@ -399,7 +399,6 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
             ],
             'result' => null,
         ];
-
     }
 
     /**
@@ -539,7 +538,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
                     'node' => [
                         'foo' => 'FOO',
                         'bar' => 'BAR',
-                        'baz' => 'BAZ'
+                        'baz' => 'BAZ',
                     ],
                 ],
                 'return' => true,
@@ -711,10 +710,10 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
             'result' => new DummyArrayResult(false, [
                 'foo' => [
                     'qux' => new DummyArrayResult(false, [
-                        'cez' => 'CEZ'
+                        'cez' => 'CEZ',
                     ]),
                 ],
-                'bar' => new DummyArrayResult(false, [ 'baz' => 'BAZ' ]),
+                'bar' => new DummyArrayResult(false, ['baz' => 'BAZ']),
             ]),
         ];
 
@@ -734,8 +733,8 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         ]);
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'array' => $a06,
+            'ctor'   => [],
+            'array'  => $a06,
             'result' => $a06,
         ];
 
@@ -746,8 +745,8 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         $f07 = new DummyResultFactory(false); // does not support anything (including iterable)
         $s07 = new DummyValueSelector(true);  // select everything from array (but it's unimportant here)
 
-        $bar07 =  new DummyArraySelection($f07, $s07, ['baz' => 'BAZ']);
-        $qux07 =  new DummyArraySelection($f07, $s07, ['cez' => 'CEZ']);
+        $bar07 = new DummyArraySelection($f07, $s07, ['baz' => 'BAZ']);
+        $qux07 = new DummyArraySelection($f07, $s07, ['cez' => 'CEZ']);
 
         $a07 = new DummyArraySelection(new DummyArrayResultFactory(), $s07, [
             'foo' => [
@@ -757,8 +756,8 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         ]);
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'array' => $a07,
+            'ctor'   => [],
+            'array'  => $a07,
             'result' => new DummyArrayResult(false, [
                 'foo' => [
                     'qux' => $qux07,
@@ -774,8 +773,8 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         $f08 = new DummyResultFactory(true); // supports everything but returns non-array result (including iterable)
         $s08 = new DummyValueSelector(true);  // select everything from array (but it's unimportant here)
 
-        $bar08 =  new DummyArraySelection($f08, $s08, ['baz' => 'BAZ']);
-        $qux08 =  new DummyArraySelection($f08, $s08, ['cez' => 'CEZ']);
+        $bar08 = new DummyArraySelection($f08, $s08, ['baz' => 'BAZ']);
+        $qux08 = new DummyArraySelection($f08, $s08, ['cez' => 'CEZ']);
 
         $a08 = new DummyArraySelection(new DummyArrayResultFactory(), $s08, [
             'foo' => [
@@ -785,8 +784,8 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         ]);
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'array' => $a08,
+            'ctor'   => [],
+            'array'  => $a08,
             'result' => new DummyArrayResult(false, [
                 'foo' => [
                     'qux' => $qux08,

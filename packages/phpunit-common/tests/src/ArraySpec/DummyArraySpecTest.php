@@ -12,8 +12,8 @@ namespace Tailors\PHPUnit\ArraySpec;
 
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\ResultFactory\DummyResultFactory;
-use Tailors\PHPUnit\ResultFactory\ResultFactoryWrapperInterface;
 use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
+use Tailors\PHPUnit\ResultFactory\ResultFactoryWrapperInterface;
 
 /**
  * @small
@@ -24,7 +24,7 @@ use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ArrayLike   = iterable<array-key, mixed>
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
  */
 final class DummyArraySpecTest extends TestCase
 {
@@ -67,15 +67,14 @@ final class DummyArraySpecTest extends TestCase
             'array' => new \ArrayObject(['a' => 'A']),
         ];
 
-        yield basename(__file__).':'.__line__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'array' => [],
         ];
 
-        yield basename(__file__).':'.__line__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'array' => ['a' => 'A'],
         ];
     }
-
 
     /**
      * @dataProvider provDummyArraySpec

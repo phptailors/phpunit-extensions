@@ -85,6 +85,7 @@ final class RecursiveExpectedResultFactoryVisitor implements RecursiveExpectedRe
             }
 
             $this->current = $result;
+
             return true;
         }
 
@@ -93,6 +94,7 @@ final class RecursiveExpectedResultFactoryVisitor implements RecursiveExpectedRe
         }
 
         $this->current = $node;
+
         return true;
     }
 

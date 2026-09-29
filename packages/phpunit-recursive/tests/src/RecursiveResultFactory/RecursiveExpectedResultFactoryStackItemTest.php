@@ -89,9 +89,9 @@ final class RecursiveExpectedResultFactoryStackItemTest extends TestCase
             'ctor'   => [['n' => 'N'], null, ['r' => 'R']],
             'value'  => 'V',
             'expect' => [
-                'node'    => ['n' => 'N'],
-                'key'     => null,
-                'result'  => ['r' => 'R', null => 'V'],
+                'node'   => ['n' => 'N'],
+                'key'    => null,
+                'result' => ['r' => 'R', null => 'V'],
             ],
         ];
 
@@ -103,9 +103,9 @@ final class RecursiveExpectedResultFactoryStackItemTest extends TestCase
             'ctor'   => [['n' => 'N'], 'v', ['r' => 'R']],
             'value'  => 'V',
             'expect' => [
-                'node'    => ['n' => 'N'],
-                'key'     => 'v',
-                'result'  => ['r' => 'R', 'v' => 'V'],
+                'node'   => ['n' => 'N'],
+                'key'    => 'v',
+                'result' => ['r' => 'R', 'v' => 'V'],
             ],
         ];
 
@@ -118,9 +118,9 @@ final class RecursiveExpectedResultFactoryStackItemTest extends TestCase
             'ctor'   => [$n03, 'v', ['v' => null, 'r' => 'R']],
             'value'  => 'V',
             'expect' => [
-                'node'    => $n03,
-                'key'     => 'v',
-                'result'  => ['v' => 'V', 'r' => 'R'],
+                'node'   => $n03,
+                'key'    => 'v',
+                'result' => ['v' => 'V', 'r' => 'R'],
             ],
         ];
     }

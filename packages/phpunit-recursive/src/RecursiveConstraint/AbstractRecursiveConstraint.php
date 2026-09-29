@@ -153,7 +153,7 @@ abstract class AbstractRecursiveConstraint extends Constraint
     final protected function toStringInContext(Operator $operator, $role): string
     {
         if ($operator instanceof LogicalNot) {
-            if ($this->expected instanceof  ValueSelectorWrapperInterface) {
+            if ($this->expected instanceof ValueSelectorWrapperInterface) {
                 $valueSelector = $this->expected->getValueSelector();
 
                 return sprintf(
