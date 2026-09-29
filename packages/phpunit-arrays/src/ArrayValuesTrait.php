@@ -10,8 +10,7 @@
 
 namespace Tailors\PHPUnit;
 
-use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
-use Tailors\PHPUnit\Arrays\ExpectedArrayValues;
+use Tailors\PHPUnit\Arrays\ArrayValuesSelection;
 
 /**
  * @psalm-type ArrayLike = iterable<array-key, mixed>
@@ -23,9 +22,9 @@ trait ArrayValuesTrait
      *
      * @psalm-param ArrayLike $array
      */
-    public static function arrayValues(iterable $array): ExpectedArrayValues
+    public static function arrayValues(iterable $array): ArrayValuesSelection
     {
-        return new ExpectedArrayValues($array);
+        return new ArrayValuesSelection($array);
     }
 }
 

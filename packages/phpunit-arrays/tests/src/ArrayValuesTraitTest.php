@@ -11,7 +11,7 @@
 namespace Tailors\PHPUnit;
 
 use PHPUnit\Framework\TestCase;
-use Tailors\PHPUnit\Arrays\ExpectedArrayValues;
+use Tailors\PHPUnit\Arrays\ArrayValuesSelection;
 
 /**
  * @small
@@ -60,8 +60,8 @@ final class ArrayValuesTraitTest extends TestCase
     public function testExpectedArrayValues(array $args, $expect): void
     {
         $values = self::arrayValues(...$args);
-        self::assertInstanceOf(ExpectedArrayValues::class, $values);
-        self::assertSame($expect, (array) $values);
+        self::assertInstanceOf(ArrayValuesSelection::class, $values);
+        self::assertSame($expect, iterator_to_array($values));
     }
 }
 
