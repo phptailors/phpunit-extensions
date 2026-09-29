@@ -11,7 +11,7 @@
 namespace Tailors\PHPUnit\RecursiveConstraint;
 
 use Tailors\PHPUnit\ArrayResult\ExpectedArrayResult;
-use Tailors\PHPUnit\ArraySpec\DummyValueSelectorAndResultFactoryWrapper;
+use Tailors\PHPUnit\ArraySpec\DummyResultFactoryAndValueSelectorWrapper;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\IdentityComparator;
 use Tailors\PHPUnit\InvalidArgumentException;
@@ -50,7 +50,7 @@ class ExampleRecursiveConstraint extends AbstractRecursiveConstraint
      */
     protected static function makeExpectations(iterable $expected): iterable
     {
-        return new DummyValueSelectorAndResultFactoryWrapper(
+        return new DummyResultFactoryAndValueSelectorWrapper(
             new DummyArrayResultFactory(),
             new DummyValueSelector(
                 function ($subject): bool {

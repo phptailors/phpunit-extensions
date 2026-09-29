@@ -21,7 +21,7 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\ArraySpec\DummyValueSelectorAndResultFactoryWrapper
+ * @covers \Tailors\PHPUnit\ArraySpec\DummyResultFactoryAndValueSelectorWrapper
  *
  * @internal This class is not covered by the backward compatibility promise
  *
@@ -29,16 +29,16 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  *
  * @psalm-type ArrayLike = iterable<array-key, mixed>
  */
-final class DummyValueSelectorAndResultFactoryWrapperTest extends TestCase
+final class DummyResultFactoryAndValueSelectorWrapperTest extends TestCase
 {
     /**
      * @psalm-param ArrayLike $array
      */
-    public static function createDummyValueSelectorAndResultFactoryWrapper(
+    public static function createDummyResultFactoryAndValueSelectorWrapper(
         iterable $array,
         ?ResultFactoryInterface $resultFactory = null,
         ?ValueSelectorInterface $valueSelector = null
-    ): DummyValueSelectorAndResultFactoryWrapper {
+    ): DummyResultFactoryAndValueSelectorWrapper {
         if (null === $resultFactory) {
             $resultFactory = new DummyResultFactory(false);
         }
@@ -47,22 +47,22 @@ final class DummyValueSelectorAndResultFactoryWrapperTest extends TestCase
             $valueSelector = new DummyValueSelector(false, false, '', '');
         }
 
-        return new DummyValueSelectorAndResultFactoryWrapper($resultFactory, $valueSelector, $array);
+        return new DummyResultFactoryAndValueSelectorWrapper($resultFactory, $valueSelector, $array);
     }
 
     public function testExtendsArrayObject(): void
     {
-        $this->assertInstanceOf(\ArrayObject::class, self::createDummyValueSelectorAndResultFactoryWrapper([]));
+        $this->assertInstanceOf(\ArrayObject::class, self::createDummyResultFactoryAndValueSelectorWrapper([]));
     }
 
     public function testImplementsResultFactoryWrapperInterface(): void
     {
-        $this->assertInstanceOf(ResultFactoryWrapperInterface::class, self::createDummyValueSelectorAndResultFactoryWrapper([]));
+        $this->assertInstanceOf(ResultFactoryWrapperInterface::class, self::createDummyResultFactoryAndValueSelectorWrapper([]));
     }
 
     public function testImplementsValueSelectorWrapperInterface(): void
     {
-        $this->assertInstanceOf(ValueSelectorWrapperInterface::class, self::createDummyValueSelectorAndResultFactoryWrapper([]));
+        $this->assertInstanceOf(ValueSelectorWrapperInterface::class, self::createDummyResultFactoryAndValueSelectorWrapper([]));
     }
 
     /**
@@ -70,7 +70,7 @@ final class DummyValueSelectorAndResultFactoryWrapperTest extends TestCase
      *      array: ArrayLike
      * }>
      */
-    public static function provDummyValueSelectorAndResultFactoryWrapper(): iterable
+    public static function provDummyResultFactoryAndValueSelectorWrapper(): iterable
     {
         yield basename(__FILE__).':'.__LINE__ => [
             'array' => new \ArrayObject(),
@@ -90,16 +90,16 @@ final class DummyValueSelectorAndResultFactoryWrapperTest extends TestCase
     }
 
     /**
-     * @dataProvider provDummyValueSelectorAndResultFactoryWrapper
+     * @dataProvider provDummyResultFactoryAndValueSelectorWrapper
      *
      * @psalm-param ArrayLike $array
      */
-    public function testDummyValueSelectorAndResultFactoryWrapper(iterable $array): void
+    public function testDummyResultFactoryAndValueSelectorWrapper(iterable $array): void
     {
         $resultFactory = $this->createMock(ResultFactoryInterface::class);
         $valueSelector = $this->createMock(ValueSelectorInterface::class);
 
-        $dummyWrapper = self::createDummyValueSelectorAndResultFactoryWrapper($array, $resultFactory, $valueSelector);
+        $dummyWrapper = self::createDummyResultFactoryAndValueSelectorWrapper($array, $resultFactory, $valueSelector);
 
         $this->assertSame($resultFactory, $dummyWrapper->getResultFactory());
         $this->assertSame($valueSelector, $dummyWrapper->getValueSelector());

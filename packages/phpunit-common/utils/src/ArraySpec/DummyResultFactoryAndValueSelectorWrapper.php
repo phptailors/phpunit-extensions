@@ -30,7 +30,7 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  *
  * @template-extends \ArrayObject<array-key,mixed>
  */
-final class DummyValueSelectorAndResultFactoryWrapper extends \ArrayObject implements ResultFactoryWrapperInterface, ValueSelectorWrapperInterface
+final class DummyResultFactoryAndValueSelectorWrapper extends \ArrayObject implements ResultFactoryWrapperInterface, ValueSelectorWrapperInterface
 {
     /**
      * @var ResultFactoryInterface
