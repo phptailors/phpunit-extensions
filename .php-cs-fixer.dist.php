@@ -12,6 +12,7 @@ $finder = PhpCsFixer\Finder::create()
     ->files()
     ->in(__DIR__ . '/packages/*/src')
     ->in(__DIR__ . '/packages/*/tests')
+    ->in(__DIR__ . '/packages/*/utils/src')
     ->name('*.php')
 ;
 

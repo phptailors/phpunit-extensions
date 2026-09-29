@@ -110,6 +110,18 @@ final class DummyRecursiveConstraintSpecialization
         $this->recursiveResultUnwrapper = $recursiveResultUnwrapper;
     }
 
+    public static function staticReset(): void
+    {
+        self::$defaultComparatorCompare = false;
+        self::$defaultComparatorAdjective = 'dummy';
+        self::$defaultResultFactory = null;
+        self::$validateExpectationsLastCall = null;
+        self::$makeComparatorLastCall = null;
+        self::$makeComparatorLastResult = null;
+        self::$makeExpectationsLastCall = null;
+        self::$makeExpectationsLastResult = null;
+    }
+
     /**
      * @psalm-param ArrayLike $expected
      */
@@ -142,19 +154,8 @@ final class DummyRecursiveConstraintSpecialization
         if (null === self::$defaultResultFactory) {
             self::$defaultResultFactory = new DummyArrayResultFactory();
         }
-        return self::$defaultResultFactory;
-    }
 
-    public static function staticReset(): void
-    {
-        self::$defaultComparatorCompare = false;
-        self::$defaultComparatorAdjective = 'dummy';
-        self::$defaultResultFactory = null;
-        self::$validateExpectationsLastCall = null;
-        self::$makeComparatorLastCall = null;
-        self::$makeComparatorLastResult = null;
-        self::$makeExpectationsLastCall = null;
-        self::$makeExpectationsLastResult = null;
+        return self::$defaultResultFactory;
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

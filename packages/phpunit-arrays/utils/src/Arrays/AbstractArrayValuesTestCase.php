@@ -17,8 +17,6 @@ use Tailors\PHPUnit\ArrayResult\AbstractArrayResultTestCase;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-abstract class AbstractArrayValuesTestCase extends AbstractArrayResultTestCase
-{
-}
+abstract class AbstractArrayValuesTestCase extends AbstractArrayResultTestCase {}
 
 // vim: syntax=php sw=4 ts=4 et:

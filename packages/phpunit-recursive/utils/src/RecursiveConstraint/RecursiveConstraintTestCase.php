@@ -57,7 +57,7 @@ abstract class RecursiveConstraintTestCase extends TestCase
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
      *
-     * @psalm-param array $args
+     * @psalm-param array                     $args
      * @psalm-param array{values: Constraint} $expect
      */
     final public function testCreateConstraint(array $args, array $expect): void
