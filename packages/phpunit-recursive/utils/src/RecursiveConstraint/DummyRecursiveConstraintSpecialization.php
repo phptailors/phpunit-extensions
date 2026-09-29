@@ -13,12 +13,10 @@ namespace Tailors\PHPUnit\RecursiveConstraint;
 use Tailors\PHPUnit\ArraySpec\DummyArraySpec;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\DummyComparator;
-use Tailors\PHPUnit\Comparator\IdentityComparator;
 use Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactoryInterface;
 use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapperInterface;
 use Tailors\PHPUnit\ResultFactory\DummyArrayResultFactory;
 use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
-use function Amp\Promise\wait;
 
 /**
  * @small

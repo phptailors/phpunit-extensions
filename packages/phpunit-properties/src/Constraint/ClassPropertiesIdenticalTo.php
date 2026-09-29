@@ -10,16 +10,12 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
-use Tailors\PHPUnit\ArrayResult\ArrayResultInterface;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\IdentityComparator;
 use Tailors\PHPUnit\Properties\ClassPropertiesSelection;
-use Tailors\PHPUnit\Properties\ExpectedClassProperties;
 use Tailors\PHPUnit\Properties\ValidateExpectationsTrait;
 use Tailors\PHPUnit\RecursiveConstraint\AbstractRecursiveConstraint;
 use Tailors\PHPUnit\RecursiveConstraint\RecursiveConstraintSpecializationTrait;
-use Tailors\PHPUnit\ValueSelector\ClassPropertySelector;
-use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
 
 /**
  * Constraint that accepts classes having properties identical to specified ones.

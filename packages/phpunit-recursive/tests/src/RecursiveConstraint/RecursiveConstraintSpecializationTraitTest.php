@@ -14,8 +14,6 @@ use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactory;
 use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapper;
-use Tailors\PHPUnit\ResultFactory\DummyArrayResultFactory;
-use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
 
 /**
  * @small

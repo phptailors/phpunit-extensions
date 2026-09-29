@@ -70,7 +70,7 @@ final class RecursiveResultFactoryTest extends TestCase
             ->willReturn(['out' => 'OUT'])
         ;
 
-        $this->assertSame(['out' => 'OUT'], $recursiveResultFactory->getExpectedResult(['foo' => 'FOO'], ['in' => 'IN']));
+        $this->assertSame(['out' => 'OUT'], $recursiveResultFactory->getExpectedResult(['foo' => 'FOO']));
     }
 
     /**
@@ -110,7 +110,7 @@ final class RecursiveResultFactoryTest extends TestCase
     {
         $recursiveResultFactory = RecursiveResultFactory::create();
 
-        $this->assertSame(['a' => 'A'], $recursiveResultFactory->getExpectedResult(['a' => 'A'], ['x' => 'X']));
+        $this->assertSame(['a' => 'A'], $recursiveResultFactory->getExpectedResult(['a' => 'A']));
         $this->assertSame(['x' => 'X'], $recursiveResultFactory->getActualResult(['a' => 'A'], ['x' => 'X']));
     }
 

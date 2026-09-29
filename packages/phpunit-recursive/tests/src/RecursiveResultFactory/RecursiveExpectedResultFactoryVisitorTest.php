@@ -14,7 +14,6 @@ use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
 use Tailors\PHPUnit\ArrayResult\ExpectedArrayResult;
 use Tailors\PHPUnit\ArraySpec\DummyArraySelection;
-use Tailors\PHPUnit\ArraySpec\DummyArraySelectionOnly;
 use Tailors\PHPUnit\ArraySpec\DummyArraySpec;
 use Tailors\PHPUnit\CircularDependencyException;
 use Tailors\PHPUnit\InternalErrorException;
