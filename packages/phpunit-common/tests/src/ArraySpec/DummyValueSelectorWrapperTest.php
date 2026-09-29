@@ -18,7 +18,7 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\ArraySpec\DummyArraySelectionOnly
+ * @covers \Tailors\PHPUnit\ArraySpec\DummyValueSelectorWrapper
  *
  * @internal This class is not covered by the backward compatibility promise
  *
@@ -26,30 +26,30 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  *
  * @psalm-type ArrayLike = iterable<array-key, mixed>
  */
-final class DummyArraySelectionOnlyTest extends TestCase
+final class DummyValueSelectorWrapperTest extends TestCase
 {
     /**
      * @psalm-param ArrayLike $array
      */
-    public static function createDummyArraySelectionOnly(
+    public static function createDummyValueSelectorWrapper(
         iterable $array,
         ?ValueSelectorInterface $valueSelector = null
-    ): DummyArraySelectionOnly {
+    ): DummyValueSelectorWrapper {
         if (null === $valueSelector) {
             $valueSelector = new DummyValueSelector(false, false, '', '');
         }
 
-        return new DummyArraySelectionOnly($valueSelector, $array);
+        return new DummyValueSelectorWrapper($valueSelector, $array);
     }
 
     public function testExtendsArrayObject(): void
     {
-        $this->assertInstanceOf(\ArrayObject::class, self::createDummyArraySelectionOnly([]));
+        $this->assertInstanceOf(\ArrayObject::class, self::createDummyValueSelectorWrapper([]));
     }
 
     public function testImplementsValueSelectorWrapperInterface(): void
     {
-        $this->assertInstanceOf(ValueSelectorWrapperInterface::class, self::createDummyArraySelectionOnly([]));
+        $this->assertInstanceOf(ValueSelectorWrapperInterface::class, self::createDummyValueSelectorWrapper([]));
     }
 
     /**
@@ -57,7 +57,7 @@ final class DummyArraySelectionOnlyTest extends TestCase
      *      array: ArrayLike
      * }>
      */
-    public static function provDummyArraySelectionOnly(): iterable
+    public static function provDummyValueSelectorWrapper(): iterable
     {
         yield basename(__FILE__).':'.__LINE__ => [
             'array' => new \ArrayObject(),
@@ -77,19 +77,19 @@ final class DummyArraySelectionOnlyTest extends TestCase
     }
 
     /**
-     * @dataProvider provDummyArraySelectionOnly
+     * @dataProvider provDummyValueSelectorWrapper
      *
      * @psalm-param ArrayLike $array
      */
-    public function testDummyArraySelectionOnly(iterable $array): void
+    public function testDummyValueSelectorWrapper(iterable $array): void
     {
         $valueSelector = $this->createMock(ValueSelectorInterface::class);
 
-        $dummyArraySelectionOnly = self::createDummyArraySelectionOnly($array, $valueSelector);
+        $dummyValueSelectorWrapper = self::createDummyValueSelectorWrapper($array, $valueSelector);
 
-        $this->assertSame($valueSelector, $dummyArraySelectionOnly->getValueSelector());
+        $this->assertSame($valueSelector, $dummyValueSelectorWrapper->getValueSelector());
 
         $expect = is_array($array) ? $array : iterator_to_array($array);
-        $this->assertSame($expect, iterator_to_array($dummyArraySelectionOnly));
+        $this->assertSame($expect, iterator_to_array($dummyValueSelectorWrapper));
     }
 }

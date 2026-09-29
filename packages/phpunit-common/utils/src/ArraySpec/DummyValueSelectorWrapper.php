@@ -25,7 +25,7 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  *
  * @template-extends \ArrayObject<array-key,mixed>
  */
-final class DummyArraySelectionOnly extends \ArrayObject implements ValueSelectorWrapperInterface
+final class DummyValueSelectorWrapper extends \ArrayObject implements ValueSelectorWrapperInterface
 {
     /**
      * @var ValueSelectorInterface

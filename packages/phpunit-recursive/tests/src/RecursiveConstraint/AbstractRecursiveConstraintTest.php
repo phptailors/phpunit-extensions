@@ -11,13 +11,12 @@
 namespace Tailors\PHPUnit\RecursiveConstraint;
 
 use PHPUnit\Framework\Constraint\Constraint;
-use PHPUnit\Framework\Constraint\Operator;
 use PHPUnit\Framework\Constraint\UnaryOperator;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\SelfDescribing;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\ArraySpec\DummyArraySelection;
-use Tailors\PHPUnit\ArraySpec\DummyArraySelectionOnly;
+use Tailors\PHPUnit\ArraySpec\DummyValueSelectorWrapper;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\EqualityComparator;
 use Tailors\PHPUnit\Comparator\IdentityComparator;
@@ -151,7 +150,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
             ->willReturn('apples')
         ;
 
-        $expected = new DummyArraySelectionOnly($valueSelector, $this->createMock(\Traversable::class));
+        $expected = new DummyValueSelectorWrapper($valueSelector, $this->createMock(\Traversable::class));
 
         $comparator->expects($this->once())
             ->method('adjective')
@@ -210,7 +209,6 @@ final class AbstractRecursiveConstraintTest extends TestCase
      *
      * @param mixed $expect
      *
-     * @psalm-param \Closure(TestCase $test):Operator   $operator
      * @psalm-param \Closure(Constraint):SelfDescribing $operator
      */
     public function testToStringInContext(string $subject, string $selectable, string $adjective, \Closure $operator, $expect): void
@@ -228,7 +226,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
         ;
 
         $array = $this->createMock(\Traversable::class);
-        $expected = new DummyArraySelectionOnly($valueSelector, $array);
+        $expected = new DummyValueSelectorWrapper($valueSelector, $array);
 
         $comparator = $this->createMock(ComparatorInterface::class);
         $comparator->expects($this->any())

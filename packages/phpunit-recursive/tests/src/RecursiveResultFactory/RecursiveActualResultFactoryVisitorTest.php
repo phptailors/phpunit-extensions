@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
 use Tailors\PHPUnit\ArrayResult\ExpectedArrayResult;
 use Tailors\PHPUnit\ArraySpec\DummyArraySelection;
-use Tailors\PHPUnit\ArraySpec\DummyArraySelectionOnly;
+use Tailors\PHPUnit\ArraySpec\DummyValueSelectorWrapper;
 use Tailors\PHPUnit\ArraySpec\DummyArraySpec;
 use Tailors\PHPUnit\CircularDependencyException;
 use Tailors\PHPUnit\InternalErrorException;
@@ -1134,7 +1134,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [],
             'begin'  => [$a11],
-            'array'  => new DummyArraySelectionOnly($s11, [
+            'array'  => new DummyValueSelectorWrapper($s11, [
                 'foo' => 'UNIMPORTANT',
                 'baz' => 'UNIMPORTANT',
             ]),
