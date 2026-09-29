@@ -15,7 +15,7 @@ use PHPUnit\Framework\Constraint\UnaryOperator;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\SelfDescribing;
 use PHPUnit\Framework\TestCase;
-use Tailors\PHPUnit\ArraySpec\DummyArraySelection;
+use Tailors\PHPUnit\ArraySpec\DummyValueSelectorAndResultFactoryWrapper;
 use Tailors\PHPUnit\ArraySpec\DummyValueSelectorWrapper;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\EqualityComparator;
@@ -98,7 +98,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
         );
 
         return DummyAbstractRecursiveConstraint::create(
-            new DummyArraySelection($resultFactory, $valueSelector, $expected),
+            new DummyValueSelectorAndResultFactoryWrapper($resultFactory, $valueSelector, $expected),
             $comparator,
             new RecursiveResultFactory(
                 new RecursiveExpectedResultFactoryVisitor(),

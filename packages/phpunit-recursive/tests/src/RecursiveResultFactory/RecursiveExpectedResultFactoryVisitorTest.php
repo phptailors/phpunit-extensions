@@ -13,8 +13,8 @@ namespace Tailors\PHPUnit\RecursiveResultFactory;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
 use Tailors\PHPUnit\ArrayResult\ExpectedArrayResult;
-use Tailors\PHPUnit\ArraySpec\DummyArraySelection;
 use Tailors\PHPUnit\ArraySpec\DummyResultFactoryWrapper;
+use Tailors\PHPUnit\ArraySpec\DummyValueSelectorAndResultFactoryWrapper;
 use Tailors\PHPUnit\CircularDependencyException;
 use Tailors\PHPUnit\InternalErrorException;
 use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapper;
@@ -143,7 +143,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         //
         // 02
         //
-        $e02 = new DummyArraySelection(
+        $e02 = new DummyValueSelectorAndResultFactoryWrapper(
             new DummyArrayResultFactory(),
             new DummyValueSelector(false),
             ['foo' => 'FOO']
@@ -166,7 +166,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         // 03
         //
 
-        $e03 = new DummyArraySelection(
+        $e03 = new DummyValueSelectorAndResultFactoryWrapper(
             new DummyArrayResultFactory(),
             new DummyValueSelector(true),
             ['foo' => 'FOO']
@@ -214,8 +214,8 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         $f05 = new DummyArrayResultFactory();
         $s05 = new DummyValueSelector(false);
 
-        $e05 = new DummyArraySelection($f05, $s05, [
-            'foo' => new DummyArraySelection($f05, $s05, [
+        $e05 = new DummyValueSelectorAndResultFactoryWrapper($f05, $s05, [
+            'foo' => new DummyValueSelectorAndResultFactoryWrapper($f05, $s05, [
                 'bar' => ['BAR'],
             ]),
         ]);
@@ -259,9 +259,9 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         $f06 = new DummyArrayResultFactory();
         $s06 = new DummyValueSelector(false);
 
-        $e06 = new DummyArraySelection($f06, $s06, [
+        $e06 = new DummyValueSelectorAndResultFactoryWrapper($f06, $s06, [
             'foo' => [
-                'bar' => new DummyArraySelection($f06, $s06, [
+                'bar' => new DummyValueSelectorAndResultFactoryWrapper($f06, $s06, [
                     'BAR',
                 ]),
             ],
@@ -306,7 +306,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         $f07 = new DummyArrayResultFactory();
         $s07 = new DummyValueSelector(false);
 
-        $e07 = new DummyArraySelection($f07, $s07, [
+        $e07 = new DummyValueSelectorAndResultFactoryWrapper($f07, $s07, [
             'foo' => [
                 'bar' => [
                     'baz' => [],
@@ -358,7 +358,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         // 08
         //
 
-        $e08 = new DummyArraySelection(
+        $e08 = new DummyValueSelectorAndResultFactoryWrapper(
             new DummyResultFactory(false), // does not support anything (including iterable)
             new DummyValueSelector(true),  // select everything from array (but it's unimportant here)
             []
@@ -381,7 +381,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         // 09
         //
 
-        $e09 = new DummyArraySelection(
+        $e09 = new DummyValueSelectorAndResultFactoryWrapper(
             new DummyResultFactory(true), // supports everything, but returns non-array result
             new DummyValueSelector(true), // select everything from array (but it's unimportant here)
             []
@@ -484,7 +484,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         $f02 = new DummyArrayResultFactory();
         $s02 = new DummyValueSelector(false);
 
-        $e02 = new DummyArraySelection($f02, $s02, [
+        $e02 = new DummyValueSelectorAndResultFactoryWrapper($f02, $s02, [
             'foo' => 'FOO',
             'bar' => 'BAR',
             'gez' => 'GEZ',
@@ -647,7 +647,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
 
         yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [],
-            'array'  => new DummyArraySelection($f01, $s01, []),
+            'array'  => new DummyValueSelectorAndResultFactoryWrapper($f01, $s01, []),
             'result' => new DummyArrayResult(false, []),
         ];
 
@@ -660,7 +660,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
 
         yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [],
-            'array'  => new DummyArraySelection($f03, $s03, [
+            'array'  => new DummyValueSelectorAndResultFactoryWrapper($f03, $s03, [
                 'foo' => 'FOO',
                 'bar' => 'BAR',
             ]),
@@ -680,7 +680,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
 
         yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [],
-            'array'  => new DummyArraySelection($f04, $s04, [
+            'array'  => new DummyValueSelectorAndResultFactoryWrapper($f04, $s04, [
                 'foo' => ['FOO'],
                 'bar' => $b04,
             ]),
@@ -699,13 +699,13 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
 
         yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [],
-            'array'  => new DummyArraySelection($f05, $s05, [
+            'array'  => new DummyValueSelectorAndResultFactoryWrapper($f05, $s05, [
                 'foo' => [
-                    'qux' => new DummyArraySelection($f05, $s05, [
+                    'qux' => new DummyValueSelectorAndResultFactoryWrapper($f05, $s05, [
                         'cez' => 'CEZ',
                     ]),
                 ],
-                'bar' => new DummyArraySelection($f05, $s05, ['baz' => 'BAZ']),
+                'bar' => new DummyValueSelectorAndResultFactoryWrapper($f05, $s05, ['baz' => 'BAZ']),
             ]),
             'result' => new DummyArrayResult(false, [
                 'foo' => [
@@ -723,13 +723,13 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
 
         $f06 = new DummyResultFactory(false); // does not support anything (including iterable)
         $s06 = new DummyValueSelector(true);  // select everything from array (but it's unimportant here)
-        $a06 = new DummyArraySelection($f06, $s06, [
+        $a06 = new DummyValueSelectorAndResultFactoryWrapper($f06, $s06, [
             'foo' => [
-                'qux' => new DummyArraySelection($f06, $s06, [
+                'qux' => new DummyValueSelectorAndResultFactoryWrapper($f06, $s06, [
                     'cez' => 'CEZ',
                 ]),
             ],
-            'bar' => new DummyArraySelection($f06, $s06, ['baz' => 'BAZ']),
+            'bar' => new DummyValueSelectorAndResultFactoryWrapper($f06, $s06, ['baz' => 'BAZ']),
         ]);
 
         yield basename(__FILE__).':'.__LINE__ => [
@@ -745,10 +745,10 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         $f07 = new DummyResultFactory(false); // does not support anything (including iterable)
         $s07 = new DummyValueSelector(true);  // select everything from array (but it's unimportant here)
 
-        $bar07 = new DummyArraySelection($f07, $s07, ['baz' => 'BAZ']);
-        $qux07 = new DummyArraySelection($f07, $s07, ['cez' => 'CEZ']);
+        $bar07 = new DummyValueSelectorAndResultFactoryWrapper($f07, $s07, ['baz' => 'BAZ']);
+        $qux07 = new DummyValueSelectorAndResultFactoryWrapper($f07, $s07, ['cez' => 'CEZ']);
 
-        $a07 = new DummyArraySelection(new DummyArrayResultFactory(), $s07, [
+        $a07 = new DummyValueSelectorAndResultFactoryWrapper(new DummyArrayResultFactory(), $s07, [
             'foo' => [
                 'qux' => $qux07,
             ],
@@ -773,10 +773,10 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         $f08 = new DummyResultFactory(true); // supports everything but returns non-array result (including iterable)
         $s08 = new DummyValueSelector(true);  // select everything from array (but it's unimportant here)
 
-        $bar08 = new DummyArraySelection($f08, $s08, ['baz' => 'BAZ']);
-        $qux08 = new DummyArraySelection($f08, $s08, ['cez' => 'CEZ']);
+        $bar08 = new DummyValueSelectorAndResultFactoryWrapper($f08, $s08, ['baz' => 'BAZ']);
+        $qux08 = new DummyValueSelectorAndResultFactoryWrapper($f08, $s08, ['cez' => 'CEZ']);
 
-        $a08 = new DummyArraySelection(new DummyArrayResultFactory(), $s08, [
+        $a08 = new DummyValueSelectorAndResultFactoryWrapper(new DummyArrayResultFactory(), $s08, [
             'foo' => [
                 'qux' => $qux08,
             ],

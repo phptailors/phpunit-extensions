@@ -13,8 +13,8 @@ namespace Tailors\PHPUnit\RecursiveResultFactory;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
 use Tailors\PHPUnit\ArrayResult\ExpectedArrayResult;
-use Tailors\PHPUnit\ArraySpec\DummyArraySelection;
 use Tailors\PHPUnit\ArraySpec\DummyResultFactoryWrapper;
+use Tailors\PHPUnit\ArraySpec\DummyValueSelectorAndResultFactoryWrapper;
 use Tailors\PHPUnit\ArraySpec\DummyValueSelectorWrapper;
 use Tailors\PHPUnit\CircularDependencyException;
 use Tailors\PHPUnit\InternalErrorException;
@@ -147,7 +147,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         //
         // 02
         //
-        $e02 = new DummyArraySelection(
+        $e02 = new DummyValueSelectorAndResultFactoryWrapper(
             new DummyArrayResultFactory(),
             new DummyValueSelector(false),
             ['unimportant' => 'UNIMPORTANT']
@@ -171,7 +171,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         // 03
         //
 
-        $e03 = new DummyArraySelection(
+        $e03 = new DummyValueSelectorAndResultFactoryWrapper(
             new DummyArrayResultFactory(),
             new DummyValueSelector(true),
             ['unimportant' => 'UNIMPORTANT']
@@ -241,8 +241,8 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         $f05 = new DummyArrayResultFactory();
         $s05 = self::getArrayObjectSelector();
 
-        $e05 = new DummyArraySelection($f05, $s05, [
-            'foo' => new DummyArraySelection($f05, $s05, [
+        $e05 = new DummyValueSelectorAndResultFactoryWrapper($f05, $s05, [
+            'foo' => new DummyValueSelectorAndResultFactoryWrapper($f05, $s05, [
                 'bar' => ['unimportant'],
             ]),
         ]);
@@ -293,8 +293,8 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         $f06 = new DummyArrayResultFactory();
         $s06 = self::getArrayObjectSelector();
 
-        $e06 = new DummyArraySelection($f06, $s06, [
-            'foo' => new DummyArraySelection($f06, $s06, [
+        $e06 = new DummyValueSelectorAndResultFactoryWrapper($f06, $s06, [
+            'foo' => new DummyValueSelectorAndResultFactoryWrapper($f06, $s06, [
                 'bar' => ['unimportant'],
             ]),
         ]);
@@ -344,9 +344,9 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         $f07 = new DummyArrayResultFactory();
         $s07 = self::getArrayObjectSelector();
 
-        $e07 = new DummyArraySelection($f07, $s07, [
+        $e07 = new DummyValueSelectorAndResultFactoryWrapper($f07, $s07, [
             'foo' => [
-                'bar' => new DummyArraySelection($f07, $s07, [
+                'bar' => new DummyValueSelectorAndResultFactoryWrapper($f07, $s07, [
                     'unimportant',
                 ]),
             ],
@@ -398,7 +398,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         $f08 = new DummyArrayResultFactory();
         $s08 = self::getArrayObjectSelector();
 
-        $e08 = new DummyArraySelection($f08, $s08, [
+        $e08 = new DummyValueSelectorAndResultFactoryWrapper($f08, $s08, [
             'foo' => [
                 'bar' => [
                     'baz' => [],
@@ -539,7 +539,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         $f02 = new DummyArrayResultFactory();
         $s02 = self::getArrayObjectSelector();
 
-        $e02 = new DummyArraySelection($f02, $s02, [
+        $e02 = new DummyValueSelectorAndResultFactoryWrapper($f02, $s02, [
             'foo' => 'unimportant',
             'bar' => 'unimportant',
             'gez' => 'unimportant',
@@ -643,7 +643,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
 
             return true;
         });
-        $e04 = new DummyArraySelection($f04, $s04, [
+        $e04 = new DummyValueSelectorAndResultFactoryWrapper($f04, $s04, [
             'foo' => 'UNIMPORTANT',
             'bar' => 'UNIMPORTANT',
         ]);
@@ -747,7 +747,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [],
             'begin'  => ['FOO'],
-            'array'  => new DummyArraySelection($f01, $s01, []),
+            'array'  => new DummyValueSelectorAndResultFactoryWrapper($f01, $s01, []),
             'result' => 'FOO',
         ];
 
@@ -761,7 +761,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [],
             'begin'  => [new \ArrayObject([])],
-            'array'  => new DummyArraySelection($f02, $s02, []),
+            'array'  => new DummyValueSelectorAndResultFactoryWrapper($f02, $s02, []),
             'result' => new DummyArrayResult(true, []),
         ];
 
@@ -782,7 +782,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
                     'yyy' => 'YYY',
                 ]),
             ],
-            'array'  => new DummyArraySelection($f03, $s03, [
+            'array'  => new DummyValueSelectorAndResultFactoryWrapper($f03, $s03, [
                 'foo' => 'unimportant',
                 'bar' => 'unimportant',
             ]),
@@ -809,7 +809,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
                     'yyy' => 'YYY',
                 ]),
             ],
-            'array'  => new DummyArraySelection($f04, $s04, [
+            'array'  => new DummyValueSelectorAndResultFactoryWrapper($f04, $s04, [
                 'foo' => ['unimportant'],
                 'bar' => new ExpectedArrayResult([]),
             ]),
@@ -839,13 +839,13 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
                     'yyy' => 'YYY',
                 ]),
             ],
-            'array'  => new DummyArraySelection($f05, $s05, [
+            'array'  => new DummyValueSelectorAndResultFactoryWrapper($f05, $s05, [
                 'foo' => [
-                    'qux' => new DummyArraySelection($f05, $s05, [
+                    'qux' => new DummyValueSelectorAndResultFactoryWrapper($f05, $s05, [
                         'cez' => 'unimportant',
                     ]),
                 ],
-                'bar' => new DummyArraySelection($f05, $s05, ['unimportant']),
+                'bar' => new DummyValueSelectorAndResultFactoryWrapper($f05, $s05, ['unimportant']),
             ]),
             'result' => new DummyArrayResult(true, [
                 'foo' => [
@@ -884,16 +884,16 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
                     'yyy' => 'YYY',
                 ]),
             ],
-            'array'  => new DummyArraySelection($f06, $s06, [
+            'array'  => new DummyValueSelectorAndResultFactoryWrapper($f06, $s06, [
                 'foo' => [
-                    'gez' => new DummyArraySelection($f06, $s06, [
+                    'gez' => new DummyValueSelectorAndResultFactoryWrapper($f06, $s06, [
                         'kik' => 'unimportant',
                     ]),
-                    'qux' => new DummyArraySelection($f06, $s06, [
+                    'qux' => new DummyValueSelectorAndResultFactoryWrapper($f06, $s06, [
                         'cez' => 'unimportant',
                     ]),
                 ],
-                'bar' => new DummyArraySelection($f06, $s06, ['unimportant']),
+                'bar' => new DummyValueSelectorAndResultFactoryWrapper($f06, $s06, ['unimportant']),
             ]),
             'result' => new DummyArrayResult(true, [
                 'foo' => [
@@ -924,7 +924,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [],
             'begin'  => [$o06],
-            'array'  => new DummyArraySelection($f07e, $s07e, [
+            'array'  => new DummyValueSelectorAndResultFactoryWrapper($f07e, $s07e, [
                 'message'  => 'unimportant',
                 'nonexist' => 'unimportant',
             ]),
@@ -934,7 +934,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [],
             'begin'  => [new \Exception('foo', 123)],
-            'array'  => new DummyArraySelection($f07e, $s07e, [
+            'array'  => new DummyValueSelectorAndResultFactoryWrapper($f07e, $s07e, [
                 'message'  => 'unimportant',
                 'nonexist' => 'unimportant',
             ]),
@@ -952,8 +952,8 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
                     'd' => 'D',
                 ]),
             ],
-            'array'  => new DummyArraySelection($f07a, $s07a, [
-                'e' => new DummyArraySelection($f07e, $s07e, [
+            'array'  => new DummyValueSelectorAndResultFactoryWrapper($f07a, $s07a, [
+                'e' => new DummyValueSelectorAndResultFactoryWrapper($f07e, $s07e, [
                     'message'  => 'unimportant',
                     'nonexist' => 'unimportant',
                 ]),
@@ -985,7 +985,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
                 ]),
             ],
             'array'  => new DummyResultFactoryWrapper($f08a, [
-                'e' => new DummyArraySelection($f08e, $s08e, [
+                'e' => new DummyValueSelectorAndResultFactoryWrapper($f08e, $s08e, [
                     'message'  => 'unimportant',
                     'nonexist' => 'unimportant',
                 ]),
@@ -1027,7 +1027,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
             ],
             'array'  => new DummyResultFactoryWrapper($f09a, [
                 'x' => 'UNIMPORTANT',
-                'e' => new DummyArraySelection($f09e, $s09e, [
+                'e' => new DummyValueSelectorAndResultFactoryWrapper($f09e, $s09e, [
                     'message'  => 'unimportant',
                     'nonexist' => 'unimportant',
                     'code'     => 'unimportant',
@@ -1069,7 +1069,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [],
             'begin'  => [['cez' => 'CEZ']],
-            'array'  => new DummyArraySelection($f10a, $s10a, [
+            'array'  => new DummyValueSelectorAndResultFactoryWrapper($f10a, $s10a, [
                 'foo' => 'UNIMPORTANT',
                 'baz' => 'UNIMPORTANT',
             ]),
@@ -1079,7 +1079,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [],
             'begin'  => ['ns1'],
-            'array'  => new DummyArraySelection($f10a, $s10a, [
+            'array'  => new DummyValueSelectorAndResultFactoryWrapper($f10a, $s10a, [
                 'foo' => 'UNIMPORTANT',
                 'baz' => 'UNIMPORTANT',
             ]),
@@ -1091,7 +1091,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [],
             'begin'  => ['ns2'],
-            'array'  => new DummyArraySelection($f10a, $s10a, [
+            'array'  => new DummyValueSelectorAndResultFactoryWrapper($f10a, $s10a, [
                 'foo' => 'UNIMPORTANT',
                 'baz' => 'UNIMPORTANT',
             ]),
@@ -1103,8 +1103,8 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [],
             'begin'  => ['ns2'],
-            'array'  => new DummyArraySelection($f10a, $s10a, [
-                'gez' => new DummyArraySelection($f10b, $s10b, [
+            'array'  => new DummyValueSelectorAndResultFactoryWrapper($f10a, $s10a, [
+                'gez' => new DummyValueSelectorAndResultFactoryWrapper($f10b, $s10b, [
                     'cop' => 'UNIMPORTANT',
                     'qux' => ['UNIMPORTANT'],
                     'fix' => ['UNIMPORTANT'],

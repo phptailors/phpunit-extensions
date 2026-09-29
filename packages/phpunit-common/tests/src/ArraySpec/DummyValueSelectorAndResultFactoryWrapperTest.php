@@ -21,7 +21,7 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\ArraySpec\DummyArraySelection
+ * @covers \Tailors\PHPUnit\ArraySpec\DummyValueSelectorAndResultFactoryWrapper
  *
  * @internal This class is not covered by the backward compatibility promise
  *
@@ -29,16 +29,16 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  *
  * @psalm-type ArrayLike = iterable<array-key, mixed>
  */
-final class DummyArraySelectionTest extends TestCase
+final class DummyValueSelectorAndResultFactoryWrapperTest extends TestCase
 {
     /**
      * @psalm-param ArrayLike $array
      */
-    public static function createDummyArraySelection(
+    public static function createDummyValueSelectorAndResultFactoryWrapper(
         iterable $array,
         ?ResultFactoryInterface $resultFactory = null,
         ?ValueSelectorInterface $valueSelector = null
-    ): DummyArraySelection {
+    ): DummyValueSelectorAndResultFactoryWrapper {
         if (null === $resultFactory) {
             $resultFactory = new DummyResultFactory(false);
         }
@@ -47,22 +47,22 @@ final class DummyArraySelectionTest extends TestCase
             $valueSelector = new DummyValueSelector(false, false, '', '');
         }
 
-        return new DummyArraySelection($resultFactory, $valueSelector, $array);
+        return new DummyValueSelectorAndResultFactoryWrapper($resultFactory, $valueSelector, $array);
     }
 
     public function testExtendsArrayObject(): void
     {
-        $this->assertInstanceOf(\ArrayObject::class, self::createDummyArraySelection([]));
+        $this->assertInstanceOf(\ArrayObject::class, self::createDummyValueSelectorAndResultFactoryWrapper([]));
     }
 
     public function testImplementsResultFactoryWrapperInterface(): void
     {
-        $this->assertInstanceOf(ResultFactoryWrapperInterface::class, self::createDummyArraySelection([]));
+        $this->assertInstanceOf(ResultFactoryWrapperInterface::class, self::createDummyValueSelectorAndResultFactoryWrapper([]));
     }
 
     public function testImplementsValueSelectorWrapperInterface(): void
     {
-        $this->assertInstanceOf(ValueSelectorWrapperInterface::class, self::createDummyArraySelection([]));
+        $this->assertInstanceOf(ValueSelectorWrapperInterface::class, self::createDummyValueSelectorAndResultFactoryWrapper([]));
     }
 
     /**
@@ -70,7 +70,7 @@ final class DummyArraySelectionTest extends TestCase
      *      array: ArrayLike
      * }>
      */
-    public static function provDummyArraySelection(): iterable
+    public static function provDummyValueSelectorAndResultFactoryWrapper(): iterable
     {
         yield basename(__FILE__).':'.__LINE__ => [
             'array' => new \ArrayObject(),
@@ -90,21 +90,21 @@ final class DummyArraySelectionTest extends TestCase
     }
 
     /**
-     * @dataProvider provDummyArraySelection
+     * @dataProvider provDummyValueSelectorAndResultFactoryWrapper
      *
      * @psalm-param ArrayLike $array
      */
-    public function testDummyArraySelection(iterable $array): void
+    public function testDummyValueSelectorAndResultFactoryWrapper(iterable $array): void
     {
         $resultFactory = $this->createMock(ResultFactoryInterface::class);
         $valueSelector = $this->createMock(ValueSelectorInterface::class);
 
-        $arraySelection = self::createDummyArraySelection($array, $resultFactory, $valueSelector);
+        $dummyWrapper = self::createDummyValueSelectorAndResultFactoryWrapper($array, $resultFactory, $valueSelector);
 
-        $this->assertSame($resultFactory, $arraySelection->getResultFactory());
-        $this->assertSame($valueSelector, $arraySelection->getValueSelector());
+        $this->assertSame($resultFactory, $dummyWrapper->getResultFactory());
+        $this->assertSame($valueSelector, $dummyWrapper->getValueSelector());
 
         $expect = is_array($array) ? $array : iterator_to_array($array);
-        $this->assertSame($expect, iterator_to_array($arraySelection));
+        $this->assertSame($expect, iterator_to_array($dummyWrapper));
     }
 }
