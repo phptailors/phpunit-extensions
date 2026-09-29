@@ -151,7 +151,7 @@ trait ProvObjectPropertiesTrait
 
         yield basename(__FILE__).':'.__LINE__ => [
             'expect' => [
-                'persons' => [
+                'persons'  => [
                     $esmith,
                     $jsmith,
                 ],
@@ -312,10 +312,10 @@ trait ProvObjectPropertiesTrait
                 'last' => 'Smith',
                 'age'  => 21,
                 'wife' => [
-                    'name'    => 'Emily',
-                    'last'    => 'Smith',
-                    'age'     => 20,
-                    'husband' => [
+                    'name'        => 'Emily',
+                    'last'        => 'Smith',
+                    'age'         => 20,
+                    'husband'     => [
                         'name'        => 'John',
                         'last'        => 'Smith',
                         'age'         => 21,
@@ -340,7 +340,7 @@ trait ProvObjectPropertiesTrait
 
         yield basename(__FILE__).':'.__LINE__ => [
             'expect' => [
-                'persons' => [
+                'persons'  => [
                     ['name' => 'Emily', 'last' => 'Smith'],
                     ['name' => 'John', 'last' => 'Smith'],
                 ],
@@ -357,7 +357,7 @@ trait ProvObjectPropertiesTrait
 
         yield basename(__FILE__).':'.__LINE__ => [
             'expect' => [
-                'persons' => [
+                'persons'  => [
                     $esmith,
                     $jsmith,
                 ],

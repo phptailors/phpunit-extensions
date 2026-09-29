@@ -36,14 +36,14 @@ final class RecursiveVisitorUtilsTest extends TestCase
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'stack' => [
+            'stack'  => [
                 new DummyRecursiveVisitorStackItem([], 'foo'),
             ],
             'expect' => ['foo'],
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'stack' => [
+            'stack'  => [
                 new DummyRecursiveVisitorStackItem([], 'foo'),
                 new DummyRecursiveVisitorStackItem([], 'bar'),
                 new DummyRecursiveVisitorStackItem([], false),
@@ -78,14 +78,14 @@ final class RecursiveVisitorUtilsTest extends TestCase
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'stack' => [
+            'stack'  => [
                 new DummyRecursiveVisitorStackItem([], 'foo'),
             ],
             'expect' => "['foo']",
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'stack' => [
+            'stack'  => [
                 new DummyRecursiveVisitorStackItem([], 'foo'),
                 new DummyRecursiveVisitorStackItem([], 'bar'),
                 new DummyRecursiveVisitorStackItem([], false),

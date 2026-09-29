@@ -76,24 +76,24 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
     public static function provCycle(): iterable
     {
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [false],
-            'calls' => [
+            'ctor'   => [false],
+            'calls'  => [
                 [
-                    'args' => [
+                    'args'   => [
                         'node'  => [],
                         'stack' => [],
                     ],
                     'return' => false,
                 ],
                 [
-                    'args' => [
+                    'args'   => [
                         'node'  => new DummyArrayResult(false, []),
                         'stack' => [],
                     ],
                     'return' => false,
                 ],
                 [
-                    'args' => [
+                    'args'   => [
                         'node'  => new DummyArrayResult(true, []),
                         'stack' => [],
                     ],
@@ -104,24 +104,24 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [true],
-            'calls' => [
+            'ctor'   => [true],
+            'calls'  => [
                 [
-                    'args' => [
+                    'args'   => [
                         'node'  => [],
                         'stack' => [],
                     ],
                     'return' => false,
                 ],
                 [
-                    'args' => [
+                    'args'   => [
                         'node'  => new DummyArrayResult(false, []),
                         'stack' => [],
                     ],
                     'return' => false,
                 ],
                 [
-                    'args' => [
+                    'args'   => [
                         'node'  => new DummyArrayResult(true, []),
                         'stack' => [],
                     ],
@@ -171,7 +171,7 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
 
         $calls01 = [
             [
-                'args' => [
+                'args'   => [
                     'node' => [],
                 ],
                 'return' => true,
@@ -227,7 +227,7 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
         // __construct(false, ...) --> unwrapping only expected values
         $calls02e = [
             [
-                'args' => [
+                'args'   => [
                     'node' => new DummyArrayResult(false),
                 ],
                 'return' => true,
@@ -287,7 +287,7 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
         // __construct(true, ...) --> unwrapping only actual values
         $calls03a = [
             [
-                'args' => [
+                'args'   => [
                     'node' => new DummyArrayResult(true),
                 ],
                 'return' => true,
@@ -349,21 +349,21 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
         // __construct(false, ...) --> unwrapping only expected values
         $calls04e = [
             [
-                'args' => [
+                'args'   => [
                     'node' => $s04[0],
                 ],
                 'return' => true,
                 'next'   => 'foo',
             ],
             [
-                'args' => [
+                'args'   => [
                     'node' => $s04[1],
                 ],
                 'return' => true,
                 'next'   => 'bar',
             ],
             [
-                'args' => [
+                'args'   => [
                     'node' => $s04[2],
                 ],
                 'return' => true,
@@ -373,7 +373,7 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
         // __construct(true, ...) --> unwrapping only actual values
         $calls04a = [
             [
-                'args' => [
+                'args'   => [
                     'node' => $s04[0],
                 ],
                 'return' => false,
@@ -427,21 +427,21 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
         // __construct(false, ...) --> unwrapping only expected values
         $calls05e = [
             [
-                'args' => [
+                'args'   => [
                     'node' => $s05[0],
                 ],
                 'return' => true,
                 'next'   => 'foo',
             ],
             [
-                'args' => [
+                'args'   => [
                     'node' => $s05[1],
                 ],
                 'return' => true,
                 'next'   => 'bar',
             ],
             [
-                'args' => [
+                'args'   => [
                     'node' => $s05[2],
                 ],
                 'return' => false,
@@ -450,7 +450,7 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
 
         $calls05a = [
             [
-                'args' => [
+                'args'   => [
                     'node' => $s05[0],
                 ],
                 'return' => false,
@@ -492,21 +492,21 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
         // __construct(false, ...) --> unwrapping only expected values
         $calls06e = [
             [
-                'args' => [
+                'args'   => [
                     'node' => $s06[0],
                 ],
                 'return' => true,
                 'next'   => 'foo',
             ],
             [
-                'args' => [
+                'args'   => [
                     'node' => $s06[1],
                 ],
                 'return' => true,
                 'next'   => 'bar',
             ],
             [
-                'args' => [
+                'args'   => [
                     'node' => $s06[2],
                 ],
                 'return' => true,
@@ -515,7 +515,7 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
 
         $calls06a = [
             [
-                'args' => [
+                'args'   => [
                     'node' => $s06[0],
                 ],
                 'return' => false,
@@ -559,11 +559,11 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
         //
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'begin' => [false],
-            'calls' => [
+            'ctor'   => [],
+            'begin'  => [false],
+            'calls'  => [
                 [
-                    'args' => [
+                    'args'   => [
                         'node' => new DummyUntaggedArrayResult(false, []),
                     ],
                     'return' => true,
@@ -636,11 +636,11 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
         //
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'begin' => [false],
-            'root'  => [],
-            'iter'  => false,
-            'calls' => [
+            'ctor'   => [],
+            'begin'  => [false],
+            'root'   => [],
+            'iter'   => false,
+            'calls'  => [
                 [
                     'args' => [
                         'node' => [],
@@ -655,11 +655,11 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
         //
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'begin' => [false],
-            'root'  => [],
-            'iter'  => true,
-            'calls' => [
+            'ctor'   => [],
+            'begin'  => [false],
+            'root'   => [],
+            'iter'   => true,
+            'calls'  => [
                 [
                     'key'  => 'foo',
                     'args' => [
@@ -684,11 +684,11 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
         //
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'begin' => [true],
-            'root'  => new DummyArrayResult(true),
-            'iter'  => true,
-            'calls' => [
+            'ctor'   => [],
+            'begin'  => [true],
+            'root'   => new DummyArrayResult(true),
+            'iter'   => true,
+            'calls'  => [
                 [
                     'key'  => 'foo',
                     'args' => [
@@ -846,9 +846,9 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'begin' => [false],
-            'array' => new DummyArrayResult(false, [
+            'ctor'   => [],
+            'begin'  => [false],
+            'array'  => new DummyArrayResult(false, [
                 'foo' => 'FOO',
             ]),
             'result' => [
@@ -858,9 +858,9 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'begin' => [false],
-            'array' => new DummyArrayResult(false, [
+            'ctor'   => [],
+            'begin'  => [false],
+            'array'  => new DummyArrayResult(false, [
                 'foo' => 'FOO',
                 'bar' => [
                     'baz' => 'BAZ',
@@ -878,9 +878,9 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'begin' => [false],
-            'array' => new DummyArrayResult(false, [
+            'ctor'   => [],
+            'begin'  => [false],
+            'array'  => new DummyArrayResult(false, [
                 'foo' => 'FOO',
                 'bar' => new DummyArrayResult(false, [
                     'baz' => 'BAZ',
@@ -897,9 +897,9 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'begin' => [false],
-            'array' => new DummyArrayResult(false, [
+            'ctor'   => [],
+            'begin'  => [false],
+            'array'  => new DummyArrayResult(false, [
                 'foo' => 'FOO',
                 'bar' => new DummyArrayResult(false, [
                     'qux' => new DummyArrayResult(false, ['baz' => 'BAZ']),
@@ -913,7 +913,7 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
                         'baz' => 'BAZ',
                         $tagk => $tagd,
                     ],
-                    0 => [
+                    0     => [
                         'fred' => 'FRED',
                         $tagk  => $tagd,
                     ],
@@ -924,9 +924,9 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'begin' => [false],
-            'array' => new DummyArrayResult(false, [
+            'ctor'   => [],
+            'begin'  => [false],
+            'array'  => new DummyArrayResult(false, [
                 'foo' => 'FOO',
                 'bar' => $actualValues['[baz => BAZ]'],
             ]),
@@ -938,9 +938,9 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'begin' => [true],
-            'array' => new DummyArrayResult(true, [
+            'ctor'   => [],
+            'begin'  => [true],
+            'array'  => new DummyArrayResult(true, [
                 'foo' => 'FOO',
                 'bar' => $expectedValues['[baz => BAZ]'],
             ]),
@@ -952,9 +952,9 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'begin' => [false],
-            'array' => new DummyArrayResult(false, [
+            'ctor'   => [],
+            'begin'  => [false],
+            'array'  => new DummyArrayResult(false, [
                 'foo' => 'FOO',
                 'bar' => $arrayObject['[baz => BAZ]'],
             ]),
@@ -966,9 +966,9 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [false], // no tagging
-            'begin' => [false],
-            'array' => new DummyArrayResult(false, [
+            'ctor'   => [false], // no tagging
+            'begin'  => [false],
+            'array'  => new DummyArrayResult(false, [
                 'foo' => 'FOO',
             ]),
             'result' => [
@@ -977,9 +977,9 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [false], // no tagging
-            'begin' => [false],
-            'array' => new DummyArrayResult(false, [
+            'ctor'   => [false], // no tagging
+            'begin'  => [false],
+            'array'  => new DummyArrayResult(false, [
                 'foo' => new DummyArrayResult(false, []),
             ]),
             'result' => [
@@ -988,9 +988,9 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [false], // no tagging
-            'begin' => [false],
-            'array' => new DummyArrayResult(false, [
+            'ctor'   => [false], // no tagging
+            'begin'  => [false],
+            'array'  => new DummyArrayResult(false, [
                 'foo' => 'FOO',
                 'bar' => new DummyArrayResult(false, [
                     'baz' => 'BAZ',

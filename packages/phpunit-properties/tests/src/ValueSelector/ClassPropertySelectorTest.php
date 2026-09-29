@@ -101,7 +101,7 @@ final class ClassPropertySelectorTest extends TestCase
     {
         // #0
         yield basename(__FILE__).':'.__LINE__ => [
-            'class' => get_class(new class() {
+            'class'  => get_class(new class() {
                 public static $foo = 'FOO';
             }),
             'key'    => 'foo',
@@ -111,7 +111,7 @@ final class ClassPropertySelectorTest extends TestCase
 
         // #1
         yield basename(__FILE__).':'.__LINE__ => [
-            'class' => get_class(new class() {
+            'class'  => get_class(new class() {
                 public static $foo = 'FOO';
             }),
             'key'    => 'bar',
@@ -121,7 +121,7 @@ final class ClassPropertySelectorTest extends TestCase
 
         // #2
         yield basename(__FILE__).':'.__LINE__ => [
-            'class' => get_class(new class() {
+            'class'  => get_class(new class() {
                 public static function foo()
                 {
                     return 'FOO';
@@ -134,7 +134,7 @@ final class ClassPropertySelectorTest extends TestCase
 
         // #3
         yield basename(__FILE__).':'.__LINE__ => [
-            'class' => get_class(new class() {
+            'class'  => get_class(new class() {
                 public static function foo()
                 {
                     return 'FOO';

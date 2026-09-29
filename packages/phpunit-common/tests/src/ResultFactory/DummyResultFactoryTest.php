@@ -83,9 +83,9 @@ final class DummyResultFactoryTest extends TestCase
             'supports' => function ($input): bool {
                 return is_array($input);
             },
-            'input'  => [],
-            'actual' => false,
-            'expect' => [
+            'input'    => [],
+            'actual'   => false,
+            'expect'   => [
                 'supports' => true,
             ],
         ];
@@ -94,9 +94,9 @@ final class DummyResultFactoryTest extends TestCase
             'supports' => function ($input): bool {
                 return is_array($input);
             },
-            'input'  => null,
-            'actual' => false,
-            'expect' => [
+            'input'    => null,
+            'actual'   => false,
+            'expect'   => [
                 'supports' => false,
             ],
         ];

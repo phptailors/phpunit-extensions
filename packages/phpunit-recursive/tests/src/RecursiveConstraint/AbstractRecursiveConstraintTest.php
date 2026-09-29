@@ -181,7 +181,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
             'operator'   => function (Constraint $constraint): SelfDescribing {
                 return $constraint;
             },
-            'expect' => 'is a tree with apples having colors specified',
+            'expect'     => 'is a tree with apples having colors specified',
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
@@ -191,7 +191,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
             'operator'   => function (Constraint $constraint): SelfDescribing {
                 return self::logicalNot($constraint);
             },
-            'expect' => 'fails to be a tree with apples having colors specified',
+            'expect'     => 'fails to be a tree with apples having colors specified',
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
@@ -201,7 +201,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
             'operator'   => function (Constraint $constraint): SelfDescribing {
                 return self::logicalOr($constraint);
             },
-            'expect' => 'is a tree with apples having colors specified',
+            'expect'     => 'is a tree with apples having colors specified',
         ];
     }
 
@@ -377,8 +377,8 @@ final class AbstractRecursiveConstraintTest extends TestCase
                     return 0;
                 }
             },
-            'args'   => [['foo' => 'FOO', 'bar' => 'BAR']],
-            'expect' => [
+            'args'       => [['foo' => 'FOO', 'bar' => 'BAR']],
+            'expect'     => [
                 'exception' => ExpectationFailedException::class,
                 'message'   => 'is an array with values identical to specified',
             ],

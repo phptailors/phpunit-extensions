@@ -75,8 +75,8 @@ final class DummyArrayResultFactoryTest extends TestCase
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor' => [],
-            'args' => [false, [
+            'ctor'   => [],
+            'args'   => [false, [
                 'foo' => ['bar' => 'FOO.BAR'],
             ]],
             'expect' => [
@@ -85,8 +85,8 @@ final class DummyArrayResultFactoryTest extends TestCase
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor' => ['TAG'],
-            'args' => [false, [
+            'ctor'   => ['TAG'],
+            'args'   => [false, [
                 'foo' => ['bar' => 'FOO.BAR'],
             ]],
             'expect' => [
@@ -95,7 +95,7 @@ final class DummyArrayResultFactoryTest extends TestCase
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor' => [
+            'ctor'   => [
                 null,
                 function (iterable $input): array {
                     $array = is_array($input) ? $input : iterator_to_array($input);
@@ -104,7 +104,7 @@ final class DummyArrayResultFactoryTest extends TestCase
                     return $array;
                 },
             ],
-            'args' => [false, [
+            'args'   => [false, [
                 'foo' => 'FOO',
                 'bar' => 'BAR',
             ]],

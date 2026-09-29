@@ -213,7 +213,7 @@ final class RecursiveTraversalTest extends TestCase
             'visitor' => new DummyRecursiveVisitor(function ($node, array $stack): bool {
                 return count($stack) < 1;
             }),
-            'expect' => [
+            'expect'  => [
                 ['func' => 'enter', 'node' => $a06, 'path' => []],
                 ['func' => 'makeStackItem', 'node' => $a06, 'key' => 'foo', 'path' => []],
                 ['func' => 'visit', 'node' => $a06['foo'], 'path' => ['foo']],
@@ -284,7 +284,7 @@ final class RecursiveTraversalTest extends TestCase
             'visitor' => new DummyRecursiveVisitor(function ($value, array $stack) {
                 return ['baz', 'qux', 'baz'] !== array_map(function ($item) { return $item->key(); }, $stack);
             }, true),
-            'expect' => [
+            'expect'  => [
                 ['func' => 'enter', 'node' => $a08, 'path' => []],
                 ['func' => 'makeStackItem', 'node' => $a08, 'key' => 'foo', 'path' => []],
                 ['func' => 'visit', 'node' => $a08['foo'], 'path' => ['foo']],
@@ -334,7 +334,7 @@ final class RecursiveTraversalTest extends TestCase
             'visitor' => new DummyRecursiveVisitor(function ($values, array $stack) {
                 return count($stack) < 1;
             }),
-            'expect' => [
+            'expect'  => [
                 ['func' => 'enter', 'node' => $a09, 'path' => []],
                 ['func' => 'makeStackItem', 'node' => $a09, 'key' => 'foo', 'path' => []],
                 ['func' => 'enter', 'node' => $a09['foo'], 'path' => ['foo']],
@@ -387,7 +387,7 @@ final class RecursiveTraversalTest extends TestCase
             'visitor' => new DummyRecursiveVisitor(function ($value, array $stack): bool {
                 return count($stack) < 2;
             }),
-            'expect' => [
+            'expect'  => [
                 ['func' => 'enter', 'node' => $a10, 'path' => []],
                 ['func' => 'makeStackItem', 'node' => $a10, 'key' => 'foo', 'path' => []],
                 ['func' => 'enter', 'node' => $a10['foo'], 'path' => ['foo']],
@@ -422,7 +422,7 @@ final class RecursiveTraversalTest extends TestCase
             'visitor' => new DummyRecursiveVisitor(function ($value, array $stack): bool {
                 return count($stack) < 1;
             }),
-            'expect' => [
+            'expect'  => [
                 ['func' => 'enter', 'node' => $a10, 'path' => []],
                 ['func' => 'makeStackItem', 'node' => $a10, 'key' => 'foo', 'path' => []],
                 ['func' => 'enter', 'node' => $a10['foo'], 'path' => ['foo']],

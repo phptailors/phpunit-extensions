@@ -55,7 +55,7 @@ final class DummyRecursiveVisitorTest extends TestCase
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor' => [
+            'ctor'   => [
                 /** @psalm-param mixed $node */
                 function ($node, array $stack): bool {
                     return false;

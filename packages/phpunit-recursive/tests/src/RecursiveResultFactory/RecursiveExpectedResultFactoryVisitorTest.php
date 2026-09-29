@@ -128,10 +128,10 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         //
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'calls' => [
+            'ctor'   => [],
+            'calls'  => [
                 [
-                    'args' => [
+                    'args'   => [
                         'node' => [],
                     ],
                     'return' => true,
@@ -150,10 +150,10 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         );
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'calls' => [
+            'ctor'   => [],
+            'calls'  => [
                 [
-                    'args' => [
+                    'args'   => [
                         'node' => $e02,
                     ],
                     'return' => true,
@@ -173,10 +173,10 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         );
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'calls' => [
+            'ctor'   => [],
+            'calls'  => [
                 [
-                    'args' => [
+                    'args'   => [
                         'node' => $e03,
                     ],
                     'return' => true,
@@ -195,10 +195,10 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         );
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'calls' => [
+            'ctor'   => [],
+            'calls'  => [
                 [
-                    'args' => [
+                    'args'   => [
                         'node' => $e04,
                     ],
                     'return' => true,
@@ -221,24 +221,24 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         ]);
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'calls' => [
+            'ctor'   => [],
+            'calls'  => [
                 [
-                    'args' => [
+                    'args'   => [
                         'node' => $e05,
                     ],
                     'return' => true,
                     'next'   => 'foo',
                 ],
                 [
-                    'args' => [
+                    'args'   => [
                         'node' => $e05['foo'],
                     ],
                     'return' => true,
                     'next'   => 'bar',
                 ],
                 [
-                    'args' => [
+                    'args'   => [
                         'node' => $e05['foo']['bar'],
                     ],
                     'return' => true,
@@ -268,24 +268,24 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         ]);
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'calls' => [
+            'ctor'   => [],
+            'calls'  => [
                 [
-                    'args' => [
+                    'args'   => [
                         'node' => $e06,
                     ],
                     'return' => true,
                     'next'   => 'foo',
                 ],
                 [
-                    'args' => [
+                    'args'   => [
                         'node' => $e06['foo'],
                     ],
                     'return' => true,
                     'next'   => 'bar',
                 ],
                 [
-                    'args' => [
+                    'args'   => [
                         'node' => $e06['foo']['bar'],
                     ],
                     'return' => true,
@@ -315,31 +315,31 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         ]);
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'calls' => [
+            'ctor'   => [],
+            'calls'  => [
                 [
-                    'args' => [
+                    'args'   => [
                         'node' => $e07,
                     ],
                     'return' => true,
                     'next'   => 'foo',
                 ],
                 [
-                    'args' => [
+                    'args'   => [
                         'node' => $e07['foo'],
                     ],
                     'return' => true,
                     'next'   => 'bar',
                 ],
                 [
-                    'args' => [
+                    'args'   => [
                         'node' => $e07['foo']['bar'],
                     ],
                     'return' => true,
                     'next'   => 'baz',
                 ],
                 [
-                    'args' => [
+                    'args'   => [
                         'node' => $e07['foo']['bar']['baz'],
                     ],
                     'return' => true,
@@ -365,10 +365,10 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         );
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'calls' => [
+            'ctor'   => [],
+            'calls'  => [
                 [
-                    'args' => [
+                    'args'   => [
                         'node' => $e08,
                     ],
                     'return' => false,
@@ -388,10 +388,10 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         );
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'calls' => [
+            'ctor'   => [],
+            'calls'  => [
                 [
-                    'args' => [
+                    'args'   => [
                         'node' => $e09,
                     ],
                     'return' => false,
@@ -464,9 +464,9 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         //
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'enter' => null,
-            'calls' => [
+            'ctor'   => [],
+            'enter'  => null,
+            'calls'  => [
                 [
                     'args' => [
                         'node' => null,
@@ -491,31 +491,31 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         ]);
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'enter' => [
-                'args' => [
+            'ctor'   => [],
+            'enter'  => [
+                'args'   => [
                     'node' => $e02,
                 ],
                 'return' => true,
             ],
-            'calls' => [
+            'calls'  => [
                 [
                     'args' => [
                         'node' => $e02['foo'],
                     ],
-                    'key' => 'foo',
+                    'key'  => 'foo',
                 ],
                 [
                     'args' => [
                         'node' => $e02['bar'],
                     ],
-                    'key' => 'bar',
+                    'key'  => 'bar',
                 ],
                 [
                     'args' => [
                         'node' => $e02['gez'],
                     ],
-                    'key' => 'gez',
+                    'key'  => 'gez',
                 ],
             ],
             'result' => new DummyArrayResult(false, [
@@ -532,9 +532,9 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         $e03 = [];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'enter' => [
-                'args' => [
+            'ctor'   => [],
+            'enter'  => [
+                'args'   => [
                     'node' => [
                         'foo' => 'FOO',
                         'bar' => 'BAR',
@@ -543,24 +543,24 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
                 ],
                 'return' => true,
             ],
-            'calls' => [
+            'calls'  => [
                 [
                     'args' => [
                         'node' => null,
                     ],
-                    'key' => 'foo',
+                    'key'  => 'foo',
                 ],
                 [
                     'args' => [
                         'node' => null,
                     ],
-                    'key' => 'bar',
+                    'key'  => 'bar',
                 ],
                 [
                     'args' => [
                         'node' => null,
                     ],
-                    'key' => 'gez',
+                    'key'  => 'gez',
                 ],
             ],
             'result' => [
@@ -659,8 +659,8 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         $s03 = new DummyValueSelector(false);
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'array' => new DummyArraySelection($f03, $s03, [
+            'ctor'   => [],
+            'array'  => new DummyArraySelection($f03, $s03, [
                 'foo' => 'FOO',
                 'bar' => 'BAR',
             ]),
@@ -679,8 +679,8 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         $b04 = new ExpectedArrayResult([]);
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'array' => new DummyArraySelection($f04, $s04, [
+            'ctor'   => [],
+            'array'  => new DummyArraySelection($f04, $s04, [
                 'foo' => ['FOO'],
                 'bar' => $b04,
             ]),
@@ -698,8 +698,8 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         $s05 = new DummyValueSelector(false);
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'array' => new DummyArraySelection($f05, $s05, [
+            'ctor'   => [],
+            'array'  => new DummyArraySelection($f05, $s05, [
                 'foo' => [
                     'qux' => new DummyArraySelection($f05, $s05, [
                         'cez' => 'CEZ',

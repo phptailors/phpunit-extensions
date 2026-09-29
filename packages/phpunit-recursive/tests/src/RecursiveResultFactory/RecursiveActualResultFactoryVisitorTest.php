@@ -131,11 +131,11 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         //
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'begin' => ['FOO'],
-            'calls' => [
+            'ctor'   => [],
+            'begin'  => ['FOO'],
+            'calls'  => [
                 [
-                    'args' => [
+                    'args'   => [
                         'node' => [],
                     ],
                     'return' => false,
@@ -154,11 +154,11 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         );
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'begin' => ['FOO'],
-            'calls' => [
+            'ctor'   => [],
+            'begin'  => ['FOO'],
+            'calls'  => [
                 [
-                    'args' => [
+                    'args'   => [
                         'node' => $e02,
                     ],
                     'return' => false,
@@ -178,11 +178,11 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         );
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'begin' => ['FOO'],
-            'calls' => [
+            'ctor'   => [],
+            'begin'  => ['FOO'],
+            'calls'  => [
                 [
-                    'args' => [
+                    'args'   => [
                         'node' => $e03,
                     ],
                     'return' => true,
@@ -201,11 +201,11 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         );
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'begin' => ['FOO'],
-            'calls' => [
+            'ctor'   => [],
+            'begin'  => ['FOO'],
+            'calls'  => [
                 [
-                    'args' => [
+                    'args'   => [
                         'node' => $e04,
                     ],
                     'return' => false, // not supports 'FOO'
@@ -215,11 +215,11 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'begin' => [['bar' => 'BAR']],
-            'calls' => [
+            'ctor'   => [],
+            'begin'  => [['bar' => 'BAR']],
+            'calls'  => [
                 [
-                    'args' => [
+                    'args'   => [
                         'node' => $e04,
                     ],
                     'return' => true,
@@ -248,25 +248,25 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         ]);
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'begin' => [$a05],
-            'calls' => [
+            'ctor'   => [],
+            'begin'  => [$a05],
+            'calls'  => [
                 [
-                    'args' => [
+                    'args'   => [
                         'node' => $e05,
                     ],
                     'return' => true,
                     'next'   => 'foo',
                 ],
                 [
-                    'args' => [
+                    'args'   => [
                         'node' => $e05['foo'],
                     ],
                     'return' => true,
                     'next'   => 'bar',
                 ],
                 [
-                    'args' => [
+                    'args'   => [
                         'node' => $e05['foo']['bar'],
                     ],
                     'return' => true,
@@ -300,25 +300,25 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         ]);
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'begin' => [$a06],
-            'calls' => [
+            'ctor'   => [],
+            'begin'  => [$a06],
+            'calls'  => [
                 [
-                    'args' => [
+                    'args'   => [
                         'node' => $e06,
                     ],
                     'return' => true,
                     'next'   => 'foo',
                 ],
                 [
-                    'args' => [
+                    'args'   => [
                         'node' => $e06['foo'],
                     ],
                     'return' => true,
                     'next'   => 'bar',
                 ],
                 [
-                    'args' => [
+                    'args'   => [
                         'node' => $e06['foo']['bar'],
                     ],
                     'return' => false,
@@ -353,25 +353,25 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         ]);
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'begin' => [$a07],
-            'calls' => [
+            'ctor'   => [],
+            'begin'  => [$a07],
+            'calls'  => [
                 [
-                    'args' => [
+                    'args'   => [
                         'node' => $e07,
                     ],
                     'return' => true,
                     'next'   => 'foo',
                 ],
                 [
-                    'args' => [
+                    'args'   => [
                         'node' => $e07['foo'],
                     ],
                     'return' => true,
                     'next'   => 'bar',
                 ],
                 [
-                    'args' => [
+                    'args'   => [
                         'node' => $e07['foo']['bar'],
                     ],
                     'return' => true,
@@ -407,32 +407,32 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         ]);
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'begin' => [$a08],
-            'calls' => [
+            'ctor'   => [],
+            'begin'  => [$a08],
+            'calls'  => [
                 [
-                    'args' => [
+                    'args'   => [
                         'node' => $e08,
                     ],
                     'return' => true,
                     'next'   => 'foo',
                 ],
                 [
-                    'args' => [
+                    'args'   => [
                         'node' => $e08['foo'],
                     ],
                     'return' => true,
                     'next'   => 'bar',
                 ],
                 [
-                    'args' => [
+                    'args'   => [
                         'node' => $e08['foo']['bar'],
                     ],
                     'return' => true,
                     'next'   => 'baz',
                 ],
                 [
-                    'args' => [
+                    'args'   => [
                         'node' => $e08['foo']['bar']['baz'],
                     ],
                     'return' => false,
@@ -511,10 +511,10 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         //
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'begin' => ['FOO'],
-            'enter' => null,
-            'calls' => [
+            'ctor'   => [],
+            'begin'  => ['FOO'],
+            'enter'  => null,
+            'calls'  => [
                 [
                     'args' => [
                         'node' => null,
@@ -546,32 +546,32 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         ]);
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'begin' => [$a02],
-            'enter' => [
-                'args' => [
+            'ctor'   => [],
+            'begin'  => [$a02],
+            'enter'  => [
+                'args'   => [
                     'node' => $e02,
                 ],
                 'return' => true,
             ],
-            'calls' => [
+            'calls'  => [
                 [
                     'args' => [
                         'node' => $e02['foo'],
                     ],
-                    'key' => 'foo',
+                    'key'  => 'foo',
                 ],
                 [
                     'args' => [
                         'node' => $e02['bar'],
                     ],
-                    'key' => 'bar',
+                    'key'  => 'bar',
                 ],
                 [
                     'args' => [
                         'node' => $e02['gez'],
                     ],
-                    'key' => 'gez',
+                    'key'  => 'gez',
                 ],
             ],
             'result' => new DummyArrayResult(true, [
@@ -588,32 +588,32 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         $e03 = ['unimportant'];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'begin' => [$a03],
-            'enter' => [
-                'args' => [
+            'ctor'   => [],
+            'begin'  => [$a03],
+            'enter'  => [
+                'args'   => [
                     'node' => $e03,
                 ],
                 'return' => true,
             ],
-            'calls' => [
+            'calls'  => [
                 [
                     'args' => [
                         'node' => null,
                     ],
-                    'key' => 'foo',
+                    'key'  => 'foo',
                 ],
                 [
                     'args' => [
                         'node' => null,
                     ],
-                    'key' => 'bar',
+                    'key'  => 'bar',
                 ],
                 [
                     'args' => [
                         'node' => null,
                     ],
-                    'key' => 'gez',
+                    'key'  => 'gez',
                 ],
             ],
             'result' => [
@@ -649,20 +649,20 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         ]);
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'begin' => [$a04],
-            'enter' => [
-                'args' => [
+            'ctor'   => [],
+            'begin'  => [$a04],
+            'enter'  => [
+                'args'   => [
                     'node' => $e04,
                 ],
                 'return' => true,
             ],
-            'calls' => [
+            'calls'  => [
                 [
                     'args' => [
                         'node' => $a04['foo'],
                     ],
-                    'key' => 'foo',
+                    'key'  => 'foo',
                 ],
             ],
             'result' => new DummyArrayResult(true, []),
@@ -773,8 +773,8 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         $s03 = self::getArrayObjectSelector();
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'begin' => [
+            'ctor'   => [],
+            'begin'  => [
                 new \ArrayObject([
                     'bar' => 'BAR',
                     'xxx' => 'XXX',
@@ -782,7 +782,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
                     'yyy' => 'YYY',
                 ]),
             ],
-            'array' => new DummyArraySelection($f03, $s03, [
+            'array'  => new DummyArraySelection($f03, $s03, [
                 'foo' => 'unimportant',
                 'bar' => 'unimportant',
             ]),
@@ -800,8 +800,8 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         $s04 = self::getArrayObjectSelector();
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'begin' => [
+            'ctor'   => [],
+            'begin'  => [
                 new \ArrayObject([
                     'bar' => 'BAR',
                     'xxx' => 'XXX',
@@ -809,7 +809,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
                     'yyy' => 'YYY',
                 ]),
             ],
-            'array' => new DummyArraySelection($f04, $s04, [
+            'array'  => new DummyArraySelection($f04, $s04, [
                 'foo' => ['unimportant'],
                 'bar' => new ExpectedArrayResult([]),
             ]),
@@ -827,8 +827,8 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         $s05 = self::getArrayObjectSelector();
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'begin' => [
+            'ctor'   => [],
+            'begin'  => [
                 new \ArrayObject([
                     'bar' => 'BAR',
                     'xxx' => 'XXX',
@@ -839,7 +839,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
                     'yyy' => 'YYY',
                 ]),
             ],
-            'array' => new DummyArraySelection($f05, $s05, [
+            'array'  => new DummyArraySelection($f05, $s05, [
                 'foo' => [
                     'qux' => new DummyArraySelection($f05, $s05, [
                         'cez' => 'unimportant',
@@ -864,8 +864,8 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         $s06 = self::getArrayObjectSelector();
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'begin' => [
+            'ctor'   => [],
+            'begin'  => [
                 new \ArrayObject([
                     'bar' => 'BAR',
                     'xxx' => 'XXX',
@@ -884,7 +884,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
                     'yyy' => 'YYY',
                 ]),
             ],
-            'array' => new DummyArraySelection($f06, $s06, [
+            'array'  => new DummyArraySelection($f06, $s06, [
                 'foo' => [
                     'gez' => new DummyArraySelection($f06, $s06, [
                         'kik' => 'unimportant',
@@ -922,9 +922,9 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         $o06 = new \stdClass();
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'begin' => [$o06],
-            'array' => new DummyArraySelection($f07e, $s07e, [
+            'ctor'   => [],
+            'begin'  => [$o06],
+            'array'  => new DummyArraySelection($f07e, $s07e, [
                 'message'  => 'unimportant',
                 'nonexist' => 'unimportant',
             ]),
@@ -932,9 +932,9 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'begin' => [new \Exception('foo', 123)],
-            'array' => new DummyArraySelection($f07e, $s07e, [
+            'ctor'   => [],
+            'begin'  => [new \Exception('foo', 123)],
+            'array'  => new DummyArraySelection($f07e, $s07e, [
                 'message'  => 'unimportant',
                 'nonexist' => 'unimportant',
             ]),
@@ -944,15 +944,15 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'begin' => [
+            'ctor'   => [],
+            'begin'  => [
                 new \ArrayObject([
                     'f' => 'F',
                     'e' => new \Exception('foo', 123),
                     'd' => 'D',
                 ]),
             ],
-            'array' => new DummyArraySelection($f07a, $s07a, [
+            'array'  => new DummyArraySelection($f07a, $s07a, [
                 'e' => new DummyArraySelection($f07e, $s07e, [
                     'message'  => 'unimportant',
                     'nonexist' => 'unimportant',
@@ -976,15 +976,15 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         $s08e = self::getExceptionPropertySelector();
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'begin' => [
+            'ctor'   => [],
+            'begin'  => [
                 new \ArrayObject([
                     'f' => 'F',
                     'e' => new \Exception('foo', 123),
                     'd' => 'D',
                 ]),
             ],
-            'array' => new DummyArraySpec($f08a, [
+            'array'  => new DummyArraySpec($f08a, [
                 'e' => new DummyArraySelection($f08e, $s08e, [
                     'message'  => 'unimportant',
                     'nonexist' => 'unimportant',
@@ -1017,15 +1017,15 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         $s09e = self::getExceptionPropertySelector();
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'begin' => [
+            'ctor'   => [],
+            'begin'  => [
                 new \ArrayObject([
                     'f' => 'F',
                     'e' => new \Exception('foo', 123),
                     'd' => 'D',
                 ]),
             ],
-            'array' => new DummyArraySpec($f09a, [
+            'array'  => new DummyArraySpec($f09a, [
                 'x' => 'UNIMPORTANT',
                 'e' => new DummyArraySelection($f09e, $s09e, [
                     'message'  => 'unimportant',
@@ -1067,9 +1067,9 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         $s10b = self::getArrayObjectSelector();
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'begin' => [['cez' => 'CEZ']],
-            'array' => new DummyArraySelection($f10a, $s10a, [
+            'ctor'   => [],
+            'begin'  => [['cez' => 'CEZ']],
+            'array'  => new DummyArraySelection($f10a, $s10a, [
                 'foo' => 'UNIMPORTANT',
                 'baz' => 'UNIMPORTANT',
             ]),
@@ -1077,9 +1077,9 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'begin' => ['ns1'],
-            'array' => new DummyArraySelection($f10a, $s10a, [
+            'ctor'   => [],
+            'begin'  => ['ns1'],
+            'array'  => new DummyArraySelection($f10a, $s10a, [
                 'foo' => 'UNIMPORTANT',
                 'baz' => 'UNIMPORTANT',
             ]),
@@ -1089,9 +1089,9 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'begin' => ['ns2'],
-            'array' => new DummyArraySelection($f10a, $s10a, [
+            'ctor'   => [],
+            'begin'  => ['ns2'],
+            'array'  => new DummyArraySelection($f10a, $s10a, [
                 'foo' => 'UNIMPORTANT',
                 'baz' => 'UNIMPORTANT',
             ]),
@@ -1101,9 +1101,9 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'begin' => ['ns2'],
-            'array' => new DummyArraySelection($f10a, $s10a, [
+            'ctor'   => [],
+            'begin'  => ['ns2'],
+            'array'  => new DummyArraySelection($f10a, $s10a, [
                 'gez' => new DummyArraySelection($f10b, $s10b, [
                     'cop' => 'UNIMPORTANT',
                     'qux' => ['UNIMPORTANT'],
@@ -1132,9 +1132,9 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         $s11 = self::getArrayObjectSelector();
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'begin' => [$a11],
-            'array' => new DummyArraySelectionOnly($s11, [
+            'ctor'   => [],
+            'begin'  => [$a11],
+            'array'  => new DummyArraySelectionOnly($s11, [
                 'foo' => 'UNIMPORTANT',
                 'baz' => 'UNIMPORTANT',
             ]),
@@ -1148,9 +1148,9 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         $f12 = new DummyResultFactory(true);
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'  => [],
-            'begin' => ['FOO'],
-            'array' => new DummyArraySpec($f12, [
+            'ctor'   => [],
+            'begin'  => ['FOO'],
+            'array'  => new DummyArraySpec($f12, [
                 'foo' => 'UNIMPORTANT',
                 'baz' => 'UNIMPORTANT',
             ]),
