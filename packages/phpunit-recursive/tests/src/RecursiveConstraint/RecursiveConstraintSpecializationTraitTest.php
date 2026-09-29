@@ -42,7 +42,7 @@ final class RecursiveConstraintSpecializationTraitTest extends TestCase
     /**
      * @psalm-return iterable<string, array{expected: ArrayLike}>
      */
-    public function provCreate(): iterable
+    public static function provCreate(): iterable
     {
         yield basename(__FILE__).':'.__LINE__ => [
             'expected' => [],
