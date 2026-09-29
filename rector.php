@@ -6,7 +6,6 @@ use Rector\DeadCode\Rector\ClassMethod\RemoveUselessReturnTagRector;
 use Rector\DeadCode\Rector\Property\RemoveUselessReadOnlyTagRector;
 use Rector\DeadCode\Rector\Property\RemoveUselessVarTagRector;
 use Rector\PHPUnit\PHPUnit60\Rector\ClassMethod\AddDoesNotPerformAssertionToNonAssertingTestRector;
-use Rector\PHPUnit\Set\PHPUnitSetList;
 use Rector\Renaming\Rector\Name\RenameClassRector;
 
 return RectorConfig::configure()
@@ -16,14 +15,7 @@ return RectorConfig::configure()
         __DIR__.'/packages/*/tests/static-analysis/',
         __DIR__.'/packages/*/utils/src/',
     ])
-    ->withPreparedSets(
-    )
-    ->withSets([
-        PHPUnitSetList::PHPUNIT_60,
-        PHPUnitSetList::PHPUNIT_70,
-        PHPUnitSetList::PHPUNIT_80,
-        PHPUnitSetList::PHPUNIT_90
-    ])
+    ->withComposerBased(phpunit: true)
     ->withPhpSets(
         php73: true
     )
