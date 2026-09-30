@@ -11,7 +11,12 @@
 namespace Tailors\PHPUnit\RecursiveResultFactory;
 
 use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\ArraySpec\DummyResultFactoryAndValueSelectorWrapper;
+use Tailors\PHPUnit\ArraySpec\DummyResultFactoryWrapper;
+use Tailors\PHPUnit\ArraySpec\DummyValueSelectorWrapper;
 use Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversalInterface;
+use Tailors\PHPUnit\ResultFactory\DummyResultFactory;
+use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
 
 /**
  * @small
@@ -145,6 +150,149 @@ final class RecursiveResultFactoryTest extends TestCase
             'array'  => [],
             'input'  => [],
             'expect' => true,
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'array'  => new DummyResultFactoryAndValueSelectorWrapper(
+                new DummyResultFactory(true),
+                new DummyValueSelector(false, false, '', ''),
+                [],
+            ),
+            'input'  => [],
+            'expect' => false,
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'array'  => new DummyResultFactoryAndValueSelectorWrapper(
+                new DummyResultFactory(false),
+                new DummyValueSelector(true, false, '', ''),
+                [],
+            ),
+            'input'  => [],
+            'expect' => false,
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'array'  => new DummyResultFactoryAndValueSelectorWrapper(
+                new DummyResultFactory(true),
+                new DummyValueSelector(true, false, '', ''),
+                [],
+            ),
+            'input'  => [],
+            'expect' => true,
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'array'  => new DummyValueSelectorWrapper(
+                new DummyValueSelector(true, false, '', ''),
+                [],
+            ),
+            'input'  => [],
+            'expect' => false,
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'array'  => new DummyResultFactoryWrapper(
+                new DummyResultFactory(true),
+                [],
+            ),
+            'input'  => [],
+            'expect' => true,
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'array'  => new DummyResultFactoryWrapper(
+                new DummyResultFactory(false),
+                [],
+            ),
+            'input'  => [],
+            'expect' => false,
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'array'  => new DummyResultFactoryAndValueSelectorWrapper(
+                new DummyResultFactory(function ($input): bool {
+                    return is_array($input);
+                }),
+                new DummyValueSelector(function ($subject): bool {
+                    return is_array($subject);
+                }, false, '', ''),
+                [],
+            ),
+            'input'  => [],
+            'expect' => true,
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'array'  => new DummyResultFactoryAndValueSelectorWrapper(
+                new DummyResultFactory(function ($input): bool {
+                    return is_array($input);
+                }),
+                new DummyValueSelector(true),
+                [],
+            ),
+            'input'  => [],
+            'expect' => true,
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'array'  => new DummyResultFactoryAndValueSelectorWrapper(
+                new DummyResultFactory(function ($input): bool {
+                    return [] === $input;
+                }),
+                new DummyValueSelector(function ($subject): bool {
+                    return is_iterable($subject);
+                }),
+                [],
+            ),
+            'input'  => new \ArrayObject([]),
+            'expect' => true,
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'array'  => new DummyResultFactoryAndValueSelectorWrapper(
+                new DummyResultFactory(true),
+                new DummyValueSelector(function ($subject): bool {
+                    return is_array($subject);
+                }, false, '', ''),
+                [],
+            ),
+            'input'  => [],
+            'expect' => true,
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'array'  => new DummyResultFactoryAndValueSelectorWrapper(
+                new DummyResultFactory(true),
+                new DummyValueSelector(function ($subject): bool {
+                    return is_array($subject);
+                }, false, '', ''),
+                [],
+            ),
+            'input'  => new \ArrayObject([]),
+            'expect' => false,
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'array'  => new DummyResultFactoryWrapper(
+                new DummyResultFactory(function ($input): bool {
+                    return is_array($input);
+                }),
+                [],
+            ),
+            'input'  => [],
+            'expect' => true,
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'array'  => new DummyResultFactoryWrapper(
+                new DummyResultFactory(function ($input): bool {
+                    return is_array($input);
+                }),
+                [],
+            ),
+            'input'  => new \ArrayObject([]),
+            'expect' => false,
         ];
     }
 
