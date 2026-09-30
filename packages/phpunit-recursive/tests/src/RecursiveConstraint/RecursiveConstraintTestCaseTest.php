@@ -84,6 +84,16 @@ final class RecursiveConstraintTestCaseTest extends RecursiveConstraintTestCase
                 'foo' => 11,
             ],
         ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'expect' => [
+                'foo' => 7,
+                'bar' => 'BAR',
+            ],
+            'actual' => [
+                'foo' => 7,
+            ],
+        ];
     }
 
     /**

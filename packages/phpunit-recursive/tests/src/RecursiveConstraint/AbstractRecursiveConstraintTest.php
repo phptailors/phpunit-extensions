@@ -16,6 +16,7 @@ use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\SelfDescribing;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\ArraySpec\DummyResultFactoryAndValueSelectorWrapper;
+use Tailors\PHPUnit\ArraySpec\DummyResultFactoryWrapper;
 use Tailors\PHPUnit\ArraySpec\DummyValueSelectorWrapper;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\EqualityComparator;
@@ -74,10 +75,34 @@ final class AbstractRecursiveConstraintTest extends TestCase
     }
 
     /**
-     * @psalm-param array $expected
+     * @psalm-param ArrayLike $expected
      */
-    public static function createArrayValuesConstraint(
-        array $expected,
+    public static function createDummyConstraintWithResultFactory(
+        iterable $expected,
+        ComparatorInterface $comparator
+    ): DummyAbstractRecursiveConstraint {
+        $resultFactory = new DummyArrayResultFactory();
+
+        return DummyAbstractRecursiveConstraint::create(
+            new DummyResultFactoryWrapper($resultFactory, $expected),
+            $comparator,
+            new RecursiveResultFactory(
+                new RecursiveExpectedResultFactoryVisitor(),
+                new RecursiveActualResultFactoryVisitor(),
+                new RecursiveTraversal()
+            ),
+            new RecursiveResultUnwrapper(
+                new RecursiveResultUnwrapperVisitor(),
+                new RecursiveTraversal()
+            )
+        );
+    }
+
+    /**
+     * @psalm-param ArrayLike $expected
+     */
+    public static function createDummyConstraintWithResultFactoryAndValueSelector(
+        iterable $expected,
         ComparatorInterface $comparator
     ): DummyAbstractRecursiveConstraint {
         $resultFactory = new DummyArrayResultFactory();
@@ -113,19 +138,19 @@ final class AbstractRecursiveConstraintTest extends TestCase
     }
 
     /**
-     * @psalm-param array $expected
+     * @psalm-param ArrayLike $expected
      */
-    public static function createArrayValuesIdentityConstraint(array $expected): DummyAbstractRecursiveConstraint
+    public static function createArrayValuesIdentityConstraint(iterable $expected): DummyAbstractRecursiveConstraint
     {
-        return self::createArrayValuesConstraint($expected, new IdentityComparator());
+        return self::createDummyConstraintWithResultFactoryAndValueSelector($expected, new IdentityComparator());
     }
 
     /**
-     * @psalm-param array $expected
+     * @psalm-param ArrayLike $expected
      */
-    public static function createArrayValuesEqualityConstraint(array $expected): DummyAbstractRecursiveConstraint
+    public static function createArrayValuesEqualityConstraint(iterable $expected): DummyAbstractRecursiveConstraint
     {
-        return self::createArrayValuesConstraint($expected, new EqualityComparator());
+        return self::createDummyConstraintWithResultFactoryAndValueSelector($expected, new EqualityComparator());
     }
 
     public function testExtendsConstraint(): void
@@ -379,6 +404,33 @@ final class AbstractRecursiveConstraintTest extends TestCase
             'expect'     => [
                 'exception' => ExpectationFailedException::class,
                 'message'   => 'is an array with values identical to specified',
+            ],
+        ];
+
+        // Expectations without ValueSelector
+        $c01 = self::createDummyConstraintWithResultFactory(['a' => 'A'], new IdentityComparator());
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'constraint' => $c01,
+            'args'       => [['a' => 'A']],
+            'expect'     => null,
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'constraint' => $c01,
+            'args'       => [['foo' => 'FOO']],
+            'expect'     => [
+                'exception' => ExpectationFailedException::class,
+                'message'   => 'array satisfies the recursive constraint',
+            ],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'constraint' => self::logicalNot($c01),
+            'args'       => [['a' => 'A']],
+            'expect'     => [
+                'exception' => ExpectationFailedException::class,
+                'message'   => 'array fails to satisfy the recursive constraint',
             ],
         ];
     }
