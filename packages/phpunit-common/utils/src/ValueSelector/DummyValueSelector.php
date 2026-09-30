@@ -55,7 +55,7 @@ final class DummyValueSelector implements ValueSelectorInterface
      * @param bool|\Closure $supports
      * @param bool|\Closure $select
      *
-     * @psalm-param bool|pure-Closure(mixed):bool             $supports
+     * @psalm-param bool|pure-Closure(mixed):bool        $supports
      * @psalm-param bool|Closure(mixed,mixed,mixed):bool $select
      */
     public function __construct($supports = false, $select = false, string $subject = '', string $selectable = '')

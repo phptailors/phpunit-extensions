@@ -47,6 +47,8 @@ final class DummyValueSelectorTest extends TestCase
     {
         $supports =
         /**
+         * @param mixed $subject
+         *
          * @psalm-param mixed $subject
          */
         function ($subject): bool {
