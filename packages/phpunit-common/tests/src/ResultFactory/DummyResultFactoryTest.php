@@ -83,8 +83,7 @@ final class DummyResultFactoryTest extends TestCase
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'supports' =>
-            /** @psalm-param mixed $input */
+            'supports' => /** @psalm-param mixed $input */
             function ($input): bool {
                 return is_array($input);
             },
@@ -96,8 +95,7 @@ final class DummyResultFactoryTest extends TestCase
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'supports' =>
-            /** @psalm-param mixed $input */
+            'supports' => /** @psalm-param mixed $input */
             function ($input): bool {
                 return is_array($input);
             },

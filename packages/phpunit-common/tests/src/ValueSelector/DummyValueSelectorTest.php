@@ -22,11 +22,11 @@ use PHPUnit\Framework\TestCase;
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-type CtorArgs           = list{
- *                                      0?:bool|\Closure(mixed):bool,
- *                                      1?:bool|\Closure(mixed,mixed,mixed):bool,
- *                                      2?:string,
- *                                      3?:string
- *                                  }
+ *                                0?:bool|\Closure(mixed):bool,
+ *                                1?:bool|\Closure(mixed,mixed,mixed):bool,
+ *                                2?:string,
+ *                                3?:string
+ *                                }
  * @psalm-type SupportsTestCall   = array{args: list{mixed}, return: mixed}
  * @psalm-type SelectTestCall     = array{args: list{mixed,mixed}, return: bool, retval?: mixed}
  * @psalm-type SubjectTestCall    = array{return: mixed}
@@ -53,14 +53,19 @@ final class DummyValueSelectorTest extends TestCase
 
         $select =
         /**
-         * @psalm-param array $subject
+         * @param mixed $subject
+         * @param mixed $key
+         * @param mixed $retval
+         *
+         * @psalm-param array     $subject
          * @psalm-param array-key $key
-         * @psalm-param mixed $retval
+         * @psalm-param mixed     $retval
          */
         function ($subject, $key, &$retval): bool {
             if (!array_key_exists($key, $subject)) {
                 return false;
             }
+
             /** @psalm-var mixed */
             $retval = $subject[$key];
 
