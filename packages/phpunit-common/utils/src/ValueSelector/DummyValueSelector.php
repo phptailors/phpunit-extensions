@@ -31,7 +31,7 @@ final class DummyValueSelector implements ValueSelectorInterface
     /**
      * @var bool|\Closure
      *
-     * @psalm-var bool|pure-Closure(mixed,mixed,mixed):bool
+     * @psalm-var bool|Closure(mixed,mixed,mixed):bool
      *
      * @psalm-readonly
      */
@@ -56,7 +56,7 @@ final class DummyValueSelector implements ValueSelectorInterface
      * @param bool|\Closure $select
      *
      * @psalm-param bool|pure-Closure(mixed):bool             $supports
-     * @psalm-param bool|pure-Closure(mixed,mixed,mixed):bool $select
+     * @psalm-param bool|Closure(mixed,mixed,mixed):bool $select
      */
     public function __construct($supports = false, $select = false, string $subject = '', string $selectable = '')
     {
@@ -88,8 +88,6 @@ final class DummyValueSelector implements ValueSelectorInterface
      * @psalm-param array-key $key
      *
      * @psalm-param-out mixed $retval
-     *
-     * @psalm-mutation-free
      */
     public function select($subject, $key, &$retval): bool
     {

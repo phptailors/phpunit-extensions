@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit\ArrayResult;
 
+use Tailors\PHPUnit\Common\TagInterface;
 use Tailors\PHPUnit\Result\ResultInterface;
 
 /**
@@ -77,6 +78,7 @@ abstract class GenericArrayResultTestCase extends AbstractArrayResultTestCase
     {
         $object = self::getArrayResultObject($ctor);
 
+        self::assertInstanceOf(TagInterface::class, $object);
         self::assertSame($expect, $object->tag());
     }
 }

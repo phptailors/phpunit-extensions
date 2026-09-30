@@ -22,13 +22,13 @@ use PHPUnit\Framework\TestCase;
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-type CtorArgs           = list{
- *                                0?:bool|\Closure(mixed):bool,
- *                                1?:bool|\Closure(mixed,mixed,mixed):bool,
+ *                                0?:bool|pure-Closure(mixed):bool,
+ *                                1?:bool|Closure(mixed,mixed,mixed):bool,
  *                                2?:string,
  *                                3?:string
  *                                }
  * @psalm-type SupportsTestCall   = array{args: list{mixed}, return: mixed}
- * @psalm-type SelectTestCall     = array{args: list{mixed,mixed}, return: bool, retval?: mixed}
+ * @psalm-type SelectTestCall     = array{args: list{mixed,array-key}, return: bool, retval?: mixed}
  * @psalm-type SubjectTestCall    = array{return: mixed}
  * @psalm-type SelectableTestCall = array{return: mixed}
  */
@@ -46,7 +46,9 @@ final class DummyValueSelectorTest extends TestCase
     public static function provDummyValueSelector(): iterable
     {
         $supports =
-        /** @psalm-param mixed $subject */
+        /**
+         * @psalm-param mixed $subject
+         */
         function ($subject): bool {
             return is_array($subject);
         };
