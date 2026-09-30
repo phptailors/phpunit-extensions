@@ -33,6 +33,8 @@ abstract class AbstractArraySelectionSpec extends AbstractArraySpec implements V
     /**
      * @var ValueSelectorInterface
      *
+     * @psalm-var ValueSelectorInterface<SupportedSubject>
+     *
      * @psalm-readonly
      */
     private $valueSelector;

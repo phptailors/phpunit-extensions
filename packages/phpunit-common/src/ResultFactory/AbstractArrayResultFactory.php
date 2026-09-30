@@ -21,7 +21,7 @@ use Tailors\PHPUnit\Result\ResultInterface;
  * @psalm-type ArrayLike      = iterable<array-key, mixed>
  * @psalm-type SupportedInput = iterable<array-key, mixed>
  *
- * @template-implements ResultFactoryInterface<iterable<array-key,mixed>>
+ * @template-implements ResultFactoryInterface<ArrayLike>
  */
 abstract class AbstractArrayResultFactory implements ResultFactoryInterface
 {

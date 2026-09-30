@@ -14,15 +14,13 @@ use Tailors\PHPUnit\ArraySpec\AbstractArraySelectionSpec;
 use Tailors\PHPUnit\ValueSelector\ArrayValueSelector;
 
 /**
- * An array of expected class properties.
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-type ArrayLike = iterable<array-key, mixed>
  *
- * @template-extends AbstractArraySelectionSpec<\Traversable, class-string>
+ * @template-extends AbstractArraySelectionSpec<ArrayLike, array|\ArrayAccess>
  */
 final class ArrayValuesSelection extends AbstractArraySelectionSpec
 {
