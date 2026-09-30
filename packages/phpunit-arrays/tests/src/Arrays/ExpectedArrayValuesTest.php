@@ -10,8 +10,6 @@
 
 namespace Tailors\PHPUnit\Arrays;
 
-use Tailors\PHPUnit\Result\ResultInterface;
-
 /**
  * @small
  *
@@ -36,7 +34,7 @@ final class ExpectedArrayValuesTest extends ArrayValuesTestCase
         return ExpectedArrayValues::class;
     }
 
-    public static function getArrayResultObject(array $ctorArgs): ResultInterface
+    public static function getArrayResultObject(array $ctorArgs): iterable
     {
         return new ExpectedArrayValues(...$ctorArgs);
     }

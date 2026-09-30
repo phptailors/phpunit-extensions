@@ -24,7 +24,7 @@ use Tailors\PHPUnit\Result\ResultInterface;
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-type ArrayLike                   = iterable<array-key, mixed>
- * @psalm-type AbstractArrayResultCtorArgs = array{0?: iterable<array-key, mixed>}
+ * @psalm-type AbstractArrayResultCtorArgs = list{0?:iterable<array-key, mixed>}
  */
 abstract class AbstractArrayResultTestCase extends TestCase
 {
@@ -36,8 +36,10 @@ abstract class AbstractArrayResultTestCase extends TestCase
      * @psalm-template CtorArgs of AbstractArrayResultCtorArgs
      *
      * @psalm-param CtorArgs $ctorArgs
+     *
+     * @psalm-return ArrayLike
      */
-    abstract public static function getArrayResultObject(array $ctorArgs): ResultInterface;
+    abstract public static function getArrayResultObject(array $ctorArgs): iterable;
 
     /**
      * @throws Exception
