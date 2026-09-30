@@ -31,7 +31,7 @@ abstract class AbstractArraySpec extends \ArrayObject implements ResultFactoryWr
     /**
      * @var ResultFactoryInterface
      *
-     * @psalm-param ResultFactoryInterface<SupportedInput>
+     * @psalm-var ResultFactoryInterface<SupportedInput>
      *
      * @psalm-readonly
      */
