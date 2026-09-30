@@ -58,8 +58,6 @@ final class DummyUntaggedArrayResultTest extends TestCase
      */
     public static function provDummyUntaggedArrayResult(): iterable
     {
-        $tag = DummyUntaggedArrayResult::class.':a1a44e79c791a1fe22ac49067eef00b222d10131';
-
         yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [false],
             'expect' => [

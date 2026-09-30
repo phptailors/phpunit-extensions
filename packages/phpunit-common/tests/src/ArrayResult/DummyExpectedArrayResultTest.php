@@ -12,6 +12,7 @@ namespace Tailors\PHPUnit\ArrayResult;
 
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
+use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
 
 /**
  * @small
@@ -29,7 +30,7 @@ use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
 final class DummyExpectedArrayResultTest extends TestCase
 {
     /**
-     * @psalm-return \Generator<string, array{ctor: CtorArgs, expect: ExpectArray}
+     * @psalm-return iterable<string, array{ctor: CtorArgs, expect: ExpectArray}>
      */
     public static function provDummyExpectedArrayResult(): iterable
     {
@@ -72,6 +73,8 @@ final class DummyExpectedArrayResultTest extends TestCase
      *
      * @psalm-param CtorArgs    $ctor
      * @psalm-param ExpectArray $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testDummyExpectedArrayResult(array $ctor, array $expect): void
     {

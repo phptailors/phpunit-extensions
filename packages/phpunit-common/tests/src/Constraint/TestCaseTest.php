@@ -22,45 +22,71 @@ use PHPUnit\Framework\Constraint\LogicalOr;
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @template-extends TestCase<Constraint>
  */
 final class TestCaseTest extends TestCase
 {
+    /**
+     * @psalm-external-mutation-free
+     */
     public static function createConstraint(...$args): Constraint
     {
-        return LogicalOr::fromConstraints(new IsTrue(...$args), new IsTrue(...$args));
+        return LogicalOr::fromConstraints(new IsTrue(), new IsTrue());
     }
 
+    /**
+     * @psalm-external-mutation-free
+     */
     public static function getConstraintClass(): string
     {
         return LogicalOr::class;
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testCreateConstraint(): void
     {
         $constraint = $this->examineCreateConstraint([]);
         $this->assertInstanceOf(Constraint::class, $constraint);
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testConstraintUnaryOperatorFailure(): void
     {
         $this->examineConstraintUnaryOperatorFailure([], false, 'Failed asserting that noop( false is true or is true )');
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testConstraintMatchSucceeds(): void
     {
         $this->examineConstraintMatchSucceeds([], true);
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testConstraintMatchFails(): void
     {
         $this->examineConstraintMatchFails([], false, 'Failed asserting that false is true or is true.');
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testNotConstraintMatchSucceeds(): void
     {
         $this->examineNotConstraintMatchSucceeds([], false);
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testNotConstraintMatchFails(): void
     {
         $this->examineNotConstraintMatchFails([], true, 'Failed asserting that not( true is true or is true )');

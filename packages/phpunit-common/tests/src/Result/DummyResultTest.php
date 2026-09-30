@@ -25,6 +25,9 @@ use PHPUnit\Framework\TestCase;
  */
 final class DummyResultTest extends TestCase
 {
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testImplementsResultInterface(): void
     {
         $this->assertInstanceOf(ResultInterface::class, new DummyResult(false));
@@ -48,6 +51,8 @@ final class DummyResultTest extends TestCase
 
     /**
      * @dataProvider provDummyResult
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testDummyResult(bool $actual): void
     {

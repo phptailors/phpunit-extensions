@@ -50,16 +50,25 @@ final class DummyResultFactoryAndValueSelectorWrapperTest extends TestCase
         return new DummyResultFactoryAndValueSelectorWrapper($resultFactory, $valueSelector, $array);
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testExtendsArrayObject(): void
     {
         $this->assertInstanceOf(\ArrayObject::class, self::createDummyResultFactoryAndValueSelectorWrapper([]));
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testImplementsResultFactoryWrapperInterface(): void
     {
         $this->assertInstanceOf(ResultFactoryWrapperInterface::class, self::createDummyResultFactoryAndValueSelectorWrapper([]));
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testImplementsValueSelectorWrapperInterface(): void
     {
         $this->assertInstanceOf(ValueSelectorWrapperInterface::class, self::createDummyResultFactoryAndValueSelectorWrapper([]));
@@ -93,6 +102,8 @@ final class DummyResultFactoryAndValueSelectorWrapperTest extends TestCase
      * @dataProvider provDummyResultFactoryAndValueSelectorWrapper
      *
      * @psalm-param ArrayLike $array
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testDummyResultFactoryAndValueSelectorWrapper(iterable $array): void
     {

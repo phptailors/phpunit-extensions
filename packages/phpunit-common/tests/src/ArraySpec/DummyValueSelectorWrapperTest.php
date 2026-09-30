@@ -42,11 +42,17 @@ final class DummyValueSelectorWrapperTest extends TestCase
         return new DummyValueSelectorWrapper($valueSelector, $array);
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testExtendsArrayObject(): void
     {
         $this->assertInstanceOf(\ArrayObject::class, self::createDummyValueSelectorWrapper([]));
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testImplementsValueSelectorWrapperInterface(): void
     {
         $this->assertInstanceOf(ValueSelectorWrapperInterface::class, self::createDummyValueSelectorWrapper([]));
@@ -80,6 +86,8 @@ final class DummyValueSelectorWrapperTest extends TestCase
      * @dataProvider provDummyValueSelectorWrapper
      *
      * @psalm-param ArrayLike $array
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testDummyValueSelectorWrapper(iterable $array): void
     {

@@ -30,6 +30,9 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
  */
 final class DummyAbstractArraySelectionSpecTest extends TestCase
 {
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testExtendsAbstractArraySelectionSpec(): void
     {
         $resultFactory = $this->createMock(ResultFactoryInterface::class);
@@ -40,7 +43,7 @@ final class DummyAbstractArraySelectionSpecTest extends TestCase
     /**
      * @psalm-return iterable<string, array{
      *      factory:  ResultFactoryInterface,
-     *      selector: ValueSelectorInterface
+     *      selector: ValueSelectorInterface,
      *      array:    ArrayLike
      * }>
      */
@@ -68,6 +71,8 @@ final class DummyAbstractArraySelectionSpecTest extends TestCase
      * @psalm-param ResultFactoryInterface<SupportedInput>   $factory
      * @psalm-param ValueSelectorInterface<SupportedSubject> $selector
      * @psalm-param ArrayLike                                $array
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testDummyAbstractArraySelectionSpec(
         ResultFactoryInterface $factory,

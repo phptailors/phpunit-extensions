@@ -18,7 +18,7 @@ use Tailors\PHPUnit\Result\ResultInterface;
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-type ArrayLike                  = iterable<array-key, mixed>
- * @psalm-type GenericArrayResultCtorArgs = list{0?: ArrayLike, 1?: non-empty-string}
+ * @psalm-type GenericArrayResultCtorArgs = list{0?: ArrayLike, 1?: non-falsy-string}
  */
 abstract class GenericArrayResultTestCase extends AbstractArrayResultTestCase
 {
@@ -69,10 +69,9 @@ abstract class GenericArrayResultTestCase extends AbstractArrayResultTestCase
      *
      * @param mixed $expect
      *
-     * @throws ExpectationFailedException
-     * @throws InvalidArgumentException
-     *
      * @psalm-param GenericArrayResultCtorArgs $ctor
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     final public function testGenericArrayResultTag(array $ctor, $expect): void
     {

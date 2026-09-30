@@ -20,9 +20,14 @@ use PHPUnit\Framework\TestCase;
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type FunctionSpec = array{0:object|string,1:string}|\Closure|string|int|null
  */
 final class InvalidReturnValueExceptionTest extends TestCase
 {
+    /**
+     * @psalm-return iterable<string, list{FunctionSpec, string, string}>
+     */
     public static function provFromExpectedAndActual(): iterable
     {
         yield basename(__FILE__).':'.__LINE__ => [
@@ -34,7 +39,8 @@ final class InvalidReturnValueExceptionTest extends TestCase
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            function (string $s): string { return 2; }, 'a string', 'integer',
+            /** @psalm-suppress InvalidReturnStatement,InvalidReturnType */
+            function (): string { return 2; }, 'a string', 'integer',
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
@@ -51,7 +57,9 @@ final class InvalidReturnValueExceptionTest extends TestCase
      *
      * @param mixed $function
      *
-     * @psalm-param array{0:object|string,1:string}|callable|string $function
+     * @psalm-param FunctionSpec $function
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testFromExpectedAndActual($function, string $expected, string $actual): void
     {
@@ -62,6 +70,9 @@ final class InvalidReturnValueExceptionTest extends TestCase
         self::assertSame($message, $exception->getMessage());
     }
 
+    /**
+     * @psalm-return iterable<string, list{FunctionSpec, string, mixed}>
+     */
     public static function provFromExpectedTypeAndActualValue(): iterable
     {
         yield basename(__FILE__).':'.__LINE__ => [
@@ -85,7 +96,8 @@ final class InvalidReturnValueExceptionTest extends TestCase
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            function (string $s): string { return 2; }, 'a string', 2,
+            /** @psalm-suppress InvalidReturnStatement,InvalidReturnType */
+            function (): string { return 2; }, 'a string', 2,
         ];
     }
 
@@ -95,7 +107,9 @@ final class InvalidReturnValueExceptionTest extends TestCase
      * @param mixed $function
      * @param mixed $actual
      *
-     * @psalm-param array{0:object|string,1:string}|callable|string $function
+     * @psalm-param FunctionSpec $function
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testFromExpectedTypeAndActualValue($function, string $expected, $actual): void
     {
@@ -110,7 +124,7 @@ final class InvalidReturnValueExceptionTest extends TestCase
     /**
      * @param mixed $function
      *
-     * @psalm-param array{0:object|string,1:string}|callable|string $function
+     * @psalm-param FunctionSpec $function
      */
     protected static function getFunctionName($function): string
     {

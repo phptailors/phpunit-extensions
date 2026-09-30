@@ -23,9 +23,14 @@ use PHPUnit\Framework\TestCase;
  */
 final class InternalErrorExceptionTest extends TestCase
 {
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testFromBackTrace(): void
     {
         $stack = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1);
+
+        /** @psalm-var array{file: string, line: int, ...} $caller */
         $caller = end($stack);
 
         $exception = InternalErrorException::fromBackTrace('bad dog');

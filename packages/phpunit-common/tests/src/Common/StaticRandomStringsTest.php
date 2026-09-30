@@ -23,6 +23,9 @@ use PHPUnit\Framework\TestCase;
  */
 final class StaticRandomStringsTest extends TestCase
 {
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testGet(): void
     {
         $str0 = StaticRandomStrings::get('str0');
@@ -35,6 +38,9 @@ final class StaticRandomStringsTest extends TestCase
         $this->assertNotEquals($str0, $str1);
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testClassTag(): void
     {
         $tag0 = StaticRandomStrings::classTag(new \Exception(''));
@@ -50,6 +56,9 @@ final class StaticRandomStringsTest extends TestCase
         $this->assertStringStartsWith(self::class.':', $tag1);
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testFamilyTag(): void
     {
         $tag0 = StaticRandomStrings::familyTag('Smith');

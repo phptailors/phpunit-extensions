@@ -42,11 +42,17 @@ final class DummyResultFactoryWrapperTest extends TestCase
         return new DummyResultFactoryWrapper($resultFactory, $array);
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testExtendsArrayObject(): void
     {
         $this->assertInstanceOf(\ArrayObject::class, self::createDummyResultFactoryWrapper([]));
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testImplementsResultFactoryWrapperInterface(): void
     {
         $this->assertInstanceOf(ResultFactoryWrapperInterface::class, self::createDummyResultFactoryWrapper([]));
@@ -80,6 +86,8 @@ final class DummyResultFactoryWrapperTest extends TestCase
      * @dataProvider provDummyResultFactoryWrapper
      *
      * @psalm-param ArrayLike $array
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testDummyResultFactoryWrapper(iterable $array): void
     {

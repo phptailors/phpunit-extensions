@@ -23,7 +23,7 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  *
  * @psalm-type ArrayLike = iterable<array-key, mixed>
  *
- * @template-extends \ArrayObject<mixed,mixed>
+ * @template-extends \ArrayObject<array-key,mixed>
  *
  * @template-implements ValueSelectorWrapperInterface<SupportedSubject>
  */

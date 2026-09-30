@@ -23,6 +23,9 @@ use PHPUnit\Framework\TestCase;
  */
 final class ReferenceStorageTest extends TestCase
 {
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testCountOnFreshObject(): void
     {
         $storage = new ReferenceStorage();
@@ -32,11 +35,16 @@ final class ReferenceStorageTest extends TestCase
 
     /**
      * @dataProvider provAddAndCount
+     *
+     * @psalm-param array $values
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testAddAndCount(array $values, int $expect): void
     {
         $storage = new ReferenceStorage();
 
+        /** @psalm-var mixed $value */
         foreach ($values as &$value) {
             $storage->add($value);
         }
@@ -46,23 +54,32 @@ final class ReferenceStorageTest extends TestCase
 
     /**
      * @dataProvider provAddRemoveContains
+     *
+     * @psalm-param array $values
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testAddRemoveContains(array $values): void
     {
         $storage = new ReferenceStorage();
 
+        /** @psalm-var mixed $value */
         foreach ($values as &$value) {
             $this->assertFalse($storage->contains($value));
             $storage->add($value);
             $this->assertTrue($storage->contains($value));
         }
 
+        /** @psalm-var mixed $value */
         foreach ($values as &$value) {
             $storage->remove($value);
             $this->assertFalse($storage->contains($value));
         }
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testWithAliasedVariables(): void
     {
         $storage = new ReferenceStorage();
@@ -76,6 +93,9 @@ final class ReferenceStorageTest extends TestCase
         $this->assertTrue($storage->contains($var2));
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testWithAliasedArray(): void
     {
         $storage = new ReferenceStorage();
@@ -128,6 +148,10 @@ final class ReferenceStorageTest extends TestCase
         $this->assertTrue($storage->contains($arr3['arr2']['arr3']));
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     * @psalm-suppress RedundantConditionGivenDocblockType
+     */
     public function testDoesNotMessUpData(): void
     {
         $storage = new ReferenceStorage();

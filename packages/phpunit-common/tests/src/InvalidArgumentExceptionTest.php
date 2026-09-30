@@ -14,6 +14,9 @@ use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 
 if (!function_exists('Tailors\\PHPUnit\\testInvalidArgumentExceptionFromBackTrace')) {
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     function testInvalidArgumentExceptionFromBackTrace(
         int $argument,
         string $expected,
@@ -45,6 +48,9 @@ if (!function_exists('Tailors\\PHPUnit\\testInvalidArgumentExceptionFromBackTrac
  */
 final class InvalidArgumentExceptionTest extends TestCase
 {
+    /**
+     * @psalm-return iterable<string, list{int, string, string}>
+     */
     public static function provFromBackTrace(): iterable
     {
         yield basename(__FILE__).':'.__LINE__ => [
@@ -54,6 +60,8 @@ final class InvalidArgumentExceptionTest extends TestCase
 
     /**
      * @dataProvider provFromBackTrace
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testFromBackTrace(int $argument, string $expected, string $provided): void
     {
@@ -71,6 +79,8 @@ final class InvalidArgumentExceptionTest extends TestCase
 
     /**
      * @dataProvider provFromBackTrace
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testFromBackTraceFromFunction(int $argument, string $expected, string $provided): void
     {

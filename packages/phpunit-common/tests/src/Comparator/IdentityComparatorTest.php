@@ -23,11 +23,17 @@ use PHPUnit\Framework\TestCase;
  */
 final class IdentityComparatorTest extends TestCase
 {
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testImplementsComparatorInterface(): void
     {
         self::assertInstanceOf(ComparatorInterface::class, new IdentityComparator());
     }
 
+    /**
+     * @psalm-return iterable<string, list{mixed, mixed, bool}>
+     */
     public static function provCompare(): iterable
     {
         yield basename(__FILE__).':'.__LINE__ => [
@@ -52,6 +58,8 @@ final class IdentityComparatorTest extends TestCase
      *
      * @param mixed $left
      * @param mixed $right
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testCompare($left, $right, bool $expect): void
     {
@@ -59,6 +67,9 @@ final class IdentityComparatorTest extends TestCase
         self::assertSame($expect, $comparator->compare($left, $right));
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testAdjective(): void
     {
         $comparator = new IdentityComparator();

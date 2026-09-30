@@ -22,38 +22,46 @@ use PHPUnit\Framework\TestCase;
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-type CtorArgs           = list{
- *                                bool|\Closure(mixed):bool,
- *                                bool|\Closure(mixed,mixed,mixed):bool,
- *                                string,
- *                                string
- *                                }
+ *                                      0?:bool|\Closure(mixed):bool,
+ *                                      1?:bool|\Closure(mixed,mixed,mixed):bool,
+ *                                      2?:string,
+ *                                      3?:string
+ *                                  }
  * @psalm-type SupportsTestCall   = array{args: list{mixed}, return: mixed}
  * @psalm-type SelectTestCall     = array{args: list{mixed,mixed}, return: bool, retval?: mixed}
  * @psalm-type SubjectTestCall    = array{return: mixed}
  * @psalm-type SelectableTestCall = array{return: mixed}
- *                                }
  */
 final class DummyValueSelectorTest extends TestCase
 {
     /**
      * @psalm-return iterable<string, array{
      *      ctor: CtorArgs,
-     *      supports?: null|SupportsTestCall,
-     *      select?: null|SelectTestCall
-     *      subject?: null|SubjectTestCall,
-     *      selectable?: null|SelectableTestCall
+     *      supports?: ?SupportsTestCall,
+     *      select?: ?SelectTestCall,
+     *      subject?: ?SubjectTestCall,
+     *      selectable?: ?SelectableTestCall
      * }>
      */
     public static function provDummyValueSelector(): iterable
     {
-        $supports = function ($subject): bool {
+        $supports =
+        /** @psalm-param mixed $subject */
+        function ($subject): bool {
             return is_array($subject);
         };
 
-        $select = function ($subject, $key, &$retval): bool {
+        $select =
+        /**
+         * @psalm-param array $subject
+         * @psalm-param array-key $key
+         * @psalm-param mixed $retval
+         */
+        function ($subject, $key, &$retval): bool {
             if (!array_key_exists($key, $subject)) {
                 return false;
             }
+            /** @psalm-var mixed */
             $retval = $subject[$key];
 
             return true;
@@ -142,10 +150,12 @@ final class DummyValueSelectorTest extends TestCase
      * @dataProvider provDummyValueSelector
      *
      * @psalm-param CtorArgs            $ctor
-     * @psalm-param ?SupportsTestCall   $support
+     * @psalm-param ?SupportsTestCall   $supports
      * @psalm-param ?SelectTestCall     $select
      * @psalm-param ?SubjectTestCall    $subject
      * @psalm-param ?SelectableTestCall $selectable
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testDummyValueSelector(
         array $ctor,

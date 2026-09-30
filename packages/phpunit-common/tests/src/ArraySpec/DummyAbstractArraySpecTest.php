@@ -28,6 +28,9 @@ use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
  */
 final class DummyAbstractArraySpecTest extends TestCase
 {
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testExtendsAbstractArraySpec(): void
     {
         $resultFactory = $this->createMock(ResultFactoryInterface::class);
@@ -60,6 +63,8 @@ final class DummyAbstractArraySpecTest extends TestCase
      *
      * @psalm-param ResultFactoryInterface<SupportedInput> $factory
      * @psalm-param ArrayLike                              $array
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testDummyAbstractArraySpec(ResultFactoryInterface $factory, iterable $array): void
     {

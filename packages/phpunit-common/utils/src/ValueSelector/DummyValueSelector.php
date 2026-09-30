@@ -22,7 +22,7 @@ final class DummyValueSelector implements ValueSelectorInterface
     /**
      * @var bool|\Closure
      *
-     * @psalm-var bool|\Closure(mixed):bool
+     * @psalm-var bool|pure-Closure(mixed):bool
      *
      * @psalm-readonly
      */
@@ -31,7 +31,7 @@ final class DummyValueSelector implements ValueSelectorInterface
     /**
      * @var bool|\Closure
      *
-     * @psalm-var bool|\Closure(mixed,mixed,mixed):bool
+     * @psalm-var bool|pure-Closure(mixed,mixed,mixed):bool
      *
      * @psalm-readonly
      */
@@ -55,8 +55,8 @@ final class DummyValueSelector implements ValueSelectorInterface
      * @param bool|\Closure $supports
      * @param bool|\Closure $select
      *
-     * @psalm-param bool|\Closure(mixed):bool             $supports
-     * @psalm-param bool|\Closure(mixed,mixed,mixed):bool $select
+     * @psalm-param bool|pure-Closure(mixed):bool             $supports
+     * @psalm-param bool|pure-Closure(mixed,mixed,mixed):bool $select
      */
     public function __construct($supports = false, $select = false, string $subject = '', string $selectable = '')
     {
@@ -67,17 +67,17 @@ final class DummyValueSelector implements ValueSelectorInterface
     }
 
     /**
-     * @param mixed $subject
+     * @param mixed $input
      *
      * @psalm-mutation-free
      */
-    public function supports($subject): bool
+    public function supports($input): bool
     {
         if (is_bool($this->supports)) {
             return $this->supports;
         }
 
-        return call_user_func($this->supports, $subject);
+        return call_user_func($this->supports, $input);
     }
 
     /**

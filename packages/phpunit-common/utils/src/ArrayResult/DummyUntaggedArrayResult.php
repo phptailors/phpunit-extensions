@@ -19,7 +19,7 @@ use Tailors\PHPUnit\Result\ResultInterface;
  *
  * @psalm-type ArrayLike = iterable<array-key, mixed>
  *
- * @template-extends \ArrayObject<mixed,mixed>
+ * @template-extends \ArrayObject<array-key,mixed>
  */
 final class DummyUntaggedArrayResult extends \ArrayObject implements ResultInterface
 {

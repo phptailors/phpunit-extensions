@@ -26,6 +26,9 @@ use Tailors\PHPUnit\Result\DummyResult;
  */
 final class DummyResultFactoryTest extends TestCase
 {
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testImplementsResultFactoryInterface(): void
     {
         $this->assertInstanceOf(ResultFactoryInterface::class, new DummyResultFactory(false));
@@ -80,7 +83,9 @@ final class DummyResultFactoryTest extends TestCase
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'supports' => function ($input): bool {
+            'supports' =>
+            /** @psalm-param mixed $input */
+            function ($input): bool {
                 return is_array($input);
             },
             'input'    => [],
@@ -91,7 +96,9 @@ final class DummyResultFactoryTest extends TestCase
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'supports' => function ($input): bool {
+            'supports' =>
+            /** @psalm-param mixed $input */
+            function ($input): bool {
                 return is_array($input);
             },
             'input'    => null,
@@ -110,6 +117,8 @@ final class DummyResultFactoryTest extends TestCase
      *
      * @psalm-param bool|\Closure(mixed):bool $supports
      * @psalm-param array{supports: mixed}    $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testDummyResultFactory($supports, $input, bool $actual, array $expect): void
     {

@@ -26,11 +26,14 @@ use Tailors\PHPUnit\Result\ResultInterface;
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-type ArrayLike     = iterable<array-key, mixed>
- * @psalm-type CtorArgs      = list{0?:?non-falsy-string}
+ * @psalm-type CtorArgs      = list{0?:?non-falsy-string,1?:?\Closure(iterable<array-key,mixed>):array}
  * @psalm-type GetResultArgs = list{0:bool, 1:ArrayLike}
  */
 final class DummyArrayResultFactoryTest extends TestCase
 {
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testImplementsResultFactoryInterface(): void
     {
         $object = new DummyArrayResultFactory();
@@ -38,6 +41,9 @@ final class DummyArrayResultFactoryTest extends TestCase
         $this->assertInstanceOf(ResultFactoryInterface::class, $object);
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testExtendsAbstractArrayResultFactory(): void
     {
         $object = new DummyArrayResultFactory();
@@ -46,7 +52,7 @@ final class DummyArrayResultFactoryTest extends TestCase
     }
 
     /**
-     * @psalm-return \Generator<non-falsy-string, array{ctor: CtorArgs, args: GetResultArgs, expect: mixed}>
+     * @psalm-return iterable<non-falsy-string, array{ctor: CtorArgs, args: GetResultArgs, expect: mixed}>
      */
     public static function provGetResult(): iterable
     {

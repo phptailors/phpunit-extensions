@@ -23,6 +23,9 @@ use PHPUnit\Framework\TestCase;
  */
 final class DummyComparatorTest extends TestCase
 {
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testDummyComparator(): void
     {
         // Mostly for code coverage.

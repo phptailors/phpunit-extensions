@@ -20,7 +20,7 @@ use Tailors\PHPUnit\Result\ResultInterface;
  *
  * @psalm-type ArrayLike = iterable<array-key,mixed>
  *
- * @template-extends \ArrayObject<mixed,mixed>
+ * @template-extends \ArrayObject<array-key,mixed>
  */
 final class DummyArrayResult extends \ArrayObject implements ResultInterface, TagInterface
 {
@@ -60,8 +60,6 @@ final class DummyArrayResult extends \ArrayObject implements ResultInterface, Ta
     }
 
     /**
-     * @psalm-return non-empty-string
-     *
      * @psalm-mutation-free
      */
     public function tag(): string

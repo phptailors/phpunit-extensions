@@ -19,9 +19,6 @@ namespace Tailors\PHPUnit\Common;
  */
 interface TagInterface
 {
-    /**
-     * @psalm-return non-empty-string
-     */
     public function tag(): string;
 }
 

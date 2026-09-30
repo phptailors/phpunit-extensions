@@ -32,14 +32,18 @@ final class DummyArrayResultFactory extends AbstractArrayResultFactory
     private $tag;
 
     /**
-     * @var \Closure
+     * @var ?\Closure
      *
-     * @psalm-var \Closure(ArrayLike): array
+     * @psalm-var ?\Closure(ArrayLike): array
      *
      * @psalm-readonly
      */
     private $modifier;
 
+    /**
+     * @psalm-param ?non-falsy-string $tag
+     * @psalm-param ?\Closure(ArrayLike):array $modifier
+     */
     public function __construct(?string $tag = null, ?\Closure $modifier = null)
     {
         $this->tag = $tag;
