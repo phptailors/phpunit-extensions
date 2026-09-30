@@ -71,29 +71,29 @@ final class DummyRecursiveConstraintSpecialization
     /**
      * @var ?array
      */
-    public static $validateExpectationsLastCall;
+    public static $validateExpectationsLastParams;
 
     /**
      * @var ?array
      */
-    public static $makeComparatorLastCall;
+    public static $makeComparatorLastParams;
 
     /**
      * @var ?ComparatorInterface
      */
-    public static $makeComparatorLastResult;
+    public static $makeComparatorLastReturn;
 
     /**
      * @var ?array
      */
-    public static $makeExpectationsLastCall;
+    public static $makeExpectationsLastParams;
 
     /**
      * @var ?iterable
      *
      * @psalm-var ?ArrayLike
      */
-    public static $makeExpectationsLastResult;
+    public static $makeExpectationsLastReturn;
 
     /**
      * @psalm-param ArrayLike $expected
@@ -110,16 +110,16 @@ final class DummyRecursiveConstraintSpecialization
         $this->recursiveResultUnwrapper = $recursiveResultUnwrapper;
     }
 
-    public static function staticReset(): void
+    public static function resetStaticProperties(): void
     {
         self::$defaultComparatorCompare = false;
         self::$defaultComparatorAdjective = 'dummy';
         self::$defaultResultFactory = null;
-        self::$validateExpectationsLastCall = null;
-        self::$makeComparatorLastCall = null;
-        self::$makeComparatorLastResult = null;
-        self::$makeExpectationsLastCall = null;
-        self::$makeExpectationsLastResult = null;
+        self::$validateExpectationsLastParams = null;
+        self::$makeComparatorLastParams = null;
+        self::$makeComparatorLastReturn = null;
+        self::$makeExpectationsLastParams = null;
+        self::$makeExpectationsLastReturn = null;
     }
 
     /**
@@ -127,26 +127,28 @@ final class DummyRecursiveConstraintSpecialization
      */
     protected static function validateExpectations(iterable $expected, int $argument, int $distance = 1): void
     {
-        self::$validateExpectationsLastCall = [$expected, $argument, $distance];
+        self::$validateExpectationsLastParams = [$expected, $argument, $distance];
     }
 
     protected static function makeComparator(): ComparatorInterface
     {
-        self::$makeComparatorLastCall = [];
-        self::$makeComparatorLastResult = new DummyComparator(self::$defaultComparatorCompare, self::$defaultComparatorAdjective);
+        self::$makeComparatorLastParams = [];
+        self::$makeComparatorLastReturn = new DummyComparator(self::$defaultComparatorCompare, self::$defaultComparatorAdjective);
 
-        return self::$makeComparatorLastResult;
+        return self::$makeComparatorLastReturn;
     }
 
     /**
      * @psalm-param ArrayLike $expected
+     *
+     * @psalm-return ArrayLike
      */
-    protected static function makeExpectations(iterable $expected): DummyResultFactoryWrapper
+    protected static function makeExpectations(iterable $expected): iterable
     {
-        self::$makeExpectationsLastCall = [$expected];
-        self::$makeExpectationsLastResult = new DummyResultFactoryWrapper(self::defaultResultFactory(), $expected);
+        self::$makeExpectationsLastParams = [$expected];
+        self::$makeExpectationsLastReturn = new DummyResultFactoryWrapper(self::defaultResultFactory(), $expected);
 
-        return self::$makeExpectationsLastResult;
+        return self::$makeExpectationsLastReturn;
     }
 
     private static function defaultResultFactory(): ResultFactoryInterface

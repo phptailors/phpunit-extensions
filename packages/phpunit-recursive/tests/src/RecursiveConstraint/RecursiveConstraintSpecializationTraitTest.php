@@ -18,7 +18,6 @@ use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapper;
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\RecursiveConstraint\DummyRecursiveConstraintSpecialization
  * @covers \Tailors\PHPUnit\RecursiveConstraint\RecursiveConstraintSpecializationTrait
  *
  * @internal This class is not covered by the backward compatibility promise
@@ -31,12 +30,12 @@ final class RecursiveConstraintSpecializationTraitTest extends TestCase
 {
     protected function setUp(): void
     {
-        DummyRecursiveConstraintSpecialization::staticReset();
+        DummyRecursiveConstraintSpecialization::resetStaticProperties();
     }
 
     protected function tearDown(): void
     {
-        DummyRecursiveConstraintSpecialization::staticReset();
+        DummyRecursiveConstraintSpecialization::resetStaticProperties();
     }
 
     /**
@@ -69,17 +68,17 @@ final class RecursiveConstraintSpecializationTraitTest extends TestCase
         $constraint = DummyRecursiveConstraintSpecialization::create($expected);
 
         // DummyRecursiveConstraintSpecialization::validateExpectations($expected, 1) was called.
-        $this->assertSame([$expected, 1, 1], DummyRecursiveConstraintSpecialization::$validateExpectationsLastCall);
+        $this->assertSame([$expected, 1, 1], DummyRecursiveConstraintSpecialization::$validateExpectationsLastParams);
 
         // DummyRecursiveConstraintSpecialization::makeExpectations($expected) was called and the result was passed to constructor
-        $this->assertSame([$expected], DummyRecursiveConstraintSpecialization::$makeExpectationsLastCall);
-        $this->assertSame(DummyRecursiveConstraintSpecialization::$makeExpectationsLastResult, $constraint->expected);
+        $this->assertSame([$expected], DummyRecursiveConstraintSpecialization::$makeExpectationsLastParams);
+        $this->assertSame(DummyRecursiveConstraintSpecialization::$makeExpectationsLastReturn, $constraint->expected);
         $this->assertSame($array, iterator_to_array($constraint->expected));
 
         // DummyRecursiveConstraintSpecialization::makeComparator() was called and the result was passed to constructor
-        $this->assertSame([], DummyRecursiveConstraintSpecialization::$makeComparatorLastCall);
-        $this->assertInstanceOf(ComparatorInterface::class, DummyRecursiveConstraintSpecialization::$makeComparatorLastResult);
-        $this->assertSame(DummyRecursiveConstraintSpecialization::$makeComparatorLastResult, $constraint->comparator);
+        $this->assertSame([], DummyRecursiveConstraintSpecialization::$makeComparatorLastParams);
+        $this->assertInstanceOf(ComparatorInterface::class, DummyRecursiveConstraintSpecialization::$makeComparatorLastReturn);
+        $this->assertSame(DummyRecursiveConstraintSpecialization::$makeComparatorLastReturn, $constraint->comparator);
 
         // recursiveResultFactory and recursiveResultUnwrapper are set accordingly
         $this->assertInstanceOf(RecursiveResultFactory::class, $constraint->recursiveResultFactory);
