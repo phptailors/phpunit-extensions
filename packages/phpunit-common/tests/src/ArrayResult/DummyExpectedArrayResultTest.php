@@ -29,7 +29,7 @@ use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
 final class DummyExpectedArrayResultTest extends TestCase
 {
     /**
-     * @psalm-return \Generator<string,array{ctor: CtorArgs expect: ExpectArray}
+     * @psalm-return \Generator<string, array{ctor: CtorArgs, expect: ExpectArray}
      */
     public static function provDummyExpectedArrayResult(): iterable
     {
