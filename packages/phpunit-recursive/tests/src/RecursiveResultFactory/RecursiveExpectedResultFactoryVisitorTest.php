@@ -12,7 +12,6 @@ namespace Tailors\PHPUnit\RecursiveResultFactory;
 
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
-use Tailors\PHPUnit\ArrayResult\ExpectedArrayResult;
 use Tailors\PHPUnit\ArraySpec\DummyResultFactoryAndValueSelectorWrapper;
 use Tailors\PHPUnit\ArraySpec\DummyResultFactoryWrapper;
 use Tailors\PHPUnit\CircularDependencyException;
@@ -676,7 +675,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
 
         $f04 = new DummyArrayResultFactory();
         $s04 = new DummyValueSelector(false);
-        $b04 = new ExpectedArrayResult([]);
+        $b04 = new DummyArrayResult(false, []);
 
         yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [],

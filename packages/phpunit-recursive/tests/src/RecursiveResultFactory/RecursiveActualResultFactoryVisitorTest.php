@@ -12,7 +12,6 @@ namespace Tailors\PHPUnit\RecursiveResultFactory;
 
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
-use Tailors\PHPUnit\ArrayResult\ExpectedArrayResult;
 use Tailors\PHPUnit\ArraySpec\DummyResultFactoryAndValueSelectorWrapper;
 use Tailors\PHPUnit\ArraySpec\DummyResultFactoryWrapper;
 use Tailors\PHPUnit\ArraySpec\DummyValueSelectorWrapper;
@@ -811,7 +810,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
             ],
             'array'  => new DummyResultFactoryAndValueSelectorWrapper($f04, $s04, [
                 'foo' => ['unimportant'],
-                'bar' => new ExpectedArrayResult([]),
+                'bar' => new DummyArrayResult(false, []),
             ]),
             'result' => new DummyArrayResult(true, [
                 'foo' => 'FOO',

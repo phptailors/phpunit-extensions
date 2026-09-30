@@ -10,7 +10,6 @@
 
 namespace Tailors\PHPUnit\RecursiveConstraint;
 
-use Tailors\PHPUnit\ArrayResult\ExpectedArrayResult;
 use Tailors\PHPUnit\ArraySpec\DummyResultFactoryAndValueSelectorWrapper;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\IdentityComparator;
@@ -46,7 +45,7 @@ class ExampleRecursiveConstraint extends AbstractRecursiveConstraint
     /**
      * @psalm-param ArrayLike $expected
      *
-     * @psalm-return ExpectedArrayResult
+     * @psalm-return DummyResultFactoryAndValueSelectorWrapper
      */
     protected static function makeExpectations(iterable $expected): iterable
     {
