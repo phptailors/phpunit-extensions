@@ -16,13 +16,15 @@ use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorStackItemInterface;
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type ArrayLike = ArrayLike
  */
 final class RecursiveResultUnwrapperStackItem implements RecursiveVisitorStackItemInterface
 {
     /**
      * @var iterable
      *
-     * @psalm-var iterable<array-key, mixed>
+     * @psalm-var ArrayLike
      *
      * @psalm-readonly
      */
@@ -47,9 +49,9 @@ final class RecursiveResultUnwrapperStackItem implements RecursiveVisitorStackIt
     /**
      * @param mixed $key
      *
-     * @psalm-param iterable<array-key, mixed> $node
-     * @psalm-param array-key                  $key
-     * @psalm-param array<array-key, mixed>    $result
+     * @psalm-param ArrayLike               $node
+     * @psalm-param array-key               $key
+     * @psalm-param array<array-key, mixed> $result
      */
     public function __construct(iterable $node, $key, array $result)
     {
@@ -59,7 +61,7 @@ final class RecursiveResultUnwrapperStackItem implements RecursiveVisitorStackIt
     }
 
     /**
-     * @psalm-return iterable<array-key, mixed>
+     * @psalm-return ArrayLike
      *
      * @psalm-mutation-free
      */

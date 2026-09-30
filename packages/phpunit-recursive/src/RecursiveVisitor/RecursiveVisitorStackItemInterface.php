@@ -14,11 +14,13 @@ namespace Tailors\PHPUnit\RecursiveVisitor;
  * @internal This interface is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
  */
 interface RecursiveVisitorStackItemInterface
 {
     /**
-     * @psalm-return iterable<array-key, mixed>
+     * @psalm-return ArrayLike
      *
      * @psalm-mutation-free
      */

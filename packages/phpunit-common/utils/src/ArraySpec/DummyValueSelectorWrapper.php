@@ -19,7 +19,8 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-template SupportedSubject
- * @psalm-template ArrayLike = iterable<array-key,mixed>
+ *
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
  *
  * @template-implements ValueSelectorWrapperInterface<SupportedSubject>
  *
