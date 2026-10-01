@@ -16,6 +16,8 @@ namespace Tailors\PHPUnit\RecursiveResultFactory;
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-type ArrayLike = iterable<array-key, mixed>
+ *
+ * @psalm-template SupportedInput
  */
 interface RecursiveResultFactoryInterface
 {
@@ -23,6 +25,8 @@ interface RecursiveResultFactoryInterface
      * @param mixed $input
      *
      * @psalm-param ArrayLike $array
+     *
+     * @psalm-assert-if-true SupportedInput $input
      */
     public function supports(iterable $array, $input): bool;
 
@@ -31,7 +35,8 @@ interface RecursiveResultFactoryInterface
      *
      * @return mixed
      *
-     * @psalm-param ArrayLike $array
+     * @psalm-param ArrayLike      $array
+     * @psalm-param SupportedInput $input
      */
     public function getActualResult(iterable $array, $input);
 
@@ -39,8 +44,10 @@ interface RecursiveResultFactoryInterface
      * @return mixed
      *
      * @psalm-param ArrayLike $array
+     *
+     * @psalm-return ArrayLike
      */
-    public function getExpectedResult(iterable $array);
+    public function getExpectedResult(iterable $array): iterable;
 }
 
 // vim: syntax=php sw=4 ts=4 et:

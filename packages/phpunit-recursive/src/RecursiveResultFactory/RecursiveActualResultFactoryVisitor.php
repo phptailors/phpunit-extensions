@@ -43,12 +43,6 @@ final class RecursiveActualResultFactoryVisitor implements RecursiveActualResult
      */
     private $subjectResultCouple;
 
-    public function __construct()
-    {
-        $this->subject = null;
-        $this->subjectResultCouple = null;
-    }
-
     /**
      * @param mixed $subject
      */

@@ -207,9 +207,6 @@ final class RecursiveResultUnwrapperVisitor implements RecursiveResultUnwrapperV
         $stack[$count - 1]->set($value);
     }
 
-    /**
-     * @psalm-return non-empty-string
-     */
     private function getNodeTag(object $node): string
     {
         if ($node instanceof TagInterface) {

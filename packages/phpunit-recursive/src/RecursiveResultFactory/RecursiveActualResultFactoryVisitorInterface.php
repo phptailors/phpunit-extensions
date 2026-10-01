@@ -19,7 +19,7 @@ use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorInterface;
  *
  * @psalm-type StackItem = RecursiveActualResultFactoryStackItem
  *
- * @template-extends RecursiveVisitorInterface<RecursiveResultFactoryStackItem>
+ * @template-extends RecursiveVisitorInterface<StackItem>
  */
 interface RecursiveActualResultFactoryVisitorInterface extends RecursiveVisitorInterface
 {

@@ -17,7 +17,7 @@ use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorStackItemInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ArrayLike = ArrayLike
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
  */
 final class RecursiveResultUnwrapperStackItem implements RecursiveVisitorStackItemInterface
 {
