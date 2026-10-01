@@ -44,7 +44,7 @@ final class RecursiveActualResultFactoryStackItem implements RecursiveVisitorSta
      *
      * @psalm-readonly
      */
-    private $subjectResultCouple;
+    private $current;
 
     /**
      * @param mixed $key
@@ -52,11 +52,11 @@ final class RecursiveActualResultFactoryStackItem implements RecursiveVisitorSta
      * @psalm-param ArrayLike $node
      * @psalm-param array-key $key
      */
-    public function __construct(iterable $node, $key, SubjectResultCouple $subjectResultCouple)
+    public function __construct(iterable $node, $key, SubjectResultCouple $current)
     {
         $this->node = $node;
         $this->key = $key;
-        $this->subjectResultCouple = $subjectResultCouple;
+        $this->current = $current;
     }
 
     /**
@@ -86,12 +86,12 @@ final class RecursiveActualResultFactoryStackItem implements RecursiveVisitorSta
      */
     public function set($value): void
     {
-        $this->subjectResultCouple->result[$this->key] = $value;
+        $this->current->result[$this->key] = $value;
     }
 
-    public function subjectResultCouple(): SubjectResultCouple
+    public function current(): SubjectResultCouple
     {
-        return $this->subjectResultCouple;
+        return $this->current;
     }
 }
 

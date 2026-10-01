@@ -41,7 +41,7 @@ final class RecursiveActualResultFactoryVisitor implements RecursiveActualResult
     /**
      * @var ?SubjectResultCouple
      */
-    private $subjectResultCouple;
+    private $current;
 
     /**
      * @param mixed $subject
@@ -50,13 +50,13 @@ final class RecursiveActualResultFactoryVisitor implements RecursiveActualResult
     {
         $this->subject = $subject;
         $this->result = null;
-        $this->subjectResultCouple = null;
+        $this->current = null;
     }
 
     public function end(): void
     {
         $this->subject = null;
-        $this->subjectResultCouple = null;
+        $this->current = null;
     }
 
     /**
@@ -92,12 +92,12 @@ final class RecursiveActualResultFactoryVisitor implements RecursiveActualResult
             return;
         }
 
-        if (null === $this->subjectResultCouple) {
+        if (null === $this->current) {
             /** @psalm-suppress MissingThrowsDocblock */
-            throw InternalErrorException::fromBackTrace('$this->subjectResultCouple is null');
+            throw InternalErrorException::fromBackTrace('$this->current is null');
         }
 
-        $this->set($stack, $this->subjectResultCouple->result);
+        $this->set($stack, $this->current->result);
     }
 
     /**
@@ -136,12 +136,12 @@ final class RecursiveActualResultFactoryVisitor implements RecursiveActualResult
      */
     public function makeStackItem(iterable $node, $key, array $stack): RecursiveVisitorStackItemInterface
     {
-        if (null === $this->subjectResultCouple) {
+        if (null === $this->current) {
             /** @psalm-suppress MissingThrowsDocblock */
-            throw InternalErrorException::fromBackTrace('$this->subjectResultCouple is null');
+            throw InternalErrorException::fromBackTrace('$this->current is null');
         }
 
-        return new RecursiveActualResultFactoryStackItem($node, $key, $this->subjectResultCouple);
+        return new RecursiveActualResultFactoryStackItem($node, $key, $this->current);
     }
 
     /**
@@ -150,7 +150,7 @@ final class RecursiveActualResultFactoryVisitor implements RecursiveActualResult
      */
     public function freeStackItem(RecursiveVisitorStackItemInterface $item, array $stack): void
     {
-        $this->subjectResultCouple = $item->subjectResultCouple();
+        $this->current = $item->current();
     }
 
     /**
@@ -189,7 +189,7 @@ final class RecursiveActualResultFactoryVisitor implements RecursiveActualResult
         $parentNode = $top->node();
 
         /** @psalm-var mixed */
-        $parentSubject = $top->subjectResultCouple()->subject;
+        $parentSubject = $top->current()->subject;
 
         if ($parentNode instanceof ValueSelectorWrapperInterface) {
             $parentValueSelector = $parentNode->getValueSelector();
@@ -259,7 +259,7 @@ final class RecursiveActualResultFactoryVisitor implements RecursiveActualResult
             return false;
         }
 
-        $this->subjectResultCouple = new SubjectResultCouple($subject, $subject);
+        $this->current = new SubjectResultCouple($subject, $subject);
 
         return true;
     }
@@ -312,7 +312,7 @@ final class RecursiveActualResultFactoryVisitor implements RecursiveActualResult
             return false;
         }
 
-        $this->subjectResultCouple = new SubjectResultCouple($subject, $result);
+        $this->current = new SubjectResultCouple($subject, $result);
 
         return true;
     }

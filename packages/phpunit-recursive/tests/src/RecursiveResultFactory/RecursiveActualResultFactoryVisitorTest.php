@@ -1196,7 +1196,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         $visitor = new RecursiveActualResultFactoryVisitor();
 
         $this->expectException(InternalErrorException::class);
-        $this->expectExceptionMessage('$this->subjectResultCouple is null');
+        $this->expectExceptionMessage('$this->current is null');
 
         $visitor->makeStackItem([], '', []);
     }
@@ -1206,7 +1206,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         $visitor = new RecursiveActualResultFactoryVisitor();
 
         $this->expectException(InternalErrorException::class);
-        $this->expectExceptionMessage('$this->subjectResultCouple is null');
+        $this->expectExceptionMessage('$this->current is null');
 
         $visitor->leave([], [], true);
     }

@@ -75,7 +75,7 @@ final class RecursiveActualResultFactoryStackItemTest extends TestCase
 
         $this->assertSame($expect['node'], $item->node());
         $this->assertSame($expect['key'], $item->key());
-        $this->assertSame($expect['couple'], $item->subjectResultCouple());
+        $this->assertSame($expect['couple'], $item->current());
     }
 
     /**
@@ -149,8 +149,8 @@ final class RecursiveActualResultFactoryStackItemTest extends TestCase
 
         $this->assertSame($expect['node'], $item->node());
         $this->assertSame($expect['key'], $item->key());
-        $this->assertSame($expect['subject'], $item->subjectResultCouple()->subject);
-        $this->assertSame($expect['result'], $item->subjectResultCouple()->result);
+        $this->assertSame($expect['subject'], $item->current()->subject);
+        $this->assertSame($expect['result'], $item->current()->result);
     }
 }
 // vim: syntax=php sw=4 ts=4 et:
