@@ -17,15 +17,12 @@ use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type StackItem = RecursiveResultFactoryStackItem
+ * @psalm-type StackItem = RecursiveExpectedResultFactoryStackItem
  *
- * @template-extends RecursiveVisitorInterface<RecursiveResultFactoryStackItem>
+ * @template-extends RecursiveVisitorInterface<StackItem>
  */
 interface RecursiveExpectedResultFactoryVisitorInterface extends RecursiveVisitorInterface
 {
-    /**
-     * @param mixed $subject
-     */
     public function begin(): void;
 
     public function end(): void;

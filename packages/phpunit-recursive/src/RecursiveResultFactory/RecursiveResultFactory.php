@@ -21,10 +21,6 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-type ArrayLike = iterable<array-key, mixed>
- *
- * @psalm-template SupportedInput
- *
- * @template-implements RecursiveResultFactoryInterface<SupportedInput>
  */
 final class RecursiveResultFactory implements RecursiveResultFactoryInterface
 {
@@ -70,8 +66,6 @@ final class RecursiveResultFactory implements RecursiveResultFactoryInterface
      * @param mixed $input
      *
      * @psalm-param ArrayLike $array
-     *
-     * @psalm-assert-if-true SupportedInput $input
      */
     public function supports(iterable $array, $input): bool
     {
@@ -104,8 +98,7 @@ final class RecursiveResultFactory implements RecursiveResultFactoryInterface
      *
      * @return mixed
      *
-     * @psalm-param ArrayLike      $array
-     * @psalm-param SupportedInput $input
+     * @psalm-param ArrayLike $array
      */
     public function getActualResult(iterable $array, $input)
     {

@@ -41,9 +41,6 @@ final class RecursiveExpectedResultFactoryVisitor implements RecursiveExpectedRe
         $this->current = null;
     }
 
-    /**
-     * @param mixed $subject
-     */
     public function begin(): void
     {
         $this->result = null;
@@ -78,6 +75,7 @@ final class RecursiveExpectedResultFactoryVisitor implements RecursiveExpectedRe
                 return false;
             }
 
+            /** @psalm-suppress MissingThrowsDocblock */
             $result = $factory->getResult(false, $node);
 
             if (!$result instanceof \ArrayAccess) {

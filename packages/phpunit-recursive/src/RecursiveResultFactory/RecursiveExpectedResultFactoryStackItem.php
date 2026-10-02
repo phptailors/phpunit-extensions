@@ -41,8 +41,6 @@ final class RecursiveExpectedResultFactoryStackItem implements RecursiveVisitorS
 
     /**
      * @var array|\ArrayAccess
-     *
-     * @psalm-readonly
      */
     private $result;
 
@@ -53,7 +51,7 @@ final class RecursiveExpectedResultFactoryStackItem implements RecursiveVisitorS
      * @psalm-param ArrayLike $node
      * @psalm-param array-key $key
      */
-    public function __construct(iterable $node, $key, iterable $result)
+    public function __construct(iterable $node, $key, $result)
     {
         $this->node = $node;
         $this->key = $key;
@@ -93,7 +91,7 @@ final class RecursiveExpectedResultFactoryStackItem implements RecursiveVisitorS
     /**
      * @return array|\ArrayAccess
      */
-    public function result(): iterable
+    public function result()
     {
         return $this->result;
     }
