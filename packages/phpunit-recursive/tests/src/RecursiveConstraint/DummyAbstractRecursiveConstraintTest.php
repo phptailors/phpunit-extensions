@@ -24,6 +24,9 @@ use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapperInterface;
  */
 final class DummyAbstractRecursiveConstraintTest extends TestCase
 {
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testCreateWithTraversable(): void
     {
         $constraint = DummyAbstractRecursiveConstraint::create(
@@ -36,6 +39,9 @@ final class DummyAbstractRecursiveConstraintTest extends TestCase
         $this->assertInstanceOf(DummyAbstractRecursiveConstraint::class, $constraint);
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testCreateWithArray(): void
     {
         $constraint = DummyAbstractRecursiveConstraint::create(

@@ -42,11 +42,17 @@ final class DummyRecursiveConstraintSpecializationTest extends TestCase
         DummyRecursiveConstraintSpecialization::resetStaticProperties();
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testUsesConstraintSpecializationTrait(): void
     {
         $this->assertArrayHasKey(RecursiveConstraintSpecializationTrait::class, class_uses(DummyRecursiveConstraintSpecialization::class));
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testResetStaticProperties(): void
     {
         DummyRecursiveConstraintSpecialization::$defaultComparatorCompare = true;
@@ -70,6 +76,9 @@ final class DummyRecursiveConstraintSpecializationTest extends TestCase
         $this->assertSame(null, DummyRecursiveConstraintSpecialization::$makeExpectationsLastReturn);
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testCreate(): void
     {
         $constraint = DummyRecursiveConstraintSpecialization::create(['a' => 'A']);

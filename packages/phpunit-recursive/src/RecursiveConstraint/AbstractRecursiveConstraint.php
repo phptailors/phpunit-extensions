@@ -119,6 +119,7 @@ abstract class AbstractRecursiveConstraint extends Constraint
             $f = null;
 
             if ($this->recursiveResultFactory->supports($this->expected, $other)) {
+                /** @psalm-var mixed $expectResult */
                 $expectResult = $this->recursiveResultFactory->getExpectedResult($this->expected);
 
                 /** @psalm-var mixed $actualResult */
@@ -184,12 +185,19 @@ abstract class AbstractRecursiveConstraint extends Constraint
             return false;
         }
 
+        /** @psalm-var mixed $expectResult */
         $expectResult = $this->recursiveResultFactory->getExpectedResult($this->expected);
 
-        /** @psalm-var \ArrayObject|mixed $actualResult */
-        $actualResult = $this->recursiveResultFactory->getActualResult($this->expected, $other);
+        if (is_iterable($expectResult)) {
+            /** @psalm-var ArrayLike $expectResult */
+            $expectValue = $this->recursiveResultUnwrapper->unwrap(false, $expectResult);
+        } else {
+            /** @psalm-var mixed $expectValue */
+            $expectValue = $expectResult;
+        }
 
-        $expectArray = $this->recursiveResultUnwrapper->unwrap(false, $expectResult);
+        /** @psalm-var mixed $actualResult */
+        $actualResult = $this->recursiveResultFactory->getActualResult($this->expected, $other);
 
         if (is_iterable($actualResult)) {
             /** @psalm-var ArrayLike $actualResult */
@@ -199,7 +207,7 @@ abstract class AbstractRecursiveConstraint extends Constraint
             $actualValue = $other;
         }
 
-        return $this->comparator->compare($expectArray, $actualValue);
+        return $this->comparator->compare($expectValue, $actualValue);
     }
 }
 

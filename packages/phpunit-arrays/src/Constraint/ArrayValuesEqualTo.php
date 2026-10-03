@@ -47,8 +47,6 @@ final class ArrayValuesEqualTo extends AbstractRecursiveConstraint
     }
 
     /**
-     * Creates instance of ValuesInterface to be used as expected values.
-     *
      * @psalm-param ArrayLike $expected
      *
      * @psalm-return ArrayLike

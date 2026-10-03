@@ -29,7 +29,7 @@ final class ObjectPropertiesEqualToTraitTest extends TestCase
     use ObjectPropertiesEqualToTrait;
     use ProvObjectPropertiesTrait;
 
-    public static function createConstraint(...$args): ObjectPropertiesEqualTo
+    public static function createConstraint(array $args): ObjectPropertiesEqualTo
     {
         return ObjectPropertiesEqualTo::create(...$args);
     }

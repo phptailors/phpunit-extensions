@@ -25,13 +25,18 @@ use Tailors\PHPUnit\CircularDependencyException;
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-template ConstraintClass of Constraint
+ * @psalm-template CreateConstraintArgs of list
  */
 abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
     /**
-     * @param mixed $args
+     * Creates constraint's instance.
+     *
+     * @psalm-template TArgs of CreateConstraintArgs
+     *
+     * @psalm-param TArgs $args
      */
-    abstract public static function createConstraint(...$args): Constraint;
+    abstract public static function createConstraint(array $args): Constraint;
 
     /**
      * Returns constraint's class name.
@@ -43,17 +48,17 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     abstract public static function getConstraintClass(): string;
 
     /**
-     * @param array $args arguments for createConstraint()
-     *
      * @throws Exception
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
+     *
+     * @psalm-param CreateConstraintArgs $args
      *
      * @psalm-return ConstraintClass
      */
     final public function examineCreateConstraint(array $args): Constraint
     {
-        $constraint = $this->createConstraint(...$args);
+        $constraint = $this->createConstraint($args);
         $this->assertInstanceOf(static::getConstraintClass(), $constraint);
 
         return $constraint;
@@ -72,10 +77,12 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
      * @throws ReflectionException
      * @throws RuntimeException
      * @throws InvalidArgumentException
+     *
+     * @psalm-param CreateConstraintArgs $args
      */
     final public function examineConstraintUnaryOperatorFailure(array $args, $actual, string $message): void
     {
-        $constraint = $this->createConstraint(...$args);
+        $constraint = $this->createConstraint($args);
 
         $unary = $this->wrapWithUnaryOperator($constraint);
 
@@ -95,10 +102,12 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
+     *
+     * @psalm-param CreateConstraintArgs $args
      */
     final public function examineConstraintMatchSucceeds(array $args, $actual): void
     {
-        $constraint = $this->createConstraint(...$args);
+        $constraint = $this->createConstraint($args);
         self::assertThat($actual, $constraint);
     }
 
@@ -109,10 +118,12 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
      * @throws ExpectationFailedException
      * @throws CircularDependencyException
      * @throws InvalidArgumentException
+     *
+     * @psalm-param CreateConstraintArgs $args
      */
     final public function examineConstraintMatchFails(array $args, $actual, string $message): void
     {
-        $constraint = $this->createConstraint(...$args);
+        $constraint = $this->createConstraint($args);
 
         $this->expectException(ExpectationFailedException::class);
         $this->expectExceptionMessage($message);
@@ -129,10 +140,12 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
+     *
+     * @psalm-param CreateConstraintArgs $args
      */
     final public function examineNotConstraintMatchSucceeds(array $args, $actual): void
     {
-        $constraint = self::logicalNot($this->createConstraint(...$args));
+        $constraint = self::logicalNot($this->createConstraint($args));
         self::assertThat($actual, $constraint);
     }
 
@@ -142,10 +155,12 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
+     *
+     * @psalm-param CreateConstraintArgs $args
      */
     final public function examineNotConstraintMatchFails(array $args, $actual, string $message): void
     {
-        $constraint = self::logicalNot($this->createConstraint(...$args));
+        $constraint = self::logicalNot($this->createConstraint($args));
 
         $this->expectException(ExpectationFailedException::class);
         $this->expectExceptionMessage($message);

@@ -26,10 +26,7 @@ final class HasMethodTest extends TestCase
 {
     use ProvHasMethodTrait;
 
-    /**
-     * @param mixed $args
-     */
-    public static function createConstraint(...$args): Constraint
+    public static function createConstraint(array $args): Constraint
     {
         return HasMethod::create(...$args);
     }

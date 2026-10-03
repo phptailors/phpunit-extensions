@@ -19,10 +19,7 @@ use PHPUnit\Framework\Constraint\Constraint;
  */
 trait ProvObjectPropertiesTrait
 {
-    /**
-     * @param mixed $args
-     */
-    abstract public static function createConstraint(...$args): Constraint;
+    abstract public static function createConstraint(array $args): Constraint;
 
     // @codeCoverageIgnoreStart
 
@@ -362,12 +359,12 @@ trait ProvObjectPropertiesTrait
                     $jsmith,
                 ],
                 // the following must not match, as the 'families' property is an array, not an object.
-                'families' => static::createConstraint([
+                'families' => static::createConstraint([[
                     'smith' => [
                         $esmith,
                         $jsmith,
                     ],
-                ]),
+                ]]),
             ],
             'actual' => $registry,
             'string' => 'object '.get_class($registry),

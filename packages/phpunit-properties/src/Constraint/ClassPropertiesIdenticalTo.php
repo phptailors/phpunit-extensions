@@ -55,8 +55,6 @@ final class ClassPropertiesIdenticalTo extends AbstractRecursiveConstraint
     }
 
     /**
-     * Creates instance of ValuesInterface to be used as expected values.
-     *
      * @psalm-param ArrayLike $expected
      */
     protected static function makeExpectations(iterable $expected): ClassPropertiesSelection

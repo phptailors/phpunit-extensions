@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\RecursiveConstraint;
 
 use PHPUnit\Framework\Constraint\Constraint;
+use Tailors\PHPUnit\InvalidArgumentException;
 
 /**
  * @small
@@ -21,6 +22,12 @@ use PHPUnit\Framework\Constraint\Constraint;
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
+ * @psalm-type ConstraintClass = ExampleRecursiveConstraint
+ * @psalm-type CreateConstraintArgs = list{ArrayLike}
+ *
+ * @template-extends RecursiveConstraintTestCase<ConstraintClass, CreateConstraintArgs>
  */
 final class RecursiveConstraintTestCaseTest extends RecursiveConstraintTestCase
 {
@@ -39,16 +46,30 @@ final class RecursiveConstraintTestCaseTest extends RecursiveConstraintTestCase
         return 'identical to';
     }
 
-    public static function createConstraint(...$args): Constraint
+    /**
+     * @throws InvalidArgumentException
+     *
+     * @psalm-param CreateConstraintArgs $args
+     */
+    public static function createConstraint(array $args): Constraint
     {
         return ExampleRecursiveConstraint::create(...$args);
     }
 
+    /**
+     * @psalm-external-mutation-free
+     */
     public static function getConstraintClass(): string
     {
         return ExampleRecursiveConstraint::class;
     }
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      expect: ArrayLike,
+     *      actual: mixed
+     * }>
+     */
     public static function provArrayValuesIdenticalTo(): iterable
     {
         yield basename(__FILE__).':'.__LINE__ => [
@@ -62,6 +83,12 @@ final class RecursiveConstraintTestCaseTest extends RecursiveConstraintTestCase
         ];
     }
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      expect: ArrayLike,
+     *      actual: mixed
+     * }>
+     */
     public static function provArrayValuesEqualButNotIdenticalTo(): iterable
     {
         yield basename(__FILE__).':'.__LINE__ => [
@@ -74,6 +101,12 @@ final class RecursiveConstraintTestCaseTest extends RecursiveConstraintTestCase
         ];
     }
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      expect: ArrayLike,
+     *      actual: mixed
+     * }>
+     */
     public static function provArrayValuesNotEqualTo(): iterable
     {
         yield basename(__FILE__).':'.__LINE__ => [
@@ -100,8 +133,12 @@ final class RecursiveConstraintTestCaseTest extends RecursiveConstraintTestCase
      * @param mixed $actual
      *
      * @dataProvider provArrayValuesIdenticalTo
+     *
+     * @psalm-param ArrayLike $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testValuesMatchSucceeds(array $expect, $actual): void
+    public function testValuesMatchSucceeds(iterable $expect, $actual): void
     {
         $this->examineValuesMatchSucceeds($expect, $actual);
     }
@@ -111,8 +148,12 @@ final class RecursiveConstraintTestCaseTest extends RecursiveConstraintTestCase
      *
      * @dataProvider provArrayValuesEqualButNotIdenticalTo
      * @dataProvider provArrayValuesNotEqualTo
+     *
+     * @psalm-param ArrayLike $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testValuesMatchFails(array $expect, $actual): void
+    public function testValuesMatchFails(iterable $expect, $actual): void
     {
         $this->examineValuesMatchFails($expect, $actual, 'array');
     }
@@ -122,8 +163,12 @@ final class RecursiveConstraintTestCaseTest extends RecursiveConstraintTestCase
      *
      * @dataProvider provArrayValuesEqualButNotIdenticalTo
      * @dataProvider provArrayValuesNotEqualTo
+     *
+     * @psalm-param ArrayLike $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testNotValuesMatchSucceeds(array $expect, $actual): void
+    public function testNotValuesMatchSucceeds(iterable $expect, $actual): void
     {
         $this->examineNotValuesMatchSucceeds($expect, $actual);
     }
@@ -132,8 +177,12 @@ final class RecursiveConstraintTestCaseTest extends RecursiveConstraintTestCase
      * @param mixed $actual
      *
      * @dataProvider provArrayValuesIdenticalTo
+     *
+     * @psalm-param ArrayLike $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testNotValuesMatchFails(array $expect, $actual): void
+    public function testNotValuesMatchFails(iterable $expect, $actual): void
     {
         $this->examineNotValuesMatchFails($expect, $actual, 'array');
     }

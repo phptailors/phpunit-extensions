@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
+use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\ExpectationFailedException;
 use Tailors\PHPUnit\InvalidArgumentException;
 use Tailors\PHPUnit\RecursiveConstraint\RecursiveConstraintTestCase;
@@ -18,6 +19,11 @@ use Tailors\PHPUnit\RecursiveConstraint\RecursiveConstraintTestCase;
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-template ConstraintClass of Constraint
+ * @psalm-template CreateConstraintArgs of array
+ *
+ * @template-extends RecursiveConstraintTestCase<ConstraintClass, CreateConstraintArgs>
  */
 abstract class PropertiesConstraintTestCase extends RecursiveConstraintTestCase
 {
@@ -74,7 +80,7 @@ abstract class PropertiesConstraintTestCase extends RecursiveConstraintTestCase
         $message = sprintf(
             'Argument 1 passed to %s::create() must be an associative array with string keys, '.
             'an array with %d non-string %s given',
-            get_class($this->createConstraint([])),
+            get_class(static::createConstraint([[]])),
             $count,
             $count > 1 ? 'keys' : 'key'
         );
@@ -82,7 +88,7 @@ abstract class PropertiesConstraintTestCase extends RecursiveConstraintTestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage($message);
 
-        $this->createConstraint($array);
+        static::createConstraint([$array]);
 
         // @codeCoverageIgnoreStart
     }

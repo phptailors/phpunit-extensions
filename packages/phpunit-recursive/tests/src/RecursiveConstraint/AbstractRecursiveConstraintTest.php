@@ -13,7 +13,6 @@ namespace Tailors\PHPUnit\RecursiveConstraint;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\UnaryOperator;
 use PHPUnit\Framework\ExpectationFailedException;
-use PHPUnit\Framework\SelfDescribing;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\ArraySpec\DummyResultFactoryAndValueSelectorWrapper;
 use Tailors\PHPUnit\ArraySpec\DummyResultFactoryWrapper;
@@ -43,6 +42,8 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-type ArrayLike = iterable<array-key, mixed>
+ * @psalm-type EvaluateArgs = list{0:mixed, 1?: string, 2?: bool}
+ * @psalm-type EvaluateExpect = array{return?: bool|null, exception?: class-string<\Exception>, message?: string}
  */
 final class AbstractRecursiveConstraintTest extends TestCase
 {
@@ -107,13 +108,25 @@ final class AbstractRecursiveConstraintTest extends TestCase
     ): DummyAbstractRecursiveConstraint {
         $resultFactory = new DummyArrayResultFactory();
         $valueSelector = new DummyValueSelector(
+            /**
+             * @param mixed $subject
+             */
             function ($subject): bool {
                 return is_array($subject);
             },
+            /**
+             * @param array $subject
+             * @param mixed $key
+             * @param mixed $retval
+             *
+             * @psalm-param array-key $key
+             * @psalm-param-out mixed $retval
+             */
             function ($subject, $key, &$retval): bool {
                 if (!array_key_exists($key, $subject)) {
                     return false;
                 }
+                /** @psalm-var mixed $retval */
                 $retval = $subject[$key];
 
                 return true;
@@ -153,12 +166,18 @@ final class AbstractRecursiveConstraintTest extends TestCase
         return self::createDummyConstraintWithResultFactoryAndValueSelector($expected, new EqualityComparator());
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testExtendsConstraint(): void
     {
         $constraint = $this->createDummyConstraint();
         $this->assertInstanceOf(Constraint::class, $constraint);
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testToString(): void
     {
         $comparator = $this->createMock(ComparatorInterface::class);
@@ -188,11 +207,11 @@ final class AbstractRecursiveConstraintTest extends TestCase
     }
 
     /**
-     * @return iterable<string,array{
+     * @return iterable<string, array{
      *      subject: string,
      *      selectable: string,
      *      adjective: string,
-     *      operator: \Closure(Constraint):SelfDescribing,
+     *      operator: \Closure(Constraint):Constraint,
      *      expect: mixed
      * }>
      */
@@ -202,7 +221,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
             'subject'    => 'a tree',
             'selectable' => 'apples',
             'adjective'  => 'having colors',
-            'operator'   => function (Constraint $constraint): SelfDescribing {
+            'operator'   => function (Constraint $constraint): Constraint {
                 return $constraint;
             },
             'expect'     => 'is a tree with apples having colors specified',
@@ -212,7 +231,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
             'subject'    => 'a tree',
             'selectable' => 'apples',
             'adjective'  => 'having colors',
-            'operator'   => function (Constraint $constraint): SelfDescribing {
+            'operator'   => function (Constraint $constraint): Constraint {
                 return self::logicalNot($constraint);
             },
             'expect'     => 'fails to be a tree with apples having colors specified',
@@ -222,7 +241,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
             'subject'    => 'a tree',
             'selectable' => 'apples',
             'adjective'  => 'having colors',
-            'operator'   => function (Constraint $constraint): SelfDescribing {
+            'operator'   => function (Constraint $constraint): Constraint {
                 return self::logicalOr($constraint);
             },
             'expect'     => 'is a tree with apples having colors specified',
@@ -234,7 +253,9 @@ final class AbstractRecursiveConstraintTest extends TestCase
      *
      * @param mixed $expect
      *
-     * @psalm-param \Closure(Constraint):SelfDescribing $operator
+     * @psalm-param \Closure(Constraint):Constraint $operator
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testToStringInContext(string $subject, string $selectable, string $adjective, \Closure $operator, $expect): void
     {
@@ -267,8 +288,8 @@ final class AbstractRecursiveConstraintTest extends TestCase
     /**
      * @psalm-return iterable<string, array{
      *      constraint: Constraint,
-     *      args: non-empty-list,
-     *      expect: mixed
+     *      args: EvaluateArgs,
+     *      expect: EvaluateExpect
      * }>
      */
     public static function provEvaluate(): iterable
@@ -280,49 +301,49 @@ final class AbstractRecursiveConstraintTest extends TestCase
         yield basename(__FILE__).':'.__LINE__ => [
             'constraint' => $foo,
             'args'       => [['foo' => 'FOO', 'bar' => 'BAR'], '', true],
-            'expect'     => true,
+            'expect'     => ['return' => true],
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
             'constraint' => $bar,
             'args'       => [['foo' => 'FOO', 'gez' => 'GEZ'], '', true],
-            'expect'     => false,
+            'expect'     => ['return' => false],
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
             'constraint' => $baz,
             'args'       => [['foo' => 'FOO', 'baz' => '123'], '', true],
-            'expect'     => true,
+            'expect'     => ['return' => true],
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
             'constraint' => $baz,
             'args'       => [['foo' => 'FOO', 'baz' => 123], '', true],
-            'expect'     => true,
+            'expect'     => ['return' => true],
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
             'constraint' => $baz,
             'args'       => [['123'], '', true],
-            'expect'     => false,
+            'expect'     => ['return' => false],
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
             'constraint' => $baz,
             'args'       => [['baz' => 321], '', true],
-            'expect'     => false,
+            'expect'     => ['return' => false],
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
             'constraint' => $bar,
             'args'       => [123, '', true],
-            'expect'     => false,
+            'expect'     => ['return' => false],
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
             'constraint' => $foo,
             'args'       => [['foo' => 'FOO', 'bar' => 'BAR'], '', false],
-            'expect'     => null,
+            'expect'     => ['return' => null],
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
@@ -413,7 +434,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
         yield basename(__FILE__).':'.__LINE__ => [
             'constraint' => $c01,
             'args'       => [['a' => 'A']],
-            'expect'     => null,
+            'expect'     => ['return' => null],
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
@@ -441,19 +462,22 @@ final class AbstractRecursiveConstraintTest extends TestCase
      * @param mixed $expect
      *
      * @psalm-param Constraint     $constraint
-     * @psalm-param non-empty-list $args
+     * @psalm-param EvaluateArgs $args
+     * @psalm-param EvaluateExpect $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testEvaluate(Constraint $constraint, array $args, $expect): void
+    public function testEvaluate(Constraint $constraint, array $args, array $expect): void
     {
-        if (is_array($expect)) {
+        if (array_key_exists('exception', $expect) && array_key_exists('message', $expect)) {
             $this->expectException($expect['exception']);
             $this->expectExceptionMessage($expect['message']);
         }
 
         $actual = $constraint->evaluate(...$args);
 
-        if (!is_array($expect)) {
-            $this->assertSame($expect, $actual);
+        if (array_key_exists('return', $expect)) {
+            $this->assertSame($expect['return'], $actual);
         }
     }
 }

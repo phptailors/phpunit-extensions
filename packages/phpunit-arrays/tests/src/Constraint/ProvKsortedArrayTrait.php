@@ -21,10 +21,7 @@ trait ProvKsortedArrayTrait
 {
     // @codeCoverageIgnoreStart
 
-    /**
-     * @param mixed $args
-     */
-    abstract public static function createConstraint(...$args): Constraint;
+    abstract public static function createConstraint(array $args): Constraint;
 
     public static function provKsortedArrayIdenticalTo(): iterable
     {

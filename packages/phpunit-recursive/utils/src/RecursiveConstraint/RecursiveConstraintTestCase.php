@@ -24,7 +24,12 @@ use Tailors\PHPUnit\Constraint\TestCase;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @template-extends TestCase<AbstractRecursiveConstraint>
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
+ *
+ * @psalm-template ConstraintClass of Constraint
+ * @psalm-template CreateConstraintArgs of array
+ *
+ * @template-extends TestCase<ConstraintClass, CreateConstraintArgs>
  */
 abstract class RecursiveConstraintTestCase extends TestCase
 {
@@ -85,8 +90,10 @@ abstract class RecursiveConstraintTestCase extends TestCase
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
+     *
+     * @psalm-param ArrayLike $expect
      */
-    final public function examineValuesMatchSucceeds(array $expect, $actual): void
+    final public function examineValuesMatchSucceeds(iterable $expect, $actual): void
     {
         $this->examineConstraintMatchSucceeds([$expect], $actual);
     }
@@ -97,8 +104,10 @@ abstract class RecursiveConstraintTestCase extends TestCase
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
      * @throws CircularDependencyException
+     *
+     * @psalm-param ArrayLike $expect
      */
-    final public function examineValuesMatchFails(array $expect, $actual, string $string): void
+    final public function examineValuesMatchFails(iterable $expect, $actual, string $string): void
     {
         $this->examineConstraintMatchFails([$expect], $actual, self::message($string));
 
@@ -111,8 +120,10 @@ abstract class RecursiveConstraintTestCase extends TestCase
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
+     *
+     * @psalm-param ArrayLike $expect
      */
-    final public function examineNotValuesMatchSucceeds(array $expect, $actual): void
+    final public function examineNotValuesMatchSucceeds(iterable $expect, $actual): void
     {
         $this->examineNotConstraintMatchSucceeds([$expect], $actual);
     }
@@ -122,8 +133,10 @@ abstract class RecursiveConstraintTestCase extends TestCase
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
+     *
+     * @psalm-param ArrayLike $expect
      */
-    final public function examineNotValuesMatchFails(array $expect, $actual, string $string): void
+    final public function examineNotValuesMatchFails(iterable $expect, $actual, string $string): void
     {
         $this->examineNotConstraintMatchFails([$expect], $actual, self::message($string, true));
 

@@ -52,7 +52,7 @@ final class DummyArrayResultFactoryTest extends TestCase
     }
 
     /**
-     * @psalm-return iterable<non-falsy-string, array{ctor: CtorArgs, args: GetResultArgs, expect: mixed}>
+     * @psalm-return iterable<string, array{ctor: CtorArgs, args: GetResultArgs, expect: mixed}>
      */
     public static function provGetResult(): iterable
     {

@@ -52,13 +52,24 @@ class ExampleRecursiveConstraint extends AbstractRecursiveConstraint
         return new DummyResultFactoryAndValueSelectorWrapper(
             new DummyArrayResultFactory(),
             new DummyValueSelector(
+                /**
+                 * @param mixed $subject
+                 */
                 function ($subject): bool {
                     return is_array($subject);
                 },
-                function ($subject, $key, &$retval) {
+                /**
+                 * @param mixed $key
+                 * @param mixed $retval
+                 *
+                 * @psalm-param array-key $key
+                 * @psalm-param-out mixed $retval
+                 */
+                function (array $subject, $key, &$retval) {
                     if (!array_key_exists($key, $subject)) {
                         return false;
                     }
+                    /** @psalm-var mixed $retval */
                     $retval = $subject[$key];
 
                     return true;

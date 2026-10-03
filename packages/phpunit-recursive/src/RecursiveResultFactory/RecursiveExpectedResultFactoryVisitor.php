@@ -36,11 +36,6 @@ final class RecursiveExpectedResultFactoryVisitor implements RecursiveExpectedRe
      */
     private $current;
 
-    public function __construct()
-    {
-        $this->current = null;
-    }
-
     public function begin(): void
     {
         $this->result = null;

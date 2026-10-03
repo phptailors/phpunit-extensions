@@ -36,22 +36,30 @@ use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
  *
  * @psalm-type ArrayLike     = iterable<array-key, mixed>
  * @psalm-type StackItem     = RecursiveExpectedResultFactoryStackItem
- * @psalm-type CtorArgs      = list{}
- * @psalm-type EnterTestCall = array{args: array{node: array|ValuesInterface}, return: bool, next?: mixed}
- * @psalm-type VisitTestCall = array{args: array{node: mixed}, key?:array-key}
+ * @psalm-type EnterTestCall = array{args: array{node: ArrayLike}, return: bool, next?: array-key}
+ * @psalm-type VisitTestCall = array{args: array{node: mixed, iter?:bool}, key?: array-key}
  */
 final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
 {
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testImplementsRecursiveExpectedResultFactoryVisitorInterface(): void
     {
         self::assertInstanceOf(RecursiveExpectedResultFactoryVisitorInterface::class, new RecursiveExpectedResultFactoryVisitor());
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testImplementsRecursiveVisitorInterface(): void
     {
         self::assertInstanceOf(RecursiveVisitorInterface::class, new RecursiveExpectedResultFactoryVisitor());
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testInitialResult(): void
     {
         $visitor = new RecursiveExpectedResultFactoryVisitor();
@@ -59,7 +67,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
     }
 
     /**
-     * @psalm-return \Generator<non-falsy-string, array{path: list<array-key>, expect: string}>
+     * @psalm-return iterable<string, array{stack: list<StackItem>, expect: string}>
      */
     public static function provCycle(): iterable
     {
@@ -89,9 +97,13 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         // 03
         //
 
-        $s03 = array_map(function ($key) {
-            return new RecursiveExpectedResultFactoryStackItem([], $key, []);
-        }, [null, 3, false]);
+        $s03 = array_map(
+            function ($key) {
+                /** @psalm-suppress PossiblyNullArgument, PossiblyFalseArgument */
+                return new RecursiveExpectedResultFactoryStackItem([], $key, []);
+            },
+            [null, 3, false]
+        );
 
         yield basename(__FILE__).':'.__LINE__ => [
             'stack'  => $s03,
@@ -103,6 +115,8 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
      * @dataProvider provCycle
      *
      * @psalm-param list<StackItem> $stack
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testCycle(array $stack, string $expect): void
     {
@@ -115,7 +129,6 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
 
     /**
      * @psalm-return iterable<string, array{
-     *      ctor: CtorArgs,
      *      calls: non-empty-list<EnterTestCall>,
      *      result: mixed
      *  }>
@@ -127,7 +140,6 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         //
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'   => [],
             'calls'  => [
                 [
                     'args'   => [
@@ -149,7 +161,6 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         );
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'   => [],
             'calls'  => [
                 [
                     'args'   => [
@@ -172,7 +183,6 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         );
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'   => [],
             'calls'  => [
                 [
                     'args'   => [
@@ -194,7 +204,6 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         );
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'   => [],
             'calls'  => [
                 [
                     'args'   => [
@@ -219,8 +228,13 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
             ]),
         ]);
 
+        /** @psalm-var DummyResultFactoryAndValueSelectorWrapper $e05foo */
+        $e05foo = $e05['foo'];
+
+        /** @psalm-var array $e05foobar */
+        $e05foobar = $e05foo['bar'];
+
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'   => [],
             'calls'  => [
                 [
                     'args'   => [
@@ -231,14 +245,14 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
                 ],
                 [
                     'args'   => [
-                        'node' => $e05['foo'],
+                        'node' => $e05foo,
                     ],
                     'return' => true,
                     'next'   => 'bar',
                 ],
                 [
                     'args'   => [
-                        'node' => $e05['foo']['bar'],
+                        'node' => $e05foobar,
                     ],
                     'return' => true,
                     'next'   => 0,
@@ -266,8 +280,13 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
             ],
         ]);
 
+        /** @psalm-var array $e06foo */
+        $e06foo = $e06['foo'];
+
+        /** @psalm-var DummyResultFactoryAndValueSelectorWrapper $e06foobar */
+        $e06foobar = $e06foo['bar'];
+
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'   => [],
             'calls'  => [
                 [
                     'args'   => [
@@ -278,14 +297,14 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
                 ],
                 [
                     'args'   => [
-                        'node' => $e06['foo'],
+                        'node' => $e06foo,
                     ],
                     'return' => true,
                     'next'   => 'bar',
                 ],
                 [
                     'args'   => [
-                        'node' => $e06['foo']['bar'],
+                        'node' => $e06foobar,
                     ],
                     'return' => true,
                     'next'   => 0,
@@ -313,8 +332,16 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
             ],
         ]);
 
+        /** @psalm-var array $e07foo */
+        $e07foo = $e07['foo'];
+
+        /** @psalm-var array $e07foobar */
+        $e07foobar = $e07foo['bar'];
+
+        /** @psalm-var array $e07foobarbaz */
+        $e07foobarbaz = $e07foobar['baz'];
+
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'   => [],
             'calls'  => [
                 [
                     'args'   => [
@@ -325,21 +352,21 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
                 ],
                 [
                     'args'   => [
-                        'node' => $e07['foo'],
+                        'node' => $e07foo,
                     ],
                     'return' => true,
                     'next'   => 'bar',
                 ],
                 [
                     'args'   => [
-                        'node' => $e07['foo']['bar'],
+                        'node' => $e07foobar,
                     ],
                     'return' => true,
                     'next'   => 'baz',
                 ],
                 [
                     'args'   => [
-                        'node' => $e07['foo']['bar']['baz'],
+                        'node' => $e07foobarbaz,
                     ],
                     'return' => true,
                 ],
@@ -364,7 +391,6 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         );
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'   => [],
             'calls'  => [
                 [
                     'args'   => [
@@ -387,7 +413,6 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         );
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'   => [],
             'calls'  => [
                 [
                     'args'   => [
@@ -405,12 +430,13 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
      *
      * @param mixed $result
      *
-     * @psalm-param CtorArgs                      $ctor
      * @psalm-param non-empty-list<EnterTestCall> $calls
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testEnterLeave(array $ctor, array $calls, $result): void
+    public function testEnterLeave(array $calls, $result): void
     {
-        $visitor = new RecursiveExpectedResultFactoryVisitor(...$ctor);
+        $visitor = new RecursiveExpectedResultFactoryVisitor();
         $stack = [];
 
         $visitor->begin();
@@ -433,16 +459,20 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
 
         $visitor->end();
 
+        /** @psalm-var mixed $expect */
         $expect = $result;
+        /** @psalm-var mixed $actual*/
         $actual = $visitor->result();
 
         $resultUnwrapper = RecursiveResultUnwrapper::create();
 
-        if ($expect instanceof ResultInterface) {
+        if (is_array($expect) || is_iterable($expect) && $expect instanceof ResultInterface) {
+            /** @psalm-var ArrayLike $expect */;
             $expect = $resultUnwrapper->unwrap(false, $expect);
         }
 
-        if ($actual instanceof ResultInterface) {
+        if (is_array($actual) || is_iterable($actual) && $actual instanceof ResultInterface) {
+            /** @psalm-var ArrayLike $actual */;
             $actual = $resultUnwrapper->unwrap(false, $actual);
         }
 
@@ -451,7 +481,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
 
     /**
      * @psalm-return iterable<string, array{
-     *      ctor: CtorArgs,
+     *      enter: ?EnterTestCall,
      *      calls: non-empty-list<VisitTestCall>,
      *      result: mixed
      *  }>
@@ -463,7 +493,6 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         //
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'   => [],
             'enter'  => null,
             'calls'  => [
                 [
@@ -490,7 +519,6 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         ]);
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'   => [],
             'enter'  => [
                 'args'   => [
                     'node' => $e02,
@@ -528,10 +556,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         // 03
         //
 
-        $e03 = [];
-
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'   => [],
             'enter'  => [
                 'args'   => [
                     'node' => [
@@ -576,13 +601,14 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
      *
      * @param mixed $result
      *
-     * @psalm-param CtorArgs                      $ctor
      * @psalm-param ?EnterTestCall                $enter
      * @psalm-param non-empty-list<VisitTestCall> $calls
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testVisit(array $ctor, ?array $enter, array $calls, $result): void
+    public function testVisit(?array $enter, array $calls, $result): void
     {
-        $visitor = new RecursiveExpectedResultFactoryVisitor(...$ctor);
+        $visitor = new RecursiveExpectedResultFactoryVisitor();
         $stack = [];
 
         $visitor->begin();
@@ -597,6 +623,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         foreach ($calls as $call) {
             $args = $call['args'];
             if (array_key_exists('key', $call)) {
+                $this->assertNotNull($enter);
                 array_push($stack, $visitor->makeStackItem($enter['args']['node'], $call['key'], $stack));
             }
             $this->assertNull($visitor->visit($args['node'], $stack, $iter));
@@ -612,16 +639,20 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
 
         $visitor->end();
 
+        /** @psalm-var mixed $expect */
         $expect = $result;
+        /** @psalm-var mixed $actual*/
         $actual = $visitor->result();
 
         $resultUnwrapper = RecursiveResultUnwrapper::create();
 
-        if ($expect instanceof ResultInterface) {
+        if (is_array($expect) || is_iterable($expect) && $expect instanceof ResultInterface) {
+            /** @psalm-var ArrayLike $expect */;
             $expect = $resultUnwrapper->unwrap(false, $expect);
         }
 
-        if ($actual instanceof ResultInterface) {
+        if (is_array($actual) || is_iterable($actual) && $actual instanceof ResultInterface) {
+            /** @psalm-var ArrayLike $actual */;
             $actual = $resultUnwrapper->unwrap(false, $actual);
         }
 
@@ -630,7 +661,6 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
 
     /**
      * @psalm-return \Generator<non-falsy-string, array{
-     *      ctor: CtorArgs,
      *      array: ArrayLike,
      *      result: mixed
      *  }>
@@ -645,7 +675,6 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         $s01 = new DummyValueSelector(false);
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'   => [],
             'array'  => new DummyResultFactoryAndValueSelectorWrapper($f01, $s01, []),
             'result' => new DummyArrayResult(false, []),
         ];
@@ -658,7 +687,6 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         $s03 = new DummyValueSelector(false);
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'   => [],
             'array'  => new DummyResultFactoryAndValueSelectorWrapper($f03, $s03, [
                 'foo' => 'FOO',
                 'bar' => 'BAR',
@@ -678,7 +706,6 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         $b04 = new DummyArrayResult(false, []);
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'   => [],
             'array'  => new DummyResultFactoryAndValueSelectorWrapper($f04, $s04, [
                 'foo' => ['FOO'],
                 'bar' => $b04,
@@ -697,7 +724,6 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         $s05 = new DummyValueSelector(false);
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'   => [],
             'array'  => new DummyResultFactoryAndValueSelectorWrapper($f05, $s05, [
                 'foo' => [
                     'qux' => new DummyResultFactoryAndValueSelectorWrapper($f05, $s05, [
@@ -732,7 +758,6 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         ]);
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'   => [],
             'array'  => $a06,
             'result' => $a06,
         ];
@@ -755,7 +780,6 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         ]);
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'   => [],
             'array'  => $a07,
             'result' => new DummyArrayResult(false, [
                 'foo' => [
@@ -783,7 +807,6 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         ]);
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'   => [],
             'array'  => $a08,
             'result' => new DummyArrayResult(false, [
                 'foo' => [
@@ -799,34 +822,42 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
      *
      * @param mixed $result
      *
-     * @psalm-param CtorArgs  $ctor
      * @psalm-param ArrayLike $array
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testWithRecursiveTraversal(array $ctor, iterable $array, $result): void
+    public function testWithRecursiveTraversal(iterable $array, $result): void
     {
-        $visitor = new RecursiveExpectedResultFactoryVisitor(...$ctor);
+        $visitor = new RecursiveExpectedResultFactoryVisitor();
         $traversal = new RecursiveTraversal();
 
         $visitor->begin();
         $traversal->walk($array, $visitor);
         $visitor->end();
 
+        /** @psalm-var mixed $expect */
         $expect = $result;
+        /** @psalm-var mixed $actual */
         $actual = $visitor->result();
 
         $resultUnwrapper = RecursiveResultUnwrapper::create();
 
-        if ($expect instanceof ResultInterface) {
+        if (is_array($expect) || is_iterable($expect) && $expect instanceof ResultInterface) {
+            /** @psalm-var ArrayLike $expect */;
             $expect = $resultUnwrapper->unwrap(false, $expect);
         }
 
-        if ($actual instanceof ResultInterface) {
+        if (is_array($actual) || is_iterable($actual) && $actual instanceof ResultInterface) {
+            /** @psalm-var ArrayLike $actual */;
             $actual = $resultUnwrapper->unwrap(false, $actual);
         }
 
         $this->assertSame($expect, $actual);
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testMakeStackItemThrowsInternalError(): void
     {
         $visitor = new RecursiveExpectedResultFactoryVisitor();
@@ -837,6 +868,9 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         $visitor->makeStackItem([], '', []);
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testLeaveThrowsInternalError(): void
     {
         $visitor = new RecursiveExpectedResultFactoryVisitor();

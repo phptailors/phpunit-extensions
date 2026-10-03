@@ -29,10 +29,7 @@ final class ArrayValuesIdenticalToTraitTest extends TestCase
     use ArrayValuesIdenticalToTrait;
     use ProvArrayValuesTrait;
 
-    /**
-     * @param mixed $args
-     */
-    public static function createConstraint(...$args): ArrayValuesIdenticalTo
+    public static function createConstraint(array $args): ArrayValuesIdenticalTo
     {
         return ArrayValuesIdenticalTo::create(...$args);
     }

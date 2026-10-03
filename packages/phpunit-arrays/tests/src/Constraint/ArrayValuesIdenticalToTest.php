@@ -23,6 +23,12 @@ use Tailors\PHPUnit\RecursiveConstraint\RecursiveConstraintTestCase;
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
+ * @psalm-type ConstraintClass = ArrayValuesIdenticalTo
+ * @psalm-type CreateConstraintArgs = list{ArrayLike}
+ *
+ * @template-extends RecursiveConstraintTestCase<ConstraintClass, CreateConstraintArgs>
  */
 final class ArrayValuesIdenticalToTest extends RecursiveConstraintTestCase
 {
@@ -48,7 +54,10 @@ final class ArrayValuesIdenticalToTest extends RecursiveConstraintTestCase
         return ArrayValuesIdenticalTo::class;
     }
 
-    public static function createConstraint(...$args): Constraint
+    /**
+     * @psalm-param CreateConstraintArgs $args
+     */
+    public static function createConstraint(array $args): Constraint
     {
         return ArrayValuesIdenticalTo::create(...$args);
     }

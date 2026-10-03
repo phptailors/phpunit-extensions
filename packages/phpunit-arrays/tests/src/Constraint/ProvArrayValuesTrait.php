@@ -22,10 +22,7 @@ trait ProvArrayValuesTrait
 {
     // @codeCoverageIgnoreStart
 
-    /**
-     * @param mixed $args
-     */
-    abstract public static function createConstraint(...$args): Constraint;
+    abstract public static function createConstraint(array $args): Constraint;
 
     /**
      * @psalm-return iterable<string,array {

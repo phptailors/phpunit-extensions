@@ -28,7 +28,7 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  * @template-implements ResultFactoryWrapperInterface<SupportedInput>
  * @template-implements ValueSelectorWrapperInterface<SupportedSubject>
  *
- * @template-extends \ArrayObject<array-key,mixed>
+ * @template-extends \ArrayObject<array-key, mixed>
  */
 final class DummyResultFactoryAndValueSelectorWrapper extends \ArrayObject implements ResultFactoryWrapperInterface, ValueSelectorWrapperInterface
 {

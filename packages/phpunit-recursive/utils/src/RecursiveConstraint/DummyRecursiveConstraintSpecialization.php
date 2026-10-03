@@ -49,7 +49,7 @@ final class DummyRecursiveConstraintSpecialization
     public $recursiveResultFactory;
 
     /**
-     * @var RecursiveUnwrapperInterface
+     * @var RecursiveResultUnwrapperInterface
      */
     public $recursiveResultUnwrapper;
 

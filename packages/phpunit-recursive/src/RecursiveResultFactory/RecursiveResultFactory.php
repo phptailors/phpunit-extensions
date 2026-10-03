@@ -66,10 +66,15 @@ final class RecursiveResultFactory implements RecursiveResultFactoryInterface
      * @param mixed $input
      *
      * @psalm-param ArrayLike $array
+     *
+     * @psalm-template TValueSelectorSupportedInput
+     * @psalm-template TResultFactorySupportedInput
      */
     public function supports(iterable $array, $input): bool
     {
         if ($array instanceof ValueSelectorWrapperInterface) {
+            /** @psalm-var ValueSelectorWrapperInterface<TValueSelectorSupportedInput> $array */
+
             $valueSelector = $array->getValueSelector();
             if (!$valueSelector->supports($input)) {
                 return false;
@@ -78,6 +83,8 @@ final class RecursiveResultFactory implements RecursiveResultFactoryInterface
             if (!$array instanceof ResultFactoryWrapperInterface) {
                 return false;
             }
+
+            /** @psalm-var ResultFactoryWrapperInterface<TResultFactorySupportedInput> $array */
 
             $resultFactory = $array->getResultFactory();
 
@@ -115,10 +122,8 @@ final class RecursiveResultFactory implements RecursiveResultFactoryInterface
      * @return mixed
      *
      * @psalm-param ArrayLike $array
-     *
-     * @psalm-return ArrayLike
      */
-    public function getExpectedResult(iterable $array): iterable
+    public function getExpectedResult(iterable $array)
     {
         $this->expectedResultVisitor->begin();
 

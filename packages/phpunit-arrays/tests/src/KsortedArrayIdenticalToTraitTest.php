@@ -29,10 +29,7 @@ final class KsortedArrayIdenticalToTraitTest extends TestCase
     use KsortedArrayIdenticalToTrait;
     use ProvKsortedArrayTrait;
 
-    /**
-     * @param mixed $args
-     */
-    public static function createConstraint(...$args): KsortedArrayIdenticalTo
+    public static function createConstraint(array $args): KsortedArrayIdenticalTo
     {
         return KsortedArrayIdenticalTo::create(...$args);
     }

@@ -16,6 +16,13 @@ use Tailors\PHPUnit\Constraint\TestCase;
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
+ *
+ * @psalm-template ConstraintClass of Constraint
+ * @psalm-template CreateConstraintArgs of list
+ *
+ * @template-extends TestCase<ConstraintClass, CreateConstraintArgs>
  */
 abstract class KsortedConstraintTestCase extends TestCase
 {

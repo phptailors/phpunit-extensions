@@ -29,19 +29,19 @@ trait RecursiveConstraintSpecializationTrait
     /**
      * @throws InvalidArgumentException
      *
-     * @psalm-param ArrayLike $expected
+     * @psalm-param ArrayLike $expectations
      */
-    public static function create(iterable $expected): self
+    public static function create(iterable $expectations): self
     {
-        self::validateExpectations($expected, 1);
+        self::validateExpectations($expectations, 1);
 
-        $expected = self::makeExpectations($expected);
+        $expectations = self::makeExpectations($expectations);
         $comparator = self::makeComparator();
 
         $recursiveResultFactory = RecursiveResultFactory::create();
         $recursiveResultUnwrapper = RecursiveResultUnwrapper::create();
 
-        return new self($expected, $comparator, $recursiveResultFactory, $recursiveResultUnwrapper);
+        return new self($expectations, $comparator, $recursiveResultFactory, $recursiveResultUnwrapper);
     }
 
     /**

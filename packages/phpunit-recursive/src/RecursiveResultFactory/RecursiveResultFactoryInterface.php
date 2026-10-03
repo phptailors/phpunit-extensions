@@ -39,10 +39,8 @@ interface RecursiveResultFactoryInterface
      * @return mixed
      *
      * @psalm-param ArrayLike $array
-     *
-     * @psalm-return ArrayLike
      */
-    public function getExpectedResult(iterable $array): iterable;
+    public function getExpectedResult(iterable $array);
 }
 
 // vim: syntax=php sw=4 ts=4 et:

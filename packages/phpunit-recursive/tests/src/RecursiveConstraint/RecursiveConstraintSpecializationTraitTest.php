@@ -60,6 +60,8 @@ final class RecursiveConstraintSpecializationTraitTest extends TestCase
      * @psalm-param ArrayLike $expected
      *
      * @dataProvider provCreate
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testCreate(iterable $expected): void
     {
@@ -73,7 +75,7 @@ final class RecursiveConstraintSpecializationTraitTest extends TestCase
         // DummyRecursiveConstraintSpecialization::makeExpectations($expected) was called and the result was passed to constructor
         $this->assertSame([$expected], DummyRecursiveConstraintSpecialization::$makeExpectationsLastParams);
         $this->assertSame(DummyRecursiveConstraintSpecialization::$makeExpectationsLastReturn, $constraint->expected);
-        $this->assertSame($array, iterator_to_array($constraint->expected));
+        $this->assertSame($array, (array)$constraint->expected);
 
         // DummyRecursiveConstraintSpecialization::makeComparator() was called and the result was passed to constructor
         $this->assertSame([], DummyRecursiveConstraintSpecialization::$makeComparatorLastParams);

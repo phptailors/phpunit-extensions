@@ -22,14 +22,16 @@ use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type CtorArgs   = list{0:array|ValuesInterface, 1:array-key, 2: SubjectResultCouple}
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
+ *
+ * @psalm-type CtorArgs   = list{0: ArrayLike, 1: array-key, 2: SubjectResultCouple}
  * @psalm-type CtorExpect = array{node: mixed, key: mixed, couple: mixed}
  * @psalm-type SetExpect  = array{node: mixed, key: mixed, subject: mixed, result: mixed}
  */
 final class RecursiveActualResultFactoryStackItemTest extends TestCase
 {
     /**
-     * @psalm-return iterable<string,array{ctor: CtorArgs, expect: CtorExpect}>
+     * @psalm-return iterable<string, array{ctor: CtorArgs, expect: CtorExpect}>
      */
     public static function provConstruct(): iterable
     {
@@ -39,10 +41,10 @@ final class RecursiveActualResultFactoryStackItemTest extends TestCase
         $c01 = new SubjectResultCouple(null, []);
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'   => [['n' => 'N'], null, $c01],
+            'ctor'   => [['n' => 'N'], '', $c01],
             'expect' => [
                 'node'   => ['n' => 'N'],
-                'key'    => null,
+                'key'    => '',
                 'couple' => $c01,
             ],
         ];
@@ -50,15 +52,29 @@ final class RecursiveActualResultFactoryStackItemTest extends TestCase
         //
         // 02
         //
-        $n02 = new DummyArrayResult(false);
         $c02 = new SubjectResultCouple(null, []);
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'   => [$n02, 'k', $c02],
+            'ctor'   => [['n' => 'N'], 7, $c02],
             'expect' => [
-                'node'   => $n02,
-                'key'    => 'k',
+                'node'   => ['n' => 'N'],
+                'key'    => 7,
                 'couple' => $c02,
+            ],
+        ];
+
+        //
+        // 03
+        //
+        $n03 = new DummyArrayResult(false);
+        $c03 = new SubjectResultCouple(null, []);
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [$n03, 'k', $c03],
+            'expect' => [
+                'node'   => $n03,
+                'key'    => 'k',
+                'couple' => $c03,
             ],
         ];
     }
@@ -68,6 +84,8 @@ final class RecursiveActualResultFactoryStackItemTest extends TestCase
      *
      * @psalm-param CtorArgs   $ctor
      * @psalm-param CtorExpect $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testConstruct(array $ctor, array $expect): void
     {
@@ -89,11 +107,11 @@ final class RecursiveActualResultFactoryStackItemTest extends TestCase
         $s01 = new SubjectResultCouple(null, ['r' => 'R']);
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'   => [['n' => 'N'], null, $s01],
+            'ctor'   => [['n' => 'N'], '', $s01],
             'value'  => 'V',
             'expect' => [
                 'node'    => ['n' => 'N'],
-                'key'     => null,
+                'key'     => '',
                 'subject' => null,
                 'result'  => ['r' => 'R', null => 'V'],
             ],
@@ -140,6 +158,8 @@ final class RecursiveActualResultFactoryStackItemTest extends TestCase
      *
      * @psalm-param CtorArgs  $ctor
      * @psalm-param SetExpect $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testSet(array $ctor, $value, array $expect): void
     {

@@ -24,6 +24,12 @@ use Tailors\PHPUnit\Arrays\KsortedConstraintTestCase;
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
+ * @psalm-type ConstraintClass = KsortedArrayEqualTo
+ * @psalm-type CreateConstraintArgs = list{ArrayLike}
+ *
+ * @template-extends KsortedConstraintTestCase<KsortedArrayEqualTo, CreateConstraintArgs>
  */
 final class KsortedArrayEqualToTest extends KsortedConstraintTestCase
 {
@@ -39,7 +45,10 @@ final class KsortedArrayEqualToTest extends KsortedConstraintTestCase
         return KsortedArrayEqualTo::class;
     }
 
-    public static function createConstraint(...$args): Constraint
+    /**
+     * @psalm-param CreateConstraintArgs $args
+     */
+    public static function createConstraint(array $args): Constraint
     {
         return KsortedArrayEqualTo::create(...$args);
     }

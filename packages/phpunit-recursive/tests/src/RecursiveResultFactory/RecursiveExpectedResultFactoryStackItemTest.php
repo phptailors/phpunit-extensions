@@ -22,9 +22,11 @@ use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type CtorArgs   = list{0:array|ValuesInterface, 1:array-key, 2: iterable}
- * @psalm-type CtorExpect = array{node: mixed, key: mixed, couple: mixed}
- * @psalm-type SetExpect  = array{node: mixed, key: mixed, subject: mixed, result: mixed}
+ * @psalm-type ArrayLike  = iterable<array-key, mixed>
+ *
+ * @psalm-type CtorArgs   = list{0: ArrayLike, 1: array-key, 2: array|\ArrayAccess}
+ * @psalm-type CtorExpect = array{node: mixed, key: mixed, result: mixed}
+ * @psalm-type SetExpect  = array{node: mixed, key: mixed, result: mixed}
  */
 final class RecursiveExpectedResultFactoryStackItemTest extends TestCase
 {
@@ -38,10 +40,10 @@ final class RecursiveExpectedResultFactoryStackItemTest extends TestCase
         //
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'   => [['n' => 'N'], null, []],
+            'ctor'   => [['n' => 'N'], 0, []],
             'expect' => [
                 'node'   => ['n' => 'N'],
-                'key'    => null,
+                'key'    => 0,
                 'result' => [],
             ],
         ];
@@ -66,6 +68,8 @@ final class RecursiveExpectedResultFactoryStackItemTest extends TestCase
      *
      * @psalm-param CtorArgs   $ctor
      * @psalm-param CtorExpect $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testConstruct(array $ctor, array $expect): void
     {
@@ -86,12 +90,12 @@ final class RecursiveExpectedResultFactoryStackItemTest extends TestCase
         //
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'   => [['n' => 'N'], null, ['r' => 'R']],
+            'ctor'   => [['n' => 'N'], 0, ['r' => 'R']],
             'value'  => 'V',
             'expect' => [
                 'node'   => ['n' => 'N'],
-                'key'    => null,
-                'result' => ['r' => 'R', null => 'V'],
+                'key'    => 0,
+                'result' => ['r' => 'R', 0=> 'V'],
             ],
         ];
 
@@ -132,6 +136,8 @@ final class RecursiveExpectedResultFactoryStackItemTest extends TestCase
      *
      * @psalm-param CtorArgs  $ctor
      * @psalm-param SetExpect $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testSet(array $ctor, $value, array $expect): void
     {
