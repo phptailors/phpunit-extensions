@@ -1213,6 +1213,7 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
      * @param mixed $result
      *
      * @psalm-param CtorArgs  $ctor
+     * @psalm-param BeginArgs $begin
      * @psalm-param ArrayLike $array
      *
      * @psalm-suppress MissingThrowsDocblock

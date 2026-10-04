@@ -21,8 +21,6 @@ use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapper;
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-type ArrayLike = iterable<array-key, mixed>
- *
- * @psalm-require-extends AbstractRecursiveConstraint
  */
 trait RecursiveConstraintSpecializationTrait
 {

@@ -27,7 +27,7 @@ use Tailors\PHPUnit\InvalidArgumentException;
  * @psalm-type ConstraintClass      = ExampleRecursiveConstraint
  * @psalm-type CreateConstraintArgs = list{ArrayLike}
  *
- * @template-extends RecursiveConstraintTestCase<ConstraintClass, CreateConstraintArgs>
+ * @template-extends RecursiveConstraintTestCase<ExampleRecursiveConstraint>
  */
 final class RecursiveConstraintTestCaseTest extends RecursiveConstraintTestCase
 {

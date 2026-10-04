@@ -16,20 +16,22 @@ use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\MockObject\ReflectionException;
 use PHPUnit\Framework\MockObject\RuntimeException;
 use SebastianBergmann\RecursionContext\InvalidArgumentException;
+use Tailors\PHPUnit\ArraySpec\DummyResultFactoryWrapper;
 use Tailors\PHPUnit\CircularDependencyException;
 use Tailors\PHPUnit\Constraint\TestCase;
+use Tailors\PHPUnit\ResultFactory\DummyResultFactory;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ArrayLike = iterable<array-key, mixed>
+ * @psalm-type ArrayLike            = iterable<array-key, mixed>
+ * @psalm-type CreateConstraintArgs = list{ArrayLike}
  *
  * @psalm-template ConstraintClass of Constraint
- * @psalm-template CreateConstraintArgs of array
  *
- * @template-extends TestCase<ConstraintClass, CreateConstraintArgs>
+ * @template-extends TestCase<ConstraintClass, list{ArrayLike}>
  */
 abstract class RecursiveConstraintTestCase extends TestCase
 {
@@ -40,16 +42,28 @@ abstract class RecursiveConstraintTestCase extends TestCase
     abstract public static function adjective(): string;
 
     /**
-     * @psalm-return iterable<string,array{args:array,expect:array{values: Constraint}}>
+     * @psalm-return iterable<string, array{
+     *      args: CreateConstraintArgs
+     * }>
      *
      * @codeCoverageIgnoreStart
      */
-    public static function provCreateConstraint(): iterable
+    final public static function provCreateConstraint(): iterable
     {
         yield basename(__FILE__).':'.__LINE__ => [
-            'args'   => [['foo' => 'FOO']],
-            'expect' => [
-                'values' => self::identicalTo(['foo' => 'FOO']),
+            'args' => [[]],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'args' => [['foo' => 'FOO']],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'args' => [
+                new DummyResultFactoryWrapper(
+                    new DummyResultFactory(true),
+                    ['foo' => 'FOO']
+                ),
             ],
         ];
     }
@@ -62,12 +76,11 @@ abstract class RecursiveConstraintTestCase extends TestCase
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
      *
-     * @psalm-param array                     $args
-     * @psalm-param array{values: Constraint} $expect
+     * @psalm-param CreateConstraintArgs $args
      */
-    final public function testCreateConstraint(array $args, array $expect): void
+    final public function testCreateConstraint(array $args): void
     {
-        $constraint = $this->examineCreateConstraint($args);
+        $this->examineCreateConstraint($args);
     }
 
     /**

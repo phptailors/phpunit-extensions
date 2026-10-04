@@ -78,6 +78,9 @@ final class RecursiveResultUnwrapperTest extends TestCase
         $this->assertSame(['out' => 'OUT'], $recursiveResultUnwrapper->unwrap(true, ['in' => 'IN']));
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testUnwrapThrowsInternalErrorException(): void
     {
         $recursiveResultUnwrapperVisitor = $this->createMock(RecursiveResultUnwrapperVisitorInterface::class);
@@ -114,6 +117,9 @@ final class RecursiveResultUnwrapperTest extends TestCase
         $recursiveResultUnwrapper->unwrap(false, []);
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testCreate(): void
     {
         $recursiveResultUnwrapper = RecursiveResultUnwrapper::create();

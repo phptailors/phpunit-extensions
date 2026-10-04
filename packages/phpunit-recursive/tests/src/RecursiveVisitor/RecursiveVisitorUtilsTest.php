@@ -46,10 +46,10 @@ final class RecursiveVisitorUtilsTest extends TestCase
             'stack'  => [
                 new DummyRecursiveVisitorStackItem([], 'foo'),
                 new DummyRecursiveVisitorStackItem([], 'bar'),
-                new DummyRecursiveVisitorStackItem([], false),
-                new DummyRecursiveVisitorStackItem([], null),
+                new DummyRecursiveVisitorStackItem([], 0),
+                new DummyRecursiveVisitorStackItem([], ''),
             ],
-            'expect' => ['foo', 'bar', false, null],
+            'expect' => ['foo', 'bar', 0, ''],
         ];
     }
 
@@ -88,10 +88,10 @@ final class RecursiveVisitorUtilsTest extends TestCase
             'stack'  => [
                 new DummyRecursiveVisitorStackItem([], 'foo'),
                 new DummyRecursiveVisitorStackItem([], 'bar'),
-                new DummyRecursiveVisitorStackItem([], false),
-                new DummyRecursiveVisitorStackItem([], null),
+                new DummyRecursiveVisitorStackItem([], 0),
+                new DummyRecursiveVisitorStackItem([], ''),
             ],
-            'expect' => "['foo']['bar'][false][NULL]",
+            'expect' => "['foo']['bar'][0]['']",
         ];
     }
 

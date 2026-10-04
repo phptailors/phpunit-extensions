@@ -50,7 +50,7 @@ final class RecursiveResultFactoryTest extends TestCase
      */
     public function testGetExpectedResult(): void
     {
-        $expectedResultVisitor = $this->createStub(RecursiveExpectedResultFactoryVisitorInterface::class);
+        $expectedResultVisitor = $this->createMock(RecursiveExpectedResultFactoryVisitorInterface::class);
         $actualResultVisitor = $this->createStub(RecursiveActualResultFactoryVisitorInterface::class);
         $traversal = $this->createMock(RecursiveTraversalInterface::class);
 
@@ -84,7 +84,7 @@ final class RecursiveResultFactoryTest extends TestCase
     public function testGetActualResult(): void
     {
         $expectedResultVisitor = $this->createStub(RecursiveExpectedResultFactoryVisitorInterface::class);
-        $actualResultVisitor = $this->createStub(RecursiveActualResultFactoryVisitorInterface::class);
+        $actualResultVisitor = $this->createMock(RecursiveActualResultFactoryVisitorInterface::class);
         $traversal = $this->createMock(RecursiveTraversalInterface::class);
 
         $recursiveResultFactory = new RecursiveResultFactory($expectedResultVisitor, $actualResultVisitor, $traversal);
@@ -111,6 +111,9 @@ final class RecursiveResultFactoryTest extends TestCase
         $this->assertSame(['out' => 'OUT'], $recursiveResultFactory->getActualResult(['foo' => 'FOO'], ['in' => 'IN']));
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testCreate(): void
     {
         $recursiveResultFactory = RecursiveResultFactory::create();
@@ -303,6 +306,8 @@ final class RecursiveResultFactoryTest extends TestCase
      * @param mixed $expect
      *
      * @psalm-param ArrayLike $array
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testSupports(iterable $array, $input, $expect): void
     {
