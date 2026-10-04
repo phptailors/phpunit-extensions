@@ -29,6 +29,7 @@ use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapperInterface;
 use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapperVisitor;
 use Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversal;
 use Tailors\PHPUnit\ResultFactory\DummyArrayResultFactory;
+use Tailors\PHPUnit\ResultFactory\DummyResultFactory;
 use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
 use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
 
@@ -206,85 +207,6 @@ final class AbstractRecursiveConstraintTest extends TestCase
         $constraint = $this->createDummyConstraint($expected, $comparator);
 
         $this->assertSame('is a tree with apples having colors specified', $constraint->toString());
-    }
-
-    /**
-     * @return iterable<string, array{
-     *      subject: string,
-     *      selectable: string,
-     *      adjective: string,
-     *      operator: \Closure(Constraint):Constraint,
-     *      expect: mixed
-     * }>
-     */
-    public static function provToStringInContext(): iterable
-    {
-        yield basename(__FILE__).':'.__LINE__ => [
-            'subject'    => 'a tree',
-            'selectable' => 'apples',
-            'adjective'  => 'having colors',
-            'operator'   => function (Constraint $constraint): Constraint {
-                return $constraint;
-            },
-            'expect'     => 'is a tree with apples having colors specified',
-        ];
-
-        yield basename(__FILE__).':'.__LINE__ => [
-            'subject'    => 'a tree',
-            'selectable' => 'apples',
-            'adjective'  => 'having colors',
-            'operator'   => function (Constraint $constraint): Constraint {
-                return self::logicalNot($constraint);
-            },
-            'expect'     => 'fails to be a tree with apples having colors specified',
-        ];
-
-        yield basename(__FILE__).':'.__LINE__ => [
-            'subject'    => 'a tree',
-            'selectable' => 'apples',
-            'adjective'  => 'having colors',
-            'operator'   => function (Constraint $constraint): Constraint {
-                return self::logicalOr($constraint);
-            },
-            'expect'     => 'is a tree with apples having colors specified',
-        ];
-    }
-
-    /**
-     * @dataProvider provToStringInContext
-     *
-     * @param mixed $expect
-     *
-     * @psalm-param \Closure(Constraint):Constraint $operator
-     *
-     * @psalm-suppress MissingThrowsDocblock
-     */
-    public function testToStringInContext(string $subject, string $selectable, string $adjective, \Closure $operator, $expect): void
-    {
-        $valueSelector = $this->createMock(ValueSelectorInterface::class);
-
-        $valueSelector->expects($this->any())
-            ->method('subject')
-            ->willReturn($subject)
-        ;
-
-        $valueSelector->expects($this->any())
-            ->method('selectable')
-            ->willReturn($selectable)
-        ;
-
-        $array = $this->createMock(\Traversable::class);
-        $expected = new DummyValueSelectorWrapper($valueSelector, $array);
-
-        $comparator = $this->createMock(ComparatorInterface::class);
-        $comparator->expects($this->any())
-            ->method('adjective')
-            ->willReturn($adjective)
-        ;
-
-        $constraint = $this->createDummyConstraint($expected, $comparator);
-
-        $this->assertSame($expect, $operator($constraint)->toString());
     }
 
     /**
@@ -481,6 +403,74 @@ final class AbstractRecursiveConstraintTest extends TestCase
         if (array_key_exists('return', $expect)) {
             $this->assertSame($expect['return'], $actual);
         }
+    }
+
+    /**
+     * @psalm-return iterable<string, array{
+     *      expectResult: mixed,
+     *      actualResult: mixed
+     * }>
+     */
+    public static function provEvaluateWithNonUnwrappableResult(): iterable
+    {
+        yield basename(__FILE__).':'.__LINE__ => [
+            'expectResult' => false,
+            'actualResult' => [],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'expectResult' => [],
+            'actualResult' => false,
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'expectResult' => new \ArrayObject(),
+            'actualResult' => [],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'expectResult' => [],
+            'actualResult' => new \ArrayObject(),
+        ];
+    }
+
+    /**
+     * @dataProvider provEvaluateWithNonUnwrappableResult
+     *
+     * @param mixed $expectResult
+     * @param mixed $actualResult
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testEvaluateWithNonUnwrappableResult($expectResult, $actualResult): void
+    {
+        $expectations = new DummyResultFactoryWrapper(new DummyResultFactory(true), []);
+
+        $recursiveResultFactory = $this->createMock(RecursiveResultFactoryInterface::class);
+
+        $recursiveResultFactory->expects($this->any())
+            ->method('supports')
+            ->willReturn(true)
+        ;
+
+        $recursiveResultFactory->expects($this->any())
+            ->method('getExpectedResult')
+            ->with($expectations)
+            ->willReturn($expectResult)
+        ;
+
+        $recursiveResultFactory->expects($this->any())
+            ->method('getActualResult')
+            ->with($expectations)
+            ->willReturn($actualResult)
+        ;
+
+        $constraint = $this->createDummyConstraint($expectations, null, $recursiveResultFactory);
+
+        $this->expectException(ExpectationFailedException::class);
+        $this->expectExceptionMessage('Failed asserting that \'value\' satisfies the recursive constraint');
+
+        $this->assertNull($constraint->evaluate('value'));
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

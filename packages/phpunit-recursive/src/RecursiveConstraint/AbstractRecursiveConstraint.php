@@ -21,6 +21,7 @@ use Tailors\PHPUnit\Common\ShortFailureDescriptionTrait;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactoryInterface;
 use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapperInterface;
+use Tailors\PHPUnit\Result\ResultInterface;
 use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
 
 /**
@@ -188,26 +189,31 @@ abstract class AbstractRecursiveConstraint extends Constraint
         /** @psalm-var mixed $expectResult */
         $expectResult = $this->recursiveResultFactory->getExpectedResult($this->expected);
 
-        if (is_iterable($expectResult)) {
-            /** @psalm-var ArrayLike $expectResult */
-            $expectValue = $this->recursiveResultUnwrapper->unwrap(false, $expectResult);
-        } else {
-            /** @psalm-var mixed $expectValue */
-            $expectValue = $expectResult;
-        }
+        /** @psalm-var mixed $expectValue */
+        $expectValue = $this->unwrapResult(false, $expectResult);
 
         /** @psalm-var mixed $actualResult */
         $actualResult = $this->recursiveResultFactory->getActualResult($this->expected, $other);
 
-        if (is_iterable($actualResult)) {
-            /** @psalm-var ArrayLike $actualResult */
-            $actualValue = $this->recursiveResultUnwrapper->unwrap(true, $actualResult);
-        } else {
-            /** @psalm-var mixed $actualValue */
-            $actualValue = $other;
-        }
+        /** @psalm-var mixed $actualValue */
+        $actualValue = $this->unwrapResult(true, $actualResult);
 
         return $this->comparator->compare($expectValue, $actualValue);
+    }
+
+    /**
+     * @param mixed $result
+     *
+     * @return mixed
+     */
+    private function unwrapResult(bool $actual, $result)
+    {
+        if (is_array($result) || is_iterable($result) && $result instanceof ResultInterface) {
+            /** @psalm-var ArrayLike $result */
+            return $this->recursiveResultUnwrapper->unwrap($actual, $result);
+        }
+
+        return $result;
     }
 }
 
