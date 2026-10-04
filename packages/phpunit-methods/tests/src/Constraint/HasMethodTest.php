@@ -22,7 +22,7 @@ use Tailors\PHPUnit\InvalidArgumentException;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class HasMethodTest extends TestCase
+final class HasMethodTest extends ConstraintTestCase
 {
     use ProvHasMethodTrait;
 

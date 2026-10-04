@@ -18,7 +18,7 @@ use PHPUnit\Framework\MockObject\RuntimeException;
 use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use Tailors\PHPUnit\ArraySpec\DummyResultFactoryWrapper;
 use Tailors\PHPUnit\CircularDependencyException;
-use Tailors\PHPUnit\Constraint\TestCase;
+use Tailors\PHPUnit\Constraint\ConstraintTestCase;
 use Tailors\PHPUnit\ResultFactory\DummyResultFactory;
 
 /**
@@ -31,9 +31,9 @@ use Tailors\PHPUnit\ResultFactory\DummyResultFactory;
  *
  * @psalm-template ConstraintClass of Constraint
  *
- * @template-extends TestCase<ConstraintClass, list{ArrayLike}>
+ * @template-extends ConstraintTestCase<ConstraintClass, list{ArrayLike}>
  */
-abstract class RecursiveConstraintTestCase extends TestCase
+abstract class RecursiveConstraintTestCase extends ConstraintTestCase
 {
     abstract public static function subject(): string;
 

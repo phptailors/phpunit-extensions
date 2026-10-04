@@ -17,7 +17,7 @@ use PHPUnit\Framework\Constraint\LogicalOr;
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Constraint\TestCase
+ * @covers \Tailors\PHPUnit\Constraint\ConstraintTestCase
  *
  * @internal This class is not covered by the backward compatibility promise
  *
@@ -25,7 +25,7 @@ use PHPUnit\Framework\Constraint\LogicalOr;
  *
  * @template-extends TestCase<Constraint, list{}>
  */
-final class TestCaseTest extends TestCase
+final class ConstraintTestCaseTest extends ConstraintTestCase
 {
     /**
      * @psalm-external-mutation-free

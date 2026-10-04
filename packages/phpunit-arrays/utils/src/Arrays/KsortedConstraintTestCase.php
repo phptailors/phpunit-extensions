@@ -10,7 +10,7 @@
 
 namespace Tailors\PHPUnit\Arrays;
 
-use Tailors\PHPUnit\Constraint\TestCase;
+use Tailors\PHPUnit\Constraint\ConstraintTestCase;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -22,9 +22,9 @@ use Tailors\PHPUnit\Constraint\TestCase;
  * @psalm-template ConstraintClass of Constraint
  * @psalm-template CreateConstraintArgs of list
  *
- * @template-extends TestCase<ConstraintClass, CreateConstraintArgs>
+ * @template-extends ConstraintTestCase<ConstraintClass, CreateConstraintArgs>
  */
-abstract class KsortedConstraintTestCase extends TestCase
+abstract class KsortedConstraintTestCase extends ConstraintTestCase
 {
     abstract public static function adjective(): string;
 

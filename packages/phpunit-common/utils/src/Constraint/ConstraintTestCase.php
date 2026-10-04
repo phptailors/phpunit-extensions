@@ -16,6 +16,7 @@ use PHPUnit\Framework\Exception;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\MockObject\ReflectionException;
 use PHPUnit\Framework\MockObject\RuntimeException;
+use PHPUnit\Framework\TestCase;
 use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use Tailors\PHPUnit\CircularDependencyException;
 
@@ -27,7 +28,7 @@ use Tailors\PHPUnit\CircularDependencyException;
  * @psalm-template ConstraintClass of Constraint
  * @psalm-template CreateConstraintArgs of list
  */
-abstract class TestCase extends \PHPUnit\Framework\TestCase
+abstract class ConstraintTestCase extends TestCase
 {
     /**
      * Creates constraint's instance.
