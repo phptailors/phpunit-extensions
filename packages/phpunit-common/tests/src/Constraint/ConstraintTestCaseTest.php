@@ -23,14 +23,14 @@ use PHPUnit\Framework\Constraint\LogicalOr;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @template-extends TestCase<Constraint, list{}>
+ * @template-extends ConstraintTestCase<Constraint, list{}>
  */
 final class ConstraintTestCaseTest extends ConstraintTestCase
 {
     /**
      * @psalm-external-mutation-free
      *
-     * @palm-param list{} $args
+     * @psalm-param list{} $args
      */
     public static function createConstraint(array $args): Constraint
     {

@@ -14,19 +14,38 @@ namespace Tailors\PHPUnit\Constraint;
  * @internal This trait is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type ArrayLike            = iterable<array-key, mixed>
+ * @psalm-type CreateConstraintArgs = list{ArrayLike}
  */
 trait ProvClassPropertiesTrait
 {
     // @codeCoverageIgnoreStart
 
+    /**
+     * @psalm-return iterable<array-key, array{
+     *      expect: array<string, mixed>,
+     *      actual: string,
+     *      string: string
+     * }>
+     */
     public static function provClassPropertiesIdenticalTo(): iterable
     {
         $classes = [
             get_class(new class() {
+                /** @var string */
                 public static $emptyString = '';
+
+                /** @var mixed */
                 public static $null;
+
+                /** @var string */
                 public static $string123 = '123';
+
+                /** @var int */
                 public static $int321 = 321;
+
+                /** @var bool */
                 public static $boolFalse = false;
             }),
         ];
@@ -50,14 +69,30 @@ trait ProvClassPropertiesTrait
         ];
     }
 
+    /**
+     * @psalm-return iterable<array-key, array{
+     *      expect: array<string, mixed>,
+     *      actual: string,
+     *      string: string
+     * }>
+     */
     public static function provClassPropertiesEqualButNotIdenticalTo(): iterable
     {
         $classes = [
             get_class(new class() {
+                /** @var string */
                 public static $emptyString = '';
+
+                /** @var mixed */
                 public static $null;
+
+                /** @var string */
                 public static $string123 = '123';
+
+                /** @var int */
                 public static $int321 = 321;
+
+                /** @var bool */
                 public static $boolFalse = false;
             }),
         ];
@@ -75,14 +110,30 @@ trait ProvClassPropertiesTrait
         ];
     }
 
+    /**
+     * @psalm-return iterable<array-key, array{
+     *      expect: array<string, mixed>,
+     *      actual: class-string,
+     *      string: string
+     * }>
+     */
     public static function provClassPropertiesNotEqualTo(): iterable
     {
         $classes = [
             get_class(new class() {
+                /** @var string */
                 public static $emptyString = '';
+
+                /** @var mixed */
                 public static $null;
+
+                /** @var string */
                 public static $string123 = '123';
+
+                /** @var int */
                 public static $int321 = 321;
+
+                /** @var bool */
                 public static $boolFalse = false;
             }),
         ];
@@ -100,6 +151,13 @@ trait ProvClassPropertiesTrait
         ];
     }
 
+    /**
+     * @psalm-return iterable<array-key, array{
+     *      expect: array<string, mixed>,
+     *      actual: mixed,
+     *      string: string
+     * }>
+     */
     public static function provClassPropertiesNotEqualToNonClass(): iterable
     {
         yield basename(__FILE__).':'.__LINE__ => [

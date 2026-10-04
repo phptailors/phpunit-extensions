@@ -12,7 +12,7 @@ namespace Tailors\PHPUnit\ValueSelector;
 
 final class ClassWithNonStaticMethodFooBLSGG
 {
-    public function foo()
+    public function foo(): void
     {
         // @codeCoverageIgnoreStart
     }

@@ -26,54 +26,52 @@ use Tailors\PHPUnit\InvalidArgumentException;
  */
 final class ObjectPropertySelectorTest extends TestCase
 {
-    //
-    //
-    // TESTS
-    //
-    //
-
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testImplementsValueSelectorInterface(): void
     {
         self::assertInstanceOf(ValueSelectorInterface::class, new ObjectPropertySelector());
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testExtendsAbstractPropertySelector(): void
     {
         self::assertInstanceOf(AbstractPropertySelector::class, new ObjectPropertySelector());
     }
 
-    //
-    // supports()
-    //
-
     // @codeCoverageIgnoreStart
+    /**
+     * @psalm-return iterable<string, array{
+     *      subject: mixed,
+     *      expect: mixed
+     * }>
+     */
     public static function provSupports(): iterable
     {
-        // #0
-        yield 'string' => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'subject' => 'foo',
             'expect'  => false,
         ];
 
-        // #1
-        yield 'array' => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'subject' => [],
             'expect'  => false,
         ];
 
-        yield 'class' => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'subject' => self::class,
             'expect'  => false,
         ];
 
-        // #2
-        yield 'object' => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'subject' => new class() {},
             'expect'  => true,
         ];
 
-        // #3
-        yield 'new ObjectPropertySelector' => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'subject' => new ObjectPropertySelector(),
             'expect'  => true,
         ];
@@ -85,23 +83,30 @@ final class ObjectPropertySelectorTest extends TestCase
      * @dataProvider provSupports
      *
      * @param mixed $subject
+     * @param mixed $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testSupports($subject, bool $expect): void
+    public function testSupports($subject, $expect): void
     {
         $selector = new ObjectPropertySelector();
         self::assertSame($expect, $selector->supports($subject));
     }
 
-    //
-    // select
-    //
-
     // @codeCoverageIgnoreStart
+    /**
+     * @psalm-return iterable<string, array{
+     *      object: mixed,
+     *      key: array-key,
+     *      return:  mixed,
+     *      expect: mixed
+     * }>
+     */
     public static function provSelect(): iterable
     {
-        // #0
         yield basename(__FILE__).':'.__LINE__ => [
             'object' => new class() {
+                /** @var string */
                 public $foo = 'FOO';
             },
             'key'    => 'foo',
@@ -109,9 +114,9 @@ final class ObjectPropertySelectorTest extends TestCase
             'expect' => 'FOO',
         ];
 
-        // #1
         yield basename(__FILE__).':'.__LINE__ => [
             'object' => new class() {
+                /** @var string */
                 public $foo = 'FOO';
             },
             'key'    => 'bar',
@@ -119,10 +124,9 @@ final class ObjectPropertySelectorTest extends TestCase
             'expect' => null,
         ];
 
-        // #2
         yield basename(__FILE__).':'.__LINE__ => [
             'object' => new class() {
-                public function foo()
+                public function foo(): string
                 {
                     return 'FOO';
                 }
@@ -132,10 +136,9 @@ final class ObjectPropertySelectorTest extends TestCase
             'expect' => 'FOO',
         ];
 
-        // #3
         yield basename(__FILE__).':'.__LINE__ => [
             'object' => new class() {
-                public static function foo()
+                public static function foo(): string
                 {
                     return 'FOO';
                 }
@@ -145,10 +148,9 @@ final class ObjectPropertySelectorTest extends TestCase
             'expect' => 'FOO',
         ];
 
-        // #4
         yield basename(__FILE__).':'.__LINE__ => [
             'object' => new class() {
-                public function foo()
+                public function foo(): string
                 {
                     return 'FOO';
                 }
@@ -164,21 +166,29 @@ final class ObjectPropertySelectorTest extends TestCase
     /**
      * @dataProvider provSelect
      *
+     * @param mixed $object
      * @param mixed $key
      * @param mixed $return
      * @param mixed $expect
+     *
+     * @psalm-param array-key $key
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testSelect(object $object, $key, $return, $expect): void
+    public function testSelect($object, $key, $return, $expect): void
     {
         $selector = new ObjectPropertySelector();
         self::assertSame($return, $selector->select($object, $key, $retval));
         self::assertSame($expect, $retval);
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testSelectThrowsOnPrivateMethod(): void
     {
         $object = new class() {
-            private function foo()
+            private function foo(): void
             {
                 // @codeCoverageIgnoreStart
             }
@@ -190,6 +200,7 @@ final class ObjectPropertySelectorTest extends TestCase
         $this->expectException(\Error::class);
         $this->expectExceptionMessage('private method');
 
+        /** @psalm-suppress RedundantCondition */
         $selector->select($object, 'foo()');
 
         // @codeCoverageIgnoreStart
@@ -197,9 +208,13 @@ final class ObjectPropertySelectorTest extends TestCase
 
     // @codeCoverageIgnoreEnd
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testSelectThrowsOnPrivateAttribute(): void
     {
         $object = new class() {
+            /** @var string */
             private $foo = 'FOO';
         };
         $selector = new ObjectPropertySelector();
@@ -207,6 +222,7 @@ final class ObjectPropertySelectorTest extends TestCase
         $this->expectException(\Error::class);
         $this->expectExceptionMessage('private property');
 
+        /** @psalm-suppress RedundantCondition */
         $selector->select($object, 'foo');
 
         // @codeCoverageIgnoreStart
@@ -214,9 +230,13 @@ final class ObjectPropertySelectorTest extends TestCase
 
     // @codeCoverageIgnoreEnd
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testSelectThrowsOnStaticProperty(): void
     {
         $object = new class() {
+            /** @var string */
             public static $foo = 'FOO';
         };
         $selector = new ObjectPropertySelector();
@@ -229,6 +249,7 @@ final class ObjectPropertySelectorTest extends TestCase
             $this->expectException(\ErrorException::class);
             $this->expectExceptionMessage('static property');
 
+            /** @psalm-suppress RedundantCondition */
             $selector->select($object, 'foo');
         } finally {
             restore_error_handler();
@@ -240,6 +261,12 @@ final class ObjectPropertySelectorTest extends TestCase
     // @codeCoverageIgnoreEnd
 
     // @codeCoverageIgnoreStart
+    /**
+     * @psalm-return iterable<string, array{
+     *      key: string,
+     *      method: string
+     * }>
+     */
     public static function provSelectThrowsOnNonobject(): iterable
     {
         // #0
@@ -259,8 +286,10 @@ final class ObjectPropertySelectorTest extends TestCase
 
     /**
      * @dataProvider provSelectThrowsOnNonobject
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testSelectThrowsOnNonobject(string $key, string $method): void
+    public function testSelectThrowsOnNonobject(string $key): void
     {
         $selector = new ObjectPropertySelector();
 
@@ -279,12 +308,18 @@ final class ObjectPropertySelectorTest extends TestCase
 
     // @codeCoverageIgnoreEnd
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testSubject(): void
     {
         $selector = new ObjectPropertySelector();
         self::assertSame('an object', $selector->subject());
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testSelectable(): void
     {
         $selector = new ObjectPropertySelector();

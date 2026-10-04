@@ -32,9 +32,12 @@ final class HasPregCapturesTraitTest extends TestCase
     /**
      * @dataProvider provHasPregCaptures
      *
-     * @param mixed $actual
+     * @psalm-param array $expect
+     * @psalm-param array $actual
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertHasPregCapturesSucceeds(array $expect, $actual, string $message): void
+    public function testAssertHasPregCapturesSucceeds(array $expect, array $actual): void
     {
         self::assertHasPregCaptures($expect, $actual);
     }
@@ -42,9 +45,12 @@ final class HasPregCapturesTraitTest extends TestCase
     /**
      * @dataProvider provNotHasPregCaptures
      *
-     * @param mixed $actual
+     * @psalm-param array $expect
+     * @psalm-param array $actual
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertHasPregCapturesFails(array $expect, $actual, string $message): void
+    public function testAssertHasPregCapturesFails(array $expect, array $actual, string $message): void
     {
         $this->expectException(ExpectationFailedException::class);
         $this->expectExceptionMessage(sprintf('Failed asserting that %s.', $message));
@@ -55,9 +61,12 @@ final class HasPregCapturesTraitTest extends TestCase
     /**
      * @dataProvider provNotHasPregCaptures
      *
-     * @param mixed $actual
+     * @psalm-param array $expect
+     * @psalm-param array $actual
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertNotHasPregCaptureSucceeds(array $expect, $actual, string $message): void
+    public function testAssertNotHasPregCaptureSucceeds(array $expect, array $actual): void
     {
         self::assertNotHasPregCaptures($expect, $actual);
     }
@@ -65,9 +74,12 @@ final class HasPregCapturesTraitTest extends TestCase
     /**
      * @dataProvider provHasPregCaptures
      *
-     * @param mixed $actual
+     * @psalm-param array $expect
+     * @psalm-param array $actual
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertNotHasPregCaptureFails(array $expect, $actual, string $message): void
+    public function testAssertNotHasPregCaptureFails(array $expect, array $actual, string $message): void
     {
         $this->expectException(ExpectationFailedException::class);
         $this->expectExceptionMessage(sprintf('Failed asserting that %s.', $message));
@@ -77,9 +89,12 @@ final class HasPregCapturesTraitTest extends TestCase
     /**
      * @dataProvider provHasPregCaptures
      *
-     * @param mixed $actual
+     * @psalm-param array $expect
+     * @psalm-param array $actual
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testHasPregCapturesSucceeds(array $expect, $actual, string $message): void
+    public function testHasPregCapturesSucceeds(array $expect, array $actual): void
     {
         self::assertThat($actual, self::hasPregCaptures($expect));
     }
@@ -89,6 +104,8 @@ final class HasPregCapturesTraitTest extends TestCase
      * @dataProvider provNotHasPregCapturesNonArray
      *
      * @param mixed $actual
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testHasPregCapturesFails(array $expect, $actual, string $message): void
     {

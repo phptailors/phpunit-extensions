@@ -17,11 +17,17 @@ use Tailors\PHPUnit\Arrays\ArrayValuesSelection;
  * @internal This trait is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type ArrayLike            = iterable<array-key, mixed>
+ * @psalm-type CreateConstraintArgs = list{ArrayLike}
  */
 trait ProvArrayValuesTrait
 {
     // @codeCoverageIgnoreStart
 
+    /**
+     * @psalm-param CreateConstraintArgs $args
+     */
     abstract public static function createConstraint(array $args): Constraint;
 
     /**

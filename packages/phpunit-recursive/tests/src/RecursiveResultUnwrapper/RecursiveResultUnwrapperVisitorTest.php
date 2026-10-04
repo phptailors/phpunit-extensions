@@ -69,15 +69,14 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
     /**
      * @psalm-return \Generator<non-falsy-string, array{
      *      ctor: CtorArgs,
-     *      calls: non-empty-list<CycleTestCall>,
-     *      result: mixed
+     *      calls: non-empty-list<CycleTestCall>
      * }>
      */
     public static function provCycle(): iterable
     {
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'   => [false],
-            'calls'  => [
+            'ctor'  => [false],
+            'calls' => [
                 [
                     'args'   => [
                         'node'  => [],
@@ -100,12 +99,11 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
                     'return' => false,
                 ],
             ],
-            'result' => [],
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'   => [true],
-            'calls'  => [
+            'ctor'  => [true],
+            'calls' => [
                 [
                     'args'   => [
                         'node'  => [],
@@ -128,21 +126,18 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
                     'return' => false,
                 ],
             ],
-            'result' => [],
         ];
     }
 
     /**
      * @dataProvider provCycle
      *
-     * @param mixed $result
-     *
      * @psalm-param CtorArgs                      $ctor
      * @psalm-param non-empty-list<CycleTestCall> $calls
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testCycle(array $ctor, array $calls, $result): void
+    public function testCycle(array $ctor, array $calls): void
     {
         $visitor = new RecursiveResultUnwrapperVisitor(...$ctor);
 

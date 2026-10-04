@@ -24,6 +24,8 @@ use Tailors\PHPUnit\InvalidArgumentException;
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
  */
 final class HasPregCapturesTest extends TestCase
 {
@@ -33,8 +35,10 @@ final class HasPregCapturesTest extends TestCase
      * @dataProvider provHasPregCaptures
      *
      * @param mixed $actual
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testHasPregCapturesSucceeds(array $expect, $actual, string $message): void
+    public function testHasPregCapturesSucceeds(array $expect, $actual): void
     {
         $constraint = HasPregCaptures::create($expect);
         self::assertThat($actual, $constraint);
@@ -45,6 +49,8 @@ final class HasPregCapturesTest extends TestCase
      * @dataProvider provNotHasPregCapturesNonArray
      *
      * @param mixed $actual
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testHasPregCapturesFails(array $expect, $actual, string $message): void
     {
@@ -61,8 +67,10 @@ final class HasPregCapturesTest extends TestCase
      * @dataProvider provNotHasPregCapturesNonArray
      *
      * @param mixed $actual
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testNotHasPregCapturesSucceeds(array $expect, $actual, string $message): void
+    public function testNotHasPregCapturesSucceeds(array $expect, $actual): void
     {
         $constraint = new LogicalNot(HasPregCaptures::create($expect));
         self::assertThat($actual, $constraint);
@@ -72,6 +80,8 @@ final class HasPregCapturesTest extends TestCase
      * @dataProvider provHasPregCaptures
      *
      * @param mixed $actual
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testNotHasPregCapturesFails(array $expect, $actual, string $message): void
     {
@@ -83,6 +93,12 @@ final class HasPregCapturesTest extends TestCase
         $constraint->evaluate($actual);
     }
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      args: list{array},
+     *      message: string
+     * }>
+     */
     public static function provCreateThrowsInvalidArgumentException(): iterable
     {
         $template = 'Argument 1 passed to '.HasPregCaptures::class.'::create() '.
@@ -111,6 +127,10 @@ final class HasPregCapturesTest extends TestCase
 
     /**
      * @dataProvider provCreateThrowsInvalidArgumentException
+     *
+     * @psalm-param list{array} $args
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testCreateThrowsInvalidArgumentException(array $args, string $message): void
     {

@@ -31,8 +31,10 @@ final class ClassPropertiesEqualToTraitTest extends TestCase
     /**
      * @dataProvider provClassPropertiesIdenticalTo
      * @dataProvider provClassPropertiesEqualButNotIdenticalTo
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testClassPropertiesEqualToSucceeds(array $expect, string $actual, string $string)
+    public function testClassPropertiesEqualToSucceeds(array $expect, string $actual): void
     {
         self::assertThat($actual, self::classPropertiesEqualTo($expect));
     }
@@ -40,16 +42,20 @@ final class ClassPropertiesEqualToTraitTest extends TestCase
     /**
      * @dataProvider provClassPropertiesIdenticalTo
      * @dataProvider provClassPropertiesEqualButNotIdenticalTo
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertClassPropertiesEqualToSucceeds(array $expect, string $actual, string $string)
+    public function testAssertClassPropertiesEqualToSucceeds(array $expect, string $actual): void
     {
         self::assertClassPropertiesEqualTo($expect, $actual);
     }
 
     /**
      * @dataProvider provClassPropertiesNotEqualTo
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertClassPropertiesEqualToFails(array $expect, string $actual, string $string)
+    public function testAssertClassPropertiesEqualToFails(array $expect, string $actual): void
     {
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that .+ is a class '.
@@ -62,16 +68,20 @@ final class ClassPropertiesEqualToTraitTest extends TestCase
 
     /**
      * @dataProvider provClassPropertiesNotEqualTo
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testNotClassPropertiesEqualToSucceeds(array $expect, string $actual, string $string)
+    public function testNotClassPropertiesEqualToSucceeds(array $expect, string $actual): void
     {
         self::assertThat($actual, self::logicalNot(self::classPropertiesEqualTo($expect)));
     }
 
     /**
      * @dataProvider provClassPropertiesNotEqualTo
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertNotClassPropertiesEqualToSucceeds(array $expect, string $actual, string $string)
+    public function testAssertNotClassPropertiesEqualToSucceeds(array $expect, string $actual): void
     {
         self::assertNotClassPropertiesEqualTo($expect, $actual);
     }
@@ -79,8 +89,10 @@ final class ClassPropertiesEqualToTraitTest extends TestCase
     /**
      * @dataProvider provClassPropertiesIdenticalTo
      * @dataProvider provClassPropertiesEqualButNotIdenticalTo
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertNotClassPropertiesEqualToFails(array $expect, string $actual, string $string)
+    public function testAssertNotClassPropertiesEqualToFails(array $expect, string $actual): void
     {
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that .+ fails to be a class '.

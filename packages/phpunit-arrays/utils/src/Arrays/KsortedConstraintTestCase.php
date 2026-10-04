@@ -17,22 +17,27 @@ use Tailors\PHPUnit\Constraint\ConstraintTestCase;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ArrayLike = iterable<array-key, mixed>
+ * @psalm-type CreateConstraintArgs = list{0: array, 1?: int}
  *
- * @psalm-template ConstraintClass of Constraint
- * @psalm-template CreateConstraintArgs of list
+ * @psalm-template ConstraintClass of AbstractKsortedConstraint
  *
- * @template-extends ConstraintTestCase<ConstraintClass, CreateConstraintArgs>
+ * @template-extends ConstraintTestCase<ConstraintClass, list{0: array, 1?: int}>
  */
 abstract class KsortedConstraintTestCase extends ConstraintTestCase
 {
     abstract public static function adjective(): string;
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     final public function testCreateConstraint(): void
     {
-        $constraint = $this->examineCreateConstraint([[]]);
+        $this->examineCreateConstraint([[]]);
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     final public function testConstraintUnaryOperatorFailure(): void
     {
         $this->examineConstraintUnaryOperatorFailure([[]], null, self::message('null'));

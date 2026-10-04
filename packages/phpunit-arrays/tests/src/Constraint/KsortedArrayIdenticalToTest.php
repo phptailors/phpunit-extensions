@@ -12,6 +12,7 @@ namespace Tailors\PHPUnit\Constraint;
 
 use PHPUnit\Framework\Constraint\Constraint;
 use Tailors\PHPUnit\Arrays\KsortedConstraintTestCase;
+use Tailors\PHPUnit\InvalidArgumentException;
 
 /**
  * @small
@@ -25,11 +26,10 @@ use Tailors\PHPUnit\Arrays\KsortedConstraintTestCase;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ArrayLike            = iterable<array-key, mixed>
  * @psalm-type ConstraintClass      = KsortedArrayIdenticalTo
- * @psalm-type CreateConstraintArgs = list{ArrayLike}
+ * @psalm-type CreateConstraintArgs = list{0: array, 1?: int}
  *
- * @template-extends KsortedConstraintTestCase<KsortedArrayIdenticalTo, CreateConstraintArgs>
+ * @template-extends KsortedConstraintTestCase<KsortedArrayIdenticalTo>
  */
 final class KsortedArrayIdenticalToTest extends KsortedConstraintTestCase
 {
@@ -40,12 +40,19 @@ final class KsortedArrayIdenticalToTest extends KsortedConstraintTestCase
         return 'identical to';
     }
 
+    /**
+     * @psalm-return class-string<KsortedArrayIdenticalTo>
+     *
+     * @psalm-pure
+     */
     public static function getConstraintClass(): string
     {
         return KsortedArrayIdenticalTo::class;
     }
 
     /**
+     * @throws InvalidArgumentException
+     *
      * @psalm-param CreateConstraintArgs $args
      */
     public static function createConstraint(array $args): Constraint
@@ -57,8 +64,10 @@ final class KsortedArrayIdenticalToTest extends KsortedConstraintTestCase
      * @dataProvider provKsortedArrayIdenticalTo
      *
      * @param mixed $actual
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testKsortedArrayIdenticalToSucceeds(array $expect, $actual, string $string): void
+    public function testKsortedArrayIdenticalToSucceeds(array $expect, $actual): void
     {
         parent::examineConstraintMatchSucceeds([$expect], $actual);
     }
@@ -69,6 +78,8 @@ final class KsortedArrayIdenticalToTest extends KsortedConstraintTestCase
      * @dataProvider provKsortedArrayNotEqualToNonArray
      *
      * @param mixed $actual
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testKsortedArrayIdenticalToFails(array $expect, $actual, string $string): void
     {
@@ -81,8 +92,10 @@ final class KsortedArrayIdenticalToTest extends KsortedConstraintTestCase
      * @dataProvider provKsortedArrayNotEqualToNonArray
      *
      * @param mixed $actual
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testNotKsortedArrayIdenticalToSucceeds(array $expect, $actual, string $string): void
+    public function testNotKsortedArrayIdenticalToSucceeds(array $expect, $actual): void
     {
         parent::examineNotConstraintMatchSucceeds([$expect], $actual);
     }
@@ -91,6 +104,8 @@ final class KsortedArrayIdenticalToTest extends KsortedConstraintTestCase
      * @dataProvider provKsortedArrayIdenticalTo
      *
      * @param mixed $actual
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testNotKsortedArrayIdenticalToFails(array $expect, $actual, string $string): void
     {

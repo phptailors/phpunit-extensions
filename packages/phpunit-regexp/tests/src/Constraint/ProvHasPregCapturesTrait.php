@@ -17,13 +17,18 @@ namespace Tailors\PHPUnit\Constraint;
  */
 trait ProvHasPregCapturesTrait
 {
+    /**
+     * @psalm-return iterable<array-key, array{
+     *      expect: array,
+     *      actual: array,
+     *      message: string
+     * }>
+     */
     public static function provHasPregCaptures(): iterable
     {
         $defaultMessage = 'array does not have expected PCRE capture groups';
         foreach (self::hasPregCapturesTestCases() as $case) {
-            if (null === ($case['message'] ?? null)) {
-                $case['message'] = $defaultMessage;
-            }
+            $case['message'] = $defaultMessage;
 
             yield $case;
         }
@@ -31,6 +36,11 @@ trait ProvHasPregCapturesTrait
 
     /**
      * Suitable for both assertHasPregCaptures() and hasPregCaptures().
+     *
+     * @psalm-return iterable<string, array{
+     *      expect: array,
+     *      actual: array
+     * }>
      */
     public static function notHasPregCapturesTestCases(): iterable
     {
@@ -148,15 +158,19 @@ trait ProvHasPregCapturesTrait
 
     /**
      * Suitable for both assertHasPregCaptures() and hasPregCaptures().
+     *
+     * @psalm-return iterable<array-key, array{
+     *      expect: array,
+     *      actual: array,
+     *      message: string
+     * }>
      */
     public static function provNotHasPregCaptures(): iterable
     {
         $defaultMessage = 'array has expected PCRE capture groups';
 
         foreach (self::notHasPregCapturesTestCases() as $case) {
-            if (null === ($case['message'] ?? null)) {
-                $case['message'] = $defaultMessage;
-            }
+            $case['message'] = $defaultMessage;
 
             yield $case;
         }
@@ -164,6 +178,12 @@ trait ProvHasPregCapturesTrait
 
     /**
      * Suitable only for hasPregCaptures().
+     *
+     * @psalm-return iterable<string, array{
+     *      expect: array,
+     *      actual: mixed,
+     *      message: string
+     * }>
      */
     public static function provNotHasPregCapturesNonArray(): iterable
     {
@@ -188,11 +208,17 @@ trait ProvHasPregCapturesTrait
         yield basename(__FILE__).':'.__LINE__ => [
             'expect'  => ['foo' => false],
             'actual'  => new \stdClass(),
-            'message' => sprintf('object stdClass has expected PCRE capture groups'),
+            'message' => 'object stdClass has expected PCRE capture groups',
         ];
     }
     // @codeCoverageIgnoreStart
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      expect: array,
+     *      actual: array
+     * }>
+     */
     protected static function hasPregCapturesTestCases(): iterable
     {
         yield basename(__FILE__).':'.__LINE__ => [

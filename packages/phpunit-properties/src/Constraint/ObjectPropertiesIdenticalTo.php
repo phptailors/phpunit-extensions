@@ -40,6 +40,8 @@ use Tailors\PHPUnit\RecursiveConstraint\RecursiveConstraintSpecializationTrait;
  *              return 'John';
  *          }
  *      }, $matcher);
+ *
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
  */
 final class ObjectPropertiesIdenticalTo extends AbstractRecursiveConstraint
 {

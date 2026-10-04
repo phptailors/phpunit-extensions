@@ -17,7 +17,9 @@ use Tailors\PHPUnit\ArrayResult\AbstractArrayResultTestCase;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type AbstractValuesCtorArgs from AbstractValuesTestCase as ClassPropertiesCtorArgs
+ * @psalm-import-type CtorArgs from AbstractArrayResultTestCase as BaseCtorArgs
+ *
+ * @psalm-type CtorArgs = BaseCtorArgs
  */
 abstract class ClassPropertiesTestCase extends AbstractArrayResultTestCase
 {

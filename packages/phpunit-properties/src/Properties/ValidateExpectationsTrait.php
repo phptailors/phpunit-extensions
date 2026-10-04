@@ -37,7 +37,7 @@ trait ValidateExpectationsTrait
      *
      * @throws InvalidArgumentException
      *
-     * @psalm-param ArrayLike $array
+     * @psalm-param array $array
      */
     private static function assertStringKeysOnly(array $array, int $argument, int $distance = 1): void
     {

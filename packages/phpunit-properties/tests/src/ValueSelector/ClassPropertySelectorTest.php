@@ -26,54 +26,52 @@ use Tailors\PHPUnit\InvalidArgumentException;
  */
 final class ClassPropertySelectorTest extends TestCase
 {
-    //
-    //
-    // TESTS
-    //
-    //
-
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testImplementsValueSelectorInterface(): void
     {
         self::assertInstanceOf(ValueSelectorInterface::class, new ClassPropertySelector());
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testExtendsAbstractPropertySelector(): void
     {
         self::assertInstanceOf(AbstractPropertySelector::class, new ClassPropertySelector());
     }
 
-    //
-    // supports()
-    //
-
     // @codeCoverageIgnoreStart
+    /**
+     * @psalm-return iterable<string, array{
+     *      subject: mixed,
+     *      expect: mixed
+     * }>
+     */
     public static function provSupports(): iterable
     {
-        // #0
-        yield 'string' => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'subject' => 'foo',
             'expect'  => false,
         ];
 
-        // #1
-        yield 'array' => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'subject' => [],
             'expect'  => false,
         ];
 
-        yield 'class' => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'subject' => self::class,
             'expect'  => true,
         ];
 
-        // #2
-        yield 'object' => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'subject' => get_class(new class() {}),
             'expect'  => true,
         ];
 
-        // #3
-        yield 'new ClassPropertySelector' => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'subject' => ClassPropertySelector::class,
             'expect'  => true,
         ];
@@ -85,23 +83,31 @@ final class ClassPropertySelectorTest extends TestCase
      * @dataProvider provSupports
      *
      * @param mixed $subject
+     * @param mixed $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testSupports($subject, bool $expect): void
+    public function testSupports($subject, $expect): void
     {
         $selector = new ClassPropertySelector();
         self::assertSame($expect, $selector->supports($subject));
     }
 
-    //
-    // select
-    //
-
     // @codeCoverageIgnoreStart
+    /**
+     * @psalm-return iterable<string, array{
+     *      class: string,
+     *      key: array-key,
+     *      return: bool,
+     *      expect: mixed
+     * }>
+     */
     public static function provSelect(): iterable
     {
         // #0
         yield basename(__FILE__).':'.__LINE__ => [
             'class'  => get_class(new class() {
+                /** @var string */
                 public static $foo = 'FOO';
             }),
             'key'    => 'foo',
@@ -112,6 +118,7 @@ final class ClassPropertySelectorTest extends TestCase
         // #1
         yield basename(__FILE__).':'.__LINE__ => [
             'class'  => get_class(new class() {
+                /** @var string */
                 public static $foo = 'FOO';
             }),
             'key'    => 'bar',
@@ -122,7 +129,7 @@ final class ClassPropertySelectorTest extends TestCase
         // #2
         yield basename(__FILE__).':'.__LINE__ => [
             'class'  => get_class(new class() {
-                public static function foo()
+                public static function foo(): string
                 {
                     return 'FOO';
                 }
@@ -135,7 +142,7 @@ final class ClassPropertySelectorTest extends TestCase
         // #3
         yield basename(__FILE__).':'.__LINE__ => [
             'class'  => get_class(new class() {
-                public static function foo()
+                public static function foo(): string
                 {
                     return 'FOO';
                 }
@@ -154,6 +161,10 @@ final class ClassPropertySelectorTest extends TestCase
      * @param mixed $key
      * @param mixed $return
      * @param mixed $expect
+     *
+     * @psalm-param array-key $key
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testSelect(string $class, $key, $return, $expect): void
     {
@@ -162,10 +173,13 @@ final class ClassPropertySelectorTest extends TestCase
         self::assertSame($expect, $retval);
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testSelectThrowsOnPrivateMethod(): void
     {
         $class = get_class(new class() {
-            private static function foo()
+            private static function foo(): void
             {
                 // @codeCoverageIgnoreStart
             }
@@ -184,9 +198,13 @@ final class ClassPropertySelectorTest extends TestCase
 
     // @codeCoverageIgnoreEnd
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testSelectThrowsOnPrivateAttribute(): void
     {
         $class = get_class(new class() {
+            /** @var string */
             private $foo = 'FOO';
         });
         $selector = new ClassPropertySelector();
@@ -201,6 +219,9 @@ final class ClassPropertySelectorTest extends TestCase
 
     // @codeCoverageIgnoreEnd
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testSelectThrowsOnNonStaticMethod(): void
     {
         $class = ClassWithNonStaticMethodFooBLSGG::class;
@@ -230,9 +251,13 @@ final class ClassPropertySelectorTest extends TestCase
 
     // @codeCoverageIgnoreEnd
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testSelectThrowsOnNonStaticProperty(): void
     {
         $class = get_class(new class() {
+            /** @var string */
             public $foo = 'FOO';
         });
         $selector = new ClassPropertySelector();
@@ -248,6 +273,12 @@ final class ClassPropertySelectorTest extends TestCase
     // @codeCoverageIgnoreEnd
 
     // @codeCoverageIgnoreStart
+    /**
+     * @psalm-return iterable<string, array{
+     *      key: string,
+     *      method: string
+     * }>
+     */
     public static function provSelectThrowsOnNonClass(): iterable
     {
         // #0
@@ -267,8 +298,10 @@ final class ClassPropertySelectorTest extends TestCase
 
     /**
      * @dataProvider provSelectThrowsOnNonClass
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testSelectThrowsOnNonClass(string $key, string $method): void
+    public function testSelectThrowsOnNonClass(string $key): void
     {
         $selector = new ClassPropertySelector();
 
@@ -287,12 +320,18 @@ final class ClassPropertySelectorTest extends TestCase
 
     // @codeCoverageIgnoreEnd
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testSubject(): void
     {
         $selector = new ClassPropertySelector();
         self::assertSame('a class', $selector->subject());
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testSelectable(): void
     {
         $selector = new ClassPropertySelector();

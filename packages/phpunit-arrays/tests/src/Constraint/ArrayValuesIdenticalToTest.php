@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\Constraint;
 
 use PHPUnit\Framework\Constraint\Constraint;
+use Tailors\PHPUnit\InvalidArgumentException;
 use Tailors\PHPUnit\RecursiveConstraint\RecursiveConstraintTestCase;
 
 /**
@@ -28,7 +29,7 @@ use Tailors\PHPUnit\RecursiveConstraint\RecursiveConstraintTestCase;
  * @psalm-type ConstraintClass      = ArrayValuesIdenticalTo
  * @psalm-type CreateConstraintArgs = list{ArrayLike}
  *
- * @template-extends RecursiveConstraintTestCase<ConstraintClass, CreateConstraintArgs>
+ * @template-extends RecursiveConstraintTestCase<ArrayValuesIdenticalTo>
  */
 final class ArrayValuesIdenticalToTest extends RecursiveConstraintTestCase
 {
@@ -49,12 +50,19 @@ final class ArrayValuesIdenticalToTest extends RecursiveConstraintTestCase
         return 'identical to';
     }
 
+    /**
+     * @psalm-return class-string<ArrayValuesIdenticalTo>
+     *
+     * @psalm-pure
+     */
     public static function getConstraintClass(): string
     {
         return ArrayValuesIdenticalTo::class;
     }
 
     /**
+     * @throws InvalidArgumentException
+     *
      * @psalm-param CreateConstraintArgs $args
      */
     public static function createConstraint(array $args): Constraint
@@ -66,8 +74,10 @@ final class ArrayValuesIdenticalToTest extends RecursiveConstraintTestCase
      * @dataProvider provArrayValuesIdenticalTo
      *
      * @param mixed $actual
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testArrayValuesIdenticalToSucceeds(array $expect, $actual, string $string): void
+    public function testArrayValuesIdenticalToSucceeds(array $expect, $actual): void
     {
         parent::examineValuesMatchSucceeds($expect, $actual);
     }
@@ -78,6 +88,8 @@ final class ArrayValuesIdenticalToTest extends RecursiveConstraintTestCase
      * @dataProvider provArrayValuesNotEqualToNonArray
      *
      * @param mixed $actual
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testArrayValuesIdenticalToFails(array $expect, $actual, string $string): void
     {
@@ -92,8 +104,10 @@ final class ArrayValuesIdenticalToTest extends RecursiveConstraintTestCase
      * @dataProvider provArrayValuesNotEqualToNonArray
      *
      * @param mixed $actual
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testNotArrayValuesIdenticalToSucceeds(array $expect, $actual, string $string): void
+    public function testNotArrayValuesIdenticalToSucceeds(array $expect, $actual): void
     {
         parent::examineNotValuesMatchSucceeds($expect, $actual);
     }
@@ -102,6 +116,8 @@ final class ArrayValuesIdenticalToTest extends RecursiveConstraintTestCase
      * @dataProvider provArrayValuesIdenticalTo
      *
      * @param mixed $actual
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testNotArrayValuesIdenticalToFails(array $expect, $actual, string $string): void
     {

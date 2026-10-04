@@ -14,8 +14,6 @@ namespace Tailors\PHPUnit\Arrays;
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
- *
- * @psalm-import-type AbstractValuesCtorArgs from AbstractValuesTestCase as ArrayValuesCtorArgs
  */
 abstract class ArrayValuesTestCase extends AbstractArrayValuesTestCase
 {

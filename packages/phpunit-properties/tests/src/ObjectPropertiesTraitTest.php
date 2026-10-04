@@ -56,6 +56,8 @@ final class ObjectPropertiesTraitTest extends TestCase
      * @param mixed $expect
      *
      * @psalm-param ObjectPropertiesArgs $args
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testExpectedObjectProperties(array $args, $expect): void
     {

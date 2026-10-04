@@ -16,34 +16,58 @@ use PHPUnit\Framework\Constraint\Constraint;
  * @internal This trait is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type ArrayLike            = iterable<array-key, mixed>
+ * @psalm-type CreateConstraintArgs = list{ArrayLike}
  */
 trait ProvObjectPropertiesTrait
 {
+    /**
+     * @psalm-param CreateConstraintArgs $args
+     */
     abstract public static function createConstraint(array $args): Constraint;
 
     // @codeCoverageIgnoreStart
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      expect: array<string, mixed>,
+     *      actual: object,
+     *      string: string
+     * }>
+     */
     public static function provObjectPropertiesIdenticalTo(): iterable
     {
         $esmith = new class() {
+            /** @var string */
             public $name = 'Emily';
+
+            /** @var string */
             public $last = 'Smith';
+
+            /** @var int */
             public $age = 20;
+
+            /** @var ?object */
             public $husband;
+
+            /** @var object[] */
             public $family = [];
+
+            /** @var int */
             private $salary = 98;
 
-            public function getSalary()
+            public function getSalary(): int
             {
                 return $this->salary;
             }
 
-            public function getDebit()
+            public function getDebit(): int
             {
                 return -$this->salary;
             }
 
-            public function marry($husband)
+            public function marry(object $husband): void
             {
                 $this->husband = $husband;
                 $this->family[] = $husband;
@@ -51,24 +75,35 @@ trait ProvObjectPropertiesTrait
         };
 
         $jsmith = new class() {
+            /** @var string */
             public $name = 'John';
+
+            /** @var string */
             public $last = 'Smith';
+
+            /** @var int */
             public $age = 21;
+
+            /** @var ?object */
             public $wife;
+
+            /** @var object[] */
             public $family = [];
+
+            /** @var int */
             private $salary = 123;
 
-            public function getSalary()
+            public function getSalary(): int
             {
                 return $this->salary;
             }
 
-            public function getDebit()
+            public function getDebit(): int
             {
                 return -$this->salary;
             }
 
-            public function marry($wife)
+            public function marry(object $wife): void
             {
                 $this->wife = $wife;
                 $this->family[] = $wife;
@@ -79,10 +114,13 @@ trait ProvObjectPropertiesTrait
         $jsmith->marry($esmith);
 
         $registry = new class() {
+            /** @var array */
             public $persons = [];
+
+            /** @var array */
             public $families = [];
 
-            public function addFamily(string $key, array $persons)
+            public function addFamily(string $key, array $persons): void
             {
                 $this->families[$key] = $persons;
                 $this->persons = array_merge($this->persons, $persons);
@@ -164,13 +202,29 @@ trait ProvObjectPropertiesTrait
         ];
     }
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      expect: array<string, mixed>,
+     *      actual: object,
+     *      string: string
+     * }>
+     */
     public static function provObjectPropertiesEqualButNotIdenticalTo(): iterable
     {
         $object = new class() {
+            /** @var string */
             public $emptyString = '';
+
+            /** @var mixed */
             public $null;
+
+            /** @var string */
             public $string123 = '123';
+
+            /** @var int */
             public $int321 = 321;
+
+            /** @var bool */
             public $boolFalse = false;
         };
 
@@ -187,33 +241,56 @@ trait ProvObjectPropertiesTrait
         ];
     }
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      expect: array<string, mixed>,
+     *      actual: object,
+     *      string: string
+     * }>
+     */
     public static function provObjectPropertiesNotEqualTo(): iterable
     {
         $hbrown = new class() {
+            /** @var string */
             public $name = 'Helen';
+
+            /** @var string */
             public $last = 'Brown';
+
+            /** @var int */
             public $age = 44;
         };
 
         $esmith = new class() {
+            /** @var string */
             public $name = 'Emily';
+
+            /** @var string */
             public $last = 'Smith';
+
+            /** @var int */
             public $age = 20;
+
+            /** @var mixed */
             public $husband;
+
+            /** @var array */
             public $family = [];
+
+            /** @var int */
             private $salary = 98;
 
-            public function getSalary()
+            public function getSalary(): int
             {
                 return $this->salary;
             }
 
-            public function getDebit()
+            public function getDebit(): int
             {
                 return -$this->salary;
             }
 
-            public function marry($husband)
+            public function marry(object $husband): void
             {
                 $this->husband = $husband;
                 $this->family[] = $husband;
@@ -221,24 +298,35 @@ trait ProvObjectPropertiesTrait
         };
 
         $jsmith = new class() {
+            /** @var string */
             public $name = 'John';
+
+            /** @var string */
             public $last = 'Smith';
+
+            /** @var int */
             public $age = 21;
+
+            /** @var ?object */
             public $wife;
+
+            /** @var object[] */
             public $family = [];
+
+            /** @var int */
             private $salary = 123;
 
-            public function getSalary()
+            public function getSalary(): int
             {
                 return $this->salary;
             }
 
-            public function getDebit()
+            public function getDebit(): int
             {
                 return -$this->salary;
             }
 
-            public function marry($wife)
+            public function marry(object $wife): void
             {
                 $this->wife = $wife;
                 $this->family[] = $wife;
@@ -249,10 +337,16 @@ trait ProvObjectPropertiesTrait
         $jsmith->marry($esmith);
 
         $registry = new class() {
+            /** @var array<object> */
             public $persons = [];
+
+            /** @var array<array<object>> */
             public $families = [];
 
-            public function addFamily(string $key, array $persons)
+            /**
+             * @psalm-param array<object> $persons
+             */
+            public function addFamily(string $key, array $persons): void
             {
                 $this->families[$key] = $persons;
                 $this->persons = array_merge($this->persons, $persons);
@@ -352,6 +446,7 @@ trait ProvObjectPropertiesTrait
             'string' => 'object '.get_class($registry),
         ];
 
+        /** @psalm-suppress MissingThrowsDocblock */
         yield basename(__FILE__).':'.__LINE__ => [
             'expect' => [
                 'persons'  => [
@@ -371,6 +466,13 @@ trait ProvObjectPropertiesTrait
         ];
     }
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      expect: array<string, mixed>,
+     *      actual: mixed,
+     *      string: string
+     * }>
+     */
     public static function provObjectPropertiesNotEqualToNonObject(): iterable
     {
         yield basename(__FILE__).':'.__LINE__ => [

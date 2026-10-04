@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
+use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Examples\Inheritance\ExampleClassNotUsingTrait;
@@ -29,12 +30,22 @@ use Tailors\PHPUnit\InvalidArgumentException;
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type ExpectExceptionArray = array{exception: class-string<\Exception>, message: string}
  */
 final class UsesTraitTest extends TestCase
 {
     use InheritanceConstraintTestTrait;
 
-    // required by InheritanceConstraintTestTrait
+    /**
+     * @psalm-return iterable<string, array{
+     *      constraint: Constraint,
+     *      subject: mixed,
+     *      expect: ExpectExceptionArray
+     * }>
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public static function provFailureDescriptionOfCustomUnaryOperator(): iterable
     {
         yield basename(__FILE__).':'.__LINE__ => [
@@ -47,7 +58,15 @@ final class UsesTraitTest extends TestCase
         ];
     }
 
-    // required by InheritanceConstraintTestTrait
+    /**
+     * @psalm-return iterable<string, array{
+     *      constraint: Constraint,
+     *      subject: mixed,
+     *      expect: ExpectExceptionArray
+     * }>
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public static function provFailureDescriptionOfLogicalNotOperator(): iterable
     {
         yield basename(__FILE__).':'.__LINE__ => [
@@ -64,6 +83,12 @@ final class UsesTraitTest extends TestCase
         ];
     }
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      trait: string,
+     *      subject: mixed
+     * }>
+     */
     public static function provUsesTrait(): iterable
     {
         yield basename(__FILE__).':'.__LINE__ => [
@@ -81,7 +106,6 @@ final class UsesTraitTest extends TestCase
             'subject' => ExampleTraitUsingTrait::class,
         ];
 
-        // case-insensitive match
         yield basename(__FILE__).':'.__LINE__ => [
             'trait'   => 'tailors\\PhPunit\\eXamples\\inhEritance\eXampletRait',
             'subject' => 'tailors\\PhPunit\\eXamples\\inhEritance\eXampleclAssuSingtRait',
@@ -98,6 +122,13 @@ final class UsesTraitTest extends TestCase
         ];
     }
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      trait: string,
+     *      subject: mixed,
+     *      message: string
+     * }>
+     */
     public static function provNotUsesTrait(): iterable
     {
         $template = 'Failed asserting that %s uses trait %s.';
@@ -127,6 +158,12 @@ final class UsesTraitTest extends TestCase
         ];
     }
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      argument: string,
+     *      message: string
+     * }>
+     */
     public static function provConstraintThrowsInvalidArgumentException(): iterable
     {
         $message = '/Argument 1 passed to \S+ must be a trait-string/';
@@ -151,6 +188,8 @@ final class UsesTraitTest extends TestCase
      * @dataProvider provUsesTrait
      *
      * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testConstraintSucceeds(string $trait, $subject): void
     {
@@ -163,6 +202,8 @@ final class UsesTraitTest extends TestCase
      * @dataProvider provNotUsesTrait
      *
      * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testConstraintFails(string $trait, $subject, string $message): void
     {
@@ -176,6 +217,8 @@ final class UsesTraitTest extends TestCase
 
     /**
      * @dataProvider provConstraintThrowsInvalidArgumentException
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testConstraintThrowsInvalidArgumentException(string $argument, string $message): void
     {

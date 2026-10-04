@@ -22,7 +22,7 @@ use Tailors\PHPUnit\ValueSelector\ClassPropertySelector;
  *
  * @psalm-type ArrayLike = iterable<array-key, mixed>
  *
- * @template-extends AbstractArraySelectionSpec<\Traversable, class-string>
+ * @template-extends AbstractArraySelectionSpec<ArrayLike, class-string>
  */
 final class ClassPropertiesSelection extends AbstractArraySelectionSpec
 {

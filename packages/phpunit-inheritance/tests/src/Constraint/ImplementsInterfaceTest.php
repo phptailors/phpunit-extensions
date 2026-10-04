@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
+use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Examples\Inheritance\ExampleTrait;
@@ -26,12 +27,22 @@ use Tailors\PHPUnit\InvalidArgumentException;
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type ExpectExceptionArray = array{exception: class-string<\Exception>, message: string}
  */
 final class ImplementsInterfaceTest extends TestCase
 {
     use InheritanceConstraintTestTrait;
 
-    // required by InheritanceConstraintTestTrait
+    /**
+     * @psalm-return iterable<string, array{
+     *      constraint: Constraint,
+     *      subject: mixed,
+     *      expect: ExpectExceptionArray
+     * }>
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public static function provFailureDescriptionOfCustomUnaryOperator(): iterable
     {
         yield basename(__FILE__).':'.__LINE__ => [
@@ -44,7 +55,15 @@ final class ImplementsInterfaceTest extends TestCase
         ];
     }
 
-    // required by InheritanceConstraintTestTrait
+    /**
+     * @psalm-return iterable<string, array{
+     *      constraint: Constraint,
+     *      subject: mixed,
+     *      expect: ExpectExceptionArray
+     * }>
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public static function provFailureDescriptionOfLogicalNotOperator(): iterable
     {
         yield basename(__FILE__).':'.__LINE__ => [
@@ -57,45 +76,52 @@ final class ImplementsInterfaceTest extends TestCase
         ];
     }
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      interface: string,
+     *      subject: mixed
+     * }>
+     */
     public static function provImplementsInterface(): iterable
     {
-        // class implements interface
         yield basename(__FILE__).':'.__LINE__ => [
             'interface' => \Throwable::class,
             'subject'   => \Exception::class,
         ];
 
-        // object of class that implements interface
         yield basename(__FILE__).':'.__LINE__ => [
             'interface' => \Throwable::class,
             'subject'   => new \Exception(),
         ];
 
-        // interface that extends interface
         yield basename(__FILE__).':'.__LINE__ => [
             'interface' => \Traversable::class,
             'subject'   => \Iterator::class,
         ];
 
-        // class implements interface -- case insensitive match
         yield basename(__FILE__).':'.__LINE__ => [
             'interface' => 'tHrowAble',
             'subject'   => 'eXceptiOn',
         ];
 
-        // object of class that implements interface -- case insensitive match
         yield basename(__FILE__).':'.__LINE__ => [
             'interface' => 'tHrowAble',
             'subject'   => new \Exception(),
         ];
 
-        // interface that extends interface -- case insensitive match
         yield basename(__FILE__).':'.__LINE__ => [
             'interface' => 'tRaversAble',
             'subject'   => 'iteRator',
         ];
     }
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      interface: interface-string,
+     *      subject: mixed,
+     *      message: string
+     * }>
+     */
     public static function provNotImplementsInterface(): iterable
     {
         $template = 'Failed asserting that %s implements interface %s.';
@@ -125,7 +151,13 @@ final class ImplementsInterfaceTest extends TestCase
         ];
     }
 
-    public static function provConstraintThrowsInvalidArgumentException(): iterable
+    /**
+     * @psalm-return iterable<string, array{
+     *      argument: string,
+     *      message: string
+     * }>
+     */
+    public static function provThrowsInvalidArgumentException(): iterable
     {
         $message = '/Argument 1 passed to \S+ must be an interface-string/';
 
@@ -149,6 +181,8 @@ final class ImplementsInterfaceTest extends TestCase
      * @dataProvider provImplementsInterface
      *
      * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testConstraintSucceeds(string $interface, $subject): void
     {
@@ -161,6 +195,8 @@ final class ImplementsInterfaceTest extends TestCase
      * @dataProvider provNotImplementsInterface
      *
      * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testConstraintFails(string $interface, $subject, string $message): void
     {
@@ -173,9 +209,11 @@ final class ImplementsInterfaceTest extends TestCase
     }
 
     /**
-     * @dataProvider provConstraintThrowsInvalidArgumentException
+     * @dataProvider provThrowsInvalidArgumentException
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testConstraintThrowsInvalidArgumentException(string $argument, string $message): void
+    public function testThrowsInvalidArgumentException(string $argument, string $message): void
     {
         self::expectException(InvalidArgumentException::class);
         self::expectExceptionMessageMatches($message);

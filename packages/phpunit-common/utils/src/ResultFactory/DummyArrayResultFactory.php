@@ -52,6 +52,8 @@ final class DummyArrayResultFactory extends AbstractArrayResultFactory
 
     /**
      * @psalm-param ArrayLike $input
+     *
+     * @psalm-return ResultInterface&Traversable
      */
     protected function getArrayResult(bool $actual, iterable $input): ResultInterface
     {

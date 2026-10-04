@@ -21,11 +21,21 @@ use Tailors\PHPUnit\InvalidArgumentException;
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type ConstraintClass      = HasMethod
+ * @psalm-type CreateConstraintArgs = list{string}
+ *
+ * @template-extends ConstraintTestCase<HasMethod, list{string}>
  */
 final class HasMethodTest extends ConstraintTestCase
 {
     use ProvHasMethodTrait;
 
+    /**
+     * @throws InvalidArgumentException
+     *
+     * @psalm-param CreateConstraintArgs $args
+     */
     public static function createConstraint(array $args): Constraint
     {
         return HasMethod::create(...$args);
@@ -47,6 +57,8 @@ final class HasMethodTest extends ConstraintTestCase
      * @dataProvider provHasMethodSucceeds
      *
      * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testHasMethodMatchSucceeds(string $method, $subject): void
     {
@@ -57,6 +69,8 @@ final class HasMethodTest extends ConstraintTestCase
      * @dataProvider provHasMethodSucceeds
      *
      * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testNotHasMethodMatchFails(string $method, $subject, string $string): void
     {
@@ -67,6 +81,8 @@ final class HasMethodTest extends ConstraintTestCase
      * @dataProvider provHasMethodFails
      *
      * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testHasMethodMatchFails(string $method, $subject, string $string): void
     {
@@ -77,12 +93,17 @@ final class HasMethodTest extends ConstraintTestCase
      * @dataProvider provHasMethodFails
      *
      * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testNotHasMethodMatchSucceeds(string $method, $subject): void
     {
         parent::examineNotConstraintMatchSucceeds([$method], $subject);
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testCreateThrowsInvalidArgumentException(): void
     {
         $this->expectException(InvalidArgumentException::class);

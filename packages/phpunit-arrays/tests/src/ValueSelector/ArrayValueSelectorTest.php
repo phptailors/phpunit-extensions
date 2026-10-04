@@ -25,22 +25,21 @@ use Tailors\PHPUnit\InvalidArgumentException;
  */
 final class ArrayValueSelectorTest extends TestCase
 {
-    //
-    //
-    // TESTS
-    //
-    //
-
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testImplementsValueSelectorInterface(): void
     {
         self::assertInstanceOf(ValueSelectorInterface::class, new ArrayValueSelector());
     }
 
-    //
-    // supports()
-    //
-
     // @codeCoverageIgnoreStart
+    /**
+     * @psalm-return iterable<string, array{
+     *      subject: mixed,
+     *      expect: bool
+     * }>
+     */
     public static function provSupports(): iterable
     {
         yield basename(__FILE__).':'.__LINE__ => [
@@ -90,6 +89,8 @@ final class ArrayValueSelectorTest extends TestCase
      * @dataProvider provSupports
      *
      * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testSupports($subject, bool $expect): void
     {
@@ -97,14 +98,23 @@ final class ArrayValueSelectorTest extends TestCase
         self::assertSame($expect, $selector->supports($subject));
     }
 
-    //
-    // select
-    //
-
     // @codeCoverageIgnoreStart
+
+    /**
+     * @psalm-return iterable<string, array{
+     *      subject: array|\ArrayAccess,
+     *      key: array-key,
+     *      return: mixed,
+     *      expect: mixed
+     * }>
+     */
     public static function provSelect(): iterable
     {
-        $arrayAccessFoo = new class() implements \ArrayAccess {
+        $arrayAccessFoo = new
+        /**
+         * @template-implements \ArrayAccess<array-key, mixed>
+         */
+        class() implements \ArrayAccess {
             /** @var string */
             private $foo;
 
@@ -190,7 +200,10 @@ final class ArrayValueSelectorTest extends TestCase
      * @param mixed $return
      * @param mixed $expect
      *
-     * @psalm-param array|\ArrayObject $subject
+     * @psalm-param array|\ArrayAccess $subject
+     * @psalm-param array-key          $key
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testSelect($subject, $key, $return, $expect): void
     {
@@ -199,6 +212,9 @@ final class ArrayValueSelectorTest extends TestCase
         self::assertSame($expect, $retval);
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testSelectThrowsOnNonArray(): void
     {
         $selector = new ArrayValueSelector();
@@ -218,12 +234,18 @@ final class ArrayValueSelectorTest extends TestCase
 
     // @codeCoverageIgnoreEnd
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testSubject(): void
     {
         $selector = new ArrayValueSelector();
         self::assertSame('an array or ArrayAccess', $selector->subject());
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testSelectable(): void
     {
         $selector = new ArrayValueSelector();

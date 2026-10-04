@@ -20,9 +20,18 @@ namespace Tailors\PHPUnit\Properties;
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
+ *
+ * @psalm-import-type CtorArgs from ObjectPropertiesTestCase
  */
 final class ExpectedObjectPropertiesTest extends ObjectPropertiesTestCase
 {
+    /**
+     * @psalm-param CtorArgs $ctorArgs
+     *
+     * @psalm-return ArrayLike
+     */
     public static function getArrayResultObject(array $ctorArgs): iterable
     {
         return new ExpectedObjectProperties(...$ctorArgs);

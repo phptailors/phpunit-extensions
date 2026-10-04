@@ -28,6 +28,13 @@ final class ImplementsInterfaceTraitTest extends TestCase
 {
     use ImplementsInterfaceTrait;
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      interface: string,
+     *      subject: mixed,
+     *      message: string
+     * }>
+     */
     public static function provImplementsInterface(): iterable
     {
         $template = 'Failed asserting that %s does not implement interface %s.';
@@ -51,6 +58,13 @@ final class ImplementsInterfaceTraitTest extends TestCase
         ];
     }
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      interface: string,
+     *      subject: mixed,
+     *      message: string
+     * }>
+     */
     public static function provNotImplementsInterface(): iterable
     {
         $template = 'Failed asserting that %s implements interface %s.';
@@ -83,9 +97,11 @@ final class ImplementsInterfaceTraitTest extends TestCase
     /**
      * @dataProvider provImplementsInterface
      *
-     * @param object|string $subject
+     * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertImplementsInterfaceSucceeds(string $interface, $subject, string $message): void
+    public function testAssertImplementsInterfaceSucceeds(string $interface, $subject): void
     {
         self::assertImplementsInterface($interface, $subject);
     }
@@ -94,6 +110,8 @@ final class ImplementsInterfaceTraitTest extends TestCase
      * @dataProvider provNotImplementsInterface
      *
      * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testAssertImplementsInterfaceFails(string $interface, $subject, string $message): void
     {
@@ -107,8 +125,10 @@ final class ImplementsInterfaceTraitTest extends TestCase
      * @dataProvider provNotImplementsInterface
      *
      * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertNotImplementsInterfaceSucceeds(string $interface, $subject, string $message): void
+    public function testAssertNotImplementsInterfaceSucceeds(string $interface, $subject): void
     {
         self::assertNotImplementsInterface($interface, $subject);
     }
@@ -117,6 +137,8 @@ final class ImplementsInterfaceTraitTest extends TestCase
      * @dataProvider provImplementsInterface
      *
      * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testAssertNotImplementsInterfaceFails(string $interface, $subject, string $message): void
     {
@@ -130,12 +152,20 @@ final class ImplementsInterfaceTraitTest extends TestCase
      * @dataProvider provNotImplementsInterface
      *
      * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testImplementsInterfaceFails(string $interface, $subject, string $message): void
+    public function testImplementsInterfaceFails(string $interface, $subject): void
     {
         self::assertThat($subject, self::logicalNot(self::implementsInterface($interface)));
     }
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      argument: string,
+     *      message: string
+     * }>
+     */
     public static function provImplementsInterfaceThrowsInvalidArgumentException(): iterable
     {
         $template = 'Argument 1 passed to %s::create() must be an interface-string, \'%s\' given';
@@ -158,6 +188,8 @@ final class ImplementsInterfaceTraitTest extends TestCase
 
     /**
      * @dataProvider provImplementsInterfaceThrowsInvalidArgumentException
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testImplementsInterfaceThrowsInvalidArgumentException(string $argument, string $message): void
     {

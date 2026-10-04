@@ -16,13 +16,26 @@ use PHPUnit\Framework\Constraint\Constraint;
  * @internal This trait is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type ArrayLike            = iterable<array-key, mixed>
+ * @psalm-type CreateConstraintArgs = list{0: array, 1?: int}
  */
 trait ProvKsortedArrayTrait
 {
     // @codeCoverageIgnoreStart
 
+    /**
+     * @psalm-param CreateConstraintArgs $args
+     */
     abstract public static function createConstraint(array $args): Constraint;
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      expect: array,
+     *      actual: mixed,
+     *      string: string
+     * }>
+     */
     public static function provKsortedArrayIdenticalTo(): iterable
     {
         yield basename(__FILE__).':'.__LINE__ => [
@@ -62,6 +75,13 @@ trait ProvKsortedArrayTrait
         ];
     }
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      expect: array,
+     *      actual: mixed,
+     *      string: string
+     * }>
+     */
     public static function provKsortedArrayEqualButNotIdenticalTo(): iterable
     {
         yield basename(__FILE__).':'.__LINE__ => [
@@ -90,6 +110,13 @@ trait ProvKsortedArrayTrait
         ];
     }
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      expect: array,
+     *      actual: mixed,
+     *      string: string
+     * }>
+     */
     public static function provKsortedArrayNotEqualTo(): iterable
     {
         yield basename(__FILE__).':'.__LINE__ => [
@@ -117,6 +144,13 @@ trait ProvKsortedArrayTrait
         ];
     }
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      expect: array,
+     *      actual: mixed,
+     *      string: string
+     * }>
+     */
     public static function provKsortedArrayNotEqualToNonArray(): iterable
     {
         yield basename(__FILE__).':'.__LINE__ => [

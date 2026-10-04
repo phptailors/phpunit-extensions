@@ -25,11 +25,10 @@ use Tailors\PHPUnit\Arrays\KsortedConstraintTestCase;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ArrayLike            = iterable<array-key, mixed>
  * @psalm-type ConstraintClass      = KsortedArrayEqualTo
- * @psalm-type CreateConstraintArgs = list{ArrayLike}
+ * @psalm-type CreateConstraintArgs = list{0: array, 1?: int}
  *
- * @template-extends KsortedConstraintTestCase<KsortedArrayEqualTo, CreateConstraintArgs>
+ * @template-extends KsortedConstraintTestCase<KsortedArrayEqualTo>
  */
 final class KsortedArrayEqualToTest extends KsortedConstraintTestCase
 {
@@ -40,6 +39,11 @@ final class KsortedArrayEqualToTest extends KsortedConstraintTestCase
         return 'equal to';
     }
 
+    /**
+     * @psalm-return class-string<KsortedArrayEqualTo>
+     *
+     * @psalm-pure
+     */
     public static function getConstraintClass(): string
     {
         return KsortedArrayEqualTo::class;
@@ -58,8 +62,10 @@ final class KsortedArrayEqualToTest extends KsortedConstraintTestCase
      * @dataProvider provKsortedArrayEqualButNotIdenticalTo
      *
      * @param mixed $actual
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testKsortedArrayEqualToSucceeds(array $expect, $actual, string $string): void
+    public function testKsortedArrayEqualToSucceeds(array $expect, $actual): void
     {
         parent::examineConstraintMatchSucceeds([$expect], $actual);
     }
@@ -69,6 +75,8 @@ final class KsortedArrayEqualToTest extends KsortedConstraintTestCase
      * @dataProvider provKsortedArrayNotEqualToNonArray
      *
      * @param mixed $actual
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testKsortedArrayEqualToFails(array $expect, $actual, string $string): void
     {
@@ -80,8 +88,10 @@ final class KsortedArrayEqualToTest extends KsortedConstraintTestCase
      * @dataProvider provKsortedArrayNotEqualToNonArray
      *
      * @param mixed $actual
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testNotKsortedArrayEqualToSucceeds(array $expect, $actual, string $string): void
+    public function testNotKsortedArrayEqualToSucceeds(array $expect, $actual): void
     {
         parent::examineNotConstraintMatchSucceeds([$expect], $actual);
     }
@@ -91,6 +101,8 @@ final class KsortedArrayEqualToTest extends KsortedConstraintTestCase
      * @dataProvider provKsortedArrayEqualButNotIdenticalTo
      *
      * @param mixed $actual
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testNotKsortedArrayEqualToFails(array $expect, $actual, string $string): void
     {

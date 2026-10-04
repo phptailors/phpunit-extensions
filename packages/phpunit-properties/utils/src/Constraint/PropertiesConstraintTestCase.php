@@ -21,7 +21,7 @@ use Tailors\PHPUnit\RecursiveConstraint\RecursiveConstraintTestCase;
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-template ConstraintClass of Constraint
- * @psalm-template CreateConstraintArgs of array
+ * @psalm-template CreateConstraintArgs of list
  *
  * @template-extends RecursiveConstraintTestCase<ConstraintClass, CreateConstraintArgs>
  */

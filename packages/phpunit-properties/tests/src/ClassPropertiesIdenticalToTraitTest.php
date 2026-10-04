@@ -30,8 +30,10 @@ final class ClassPropertiesIdenticalToTraitTest extends TestCase
 
     /**
      * @dataProvider provClassPropertiesIdenticalTo
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testClassPropertiesIdenticalTo(array $expect, string $actual, string $string)
+    public function testClassPropertiesIdenticalTo(array $expect, string $actual): void
     {
         self::assertThat($actual, self::classPropertiesIdenticalTo($expect));
     }
@@ -39,16 +41,20 @@ final class ClassPropertiesIdenticalToTraitTest extends TestCase
     /**
      * @dataProvider provClassPropertiesNotEqualTo
      * @dataProvider provClassPropertiesEqualButNotIdenticalTo
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testLogicalNotClassPropertiesIdenticalTo(array $expect, string $actual, string $string)
+    public function testLogicalNotClassPropertiesIdenticalTo(array $expect, string $actual): void
     {
         self::assertThat($actual, self::logicalNot(self::classPropertiesIdenticalTo($expect)));
     }
 
     /**
      * @dataProvider provClassPropertiesIdenticalTo
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertClassPropertiesIdenticalTo(array $expect, string $actual, string $string)
+    public function testAssertClassPropertiesIdenticalTo(array $expect, string $actual): void
     {
         self::assertClassPropertiesIdenticalTo($expect, $actual);
     }
@@ -56,8 +62,10 @@ final class ClassPropertiesIdenticalToTraitTest extends TestCase
     /**
      * @dataProvider provClassPropertiesNotEqualTo
      * @dataProvider provClassPropertiesEqualButNotIdenticalTo
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertClassPropertiesIdenticalToFails(array $expect, string $actual, string $string)
+    public function testAssertClassPropertiesIdenticalToFails(array $expect, string $actual): void
     {
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that .+ is a class '.
@@ -70,16 +78,20 @@ final class ClassPropertiesIdenticalToTraitTest extends TestCase
 
     /**
      * @dataProvider provClassPropertiesNotEqualTo
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertNotClassPropertiesIdenticalTo(array $expect, string $actual, string $string)
+    public function testAssertNotClassPropertiesIdenticalTo(array $expect, string $actual): void
     {
         self::assertNotClassPropertiesIdenticalTo($expect, $actual);
     }
 
     /**
      * @dataProvider provClassPropertiesIdenticalTo
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertNotClassPropertiesIdenticalToFails(array $expect, string $actual, string $string)
+    public function testAssertNotClassPropertiesIdenticalToFails(array $expect, string $actual): void
     {
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that .+ fails to be a class '.

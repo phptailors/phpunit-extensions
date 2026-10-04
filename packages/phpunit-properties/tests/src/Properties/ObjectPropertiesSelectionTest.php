@@ -29,16 +29,25 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  */
 final class ObjectPropertiesSelectionTest extends TestCase
 {
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testExtendsAbstractArraySelectionSpec(): void
     {
         $this->assertInstanceOf(AbstractArraySelectionSpec::class, new ObjectPropertiesSelection([]));
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testImplementsResultFactoryWrapperInterface(): void
     {
         $this->assertInstanceOf(ResultFactoryWrapperInterface::class, new ObjectPropertiesSelection([]));
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testImplementValueSelectorWrapperInterface(): void
     {
         $this->assertInstanceOf(ValueSelectorWrapperInterface::class, new ObjectPropertiesSelection([]));
@@ -64,6 +73,8 @@ final class ObjectPropertiesSelectionTest extends TestCase
      * @dataProvider provObjectPropertiesSelection
      *
      * @psalm-param ArrayLike $array
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testObjectPropertiesSelection(iterable $array): void
     {

@@ -20,11 +20,17 @@ namespace Tailors\PHPUnit\Properties;
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
+ *
+ * @psalm-import-type CtorArgs from ClassPropertiesTestCase
  */
 final class ActualClassPropertiesTest extends ClassPropertiesTestCase
 {
     /**
-     * @psalm-param ClassPropertiesCtorArgs $ctorArgs
+     * @psalm-param CtorArgs $ctorArgs
+     *
+     * @psalm-return ArrayLike
      */
     final public static function getArrayResultObject(array $ctorArgs): iterable
     {

@@ -20,6 +20,15 @@ use PHPUnit\Framework\TestCase;
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type FromStringExpectArray = array{
+ *                                   name: mixed,
+ *                                   static: mixed,
+ *                                   access: mixed,
+ *                                   abstract: mixed,
+ *                                   final: mixed,
+ *                                   ...
+ *                                   }
  */
 final class MethodSpecFactoryTest extends TestCase
 {
@@ -48,14 +57,12 @@ final class MethodSpecFactoryTest extends TestCase
     public const NOT_PRIVATE = self::VMASK & ~self::IS_PRIVATE;
 
     /**
-     * @psalm-return iterable<array-key,array{
-     *  0: array{0:string},
-     *  1: array{name:mixed, static:mixed, access:mixed, abstract:mixed, final:mixed}
-     * }>
+     * @psalm-return iterable<array-key, list{string, FromStringExpectArray}>
      */
     public static function provFromString(): iterable
     {
-        function results(array $array = [], string $name = 'foo')
+        /** @psalm-return FromStringExpectArray */
+        function results(array $array = [], string $name = 'foo'): array
         {
             $defaults = [
                 'name'     => $name,
@@ -78,6 +85,7 @@ final class MethodSpecFactoryTest extends TestCase
 
         yield ['Cam3lCase', results([], 'Cam3lCase')];
 
+        /** @psalm-suppress UndefinedConstant */
         $accessCases = [
             [[], []],
             [['public'], ['access' => self::IS_PUBLIC]],
@@ -139,6 +147,10 @@ final class MethodSpecFactoryTest extends TestCase
 
     /**
      * @dataProvider provFromString
+     *
+     * @psalm-param FromStringExpectArray $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testFromString(string $string, array $expect): void
     {
@@ -152,133 +164,135 @@ final class MethodSpecFactoryTest extends TestCase
     }
 
     /**
-     * @psalm-return array<array-key, array{0: string, 1:string}>
+     * @psalm-return iterable<string, list{string, string}>
      */
     public static function provFromStringSyntaxError(): iterable
     {
-        yield ['', ''];
+        yield basename(__FILE__).':'.__LINE__ => ['', ''];
 
-        yield ['ab^$&#', 'ab^$&#'];
+        yield basename(__FILE__).':'.__LINE__ => ['ab^$&#', 'ab^$&#'];
 
-        yield ['0foo', '0foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['0foo', '0foo'];
 
-        yield ['function ab^$&#', '^$&#'];
+        yield basename(__FILE__).':'.__LINE__ => ['function ab^$&#', '^$&#'];
 
-        yield ['function ab^$&#', '^$&#'];
+        yield basename(__FILE__).':'.__LINE__ => ['function ab^$&#', '^$&#'];
 
-        yield ['function foo ?', ' ?'];
+        yield basename(__FILE__).':'.__LINE__ => ['function foo ?', ' ?'];
 
-        yield ['public function 123', '123'];
+        yield basename(__FILE__).':'.__LINE__ => ['public function 123', '123'];
 
-        yield ['public public function foo', 'public function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['public public function foo', 'public function foo'];
 
-        yield ['public !public function foo', '!public function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['public !public function foo', '!public function foo'];
 
-        yield ['public protected function foo', 'protected function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['public protected function foo', 'protected function foo'];
 
-        yield ['public !protected function foo', '!protected function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['public !protected function foo', '!protected function foo'];
 
-        yield ['public private function foo', 'private function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['public private function foo', 'private function foo'];
 
-        yield ['public !private function foo', '!private function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['public !private function foo', '!private function foo'];
 
-        yield ['!public public function foo', 'public function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['!public public function foo', 'public function foo'];
 
-        yield ['!public !public function foo', '!public function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['!public !public function foo', '!public function foo'];
 
-        yield ['!public protected function foo', 'protected function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['!public protected function foo', 'protected function foo'];
 
-        yield ['!public !protected function foo', '!protected function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['!public !protected function foo', '!protected function foo'];
 
-        yield ['!public private function foo', 'private function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['!public private function foo', 'private function foo'];
 
-        yield ['!public !private function foo', '!private function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['!public !private function foo', '!private function foo'];
 
-        yield ['protected public function foo', 'public function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['protected public function foo', 'public function foo'];
 
-        yield ['protected !public function foo', '!public function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['protected !public function foo', '!public function foo'];
 
-        yield ['protected protected function foo', 'protected function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['protected protected function foo', 'protected function foo'];
 
-        yield ['protected !protected function foo', '!protected function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['protected !protected function foo', '!protected function foo'];
 
-        yield ['protected private function foo', 'private function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['protected private function foo', 'private function foo'];
 
-        yield ['protected !private function foo', '!private function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['protected !private function foo', '!private function foo'];
 
-        yield ['!protected public function foo', 'public function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['!protected public function foo', 'public function foo'];
 
-        yield ['!protected !public function foo', '!public function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['!protected !public function foo', '!public function foo'];
 
-        yield ['!protected protected function foo', 'protected function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['!protected protected function foo', 'protected function foo'];
 
-        yield ['!protected !protected function foo', '!protected function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['!protected !protected function foo', '!protected function foo'];
 
-        yield ['!protected private function foo', 'private function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['!protected private function foo', 'private function foo'];
 
-        yield ['!protected !private function foo', '!private function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['!protected !private function foo', '!private function foo'];
 
-        yield ['private public function foo', 'public function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['private public function foo', 'public function foo'];
 
-        yield ['private !public function foo', '!public function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['private !public function foo', '!public function foo'];
 
-        yield ['private protected function foo', 'protected function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['private protected function foo', 'protected function foo'];
 
-        yield ['private !protected function foo', '!protected function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['private !protected function foo', '!protected function foo'];
 
-        yield ['private private function foo', 'private function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['private private function foo', 'private function foo'];
 
-        yield ['private !private function foo', '!private function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['private !private function foo', '!private function foo'];
 
-        yield ['!private public function foo', 'public function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['!private public function foo', 'public function foo'];
 
-        yield ['!private !public function foo', '!public function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['!private !public function foo', '!public function foo'];
 
-        yield ['!private protected function foo', 'protected function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['!private protected function foo', 'protected function foo'];
 
-        yield ['!private !protected function foo', '!protected function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['!private !protected function foo', '!protected function foo'];
 
-        yield ['!private private function foo', 'private function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['!private private function foo', 'private function foo'];
 
-        yield ['!private !private function foo', '!private function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['!private !private function foo', '!private function foo'];
 
-        yield ['abstract abstract function foo', 'abstract function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['abstract abstract function foo', 'abstract function foo'];
 
-        yield ['abstract !abstract function foo', '!abstract function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['abstract !abstract function foo', '!abstract function foo'];
 
-        yield ['abstract final function foo', 'final function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['abstract final function foo', 'final function foo'];
 
-        yield ['abstract !final function foo', '!final function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['abstract !final function foo', '!final function foo'];
 
-        yield ['!abstract abstract function foo', 'abstract function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['!abstract abstract function foo', 'abstract function foo'];
 
-        yield ['!abstract !abstract function foo', '!abstract function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['!abstract !abstract function foo', '!abstract function foo'];
 
-        yield ['!abstract final function foo', 'final function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['!abstract final function foo', 'final function foo'];
 
-        yield ['final final function foo', 'final function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['final final function foo', 'final function foo'];
 
-        yield ['final !final function foo', '!final function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['final !final function foo', '!final function foo'];
 
-        yield ['final abstract function foo', 'abstract function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['final abstract function foo', 'abstract function foo'];
 
-        yield ['final !abstract function foo', '!abstract function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['final !abstract function foo', '!abstract function foo'];
 
-        yield ['!final final function foo', 'final function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['!final final function foo', 'final function foo'];
 
-        yield ['!final !final function foo', '!final function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['!final !final function foo', '!final function foo'];
 
-        yield ['!final abstract function foo', 'abstract function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['!final abstract function foo', 'abstract function foo'];
 
-        yield ['static static function foo', 'static function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['static static function foo', 'static function foo'];
 
-        yield ['static !static function foo', '!static function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['static !static function foo', '!static function foo'];
 
-        yield ['abstract static final function foo', 'final function foo'];
+        yield basename(__FILE__).':'.__LINE__ => ['abstract static final function foo', 'final function foo'];
     }
 
     /**
      * @dataProvider provFromStringSyntaxError
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testFromStringSyntaxError(string $string, string $at): void
     {

@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\Constraint;
 
 use PHPUnit\Framework\Constraint\Constraint;
+use Tailors\PHPUnit\InvalidArgumentException;
 
 /**
  * @small
@@ -23,6 +24,12 @@ use PHPUnit\Framework\Constraint\Constraint;
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type ArrayLike            = iterable<array-key, mixed>
+ * @psalm-type ConstraintClass      = ClassPropertiesEqualTo
+ * @psalm-type CreateConstraintArgs = list{ArrayLike}
+ *
+ * @template-extends PropertiesConstraintTestCase<ClassPropertiesEqualTo, list{ArrayLike}>
  */
 final class ClassPropertiesEqualToTest extends PropertiesConstraintTestCase
 {
@@ -43,11 +50,23 @@ final class ClassPropertiesEqualToTest extends PropertiesConstraintTestCase
         return 'equal to';
     }
 
+    /**
+     * @psalm-return class-string<ConstraintClass>
+     *
+     * @psalm-pure
+     */
     public static function getConstraintClass(): string
     {
         return ClassPropertiesEqualTo::class;
     }
 
+    /**
+     * @throws InvalidArgumentException
+     *
+     * @psalm-param CreateConstraintArgs $args
+     *
+     * @psalm-return ConstraintClass
+     */
     public static function createConstraint(array $args): Constraint
     {
         return ClassPropertiesEqualTo::create(...$args);
@@ -58,8 +77,10 @@ final class ClassPropertiesEqualToTest extends PropertiesConstraintTestCase
      * @dataProvider provClassPropertiesEqualButNotIdenticalTo
      *
      * @param mixed $actual
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testPropertiesEqualToSucceeds(array $expect, $actual, string $string): void
+    public function testPropertiesEqualToSucceeds(array $expect, $actual): void
     {
         parent::examineValuesMatchSucceeds($expect, $actual);
     }
@@ -69,6 +90,8 @@ final class ClassPropertiesEqualToTest extends PropertiesConstraintTestCase
      * @dataProvider provClassPropertiesNotEqualToNonClass
      *
      * @param mixed $actual
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testPropertiesEqualToFails(array $expect, $actual, string $string): void
     {
@@ -80,8 +103,10 @@ final class ClassPropertiesEqualToTest extends PropertiesConstraintTestCase
      * @dataProvider provClassPropertiesNotEqualToNonClass
      *
      * @param mixed $actual
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testNotClassPropertiesEqualToSucceeds(array $expect, $actual, string $string): void
+    public function testNotClassPropertiesEqualToSucceeds(array $expect, $actual): void
     {
         parent::examineNotValuesMatchSucceeds($expect, $actual);
     }
@@ -91,6 +116,8 @@ final class ClassPropertiesEqualToTest extends PropertiesConstraintTestCase
      * @dataProvider provClassPropertiesEqualButNotIdenticalTo
      *
      * @param mixed $actual
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testNotClassPropertiesEqualToFails(array $expect, $actual, string $string): void
     {

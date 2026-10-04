@@ -23,12 +23,20 @@ use Tailors\PHPUnit\Constraint\ProvArrayValuesTrait;
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type ArrayLike            = iterable<array-key, mixed>
+ * @psalm-type CreateConstraintArgs = list{ArrayLike}
  */
 final class ArrayValuesIdenticalToTraitTest extends TestCase
 {
     use ArrayValuesIdenticalToTrait;
     use ProvArrayValuesTrait;
 
+    /**
+     * @throws InvalidArgumentException
+     *
+     * @psalm-param CreateConstraintArgs $args
+     */
     public static function createConstraint(array $args): ArrayValuesIdenticalTo
     {
         return ArrayValuesIdenticalTo::create(...$args);
@@ -40,8 +48,10 @@ final class ArrayValuesIdenticalToTraitTest extends TestCase
      * @param mixed $actual
      *
      * @psalm-param array $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testArrayValuesIdenticalTo(array $expect, $actual, string $string): void
+    public function testArrayValuesIdenticalTo(array $expect, $actual): void
     {
         self::assertThat($actual, self::arrayValuesIdenticalTo($expect));
     }
@@ -53,8 +63,10 @@ final class ArrayValuesIdenticalToTraitTest extends TestCase
      * @param mixed $actual
      *
      * @psalm-param array $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testLogicalNotArrayValuesIdenticalTo(array $expect, $actual, string $string): void
+    public function testLogicalNotArrayValuesIdenticalTo(array $expect, $actual): void
     {
         self::assertThat($actual, self::logicalNot(self::arrayValuesIdenticalTo($expect)));
     }
@@ -65,8 +77,10 @@ final class ArrayValuesIdenticalToTraitTest extends TestCase
      * @param mixed $actual
      *
      * @psalm-param array $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertArrayValuesIdenticalTo(array $expect, $actual, string $string): void
+    public function testAssertArrayValuesIdenticalTo(array $expect, $actual): void
     {
         self::assertArrayValuesIdenticalTo($expect, $actual);
     }
@@ -78,8 +92,10 @@ final class ArrayValuesIdenticalToTraitTest extends TestCase
      * @param mixed $actual
      *
      * @psalm-param array $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertArrayValuesIdenticalToFails(array $expect, $actual, string $string): void
+    public function testAssertArrayValuesIdenticalToFails(array $expect, $actual): void
     {
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that .+ is an array or ArrayAccess '.
@@ -96,8 +112,10 @@ final class ArrayValuesIdenticalToTraitTest extends TestCase
      * @param mixed $actual
      *
      * @psalm-param array $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertNotArrayValuesIdenticalTo(array $expect, $actual, string $string): void
+    public function testAssertNotArrayValuesIdenticalTo(array $expect, $actual): void
     {
         self::assertNotArrayValuesIdenticalTo($expect, $actual);
     }
@@ -108,8 +126,10 @@ final class ArrayValuesIdenticalToTraitTest extends TestCase
      * @param mixed $actual
      *
      * @psalm-param array $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertNotArrayValuesIdenticalToFails(array $expect, $actual, string $string): void
+    public function testAssertNotArrayValuesIdenticalToFails(array $expect, $actual): void
     {
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that .+ fails to be an array or ArrayAccess '.

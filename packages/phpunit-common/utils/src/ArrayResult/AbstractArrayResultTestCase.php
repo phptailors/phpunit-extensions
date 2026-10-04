@@ -23,8 +23,8 @@ use Tailors\PHPUnit\Result\ResultInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ArrayLike                   = iterable<array-key, mixed>
- * @psalm-type AbstractArrayResultCtorArgs = list{0?:iterable<array-key, mixed>}
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
+ * @psalm-type CtorArgs  = list{0?:iterable<array-key, mixed>}
  */
 abstract class AbstractArrayResultTestCase extends TestCase
 {
@@ -33,7 +33,7 @@ abstract class AbstractArrayResultTestCase extends TestCase
     abstract public static function getArrayResultActual(): bool;
 
     /**
-     * @psalm-template CtorArgs of AbstractArrayResultCtorArgs
+     * @psalm-template CtorArgs of CtorArgs
      *
      * @psalm-param CtorArgs $ctorArgs
      *
@@ -64,7 +64,7 @@ abstract class AbstractArrayResultTestCase extends TestCase
     // @codeCoverageIgnoreStart
     /**
      * @psalm-return iterable<string, array{
-     *      ctor:   AbstractArrayResultCtorArgs,
+     *      ctor:   CtorArgs,
      *      expect: mixed
      * }>
      */
@@ -106,7 +106,7 @@ abstract class AbstractArrayResultTestCase extends TestCase
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
      *
-     * @psalm-param AbstractArrayResultCtorArgs $ctor
+     * @psalm-param CtorArgs $ctor
      */
     final public function testAbstractArrayResult(array $ctor, $expect): void
     {
@@ -121,7 +121,7 @@ abstract class AbstractArrayResultTestCase extends TestCase
 
     // @codeCoverageIgnoreStart
     /**
-     * @psalm-return iterable<string,array{ctor: AbstractArrayResultCtorArgs}>
+     * @psalm-return iterable<string,array{ctor: CtorArgs}>
      */
     public static function provAbstractArrayResultTag(): iterable
     {
@@ -138,7 +138,7 @@ abstract class AbstractArrayResultTestCase extends TestCase
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
      *
-     * @psalm-param AbstractArrayResultCtorArgs $ctor
+     * @psalm-param CtorArgs $ctor
      */
     final public function testAbstractArrayResultTag(array $ctor): void
     {

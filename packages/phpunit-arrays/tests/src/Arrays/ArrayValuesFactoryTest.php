@@ -23,15 +23,22 @@ use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ArrayLike = iterable<array-key, mixed>
+ * @psalm-type ArrayLike            = iterable<array-key, mixed>
+ * @psalm-type GetResultExpectArray = array{class: class-string, array: mixed}
  */
 final class ArrayValuesFactoryTest extends TestCase
 {
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testExtendsAbstractArrayResultFactory(): void
     {
         $this->assertInstanceOf(AbstractArrayResultFactory::class, new ArrayValuesFactory());
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testImplementsResultFactoryInterface(): void
     {
         $this->assertInstanceOf(ResultFactoryInterface::class, new ArrayValuesFactory());
@@ -39,12 +46,9 @@ final class ArrayValuesFactoryTest extends TestCase
 
     /**
      * @psalm-return iterable<string, array{
-     *      actual: bool
+     *      actual: bool,
      *      array: ArrayLike,
-     *      expect: array{
-     *          class: mixed,
-     *          array: mixed
-     *      }
+     *      expect: GetResultExpectArray
      * }>
      */
     public static function provGetResult(): iterable
@@ -89,8 +93,10 @@ final class ArrayValuesFactoryTest extends TestCase
     /**
      * @dataProvider provGetResult
      *
-     * @psalm-param ArrayLike           $array
-     * @psalm-param array{class: mixed} $expect
+     * @psalm-param ArrayLike            $array
+     * @psalm-param GetResultExpectArray $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testGetResult(bool $actual, iterable $array, array $expect): void
     {
@@ -99,6 +105,8 @@ final class ArrayValuesFactoryTest extends TestCase
         $result = $factory->getResult($actual, $array);
 
         $this->assertInstanceOf($expect['class'], $result);
+
+        /** @psalm-suppress RedundantConditionGivenDocblockType */
         $this->assertIsIterable($result);
         $this->assertSame($expect['array'], iterator_to_array($result));
     }

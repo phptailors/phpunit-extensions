@@ -39,7 +39,7 @@ trait ProvHasMethodTrait
     // @codeCoverageIgnoreStart
 
     /**
-     * @psalm-return array<array{0:string,1:mixed,2:string}>
+     * @psalm-return iterable<string, list{string, mixed, string}>
      */
     public static function provHasMethodSucceeds(): iterable
     {
@@ -75,7 +75,7 @@ trait ProvHasMethodTrait
     }
 
     /**
-     * @psalm-return array<array{0:string,1:mixed,2:string}>
+     * @psalm-return iterable<string, list{string, mixed, string}>
      */
     public static function provHasMethodFails(): iterable
     {

@@ -31,6 +31,13 @@ final class UsesTraitTraitTest extends TestCase
 {
     use UsesTraitTrait;
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      trait: string,
+     *      subject: mixed,
+     *      message: string
+     * }>
+     */
     public static function provUsesTrait(): iterable
     {
         $template = 'Failed asserting that %s does not use trait %s.';
@@ -54,6 +61,13 @@ final class UsesTraitTraitTest extends TestCase
         ];
     }
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      trait: string,
+     *      subject: mixed,
+     *      message: string
+     * }>
+     */
     public static function provNotUsesTrait(): iterable
     {
         $template = 'Failed asserting that %s uses trait %s.';
@@ -87,8 +101,10 @@ final class UsesTraitTraitTest extends TestCase
      * @dataProvider provUsesTrait
      *
      * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertUsesTraitSucceeds(string $trait, $subject, string $message): void
+    public function testAssertUsesTraitSucceeds(string $trait, $subject): void
     {
         self::assertUsesTrait($trait, $subject);
     }
@@ -97,6 +113,8 @@ final class UsesTraitTraitTest extends TestCase
      * @dataProvider provNotUsesTrait
      *
      * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testAssertUsesTraitFails(string $trait, $subject, string $message): void
     {
@@ -110,8 +128,10 @@ final class UsesTraitTraitTest extends TestCase
      * @dataProvider provNotUsesTrait
      *
      * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertNotUsesTraitSucceeds(string $trait, $subject, string $message): void
+    public function testAssertNotUsesTraitSucceeds(string $trait, $subject): void
     {
         self::assertNotUsesTrait($trait, $subject);
     }
@@ -120,6 +140,8 @@ final class UsesTraitTraitTest extends TestCase
      * @dataProvider provUsesTrait
      *
      * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testAssertNotUsesTraitFails(string $trait, $subject, string $message): void
     {
@@ -133,8 +155,10 @@ final class UsesTraitTraitTest extends TestCase
      * @dataProvider provUsesTrait
      *
      * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testUsesTrait(string $trait, $subject, string $message): void
+    public function testUsesTrait(string $trait, $subject): void
     {
         self::assertThat($subject, self::usesTrait($trait));
     }
@@ -143,12 +167,20 @@ final class UsesTraitTraitTest extends TestCase
      * @dataProvider provNotUsesTrait
      *
      * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testNotUsesTrait(string $trait, $subject, string $message): void
+    public function testNotUsesTrait(string $trait, $subject): void
     {
         self::assertThat($subject, self::logicalNot(self::usesTrait($trait)));
     }
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      argument: string,
+     *      message: string
+     * }>
+     */
     public static function provUsesTraitThrowsInvalidArgumentException(): iterable
     {
         $template = 'Argument 1 passed to %s::create() must be a trait-string';
@@ -171,6 +203,8 @@ final class UsesTraitTraitTest extends TestCase
 
     /**
      * @dataProvider provUsesTraitThrowsInvalidArgumentException
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testUsesTraitThrowsInvalidArgumentException(string $argument, string $message): void
     {

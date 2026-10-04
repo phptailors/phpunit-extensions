@@ -22,15 +22,33 @@ use PHPUnit\Framework\MockObject\Rule\AnyInvokedCount;
  * @internal This trait is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type ExpectExceptionArray = array{exception: class-string<\Exception>, message: string}
  */
 trait InheritanceConstraintTestTrait
 {
+    /**
+     * @psalm-return iterable<string, array{
+     *      constraint: Constraint,
+     *      subject: mixed,
+     *      expect: ExpectExceptionArray
+     * }>
+     */
     abstract public static function provFailureDescriptionOfCustomUnaryOperator(): iterable;
 
     abstract public function expectException(string $exception): void;
 
     abstract public function expectExceptionMessage(string $message): void;
 
+    abstract public function expectExceptionMessageMatches(string $message): void;
+
+    /**
+     * @psalm-template MockedType
+     *
+     * @psalm-param class-string<MockedType>|interface-string<MockedType> $className
+     *
+     * @psalm-return MockBuilder<MockedType>
+     */
     abstract public function getMockBuilder(string $className): MockBuilder;
 
     abstract public static function any(): AnyInvokedCount;
@@ -43,6 +61,10 @@ trait InheritanceConstraintTestTrait
      * @dataProvider provFailureDescriptionOfCustomUnaryOperator
      *
      * @param mixed $subject
+     *
+     * @psalm-param ExpectExceptionArray $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testFailureDescriptionOfCustomUnaryOperator(Constraint $constraint, $subject, array $expect): void
     {
@@ -60,8 +82,6 @@ trait InheritanceConstraintTestTrait
             ->willReturn(1)
         ;
 
-        $regexp = '/Iterator implements interface Throwable/';
-
         self::expectException($expect['exception']);
         self::expectExceptionMessageMatches($expect['message']);
 
@@ -76,6 +96,10 @@ trait InheritanceConstraintTestTrait
      * @dataProvider provFailureDescriptionOfLogicalNotOperator
      *
      * @param mixed $subject
+     *
+     * @psalm-param ExpectExceptionArray $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testFailureDescriptionOfLogicalNotOperator(Constraint $constraint, $subject, array $expect): void
     {

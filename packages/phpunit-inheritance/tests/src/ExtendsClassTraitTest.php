@@ -28,6 +28,13 @@ final class ExtendsClassTraitTest extends TestCase
 {
     use ExtendsClassTrait;
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      class: string,
+     *      subject: mixed,
+     *      message: string
+     * }>
+     */
     public static function provExtendsClass(): iterable
     {
         $template = 'Failed asserting that %s does not extend class %s.';
@@ -45,6 +52,13 @@ final class ExtendsClassTraitTest extends TestCase
         ];
     }
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      class: string,
+     *      subject: mixed,
+     *      message: string
+     * }>
+     */
     public static function provNotExtendsClass(): iterable
     {
         $template = 'Failed asserting that %s extends class %s.';
@@ -78,8 +92,10 @@ final class ExtendsClassTraitTest extends TestCase
      * @dataProvider provExtendsClass
      *
      * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertExtendsClassSucceeds(string $class, $subject, string $message): void
+    public function testAssertExtendsClassSucceeds(string $class, $subject): void
     {
         self::assertExtendsClass($class, $subject);
     }
@@ -88,6 +104,8 @@ final class ExtendsClassTraitTest extends TestCase
      * @dataProvider provNotExtendsClass
      *
      * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testAssertExtendsClassFails(string $class, $subject, string $message): void
     {
@@ -101,8 +119,10 @@ final class ExtendsClassTraitTest extends TestCase
      * @dataProvider provNotExtendsClass
      *
      * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertNotExtendsClassSucceeds(string $class, $subject, string $message): void
+    public function testAssertNotExtendsClassSucceeds(string $class, $subject): void
     {
         self::assertNotExtendsClass($class, $subject);
     }
@@ -111,6 +131,8 @@ final class ExtendsClassTraitTest extends TestCase
      * @dataProvider provExtendsClass
      *
      * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testAssertNotExtendsClassFails(string $class, $subject, string $message): void
     {
@@ -124,8 +146,10 @@ final class ExtendsClassTraitTest extends TestCase
      * @dataProvider provExtendsClass
      *
      * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testExtendsClass(string $class, $subject, string $message): void
+    public function testExtendsClass(string $class, $subject): void
     {
         self::assertThat($subject, self::extendsClass($class));
     }
@@ -134,12 +158,20 @@ final class ExtendsClassTraitTest extends TestCase
      * @dataProvider provNotExtendsClass
      *
      * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testNotExtendsClass(string $class, $subject, string $message): void
+    public function testNotExtendsClass(string $class, $subject): void
     {
         self::assertThat($subject, self::logicalNot(self::extendsClass($class)));
     }
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      argument: string,
+     *      message: string
+     * }>
+     */
     public static function provExtendsClassThrowsInvalidArgumentException(): iterable
     {
         $template = 'Argument 1 passed to %s::create() must be a class-string';
@@ -162,6 +194,8 @@ final class ExtendsClassTraitTest extends TestCase
 
     /**
      * @dataProvider provExtendsClassThrowsInvalidArgumentException
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testExtendsClassThrowsInvalidArgumentException(string $argument, string $message): void
     {

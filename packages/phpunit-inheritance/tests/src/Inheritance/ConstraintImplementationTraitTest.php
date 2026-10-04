@@ -117,6 +117,8 @@ final class ConstraintImplementationTraitTest extends TestCase
 {
     /**
      * @runInSeparateProcess
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testInheritanceThrowsInvalidReturnValueException(): void
     {
@@ -135,6 +137,8 @@ final class ConstraintImplementationTraitTest extends TestCase
 
     /**
      * @runInSeparateProcess
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testInheritanceThrowsInvalidReturnValueException2(): void
     {

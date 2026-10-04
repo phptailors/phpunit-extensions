@@ -23,7 +23,7 @@ use Tailors\PHPUnit\Arrays\ArrayValuesSelection;
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-type ArrayLike       = iterable<array-key, mixed>
- * @psalm-type ArrayValuesArgs = list{0: ArrayLike}
+ * @psalm-type ArrayValuesArgs = list{ArrayLike}
  */
 final class ArrayValuesTraitTest extends TestCase
 {
@@ -56,6 +56,8 @@ final class ArrayValuesTraitTest extends TestCase
      * @param mixed $expect
      *
      * @psalm-param ArrayValuesArgs $args
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testExpectedArrayValues(array $args, $expect): void
     {

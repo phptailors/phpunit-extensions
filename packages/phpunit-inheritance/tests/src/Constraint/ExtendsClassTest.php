@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
+use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Examples\Inheritance\ExampleTrait;
@@ -26,12 +27,22 @@ use Tailors\PHPUnit\InvalidArgumentException;
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type ExpectExceptionArray = array{exception: class-string<\Exception>, message: string}
  */
 final class ExtendsClassTest extends TestCase
 {
     use InheritanceConstraintTestTrait;
 
-    // required by InheritanceConstraintTestTrait
+    /**
+     * @psalm-return iterable<string, array{
+     *      constraint: Constraint,
+     *      subject: mixed,
+     *      expect: ExpectExceptionArray
+     * }>
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public static function provFailureDescriptionOfCustomUnaryOperator(): iterable
     {
         yield basename(__FILE__).':'.__LINE__ => [
@@ -44,7 +55,15 @@ final class ExtendsClassTest extends TestCase
         ];
     }
 
-    // required by InheritanceConstraintTestTrait
+    /**
+     * @psalm-return iterable<string, array{
+     *      constraint: Constraint,
+     *      subject: mixed,
+     *      expect: ExpectExceptionArray
+     * }>
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public static function provFailureDescriptionOfLogicalNotOperator(): iterable
     {
         yield basename(__FILE__).':'.__LINE__ => [
@@ -57,33 +76,42 @@ final class ExtendsClassTest extends TestCase
         ];
     }
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      class: string,
+     *      subject: mixed
+     * }>
+     */
     public static function provExtendsClass(): iterable
     {
-        // class extends class
         yield basename(__FILE__).':'.__LINE__ => [
             'class'   => \Exception::class,
             'subject' => \ErrorException::class,
         ];
 
-        // object of class that extends class
         yield basename(__FILE__).':'.__LINE__ => [
             'class'   => \Exception::class,
             'subject' => new \ErrorException(),
         ];
 
-        // class extends class - case insensitive match
         yield basename(__FILE__).':'.__LINE__ => [
             'class'   => 'eXceptiOn',
             'subject' => 'errOreXceptiOn',
         ];
 
-        // object of class that extends class -- case insensitive match
         yield basename(__FILE__).':'.__LINE__ => [
             'class'   => 'eXceptiOn',
             'subject' => new \ErrorException(),
         ];
     }
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      class: class-string,
+     *      subject: mixed,
+     *      message: string
+     * }>
+     */
     public static function provNotExtendsClass(): iterable
     {
         $template = 'Failed asserting that %s extends class %s.';
@@ -113,6 +141,12 @@ final class ExtendsClassTest extends TestCase
         ];
     }
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      argument: string,
+     *      message: string
+     * }>
+     */
     public static function provThrowsInvalidArgumentException(): iterable
     {
         $message = '/Argument 1 passed to \S+ must be a class-string/';
@@ -137,8 +171,10 @@ final class ExtendsClassTest extends TestCase
      * @dataProvider provExtendsClass
      *
      * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testConstraintSucceeds(string $class, $subject, string $message = ''): void
+    public function testConstraintSucceeds(string $class, $subject): void
     {
         $constraint = ExtendsClass::create($class);
 
@@ -149,6 +185,8 @@ final class ExtendsClassTest extends TestCase
      * @dataProvider provNotExtendsClass
      *
      * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testConstraintFails(string $class, $subject, string $message): void
     {
@@ -162,6 +200,8 @@ final class ExtendsClassTest extends TestCase
 
     /**
      * @dataProvider provThrowsInvalidArgumentException
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testThrowsInvalidArgumentException(string $argument, string $message): void
     {

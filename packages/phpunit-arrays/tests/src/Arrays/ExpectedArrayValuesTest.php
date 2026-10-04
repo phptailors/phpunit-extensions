@@ -21,6 +21,9 @@ namespace Tailors\PHPUnit\Arrays;
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
+ * @psalm-type CtorArgs  = list{0?: ArrayLike}
  */
 final class ExpectedArrayValuesTest extends ArrayValuesTestCase
 {
@@ -34,6 +37,11 @@ final class ExpectedArrayValuesTest extends ArrayValuesTestCase
         return ExpectedArrayValues::class;
     }
 
+    /**
+     * @psalm-param CtorArgs $ctorArgs
+     *
+     * @psalm-return ArrayLike
+     */
     public static function getArrayResultObject(array $ctorArgs): iterable
     {
         return new ExpectedArrayValues(...$ctorArgs);

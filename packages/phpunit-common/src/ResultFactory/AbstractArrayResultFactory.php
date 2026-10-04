@@ -41,6 +41,8 @@ abstract class AbstractArrayResultFactory implements ResultFactoryInterface
      * @throws InvalidArgumentException
      *
      * @psalm-assert SupportedInput $input
+     *
+     * @psalm-return ResultInterface&\Traversable
      */
     final public function getResult(bool $actual, $input): ResultInterface
     {
@@ -51,6 +53,8 @@ abstract class AbstractArrayResultFactory implements ResultFactoryInterface
 
     /**
      * @psalm-param ArrayLike $input
+     *
+     * @psalm-return ResultInterface&\Traversable
      */
     abstract protected function getArrayResult(bool $actual, iterable $input): ResultInterface;
 

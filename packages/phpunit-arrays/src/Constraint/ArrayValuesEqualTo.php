@@ -32,6 +32,8 @@ use Tailors\PHPUnit\RecursiveConstraint\RecursiveConstraintSpecializationTrait;
  *          'age' => 21,
  *          'name' => 'John',
  *      ], $matcher);
+ *
+ * @psalm-type ArrayLike = iterable<array-key, mixed>
  */
 final class ArrayValuesEqualTo extends AbstractRecursiveConstraint
 {
@@ -48,8 +50,6 @@ final class ArrayValuesEqualTo extends AbstractRecursiveConstraint
 
     /**
      * @psalm-param ArrayLike $expected
-     *
-     * @psalm-return ArrayLike
      */
     protected static function makeExpectations(iterable $expected): ArrayValuesSelection
     {

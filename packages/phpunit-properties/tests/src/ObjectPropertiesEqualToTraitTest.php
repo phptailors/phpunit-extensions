@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit;
 
+use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Constraint\ObjectPropertiesEqualTo;
@@ -23,13 +24,21 @@ use Tailors\PHPUnit\Constraint\ProvObjectPropertiesTrait;
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type ArrayLike            = iterable<array-key, mixed>
+ * @psalm-type CreateConstraintArgs = list{ArrayLike}
  */
 final class ObjectPropertiesEqualToTraitTest extends TestCase
 {
     use ObjectPropertiesEqualToTrait;
     use ProvObjectPropertiesTrait;
 
-    public static function createConstraint(array $args): ObjectPropertiesEqualTo
+    /**
+     * @throws InvalidArgumentException
+     *
+     * @psalm-param CreateConstraintArgs $args
+     */
+    public static function createConstraint(array $args): Constraint
     {
         return ObjectPropertiesEqualTo::create(...$args);
     }
@@ -37,16 +46,20 @@ final class ObjectPropertiesEqualToTraitTest extends TestCase
     /**
      * @dataProvider provObjectPropertiesIdenticalTo
      * @dataProvider provObjectPropertiesEqualButNotIdenticalTo
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testObjectPropertiesEqualTo(array $expect, object $actual, string $string)
+    public function testObjectPropertiesEqualTo(array $expect, object $actual): void
     {
         self::assertThat($actual, self::objectPropertiesEqualTo($expect));
     }
 
     /**
      * @dataProvider provObjectPropertiesNotEqualTo
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testLogicalNotObjectPropertiesEqualTo(array $expect, object $actual, string $string)
+    public function testLogicalNotObjectPropertiesEqualTo(array $expect, object $actual): void
     {
         self::assertThat($actual, self::logicalNot(self::objectPropertiesEqualTo($expect)));
     }
@@ -54,16 +67,20 @@ final class ObjectPropertiesEqualToTraitTest extends TestCase
     /**
      * @dataProvider provObjectPropertiesIdenticalTo
      * @dataProvider provObjectPropertiesEqualButNotIdenticalTo
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertObjectPropertiesEqualTo(array $expect, object $actual, string $string)
+    public function testAssertObjectPropertiesEqualTo(array $expect, object $actual): void
     {
         self::assertObjectPropertiesEqualTo($expect, $actual);
     }
 
     /**
      * @dataProvider provObjectPropertiesNotEqualTo
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertObjectPropertiesEqualToFails(array $expect, object $actual, string $string)
+    public function testAssertObjectPropertiesEqualToFails(array $expect, object $actual): void
     {
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that object class\@.+ is an object '.
@@ -76,8 +93,10 @@ final class ObjectPropertiesEqualToTraitTest extends TestCase
 
     /**
      * @dataProvider provObjectPropertiesNotEqualTo
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertNotObjectPropertiesEqualTo(array $expect, object $actual, string $string)
+    public function testAssertNotObjectPropertiesEqualTo(array $expect, object $actual): void
     {
         self::assertNotObjectPropertiesEqualTo($expect, $actual);
     }
@@ -85,8 +104,10 @@ final class ObjectPropertiesEqualToTraitTest extends TestCase
     /**
      * @dataProvider provObjectPropertiesIdenticalTo
      * @dataProvider provObjectPropertiesEqualButNotIdenticalTo
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertNotObjectPropertiesEqualToFails(array $expect, object $actual, string $string)
+    public function testAssertNotObjectPropertiesEqualToFails(array $expect, object $actual): void
     {
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that object class@.+ fails to be an object '.

@@ -23,6 +23,9 @@ use Tailors\PHPUnit\Constraint\ProvArrayValuesTrait;
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type ArrayLike            = iterable<array-key, mixed>
+ * @psalm-type CreateConstraintArgs = list{ArrayLike}
  */
 final class ArrayValuesEqualToTraitTest extends TestCase
 {
@@ -30,7 +33,9 @@ final class ArrayValuesEqualToTraitTest extends TestCase
     use ProvArrayValuesTrait;
 
     /**
-     * @param mixed $args
+     * @throws InvalidArgumentException
+     *
+     * @psalm-param CreateConstraintArgs $args
      */
     public static function createConstraint(array $args): ArrayValuesEqualTo
     {
@@ -44,8 +49,10 @@ final class ArrayValuesEqualToTraitTest extends TestCase
      * @param mixed $actual
      *
      * @psalm-param array $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testArrayValuesEqualToSucceeds(array $expect, $actual, string $string): void
+    public function testArrayValuesEqualToSucceeds(array $expect, $actual): void
     {
         self::assertThat($actual, self::arrayValuesEqualTo($expect));
     }
@@ -57,8 +64,10 @@ final class ArrayValuesEqualToTraitTest extends TestCase
      * @param mixed $actual
      *
      * @psalm-param array $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertArrayValuesEqualToSucceeds(array $expect, $actual, string $string): void
+    public function testAssertArrayValuesEqualToSucceeds(array $expect, $actual): void
     {
         self::assertArrayValuesEqualTo($expect, $actual);
     }
@@ -69,8 +78,10 @@ final class ArrayValuesEqualToTraitTest extends TestCase
      * @param mixed $actual
      *
      * @psalm-param array $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertArrayValuesEqualToFails(array $expect, $actual, string $string): void
+    public function testAssertArrayValuesEqualToFails(array $expect, $actual): void
     {
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that .+ is an array or ArrayAccess '.
@@ -87,8 +98,10 @@ final class ArrayValuesEqualToTraitTest extends TestCase
      * @param mixed $actual
      *
      * @psalm-param array $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testNotArrayValuesEqualToSucceeds(array $expect, $actual, string $string): void
+    public function testNotArrayValuesEqualToSucceeds(array $expect, $actual): void
     {
         self::assertThat($actual, self::logicalNot(self::arrayValuesEqualTo($expect)));
     }
@@ -99,8 +112,10 @@ final class ArrayValuesEqualToTraitTest extends TestCase
      * @param mixed $actual
      *
      * @psalm-param array $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertNotArrayValuesEqualToSucceeds(array $expect, $actual, string $string): void
+    public function testAssertNotArrayValuesEqualToSucceeds(array $expect, $actual): void
     {
         self::assertNotArrayValuesEqualTo($expect, $actual);
     }
@@ -112,8 +127,10 @@ final class ArrayValuesEqualToTraitTest extends TestCase
      * @param mixed $actual
      *
      * @psalm-param array $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertNotArrayValuesEqualToFails(array $expect, $actual, string $string): void
+    public function testAssertNotArrayValuesEqualToFails(array $expect, $actual): void
     {
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that .+ fails to be an array or ArrayAccess '.
