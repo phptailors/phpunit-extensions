@@ -33,16 +33,6 @@ final class ArrayValuesIdenticalToTraitTest extends TestCase
     use ProvArrayValuesTrait;
 
     /**
-     * @throws InvalidArgumentException
-     *
-     * @psalm-param CreateConstraintArgs $args
-     */
-    public static function createConstraint(array $args): ArrayValuesIdenticalTo
-    {
-        return ArrayValuesIdenticalTo::create(...$args);
-    }
-
-    /**
      * @dataProvider provArrayValuesIdenticalTo
      *
      * @param mixed $actual

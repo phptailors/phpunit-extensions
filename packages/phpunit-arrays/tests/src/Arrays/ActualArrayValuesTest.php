@@ -32,11 +32,6 @@ final class ActualArrayValuesTest extends ArrayValuesTestCase
         return true;
     }
 
-    public static function getValuesClass(): string
-    {
-        return ActualArrayValues::class;
-    }
-
     /**
      * @psalm-param CtorArgs $ctorArgs
      *

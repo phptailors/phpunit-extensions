@@ -25,11 +25,6 @@ trait ProvKsortedArrayTrait
     // @codeCoverageIgnoreStart
 
     /**
-     * @psalm-param CreateConstraintArgs $args
-     */
-    abstract public static function createConstraint(array $args): Constraint;
-
-    /**
      * @psalm-return iterable<string, array{
      *      expect: array,
      *      actual: mixed,

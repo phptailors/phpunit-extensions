@@ -124,6 +124,8 @@ final class RecursiveExpectedResultFactoryVisitor implements RecursiveExpectedRe
      *
      * @psalm-param ArrayLike       $node
      * @psalm-param list<StackItem> $stack
+     *
+     * @psalm-return never
      */
     public function cycle(iterable $node, array $stack): bool
     {

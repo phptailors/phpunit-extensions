@@ -98,6 +98,7 @@ final class FaultyConstraint2 extends AbstractConstraint
      */
     private static $supports = ['is_string'];
 
+    /** @psalm-suppress PossiblyUnusedMethod */
     public static function arrayWithStrlen(string $str): array
     {
         return [strlen($str)];

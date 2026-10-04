@@ -32,11 +32,6 @@ final class ExpectedArrayValuesTest extends ArrayValuesTestCase
         return false;
     }
 
-    public static function getValuesClass(): string
-    {
-        return ExpectedArrayValues::class;
-    }
-
     /**
      * @psalm-param CtorArgs $ctorArgs
      *

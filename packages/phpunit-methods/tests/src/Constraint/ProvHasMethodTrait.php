@@ -12,12 +12,14 @@ namespace Tailors\PHPUnit\Constraint;
 
 interface InterfaceWithMethodFooV4C0Z
 {
+    /** @psalm-suppress PossiblyUnusedMethod */
     public function foo(): void;
 }
 
 final class ClassWithMethodFooV4C0Z
 {
     // @codeCoverageIgnoreStart
+    /** @psalm-suppress PossiblyUnusedMethod */
     public function foo(): void {}
     // @codeCoverageIgnoreEnd
 }
@@ -25,6 +27,7 @@ final class ClassWithMethodFooV4C0Z
 trait TraitWithMethodFooV4C0Z
 {
     // @codeCoverageIgnoreStart
+    /** @psalm-suppress PossiblyUnusedMethod */
     public function foo(): void {}
     // @codeCoverageIgnoreEnd
 }

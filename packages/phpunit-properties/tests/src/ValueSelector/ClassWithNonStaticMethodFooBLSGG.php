@@ -12,6 +12,7 @@ namespace Tailors\PHPUnit\ValueSelector;
 
 final class ClassWithNonStaticMethodFooBLSGG
 {
+    /** @psalm-suppress PossiblyUnusedMethod */
     public function foo(): void
     {
         // @codeCoverageIgnoreStart

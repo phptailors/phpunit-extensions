@@ -32,14 +32,6 @@ final class KsortedArrayEqualToTraitTest extends TestCase
     use ProvKsortedArrayTrait;
 
     /**
-     * @psalm-param CreateConstraintArgs $args
-     */
-    public static function createConstraint(array $args): KsortedArrayEqualTo
-    {
-        return KsortedArrayEqualTo::create(...$args);
-    }
-
-    /**
      * @dataProvider provKsortedArrayIdenticalTo
      * @dataProvider provKsortedArrayEqualButNotIdenticalTo
      *

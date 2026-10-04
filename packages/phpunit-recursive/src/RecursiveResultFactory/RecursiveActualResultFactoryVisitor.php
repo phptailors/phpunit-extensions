@@ -119,6 +119,8 @@ final class RecursiveActualResultFactoryVisitor implements RecursiveActualResult
      *
      * @psalm-param ArrayLike       $node
      * @psalm-param list<StackItem> $stack
+     *
+     * @psalm-return never
      */
     public function cycle(iterable $node, array $stack): bool
     {
