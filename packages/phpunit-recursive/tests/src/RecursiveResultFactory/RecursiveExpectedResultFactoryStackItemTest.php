@@ -23,7 +23,6 @@ use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-type ArrayLike  = iterable<array-key, mixed>
- *
  * @psalm-type CtorArgs   = list{0: ArrayLike, 1: array-key, 2: array|\ArrayAccess}
  * @psalm-type CtorExpect = array{node: mixed, key: mixed, result: mixed}
  * @psalm-type SetExpect  = array{node: mixed, key: mixed, result: mixed}
@@ -95,7 +94,7 @@ final class RecursiveExpectedResultFactoryStackItemTest extends TestCase
             'expect' => [
                 'node'   => ['n' => 'N'],
                 'key'    => 0,
-                'result' => ['r' => 'R', 0=> 'V'],
+                'result' => ['r' => 'R', 0 => 'V'],
             ],
         ];
 

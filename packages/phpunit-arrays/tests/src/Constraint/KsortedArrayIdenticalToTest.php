@@ -25,8 +25,8 @@ use Tailors\PHPUnit\Arrays\KsortedConstraintTestCase;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ArrayLike = iterable<array-key, mixed>
- * @psalm-type ConstraintClass = KsortedArrayIdenticalTo
+ * @psalm-type ArrayLike            = iterable<array-key, mixed>
+ * @psalm-type ConstraintClass      = KsortedArrayIdenticalTo
  * @psalm-type CreateConstraintArgs = list{ArrayLike}
  *
  * @template-extends KsortedConstraintTestCase<KsortedArrayIdenticalTo, CreateConstraintArgs>

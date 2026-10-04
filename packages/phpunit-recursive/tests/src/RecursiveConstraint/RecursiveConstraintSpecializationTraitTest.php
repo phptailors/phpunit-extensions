@@ -75,7 +75,7 @@ final class RecursiveConstraintSpecializationTraitTest extends TestCase
         // DummyRecursiveConstraintSpecialization::makeExpectations($expected) was called and the result was passed to constructor
         $this->assertSame([$expected], DummyRecursiveConstraintSpecialization::$makeExpectationsLastParams);
         $this->assertSame(DummyRecursiveConstraintSpecialization::$makeExpectationsLastReturn, $constraint->expected);
-        $this->assertSame($array, (array)$constraint->expected);
+        $this->assertSame($array, (array) $constraint->expected);
 
         // DummyRecursiveConstraintSpecialization::makeComparator() was called and the result was passed to constructor
         $this->assertSame([], DummyRecursiveConstraintSpecialization::$makeComparatorLastParams);

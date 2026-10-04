@@ -74,7 +74,6 @@ final class RecursiveResultFactory implements RecursiveResultFactoryInterface
     {
         if ($array instanceof ValueSelectorWrapperInterface) {
             /** @psalm-var ValueSelectorWrapperInterface<TValueSelectorSupportedInput> $array */
-
             $valueSelector = $array->getValueSelector();
             if (!$valueSelector->supports($input)) {
                 return false;
@@ -85,7 +84,6 @@ final class RecursiveResultFactory implements RecursiveResultFactoryInterface
             }
 
             /** @psalm-var ResultFactoryWrapperInterface<TResultFactorySupportedInput> $array */
-
             $resultFactory = $array->getResultFactory();
 
             return $resultFactory->supports([]);

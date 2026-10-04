@@ -41,8 +41,8 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ArrayLike = iterable<array-key, mixed>
- * @psalm-type EvaluateArgs = list{0:mixed, 1?: string, 2?: bool}
+ * @psalm-type ArrayLike      = iterable<array-key, mixed>
+ * @psalm-type EvaluateArgs   = list{0:mixed, 1?: string, 2?: bool}
  * @psalm-type EvaluateExpect = array{return?: bool|null, exception?: class-string<\Exception>, message?: string}
  */
 final class AbstractRecursiveConstraintTest extends TestCase
@@ -120,12 +120,14 @@ final class AbstractRecursiveConstraintTest extends TestCase
              * @param mixed $retval
              *
              * @psalm-param array-key $key
+             *
              * @psalm-param-out mixed $retval
              */
             function ($subject, $key, &$retval): bool {
                 if (!array_key_exists($key, $subject)) {
                     return false;
                 }
+
                 /** @psalm-var mixed $retval */
                 $retval = $subject[$key];
 
@@ -462,7 +464,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
      * @param mixed $expect
      *
      * @psalm-param Constraint     $constraint
-     * @psalm-param EvaluateArgs $args
+     * @psalm-param EvaluateArgs   $args
      * @psalm-param EvaluateExpect $expect
      *
      * @psalm-suppress MissingThrowsDocblock

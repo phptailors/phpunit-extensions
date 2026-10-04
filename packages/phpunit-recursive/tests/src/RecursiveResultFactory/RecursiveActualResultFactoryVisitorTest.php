@@ -20,11 +20,9 @@ use Tailors\PHPUnit\InternalErrorException;
 use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapper;
 use Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversal;
 use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorInterface;
-use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
 use Tailors\PHPUnit\Result\ResultInterface;
 use Tailors\PHPUnit\ResultFactory\DummyArrayResultFactory;
 use Tailors\PHPUnit\ResultFactory\DummyResultFactory;
-use Tailors\PHPUnit\Values\ValuesInterface;
 use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
 
 /**
@@ -254,6 +252,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
 
         /** @psalm-var DummyResultFactoryAndValueSelectorWrapper $e05foo */
         $e05foo = $e05['foo'];
+
         /** @psalm-var array $e05foobar */
         $e05foobar = $e05foo['bar'];
 
@@ -310,6 +309,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
 
         /** @psalm-var DummyResultFactoryAndValueSelectorWrapper $e06foo */
         $e06foo = $e06['foo'];
+
         /** @psalm-var array $e06foobar */
         $e06foobar = $e06foo['bar'];
 
@@ -508,21 +508,10 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         $visitor->end();
 
         /** @psalm-var mixed $expect */
-        $expect = $result;
+        $expect = self::unwrapWithResultUnwrapper($result);
+
         /** @psalm-var mixed $actual */
-        $actual = $visitor->result();
-
-        $resultUnwrapper = RecursiveResultUnwrapper::create();
-
-        if (is_array($expect) || is_iterable($expect) && $expect instanceof ResultInterface) {
-            /** @psalm-var ArrayLike $expect */;
-            $expect = $resultUnwrapper->unwrap(true, $expect);
-        }
-
-        if (is_array($actual) || is_iterable($actual) && $actual instanceof ResultInterface) {
-            /** @psalm-var ArrayLike $actual */;
-            $actual = $resultUnwrapper->unwrap(true, $actual);
-        }
+        $actual = self::unwrapWithResultUnwrapper($visitor->result());
 
         $this->assertSame($expect, $actual);
     }
@@ -671,12 +660,14 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
              * @param mixed $retval
              *
              * @psalm-param array-key $key
+             *
              * @psalm-param-out mixed $retval
              */
             function ($subject, $key, &$retval) use ($c04): bool {
                 if (!($c04 % 2) || !is_array($subject) || !array_key_exists($key, $subject)) {
                     return false;
                 }
+
                 /** @psalm-var mixed $retval */
                 $retval = $subject[$key];
 
@@ -752,22 +743,11 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
 
         $visitor->end();
 
-        /** @psalm-var mixed $expect */
-        $expect = $result;
-        /** @psalm-var mixed $actual */
-        $actual = $visitor->result();
+        /** @psalm-var mixed $expect*/
+        $expect = self::unwrapWithResultUnwrapper($result);
 
-        $resultUnwrapper = RecursiveResultUnwrapper::create();
-
-        if (is_array($expect) || is_iterable($expect) && $expect instanceof ResultInterface) {
-            /** @psalm-var ArrayLike $expect */;
-            $expect = $resultUnwrapper->unwrap(true, $expect);
-        }
-
-        if (is_array($actual) || is_iterable($actual) && $actual instanceof ResultInterface) {
-            /** @psalm-var ArrayLike $actual */;
-            $actual = $resultUnwrapper->unwrap(true, $actual);
-        }
+        /** @psalm-var mixed $actual*/
+        $actual = self::unwrapWithResultUnwrapper($visitor->result());
 
         $this->assertSame($expect, $actual);
     }
@@ -1205,21 +1185,10 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         $visitor->end();
 
         /** @psalm-var mixed $expect */
-        $expect = $result;
+        $expect = self::unwrapWithResultUnwrapper($result);
+
         /** @psalm-var mixed $actual */
-        $actual = $visitor->result();
-
-        $resultUnwrapper = RecursiveResultUnwrapper::create();
-
-        if (is_array($expect) || is_iterable($expect) && $expect instanceof ResultInterface) {
-            /** @psalm-var ArrayLike $expect */;
-            $expect = $resultUnwrapper->unwrap(true, $expect);
-        }
-
-        if (is_array($actual) || is_iterable($actual) && $actual instanceof ResultInterface) {
-            /** @psalm-var ArrayLike $actual */;
-            $actual = $resultUnwrapper->unwrap(true, $actual);
-        }
+        $actual = self::unwrapWithResultUnwrapper($visitor->result());
 
         $this->assertSame($expect, $actual);
     }
@@ -1261,12 +1230,14 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
              * @param mixed $retval
              *
              * @psalm-param array-key $key
+             *
              * @psalm-param-out mixed $retval
              */
             function (\ArrayAccess $subject, $key, &$retval): bool {
                 if (!$subject->offsetExists($key)) {
                     return false;
                 }
+
                 /** @psalm-var mixed $retval */
                 $retval = $subject[$key];
 
@@ -1315,6 +1286,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
              * @param mixed $retval
              *
              * @psalm-param array-key $key
+             *
              * @psalm-param-out mixed $retval
              */
             function ($subject, $key, &$retval) use ($namespaces): bool {
@@ -1332,6 +1304,23 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
                 return true;
             }
         );
+    }
+
+    /**
+     * @param mixed $input
+     *
+     * @return mixed
+     */
+    private static function unwrapWithResultUnwrapper($input)
+    {
+        if (is_array($input) || is_iterable($input) && $input instanceof ResultInterface) {
+            /** @psalm-var ArrayLike $input */
+            $resultUnwrapper = RecursiveResultUnwrapper::create();
+
+            return $resultUnwrapper->unwrap(true, $input);
+        }
+
+        return $input;
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

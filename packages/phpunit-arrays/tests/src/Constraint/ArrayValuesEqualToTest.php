@@ -24,8 +24,8 @@ use Tailors\PHPUnit\RecursiveConstraint\RecursiveConstraintTestCase;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ArrayLike = iterable<array-key, mixed>
- * @psalm-type ConstraintClass = ArrayValuesEqualTo
+ * @psalm-type ArrayLike            = iterable<array-key, mixed>
+ * @psalm-type ConstraintClass      = ArrayValuesEqualTo
  * @psalm-type CreateConstraintArgs = list{ArrayLike}
  *
  * @template-extends RecursiveConstraintTestCase<ConstraintClass, CreateConstraintArgs>

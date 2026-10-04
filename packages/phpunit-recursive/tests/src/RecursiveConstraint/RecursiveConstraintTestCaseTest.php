@@ -23,8 +23,8 @@ use Tailors\PHPUnit\InvalidArgumentException;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ArrayLike = iterable<array-key, mixed>
- * @psalm-type ConstraintClass = ExampleRecursiveConstraint
+ * @psalm-type ArrayLike            = iterable<array-key, mixed>
+ * @psalm-type ConstraintClass      = ExampleRecursiveConstraint
  * @psalm-type CreateConstraintArgs = list{ArrayLike}
  *
  * @template-extends RecursiveConstraintTestCase<ConstraintClass, CreateConstraintArgs>

@@ -63,12 +63,14 @@ class ExampleRecursiveConstraint extends AbstractRecursiveConstraint
                  * @param mixed $retval
                  *
                  * @psalm-param array-key $key
+                 *
                  * @psalm-param-out mixed $retval
                  */
                 function (array $subject, $key, &$retval) {
                     if (!array_key_exists($key, $subject)) {
                         return false;
                     }
+
                     /** @psalm-var mixed $retval */
                     $retval = $subject[$key];
 
