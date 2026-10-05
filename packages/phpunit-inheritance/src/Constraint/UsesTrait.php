@@ -10,13 +10,13 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
-use Tailors\PHPUnit\Inheritance\AbstractConstraint;
+use Tailors\PHPUnit\Inheritance\AbstractInheritanceConstraint;
 use Tailors\PHPUnit\Inheritance\ConstraintImplementationTrait;
 
 /**
  * Constraint that accepts classes that extend given class.
  */
-final class UsesTrait extends AbstractConstraint
+final class UsesTrait extends AbstractInheritanceConstraint
 {
     use ConstraintImplementationTrait;
 

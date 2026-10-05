@@ -24,7 +24,7 @@ use Tailors\PHPUnit\Common\Exporter;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-abstract class AbstractConstraint extends Constraint
+abstract class AbstractInheritanceConstraint extends Constraint
 {
     /**
      * @var string

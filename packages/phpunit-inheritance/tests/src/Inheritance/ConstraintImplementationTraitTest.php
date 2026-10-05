@@ -18,7 +18,7 @@ use Tailors\PHPUnit\InvalidReturnValueException;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class FaultyConstraint1 extends AbstractConstraint
+final class FaultyConstraint1 extends AbstractInheritanceConstraint
 {
     use ConstraintImplementationTrait {
         inheritance as public;
@@ -61,7 +61,7 @@ final class FaultyConstraint1 extends AbstractConstraint
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class FaultyConstraint2 extends AbstractConstraint
+final class FaultyConstraint2 extends AbstractInheritanceConstraint
 {
     use ConstraintImplementationTrait {
         inheritance as public;

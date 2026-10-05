@@ -24,7 +24,7 @@ use Tailors\PHPUnit\InvalidArgumentException;
  *
  * @covers \Tailors\PHPUnit\Constraint\InheritanceConstraintTestTrait
  * @covers \Tailors\PHPUnit\Constraint\UsesTrait
- * @covers \Tailors\PHPUnit\Inheritance\AbstractConstraint
+ * @covers \Tailors\PHPUnit\Inheritance\AbstractInheritanceConstraint
  * @covers \Tailors\PHPUnit\Inheritance\ConstraintImplementationTrait
  *
  * @internal This class is not covered by the backward compatibility promise

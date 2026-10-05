@@ -10,7 +10,6 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
-use PHPUnit\Framework\Constraint\Constraint;
 use Tailors\PHPUnit\Arrays\ArrayValuesSelection;
 
 /**

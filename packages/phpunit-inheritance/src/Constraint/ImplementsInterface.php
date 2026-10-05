@@ -10,13 +10,13 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
-use Tailors\PHPUnit\Inheritance\AbstractConstraint;
+use Tailors\PHPUnit\Inheritance\AbstractInheritanceConstraint;
 use Tailors\PHPUnit\Inheritance\ConstraintImplementationTrait;
 
 /**
  * Constraint that accepts classes that implement given interface.
  */
-final class ImplementsInterface extends AbstractConstraint
+final class ImplementsInterface extends AbstractInheritanceConstraint
 {
     use ConstraintImplementationTrait;
 

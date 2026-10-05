@@ -12,7 +12,6 @@ namespace Tailors\PHPUnit;
 
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
-use Tailors\PHPUnit\Constraint\ArrayValuesEqualTo;
 use Tailors\PHPUnit\Constraint\ProvArrayValuesTrait;
 
 /**
