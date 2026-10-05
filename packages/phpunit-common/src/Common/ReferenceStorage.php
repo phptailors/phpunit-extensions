@@ -179,7 +179,7 @@ final class ReferenceStorage implements \Countable
      */
     private function getReferenceId(&$value): string
     {
-        if (!class_exists(\ReflectionReference::class)) {
+        if (!class_exists(\ReflectionReference::class) || !method_exists(\ReflectionReference::class, 'fromArrayElement')) {
             // @codeCoverageIgnoreStart
             /** @psalm-var mixed $reference */
             foreach ($this->references as $id => &$reference) {

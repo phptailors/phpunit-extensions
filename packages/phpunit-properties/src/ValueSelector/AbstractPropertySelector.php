@@ -40,7 +40,7 @@ abstract class AbstractPropertySelector extends AbstractValueSelector
      */
     final protected function selectFromSupported($subject, $key, &$retval = null): bool
     {
-        $method = ('()' === substr((string) $key, -2)) ? substr((string) $key, 0, -2) : null;
+        $method = ('()' === (string)substr((string) $key, -2)) ? (string)substr((string) $key, 0, -2) : null;
         if (null !== $method) {
             return $this->selectWithMethod($subject, $method, $retval);
         }
