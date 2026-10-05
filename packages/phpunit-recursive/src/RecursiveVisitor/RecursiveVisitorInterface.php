@@ -17,7 +17,7 @@ namespace Tailors\PHPUnit\RecursiveVisitor;
  *
  * @psalm-template StackItem of RecursiveVisitorStackItemInterface
  *
- * @psalm-type ArrayLike = iterable<array-key, mixed>
+ * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
  */
 interface RecursiveVisitorInterface
 {

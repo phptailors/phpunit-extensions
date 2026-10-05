@@ -26,7 +26,7 @@ use Tailors\PHPUnit\ResultFactory\DummyResultFactory;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ArrayLike            = iterable<array-key, mixed>
+ * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
  * @psalm-type CreateConstraintArgs = list{ArrayLike}
  *
  * @psalm-template ConstraintClass of Constraint

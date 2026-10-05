@@ -18,7 +18,7 @@ use Tailors\PHPUnit\ValueSelector\ArrayValueSelector;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ArrayLike = iterable<array-key, mixed>
+ * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
  *
  * @template-extends AbstractArraySelectionSpec<ArrayLike, array|\ArrayAccess>
  */

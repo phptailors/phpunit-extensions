@@ -15,6 +15,8 @@ namespace Tailors\PHPUnit\Common;
  *
  * @internal This interface is not covered by the backward compatibility promise
  *
+ * @psalm-suppress UnusedClass
+ *
  * @psalm-type ArrayLike = iterable<array-key, mixed>
  */
 interface TypesInterface {}

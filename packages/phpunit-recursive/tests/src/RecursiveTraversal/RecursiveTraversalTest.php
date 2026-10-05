@@ -22,7 +22,7 @@ use Tailors\PHPUnit\RecursiveVisitor\DummyRecursiveVisitor;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ArrayLike = iterable<array-key, mixed>
+ * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
  * @psalm-type StackItem = DummyRecursiveVisitorStackItem
  */
 final class RecursiveTraversalTest extends TestCase

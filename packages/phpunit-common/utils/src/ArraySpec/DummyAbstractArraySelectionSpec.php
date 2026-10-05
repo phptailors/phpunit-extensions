@@ -21,7 +21,7 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
  * @psalm-template SupportedInput
  * @psalm-template SupportedSubject
  *
- * @psalm-type ArrayLike = iterable<array-key, mixed>
+ * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
  *
  * @template-extends AbstractArraySelectionSpec<SupportedInput, SupportedSubject>
  */

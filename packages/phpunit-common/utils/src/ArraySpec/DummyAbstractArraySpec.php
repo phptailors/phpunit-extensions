@@ -19,7 +19,7 @@ use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
  *
  * @psalm-template SupportedInput
  *
- * @psalm-type ArrayLike = iterable<array-key, mixed>
+ * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
  *
  * @template-extends AbstractArraySpec<SupportedInput>
  */

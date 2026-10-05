@@ -24,7 +24,7 @@ use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ArrayLike = iterable<array-key, mixed>
+ * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
  */
 final class DummyAbstractArraySpecTest extends TestCase
 {

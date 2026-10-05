@@ -21,7 +21,7 @@ use Tailors\PHPUnit\Common\TagInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ArrayLike = iterable<array-key, mixed>
+ * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
  */
 abstract class AbstractObjectProperties extends AbstractArrayResult implements TagInterface
 {

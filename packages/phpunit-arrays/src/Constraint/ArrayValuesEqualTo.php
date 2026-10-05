@@ -33,7 +33,7 @@ use Tailors\PHPUnit\RecursiveConstraint\RecursiveConstraintSpecializationTrait;
  *          'name' => 'John',
  *      ], $matcher);
  *
- * @psalm-type ArrayLike = iterable<array-key, mixed>
+ * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
  */
 final class ArrayValuesEqualTo extends AbstractRecursiveConstraint
 {

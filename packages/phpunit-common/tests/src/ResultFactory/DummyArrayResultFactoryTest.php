@@ -25,7 +25,7 @@ use Tailors\PHPUnit\Result\ResultInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ArrayLike     = iterable<array-key, mixed>
+ * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
  * @psalm-type CtorArgs      = list{0?:?non-falsy-string,1?:?\Closure(iterable<array-key,mixed>):array}
  * @psalm-type GetResultArgs = list{0:bool, 1:ArrayLike}
  */

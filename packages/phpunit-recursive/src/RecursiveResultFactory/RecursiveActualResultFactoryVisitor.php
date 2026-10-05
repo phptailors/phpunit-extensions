@@ -24,7 +24,7 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-type StackItem = RecursiveActualResultFactoryStackItem
- * @psalm-type ArrayLike = iterable<array-key, mixed>
+ * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
  */
 final class RecursiveActualResultFactoryVisitor implements RecursiveActualResultFactoryVisitorInterface
 {

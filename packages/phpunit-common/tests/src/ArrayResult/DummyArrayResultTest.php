@@ -23,7 +23,7 @@ use Tailors\PHPUnit\Result\ResultInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ArrayLike   = iterable<array-key, mixed>
+ * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
  * @psalm-type CtorArgs    = list{0:bool,1?:ArrayLike,2?:null|string}
  * @psalm-type ExpectArray = array{actual: mixed, array: mixed, tag: mixed}
  */

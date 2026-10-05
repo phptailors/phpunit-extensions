@@ -22,7 +22,7 @@ use Tailors\PHPUnit\Properties\ObjectPropertiesSelection;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ArrayLike            = iterable<array-key, mixed>
+ * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
  * @psalm-type ObjectPropertiesArgs = list{0: ArrayLike}
  */
 final class ObjectPropertiesTraitTest extends TestCase

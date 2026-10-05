@@ -22,7 +22,7 @@ use Tailors\PHPUnit\ResultFactory\ResultFactoryWrapperInterface;
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-type StackItem = RecursiveExpectedResultFactoryStackItem
- * @psalm-type ArrayLike = iterable<array-key, mixed>
+ * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
  */
 final class RecursiveExpectedResultFactoryVisitor implements RecursiveExpectedResultFactoryVisitorInterface
 {

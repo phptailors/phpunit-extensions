@@ -21,7 +21,7 @@ use Tailors\PHPUnit\Result\ResultInterface;
  *
  * @template-extends \ArrayObject<array-key,mixed>
  *
- * @psalm-type ArrayLike = iterable<array-key, mixed>
+ * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
  */
 abstract class AbstractArrayResult extends \ArrayObject implements ResultInterface
 {

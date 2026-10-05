@@ -23,7 +23,7 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ArrayLike   = iterable<array-key, mixed>
+ * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
  * @psalm-type CtorArgs    = list{0:ValueSelectorInterface,1?:ArrayLike}
  * @psalm-type ExpectArray = array{selector: mixed, array: mixed, actual: mixed, tag: mixed}
  */

@@ -21,7 +21,7 @@ namespace Tailors\PHPUnit\Properties;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ArrayLike = iterable<array-key, mixed>
+ * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
  *
  * @psalm-import-type CtorArgs from ObjectPropertiesTestCase
  */

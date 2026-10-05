@@ -22,7 +22,7 @@ use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ArrayLike      = iterable<array-key, mixed>
+ * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
  * @psalm-type StackItem      = DummyRecursiveVisitorStackItem
  * @psalm-type CtorArgClosure = \Closure(ArrayLike,list<StackItem>):bool
  * @psalm-type CtorArg        = bool|CtorArgClosure

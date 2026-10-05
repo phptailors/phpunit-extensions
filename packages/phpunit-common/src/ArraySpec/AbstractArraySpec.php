@@ -20,7 +20,7 @@ use Tailors\PHPUnit\ResultFactory\ResultFactoryWrapperInterface;
  *
  * @psalm-template SupportedInput
  *
- * @psalm-type ArrayLike = iterable<array-key, mixed>
+ * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
  *
  * @template-implements ResultFactoryWrapperInterface<SupportedInput>
  *

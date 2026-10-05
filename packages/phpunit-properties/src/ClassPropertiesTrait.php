@@ -13,7 +13,7 @@ namespace Tailors\PHPUnit;
 use Tailors\PHPUnit\Properties\ClassPropertiesSelection;
 
 /**
- * @psalm-type ArrayLike = iterable<array-key, mixed>
+ * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
  */
 trait ClassPropertiesTrait
 {

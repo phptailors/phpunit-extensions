@@ -15,7 +15,7 @@ namespace Tailors\PHPUnit\Constraint;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ArrayLike            = iterable<array-key, mixed>
+ * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
  * @psalm-type CreateConstraintArgs = list{ArrayLike}
  */
 trait ProvClassPropertiesTrait

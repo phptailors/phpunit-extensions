@@ -34,7 +34,7 @@ use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ArrayLike     = iterable<array-key, mixed>
+ * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
  * @psalm-type StackItem     = RecursiveActualResultFactoryStackItem
  * @psalm-type BeginArgs     = list{mixed}
  * @psalm-type EnterTestCall = array{args: array{node: ArrayLike}, return: bool, next?: array-key}

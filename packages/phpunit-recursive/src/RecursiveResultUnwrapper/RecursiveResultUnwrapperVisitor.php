@@ -25,7 +25,7 @@ use Tailors\PHPUnit\Result\ResultInterface;
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-type StackItem = RecursiveResultUnwrapperStackItem
- * @psalm-type ArrayLike = iterable<array-key, mixed>
+ * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
  */
 final class RecursiveResultUnwrapperVisitor implements RecursiveResultUnwrapperVisitorInterface, StaticTagInterface
 {

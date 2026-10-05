@@ -17,7 +17,7 @@ namespace Tailors\PHPUnit\RecursiveVisitor;
  *
  * @template-implements RecursiveVisitorInterface<DummyRecursiveVisitorStackItem>
  *
- * @psalm-type ArrayLike = iterable<array-key, mixed>
+ * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
  * @psalm-type TraceItem = array{func: string, node: mixed, key?: array-key, path: list<array-key>}
  * @psalm-type Trace     = list<TraceItem>
  * @psalm-type StackItem = DummyRecursiveVisitorStackItem

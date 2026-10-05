@@ -21,7 +21,7 @@ use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorStackItemInterface;
  *
  * @psalm-template VisitorStackItem of RecursiveVisitorStackItemInterface
  *
- * @psalm-type ArrayLike = iterable<array-key, mixed>
+ * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
  */
 final class RecursiveTraversal implements RecursiveTraversalInterface
 {

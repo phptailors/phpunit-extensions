@@ -23,7 +23,7 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  * @psalm-template SupportedInput
  * @psalm-template SupportedSubject
  *
- * @psalm-type ArrayLike = iterable<array-key, mixed>
+ * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
  *
  * @template-implements ResultFactoryWrapperInterface<SupportedInput>
  * @template-implements ValueSelectorWrapperInterface<SupportedSubject>

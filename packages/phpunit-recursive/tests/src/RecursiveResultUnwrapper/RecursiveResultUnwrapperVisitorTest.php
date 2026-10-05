@@ -30,7 +30,7 @@ use Tailors\PHPUnit\Result\ResultInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ArrayLike     = iterable<array-key, mixed>
+ * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
  * @psalm-type StackItem     = RecursiveResultUnwrapperStackItem
  * @psalm-type CtorArgs      = list{0?: bool}
  * @psalm-type BeginArgs     = list{0: bool}

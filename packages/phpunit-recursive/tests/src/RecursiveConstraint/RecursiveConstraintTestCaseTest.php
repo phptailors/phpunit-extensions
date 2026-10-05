@@ -23,7 +23,7 @@ use Tailors\PHPUnit\InvalidArgumentException;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ArrayLike            = iterable<array-key, mixed>
+ * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
  * @psalm-type ConstraintClass      = ExampleRecursiveConstraint
  * @psalm-type CreateConstraintArgs = list{ArrayLike}
  *
