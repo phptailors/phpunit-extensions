@@ -25,8 +25,6 @@ use Tailors\PHPUnit\Constraint\ProvArrayValuesTrait;
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-import-type ArrayLike from TypesInterface
- *
- * @psalm-type CreateConstraintArgs = list{ArrayLike}
  */
 final class ArrayValuesEqualToTraitTest extends TestCase
 {

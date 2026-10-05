@@ -51,8 +51,10 @@ final class ArrayValuesIdenticalTo extends AbstractRecursiveConstraint
 
     /**
      * @psalm-param ArrayLike $expected
+     *
+     * @psalm-return ArrayLike
      */
-    protected static function makeExpectations(iterable $expected): ArrayValuesSelection
+    protected static function makeExpectations(iterable $expected): iterable
     {
         return new ArrayValuesSelection($expected);
     }
