@@ -18,6 +18,7 @@ use SebastianBergmann\Comparator\ComparisonFailure;
 use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use Tailors\PHPUnit\Common\Exporter;
 use Tailors\PHPUnit\Common\ShortFailureDescriptionTrait;
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactoryInterface;
 use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapperInterface;
@@ -29,7 +30,7 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
  */
 abstract class AbstractRecursiveConstraint extends Constraint
 {

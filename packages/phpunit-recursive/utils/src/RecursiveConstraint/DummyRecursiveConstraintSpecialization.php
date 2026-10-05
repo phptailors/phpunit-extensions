@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\RecursiveConstraint;
 
 use Tailors\PHPUnit\ArraySpec\DummyResultFactoryWrapper;
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\DummyComparator;
 use Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactoryInterface;
@@ -27,7 +28,7 @@ use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
  */
 final class DummyRecursiveConstraintSpecialization
 {

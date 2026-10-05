@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit\RecursiveConstraint;
 
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactoryInterface;
 use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapperInterface;
@@ -19,7 +20,7 @@ use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapperInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
  */
 final class DummyAbstractRecursiveConstraint extends AbstractRecursiveConstraint
 {

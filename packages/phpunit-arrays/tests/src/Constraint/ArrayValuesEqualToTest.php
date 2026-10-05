@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\Constraint;
 
 use PHPUnit\Framework\Constraint\Constraint;
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\InvalidArgumentException;
 use Tailors\PHPUnit\RecursiveConstraint\RecursiveConstraintTestCase;
 
@@ -25,7 +26,8 @@ use Tailors\PHPUnit\RecursiveConstraint\RecursiveConstraintTestCase;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
+ *
  * @psalm-type ConstraintClass      = ArrayValuesEqualTo
  * @psalm-type CreateConstraintArgs = list{ArrayLike}
  *

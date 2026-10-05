@@ -12,6 +12,7 @@ namespace Tailors\PHPUnit;
 
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Constraint\ProvArrayValuesTrait;
 
 /**
@@ -23,7 +24,8 @@ use Tailors\PHPUnit\Constraint\ProvArrayValuesTrait;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
+ *
  * @psalm-type CreateConstraintArgs = list{ArrayLike}
  */
 final class ArrayValuesIdenticalToTraitTest extends TestCase

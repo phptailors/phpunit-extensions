@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit\RecursiveResultUnwrapper;
 
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorStackItemInterface;
 
 /**
@@ -17,7 +18,7 @@ use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorStackItemInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
  */
 final class RecursiveResultUnwrapperStackItem implements RecursiveVisitorStackItemInterface
 {

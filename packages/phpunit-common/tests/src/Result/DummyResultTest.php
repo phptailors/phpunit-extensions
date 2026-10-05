@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\Result;
 
 use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\Common\TypesInterface;
 
 /**
  * @small
@@ -21,7 +22,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
  */
 final class DummyResultTest extends TestCase
 {

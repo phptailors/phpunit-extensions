@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit\RecursiveResultFactory;
 
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversal;
 use Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversalInterface;
 use Tailors\PHPUnit\ResultFactory\ResultFactoryWrapperInterface;
@@ -20,7 +21,7 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
  */
 final class RecursiveResultFactory implements RecursiveResultFactoryInterface
 {

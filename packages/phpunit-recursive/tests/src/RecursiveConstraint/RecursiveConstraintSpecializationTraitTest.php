@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\RecursiveConstraint;
 
 use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactory;
 use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapper;
@@ -24,7 +25,7 @@ use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapper;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
  */
 final class RecursiveConstraintSpecializationTraitTest extends TestCase
 {

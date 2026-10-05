@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit\RecursiveConstraint;
 
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\InvalidArgumentException;
 use Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactory;
@@ -20,7 +21,7 @@ use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapper;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
  */
 trait RecursiveConstraintSpecializationTrait
 {

@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\Arrays;
 
 use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\ResultFactory\AbstractArrayResultFactory;
 use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
 
@@ -23,7 +24,8 @@ use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
+ *
  * @psalm-type GetResultExpectArray = array{class: class-string, array: mixed}
  */
 final class ArrayValuesFactoryTest extends TestCase

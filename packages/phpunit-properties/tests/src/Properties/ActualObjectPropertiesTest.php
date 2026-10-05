@@ -10,6 +10,8 @@
 
 namespace Tailors\PHPUnit\Properties;
 
+use Tailors\PHPUnit\Common\TypesInterface;
+
 /**
  * @small
  *
@@ -21,8 +23,7 @@ namespace Tailors\PHPUnit\Properties;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
- *
+ * @psalm-import-type ArrayLike from TypesInterface
  * @psalm-import-type CtorArgs from ObjectPropertiesTestCase
  */
 final class ActualObjectPropertiesTest extends ObjectPropertiesTestCase

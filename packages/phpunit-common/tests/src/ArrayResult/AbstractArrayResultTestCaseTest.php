@@ -12,6 +12,7 @@ namespace Tailors\PHPUnit\ArrayResult;
 
 use Tailors\PHPUnit\Common\StaticRandomStrings;
 use Tailors\PHPUnit\Common\TagInterface;
+use Tailors\PHPUnit\Common\TypesInterface;
 
 /**
  * @small
@@ -22,7 +23,7 @@ use Tailors\PHPUnit\Common\TagInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
  */
 final class AbstractArrayResultTestCaseTest extends AbstractArrayResultTestCase
 {

@@ -13,6 +13,7 @@ namespace Tailors\PHPUnit;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Constraint\ObjectPropertiesEqualTo;
 use Tailors\PHPUnit\Constraint\ProvObjectPropertiesTrait;
 
@@ -25,7 +26,8 @@ use Tailors\PHPUnit\Constraint\ProvObjectPropertiesTrait;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
+ *
  * @psalm-type CreateConstraintArgs = list{ArrayLike}
  */
 final class ObjectPropertiesEqualToTraitTest extends TestCase

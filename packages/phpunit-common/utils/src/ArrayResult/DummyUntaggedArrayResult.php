@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit\ArrayResult;
 
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Result\ResultInterface;
 
 /**
@@ -17,7 +18,7 @@ use Tailors\PHPUnit\Result\ResultInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
  *
  * @template-extends \ArrayObject<array-key,mixed>
  */

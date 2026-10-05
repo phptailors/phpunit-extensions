@@ -15,6 +15,7 @@ use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
 use Tailors\PHPUnit\ArraySpec\DummyResultFactoryAndValueSelectorWrapper;
 use Tailors\PHPUnit\ArraySpec\DummyResultFactoryWrapper;
 use Tailors\PHPUnit\CircularDependencyException;
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\InternalErrorException;
 use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapper;
 use Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversal;
@@ -33,7 +34,8 @@ use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
+ *
  * @psalm-type StackItem     = RecursiveExpectedResultFactoryStackItem
  * @psalm-type EnterTestCall = array{args: array{node: ArrayLike}, return: bool, next?: array-key}
  * @psalm-type VisitTestCall = array{args: array{node: mixed, iter?:bool}, key?: array-key}

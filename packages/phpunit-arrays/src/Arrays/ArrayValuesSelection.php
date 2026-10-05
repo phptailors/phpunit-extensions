@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\Arrays;
 
 use Tailors\PHPUnit\ArraySpec\AbstractArraySelectionSpec;
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\ValueSelector\ArrayValueSelector;
 
 /**
@@ -18,7 +19,7 @@ use Tailors\PHPUnit\ValueSelector\ArrayValueSelector;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
  *
  * @template-extends AbstractArraySelectionSpec<ArrayLike, array|\ArrayAccess>
  */

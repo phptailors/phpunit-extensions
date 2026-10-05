@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit;
 
 use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Properties\ClassPropertiesSelection;
 
 /**
@@ -22,7 +23,8 @@ use Tailors\PHPUnit\Properties\ClassPropertiesSelection;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
+ *
  * @psalm-type ClassPropertiesArgs = list{0: ArrayLike}
  */
 final class ClassPropertiesTraitTest extends TestCase

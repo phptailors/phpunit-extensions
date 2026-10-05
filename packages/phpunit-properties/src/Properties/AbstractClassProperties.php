@@ -13,6 +13,7 @@ namespace Tailors\PHPUnit\Properties;
 use Tailors\PHPUnit\ArrayResult\AbstractArrayResult;
 use Tailors\PHPUnit\Common\StaticRandomStrings;
 use Tailors\PHPUnit\Common\TagInterface;
+use Tailors\PHPUnit\Common\TypesInterface;
 
 /**
  * An array of expected or actual class properties.
@@ -21,7 +22,7 @@ use Tailors\PHPUnit\Common\TagInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
  */
 abstract class AbstractClassProperties extends AbstractArrayResult implements TagInterface
 {

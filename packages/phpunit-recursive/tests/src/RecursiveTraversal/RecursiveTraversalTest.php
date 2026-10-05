@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\RecursiveTraversal;
 
 use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\RecursiveVisitor\DummyRecursiveVisitor;
 
 /**
@@ -22,7 +23,8 @@ use Tailors\PHPUnit\RecursiveVisitor\DummyRecursiveVisitor;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
+ *
  * @psalm-type StackItem = DummyRecursiveVisitorStackItem
  */
 final class RecursiveTraversalTest extends TestCase

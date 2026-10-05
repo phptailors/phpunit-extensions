@@ -13,6 +13,7 @@ namespace Tailors\PHPUnit\RecursiveResultUnwrapper;
 use Tailors\PHPUnit\Common\StaticRandomStrings;
 use Tailors\PHPUnit\Common\StaticTagInterface;
 use Tailors\PHPUnit\Common\TagInterface;
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\InternalErrorException;
 use Tailors\PHPUnit\InvalidArgumentException;
 use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorStackItemInterface;
@@ -25,7 +26,8 @@ use Tailors\PHPUnit\Result\ResultInterface;
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-type StackItem = RecursiveResultUnwrapperStackItem
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ *
+ * @psalm-import-type ArrayLike from TypesInterface
  */
 final class RecursiveResultUnwrapperVisitor implements RecursiveResultUnwrapperVisitorInterface, StaticTagInterface
 {

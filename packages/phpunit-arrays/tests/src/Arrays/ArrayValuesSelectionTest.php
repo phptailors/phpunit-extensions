@@ -12,6 +12,7 @@ namespace Tailors\PHPUnit\Arrays;
 
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\ArraySpec\AbstractArraySelectionSpec;
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\ResultFactory\ResultFactoryWrapperInterface;
 use Tailors\PHPUnit\ValueSelector\ArrayValueSelector;
 use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
@@ -25,7 +26,7 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
  */
 final class ArrayValuesSelectionTest extends TestCase
 {

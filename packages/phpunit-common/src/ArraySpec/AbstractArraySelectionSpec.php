@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit\ArraySpec;
 
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
 use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
 use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
@@ -22,7 +23,7 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  * @psalm-template SupportedInput
  * @psalm-template SupportedSubject
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
  *
  * @template-extends AbstractArraySpec<SupportedInput>
  *

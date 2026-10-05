@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\ArraySpec;
 
 use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
 use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
 use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
@@ -24,7 +25,7 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
  */
 final class DummyValueSelectorWrapperTest extends TestCase
 {

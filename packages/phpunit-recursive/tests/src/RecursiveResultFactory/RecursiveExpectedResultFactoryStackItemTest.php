@@ -12,6 +12,7 @@ namespace Tailors\PHPUnit\RecursiveResultFactory;
 
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
+use Tailors\PHPUnit\Common\TypesInterface;
 
 /**
  * @small
@@ -22,7 +23,8 @@ use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
+ *
  * @psalm-type CtorArgs   = list{0: ArrayLike, 1: array-key, 2: array|\ArrayAccess}
  * @psalm-type CtorExpect = array{node: mixed, key: mixed, result: mixed}
  * @psalm-type SetExpect  = array{node: mixed, key: mixed, result: mixed}

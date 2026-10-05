@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit\RecursiveResultUnwrapper;
 
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\InternalErrorException;
 use Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversal;
 use Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversalInterface;
@@ -20,7 +21,7 @@ use Tailors\PHPUnit\Result\ResultInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
  */
 final class RecursiveResultUnwrapper implements RecursiveResultUnwrapperInterface
 {

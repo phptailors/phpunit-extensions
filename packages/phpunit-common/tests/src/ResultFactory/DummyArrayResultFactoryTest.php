@@ -12,6 +12,7 @@ namespace Tailors\PHPUnit\ResultFactory;
 
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\InvalidArgumentException;
 use Tailors\PHPUnit\Result\ResultInterface;
 
@@ -25,7 +26,8 @@ use Tailors\PHPUnit\Result\ResultInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
+ *
  * @psalm-type CtorArgs      = list{0?:?non-falsy-string,1?:?\Closure(iterable<array-key,mixed>):array}
  * @psalm-type GetResultArgs = list{0:bool, 1:ArrayLike}
  */

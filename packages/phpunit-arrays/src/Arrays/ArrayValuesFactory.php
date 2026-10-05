@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit\Arrays;
 
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Result\ResultInterface;
 use Tailors\PHPUnit\ResultFactory\AbstractArrayResultFactory;
 
@@ -18,7 +19,7 @@ use Tailors\PHPUnit\ResultFactory\AbstractArrayResultFactory;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
  */
 final class ArrayValuesFactory extends AbstractArrayResultFactory
 {

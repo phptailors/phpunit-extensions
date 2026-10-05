@@ -16,6 +16,7 @@ use PHPUnit\Framework\TestCase;
 use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use Tailors\PHPUnit\Common\StaticRandomStrings;
 use Tailors\PHPUnit\Common\TagInterface;
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Result\ResultInterface;
 
 /**
@@ -23,8 +24,9 @@ use Tailors\PHPUnit\Result\ResultInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
- * @psalm-type CtorArgs  = list{0?:iterable<array-key, mixed>}
+ * @psalm-import-type ArrayLike from TypesInterface
+ *
+ * @psalm-type CtorArgs = list{0?:iterable<array-key, mixed>}
  */
 abstract class AbstractArrayResultTestCase extends TestCase
 {

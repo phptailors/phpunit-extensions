@@ -10,6 +10,8 @@
 
 namespace Tailors\PHPUnit\RecursiveVisitor;
 
+use Tailors\PHPUnit\Common\TypesInterface;
+
 /**
  * @internal This class is not covered by the backward compatibility promise
  *
@@ -17,7 +19,8 @@ namespace Tailors\PHPUnit\RecursiveVisitor;
  *
  * @template-implements RecursiveVisitorInterface<DummyRecursiveVisitorStackItem>
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
+ *
  * @psalm-type TraceItem = array{func: string, node: mixed, key?: array-key, path: list<array-key>}
  * @psalm-type Trace     = list<TraceItem>
  * @psalm-type StackItem = DummyRecursiveVisitorStackItem

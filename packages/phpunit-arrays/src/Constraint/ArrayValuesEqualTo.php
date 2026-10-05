@@ -12,6 +12,7 @@ namespace Tailors\PHPUnit\Constraint;
 
 use Tailors\PHPUnit\Arrays\ArrayValuesSelection;
 use Tailors\PHPUnit\Arrays\ValidateExpectationsTrait;
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\EqualityComparator;
 use Tailors\PHPUnit\RecursiveConstraint\AbstractRecursiveConstraint;
@@ -33,7 +34,7 @@ use Tailors\PHPUnit\RecursiveConstraint\RecursiveConstraintSpecializationTrait;
  *          'name' => 'John',
  *      ], $matcher);
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
  */
 final class ArrayValuesEqualTo extends AbstractRecursiveConstraint
 {

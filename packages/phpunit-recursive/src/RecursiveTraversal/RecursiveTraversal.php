@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\RecursiveTraversal;
 
 use Tailors\PHPUnit\Common\ReferenceStorage;
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorInterface;
 use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorStackItemInterface;
 
@@ -21,7 +22,7 @@ use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorStackItemInterface;
  *
  * @psalm-template VisitorStackItem of RecursiveVisitorStackItemInterface
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
  */
 final class RecursiveTraversal implements RecursiveTraversalInterface
 {

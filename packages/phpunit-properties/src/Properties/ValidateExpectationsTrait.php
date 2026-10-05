@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit\Properties;
 
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\InvalidArgumentException;
 
 /**
@@ -17,7 +18,7 @@ use Tailors\PHPUnit\InvalidArgumentException;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
  */
 trait ValidateExpectationsTrait
 {

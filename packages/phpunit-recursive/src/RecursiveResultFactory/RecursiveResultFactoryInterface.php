@@ -10,12 +10,14 @@
 
 namespace Tailors\PHPUnit\RecursiveResultFactory;
 
+use Tailors\PHPUnit\Common\TypesInterface;
+
 /**
  * @internal This interface is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
  */
 interface RecursiveResultFactoryInterface
 {

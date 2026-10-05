@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\EqualityComparator;
 use Tailors\PHPUnit\Properties\ObjectPropertiesSelection;
@@ -41,7 +42,7 @@ use Tailors\PHPUnit\RecursiveConstraint\RecursiveConstraintSpecializationTrait;
  *          }
  *      }, $matcher);
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
  */
 final class ObjectPropertiesEqualTo extends AbstractRecursiveConstraint
 {

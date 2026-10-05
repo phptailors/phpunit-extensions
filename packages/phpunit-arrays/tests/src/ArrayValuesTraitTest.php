@@ -12,6 +12,7 @@ namespace Tailors\PHPUnit;
 
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Arrays\ArrayValuesSelection;
+use Tailors\PHPUnit\Common\TypesInterface;
 
 /**
  * @small
@@ -22,7 +23,8 @@ use Tailors\PHPUnit\Arrays\ArrayValuesSelection;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
+ *
  * @psalm-type ArrayValuesArgs = list{ArrayLike}
  */
 final class ArrayValuesTraitTest extends TestCase

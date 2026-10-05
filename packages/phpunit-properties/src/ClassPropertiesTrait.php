@@ -10,10 +10,11 @@
 
 namespace Tailors\PHPUnit;
 
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Properties\ClassPropertiesSelection;
 
 /**
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
  */
 trait ClassPropertiesTrait
 {

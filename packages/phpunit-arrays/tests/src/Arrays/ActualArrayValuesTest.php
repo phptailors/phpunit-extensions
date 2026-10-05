@@ -10,6 +10,8 @@
 
 namespace Tailors\PHPUnit\Arrays;
 
+use Tailors\PHPUnit\Common\TypesInterface;
+
 /**
  * @small
  *
@@ -22,8 +24,9 @@ namespace Tailors\PHPUnit\Arrays;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
- * @psalm-type CtorArgs  = list{0?: ArrayLike}
+ * @psalm-import-type ArrayLike from TypesInterface
+ *
+ * @psalm-type CtorArgs = list{0?: ArrayLike}
  */
 final class ActualArrayValuesTest extends ArrayValuesTestCase
 {

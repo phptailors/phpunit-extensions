@@ -15,6 +15,7 @@ use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
 use Tailors\PHPUnit\ArrayResult\DummyUntaggedArrayResult;
 use Tailors\PHPUnit\Common\StaticRandomStrings;
 use Tailors\PHPUnit\Common\StaticTagInterface;
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\InternalErrorException;
 use Tailors\PHPUnit\InvalidArgumentException;
 use Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversal;
@@ -30,7 +31,8 @@ use Tailors\PHPUnit\Result\ResultInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
+ *
  * @psalm-type StackItem     = RecursiveResultUnwrapperStackItem
  * @psalm-type CtorArgs      = list{0?: bool}
  * @psalm-type BeginArgs     = list{0: bool}

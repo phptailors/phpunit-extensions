@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit\ArraySpec;
 
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
 
 /**
@@ -19,7 +20,7 @@ use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
  *
  * @psalm-template SupportedInput
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
  *
  * @template-extends AbstractArraySpec<SupportedInput>
  */

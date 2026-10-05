@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\RecursiveConstraint;
 
 use Tailors\PHPUnit\ArraySpec\DummyResultFactoryAndValueSelectorWrapper;
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\IdentityComparator;
 use Tailors\PHPUnit\InvalidArgumentException;
@@ -24,7 +25,7 @@ use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
  */
 class ExampleRecursiveConstraint extends AbstractRecursiveConstraint
 {

@@ -10,12 +10,15 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
+use Tailors\PHPUnit\Common\TypesInterface;
+
 /**
  * @internal This trait is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
+ *
  * @psalm-type CreateConstraintArgs = list{ArrayLike}
  */
 trait ProvClassPropertiesTrait

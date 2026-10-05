@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit\ResultFactory;
 
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\InvalidArgumentException;
 use Tailors\PHPUnit\Result\ResultInterface;
 
@@ -18,7 +19,8 @@ use Tailors\PHPUnit\Result\ResultInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
+ *
  * @psalm-type SupportedInput = iterable<array-key, mixed>
  *
  * @template-implements ResultFactoryInterface<ArrayLike>

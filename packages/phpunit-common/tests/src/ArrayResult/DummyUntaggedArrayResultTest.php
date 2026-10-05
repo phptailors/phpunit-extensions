@@ -12,6 +12,7 @@ namespace Tailors\PHPUnit\ArrayResult;
 
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Common\TagInterface;
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Result\ResultInterface;
 
 /**
@@ -23,7 +24,8 @@ use Tailors\PHPUnit\Result\ResultInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
+ *
  * @psalm-type CtorArgs    = list{0:bool,1?:ArrayLike,2?:null|string}
  * @psalm-type ExpectArray = array{actual: mixed, array: mixed}
  */

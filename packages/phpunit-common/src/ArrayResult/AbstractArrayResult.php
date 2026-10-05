@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit\ArrayResult;
 
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Result\ResultInterface;
 
 /**
@@ -21,7 +22,7 @@ use Tailors\PHPUnit\Result\ResultInterface;
  *
  * @template-extends \ArrayObject<array-key,mixed>
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
  */
 abstract class AbstractArrayResult extends \ArrayObject implements ResultInterface
 {

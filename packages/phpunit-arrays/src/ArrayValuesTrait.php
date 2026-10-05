@@ -11,9 +11,10 @@
 namespace Tailors\PHPUnit;
 
 use Tailors\PHPUnit\Arrays\ArrayValuesSelection;
+use Tailors\PHPUnit\Common\TypesInterface;
 
 /**
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
  */
 trait ArrayValuesTrait
 {

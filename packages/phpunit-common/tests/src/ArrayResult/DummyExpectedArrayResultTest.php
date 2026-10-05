@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\ArrayResult;
 
 use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
 use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
 
@@ -23,7 +24,8 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
+ *
  * @psalm-type CtorArgs    = list{0:ValueSelectorInterface,1?:ArrayLike}
  * @psalm-type ExpectArray = array{selector: mixed, array: mixed, actual: mixed, tag: mixed}
  */

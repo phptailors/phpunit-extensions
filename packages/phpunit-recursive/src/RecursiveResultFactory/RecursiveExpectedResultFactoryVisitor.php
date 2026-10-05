@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\RecursiveResultFactory;
 
 use Tailors\PHPUnit\CircularDependencyException;
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\InternalErrorException;
 use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorStackItemInterface;
 use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorUtils;
@@ -22,7 +23,8 @@ use Tailors\PHPUnit\ResultFactory\ResultFactoryWrapperInterface;
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-type StackItem = RecursiveExpectedResultFactoryStackItem
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ *
+ * @psalm-import-type ArrayLike from TypesInterface
  */
 final class RecursiveExpectedResultFactoryVisitor implements RecursiveExpectedResultFactoryVisitorInterface
 {

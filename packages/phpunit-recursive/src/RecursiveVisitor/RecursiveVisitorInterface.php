@@ -10,6 +10,8 @@
 
 namespace Tailors\PHPUnit\RecursiveVisitor;
 
+use Tailors\PHPUnit\Common\TypesInterface;
+
 /**
  * @internal This interface is not covered by the backward compatibility promise
  *
@@ -17,7 +19,7 @@ namespace Tailors\PHPUnit\RecursiveVisitor;
  *
  * @psalm-template StackItem of RecursiveVisitorStackItemInterface
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
  */
 interface RecursiveVisitorInterface
 {

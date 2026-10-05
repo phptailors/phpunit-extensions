@@ -12,6 +12,7 @@ namespace Tailors\PHPUnit\RecursiveVisitor;
 
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
+use Tailors\PHPUnit\Common\TypesInterface;
 
 /**
  * @small
@@ -22,7 +23,8 @@ use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
+ *
  * @psalm-type StackItem      = DummyRecursiveVisitorStackItem
  * @psalm-type CtorArgClosure = \Closure(ArrayLike,list<StackItem>):bool
  * @psalm-type CtorArg        = bool|CtorArgClosure

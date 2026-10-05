@@ -18,6 +18,7 @@ use PHPUnit\Framework\MockObject\RuntimeException;
 use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use Tailors\PHPUnit\ArraySpec\DummyResultFactoryWrapper;
 use Tailors\PHPUnit\CircularDependencyException;
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Constraint\ConstraintTestCase;
 use Tailors\PHPUnit\ResultFactory\DummyResultFactory;
 
@@ -26,7 +27,8 @@ use Tailors\PHPUnit\ResultFactory\DummyResultFactory;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
+ *
  * @psalm-type CreateConstraintArgs = list{ArrayLike}
  *
  * @psalm-template ConstraintClass of Constraint

@@ -14,6 +14,7 @@ use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\ArraySpec\DummyResultFactoryAndValueSelectorWrapper;
 use Tailors\PHPUnit\ArraySpec\DummyResultFactoryWrapper;
 use Tailors\PHPUnit\ArraySpec\DummyValueSelectorWrapper;
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversalInterface;
 use Tailors\PHPUnit\ResultFactory\DummyResultFactory;
 use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
@@ -27,7 +28,7 @@ use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type ArrayLike from \Tailors\PHPUnit\Common\TypesInterface
+ * @psalm-import-type ArrayLike from TypesInterface
  */
 final class RecursiveResultFactoryTest extends TestCase
 {
