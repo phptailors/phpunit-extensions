@@ -92,6 +92,7 @@ final class MethodSpecFactory implements MethodSpecFactoryInterface
     {
         foreach ($expressions as $offset => $expression) {
             if (preg_match('/^'.$expression.'\b/', $string, $matches)) {
+                /** @psalm-suppress RedundantCastGivenDocblockType */
                 $string = (string) substr($string, strlen($matches[0]));
                 unset($expressions[$offset]);
 
