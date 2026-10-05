@@ -59,8 +59,10 @@ final class ObjectPropertiesEqualTo extends AbstractRecursiveConstraint
 
     /**
      * @psalm-param ArrayLike $expected
+     *
+     * @psalm-return ArrayLike
      */
-    protected static function makeExpectations(iterable $expected): ObjectPropertiesSelection
+    protected static function makeExpectations(iterable $expected): iterable
     {
         return new ObjectPropertiesSelection($expected);
     }

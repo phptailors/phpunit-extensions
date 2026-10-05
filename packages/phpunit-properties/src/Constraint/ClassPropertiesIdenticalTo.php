@@ -59,8 +59,10 @@ final class ClassPropertiesIdenticalTo extends AbstractRecursiveConstraint
 
     /**
      * @psalm-param ArrayLike $expected
+     *
+     * @psalm-return ArrayLike
      */
-    protected static function makeExpectations(iterable $expected): ClassPropertiesSelection
+    protected static function makeExpectations(iterable $expected): iterable
     {
         return new ClassPropertiesSelection($expected);
     }
