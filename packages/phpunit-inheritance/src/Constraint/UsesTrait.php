@@ -11,45 +11,55 @@
 namespace Tailors\PHPUnit\Constraint;
 
 use Tailors\PHPUnit\Inheritance\AbstractInheritanceConstraint;
-use Tailors\PHPUnit\Inheritance\ConstraintImplementationTrait;
+use Tailors\PHPUnit\InvalidArgumentException;
+use Tailors\PHPUnit\InvalidReturnValueException;
+use Tailors\PHPUnit\StringArgumentValidator;
 
 /**
  * Constraint that accepts classes that extend given class.
  */
 final class UsesTrait extends AbstractInheritanceConstraint
 {
-    use ConstraintImplementationTrait;
-
     /**
-     * @var string
-     */
-    private static $verb = 'uses trait';
-
-    /**
-     * @var string
-     */
-    private static $negatedVerb = 'does not use trait';
-
-    /**
-     * @var array
+     * @throws InvalidArgumentException
      *
-     * @psalm-var array{0:callable, 1:string}
+     * @psalm-assert class-string $expected
      */
-    private static $validation = ['trait_exists', 'a trait-string'];
+    public static function create(string $expected): self
+    {
+        (new StringArgumentValidator('trait_exists', 'a trait-string'))->validate(1, $expected);
+
+        return new self($expected);
+    }
+
+    protected function verb(): string
+    {
+        return 'uses trait';
+    }
+
+    protected function negatedVerb(): string
+    {
+        return 'does not use trait';
+    }
 
     /**
-     * @var callable
+     * @throws InvalidReturnValueException
      *
-     * @psalm-var callable
+     * @psalm-return array<string>
      */
-    private static $inheritance = 'class_uses';
+    protected function inheritance(string $class): array
+    {
+        $value = class_uses($class);
 
-    /**
-     * @var array
-     *
-     * @psalm-var array{0:callable, 1:callable}
-     */
-    private static $supports = ['class_exists', 'trait_exists'];
+        self::assertReturnValueIsListOfStrings('class_uses', $value);
+
+        return $value;
+    }
+
+    protected function supports(string $subject): bool
+    {
+        return class_exists($subject) || trait_exists($subject);
+    }
 }
 
 // vim: syntax=php sw=4 ts=4 et:

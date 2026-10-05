@@ -59,7 +59,7 @@ final class HasPregCapturesTest extends TestCase
         $this->expectException(ExpectationFailedException::class);
         $this->expectExceptionMessage($message);
 
-        $constraint->evaluate($actual);
+        $this->assertNull($constraint->evaluate($actual));
     }
 
     /**
@@ -90,7 +90,7 @@ final class HasPregCapturesTest extends TestCase
         $this->expectException(ExpectationFailedException::class);
         $this->expectExceptionMessage($message);
 
-        $constraint->evaluate($actual);
+        $this->assertNull($constraint->evaluate($actual));
     }
 
     /**

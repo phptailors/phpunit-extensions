@@ -15,6 +15,7 @@ use PHPUnit\Framework\Constraint\LogicalNot;
 use PHPUnit\Framework\Constraint\Operator;
 use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use Tailors\PHPUnit\Common\Exporter;
+use Tailors\PHPUnit\InvalidReturnValueException;
 
 /**
  * Abstract base class for inheritance constraints (ExtendsClass,
@@ -60,7 +61,8 @@ abstract class AbstractInheritanceConstraint extends Constraint
         if (is_object($other)) {
             $other = get_class($other);
         }
-        if (!is_string($other) || !$this->supportsValue($other)) {
+
+        if (!is_string($other) || !$this->supports($other)) {
             return false;
         }
 
@@ -102,7 +104,7 @@ abstract class AbstractInheritanceConstraint extends Constraint
     /**
      * Checks if *$subject* may be used as an argument to ``inheritance()``.
      */
-    abstract protected function supportsValue(string $subject): bool;
+    abstract protected function supports(string $subject): bool;
 
     /**
      * Returns a custom string representation of the constraint object when it
@@ -158,6 +160,39 @@ abstract class AbstractInheritanceConstraint extends Constraint
     }
 
     /**
+     * @param mixed $function
+     * @param mixed $value
+     *
+     * @psalm-template ValueType $value
+     *
+     * @param-out ValueType $value
+     *
+     * @psalm-assert array<string> $value
+     *
+     * @throws InvalidReturnValueException
+     *
+     * @psalm-param ValueType $value
+     */
+    final protected static function assertReturnValueIsListOfStrings($function, &$value): void
+    {
+        if (!is_array($value)) {
+            throw InvalidReturnValueException::fromExpectedTypeAndActualValue($function, 'array', $value);
+        }
+
+        $strings = array_filter(
+            $value,
+            /** @param mixed $item */
+            function ($item): bool {
+                return is_string($item);
+            }
+        );
+
+        if (count($strings) < count($value)) {
+            throw InvalidReturnValueException::fromExpectedTypeAndActualValue($function, 'array of strings', $value);
+        }
+    }
+
+    /**
      * Returns short representation of $subject for failureDescription().
      *
      * @param mixed $subject
@@ -168,7 +203,7 @@ abstract class AbstractInheritanceConstraint extends Constraint
     {
         if (is_object($subject)) {
             $subject = 'object '.get_class($subject);
-        } elseif (!is_string($subject) || !$this->supportsValue($subject)) {
+        } elseif (!is_string($subject) || !$this->supports($subject)) {
             $subject = Exporter::export($subject);
         }
 

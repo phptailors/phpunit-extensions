@@ -11,45 +11,55 @@
 namespace Tailors\PHPUnit\Constraint;
 
 use Tailors\PHPUnit\Inheritance\AbstractInheritanceConstraint;
-use Tailors\PHPUnit\Inheritance\ConstraintImplementationTrait;
+use Tailors\PHPUnit\InvalidArgumentException;
+use Tailors\PHPUnit\InvalidReturnValueException;
+use Tailors\PHPUnit\StringArgumentValidator;
 
 /**
  * Constraint that accepts classes that implement given interface.
  */
 final class ImplementsInterface extends AbstractInheritanceConstraint
 {
-    use ConstraintImplementationTrait;
-
     /**
-     * @var string
-     */
-    private static $verb = 'implements interface';
-
-    /**
-     * @var string
-     */
-    private static $negatedVerb = 'does not implement interface';
-
-    /**
-     * @var array
+     * @throws InvalidArgumentException
      *
-     * @psalm-var array{0:callable, 1:string}
+     * @psalm-assert class-string $expected
      */
-    private static $validation = ['interface_exists', 'an interface-string'];
+    public static function create(string $expected): self
+    {
+        (new StringArgumentValidator('interface_exists', 'an interface-string'))->validate(1, $expected);
+
+        return new self($expected);
+    }
+
+    protected function verb(): string
+    {
+        return 'implements interface';
+    }
+
+    protected function negatedVerb(): string
+    {
+        return 'does not implement interface';
+    }
 
     /**
-     * @var callable
+     * @throws InvalidReturnValueException
      *
-     * @psalm-var callable
+     * @psalm-return array<string>
      */
-    private static $inheritance = 'class_implements';
+    protected function inheritance(string $class): array
+    {
+        $value = class_implements($class);
 
-    /**
-     * @var array
-     *
-     * @psalm-var array{0:callable, 1:callable}
-     */
-    private static $supports = ['class_exists', 'interface_exists'];
+        self::assertReturnValueIsListOfStrings('class_implements', $value);
+
+        return $value;
+    }
+
+    protected function supports(string $subject): bool
+    {
+        return class_exists($subject) || interface_exists($subject);
+    }
 }
 
 // vim: syntax=php sw=4 ts=4 et:
