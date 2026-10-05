@@ -603,6 +603,7 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
             $args = $call['args'];
             $node = $args['node'];
             if ($call['return'] && array_key_exists('next', $call)) {
+                $this->assertNotEmpty($stack);
                 $visitor->freeStackItem(array_pop($stack), $stack);
             }
             $this->assertNull($visitor->leave($node, $stack, $call['return']));
@@ -744,6 +745,7 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
             $this->assertNull($visitor->visit($node, $stack, $iter));
 
             if ($iter) {
+                $this->assertNotEmpty($stack);
                 $visitor->freeStackItem(array_pop($stack), $stack);
             }
             ++$i;

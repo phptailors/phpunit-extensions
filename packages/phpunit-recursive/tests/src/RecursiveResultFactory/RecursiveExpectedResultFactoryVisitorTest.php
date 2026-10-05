@@ -453,6 +453,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         foreach (array_reverse($calls) as $call) {
             $args = $call['args'];
             if (array_key_exists('next', $call)) {
+                $this->assertNotEmpty($stack);
                 $visitor->freeStackItem(array_pop($stack), $stack);
             }
             $this->assertNull($visitor->leave($args['node'], $stack, $call['return']));
@@ -618,6 +619,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
             }
             $this->assertNull($visitor->visit($args['node'], $stack, $iter));
             if (array_key_exists('key', $call)) {
+                $this->assertNotEmpty($stack);
                 $visitor->freeStackItem(array_pop($stack), $stack);
             }
         }

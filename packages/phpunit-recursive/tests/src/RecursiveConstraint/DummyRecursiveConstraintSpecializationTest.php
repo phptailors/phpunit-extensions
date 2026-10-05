@@ -48,7 +48,9 @@ final class DummyRecursiveConstraintSpecializationTest extends TestCase
      */
     public function testUsesConstraintSpecializationTrait(): void
     {
-        $this->assertArrayHasKey(RecursiveConstraintSpecializationTrait::class, class_uses(DummyRecursiveConstraintSpecialization::class));
+        $traits = class_uses(DummyRecursiveConstraintSpecialization::class);
+        $this->assertNotFalse($traits);
+        $this->assertArrayHasKey(RecursiveConstraintSpecializationTrait::class, $traits);
     }
 
     /**

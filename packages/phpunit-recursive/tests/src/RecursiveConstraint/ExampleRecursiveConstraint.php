@@ -27,7 +27,7 @@ use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
  *
  * @psalm-import-type ArrayLike from TypesInterface
  */
-class ExampleRecursiveConstraint extends AbstractRecursiveConstraint
+final class ExampleRecursiveConstraint extends AbstractRecursiveConstraint
 {
     use RecursiveConstraintSpecializationTrait;
 

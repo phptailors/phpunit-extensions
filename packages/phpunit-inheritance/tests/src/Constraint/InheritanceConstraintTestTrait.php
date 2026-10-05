@@ -36,6 +36,7 @@ trait InheritanceConstraintTestTrait
      */
     abstract public static function provFailureDescriptionOfCustomUnaryOperator(): iterable;
 
+    /** @psalm-param class-string<\Throwable> $exception */
     abstract public function expectException(string $exception): void;
 
     abstract public function expectExceptionMessage(string $message): void;
