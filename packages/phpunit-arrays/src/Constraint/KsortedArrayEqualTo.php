@@ -10,8 +10,13 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
-use Tailors\PHPUnit\Arrays\AbstractKsortedConstraint;
+use Tailors\PHPUnit\Arrays\KsortedArraySpec;
+use Tailors\PHPUnit\Arrays\ValidateExpectationsTrait;
+use Tailors\PHPUnit\Common\TypesInterface;
+use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\EqualityComparator;
+use Tailors\PHPUnit\RecursiveConstraint\AbstractRecursiveConstraint;
+use Tailors\PHPUnit\RecursiveConstraint\RecursiveConstraintSpecializationTrait;
 
 /**
  * Constraint that accepts arrays equal to specified one when key-sorted.
@@ -27,12 +32,30 @@ use Tailors\PHPUnit\Comparator\EqualityComparator;
  *          'age' => 21,
  *          'name' => 'John',
  *      ], $matcher);
+ *
+ * @psalm-import-type ArrayLike from TypesInterface
  */
-final class KsortedArrayEqualTo extends AbstractKsortedConstraint
+final class KsortedArrayEqualTo extends AbstractRecursiveConstraint
 {
-    public static function create(array $expected, int $flags = SORT_REGULAR): self
+    use RecursiveConstraintSpecializationTrait;
+    use ValidateExpectationsTrait;
+
+    /**
+     * Creates instance of EqualityComparator.
+     */
+    protected static function makeComparator(): ComparatorInterface
     {
-        return new self(new EqualityComparator(), $expected, $flags);
+        return new EqualityComparator();
+    }
+
+    /**
+     * @psalm-param ArrayLike $expected
+     *
+     * @psalm-return ArrayLike
+     */
+    protected static function makeExpectations(iterable $expected): iterable
+    {
+        return new KsortedArraySpec($expected);
     }
 }
 
