@@ -26,6 +26,17 @@ use Tailors\PHPUnit\ResultFactory\AbstractArrayResultFactory;
 final class KsortedArrayFactory extends AbstractArrayResultFactory
 {
     /**
+     * @var int $flags
+     *
+     * @psalm-readonly
+     */
+    private $flags;
+
+    public function __construct(int $flags = SORT_REGULAR)
+    {
+        $this->flags = $flags;
+    }
+    /**
      * @psalm-param ArrayLike $input
      *
      * @psalm-return ResultInterface&\Traversable
@@ -34,7 +45,7 @@ final class KsortedArrayFactory extends AbstractArrayResultFactory
     {
         $array = is_array($input) ? $input : iterator_to_array($input);
 
-        ksort($array);
+        ksort($array, $this->flags);
 
         return $actual ? new ActualKsortedArray($array) : new ExpectedKsortedArray($array);
     }

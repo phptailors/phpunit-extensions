@@ -29,9 +29,9 @@ final class KsortedArraySpec extends AbstractArraySpec
     /**
      * @psalm-param ArrayLike $array
      */
-    public function __construct(iterable $array)
+    public function __construct(iterable $array, int $flags = SORT_REGULAR)
     {
-        parent::__construct(new KsortedArrayFactory(), $array);
+        parent::__construct(new KsortedArrayFactory($flags), $array);
     }
 }
 
