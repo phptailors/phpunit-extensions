@@ -47,6 +47,8 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
  *
  * @psalm-type EvaluateArgs   = list{0:mixed, 1?: string, 2?: bool}
  * @psalm-type EvaluateExpect = array{return?: bool|null, exception?: class-string<\Exception>, message?: string}
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 final class AbstractRecursiveConstraintTest extends TestCase
 {

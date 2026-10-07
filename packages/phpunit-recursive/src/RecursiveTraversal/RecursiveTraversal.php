@@ -23,6 +23,8 @@ use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorStackItemInterface;
  * @psalm-template VisitorStackItem of RecursiveVisitorStackItemInterface
  *
  * @psalm-import-type ArrayLike from TypesInterface
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 final class RecursiveTraversal implements RecursiveTraversalInterface
 {

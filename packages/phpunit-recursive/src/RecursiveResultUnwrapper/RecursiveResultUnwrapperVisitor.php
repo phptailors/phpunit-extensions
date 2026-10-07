@@ -28,6 +28,8 @@ use Tailors\PHPUnit\Result\ResultInterface;
  * @psalm-type StackItem = RecursiveResultUnwrapperStackItem
  *
  * @psalm-import-type ArrayLike from TypesInterface
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 final class RecursiveResultUnwrapperVisitor implements RecursiveResultUnwrapperVisitorInterface, StaticTagInterface
 {

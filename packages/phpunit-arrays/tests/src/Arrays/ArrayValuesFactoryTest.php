@@ -27,6 +27,8 @@ use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
  * @psalm-import-type ArrayLike from TypesInterface
  *
  * @psalm-type GetResultExpectArray = array{class: class-string, array: mixed}
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 final class ArrayValuesFactoryTest extends TestCase
 {

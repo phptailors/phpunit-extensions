@@ -15,6 +15,8 @@ use Tailors\PHPUnit\Properties\ObjectPropertiesSelection;
 
 /**
  * @psalm-import-type ArrayLike from TypesInterface
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 trait ObjectPropertiesTrait
 {

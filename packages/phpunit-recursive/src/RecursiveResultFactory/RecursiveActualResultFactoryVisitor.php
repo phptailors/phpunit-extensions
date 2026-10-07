@@ -27,6 +27,8 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  * @psalm-type StackItem = RecursiveActualResultFactoryStackItem
  *
  * @psalm-import-type ArrayLike from TypesInterface
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 final class RecursiveActualResultFactoryVisitor implements RecursiveActualResultFactoryVisitorInterface
 {

@@ -25,6 +25,8 @@ use Tailors\PHPUnit\Constraint\ProvArrayValuesTrait;
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-import-type ArrayLike from TypesInterface
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 final class ArrayValuesIdenticalToTraitTest extends TestCase
 {

@@ -25,6 +25,8 @@ use Tailors\PHPUnit\Common\TypesInterface;
  *
  * @psalm-import-type ArrayLike from TypesInterface
  * @psalm-import-type CtorArgs from ClassPropertiesTestCase
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 final class ExpectedClassPropertiesTest extends ClassPropertiesTestCase
 {

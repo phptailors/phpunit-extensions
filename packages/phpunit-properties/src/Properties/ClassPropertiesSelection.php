@@ -24,6 +24,8 @@ use Tailors\PHPUnit\ValueSelector\ClassPropertySelector;
  * @psalm-import-type ArrayLike from TypesInterface
  *
  * @template-extends AbstractArraySelectionSpec<ArrayLike, class-string>
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 final class ClassPropertiesSelection extends AbstractArraySelectionSpec
 {

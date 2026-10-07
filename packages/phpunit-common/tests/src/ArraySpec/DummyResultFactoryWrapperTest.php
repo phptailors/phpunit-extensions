@@ -26,6 +26,8 @@ use Tailors\PHPUnit\ResultFactory\ResultFactoryWrapperInterface;
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-import-type ArrayLike from TypesInterface
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 final class DummyResultFactoryWrapperTest extends TestCase
 {

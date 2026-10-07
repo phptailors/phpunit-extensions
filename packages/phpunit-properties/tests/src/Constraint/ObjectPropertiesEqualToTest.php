@@ -32,6 +32,8 @@ use Tailors\PHPUnit\InvalidArgumentException;
  * @psalm-type CreateConstraintArgs = list{ArrayLike}
  *
  * @template-extends PropertiesConstraintTestCase<ObjectPropertiesEqualTo, list{ArrayLike}>
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 final class ObjectPropertiesEqualToTest extends PropertiesConstraintTestCase
 {

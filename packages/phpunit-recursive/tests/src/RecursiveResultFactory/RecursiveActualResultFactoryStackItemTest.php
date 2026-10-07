@@ -28,6 +28,8 @@ use Tailors\PHPUnit\Common\TypesInterface;
  * @psalm-type CtorArgs   = list{0: ArrayLike, 1: array-key, 2: SubjectResultCouple}
  * @psalm-type CtorExpect = array{node: mixed, key: mixed, couple: mixed}
  * @psalm-type SetExpect  = array{node: mixed, key: mixed, subject: mixed, result: mixed}
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 final class RecursiveActualResultFactoryStackItemTest extends TestCase
 {

@@ -23,6 +23,8 @@ use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
  * @psalm-import-type ArrayLike from TypesInterface
  *
  * @template-extends AbstractArraySpec<SupportedInput>
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 final class DummyAbstractArraySpec extends AbstractArraySpec
 {

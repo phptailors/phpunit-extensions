@@ -26,6 +26,8 @@ use Tailors\PHPUnit\RecursiveVisitor\DummyRecursiveVisitor;
  * @psalm-import-type ArrayLike from TypesInterface
  *
  * @psalm-type StackItem = DummyRecursiveVisitorStackItem
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 final class RecursiveTraversalTest extends TestCase
 {

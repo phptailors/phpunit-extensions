@@ -19,6 +19,8 @@ use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorStackItemInterface;
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-import-type ArrayLike from TypesInterface
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 final class RecursiveExpectedResultFactoryStackItem implements RecursiveVisitorStackItemInterface
 {

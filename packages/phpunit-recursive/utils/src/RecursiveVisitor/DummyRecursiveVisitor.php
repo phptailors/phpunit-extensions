@@ -24,6 +24,8 @@ use Tailors\PHPUnit\Common\TypesInterface;
  * @psalm-type TraceItem = array{func: string, node: mixed, key?: array-key, path: list<array-key>}
  * @psalm-type Trace     = list<TraceItem>
  * @psalm-type StackItem = DummyRecursiveVisitorStackItem
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 final class DummyRecursiveVisitor implements RecursiveVisitorInterface
 {

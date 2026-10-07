@@ -29,6 +29,8 @@ use Tailors\PHPUnit\Constraint\ProvObjectPropertiesTrait;
  * @psalm-import-type ArrayLike from TypesInterface
  *
  * @psalm-type CreateConstraintArgs = list{ArrayLike}
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 final class ObjectPropertiesIdenticalToTraitTest extends TestCase
 {

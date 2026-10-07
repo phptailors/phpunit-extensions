@@ -30,6 +30,8 @@ use Tailors\PHPUnit\Result\ResultInterface;
  *
  * @psalm-type CtorArgs      = list{0?:?non-falsy-string,1?:?\Closure(iterable<array-key,mixed>):array}
  * @psalm-type GetResultArgs = list{0:bool, 1:ArrayLike}
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 final class DummyArrayResultFactoryTest extends TestCase
 {

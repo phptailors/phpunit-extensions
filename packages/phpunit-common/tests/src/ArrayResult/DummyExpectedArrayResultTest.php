@@ -28,6 +28,8 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
  *
  * @psalm-type CtorArgs    = list{0:ValueSelectorInterface,1?:ArrayLike}
  * @psalm-type ExpectArray = array{selector: mixed, array: mixed, actual: mixed, tag: mixed}
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 final class DummyExpectedArrayResultTest extends TestCase
 {

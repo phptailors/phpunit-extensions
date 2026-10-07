@@ -30,6 +30,8 @@ use Tailors\PHPUnit\Common\TypesInterface;
  * @psalm-type CtorArg        = bool|CtorArgClosure
  * @psalm-type CtorArgs       = list{0?: CtorArg, 1?: CtorArg}
  * @psalm-type Expect         = array{enter: mixed, cycle: mixed}
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 final class DummyRecursiveVisitorTest extends TestCase
 {

@@ -26,6 +26,8 @@ use Tailors\PHPUnit\Common\TypesInterface;
  * @psalm-import-type ArrayLike from TypesInterface
  *
  * @psalm-type ArrayValuesArgs = list{ArrayLike}
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 final class ArrayValuesTraitTest extends TestCase
 {

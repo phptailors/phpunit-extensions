@@ -28,6 +28,8 @@ use Tailors\PHPUnit\Result\ResultInterface;
  *
  * @psalm-type CtorArgs    = list{0:bool,1?:ArrayLike,2?:null|string}
  * @psalm-type ExpectArray = array{actual: mixed, array: mixed}
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 final class DummyUntaggedArrayResultTest extends TestCase
 {

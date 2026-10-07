@@ -26,6 +26,8 @@ use Tailors\PHPUnit\ResultFactory\ResultFactoryWrapperInterface;
  * @template-implements ResultFactoryWrapperInterface<SupportedInput>
  *
  * @template-extends \ArrayObject<array-key, mixed>
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 abstract class AbstractArraySpec extends \ArrayObject implements ResultFactoryWrapperInterface
 {

@@ -32,6 +32,8 @@ use Tailors\PHPUnit\RecursiveConstraint\RecursiveConstraintTestCase;
  * @psalm-type CreateConstraintArgs = list{ArrayLike}
  *
  * @template-extends RecursiveConstraintTestCase<ArrayValuesIdenticalTo>
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 final class ArrayValuesIdenticalToTest extends RecursiveConstraintTestCase
 {

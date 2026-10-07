@@ -24,6 +24,8 @@ use Tailors\PHPUnit\Result\ResultInterface;
  * @psalm-type SupportedInput = iterable<array-key, mixed>
  *
  * @template-implements ResultFactoryInterface<ArrayLike>
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 abstract class AbstractArrayResultFactory implements ResultFactoryInterface
 {

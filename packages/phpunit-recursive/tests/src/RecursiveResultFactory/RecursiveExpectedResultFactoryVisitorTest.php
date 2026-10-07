@@ -39,6 +39,8 @@ use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
  * @psalm-type StackItem     = RecursiveExpectedResultFactoryStackItem
  * @psalm-type EnterTestCall = array{args: array{node: ArrayLike}, return: bool, next?: array-key}
  * @psalm-type VisitTestCall = array{args: array{node: mixed, iter?:bool}, key?: array-key}
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
 {

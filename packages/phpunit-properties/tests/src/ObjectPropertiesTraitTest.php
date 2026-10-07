@@ -26,6 +26,8 @@ use Tailors\PHPUnit\Properties\ObjectPropertiesSelection;
  * @psalm-import-type ArrayLike from TypesInterface
  *
  * @psalm-type ObjectPropertiesArgs = list{0: ArrayLike}
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 final class ObjectPropertiesTraitTest extends TestCase
 {

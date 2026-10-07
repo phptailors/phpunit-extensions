@@ -27,6 +27,8 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  * @template-extends \ArrayObject<array-key,mixed>
  *
  * @template-implements ValueSelectorWrapperInterface<SupportedSubject>
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 final class DummyExpectedArrayResult extends \ArrayObject implements ResultInterface, ValueSelectorWrapperInterface
 {

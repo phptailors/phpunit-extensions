@@ -30,6 +30,8 @@ use Tailors\PHPUnit\InvalidArgumentException;
  * @psalm-type CreateConstraintArgs = list{ArrayLike}
  *
  * @template-extends RecursiveConstraintTestCase<ExampleRecursiveConstraint>
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 final class RecursiveConstraintTestCaseTest extends RecursiveConstraintTestCase
 {

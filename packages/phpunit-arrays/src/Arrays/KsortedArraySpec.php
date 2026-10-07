@@ -21,6 +21,8 @@ use Tailors\PHPUnit\Common\TypesInterface;
  * @psalm-import-type ArrayLike from TypesInterface
  *
  * @template-extends AbstractArraySpec<ArrayLike>
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 final class KsortedArraySpec extends AbstractArraySpec
 {

@@ -34,6 +34,8 @@ use Tailors\PHPUnit\ResultFactory\DummyResultFactory;
  * @psalm-template ConstraintClass of Constraint
  *
  * @template-extends ConstraintTestCase<ConstraintClass, list{ArrayLike}>
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 abstract class RecursiveConstraintTestCase extends ConstraintTestCase
 {

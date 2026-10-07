@@ -40,6 +40,8 @@ use Tailors\PHPUnit\Result\ResultInterface;
  * @psalm-type CycleTestCall = array{args: array{node: ArrayLike, stack: list<StackItem>}, return: mixed}
  * @psalm-type VisitTestCall = array{args: array{node: mixed}, key?: array-key}
  * @psalm-type EndTestCall   = array{args: array{}}
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 final class RecursiveResultUnwrapperVisitorTest extends TestCase
 {

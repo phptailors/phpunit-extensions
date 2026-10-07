@@ -22,6 +22,8 @@ use Tailors\PHPUnit\ValueSelector\ArrayValueSelector;
  * @psalm-import-type ArrayLike from TypesInterface
  *
  * @template-extends AbstractArraySelectionSpec<ArrayLike, array|\ArrayAccess>
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 final class ArrayValuesSelection extends AbstractArraySelectionSpec
 {

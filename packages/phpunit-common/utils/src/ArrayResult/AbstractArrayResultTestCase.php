@@ -27,6 +27,8 @@ use Tailors\PHPUnit\Result\ResultInterface;
  * @psalm-import-type ArrayLike from TypesInterface
  *
  * @psalm-type CtorArgs = list{0?:iterable<array-key, mixed>}
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 abstract class AbstractArrayResultTestCase extends TestCase
 {

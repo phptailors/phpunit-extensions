@@ -20,6 +20,8 @@ use Tailors\PHPUnit\Common\TypesInterface;
  * @psalm-import-type ArrayLike from TypesInterface
  *
  * @psalm-type CreateConstraintArgs = list{0: array, 1?: int}
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 trait ProvKsortedArrayTrait
 {

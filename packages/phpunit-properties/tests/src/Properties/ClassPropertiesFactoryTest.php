@@ -30,6 +30,8 @@ use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
  *                                  class: class-string,
  *                                  array: mixed
  *                                  }
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 final class ClassPropertiesFactoryTest extends TestCase
 {

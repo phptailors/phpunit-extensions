@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\Arrays;
 
 use Tailors\PHPUnit\Constraint\ConstraintTestCase;
+use Tailors\PHPUnit\RecursiveConstraint\AbstractRecursiveConstraint;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -19,7 +20,7 @@ use Tailors\PHPUnit\Constraint\ConstraintTestCase;
  *
  * @psalm-type CreateConstraintArgs = list{0: array, 1?: int}
  *
- * @psalm-template ConstraintClass of AbstractKsortedConstraint
+ * @psalm-template ConstraintClass of AbstractRecursiveConstraint
  *
  * @template-extends ConstraintTestCase<ConstraintClass, list{0: array, 1?: int}>
  */

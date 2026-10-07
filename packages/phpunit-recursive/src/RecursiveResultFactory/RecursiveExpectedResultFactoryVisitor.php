@@ -25,6 +25,8 @@ use Tailors\PHPUnit\ResultFactory\ResultFactoryWrapperInterface;
  * @psalm-type StackItem = RecursiveExpectedResultFactoryStackItem
  *
  * @psalm-import-type ArrayLike from TypesInterface
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 final class RecursiveExpectedResultFactoryVisitor implements RecursiveExpectedResultFactoryVisitorInterface
 {

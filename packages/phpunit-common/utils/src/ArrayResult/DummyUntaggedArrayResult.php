@@ -21,6 +21,8 @@ use Tailors\PHPUnit\Result\ResultInterface;
  * @psalm-import-type ArrayLike from TypesInterface
  *
  * @template-extends \ArrayObject<array-key,mixed>
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 final class DummyUntaggedArrayResult extends \ArrayObject implements ResultInterface
 {
