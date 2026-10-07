@@ -12,6 +12,7 @@ namespace Tailors\PHPUnit\Constraint;
 
 use PHPUnit\Framework\Constraint\Constraint;
 use Tailors\PHPUnit\Arrays\KsortedConstraintTestCase;
+use Tailors\PHPUnit\InvalidArgumentException;
 
 /**
  * @small
@@ -50,6 +51,8 @@ final class KsortedArrayEqualToTest extends KsortedConstraintTestCase
     }
 
     /**
+     * @throws InvalidArgumentException
+     *
      * @psalm-param CreateConstraintArgs $args
      */
     public static function createConstraint(array $args): Constraint
