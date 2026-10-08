@@ -1,8 +1,8 @@
-PHPUnit 9.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 9.6.33 by Sebastian Bergmann and contributors.
 
 .F                                                                  2 / 2 (100%)
 
-Time: 00:00.002, Memory: 4.00 MB
+Time: 00:00.012, Memory: 6.00 MB
 
 There was 1 failure:
 
@@ -11,7 +11,8 @@ Failed asserting that array is an array identical to specified one when ksorted.
 --- Expected
 +++ Actual
 @@ @@
- Array &0 (
+-Tailors\PHPUnit\Arrays\ExpectedKsortedArray Object &00000000206554ab0000000042021a14 (
++Tailors\PHPUnit\Arrays\ActualKsortedArray Object &00000000206554bf0000000042021a14 (
      'foo' => 'FOO'
 -    'int' => 123
 -    1 => null
@@ -20,6 +21,7 @@ Failed asserting that array is an array identical to specified one when ksorted.
  )
 
 AssertKsortedArrayIdenticalToTest.php:19
+phpvfscomposer:///home/ptomulik/projects/phptailors/phpunit-extensions/refact-1.1/vendor/phpunit/phpunit/phpunit:106
 
 FAILURES!
 Tests: 2, Assertions: 2, Failures: 1.

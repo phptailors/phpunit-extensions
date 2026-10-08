@@ -11,6 +11,8 @@
 namespace Tailors\PHPUnit\ArraySpec;
 
 use Tailors\PHPUnit\Common\TypesInterface;
+use Tailors\PHPUnit\Comparator\ComparatorInterface;
+use Tailors\PHPUnit\Predicate\ComparisonComplementInterface;
 use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
 use Tailors\PHPUnit\ResultFactory\ResultFactoryWrapperInterface;
 use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
@@ -33,7 +35,7 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
-final class DummyResultFactoryAndValueSelectorWrapper extends \ArrayObject implements ResultFactoryWrapperInterface, ValueSelectorWrapperInterface
+final class DummyResultFactoryAndValueSelectorWrapper extends \ArrayObject implements ResultFactoryWrapperInterface, ValueSelectorWrapperInterface, ComparisonComplementInterface
 {
     /**
      * @var ResultFactoryInterface
@@ -88,6 +90,11 @@ final class DummyResultFactoryAndValueSelectorWrapper extends \ArrayObject imple
     public function getValueSelector(): ValueSelectorInterface
     {
         return $this->valueSelector;
+    }
+
+    public function complement(ComparatorInterface $comparator): string
+    {
+        return sprintf('%s with %s %s specified', $this->valueSelector->subject(), $this->valueSelector->selectable(), $comparator->adjective());
     }
 }
 

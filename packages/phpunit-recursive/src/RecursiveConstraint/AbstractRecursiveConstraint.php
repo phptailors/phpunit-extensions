@@ -20,6 +20,7 @@ use Tailors\PHPUnit\Common\Exporter;
 use Tailors\PHPUnit\Common\ShortFailureDescriptionTrait;
 use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
+use Tailors\PHPUnit\Predicate\ComparisonComplementInterface;
 use Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactoryInterface;
 use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapperInterface;
 use Tailors\PHPUnit\Result\ResultInterface;
@@ -82,15 +83,8 @@ abstract class AbstractRecursiveConstraint extends Constraint
      */
     final public function toString(): string
     {
-        if ($this->expectations instanceof ValueSelectorWrapperInterface) {
-            $valueSelector = $this->expectations->getValueSelector();
-
-            return sprintf(
-                'is %s with %s %s specified',
-                $valueSelector->subject(),
-                $valueSelector->selectable(),
-                $this->comparator->adjective()
-            );
+        if ($this->expectations instanceof ComparisonComplementInterface) {
+            return sprintf('is %s', $this->expectations->complement($this->comparator));
         }
 
         return 'satisfies the recursive constraint';
@@ -160,15 +154,8 @@ abstract class AbstractRecursiveConstraint extends Constraint
     final protected function toStringInContext(Operator $operator, $role): string
     {
         if ($operator instanceof LogicalNot) {
-            if ($this->expectations instanceof ValueSelectorWrapperInterface) {
-                $valueSelector = $this->expectations->getValueSelector();
-
-                return sprintf(
-                    'fails to be %s with %s %s specified',
-                    $valueSelector->subject(),
-                    $valueSelector->selectable(),
-                    $this->comparator->adjective()
-                );
+            if ($this->expectations instanceof ComparisonComplementInterface) {
+                return sprintf('fails to be %s', $this->expectations->complement($this->comparator));
             }
 
             return 'fails to satisfy the recursive constraint';

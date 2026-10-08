@@ -12,6 +12,8 @@ namespace Tailors\PHPUnit\Arrays;
 
 use Tailors\PHPUnit\ArraySpec\AbstractArraySpec;
 use Tailors\PHPUnit\Common\TypesInterface;
+use Tailors\PHPUnit\Comparator\ComparatorInterface;
+use Tailors\PHPUnit\Predicate\ComparisonComplementInterface;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -24,7 +26,7 @@ use Tailors\PHPUnit\Common\TypesInterface;
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
-final class KsortedArraySpec extends AbstractArraySpec
+final class KsortedArraySpec extends AbstractArraySpec implements ComparisonComplementInterface
 {
     /**
      * @psalm-param ArrayLike $array
@@ -32,6 +34,11 @@ final class KsortedArraySpec extends AbstractArraySpec
     public function __construct(iterable $array, int $flags = SORT_REGULAR)
     {
         parent::__construct(new KsortedArrayFactory($flags), $array);
+    }
+
+    public function complement(ComparatorInterface $comparator): string
+    {
+        return sprintf('an array %s specified one when ksorted', $comparator->adjective());
     }
 }
 
