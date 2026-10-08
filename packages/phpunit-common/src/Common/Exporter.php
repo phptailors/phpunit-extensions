@@ -13,6 +13,7 @@ namespace Tailors\PHPUnit\Common;
 use SebastianBergmann\Exporter\Exporter as SebastianExporter;
 use SebastianBergmann\RecursionContext\Context;
 use SebastianBergmann\RecursionContext\InvalidArgumentException;
+use Tailors\PHPUnit\Result\ResultInterface;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -38,11 +39,11 @@ final class Exporter
              * @psalm-suppress InternalMethod
              * @psalm-suppress MixedReturnStatement
              */
-            return \PHPUnit\Util\Exporter::export($value, $exportObjects);
+            return self::captureResultObjects(\PHPUnit\Util\Exporter::export($value, $exportObjects));
         }
 
         if (self::isExportable($value) || $exportObjects) {
-            return (new SebastianExporter())->export($value);
+            return self::captureResultObjects((new SebastianExporter())->export($value));
         }
 
         return '{enable export of objects to see this value}';
@@ -87,6 +88,34 @@ final class Exporter
 
         return true;
         // @codeCoverageIgnoreEnd
+    }
+
+    private static function captureResultObjects(string $output): string
+    {
+        $counters = [];
+
+        return preg_replace_callback(
+            '/^(\s*)(Tailors\\\\PHPUnit(?:\\\\\w+)*\\\\(?:Expected|Actual)(\w+)) Object (?:#\d+|&[0-9a-fA-f]+)/m',
+            function (array $matches) use (&$counters): string {
+                if (!class_exists($matches[2])) {
+                    return $matches[0];
+                }
+
+                $class = $matches[2];
+                $implements = class_implements($class);
+                if (null === ($implements[ResultInterface::class] ?? null)) {
+                    return $matches[0];
+                }
+
+                if (!array_key_exists($class, $counters)) {
+                    $counters[$class] = 0;
+                }
+
+                $level = $counters[$class]++;
+                return $matches[1].$matches[3].' #'.((string) $level);
+            },
+            $output
+        );
     }
 }
 
