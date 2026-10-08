@@ -5,7 +5,7 @@ Configuration: phpunit.xml
 
 .F                                                                  2 / 2 (100%)
 
-Time: 00:00.011, Memory: 10.00 MB
+Time: 00:00.012, Memory: 10.00 MB
 
 There was 1 failure:
 
@@ -14,15 +14,14 @@ Failed asserting that object objectPropertiesEqualToRecursiveTest is an object w
 --- Expected
 +++ Actual
 @@ @@
--Tailors\PHPUnit\Properties\ExpectedObjectProperties Object #473 (
+ ObjectProperties #0 (
 -    'attribute' => '123',
 -    'nested()' => Array &0 [
 -        'getMessage()' => 'FOO',
 -        'getCode()' => '456',
 -    ],
-+Tailors\PHPUnit\Properties\ActualObjectProperties Object #464 (
 +    'attribute' => 123,
-+    'nested()' => Exception Object #474 (
++    'nested()' => Exception Object #480 (
 +        'message' => 'FOO',
 +        'string' => '',
 +        'code' => 456,

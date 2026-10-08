@@ -5,7 +5,7 @@ Configuration: phpunit.xml
 
 .F                                                                  2 / 2 (100%)
 
-Time: 00:00.010, Memory: 10.00 MB
+Time: 00:00.012, Memory: 10.00 MB
 
 There was 1 failure:
 
@@ -14,12 +14,11 @@ Failed asserting that AssertClassPropertiesEqualToRecursiveTest is a class with 
 --- Expected
 +++ Actual
 @@ @@
--Tailors\PHPUnit\Properties\ExpectedClassProperties Object #464 (
+ ClassProperties #0 (
 -    'attribute' => '123',
 -    'nested' => Array &0 [
 -        'other' => '321',
 -    ],
-+Tailors\PHPUnit\Properties\ActualClassProperties Object #20 (
 +    'attribute' => 123,
 +    'nested' => 'AssertClassPropertiesEqualToRecursiveTest',
  )

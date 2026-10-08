@@ -5,7 +5,7 @@ Configuration: phpunit.xml
 
 .F                                                                  2 / 2 (100%)
 
-Time: 00:00.010, Memory: 10.00 MB
+Time: 00:00.011, Memory: 10.00 MB
 
 There was 1 failure:
 
@@ -14,10 +14,9 @@ Failed asserting that object AssertObjectPropertiesEqualToTest is an object with
 --- Expected
 +++ Actual
 @@ @@
--Tailors\PHPUnit\Properties\ExpectedObjectProperties Object #427 (
+ ObjectProperties #0 (
 -    'attribute' => '123',
 -    'getValue()' => null,
-+Tailors\PHPUnit\Properties\ActualObjectProperties Object #445 (
 +    'attribute' => 123,
 +    'getValue()' => 321,
  )

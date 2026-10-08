@@ -5,7 +5,7 @@ Configuration: phpunit.xml
 
 .F                                                                  2 / 2 (100%)
 
-Time: 00:00.010, Memory: 10.00 MB
+Time: 00:00.011, Memory: 10.00 MB
 
 There was 1 failure:
 
@@ -14,8 +14,7 @@ Failed asserting that array is an array or ArrayAccess with values identical to 
 --- Expected
 +++ Actual
 @@ @@
--Tailors\PHPUnit\Arrays\ExpectedArrayValues Object #419 (
-+Tailors\PHPUnit\Arrays\ActualArrayValues Object #437 (
+ ArrayValues #0 (
      'int' => 123,
 -    1 => null,
 +    1 => '',

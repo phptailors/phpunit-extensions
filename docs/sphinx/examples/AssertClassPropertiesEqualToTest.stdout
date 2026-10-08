@@ -14,10 +14,9 @@ Failed asserting that AssertClassPropertiesEqualToTest is a class with propertie
 --- Expected
 +++ Actual
 @@ @@
--Tailors\PHPUnit\Properties\ExpectedClassProperties Object #448 (
+ ClassProperties #0 (
 -    'attribute' => '123',
 -    'getValue()' => null,
-+Tailors\PHPUnit\Properties\ActualClassProperties Object #466 (
 +    'attribute' => 123,
 +    'getValue()' => 321,
  )
