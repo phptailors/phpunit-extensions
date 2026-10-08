@@ -7,7 +7,7 @@ Time: 00:00.003, Memory: 6.00 MB
 There was 1 failure:
 
 1) objectPropertiesEqualToTest::testFailure
-Failed asserting that object objectPropertiesEqualToTest is an object with properties equal to specified.
+Failed asserting that object objectPropertiesEqualToTest is an object with properties equal to the specified ones.
 --- Expected
 +++ Actual
 @@ @@

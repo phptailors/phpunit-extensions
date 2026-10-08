@@ -11,14 +11,11 @@
 namespace Tailors\PHPUnit\Arrays;
 
 use PHPUnit\Framework\TestCase;
-use Tailors\PHPUnit\ArraySpec\AbstractArraySelectionSpec;
 use Tailors\PHPUnit\ArraySpec\AbstractArraySpec;
 use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Comparator\DummyComparator;
 use Tailors\PHPUnit\Predicate\ComparatorAwareComplementInterface;
 use Tailors\PHPUnit\ResultFactory\ResultFactoryWrapperInterface;
-use Tailors\PHPUnit\ValueSelector\ArrayValueSelector;
-use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
 
 /**
  * @small
@@ -71,31 +68,31 @@ final class KsortedArraySpecTest extends TestCase
     public static function provKsortedArraySpec(): iterable
     {
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctorArgs' => [['a' => 'A']],
+            'ctorArgs'     => [['a' => 'A']],
             'factoryInput' => ['b' => 'X', 'a' => 'Y'],
             'ksortedInput' => ['a' => 'Y', 'b' => 'X'],
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctorArgs' => [new \ArrayObject(['a' => 'A'])],
+            'ctorArgs'     => [new \ArrayObject(['a' => 'A'])],
             'factoryInput' => new \ArrayObject(['b' => 'X', 'a' => 'Y']),
             'ksortedInput' => ['a' => 'Y', 'b' => 'X'],
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctorArgs' => [['a' => 'A']],
+            'ctorArgs'     => [['a' => 'A']],
             'factoryInput' => new \ArrayObject(['b' => 'X', 'a' => 'Y']),
             'ksortedInput' => ['a' => 'Y', 'b' => 'X'],
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctorArgs' => [new \ArrayObject(['a' => 'A'])],
+            'ctorArgs'     => [new \ArrayObject(['a' => 'A'])],
             'factoryInput' => ['b' => 'X', 'a' => 'Y'],
             'ksortedInput' => ['a' => 'Y', 'b' => 'X'],
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctorArgs' => [['a' => 'A'], SORT_NUMERIC],
+            'ctorArgs'     => [['a' => 'A'], SORT_NUMERIC],
             'factoryInput' => ['b' => 'X', 'a' => 'Y', 2 => 'U', 0 => 'V'],
             'ksortedInput' => ['b' => 'X', 'a' => 'Y', 0 => 'V', 2 => 'U'],
         ];
@@ -106,7 +103,7 @@ final class KsortedArraySpecTest extends TestCase
      *
      * @param mixed $ksortedInput
      *
-     * @psalm-param CtorArgs $ctorArgs
+     * @psalm-param CtorArgs  $ctorArgs
      * @psalm-param ArrayLike $factoryInput
      *
      * @psalm-suppress MissingThrowsDocblock
@@ -132,7 +129,7 @@ final class KsortedArraySpecTest extends TestCase
         $arraySpec = new KsortedArraySpec([]);
         $comparator = new DummyComparator(false, 'similar to');
 
-        $this->assertSame('an array similar to specified one when ksorted', $arraySpec->complement($comparator));
+        $this->assertSame('an array similar to the specified one when ksorted', $arraySpec->complement($comparator));
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

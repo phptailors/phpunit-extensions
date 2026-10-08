@@ -7,7 +7,7 @@ Time: 00:00.005, Memory: 6.00 MB
 There was 1 failure:
 
 1) classPropertiesIdenticalToRecursiveTest::testFailure
-Failed asserting that classPropertiesIdenticalToRecursiveTest is a class with properties identical to specified.
+Failed asserting that classPropertiesIdenticalToRecursiveTest is a class with properties identical to the specified ones.
 --- Expected
 +++ Actual
 @@ @@

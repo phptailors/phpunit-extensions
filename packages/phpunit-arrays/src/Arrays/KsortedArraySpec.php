@@ -38,7 +38,7 @@ final class KsortedArraySpec extends AbstractArraySpec implements ComparatorAwar
 
     public function complement(ComparatorInterface $comparator): string
     {
-        return sprintf('an array %s specified one when ksorted', $comparator->adjective());
+        return sprintf('an array %s the specified one when ksorted', $comparator->adjective());
     }
 }
 

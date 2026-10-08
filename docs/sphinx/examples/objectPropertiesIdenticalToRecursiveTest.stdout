@@ -10,7 +10,7 @@ Time: 00:00.011, Memory: 10.00 MB
 There was 1 failure:
 
 1) objectPropertiesIdenticalToRecursiveTest::testFailure
-Failed asserting that object objectPropertiesIdenticalToRecursiveTest is an object with properties identical to specified.
+Failed asserting that object objectPropertiesIdenticalToRecursiveTest is an object with properties identical to the specified ones.
 --- Expected
 +++ Actual
 @@ @@

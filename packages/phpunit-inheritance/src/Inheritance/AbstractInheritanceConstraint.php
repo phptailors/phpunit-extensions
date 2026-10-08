@@ -15,7 +15,6 @@ use PHPUnit\Framework\Constraint\LogicalNot;
 use PHPUnit\Framework\Constraint\Operator;
 use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use Tailors\PHPUnit\Common\Exporter;
-use Tailors\PHPUnit\InvalidReturnValueException;
 
 /**
  * Abstract base class for inheritance constraints (ExtendsClass,

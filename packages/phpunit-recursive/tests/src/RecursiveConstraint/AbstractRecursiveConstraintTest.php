@@ -19,6 +19,7 @@ use Tailors\PHPUnit\ArraySpec\DummyResultFactoryWrapper;
 use Tailors\PHPUnit\ArraySpec\DummyValueSelectorWrapper;
 use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
+use Tailors\PHPUnit\Comparator\DummyComparator;
 use Tailors\PHPUnit\Comparator\EqualityComparator;
 use Tailors\PHPUnit\Comparator\IdentityComparator;
 use Tailors\PHPUnit\RecursiveResultFactory\RecursiveActualResultFactoryVisitor;
@@ -32,7 +33,6 @@ use Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversal;
 use Tailors\PHPUnit\ResultFactory\DummyArrayResultFactory;
 use Tailors\PHPUnit\ResultFactory\DummyResultFactory;
 use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
-use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
 
 /**
  * @small
@@ -187,30 +187,15 @@ final class AbstractRecursiveConstraintTest extends TestCase
      */
     public function testToString(): void
     {
-        $comparator = $this->createMock(ComparatorInterface::class);
+        $comparator = new DummyComparator(false, 'having colors similar to');
 
-        $valueSelector = $this->createMock(ValueSelectorInterface::class);
+        $valueSelector = new DummyValueSelector(false, false, 'a tree', 'apples');
 
-        $valueSelector->expects($this->once())
-            ->method('subject')
-            ->willReturn('a tree')
-        ;
+        $expectations = new DummyValueSelectorWrapper($valueSelector, $this->createStub(\Traversable::class));
 
-        $valueSelector->expects($this->once())
-            ->method('selectable')
-            ->willReturn('apples')
-        ;
+        $constraint = $this->createDummyConstraint($expectations, $comparator);
 
-        $expected = new DummyValueSelectorWrapper($valueSelector, $this->createMock(\Traversable::class));
-
-        $comparator->expects($this->once())
-            ->method('adjective')
-            ->willReturn('having colors')
-        ;
-
-        $constraint = $this->createDummyConstraint($expected, $comparator);
-
-        $this->assertSame('is a tree with apples having colors specified', $constraint->toString());
+        $this->assertSame('is a tree with apples having colors similar to the specified ones', $constraint->toString());
     }
 
     /**
@@ -279,7 +264,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
             'args'       => [['foo' => 'FOO', 'gez' => 'GEZ']],
             'expect'     => [
                 'exception' => ExpectationFailedException::class,
-                'message'   => 'array is an array with values identical to specified',
+                'message'   => 'array is an array with values identical to the specified ones',
             ],
         ];
 
@@ -288,7 +273,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
             'args'       => [123],
             'expect'     => [
                 'exception' => ExpectationFailedException::class,
-                'message'   => '123 is an array with values identical to specified',
+                'message'   => '123 is an array with values identical to the specified ones',
             ],
         ];
 
@@ -297,7 +282,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
             'args'       => [new \stdClass()],
             'expect'     => [
                 'exception' => ExpectationFailedException::class,
-                'message'   => 'object stdClass is an array with values identical to specified',
+                'message'   => 'object stdClass is an array with values identical to the specified ones',
             ],
         ];
 
@@ -306,7 +291,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
             'args'       => [\stdClass::class],
             'expect'     => [
                 'exception' => ExpectationFailedException::class,
-                'message'   => 'stdClass is an array with values identical to specified',
+                'message'   => 'stdClass is an array with values identical to the specified ones',
             ],
         ];
 
@@ -315,7 +300,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
             'args'       => ['foo'],
             'expect'     => [
                 'exception' => ExpectationFailedException::class,
-                'message'   => '\'foo\' is an array with values identical to specified',
+                'message'   => '\'foo\' is an array with values identical to the specified ones',
             ],
         ];
 
@@ -324,7 +309,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
             'args'       => [['foo' => 'FOO', 'bar' => 'BAR']],
             'expect'     => [
                 'exception' => ExpectationFailedException::class,
-                'message'   => 'array fails to be an array with values identical to specified',
+                'message'   => 'array fails to be an array with values identical to the specified ones',
             ],
         ];
 
@@ -333,7 +318,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
             'args'       => ['foo'],
             'expect'     => [
                 'exception' => ExpectationFailedException::class,
-                'message'   => '\'foo\' is an array with values equal to specified',
+                'message'   => '\'foo\' is an array with values equal to the specified ones',
             ],
         ];
 
@@ -352,7 +337,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
             'args'       => [['foo' => 'FOO', 'bar' => 'BAR']],
             'expect'     => [
                 'exception' => ExpectationFailedException::class,
-                'message'   => 'is an array with values identical to specified',
+                'message'   => 'is an array with values identical to the specified ones',
             ],
         ];
 

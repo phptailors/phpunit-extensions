@@ -76,7 +76,7 @@ final class ArrayValuesEqualToTraitTest extends TestCase
     {
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that .+ is an array or ArrayAccess '.
-            'with values equal to specified./';
+            'with values equal to the specified ones./';
         self::expectException(ExpectationFailedException::class);
         self::expectExceptionMessageMatches($regexp);
 
@@ -125,7 +125,7 @@ final class ArrayValuesEqualToTraitTest extends TestCase
     {
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that .+ fails to be an array or ArrayAccess '.
-            'with values equal to specified./';
+            'with values equal to the specified ones./';
         self::expectException(ExpectationFailedException::class);
         self::expectExceptionMessageMatches($regexp);
 

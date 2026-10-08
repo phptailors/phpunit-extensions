@@ -105,6 +105,6 @@ final class DummyAbstractArraySelectionSpecTest extends TestCase
 
         $comparator = new DummyComparator(false, 'similar to');
 
-        $this->assertSame('rainbow with colors similar to specified', $dummyArraySelectionSpec->complement($comparator));
+        $this->assertSame('rainbow with colors similar to the specified ones', $dummyArraySelectionSpec->complement($comparator));
     }
 }

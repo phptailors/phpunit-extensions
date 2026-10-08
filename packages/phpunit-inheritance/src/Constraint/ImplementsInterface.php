@@ -51,7 +51,7 @@ final class ImplementsInterface extends AbstractInheritanceConstraint
     {
         $value = class_implements($class);
 
-        return $value === false ? [] : $value;
+        return false === $value ? [] : $value;
     }
 
     protected function supports(string $subject): bool

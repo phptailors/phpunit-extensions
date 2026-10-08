@@ -69,7 +69,7 @@ final class DummyValueSelectorWrapper extends \ArrayObject implements ValueSelec
 
     public function complement(ComparatorInterface $comparator): string
     {
-        return sprintf('%s with %s %s specified', $this->valueSelector->subject(), $this->valueSelector->selectable(), $comparator->adjective());
+        return sprintf('%s with %s %s the specified ones', $this->valueSelector->subject(), $this->valueSelector->selectable(), $comparator->adjective());
     }
 }
 

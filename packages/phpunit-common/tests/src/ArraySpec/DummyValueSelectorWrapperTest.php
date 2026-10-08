@@ -126,6 +126,6 @@ final class DummyValueSelectorWrapperTest extends TestCase
 
         $comparator = new DummyComparator(false, 'similar to');
 
-        $this->assertSame('rainbow with colors similar to specified', $dummyWrapper->complement($comparator));
+        $this->assertSame('rainbow with colors similar to the specified ones', $dummyWrapper->complement($comparator));
     }
 }

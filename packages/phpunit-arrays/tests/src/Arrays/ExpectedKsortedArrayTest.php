@@ -15,9 +15,9 @@ use Tailors\PHPUnit\Common\TypesInterface;
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Arrays\KsortedArrayTestCase
  * @covers \Tailors\PHPUnit\Arrays\AbstractKsortedArray
  * @covers \Tailors\PHPUnit\Arrays\ExpectedKsortedArray
+ * @covers \Tailors\PHPUnit\Arrays\KsortedArrayTestCase
  *
  * @internal This class is not covered by the backward compatibility promise
  *

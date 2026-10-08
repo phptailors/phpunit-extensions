@@ -7,7 +7,7 @@ Time: 00:00.003, Memory: 6.00 MB
 There was 1 failure:
 
 1) AssertClassPropertiesIdenticalToTest::testFailure
-Failed asserting that AssertClassPropertiesIdenticalToTest is a class with properties identical to specified.
+Failed asserting that AssertClassPropertiesIdenticalToTest is a class with properties identical to the specified ones.
 --- Expected
 +++ Actual
 @@ @@

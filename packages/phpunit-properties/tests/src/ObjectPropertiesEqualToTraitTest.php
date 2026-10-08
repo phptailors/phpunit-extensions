@@ -88,7 +88,7 @@ final class ObjectPropertiesEqualToTraitTest extends TestCase
     {
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that object class\@.+ is an object '.
-            'with properties equal to specified./';
+            'with properties equal to the specified ones./';
         self::expectException(ExpectationFailedException::class);
         self::expectExceptionMessageMatches($regexp);
 
@@ -115,7 +115,7 @@ final class ObjectPropertiesEqualToTraitTest extends TestCase
     {
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that object class@.+ fails to be an object '.
-            'with properties equal to specified./';
+            'with properties equal to the specified ones./';
         self::expectException(ExpectationFailedException::class);
         self::expectExceptionMessageMatches($regexp);
 

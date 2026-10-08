@@ -66,7 +66,7 @@ final class KsortedArrayIdenticalToTraitTest extends TestCase
     {
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that .+ is an array '.
-            'identical to specified one when ksorted./';
+            'identical to the specified one when ksorted./';
         self::expectException(ExpectationFailedException::class);
         self::expectExceptionMessageMatches($regexp);
 
@@ -109,7 +109,7 @@ final class KsortedArrayIdenticalToTraitTest extends TestCase
     {
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that .+ fails to be an array '.
-            'identical to specified one when ksorted./';
+            'identical to the specified one when ksorted./';
         self::expectException(ExpectationFailedException::class);
         self::expectExceptionMessageMatches($regexp);
 

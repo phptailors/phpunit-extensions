@@ -51,7 +51,7 @@ final class UsesTrait extends AbstractInheritanceConstraint
     {
         $value = class_uses($class);
 
-        return $value === false ? [] : $value;
+        return false === $value ? [] : $value;
     }
 
     protected function supports(string $subject): bool

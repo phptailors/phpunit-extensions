@@ -10,7 +10,7 @@ Time: 00:00.013, Memory: 8.00 MB
 There was 1 failure:
 
 1) classPropertiesEqualToTest::testFailure
-Failed asserting that classPropertiesEqualToTest is a class with properties equal to specified.
+Failed asserting that classPropertiesEqualToTest is a class with properties equal to the specified ones.
 --- Expected
 +++ Actual
 @@ @@

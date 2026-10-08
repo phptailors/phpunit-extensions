@@ -51,7 +51,7 @@ final class ExtendsClass extends AbstractInheritanceConstraint
     {
         $value = class_parents($class);
 
-        return $value === false ? [] : $value;
+        return false === $value ? [] : $value;
     }
 
     protected function supports(string $subject): bool

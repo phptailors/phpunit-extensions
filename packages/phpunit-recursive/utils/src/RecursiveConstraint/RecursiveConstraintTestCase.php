@@ -189,7 +189,7 @@ abstract class RecursiveConstraintTestCase extends ConstraintTestCase
     final protected static function statement(string $export, bool $negative = false): string
     {
         return sprintf(
-            '%s %s %s with %s %s specified',
+            '%s %s %s with %s %s the specified ones',
             $export,
             $negative ? 'fails to be' : 'is',
             static::subject(),

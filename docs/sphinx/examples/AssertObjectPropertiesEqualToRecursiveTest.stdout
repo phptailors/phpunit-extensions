@@ -10,7 +10,7 @@ Time: 00:00.011, Memory: 10.00 MB
 There was 1 failure:
 
 1) AssertObjectPropertiesEqualToRecursiveTest::testFailure
-Failed asserting that object AssertObjectPropertiesEqualToRecursiveTest is an object with properties equal to specified.
+Failed asserting that object AssertObjectPropertiesEqualToRecursiveTest is an object with properties equal to the specified ones.
 --- Expected
 +++ Actual
 @@ @@

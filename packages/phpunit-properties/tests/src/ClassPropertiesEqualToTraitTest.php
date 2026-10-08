@@ -59,7 +59,7 @@ final class ClassPropertiesEqualToTraitTest extends TestCase
     {
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that .+ is a class '.
-            'with properties equal to specified./';
+            'with properties equal to the specified ones./';
         self::expectException(ExpectationFailedException::class);
         self::expectExceptionMessageMatches($regexp);
 
@@ -96,7 +96,7 @@ final class ClassPropertiesEqualToTraitTest extends TestCase
     {
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that .+ fails to be a class '.
-            'with properties equal to specified./';
+            'with properties equal to the specified ones./';
         self::expectException(ExpectationFailedException::class);
         self::expectExceptionMessageMatches($regexp);
 
