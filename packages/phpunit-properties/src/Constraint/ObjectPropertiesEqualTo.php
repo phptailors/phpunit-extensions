@@ -11,36 +11,18 @@
 namespace Tailors\PHPUnit\Constraint;
 
 use Tailors\PHPUnit\Common\TypesInterface;
-use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\EqualityComparator;
+use Tailors\PHPUnit\InvalidArgumentException;
 use Tailors\PHPUnit\Properties\ObjectPropertiesSelection;
 use Tailors\PHPUnit\Properties\ValidateExpectationsTrait;
 use Tailors\PHPUnit\RecursiveConstraint\AbstractRecursiveConstraint;
-use Tailors\PHPUnit\RecursiveConstraint\RecursiveConstraintSpecializationTrait;
+use Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactory;
+use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapper;
 
 /**
- * Constraint that accepts objects having properties equal to specified ones.
+ * @internal This trait is not covered by the backward compatibility promise
  *
- * Compares only properties present in the array of expectations. A property is
- * defined as either an attribute value or a value returned by object's method
- * callable without arguments. The ``==`` operator (equality) is used for
- * comparison.
- *
- *
- * Any key in *$expected* array ending with ``"()"`` is considered to be a
- * method that returns property value.
- *
- *      // ...
- *      $matcher = ObjectPropertiesEqualTo::create([
- *          'getName()' => 'John', 'age' => '21'
- *      ]);
- *
- *      self::assertThat(new class {
- *          public static $age = 21;
- *          public static getName(): string {
- *              return 'John';
- *          }
- *      }, $matcher);
+ * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-import-type ArrayLike from TypesInterface
  *
@@ -48,25 +30,25 @@ use Tailors\PHPUnit\RecursiveConstraint\RecursiveConstraintSpecializationTrait;
  */
 final class ObjectPropertiesEqualTo extends AbstractRecursiveConstraint
 {
-    use RecursiveConstraintSpecializationTrait;
     use ValidateExpectationsTrait;
 
     /**
-     * Creates instance of EqualityComparator.
-     */
-    protected static function makeComparator(): ComparatorInterface
-    {
-        return new EqualityComparator();
-    }
-
-    /**
-     * @psalm-param ArrayLike $expected
+     * @psalm-assert iterable<string, mixed> $expectations
      *
-     * @psalm-return ArrayLike
+     * @throws InvalidArgumentException
+     *
+     * @psalm-param ArrayLike $expectations
      */
-    protected static function makeExpectations(iterable $expected): iterable
+    public static function create(iterable $expectations): self
     {
-        return new ObjectPropertiesSelection($expected);
+        self::validateExpectations($expectations, 1);
+
+        return new self(
+            new ObjectPropertiesSelection($expectations),
+            new EqualityComparator(),
+            RecursiveResultFactory::create(),
+            RecursiveResultUnwrapper::create()
+        );
     }
 }
 

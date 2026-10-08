@@ -11,27 +11,16 @@
 namespace Tailors\PHPUnit\Constraint;
 
 use Tailors\PHPUnit\Arrays\KsortedArraySpec;
-use Tailors\PHPUnit\Arrays\ValidateExpectationsTrait;
 use Tailors\PHPUnit\Common\TypesInterface;
-use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\IdentityComparator;
 use Tailors\PHPUnit\RecursiveConstraint\AbstractRecursiveConstraint;
-use Tailors\PHPUnit\RecursiveConstraint\RecursiveConstraintSpecializationTrait;
+use Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactory;
+use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapper;
 
 /**
- * Constraint that accepts arrays identical to specified one when key-sorted.
+ * @internal This class is not covered by the backward compatibility promise
  *
- * The ``===`` operator (identity) is used for comparison.
- *
- *
- *      $matcher = KsortedArrayIdenticalTo::create([
- *          'name' => 'John', 'age' => 21
- *      ]);
- *
- *      self::assertThat([
- *          'age' => 21,
- *          'name' => 'John',
- *      ], $matcher);
+ * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-import-type ArrayLike from TypesInterface
  *
@@ -39,25 +28,17 @@ use Tailors\PHPUnit\RecursiveConstraint\RecursiveConstraintSpecializationTrait;
  */
 final class KsortedArrayIdenticalTo extends AbstractRecursiveConstraint
 {
-    use RecursiveConstraintSpecializationTrait;
-    use ValidateExpectationsTrait;
-
     /**
-     * Creates instance of EqualityComparator.
+     * @psalm-param ArrayLike $expectations
      */
-    protected static function makeComparator(): ComparatorInterface
+    public static function create(iterable $expectations, int $flags = SORT_REGULAR): self
     {
-        return new IdentityComparator();
-    }
-
-    /**
-     * @psalm-param ArrayLike $expected
-     *
-     * @psalm-return ArrayLike
-     */
-    protected static function makeExpectations(iterable $expected): iterable
-    {
-        return new KsortedArraySpec($expected);
+        return new self(
+            new KsortedArraySpec($expectations, $flags),
+            new IdentityComparator(),
+            RecursiveResultFactory::create(),
+            RecursiveResultUnwrapper::create()
+        );
     }
 }
 

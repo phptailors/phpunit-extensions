@@ -25,13 +25,15 @@ use Tailors\PHPUnit\InvalidArgumentException;
 trait ValidateExpectationsTrait
 {
     /**
+     * @psalm-assert iterable<string, mixed> $expectations
+     *
      * @throws InvalidArgumentException
      *
-     * @psalm-param ArrayLike $expected
+     * @psalm-param ArrayLike $expectations
      */
-    protected static function validateExpectations(iterable $expected, int $argument, int $distance = 1): void
+    protected static function validateExpectations(iterable $expectations, int $argument, int $distance = 1): void
     {
-        $array = is_array($expected) ? $expected : iterator_to_array($expected);
+        $array = is_array($expectations) ? $expectations : iterator_to_array($expectations);
         self::assertStringKeysOnly($array, $argument, 1 + $distance);
     }
 

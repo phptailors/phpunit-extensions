@@ -17,7 +17,6 @@ use Tailors\PHPUnit\InvalidArgumentException;
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Arrays\AbstractKsortedConstraint
  * @covers \Tailors\PHPUnit\Arrays\KsortedConstraintTestCase
  * @covers \Tailors\PHPUnit\Constraint\KsortedArrayIdenticalTo
  * @covers \Tailors\PHPUnit\Constraint\ProvKsortedArrayTrait

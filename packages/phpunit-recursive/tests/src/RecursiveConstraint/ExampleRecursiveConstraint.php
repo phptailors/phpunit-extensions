@@ -12,9 +12,9 @@ namespace Tailors\PHPUnit\RecursiveConstraint;
 
 use Tailors\PHPUnit\ArraySpec\DummyResultFactoryAndValueSelectorWrapper;
 use Tailors\PHPUnit\Common\TypesInterface;
-use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\IdentityComparator;
-use Tailors\PHPUnit\InvalidArgumentException;
+use Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactory;
+use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapper;
 use Tailors\PHPUnit\ResultFactory\DummyArrayResultFactory;
 use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
 
@@ -31,28 +31,12 @@ use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
  */
 final class ExampleRecursiveConstraint extends AbstractRecursiveConstraint
 {
-    use RecursiveConstraintSpecializationTrait;
-
     /**
-     * @throws InvalidArgumentException
-     *
-     * @psalm-param ArrayLike $expected
+     * @psalm-param ArrayLike $expectations
      */
-    protected static function validateExpectations(iterable $expected, int $argument, int $distance = 1): void {}
-
-    protected static function makeComparator(): ComparatorInterface
+    public static function create(iterable $expectations): self
     {
-        return new IdentityComparator();
-    }
-
-    /**
-     * @psalm-param ArrayLike $expected
-     *
-     * @psalm-return DummyResultFactoryAndValueSelectorWrapper
-     */
-    protected static function makeExpectations(iterable $expected): iterable
-    {
-        return new DummyResultFactoryAndValueSelectorWrapper(
+        $expectations = new DummyResultFactoryAndValueSelectorWrapper(
             new DummyArrayResultFactory(),
             new DummyValueSelector(
                 /**
@@ -82,8 +66,10 @@ final class ExampleRecursiveConstraint extends AbstractRecursiveConstraint
                 'an array',
                 'values'
             ),
-            $expected
+            $expectations
         );
+
+        return new self($expectations, new IdentityComparator(), RecursiveResultFactory::create(), RecursiveResultUnwrapper::create());
     }
 }
 

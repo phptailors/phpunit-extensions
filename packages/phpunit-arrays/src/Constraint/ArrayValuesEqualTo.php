@@ -11,28 +11,16 @@
 namespace Tailors\PHPUnit\Constraint;
 
 use Tailors\PHPUnit\Arrays\ArrayValuesSelection;
-use Tailors\PHPUnit\Arrays\ValidateExpectationsTrait;
 use Tailors\PHPUnit\Common\TypesInterface;
-use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\EqualityComparator;
 use Tailors\PHPUnit\RecursiveConstraint\AbstractRecursiveConstraint;
-use Tailors\PHPUnit\RecursiveConstraint\RecursiveConstraintSpecializationTrait;
+use Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactory;
+use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapper;
 
 /**
- * Constraint that accepts arrays having values equal to specified ones.
+ * @internal This trait is not covered by the backward compatibility promise
  *
- * Compares only values present in the array of expectations. The ``==``
- * operator (equality) is used for comparison.
- *
- *
- *      $matcher = ArrayValuesEqualTo::create([
- *          'name' => 'John', 'age' => '21'
- *      ]);
- *
- *      self::assertThat([
- *          'age' => 21,
- *          'name' => 'John',
- *      ], $matcher);
+ * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-import-type ArrayLike from TypesInterface
  *
@@ -40,25 +28,17 @@ use Tailors\PHPUnit\RecursiveConstraint\RecursiveConstraintSpecializationTrait;
  */
 final class ArrayValuesEqualTo extends AbstractRecursiveConstraint
 {
-    use RecursiveConstraintSpecializationTrait;
-    use ValidateExpectationsTrait;
-
     /**
-     * Creates instance of EqualityComparator.
+     * @psalm-param ArrayLike $expectations
      */
-    protected static function makeComparator(): ComparatorInterface
+    public static function create(iterable $expectations): self
     {
-        return new EqualityComparator();
-    }
-
-    /**
-     * @psalm-param ArrayLike $expected
-     *
-     * @psalm-return ArrayLike
-     */
-    protected static function makeExpectations(iterable $expected): iterable
-    {
-        return new ArrayValuesSelection($expected);
+        return new self(
+            new ArrayValuesSelection($expectations),
+            new EqualityComparator(),
+            RecursiveResultFactory::create(),
+            RecursiveResultUnwrapper::create()
+        );
     }
 }
 

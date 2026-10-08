@@ -26,7 +26,7 @@ use Tailors\PHPUnit\ResultFactory\AbstractArrayResultFactory;
 final class KsortedArrayFactory extends AbstractArrayResultFactory
 {
     /**
-     * @var int $flags
+     * @var int
      *
      * @psalm-readonly
      */
@@ -36,6 +36,7 @@ final class KsortedArrayFactory extends AbstractArrayResultFactory
     {
         $this->flags = $flags;
     }
+
     /**
      * @psalm-param ArrayLike $input
      *

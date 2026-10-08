@@ -8,7 +8,7 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\RecursiveConstraint;
+namespace Tailors\PHPUnit\Constraint;
 
 use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
@@ -25,7 +25,7 @@ use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapper;
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
-trait RecursiveConstraintSpecializationTrait
+trait PropertiesConstraintCreateTrait
 {
     /**
      * @throws InvalidArgumentException
@@ -34,23 +34,16 @@ trait RecursiveConstraintSpecializationTrait
      */
     public static function create(iterable $expectations): self
     {
-        self::validateExpectations($expectations, 1);
+        $array = is_array($expectations) ? $expectations : iterator_to_array($expectations);
+        self::assertStringKeysOnly($array, 1);
 
-        $expectations = self::makeExpectations($expectations);
-        $comparator = self::makeComparator();
-
-        $recursiveResultFactory = RecursiveResultFactory::create();
-        $recursiveResultUnwrapper = RecursiveResultUnwrapper::create();
-
-        return new self($expectations, $comparator, $recursiveResultFactory, $recursiveResultUnwrapper);
+        return new self(
+            self::makeExpectations($expectations),
+            self::makeComparator(),
+            RecursiveResultFactory::create(),
+            RecursiveResultUnwrapper::create()
+        );
     }
-
-    /**
-     * @throws InvalidArgumentException
-     *
-     * @psalm-param ArrayLike $expected
-     */
-    abstract protected static function validateExpectations(iterable $expected, int $argument, int $distance = 1): void;
 
     /**
      * Creates instance of ComparatorInterface.
@@ -65,6 +58,26 @@ trait RecursiveConstraintSpecializationTrait
      * @psalm-return ArrayLike
      */
     abstract protected static function makeExpectations(iterable $expected): iterable;
+
+    /**
+     * @psalm-assert array<string, mixed> $array
+     *
+     * @throws InvalidArgumentException
+     *
+     * @psalm-param array $array
+     */
+    private static function assertStringKeysOnly(array $array, int $argument, int $distance = 1): void
+    {
+        $valid = array_filter($array, 'is_string', ARRAY_FILTER_USE_KEY);
+        if (($count = count($array) - count($valid)) > 0) {
+            throw InvalidArgumentException::fromBackTrace(
+                $argument,
+                'an associative array with string keys',
+                sprintf('an array with %d non-string %s', $count, $count > 1 ? 'keys' : 'key'),
+                1 + $distance
+            );
+        }
+    }
 }
 
 // vim: syntax=php sw=4 ts=4 et:
