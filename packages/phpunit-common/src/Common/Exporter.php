@@ -94,6 +94,7 @@ final class Exporter
     {
         $counters = [];
 
+        /** @psalm-var string */
         return preg_replace_callback(
             '/^(\s*)(Tailors\\\\PHPUnit(?:\\\\\w+)*\\\\(?:Expected|Actual)(\w+)) Object (?:#\d+|&[0-9a-fA-f]+)/m',
             function (array $matches) use (&$counters): string {
