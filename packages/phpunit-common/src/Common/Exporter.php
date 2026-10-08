@@ -37,7 +37,7 @@ final class Exporter
             /**
              * @psalm-suppress InternalClass
              * @psalm-suppress InternalMethod
-             * @psalm-suppress MixedReturnStatement
+             * @psalm-suppress MixedArgument
              */
             return self::captureResultObjects(\PHPUnit\Util\Exporter::export($value, $exportObjects));
         }
@@ -112,6 +112,7 @@ final class Exporter
                 }
 
                 $level = $counters[$class]++;
+
                 return $matches[1].$matches[3].' #'.((string) $level);
             },
             $output
