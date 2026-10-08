@@ -105,8 +105,6 @@ class DocExampleContext implements Context
     {
         $top = preg_quote($this->getTopPath(), '/');
 
-        var_export($top);
-
         $patterns = [
             '/\r/',
             '/^(PHPUnit )(?:\$version|\d+(?:\.\w+)*)( by Sebastian Bergmann and contributors\.)$/m',
