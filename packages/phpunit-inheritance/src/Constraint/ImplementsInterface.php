@@ -45,15 +45,13 @@ final class ImplementsInterface extends AbstractInheritanceConstraint
     /**
      * @throws InvalidReturnValueException
      *
-     * @psalm-return array<string>
+     * @psalm-return array<interface-string, interface-string>
      */
     protected function inheritance(string $class): array
     {
         $value = class_implements($class);
 
-        self::assertReturnValueIsListOfStrings('class_implements', $value);
-
-        return $value;
+        return $value === false ? [] : $value;
     }
 
     protected function supports(string $subject): bool

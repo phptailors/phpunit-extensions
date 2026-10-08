@@ -97,7 +97,7 @@ abstract class AbstractInheritanceConstraint extends Constraint
      * implements, parent classes it extends or traits it uses, depending on
      * the actual implementation of this constraint.
      *
-     * @psalm-return array<string>
+     * @psalm-return array<string, string>
      */
     abstract protected function inheritance(string $class): array;
 
@@ -157,39 +157,6 @@ abstract class AbstractInheritanceConstraint extends Constraint
         }
 
         return $this->short($other).' '.$string;
-    }
-
-    /**
-     * @param mixed $function
-     * @param mixed $value
-     *
-     * @psalm-template ValueType $value
-     *
-     * @param-out ValueType $value
-     *
-     * @psalm-assert array<string> $value
-     *
-     * @throws InvalidReturnValueException
-     *
-     * @psalm-param ValueType $value
-     */
-    final protected static function assertReturnValueIsListOfStrings($function, &$value): void
-    {
-        if (!is_array($value)) {
-            throw InvalidReturnValueException::fromExpectedTypeAndActualValue($function, 'array', $value);
-        }
-
-        $strings = array_filter(
-            $value,
-            /** @param mixed $item */
-            function ($item): bool {
-                return is_string($item);
-            }
-        );
-
-        if (count($strings) < count($value)) {
-            throw InvalidReturnValueException::fromExpectedTypeAndActualValue($function, 'array of strings', $value);
-        }
     }
 
     /**

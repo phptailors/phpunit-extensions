@@ -17,7 +17,7 @@ namespace Tailors\PHPUnit\Arrays;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class ActualKsortedArray extends AbstractArrayValues
+final class ActualKsortedArray extends AbstractKsortedArray
 {
     /**
      * @psalm-mutation-free

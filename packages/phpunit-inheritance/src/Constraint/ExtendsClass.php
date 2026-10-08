@@ -45,15 +45,13 @@ final class ExtendsClass extends AbstractInheritanceConstraint
     /**
      * @throws InvalidReturnValueException
      *
-     * @psalm-return array<string>
+     * @psalm-return array<class-string, class-string>
      */
     protected function inheritance(string $class): array
     {
         $value = class_parents($class);
 
-        self::assertReturnValueIsListOfStrings('class_parents', $value);
-
-        return $value;
+        return $value === false ? [] : $value;
     }
 
     protected function supports(string $subject): bool

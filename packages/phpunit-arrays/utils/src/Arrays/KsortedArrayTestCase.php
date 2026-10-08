@@ -10,22 +10,18 @@
 
 namespace Tailors\PHPUnit\Arrays;
 
+use Tailors\PHPUnit\ArrayResult\AbstractArrayResultTestCase;
+
 /**
- * An array of actual values.
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class ExpectedKsortedArray extends AbstractKsortedArray
+abstract class KsortedArrayTestCase extends AbstractArrayResultTestCase
 {
-    /**
-     * @psalm-mutation-free
-     */
-    public function actual(): bool
+    final public static function getArrayResultFamilyName(): string
     {
-        return false;
+        return __NAMESPACE__.'\KsortedArray';
     }
 }
-
 // vim: syntax=php sw=4 ts=4 et:

@@ -45,15 +45,13 @@ final class UsesTrait extends AbstractInheritanceConstraint
     /**
      * @throws InvalidReturnValueException
      *
-     * @psalm-return array<string>
+     * @psalm-return array<trait-string, trait-string>
      */
     protected function inheritance(string $class): array
     {
         $value = class_uses($class);
 
-        self::assertReturnValueIsListOfStrings('class_uses', $value);
-
-        return $value;
+        return $value === false ? [] : $value;
     }
 
     protected function supports(string $subject): bool
