@@ -2,7 +2,7 @@ PHPUnit 9.6.33 by Sebastian Bergmann and contributors.
 
 .F                                                                  2 / 2 (100%)
 
-Time: 00:00.012, Memory: 6.00 MB
+Time: 00:00.006, Memory: 6.00 MB
 
 There was 1 failure:
 
@@ -11,9 +11,8 @@ Failed asserting that array is an array identical to the specified one when ksor
 --- Expected
 +++ Actual
 @@ @@
--Tailors\PHPUnit\Arrays\ExpectedKsortedArray Object &000000000000003b0000000000000000 (
+ KsortedArray #0 (
 -    1 => null
-+Tailors\PHPUnit\Arrays\ActualKsortedArray Object &00000000000001560000000000000000 (
 +    1 => ''
      'foo' => 'FOO'
 -    'int' => 123
