@@ -45,7 +45,7 @@ abstract class AbstractRecursiveConstraint extends Constraint
      *
      * @psalm-readonly
      */
-    private $expected;
+    private $expectations;
 
     /**
      * @var ComparatorInterface
@@ -63,15 +63,15 @@ abstract class AbstractRecursiveConstraint extends Constraint
     private $recursiveResultUnwrapper;
 
     /**
-     * @psalm-param ArrayLike $expected
+     * @psalm-param ArrayLike $expectations
      */
     final protected function __construct(
-        iterable $expected,
+        iterable $expectations,
         ComparatorInterface $comparator,
         RecursiveResultFactoryInterface $recursiveResultFactory,
         RecursiveResultUnwrapperInterface $recursiveResultUnwrapper
     ) {
-        $this->expected = $expected;
+        $this->expectations = $expectations;
         $this->comparator = $comparator;
         $this->recursiveResultFactory = $recursiveResultFactory;
         $this->recursiveResultUnwrapper = $recursiveResultUnwrapper;
@@ -82,8 +82,8 @@ abstract class AbstractRecursiveConstraint extends Constraint
      */
     final public function toString(): string
     {
-        if ($this->expected instanceof ValueSelectorWrapperInterface) {
-            $valueSelector = $this->expected->getValueSelector();
+        if ($this->expectations instanceof ValueSelectorWrapperInterface) {
+            $valueSelector = $this->expectations->getValueSelector();
 
             return sprintf(
                 'is %s with %s %s specified',
@@ -122,14 +122,14 @@ abstract class AbstractRecursiveConstraint extends Constraint
         if (!$success) {
             $f = null;
 
-            if ($this->recursiveResultFactory->supports($this->expected, $other)) {
+            if ($this->recursiveResultFactory->supports($this->expectations, $other)) {
                 /** @psalm-var mixed $expectResult */
-                $expectResult = $this->recursiveResultFactory->getExpectedResult($this->expected);
+                $expectResult = $this->recursiveResultFactory->getExpectedResult($this->expectations);
 
                 /** @psalm-var mixed $actualResult */
-                $actualResult = $this->recursiveResultFactory->getActualResult($this->expected, $other);
+                $actualResult = $this->recursiveResultFactory->getActualResult($this->expectations, $other);
                 $f = new ComparisonFailure(
-                    $this->expected,
+                    $this->expectations,
                     $other,
                     Exporter::export($expectResult, true),
                     Exporter::export($actualResult, true)
@@ -160,8 +160,8 @@ abstract class AbstractRecursiveConstraint extends Constraint
     final protected function toStringInContext(Operator $operator, $role): string
     {
         if ($operator instanceof LogicalNot) {
-            if ($this->expected instanceof ValueSelectorWrapperInterface) {
-                $valueSelector = $this->expected->getValueSelector();
+            if ($this->expectations instanceof ValueSelectorWrapperInterface) {
+                $valueSelector = $this->expectations->getValueSelector();
 
                 return sprintf(
                     'fails to be %s with %s %s specified',
@@ -185,18 +185,18 @@ abstract class AbstractRecursiveConstraint extends Constraint
      */
     final protected function matches($other): bool
     {
-        if (!$this->recursiveResultFactory->supports($this->expected, $other)) {
+        if (!$this->recursiveResultFactory->supports($this->expectations, $other)) {
             return false;
         }
 
         /** @psalm-var mixed $expectResult */
-        $expectResult = $this->recursiveResultFactory->getExpectedResult($this->expected);
+        $expectResult = $this->recursiveResultFactory->getExpectedResult($this->expectations);
 
         /** @psalm-var mixed $expectValue */
         $expectValue = $this->unwrapResult(false, $expectResult);
 
         /** @psalm-var mixed $actualResult */
-        $actualResult = $this->recursiveResultFactory->getActualResult($this->expected, $other);
+        $actualResult = $this->recursiveResultFactory->getActualResult($this->expectations, $other);
 
         /** @psalm-var mixed $actualValue */
         $actualValue = $this->unwrapResult(true, $actualResult);
