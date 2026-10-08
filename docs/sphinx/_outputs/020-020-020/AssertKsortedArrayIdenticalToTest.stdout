@@ -14,9 +14,8 @@ Failed asserting that array is an array identical to the specified one when ksor
 --- Expected
 +++ Actual
 @@ @@
--Tailors\PHPUnit\Arrays\ExpectedKsortedArray Object #414 (
+ KsortedArray #0 (
 -    1 => null,
-+Tailors\PHPUnit\Arrays\ActualKsortedArray Object #441 (
 +    1 => '',
      'foo' => 'FOO',
 -    'int' => 123,

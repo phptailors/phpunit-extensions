@@ -5,7 +5,7 @@ Configuration: phpunit.xml
 
 .F                                                                  2 / 2 (100%)
 
-Time: 00:00.015, Memory: 8.00 MB
+Time: 00:00.009, Memory: 8.00 MB
 
 There was 1 failure:
 
@@ -14,8 +14,7 @@ Failed asserting that array is an array equal to the specified one when ksorted.
 --- Expected
 +++ Actual
 @@ @@
--Tailors\PHPUnit\Arrays\ExpectedKsortedArray Object #413 (
-+Tailors\PHPUnit\Arrays\ActualKsortedArray Object #440 (
+ KsortedArray #0 (
      1 => '',
 -    'foo' => 'BAR',
 +    'foo' => 'FOO',
