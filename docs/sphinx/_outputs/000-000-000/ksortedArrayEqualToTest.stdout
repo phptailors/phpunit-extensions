@@ -2,7 +2,7 @@ PHPUnit 9.6.33 by Sebastian Bergmann and contributors.
 
 .F                                                                  2 / 2 (100%)
 
-Time: 00:00.013, Memory: 6.00 MB
+Time: 00:00.006, Memory: 6.00 MB
 
 There was 1 failure:
 
@@ -11,17 +11,16 @@ Failed asserting that array is an array equal to specified one when ksorted.
 --- Expected
 +++ Actual
 @@ @@
--Tailors\PHPUnit\Arrays\ExpectedKsortedArray Object &000000001eb3d5af0000000002a7f64b (
+-Tailors\PHPUnit\Arrays\ExpectedKsortedArray Object &000000002430f0f5000000002909c76c (
 -    'foo' => 'BAR'
 -    'int' => 123
-+Tailors\PHPUnit\Arrays\ActualKsortedArray Object &000000001eb3d5bb0000000002a7f64b (
++Tailors\PHPUnit\Arrays\ActualKsortedArray Object &000000002430f0e1000000002909c76c (
 +    'foo' => 'FOO'
 +    'int' => '123'
      1 => ''
  )
 
 ksortedArrayEqualToTest.php:17
-phpvfscomposer:///home/ptomulik/projects/phptailors/phpunit-extensions/refact-1.1/vendor/phpunit/phpunit/phpunit:106
 
 FAILURES!
 Tests: 2, Assertions: 2, Failures: 1.
