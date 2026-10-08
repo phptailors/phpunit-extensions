@@ -17,7 +17,7 @@ use Tailors\PHPUnit\Comparator\ComparatorInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-interface ComparisonComplementInterface
+interface ComparatorAwareComplementInterface
 {
     public function complement(ComparatorInterface $comparator): string;
 }

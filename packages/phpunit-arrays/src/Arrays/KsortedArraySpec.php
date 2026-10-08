@@ -13,7 +13,7 @@ namespace Tailors\PHPUnit\Arrays;
 use Tailors\PHPUnit\ArraySpec\AbstractArraySpec;
 use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
-use Tailors\PHPUnit\Predicate\ComparisonComplementInterface;
+use Tailors\PHPUnit\Predicate\ComparatorAwareComplementInterface;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -26,7 +26,7 @@ use Tailors\PHPUnit\Predicate\ComparisonComplementInterface;
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
-final class KsortedArraySpec extends AbstractArraySpec implements ComparisonComplementInterface
+final class KsortedArraySpec extends AbstractArraySpec implements ComparatorAwareComplementInterface
 {
     /**
      * @psalm-param ArrayLike $array

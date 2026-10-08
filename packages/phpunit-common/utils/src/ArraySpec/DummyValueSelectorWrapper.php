@@ -12,7 +12,7 @@ namespace Tailors\PHPUnit\ArraySpec;
 
 use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
-use Tailors\PHPUnit\Predicate\ComparisonComplementInterface;
+use Tailors\PHPUnit\Predicate\ComparatorAwareComplementInterface;
 use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
 use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
 
@@ -31,7 +31,7 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
-final class DummyValueSelectorWrapper extends \ArrayObject implements ValueSelectorWrapperInterface, ComparisonComplementInterface
+final class DummyValueSelectorWrapper extends \ArrayObject implements ValueSelectorWrapperInterface, ComparatorAwareComplementInterface
 {
     /**
      * @var ValueSelectorInterface
