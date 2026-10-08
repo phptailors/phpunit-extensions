@@ -12,6 +12,8 @@ namespace Tailors\PHPUnit\ArraySpec;
 
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Common\TypesInterface;
+use Tailors\PHPUnit\Comparator\DummyComparator;
+use Tailors\PHPUnit\Predicate\ComparatorAwareComplementInterface;
 use Tailors\PHPUnit\ResultFactory\DummyResultFactory;
 use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
 use Tailors\PHPUnit\ResultFactory\ResultFactoryWrapperInterface;
@@ -78,6 +80,14 @@ final class DummyResultFactoryAndValueSelectorWrapperTest extends TestCase
     }
 
     /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testImplementsComparatorAwareComplementInterface(): void
+    {
+        $this->assertInstanceOf(ComparatorAwareComplementInterface::class, self::createDummyResultFactoryAndValueSelectorWrapper([]));
+    }
+
+    /**
      * @psalm-return iterable<string, array{
      *      array: ArrayLike
      * }>
@@ -110,8 +120,8 @@ final class DummyResultFactoryAndValueSelectorWrapperTest extends TestCase
      */
     public function testDummyResultFactoryAndValueSelectorWrapper(iterable $array): void
     {
-        $resultFactory = $this->createMock(ResultFactoryInterface::class);
-        $valueSelector = $this->createMock(ValueSelectorInterface::class);
+        $resultFactory = $this->createStub(ResultFactoryInterface::class);
+        $valueSelector = $this->createStub(ValueSelectorInterface::class);
 
         $dummyWrapper = self::createDummyResultFactoryAndValueSelectorWrapper($array, $resultFactory, $valueSelector);
 
@@ -120,5 +130,21 @@ final class DummyResultFactoryAndValueSelectorWrapperTest extends TestCase
 
         $expect = is_array($array) ? $array : iterator_to_array($array);
         $this->assertSame($expect, iterator_to_array($dummyWrapper));
+    }
+
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testComplement(): void
+    {
+        $dummyWrapper = new DummyResultFactoryAndValueSelectorWrapper(
+            new DummyResultFactory(false),
+            new DummyValueSelector(false, false, 'rainbow', 'colors'),
+            []
+        );
+
+        $comparator = new DummyComparator(false, 'similar to');
+
+        $this->assertSame('rainbow with colors similar to specified', $dummyWrapper->complement($comparator));
     }
 }

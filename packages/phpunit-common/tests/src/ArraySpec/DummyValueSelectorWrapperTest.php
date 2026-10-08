@@ -12,6 +12,8 @@ namespace Tailors\PHPUnit\ArraySpec;
 
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Common\TypesInterface;
+use Tailors\PHPUnit\Comparator\DummyComparator;
+use Tailors\PHPUnit\Predicate\ComparatorAwareComplementInterface;
 use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
 use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
 use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
@@ -62,6 +64,14 @@ final class DummyValueSelectorWrapperTest extends TestCase
     }
 
     /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testImplementsComparatorAwareComplementInterface(): void
+    {
+        $this->assertInstanceOf(ComparatorAwareComplementInterface::class, self::createDummyValueSelectorWrapper([]));
+    }
+
+    /**
      * @psalm-return iterable<string, array{
      *      array: ArrayLike
      * }>
@@ -102,5 +112,20 @@ final class DummyValueSelectorWrapperTest extends TestCase
 
         $expect = is_array($array) ? $array : iterator_to_array($array);
         $this->assertSame($expect, iterator_to_array($dummyValueSelectorWrapper));
+    }
+
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testComplement(): void
+    {
+        $dummyWrapper = new DummyValueSelectorWrapper(
+            new DummyValueSelector(false, false, 'rainbow', 'colors'),
+            []
+        );
+
+        $comparator = new DummyComparator(false, 'similar to');
+
+        $this->assertSame('rainbow with colors similar to specified', $dummyWrapper->complement($comparator));
     }
 }

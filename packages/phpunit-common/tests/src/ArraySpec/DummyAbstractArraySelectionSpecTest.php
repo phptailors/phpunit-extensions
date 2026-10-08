@@ -12,6 +12,7 @@ namespace Tailors\PHPUnit\ArraySpec;
 
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Common\TypesInterface;
+use Tailors\PHPUnit\Comparator\DummyComparator;
 use Tailors\PHPUnit\ResultFactory\DummyResultFactory;
 use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
 use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
@@ -89,5 +90,21 @@ final class DummyAbstractArraySelectionSpecTest extends TestCase
 
         $expect = is_array($array) ? $array : iterator_to_array($array);
         $this->assertSame($expect, iterator_to_array($dummyArraySelectionSpec));
+    }
+
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testComplement(): void
+    {
+        $dummyArraySelectionSpec = new DummyAbstractArraySelectionSpec(
+            new DummyResultFactory(false),
+            new DummyValueSelector(false, false, 'rainbow', 'colors'),
+            []
+        );
+
+        $comparator = new DummyComparator(false, 'similar to');
+
+        $this->assertSame('rainbow with colors similar to specified', $dummyArraySelectionSpec->complement($comparator));
     }
 }
