@@ -24,7 +24,6 @@ use Tailors\PHPUnit\Predicate\ComparisonComplementInterface;
 use Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactoryInterface;
 use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapperInterface;
 use Tailors\PHPUnit\Result\ResultInterface;
-use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
 
 /**
  * @internal This class is not covered by the backward compatibility promise

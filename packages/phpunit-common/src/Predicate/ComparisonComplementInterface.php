@@ -12,7 +12,6 @@ namespace Tailors\PHPUnit\Predicate;
 
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 
-
 /**
  * @internal This interface is not covered by the backward compatibility promise
  *
