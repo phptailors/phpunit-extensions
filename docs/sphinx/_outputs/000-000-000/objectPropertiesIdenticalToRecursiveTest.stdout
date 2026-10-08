@@ -2,7 +2,7 @@ PHPUnit 9.6.33 by Sebastian Bergmann and contributors.
 
 .F                                                                  2 / 2 (100%)
 
-Time: 00:00.005, Memory: 6.00 MB
+Time: 00:00.007, Memory: 6.00 MB
 
 There was 1 failure:
 
@@ -11,13 +11,12 @@ Failed asserting that object objectPropertiesIdenticalToRecursiveTest is an obje
 --- Expected
 +++ Actual
 @@ @@
--Tailors\PHPUnit\Properties\ExpectedObjectProperties Object &000000007f999077000000006b8c9da4 (
-+Tailors\PHPUnit\Properties\ActualObjectProperties Object &000000007f999072000000006b8c9da4 (
+ ObjectProperties #0 (
      'attribute' => 123
 -    'nested()' => Array &0 (
 -        'getMessage()' => 'FOO'
 -        'getCode()' => 456
-+    'nested()' => Exception Object &000000007f99907f000000006b8c9da4 (
++    'nested()' => Exception Object &0000000016db15fd000000000b43d31b (
 +        'message' => 'FOO'
 +        'string' => ''
 +        'code' => 456

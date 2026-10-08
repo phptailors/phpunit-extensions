@@ -2,7 +2,7 @@ PHPUnit 9.6.33 by Sebastian Bergmann and contributors.
 
 .F                                                                  2 / 2 (100%)
 
-Time: 00:00.010, Memory: 6.00 MB
+Time: 00:00.007, Memory: 6.00 MB
 
 There was 1 failure:
 
@@ -11,8 +11,7 @@ Failed asserting that AssertClassPropertiesIdenticalToRecursiveTest is a class w
 --- Expected
 +++ Actual
 @@ @@
--Tailors\PHPUnit\Properties\ExpectedClassProperties Object &0000000049ec35a9000000005722df71 (
-+Tailors\PHPUnit\Properties\ActualClassProperties Object &0000000049ec35a3000000005722df71 (
+ ClassProperties #0 (
      'attribute' => 123
 -    'nested' => Array &0 (
 -        'other' => 321
