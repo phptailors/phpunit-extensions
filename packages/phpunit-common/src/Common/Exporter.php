@@ -100,15 +100,11 @@ final class Exporter
 
         /** @psalm-var string */
         return preg_replace_callback(
-            '/(\w+(?:\\\\\w+)*)\s+Object\s+(#\d+|&[0-9a-fA-f]+)/m',
+            '/^(\s*(?:(?:\'[^\']*\'|\"[^\"]*\"|\d+)\s*=>\s*)?)(\w+(?:\\\\\w+)*)\s+Object\s+(#\d+|&[0-9a-fA-f]+)/m',
             function (array $matches) use (&$counters): string {
-                $class = $matches[1];
+                $class = $matches[2];
 
-                if (!class_exists($class)) {
-                    return $matches[0];
-                }
-
-                if (!is_subclass_of($class, ExportableNameInterface::class, true)) {
+                if (!class_exists($class) || !is_subclass_of($class, ExportableNameInterface::class, true)) {
                     return $matches[0];
                 }
 
@@ -116,7 +112,7 @@ final class Exporter
                     $counters[$class] = [];
                 }
 
-                $objId = $matches[2];
+                $objId = $matches[3];
                 if (!array_key_exists($objId, $counters[$class])) {
                     $counters[$class][$objId] = count($counters[$class]);
                 }
@@ -125,7 +121,7 @@ final class Exporter
 
                 $level = $counters[$class][$objId];
 
-                return $name.' &'.((string) $level);
+                return $matches[1].$name.' &'.((string) $level);
             },
             $output
         );

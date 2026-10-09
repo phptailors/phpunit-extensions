@@ -76,5 +76,58 @@ final class ExporterTest extends TestCase
         $this->assertStringMatchesFormat('{enable export of objects to see this value}', Exporter::export($array));
         $this->assertStringMatchesFormat($format, Exporter::export($array, true));
     }
+
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testExporterWithExportableNameObject(): void
+    {
+        $top = new DummyNamedArray();
+        $top['foo'] = [
+            'bar' => new DummyNamedArray(),
+            'rec' => $top,
+        ];
+
+        $expected = <<<'EOD'
+        DummyNamedArray &0 (
+            'foo' => Array &0 (
+                'bar' => DummyNamedArray &1 ()
+                'rec' => DummyNamedArray &0
+            )
+        )
+        EOD;
+
+        $this->assertSame($expected, Exporter::export($top, true));
+    }
+
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testExporterWithObjectLikeStringOfNonClass(): void
+    {
+        $data = 'Tailors\InExistent\Class Object #123 ()';
+        $expected = (new SebastianExporter())->export($data);
+        $this->assertSame($expected, Exporter::export($data, true));
+    }
+
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testExporterWithObjectLikeStringOfNonExportableName(): void
+    {
+        $data = self::class.' Object #123 ()';
+        $expected = (new SebastianExporter())->export($data);
+        $this->assertSame($expected, Exporter::export($data, true));
+    }
+
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testExporterWithObjectLikeStringOfExportableName(): void
+    {
+        $data = DummyNamedArray::class.' Object #123 ()';
+        $expected = (new SebastianExporter())->export($data);
+        $this->assertSame($expected, Exporter::export($data, true));
+    }
 }
 // vim: syntax=php sw=4 ts=4 et:
