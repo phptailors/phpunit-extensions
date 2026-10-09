@@ -20,7 +20,6 @@ use Tailors\PHPUnit\InvalidArgumentException;
  * @covers \Tailors\PHPUnit\Constraint\ClassPropertiesEqualTo
  * @covers \Tailors\PHPUnit\Constraint\PropertiesConstraintTestCase
  * @covers \Tailors\PHPUnit\Constraint\ProvClassPropertiesTrait
- * @covers \Tailors\PHPUnit\RecursiveConstraint\RecursiveConstraintTestCase
  *
  * @internal This class is not covered by the backward compatibility promise
  *

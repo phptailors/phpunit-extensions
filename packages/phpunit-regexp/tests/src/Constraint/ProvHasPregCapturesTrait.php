@@ -17,6 +17,8 @@ namespace Tailors\PHPUnit\Constraint;
  */
 trait ProvHasPregCapturesTrait
 {
+    // @codeCoverageIgnoreStart
+
     /**
      * @psalm-return iterable<array-key, array{
      *      expect: array,
@@ -211,7 +213,6 @@ trait ProvHasPregCapturesTrait
             'message' => 'object stdClass has expected PCRE capture groups',
         ];
     }
-    // @codeCoverageIgnoreStart
 
     /**
      * @psalm-return iterable<string, array{
