@@ -13,7 +13,6 @@ namespace Tailors\PHPUnit\Common;
 use SebastianBergmann\Exporter\Exporter as SebastianExporter;
 use SebastianBergmann\RecursionContext\Context;
 use SebastianBergmann\RecursionContext\InvalidArgumentException;
-use Tailors\PHPUnit\Result\ResultInterface;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
