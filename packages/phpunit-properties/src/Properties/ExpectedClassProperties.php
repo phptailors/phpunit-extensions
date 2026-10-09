@@ -11,8 +11,6 @@
 namespace Tailors\PHPUnit\Properties;
 
 /**
- * An array of expected class properties.
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit

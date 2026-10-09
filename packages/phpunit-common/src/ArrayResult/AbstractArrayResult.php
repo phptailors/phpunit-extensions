@@ -14,8 +14,6 @@ use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Result\ResultInterface;
 
 /**
- * An array of expected values.
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit

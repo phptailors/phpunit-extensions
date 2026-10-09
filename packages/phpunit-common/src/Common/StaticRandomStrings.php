@@ -11,8 +11,6 @@
 namespace Tailors\PHPUnit\Common;
 
 /**
- * An array of actual or expected values.
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit

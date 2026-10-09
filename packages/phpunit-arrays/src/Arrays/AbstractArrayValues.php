@@ -16,8 +16,6 @@ use Tailors\PHPUnit\Common\TagInterface;
 use Tailors\PHPUnit\Common\TypesInterface;
 
 /**
- * An array of expected or actual array values.
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit

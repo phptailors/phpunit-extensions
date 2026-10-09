@@ -8,22 +8,19 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\Properties;
+namespace Tailors\PHPUnit\Common;
 
 /**
- * @internal This class is not covered by the backward compatibility promise
+ * @internal This interface is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class ExpectedObjectProperties extends AbstractObjectProperties
+interface ExportableNameInterface
 {
     /**
-     * @psalm-mutation-free
+     * @psalm-pure
      */
-    public function actual(): bool
-    {
-        return false;
-    }
+    public static function exportableName(): string;
 }
 
 // vim: syntax=php sw=4 ts=4 et:

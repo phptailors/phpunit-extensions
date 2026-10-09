@@ -15,8 +15,6 @@ use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\ValueSelector\ClassPropertySelector;
 
 /**
- * An array of expected class properties.
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
