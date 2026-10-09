@@ -14,7 +14,7 @@ Failed asserting that AssertClassPropertiesIdenticalToRecursiveTest is a class w
 --- Expected
 +++ Actual
 @@ @@
- ClassProperties #0 (
+ ClassProperties &0 (
      'attribute' => 123,
 -    'nested' => Array &0 [
 -        'other' => 321,

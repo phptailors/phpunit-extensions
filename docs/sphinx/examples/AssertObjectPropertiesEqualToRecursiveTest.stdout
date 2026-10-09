@@ -14,7 +14,7 @@ Failed asserting that object AssertObjectPropertiesEqualToRecursiveTest is an ob
 --- Expected
 +++ Actual
 @@ @@
- ObjectProperties #0 (
+ ObjectProperties &0 (
 -    'attribute' => '123',
 -    'nested()' => Array &0 [
 -        'getMessage()' => 'FOO',

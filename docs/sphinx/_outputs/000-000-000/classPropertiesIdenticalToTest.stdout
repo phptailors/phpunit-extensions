@@ -11,7 +11,7 @@ Failed asserting that classPropertiesIdenticalToTest is a class with properties 
 --- Expected
 +++ Actual
 @@ @@
- ClassProperties #0 (
+ ClassProperties &0 (
 -    'attribute' => '123'
 -    'getValue()' => null
 +    'attribute' => 123

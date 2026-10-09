@@ -14,7 +14,7 @@ Failed asserting that AssertClassPropertiesEqualToTest is a class with propertie
 --- Expected
 +++ Actual
 @@ @@
- ClassProperties #0 (
+ ClassProperties &0 (
 -    'attribute' => '123',
 -    'getValue()' => null,
 +    'attribute' => 123,

@@ -11,7 +11,7 @@ Failed asserting that array is an array equal to the specified one when ksorted.
 --- Expected
 +++ Actual
 @@ @@
- KsortedArray #0 (
+ KsortedArray &0 (
      1 => ''
 -    'foo' => 'BAR'
 +    'foo' => 'FOO'

@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\Arrays;
 
 use Tailors\PHPUnit\ArrayResult\AbstractArrayResult;
+use Tailors\PHPUnit\Common\ExportableNameInterface;
 use Tailors\PHPUnit\Common\StaticRandomStrings;
 use Tailors\PHPUnit\Common\TagInterface;
 use Tailors\PHPUnit\Common\TypesInterface;
@@ -24,7 +25,7 @@ use Tailors\PHPUnit\Common\TypesInterface;
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
-abstract class AbstractKsortedArray extends AbstractArrayResult implements TagInterface
+abstract class AbstractKsortedArray extends AbstractArrayResult implements TagInterface, ExportableNameInterface
 {
     /**
      * @psalm-param ArrayLike $array
@@ -40,6 +41,14 @@ abstract class AbstractKsortedArray extends AbstractArrayResult implements TagIn
     final public function tag(): string
     {
         return StaticRandomStrings::familyTag(__NAMESPACE__.'\KsortedArray', 'e81092c9084f0813af075edd32d0beb2f3c774f3');
+    }
+
+    /**
+     * @psalm-pure
+     */
+    final public static function exportableName(): string
+    {
+        return 'KsortedArray';
     }
 }
 

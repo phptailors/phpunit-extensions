@@ -11,7 +11,7 @@ Failed asserting that object objectPropertiesEqualToTest is an object with prope
 --- Expected
 +++ Actual
 @@ @@
- ObjectProperties #0 (
+ ObjectProperties &0 (
 -    'attribute' => '123'
 -    'getValue()' => null
 +    'attribute' => 123

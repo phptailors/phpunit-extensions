@@ -14,7 +14,7 @@ Failed asserting that array is an array identical to the specified one when ksor
 --- Expected
 +++ Actual
 @@ @@
- KsortedArray #0 (
+ KsortedArray &0 (
 -    1 => null,
 +    1 => '',
      'foo' => 'FOO',

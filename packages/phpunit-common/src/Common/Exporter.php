@@ -39,11 +39,11 @@ final class Exporter
              * @psalm-suppress InternalMethod
              * @psalm-suppress MixedArgument
              */
-            return self::captureResultObjects(\PHPUnit\Util\Exporter::export($value, $exportObjects));
+            return self::postprocessOutput(\PHPUnit\Util\Exporter::export($value, $exportObjects));
         }
 
         if (self::isExportable($value) || $exportObjects) {
-            return self::captureResultObjects((new SebastianExporter())->export($value));
+            return self::postprocessOutput((new SebastianExporter())->export($value));
         }
 
         return '{enable export of objects to see this value}';
@@ -90,31 +90,43 @@ final class Exporter
         // @codeCoverageIgnoreEnd
     }
 
-    private static function captureResultObjects(string $output): string
+    private static function postprocessOutput(string $output): string
+    {
+        return self::handleExportableNames($output);
+    }
+
+    private static function handleExportableNames(string $output): string
     {
         $counters = [];
 
         /** @psalm-var string */
         return preg_replace_callback(
-            '/^(\s*)(Tailors\\\\PHPUnit(?:\\\\\w+)*\\\\(?:Expected|Actual)(\w+)) Object (?:#\d+|&[0-9a-fA-f]+)/m',
+            '/(\w+(?:\\\\\w+)*)\s+Object\s+(#\d+|&[0-9a-fA-f]+)/m',
             function (array $matches) use (&$counters): string {
-                if (!class_exists($matches[2])) {
+                $class = $matches[1];
+
+                if (!class_exists($class)) {
                     return $matches[0];
                 }
 
-                $class = $matches[2];
-                $implements = class_implements($class);
-                if (null === ($implements[ResultInterface::class] ?? null)) {
+                if (!is_subclass_of($class, ExportableNameInterface::class, true)) {
                     return $matches[0];
                 }
 
                 if (!array_key_exists($class, $counters)) {
-                    $counters[$class] = 0;
+                    $counters[$class] = [];
                 }
 
-                $level = $counters[$class]++;
+                $objId = $matches[2];
+                if (!array_key_exists($objId, $counters[$class])) {
+                    $counters[$class][$objId] = count($counters[$class]);
+                }
 
-                return $matches[1].$matches[3].' #'.((string) $level);
+                $name = $class::exportableName();
+
+                $level = $counters[$class][$objId];
+
+                return $name.' &'.((string) $level);
             },
             $output
         );

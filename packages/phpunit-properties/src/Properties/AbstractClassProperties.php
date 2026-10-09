@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\Properties;
 
 use Tailors\PHPUnit\ArrayResult\AbstractArrayResult;
+use Tailors\PHPUnit\Common\ExportableNameInterface;
 use Tailors\PHPUnit\Common\StaticRandomStrings;
 use Tailors\PHPUnit\Common\TagInterface;
 use Tailors\PHPUnit\Common\TypesInterface;
@@ -24,7 +25,7 @@ use Tailors\PHPUnit\Common\TypesInterface;
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
-abstract class AbstractClassProperties extends AbstractArrayResult implements TagInterface
+abstract class AbstractClassProperties extends AbstractArrayResult implements TagInterface, ExportableNameInterface
 {
     /**
      * @psalm-param ArrayLike $array
@@ -40,6 +41,14 @@ abstract class AbstractClassProperties extends AbstractArrayResult implements Ta
     final public function tag(): string
     {
         return StaticRandomStrings::familyTag(__NAMESPACE__.'\ClassProperties', '204ae0e60189915fbbb65c711dff84ddb77710c6');
+    }
+
+    /**
+     * @psalm-pure
+     */
+    final public static function exportableName(): string
+    {
+        return 'ClassProperties';
     }
 }
 
