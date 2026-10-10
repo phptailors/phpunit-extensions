@@ -11,7 +11,6 @@
 namespace Tailors\PHPUnit\RecursiveResultFactory;
 
 use PHPUnit\Framework\TestCase;
-use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
 use Tailors\PHPUnit\ArraySpec\DummyResultFactoryAndValueSelectorWrapper;
 use Tailors\PHPUnit\ArraySpec\DummyResultFactoryWrapper;
 use Tailors\PHPUnit\ArraySpec\DummyValueSelectorWrapper;
@@ -21,9 +20,10 @@ use Tailors\PHPUnit\InternalErrorException;
 use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapper;
 use Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversal;
 use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorInterface;
+use Tailors\PHPUnit\Result\DummyTaggedArrayResult;
 use Tailors\PHPUnit\Result\ResultInterface;
-use Tailors\PHPUnit\ResultFactory\DummyArrayResultFactory;
 use Tailors\PHPUnit\ResultFactory\DummyResultFactory;
+use Tailors\PHPUnit\ResultFactory\DummyTaggedArrayResultFactory;
 use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
 
 /**
@@ -159,7 +159,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         // 02
         //
         $e02 = new DummyResultFactoryAndValueSelectorWrapper(
-            new DummyArrayResultFactory(),
+            new DummyTaggedArrayResultFactory(),
             new DummyValueSelector(false),
             ['unimportant' => 'UNIMPORTANT']
         );
@@ -182,7 +182,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         //
 
         $e03 = new DummyResultFactoryAndValueSelectorWrapper(
-            new DummyArrayResultFactory(),
+            new DummyTaggedArrayResultFactory(),
             new DummyValueSelector(true),
             ['unimportant' => 'UNIMPORTANT']
         );
@@ -197,7 +197,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
                     'return' => true,
                 ],
             ],
-            'result' => new DummyArrayResult(true, []),
+            'result' => new DummyTaggedArrayResult(true, []),
         ];
 
         //
@@ -205,7 +205,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         //
 
         $e04 = new DummyResultFactoryWrapper(
-            new DummyArrayResultFactory(),
+            new DummyTaggedArrayResultFactory(),
             ['foo' => 'FOO']
         );
 
@@ -232,7 +232,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
                     'return' => true,
                 ],
             ],
-            'result' => new DummyArrayResult(true, ['bar' => 'BAR']),
+            'result' => new DummyTaggedArrayResult(true, ['bar' => 'BAR']),
         ];
 
         //
@@ -245,7 +245,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
             ]),
         ]);
 
-        $f05 = new DummyArrayResultFactory();
+        $f05 = new DummyTaggedArrayResultFactory();
         $s05 = self::getArrayObjectSelector();
 
         $e05 = new DummyResultFactoryAndValueSelectorWrapper($f05, $s05, [
@@ -285,8 +285,8 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
                     'next'   => 0,
                 ],
             ],
-            'result' => new DummyArrayResult(true, [
-                'foo' => new DummyArrayResult(true, [
+            'result' => new DummyTaggedArrayResult(true, [
+                'foo' => new DummyTaggedArrayResult(true, [
                     'bar' => [],
                 ]),
             ]),
@@ -302,7 +302,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
             ]),
         ]);
 
-        $f06 = new DummyArrayResultFactory();
+        $f06 = new DummyTaggedArrayResultFactory();
         $s06 = self::getArrayObjectSelector();
 
         $e06 = new DummyResultFactoryAndValueSelectorWrapper($f06, $s06, [
@@ -341,8 +341,8 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
                     'return' => false,
                 ],
             ],
-            'result' => new DummyArrayResult(true, [
-                'foo' => new DummyArrayResult(true, []),
+            'result' => new DummyTaggedArrayResult(true, [
+                'foo' => new DummyTaggedArrayResult(true, []),
             ]),
         ];
 
@@ -358,7 +358,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
             ],
         ]);
 
-        $f07 = new DummyArrayResultFactory();
+        $f07 = new DummyTaggedArrayResultFactory();
         $s07 = self::getArrayObjectSelector();
 
         $e07 = new DummyResultFactoryAndValueSelectorWrapper($f07, $s07, [
@@ -400,9 +400,9 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
                     'next'   => 0,
                 ],
             ],
-            'result' => new DummyArrayResult(true, [
+            'result' => new DummyTaggedArrayResult(true, [
                 'foo' => [
-                    'bar' => new DummyArrayResult(true, []),
+                    'bar' => new DummyTaggedArrayResult(true, []),
                 ],
             ]),
         ];
@@ -417,7 +417,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
             ],
         ]);
 
-        $f08 = new DummyArrayResultFactory();
+        $f08 = new DummyTaggedArrayResultFactory();
         $s08 = self::getArrayObjectSelector();
 
         $e08 = new DummyResultFactoryAndValueSelectorWrapper($f08, $s08, [
@@ -468,7 +468,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
                     'return' => false,
                 ],
             ],
-            'result' => new DummyArrayResult(true, [
+            'result' => new DummyTaggedArrayResult(true, [
                 'foo' => [
                     'bar' => [],
                 ],
@@ -560,7 +560,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
             'xx2' => 'ignored',
         ]);
 
-        $f02 = new DummyArrayResultFactory();
+        $f02 = new DummyTaggedArrayResultFactory();
         $s02 = self::getArrayObjectSelector();
 
         $e02 = new DummyResultFactoryAndValueSelectorWrapper($f02, $s02, [
@@ -597,7 +597,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
                     'key'  => 'gez',
                 ],
             ],
-            'result' => new DummyArrayResult(true, [
+            'result' => new DummyTaggedArrayResult(true, [
                 'foo' => 'FOO',
                 'bar' => 'BAR',
             ]),
@@ -653,7 +653,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
             'bar' => 'BAR',
         ];
         $c04 = 0;
-        $f04 = new DummyArrayResultFactory();
+        $f04 = new DummyTaggedArrayResultFactory();
         $s04 = new DummyValueSelector(
             function () use (&$c04): bool {
                 // A selector which changes its mind everytime.
@@ -700,7 +700,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
                     'key'  => 'foo',
                 ],
             ],
-            'result' => new DummyArrayResult(true, []),
+            'result' => new DummyTaggedArrayResult(true, []),
         ];
     }
 
@@ -771,7 +771,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         // 01
         //
 
-        $f01 = new DummyArrayResultFactory();
+        $f01 = new DummyTaggedArrayResultFactory();
         $s01 = new DummyValueSelector(false);
 
         yield basename(__FILE__).':'.__LINE__ => [
@@ -784,20 +784,20 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         // 02
         //
 
-        $f02 = new DummyArrayResultFactory();
+        $f02 = new DummyTaggedArrayResultFactory();
         $s02 = self::getArrayObjectSelector();
 
         yield basename(__FILE__).':'.__LINE__ => [
             'begin'  => [new \ArrayObject([])],
             'array'  => new DummyResultFactoryAndValueSelectorWrapper($f02, $s02, []),
-            'result' => new DummyArrayResult(true, []),
+            'result' => new DummyTaggedArrayResult(true, []),
         ];
 
         //
         // 03
         //
 
-        $f03 = new DummyArrayResultFactory();
+        $f03 = new DummyTaggedArrayResultFactory();
         $s03 = self::getArrayObjectSelector();
 
         yield basename(__FILE__).':'.__LINE__ => [
@@ -813,7 +813,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
                 'foo' => 'unimportant',
                 'bar' => 'unimportant',
             ]),
-            'result' => new DummyArrayResult(true, [
+            'result' => new DummyTaggedArrayResult(true, [
                 'foo' => 'FOO',
                 'bar' => 'BAR',
             ]),
@@ -823,7 +823,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         // 04
         //
 
-        $f04 = new DummyArrayResultFactory();
+        $f04 = new DummyTaggedArrayResultFactory();
         $s04 = self::getArrayObjectSelector();
 
         yield basename(__FILE__).':'.__LINE__ => [
@@ -837,9 +837,9 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
             ],
             'array'  => new DummyResultFactoryAndValueSelectorWrapper($f04, $s04, [
                 'foo' => ['unimportant'],
-                'bar' => new DummyArrayResult(false, []),
+                'bar' => new DummyTaggedArrayResult(false, []),
             ]),
-            'result' => new DummyArrayResult(true, [
+            'result' => new DummyTaggedArrayResult(true, [
                 'foo' => 'FOO',
                 'bar' => 'BAR',
             ]),
@@ -849,7 +849,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         // 05
         //
 
-        $f05 = new DummyArrayResultFactory();
+        $f05 = new DummyTaggedArrayResultFactory();
         $s05 = self::getArrayObjectSelector();
 
         yield basename(__FILE__).':'.__LINE__ => [
@@ -872,7 +872,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
                 ],
                 'bar' => new DummyResultFactoryAndValueSelectorWrapper($f05, $s05, ['unimportant']),
             ]),
-            'result' => new DummyArrayResult(true, [
+            'result' => new DummyTaggedArrayResult(true, [
                 'foo' => [
                     'baz' => 'FOO.BAZ',
                     'qux' => 'FOO.QUX',
@@ -885,7 +885,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         // 06
         //
 
-        $f06 = new DummyArrayResultFactory();
+        $f06 = new DummyTaggedArrayResultFactory();
         $s06 = self::getArrayObjectSelector();
 
         yield basename(__FILE__).':'.__LINE__ => [
@@ -919,13 +919,13 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
                 ],
                 'bar' => new DummyResultFactoryAndValueSelectorWrapper($f06, $s06, ['unimportant']),
             ]),
-            'result' => new DummyArrayResult(true, [
+            'result' => new DummyTaggedArrayResult(true, [
                 'foo' => [
                     'baz' => 'FOO.BAZ',
-                    'qux' => new DummyArrayResult(true, [
+                    'qux' => new DummyTaggedArrayResult(true, [
                         'cez' => 'FOO.QUX.CEZ',
                     ]),
-                    'gez' => new DummyArrayResult(true, [
+                    'gez' => new DummyTaggedArrayResult(true, [
                         'kik' => 'FOO.GEZ.KIK',
                     ]),
                     'bam' => 'FOO.BAM',
@@ -938,8 +938,8 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         // 07
         //
 
-        $f07a = new DummyArrayResultFactory('TAG-A');
-        $f07e = new DummyArrayResultFactory('TAG-E');
+        $f07a = new DummyTaggedArrayResultFactory('TAG-A');
+        $f07e = new DummyTaggedArrayResultFactory('TAG-E');
         $s07a = self::getArrayObjectSelector();
         $s07e = self::getExceptionPropertySelector();
 
@@ -960,7 +960,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
                 'message'  => 'unimportant',
                 'nonexist' => 'unimportant',
             ]),
-            'result' => new DummyArrayResult(true, [
+            'result' => new DummyTaggedArrayResult(true, [
                 'message' => 'foo',
             ], 'TAG-E'),
         ];
@@ -980,8 +980,8 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
                 ]),
                 'f' => 'unimportant',
             ]),
-            'result' => new DummyArrayResult(true, [
-                'e' => new DummyArrayResult(true, [
+            'result' => new DummyTaggedArrayResult(true, [
+                'e' => new DummyTaggedArrayResult(true, [
                     'message' => 'foo',
                 ], 'TAG-E'),
                 'f' => 'F',
@@ -992,8 +992,8 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         // 08
         //
 
-        $f08a = new DummyArrayResultFactory('TAG-A');
-        $f08e = new DummyArrayResultFactory('TAG-E');
+        $f08a = new DummyTaggedArrayResultFactory('TAG-A');
+        $f08e = new DummyTaggedArrayResultFactory('TAG-E');
         $s08e = self::getExceptionPropertySelector();
 
         yield basename(__FILE__).':'.__LINE__ => [
@@ -1011,9 +1011,9 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
                 ]),
                 'f' => 'unimportant',
             ]),
-            'result' => new DummyArrayResult(true, [
+            'result' => new DummyTaggedArrayResult(true, [
                 'f' => 'F',
-                'e' => new DummyArrayResult(true, [
+                'e' => new DummyTaggedArrayResult(true, [
                     'message' => 'foo',
                 ], 'TAG-E'),
                 'd' => 'D',
@@ -1024,7 +1024,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         // 09
         //
 
-        $f09a = new DummyArrayResultFactory('TAG-A', function ($input) {
+        $f09a = new DummyTaggedArrayResultFactory('TAG-A', function ($input) {
             if ($input instanceof \Traversable) {
                 $input = iterator_to_array($input);
             }
@@ -1033,7 +1033,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
             return $input;
         });
 
-        $f09e = new DummyArrayResultFactory('TAG-E');
+        $f09e = new DummyTaggedArrayResultFactory('TAG-E');
         $s09e = self::getExceptionPropertySelector();
 
         yield basename(__FILE__).':'.__LINE__ => [
@@ -1053,9 +1053,9 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
                 ]),
                 'f' => 'UNIMPORTANT',
             ]),
-            'result' => new DummyArrayResult(true, [
+            'result' => new DummyTaggedArrayResult(true, [
                 'd' => 'D',
-                'e' => new DummyArrayResult(true, [
+                'e' => new DummyTaggedArrayResult(true, [
                     'message' => 'foo',
                     'code'    => 123,
                 ], 'TAG-E'),
@@ -1067,7 +1067,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         // 10
         //
 
-        $f10a = new DummyArrayResultFactory('TAG-A');
+        $f10a = new DummyTaggedArrayResultFactory('TAG-A');
         $s10a = self::getNamespaceVariableSelector([
             'ns1' => [
                 'foo' => 'FOO',
@@ -1082,7 +1082,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
             ],
         ]);
 
-        $f10b = new DummyArrayResultFactory('TAG-B');
+        $f10b = new DummyTaggedArrayResultFactory('TAG-B');
         $s10b = self::getArrayObjectSelector();
 
         yield basename(__FILE__).':'.__LINE__ => [
@@ -1100,7 +1100,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
                 'foo' => 'UNIMPORTANT',
                 'baz' => 'UNIMPORTANT',
             ]),
-            'result' => new DummyArrayResult(true, [
+            'result' => new DummyTaggedArrayResult(true, [
                 'foo' => 'FOO',
             ], 'TAG-A'),
         ];
@@ -1111,7 +1111,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
                 'foo' => 'UNIMPORTANT',
                 'baz' => 'UNIMPORTANT',
             ]),
-            'result' => new DummyArrayResult(true, [
+            'result' => new DummyTaggedArrayResult(true, [
                 'baz' => 'BAZ',
             ], 'TAG-A'),
         ];
@@ -1126,8 +1126,8 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
                 ]),
                 'baz' => 'UNIMPORTANT',
             ]),
-            'result' => new DummyArrayResult(true, [
-                'gez' => new DummyArrayResult(true, [
+            'result' => new DummyTaggedArrayResult(true, [
+                'gez' => new DummyTaggedArrayResult(true, [
                     'cop' => 'COP',
                     'qux' => 'QUX',
                 ], 'TAG-B'),

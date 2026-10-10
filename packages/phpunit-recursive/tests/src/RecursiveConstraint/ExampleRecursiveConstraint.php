@@ -15,7 +15,7 @@ use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Comparator\IdentityComparator;
 use Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactory;
 use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapper;
-use Tailors\PHPUnit\ResultFactory\DummyArrayResultFactory;
+use Tailors\PHPUnit\ResultFactory\DummyTaggedArrayResultFactory;
 use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
 
 /**
@@ -37,7 +37,7 @@ final class ExampleRecursiveConstraint extends AbstractRecursiveConstraint
     public static function create(iterable $expectations): self
     {
         $expectations = new DummyResultFactoryAndValueSelectorWrapper(
-            new DummyArrayResultFactory(),
+            new DummyTaggedArrayResultFactory(),
             new DummyValueSelector(
                 /**
                  * @param mixed $subject

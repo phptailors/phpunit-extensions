@@ -10,12 +10,14 @@
 
 namespace Tailors\PHPUnit\Properties;
 
+use Tailors\PHPUnit\Result\ResultInterface;
+
 /**
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class ExpectedClassProperties extends AbstractClassProperties
+final class ExpectedClassProperties extends AbstractClassProperties implements ResultInterface
 {
     /**
      * @psalm-mutation-free

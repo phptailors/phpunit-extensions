@@ -11,16 +11,16 @@
 namespace Tailors\PHPUnit\ResultFactory;
 
 use PHPUnit\Framework\TestCase;
-use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
 use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\InvalidArgumentException;
+use Tailors\PHPUnit\Result\DummyTaggedArrayResult;
 use Tailors\PHPUnit\Result\ResultInterface;
 
 /**
  * @small
  *
  * @covers \Tailors\PHPUnit\ResultFactory\AbstractArrayResultFactory
- * @covers \Tailors\PHPUnit\ResultFactory\DummyArrayResultFactory
+ * @covers \Tailors\PHPUnit\ResultFactory\DummyTaggedArrayResultFactory
  *
  * @internal This class is not covered by the backward compatibility promise
  *
@@ -33,14 +33,14 @@ use Tailors\PHPUnit\Result\ResultInterface;
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
-final class DummyArrayResultFactoryTest extends TestCase
+final class DummyTaggedArrayResultFactoryTest extends TestCase
 {
     /**
      * @psalm-suppress MissingThrowsDocblock
      */
     public function testImplementsResultFactoryInterface(): void
     {
-        $object = new DummyArrayResultFactory();
+        $object = new DummyTaggedArrayResultFactory();
 
         $this->assertInstanceOf(ResultFactoryInterface::class, $object);
     }
@@ -50,7 +50,7 @@ final class DummyArrayResultFactoryTest extends TestCase
      */
     public function testExtendsAbstractArrayResultFactory(): void
     {
-        $object = new DummyArrayResultFactory();
+        $object = new DummyTaggedArrayResultFactory();
 
         $this->assertInstanceOf(AbstractArrayResultFactory::class, $object);
     }
@@ -137,7 +137,7 @@ final class DummyArrayResultFactoryTest extends TestCase
      */
     public function testGetResult(array $ctor, array $args, $expect): void
     {
-        $factory = new DummyArrayResultFactory(...$ctor);
+        $factory = new DummyTaggedArrayResultFactory(...$ctor);
 
         $input = $args[1];
         $this->assertTrue($factory->supports($input));
@@ -146,14 +146,14 @@ final class DummyArrayResultFactoryTest extends TestCase
 
         $this->assertInstanceOf(ResultInterface::class, $result);
         $this->assertInstanceOf(\Traversable::class, $result);
-        $this->assertInstanceOf(DummyArrayResult::class, $result);
+        $this->assertInstanceOf(DummyTaggedArrayResult::class, $result);
 
         $actual = $args[0];
 
         $this->assertSame($actual, $result->actual());
         $this->assertSame($expect, iterator_to_array($result));
 
-        $tag = $ctor[0] ?? DummyArrayResult::class.':a1a44e79c791a1fe22ac49067eef00b222d10131';
+        $tag = $ctor[0] ?? DummyTaggedArrayResult::class.':a1a44e79c791a1fe22ac49067eef00b222d10131';
         $this->assertSame($tag, $result->tag());
     }
 
@@ -162,7 +162,7 @@ final class DummyArrayResultFactoryTest extends TestCase
      */
     public function testGetResultThrowsInvalidArgumentException(): void
     {
-        $factory = new DummyArrayResultFactory();
+        $factory = new DummyTaggedArrayResultFactory();
 
         $this->assertFalse($factory->supports('X'));
 

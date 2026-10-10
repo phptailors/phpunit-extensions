@@ -30,8 +30,8 @@ use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapper;
 use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapperInterface;
 use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapperVisitor;
 use Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversal;
-use Tailors\PHPUnit\ResultFactory\DummyArrayResultFactory;
 use Tailors\PHPUnit\ResultFactory\DummyResultFactory;
+use Tailors\PHPUnit\ResultFactory\DummyTaggedArrayResultFactory;
 use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
 
 /**
@@ -87,7 +87,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
         iterable $expected,
         ComparatorInterface $comparator
     ): DummyAbstractRecursiveConstraint {
-        $resultFactory = new DummyArrayResultFactory();
+        $resultFactory = new DummyTaggedArrayResultFactory();
 
         return DummyAbstractRecursiveConstraint::create(
             new DummyResultFactoryWrapper($resultFactory, $expected),
@@ -111,7 +111,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
         iterable $expected,
         ComparatorInterface $comparator
     ): DummyAbstractRecursiveConstraint {
-        $resultFactory = new DummyArrayResultFactory();
+        $resultFactory = new DummyTaggedArrayResultFactory();
         $valueSelector = new DummyValueSelector(
             /**
              * @param mixed $subject

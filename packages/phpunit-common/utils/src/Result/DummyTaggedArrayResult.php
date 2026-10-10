@@ -8,11 +8,10 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\ArrayResult;
+namespace Tailors\PHPUnit\Result;
 
 use Tailors\PHPUnit\Common\TagInterface;
 use Tailors\PHPUnit\Common\TypesInterface;
-use Tailors\PHPUnit\Result\ResultInterface;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -25,7 +24,7 @@ use Tailors\PHPUnit\Result\ResultInterface;
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
-final class DummyArrayResult extends \ArrayObject implements ResultInterface, TagInterface
+final class DummyTaggedArrayResult extends \ArrayObject implements ResultInterface, TagInterface
 {
     /**
      * @var bool

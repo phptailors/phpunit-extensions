@@ -10,7 +10,7 @@
 
 namespace Tailors\PHPUnit\Properties;
 
-use Tailors\PHPUnit\ArrayResult\AbstractArrayResultTestCase;
+use Tailors\PHPUnit\Common\AbstractArrayObjectTestCase;
 use Tailors\PHPUnit\Common\ExportableNameInterface;
 use Tailors\PHPUnit\Common\ExportableNameInterfaceTestTrait;
 use Tailors\PHPUnit\Common\StaticRandomStrings;
@@ -29,7 +29,7 @@ use Tailors\PHPUnit\Common\TypesInterface;
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
-abstract class AbstractObjectPropertiesTestCase extends AbstractArrayResultTestCase
+abstract class AbstractObjectPropertiesTestCase extends AbstractArrayObjectTestCase
 {
     use ExportableNameInterfaceTestTrait;
     use TagInterfaceTestTrait;

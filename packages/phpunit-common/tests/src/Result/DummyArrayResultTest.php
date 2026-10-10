@@ -8,17 +8,16 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\ArrayResult;
+namespace Tailors\PHPUnit\Result;
 
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Common\TagInterface;
 use Tailors\PHPUnit\Common\TypesInterface;
-use Tailors\PHPUnit\Result\ResultInterface;
 
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\ArrayResult\DummyArrayResult
+ * @covers \Tailors\PHPUnit\Result\DummyArrayResult
  *
  * @internal This class is not covered by the backward compatibility promise
  *
@@ -27,7 +26,7 @@ use Tailors\PHPUnit\Result\ResultInterface;
  * @psalm-import-type ArrayLike from TypesInterface
  *
  * @psalm-type CtorArgs    = list{0:bool,1?:ArrayLike,2?:null|string}
- * @psalm-type ExpectArray = array{actual: mixed, array: mixed, tag: mixed}
+ * @psalm-type ExpectArray = array{actual: mixed, array: mixed}
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
@@ -52,9 +51,9 @@ final class DummyArrayResultTest extends TestCase
     /**
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testImplementsTagInterface(): void
+    public function testNotImplementsTagInterface(): void
     {
-        $this->assertInstanceOf(TagInterface::class, new DummyArrayResult(false));
+        $this->assertNotInstanceOf(TagInterface::class, new DummyArrayResult(false));
     }
 
     /**
@@ -62,14 +61,11 @@ final class DummyArrayResultTest extends TestCase
      */
     public static function provDummyArrayResult(): iterable
     {
-        $tag = DummyArrayResult::class.':a1a44e79c791a1fe22ac49067eef00b222d10131';
-
         yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [false],
             'expect' => [
                 'actual' => false,
                 'array'  => [],
-                'tag'    => $tag,
             ],
         ];
 
@@ -78,7 +74,6 @@ final class DummyArrayResultTest extends TestCase
             'expect' => [
                 'actual' => false,
                 'array'  => ['foo' => 'FOO'],
-                'tag'    => $tag,
             ],
         ];
 
@@ -87,16 +82,6 @@ final class DummyArrayResultTest extends TestCase
             'expect' => [
                 'actual' => false,
                 'array'  => ['foo' => 'FOO'],
-                'tag'    => $tag,
-            ],
-        ];
-
-        yield 'DummyArrayResultTest.php'.__LINE__ => [
-            'ctor'   => [false, [], 'FOO'],
-            'expect' => [
-                'actual' => false,
-                'array'  => [],
-                'tag'    => 'FOO',
             ],
         ];
     }
@@ -116,7 +101,6 @@ final class DummyArrayResultTest extends TestCase
         $this->assertSame($expect['actual'], $arrayResult->actual());
         $this->assertSame($expect['array'], iterator_to_array($arrayResult));
         $this->assertSame($expect['array'], (array) $arrayResult);
-        $this->assertSame($expect['tag'], $arrayResult->tag());
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

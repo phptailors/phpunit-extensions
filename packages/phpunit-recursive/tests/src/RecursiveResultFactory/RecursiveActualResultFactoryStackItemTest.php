@@ -11,8 +11,8 @@
 namespace Tailors\PHPUnit\RecursiveResultFactory;
 
 use PHPUnit\Framework\TestCase;
-use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
 use Tailors\PHPUnit\Common\TypesInterface;
+use Tailors\PHPUnit\Result\DummyTaggedArrayResult;
 
 /**
  * @small
@@ -69,7 +69,7 @@ final class RecursiveActualResultFactoryStackItemTest extends TestCase
         //
         // 03
         //
-        $n03 = new DummyArrayResult(false);
+        $n03 = new DummyTaggedArrayResult(false);
         $c03 = new SubjectResultCouple(null, []);
 
         yield basename(__FILE__).':'.__LINE__ => [
@@ -140,7 +140,7 @@ final class RecursiveActualResultFactoryStackItemTest extends TestCase
         // 03
         //
         $s03 = new SubjectResultCouple('s', ['v' => null, 'r' => 'R']);
-        $n03 = new DummyArrayResult(false, ['n' => 'N']);
+        $n03 = new DummyTaggedArrayResult(false, ['n' => 'N']);
 
         yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [$n03, 'v', $s03],

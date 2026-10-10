@@ -10,8 +10,8 @@
 
 namespace Tailors\PHPUnit\ResultFactory;
 
-use Tailors\PHPUnit\ArrayResult\DummyArrayResult;
 use Tailors\PHPUnit\Common\TypesInterface;
+use Tailors\PHPUnit\Result\DummyTaggedArrayResult;
 use Tailors\PHPUnit\Result\ResultInterface;
 
 /**
@@ -23,7 +23,7 @@ use Tailors\PHPUnit\Result\ResultInterface;
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
-final class DummyArrayResultFactory extends AbstractArrayResultFactory
+final class DummyTaggedArrayResultFactory extends AbstractArrayResultFactory
 {
     /**
      * @var ?string
@@ -64,7 +64,7 @@ final class DummyArrayResultFactory extends AbstractArrayResultFactory
             $input = call_user_func_array($this->modifier, [$input]);
         }
 
-        return new DummyArrayResult($actual, $input, $this->tag);
+        return new DummyTaggedArrayResult($actual, $input, $this->tag);
     }
 }
 

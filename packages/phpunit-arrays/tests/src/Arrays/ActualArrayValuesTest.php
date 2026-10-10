@@ -10,13 +10,16 @@
 
 namespace Tailors\PHPUnit\Arrays;
 
+use Tailors\PHPUnit\Result\ResultInterface;
+use Tailors\PHPUnit\Result\ResultInterfaceTestTrait;
+
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\ArrayResult\AbstractArrayResultTestCase
  * @covers \Tailors\PHPUnit\Arrays\AbstractArrayValues
  * @covers \Tailors\PHPUnit\Arrays\AbstractArrayValuesTestCase
  * @covers \Tailors\PHPUnit\Arrays\ActualArrayValues
+ * @covers \Tailors\PHPUnit\Common\AbstractArrayObjectTestCase
  *
  * @internal This class is not covered by the backward compatibility promise
  *
@@ -26,12 +29,30 @@ namespace Tailors\PHPUnit\Arrays;
  */
 final class ActualArrayValuesTest extends AbstractArrayValuesTestCase
 {
+    use ResultInterfaceTestTrait;
+
     /**
-     * @psalm-pure
+     * @psalm-return iterable<string, array{
+     *  object: ResultInterface,
+     *  actual: mixed
+     * }>
      */
-    public static function getActual(): bool
+    public static function provActual(): iterable
     {
-        return true;
+        yield basename(__FILE__).':'.__LINE__ => [
+            'object' => self::getObject([]),
+            'actual' => true,
+        ];
+    }
+
+    /**
+     * @psalm-return iterable<string, array{object: object}>
+     */
+    public static function provImplementsResultInterface(): iterable
+    {
+        yield basename(__FILE__).':'.__LINE__ => [
+            'object' => self::getObject([]),
+        ];
     }
 
     /**

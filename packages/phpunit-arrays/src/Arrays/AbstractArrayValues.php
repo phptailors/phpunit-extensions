@@ -10,7 +10,7 @@
 
 namespace Tailors\PHPUnit\Arrays;
 
-use Tailors\PHPUnit\ArrayResult\AbstractArrayResult;
+use Tailors\PHPUnit\Common\AbstractArrayObject;
 use Tailors\PHPUnit\Common\ExportableNameInterface;
 use Tailors\PHPUnit\Common\StaticRandomStrings;
 use Tailors\PHPUnit\Common\TagInterface;
@@ -25,7 +25,7 @@ use Tailors\PHPUnit\Common\TypesInterface;
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
-abstract class AbstractArrayValues extends AbstractArrayResult implements TagInterface, ExportableNameInterface
+abstract class AbstractArrayValues extends AbstractArrayObject implements TagInterface, ExportableNameInterface
 {
     /**
      * @psalm-param ArrayLike $array

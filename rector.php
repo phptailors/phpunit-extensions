@@ -30,7 +30,7 @@ return RectorConfig::configure()
             __DIR__.'/packages/phpunit-properties/tests/src/Constraint/ClassPropertiesIdenticalToTest.php',
             __DIR__.'/packages/phpunit-properties/tests/src/Constraint/ObjectPropertiesEqualToTest.php',
             __DIR__.'/packages/phpunit-properties/tests/src/Constraint/ObjectPropertiesIdenticalToTest.php',
-        ]
+        ],
     ])
     ->withRules([
         RemoveUselessParamTagRector::class,
@@ -43,6 +43,8 @@ return RectorConfig::configure()
         removeUnusedImports: true
     )
     ->withConfiguredRule(RenameClassRector::class, [
+        'Tailors\PHPUnit\ArrayResult\AbstractArrayResult' => 'Tailors\PHPUnit\Common\AbstractArrayObject',
+        'Tailors\PHPUnit\ArrayResult\AbstractArrayResultTestCase' => 'Tailors\PHPUnit\Common\AbstractArrayObjectTestCase'
     ])
 ;
 

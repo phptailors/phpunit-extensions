@@ -10,12 +10,14 @@
 
 namespace Tailors\PHPUnit\Arrays;
 
+use Tailors\PHPUnit\Result\ResultInterface;
+
 /**
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class ActualArrayValues extends AbstractArrayValues
+final class ActualArrayValues extends AbstractArrayValues implements ResultInterface
 {
     /**
      * @psalm-mutation-free

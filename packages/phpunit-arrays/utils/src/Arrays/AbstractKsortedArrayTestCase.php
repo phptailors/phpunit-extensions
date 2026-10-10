@@ -10,7 +10,7 @@
 
 namespace Tailors\PHPUnit\Arrays;
 
-use Tailors\PHPUnit\ArrayResult\AbstractArrayResultTestCase;
+use Tailors\PHPUnit\Common\AbstractArrayObjectTestCase;
 use Tailors\PHPUnit\Common\ExportableNameInterface;
 use Tailors\PHPUnit\Common\ExportableNameInterfaceTestTrait;
 use Tailors\PHPUnit\Common\StaticRandomStrings;
@@ -24,11 +24,11 @@ use Tailors\PHPUnit\Common\TypesInterface;
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-import-type ArrayLike from TypesInterface
- * @psalm-import-type CtorArgs from AbstractArrayResultTestCase
+ * @psalm-import-type CtorArgs from \Tailors\PHPUnit\Common\AbstractArrayObjectTestCase
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
-abstract class AbstractKsortedArrayTestCase extends AbstractArrayResultTestCase
+abstract class AbstractKsortedArrayTestCase extends AbstractArrayObjectTestCase
 {
     use ExportableNameInterfaceTestTrait;
     use TagInterfaceTestTrait;

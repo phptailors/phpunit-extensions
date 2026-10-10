@@ -10,10 +10,13 @@
 
 namespace Tailors\PHPUnit\Properties;
 
+use Tailors\PHPUnit\Result\ResultInterface;
+use Tailors\PHPUnit\Result\ResultInterfaceTestTrait;
+
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\ArrayResult\AbstractArrayResultTestCase
+ * @covers \Tailors\PHPUnit\Common\AbstractArrayObjectTestCase
  * @covers \Tailors\PHPUnit\Properties\AbstractObjectProperties
  * @covers \Tailors\PHPUnit\Properties\AbstractObjectPropertiesTestCase
  * @covers \Tailors\PHPUnit\Properties\ActualObjectProperties
@@ -26,12 +29,30 @@ namespace Tailors\PHPUnit\Properties;
  */
 final class ActualObjectPropertiesTest extends AbstractObjectPropertiesTestCase
 {
+    use ResultInterfaceTestTrait;
+
     /**
-     * @psalm-pure
+     * @psalm-return iterable<string, array{
+     *  object: ResultInterface,
+     *  actual: mixed
+     * }>
      */
-    public static function getActual(): bool
+    public static function provActual(): iterable
     {
-        return true;
+        yield basename(__FILE__).':'.__LINE__ => [
+            'object' => self::getObject([]),
+            'actual' => true,
+        ];
+    }
+
+    /**
+     * @psalm-return iterable<string, array{object: object}>
+     */
+    public static function provImplementsResultInterface(): iterable
+    {
+        yield basename(__FILE__).':'.__LINE__ => [
+            'object' => self::getObject([]),
+        ];
     }
 
     /**

@@ -8,51 +8,31 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\ArrayResult;
-
-use Tailors\PHPUnit\Common\TypesInterface;
-use Tailors\PHPUnit\Result\ResultInterface;
+namespace Tailors\PHPUnit\Common;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type ArrayLike from TypesInterface
- *
  * @template-extends \ArrayObject<array-key,mixed>
+ *
+ * @psalm-import-type ArrayLike from TypesInterface
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
-final class DummyUntaggedArrayResult extends \ArrayObject implements ResultInterface
+abstract class AbstractArrayObject extends \ArrayObject
 {
-    /**
-     * @var bool
-     *
-     * @psalm-readonly
-     */
-    private $actual;
-
     /**
      * @psalm-param ArrayLike $array
      */
-    public function __construct(bool $actual, iterable $array = [])
+    protected function __construct(iterable $array = [])
     {
-        $this->actual = $actual;
-
         if (!is_array($array)) {
             $array = iterator_to_array($array);
         }
 
         parent::__construct($array);
-    }
-
-    /**
-     * @psalm-mutation-free
-     */
-    public function actual(): bool
-    {
-        return $this->actual;
     }
 }
 

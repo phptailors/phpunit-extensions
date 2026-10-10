@@ -10,12 +10,14 @@
 
 namespace Tailors\PHPUnit\Arrays;
 
+use Tailors\PHPUnit\Result\ResultInterface;
+
 /**
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class ActualKsortedArray extends AbstractKsortedArray
+final class ActualKsortedArray extends AbstractKsortedArray implements ResultInterface
 {
     /**
      * @psalm-mutation-free
