@@ -120,7 +120,7 @@ final class ExporterTest extends TestCase
         )
         EOD;
 
-        $exported = str_replace("\r\n", "\n", Exporter::export($top, true));
+        $exported = Exporter::export($top, true);
 
         $this->assertThat($exported, $this->logicalOr(
             $this->identicalTo($expected[0]),
