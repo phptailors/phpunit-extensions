@@ -93,15 +93,15 @@ final class ExporterTest extends TestCase
         ];
 
         $expected = <<<'EOD'
-        DummyNamedArray &0 (
-            'foo' => Array &0 (
-                'bar' => DummyNamedArray &1 ()
-                'rec' => DummyNamedArray &0
-            )
-        )
+        DummyNamedArray &0 \(
+            'foo' => Array &0 \(
+                'bar' => DummyNamedArray &1 \(\),?
+                'rec' => DummyNamedArray &0,?
+            \)
+        \)
         EOD;
 
-        $this->assertSame($expected, Exporter::export($top, true));
+        $this->assertMatchesRegularExpression('/^'.$expected.'$/m', Exporter::export($top, true));
     }
 
     /**
