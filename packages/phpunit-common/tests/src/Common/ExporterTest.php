@@ -120,12 +120,12 @@ final class ExporterTest extends TestCase
         )
         EOD;
 
-        $exported = Exporter::export($top, true);
+        $exported = str_replace("\r", "", Exporter::export($top, true));
 
         $this->assertThat($exported, $this->logicalOr(
-            $this->identicalTo($expected[0]),
-            $this->identicalTo($expected[1]),
-            $this->identicalTo($expected[2])
+            $this->identicalTo(str_replace("\r", "", $expected[0])),
+            $this->identicalTo(str_replace("\r", "", $expected[1])),
+            $this->identicalTo(str_replace("\r", "", $expected[2]))
         ));
     }
 
