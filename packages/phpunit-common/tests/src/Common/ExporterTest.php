@@ -97,7 +97,7 @@ final class ExporterTest extends TestCase
             'foo' => Array &0 [\(\[]
                 'bar' => DummyNamedArray &1 \(\),?
                 'rec' => DummyNamedArray &0,?
-            [\)\]]
+            [\)\]],?
         \)
         EOD;
 
