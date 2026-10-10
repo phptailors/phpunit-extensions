@@ -65,6 +65,8 @@ final class KsortedArraySpecTest extends TestCase
      *      factoryInput: ArrayLike,
      *      ksortedInput: mixed,
      * }>
+     *
+     * @codeCoverageIgnore
      */
     public static function provKsortedArraySpec(): iterable
     {

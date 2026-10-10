@@ -29,8 +29,6 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  * @template-extends AbstractArrayExpectations<SupportedInput>
  *
  * @template-implements ValueSelectorWrapperInterface<SupportedSubject>
- *
- * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 abstract class AbstractArraySelection extends AbstractArrayExpectations implements ValueSelectorWrapperInterface, ComparatorAwareComplementInterface
 {

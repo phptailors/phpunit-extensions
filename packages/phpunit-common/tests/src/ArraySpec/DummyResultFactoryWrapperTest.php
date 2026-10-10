@@ -66,6 +66,8 @@ final class DummyResultFactoryWrapperTest extends TestCase
      * @psalm-return iterable<string, array{
      *      array: ArrayLike
      * }>
+     *
+     * @codeCoverageIgnore
      */
     public static function provDummyResultFactoryWrapper(): iterable
     {

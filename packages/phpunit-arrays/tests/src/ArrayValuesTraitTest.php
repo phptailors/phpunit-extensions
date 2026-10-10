@@ -35,6 +35,8 @@ final class ArrayValuesTraitTest extends TestCase
 
     /**
      * @psalm-return iterable<string,array{args: ArrayValuesArgs, expect: mixed}>
+     *
+     * @codeCoverageIgnore
      */
     public static function provExpectArrayValues(): iterable
     {

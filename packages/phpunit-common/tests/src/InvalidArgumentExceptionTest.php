@@ -16,6 +16,8 @@ use PHPUnit\Framework\TestCase;
 if (!function_exists('Tailors\\PHPUnit\\testInvalidArgumentExceptionFromBackTrace')) {
     /**
      * @psalm-suppress MissingThrowsDocblock
+     *
+     * @codeCoverageIgnore
      */
     function testInvalidArgumentExceptionFromBackTrace(
         int $argument,
@@ -51,6 +53,8 @@ final class InvalidArgumentExceptionTest extends TestCase
 {
     /**
      * @psalm-return iterable<string, list{int, string, string}>
+     *
+     * @codeCoverageIgnore
      */
     public static function provFromBackTrace(): iterable
     {

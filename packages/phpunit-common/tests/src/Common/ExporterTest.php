@@ -30,6 +30,8 @@ final class ExporterTest extends TestCase
 {
     /**
      * @psalm-return iterable<string, list{ExportArgs, string}>
+     *
+     * @codeCoverageIgnore
      */
     public static function provExport(): iterable
     {
@@ -134,6 +136,8 @@ final class ExporterTest extends TestCase
 
     /**
      * @psalm-suppress MissingThrowsDocblock
+     *
+     * @codeCoverageIgnore
      */
     public function testExporterWithObjectLikeMultilineStringContainingExportableName(): void
     {

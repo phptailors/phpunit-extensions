@@ -16,6 +16,7 @@ use Tailors\PHPUnit\Result\ResultInterfaceTestTrait;
 /**
  * @small
  *
+ * @covers \Tailors\PHPUnit\Arrays\AbstractArrayValuesTestCase
  * @covers \Tailors\PHPUnit\Arrays\ActualArrayValues
  * @covers \Tailors\PHPUnit\Arrays\ActualArrayValuesTest
  *
@@ -34,6 +35,8 @@ final class ActualArrayValuesTest extends AbstractArrayValuesTestCase
      *  object: ResultInterface,
      *  actual: mixed
      * }>
+     *
+     * @codeCoverageIgnore
      */
     public static function provActual(): iterable
     {
@@ -45,6 +48,8 @@ final class ActualArrayValuesTest extends AbstractArrayValuesTestCase
 
     /**
      * @psalm-return iterable<string, array{object: object}>
+     *
+     * @codeCoverageIgnore
      */
     public static function provImplementsResultInterface(): iterable
     {

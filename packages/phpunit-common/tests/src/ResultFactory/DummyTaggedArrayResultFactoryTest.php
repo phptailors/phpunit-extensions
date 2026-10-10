@@ -57,6 +57,8 @@ final class DummyTaggedArrayResultFactoryTest extends TestCase
 
     /**
      * @psalm-return iterable<string, array{ctor: CtorArgs, args: GetResultArgs, expect: mixed}>
+     *
+     * @codeCoverageIgnore
      */
     public static function provGetResult(): iterable
     {

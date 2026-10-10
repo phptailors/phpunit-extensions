@@ -8,11 +8,9 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\ArraySpec;
+namespace Tailors\PHPUnit\Common;
 
 use PHPUnit\Framework\TestCase;
-use Tailors\PHPUnit\Common\AbstractArraySelection;
-use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Comparator\DummyComparator;
 use Tailors\PHPUnit\ResultFactory\DummyResultFactory;
 use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
@@ -22,27 +20,25 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\ArraySpec\DummyAbstractArraySelectionSpec
- * @covers \Tailors\PHPUnit\ArraySpec\DummyAbstractArraySelectionSpecTest
+ * @covers \Tailors\PHPUnit\Common\DummyArraySelection
+ * @covers \Tailors\PHPUnit\Common\DummyArraySelectionTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-import-type ArrayLike from TypesInterface
- *
- * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
-final class DummyAbstractArraySelectionSpecTest extends TestCase
+final class DummyArraySelectionTest extends TestCase
 {
     /**
      * @psalm-suppress MissingThrowsDocblock
      */
     public function testExtendsAbstractArraySelectionSpec(): void
     {
-        $resultFactory = $this->createMock(ResultFactoryInterface::class);
-        $valueSelector = $this->createMock(ValueSelectorInterface::class);
-        $this->assertInstanceOf(AbstractArraySelection::class, new DummyAbstractArraySelectionSpec($resultFactory, $valueSelector, []));
+        $resultFactory = $this->createStub(ResultFactoryInterface::class);
+        $valueSelector = $this->createStub(ValueSelectorInterface::class);
+        $this->assertInstanceOf(AbstractArraySelection::class, new DummyArraySelection($resultFactory, $valueSelector, []));
     }
 
     /**
@@ -51,8 +47,10 @@ final class DummyAbstractArraySelectionSpecTest extends TestCase
      *      selector: ValueSelectorInterface,
      *      array:    ArrayLike
      * }>
+     *
+     * @codeCoverageIgnore
      */
-    public static function provDummyAbstractArraySelectionSpec(): iterable
+    public static function provDummyArraySelection(): iterable
     {
         yield basename(__FILE__).':'.__LINE__ => [
             'factory'  => new DummyResultFactory(false),
@@ -68,7 +66,7 @@ final class DummyAbstractArraySelectionSpecTest extends TestCase
     }
 
     /**
-     * @dataProvider provDummyAbstractArraySelectionSpec
+     * @dataProvider provDummyArraySelection
      *
      * @psalm-template SupportedInput
      * @psalm-template SupportedSubject
@@ -79,12 +77,12 @@ final class DummyAbstractArraySelectionSpecTest extends TestCase
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testDummyAbstractArraySelectionSpec(
+    public function testDummyArraySelection(
         ResultFactoryInterface $factory,
         ValueSelectorInterface $selector,
         iterable $array
     ): void {
-        $dummyArraySelectionSpec = new DummyAbstractArraySelectionSpec($factory, $selector, $array);
+        $dummyArraySelectionSpec = new DummyArraySelection($factory, $selector, $array);
 
         $this->assertSame($factory, $dummyArraySelectionSpec->getResultFactory());
         $this->assertSame($selector, $dummyArraySelectionSpec->getValueSelector());
@@ -98,7 +96,7 @@ final class DummyAbstractArraySelectionSpecTest extends TestCase
      */
     public function testComplement(): void
     {
-        $dummyArraySelectionSpec = new DummyAbstractArraySelectionSpec(
+        $dummyArraySelectionSpec = new DummyArraySelection(
             new DummyResultFactory(false),
             new DummyValueSelector(false, false, 'rainbow', 'colors'),
             []

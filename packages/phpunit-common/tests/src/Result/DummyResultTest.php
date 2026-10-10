@@ -41,6 +41,8 @@ final class DummyResultTest extends TestCase
      * @psalm-return iterable<string, array{
      *      actual: bool
      * }>
+     *
+     * @codeCoverageIgnore
      */
     public static function provDummyResult(): iterable
     {

@@ -34,6 +34,8 @@ final class EqualityComparatorTest extends TestCase
 
     /**
      * @psalm-return iterable<string, list{mixed, mixed, bool}>
+     *
+     * @codeCoverageIgnore
      */
     public static function provCompare(): iterable
     {

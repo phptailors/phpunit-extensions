@@ -170,6 +170,8 @@ final class ReferenceStorageTest extends TestCase
 
     /**
      * @psalm-return iterable<string, array{values: array, expect: int}>
+     *
+     * @codeCoverageIgnore
      */
     public static function provAddAndCount(): iterable
     {
@@ -196,6 +198,8 @@ final class ReferenceStorageTest extends TestCase
 
     /**
      * @psalm-return iterable<string, array{values: array}>
+     *
+     * @codeCoverageIgnore
      */
     public static function provAddRemoveContains(): iterable
     {

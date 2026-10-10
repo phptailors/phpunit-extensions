@@ -34,6 +34,8 @@ final class ExpectedArrayValuesTest extends AbstractArrayValuesTestCase
      *  object: ResultInterface,
      *  actual: mixed
      * }>
+     *
+     * @codeCoverageIgnore
      */
     public static function provActual(): iterable
     {
@@ -45,6 +47,8 @@ final class ExpectedArrayValuesTest extends AbstractArrayValuesTestCase
 
     /**
      * @psalm-return iterable<string, array{object: object}>
+     *
+     * @codeCoverageIgnore
      */
     public static function provImplementsResultInterface(): iterable
     {

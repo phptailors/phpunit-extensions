@@ -59,6 +59,8 @@ final class DummyTaggedArrayResultTest extends TestCase
 
     /**
      * @psalm-return \Generator<string,array{ctor: CtorArgs, expect: ExpectArray}>
+     *
+     * @codeCoverageIgnore
      */
     public static function provDummyArrayResult(): iterable
     {

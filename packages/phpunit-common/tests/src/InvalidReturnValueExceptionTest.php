@@ -28,6 +28,8 @@ final class InvalidReturnValueExceptionTest extends TestCase
 {
     /**
      * @psalm-return iterable<string, list{FunctionSpec, string, string}>
+     *
+     * @codeCoverageIgnore
      */
     public static function provFromExpectedAndActual(): iterable
     {
@@ -73,6 +75,8 @@ final class InvalidReturnValueExceptionTest extends TestCase
 
     /**
      * @psalm-return iterable<string, list{FunctionSpec, string, mixed}>
+     *
+     * @codeCoverageIgnore
      */
     public static function provFromExpectedTypeAndActualValue(): iterable
     {

@@ -8,29 +8,25 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\ArraySpec;
+namespace Tailors\PHPUnit\Common;
 
 use PHPUnit\Framework\TestCase;
-use Tailors\PHPUnit\Common\AbstractArrayExpectations;
-use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\ResultFactory\DummyResultFactory;
 use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
 
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\ArraySpec\DummyAbstractArraySpec
- * @covers \Tailors\PHPUnit\ArraySpec\DummyAbstractArraySpecTest
+ * @covers \Tailors\PHPUnit\Common\DummyArrayExpectations
+ * @covers \Tailors\PHPUnit\Common\DummyArrayExpectationsTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-import-type ArrayLike from TypesInterface
- *
- * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
-final class DummyAbstractArraySpecTest extends TestCase
+final class DummyArrayExpectationsTest extends TestCase
 {
     /**
      * @psalm-suppress MissingThrowsDocblock
@@ -38,7 +34,7 @@ final class DummyAbstractArraySpecTest extends TestCase
     public function testExtendsAbstractArraySpec(): void
     {
         $resultFactory = $this->createMock(ResultFactoryInterface::class);
-        $this->assertInstanceOf(AbstractArrayExpectations::class, new DummyAbstractArraySpec($resultFactory, []));
+        $this->assertInstanceOf(AbstractArrayExpectations::class, new DummyArrayExpectations($resultFactory, []));
     }
 
     /**
@@ -46,6 +42,8 @@ final class DummyAbstractArraySpecTest extends TestCase
      *      factory: ResultFactoryInterface,
      *      array:   ArrayLike
      * }>
+     *
+     * @codeCoverageIgnore
      */
     public static function provDummyAbstractArraySpec(): iterable
     {
@@ -72,7 +70,7 @@ final class DummyAbstractArraySpecTest extends TestCase
      */
     public function testDummyAbstractArraySpec(ResultFactoryInterface $factory, iterable $array): void
     {
-        $dummyArraySpec = new DummyAbstractArraySpec($factory, $array);
+        $dummyArraySpec = new DummyArrayExpectations($factory, $array);
 
         $this->assertSame($factory, $dummyArraySpec->getResultFactory());
 

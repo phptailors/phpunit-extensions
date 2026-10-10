@@ -43,6 +43,8 @@ final class DummyValueSelectorTest extends TestCase
      *      subject?: ?SubjectTestCall,
      *      selectable?: ?SelectableTestCall
      * }>
+     *
+     * @codeCoverageIgnore
      */
     public static function provDummyValueSelector(): iterable
     {

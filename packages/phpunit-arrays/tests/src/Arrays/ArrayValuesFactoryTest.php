@@ -55,6 +55,8 @@ final class ArrayValuesFactoryTest extends TestCase
      *      array: ArrayLike,
      *      expect: GetResultExpectArray
      * }>
+     *
+     * @codeCoverageIgnore
      */
     public static function provGetResult(): iterable
     {

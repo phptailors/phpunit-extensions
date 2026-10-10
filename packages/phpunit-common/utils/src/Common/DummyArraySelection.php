@@ -8,10 +8,8 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\ArraySpec;
+namespace Tailors\PHPUnit\Common;
 
-use Tailors\PHPUnit\Common\AbstractArraySelection;
-use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
 use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
 
@@ -26,10 +24,8 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
  * @psalm-import-type ArrayLike from TypesInterface
  *
  * @template-extends AbstractArraySelection<SupportedInput, SupportedSubject>
- *
- * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
-final class DummyAbstractArraySelectionSpec extends AbstractArraySelection
+final class DummyArraySelection extends AbstractArraySelection
 {
     /**
      * @psalm-param ResultFactoryInterface<SupportedInput>   $resultFactory

@@ -61,6 +61,8 @@ final class ArrayValuesSelectionTest extends TestCase
      * @psalm-return iterable<string, array{
      *      array: ArrayLike
      * }>
+     *
+     * @codeCoverageIgnore
      */
     public static function provArrayValuesSelection(): iterable
     {

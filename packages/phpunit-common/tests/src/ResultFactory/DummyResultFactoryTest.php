@@ -47,6 +47,8 @@ final class DummyResultFactoryTest extends TestCase
      *          supports: mixed
      *      }
      * }>
+     *
+     * @codeCoverageIgnore
      */
     public static function provDummyResultFactory(): iterable
     {

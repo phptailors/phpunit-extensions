@@ -76,6 +76,8 @@ final class DummyValueSelectorWrapperTest extends TestCase
      * @psalm-return iterable<string, array{
      *      array: ArrayLike
      * }>
+     *
+     * @codeCoverageIgnore
      */
     public static function provDummyValueSelectorWrapper(): iterable
     {

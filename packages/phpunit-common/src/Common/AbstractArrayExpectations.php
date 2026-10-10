@@ -23,12 +23,8 @@ use Tailors\PHPUnit\ResultFactory\ResultFactoryWrapperInterface;
  * @psalm-import-type ArrayLike from TypesInterface
  *
  * @template-implements ResultFactoryWrapperInterface<SupportedInput>
- *
- * @template-extends \ArrayObject<array-key, mixed>
- *
- * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
-abstract class AbstractArrayExpectations extends \ArrayObject implements ResultFactoryWrapperInterface
+abstract class AbstractArrayExpectations extends AbstractArrayObject implements ResultFactoryWrapperInterface
 {
     /**
      * @var ResultFactoryInterface
@@ -46,11 +42,6 @@ abstract class AbstractArrayExpectations extends \ArrayObject implements ResultF
     protected function __construct(ResultFactoryInterface $resultFactory, iterable $array)
     {
         $this->resultFactory = $resultFactory;
-
-        if (!is_array($array)) {
-            $array = iterator_to_array($array);
-        }
-
         parent::__construct($array);
     }
 

@@ -92,6 +92,8 @@ final class DummyResultFactoryAndValueSelectorWrapperTest extends TestCase
      * @psalm-return iterable<string, array{
      *      array: ArrayLike
      * }>
+     *
+     * @codeCoverageIgnore
      */
     public static function provDummyResultFactoryAndValueSelectorWrapper(): iterable
     {

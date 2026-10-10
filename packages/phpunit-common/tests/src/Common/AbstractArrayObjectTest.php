@@ -23,8 +23,6 @@ use PHPUnit\Framework\TestCase;
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-import-type ArrayLike from TypesInterface
- *
- * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 final class AbstractArrayObjectTest extends TestCase
 {
@@ -33,23 +31,23 @@ final class AbstractArrayObjectTest extends TestCase
      */
     public function testExtendsArrayObject(): void
     {
-        $abstractArrayResult = $this->createStub(AbstractArrayObject::class);
-        $this->assertInstanceOf(\ArrayObject::class, $abstractArrayResult);
+        $arrayObject = $this->createStub(AbstractArrayObject::class);
+        $this->assertInstanceOf(\ArrayObject::class, $arrayObject);
     }
 
     /**
-     * @psalm-return iterable<string,array{array: ArrayLike, actual: bool}>
+     * @psalm-return iterable<string,array{array: ArrayLike}>
+     *
+     * @codeCoverageIgnore
      */
     public static function provAbstractArrayObject(): iterable
     {
         yield basename(__FILE__).':'.__LINE__ => [
-            'array'  => [],
-            'actual' => false,
+            'array' => ['x' => 'X'],
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'array'  => new \ArrayObject([]),
-            'actual' => true,
+            'array' => new \ArrayObject(['x' => 'X']),
         ];
     }
 
@@ -60,32 +58,18 @@ final class AbstractArrayObjectTest extends TestCase
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAbstractArrayObject(iterable $array, bool $actual): void
+    public function testAbstractArrayObject(iterable $array): void
     {
-        $arrayResult = new class($array, $actual) extends AbstractArrayObject {
-            /**
-             * @var bool
-             *
-             * @psalm-readonly
-             */
-            private $actual;
-
+        $arrayObject = new class($array) extends AbstractArrayObject {
             /** @psalm-param ArrayLike $array */
-            public function __construct(iterable $array, bool $actual)
+            public function __construct(iterable $array)
             {
                 parent::__construct($array);
-                $this->actual = $actual;
-            }
-
-            public function actual(): bool
-            {
-                return $this->actual;
             }
         };
 
-        $this->assertSame($actual, $arrayResult->actual());
         $expect = is_array($array) ? $array : iterator_to_array($array);
-        $this->assertSame($expect, iterator_to_array($arrayResult));
+        $this->assertSame($expect, iterator_to_array($arrayObject));
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

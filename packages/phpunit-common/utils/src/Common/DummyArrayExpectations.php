@@ -8,10 +8,8 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\ArraySpec;
+namespace Tailors\PHPUnit\Common;
 
-use Tailors\PHPUnit\Common\AbstractArrayExpectations;
-use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
 
 /**
@@ -24,10 +22,8 @@ use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
  * @psalm-import-type ArrayLike from TypesInterface
  *
  * @template-extends AbstractArrayExpectations<SupportedInput>
- *
- * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
-final class DummyAbstractArraySpec extends AbstractArrayExpectations
+final class DummyArrayExpectations extends AbstractArrayExpectations
 {
     /**
      * @psalm-param ResultFactoryInterface<SupportedInput> $resultFactory

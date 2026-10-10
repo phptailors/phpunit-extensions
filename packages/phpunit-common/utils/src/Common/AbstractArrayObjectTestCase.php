@@ -20,8 +20,6 @@ use PHPUnit\Framework\TestCase;
  * @psalm-import-type ArrayLike from TypesInterface
  *
  * @psalm-type CtorArgs = list{0?: ArrayLike}
- *
- * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 abstract class AbstractArrayObjectTestCase extends TestCase
 {

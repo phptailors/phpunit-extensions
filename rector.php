@@ -43,8 +43,6 @@ return RectorConfig::configure()
         removeUnusedImports: true
     )
     ->withConfiguredRule(RenameClassRector::class, [
-        'Tailors\PHPUnit\ArrayResult\AbstractArrayResult' => 'Tailors\PHPUnit\Common\AbstractArrayObject',
-        'Tailors\PHPUnit\ArrayResult\AbstractArrayResultTestCase' => 'Tailors\PHPUnit\Common\AbstractArrayObjectTestCase'
     ])
 ;
 

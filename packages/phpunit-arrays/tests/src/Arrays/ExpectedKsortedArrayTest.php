@@ -37,6 +37,8 @@ final class ExpectedKsortedArrayTest extends AbstractKsortedArrayTestCase
      *  object: ResultInterface,
      *  actual: mixed
      * }>
+     *
+     * @codeCoverageIgnore
      */
     public static function provActual(): iterable
     {
@@ -48,6 +50,8 @@ final class ExpectedKsortedArrayTest extends AbstractKsortedArrayTestCase
 
     /**
      * @psalm-return iterable<string, array{object: object}>
+     *
+     * @codeCoverageIgnore
      */
     public static function provImplementsResultInterface(): iterable
     {
