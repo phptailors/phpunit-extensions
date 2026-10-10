@@ -16,6 +16,7 @@ use PHPUnit\Framework\TestCase;
  * @small
  *
  * @covers \Tailors\PHPUnit\Methods\MethodSpecFactory
+ * @covers \Tailors\PHPUnit\Methods\MethodSpecFactoryTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *

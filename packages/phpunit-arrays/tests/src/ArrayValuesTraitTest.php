@@ -17,7 +17,7 @@ use Tailors\PHPUnit\Common\TypesInterface;
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\ArrayValuesTrait
+ * @covers \Tailors\PHPUnit\ArrayValuesTraitTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *

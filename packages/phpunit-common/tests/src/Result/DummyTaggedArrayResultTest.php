@@ -18,6 +18,7 @@ use Tailors\PHPUnit\Common\TypesInterface;
  * @small
  *
  * @covers \Tailors\PHPUnit\Result\DummyTaggedArrayResult
+ * @covers \Tailors\PHPUnit\Result\DummyTaggedArrayResultTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *

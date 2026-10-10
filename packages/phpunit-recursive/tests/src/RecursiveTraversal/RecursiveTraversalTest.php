@@ -18,6 +18,7 @@ use Tailors\PHPUnit\RecursiveVisitor\DummyRecursiveVisitor;
  * @small
  *
  * @covers \Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversal
+ * @covers \Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversalTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *

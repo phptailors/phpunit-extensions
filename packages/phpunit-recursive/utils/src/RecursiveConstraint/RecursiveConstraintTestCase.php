@@ -46,7 +46,7 @@ abstract class RecursiveConstraintTestCase extends ConstraintTestCase
      *      args: CreateConstraintArgs
      * }>
      *
-     * @codeCoverageIgnoreStart
+     * @codeCoverageIgnore
      */
     final public static function provCreateConstraint(): iterable
     {
@@ -68,7 +68,6 @@ abstract class RecursiveConstraintTestCase extends ConstraintTestCase
         ];
     }
 
-    // @codeCoverageIgnoreEnd
     /**
      * @dataProvider provCreateConstraint
      *
@@ -93,11 +92,8 @@ abstract class RecursiveConstraintTestCase extends ConstraintTestCase
     final public function testConstraintUnaryOperatorFailure(): void
     {
         $this->examineConstraintUnaryOperatorFailure([[]], null, self::message('null'));
-
-        // @codeCoverageIgnoreStart
     }
 
-    // @codeCoverageIgnoreEnd
     /**
      * @param mixed $actual
      *
@@ -123,11 +119,8 @@ abstract class RecursiveConstraintTestCase extends ConstraintTestCase
     final public function examineValuesMatchFails(iterable $expect, $actual, string $string): void
     {
         $this->examineConstraintMatchFails([$expect], $actual, self::message($string));
-
-        // @codeCoverageIgnoreStart
     }
 
-    // @codeCoverageIgnoreEnd
     /**
      * @param mixed $actual
      *
@@ -152,11 +145,7 @@ abstract class RecursiveConstraintTestCase extends ConstraintTestCase
     final public function examineNotValuesMatchFails(iterable $expect, $actual, string $string): void
     {
         $this->examineNotConstraintMatchFails([$expect], $actual, self::message($string, true));
-
-        // @codeCoverageIgnoreStart
     }
-
-    // @codeCoverageIgnoreEnd
 
     /**
      * Assembles expected failure message out of pieces.

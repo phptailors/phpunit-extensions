@@ -20,6 +20,7 @@ use Tailors\PHPUnit\Result\ResultInterface;
  * @small
  *
  * @covers \Tailors\PHPUnit\ResultFactory\DummyTaggedArrayResultFactory
+ * @covers \Tailors\PHPUnit\ResultFactory\DummyTaggedArrayResultFactoryTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *

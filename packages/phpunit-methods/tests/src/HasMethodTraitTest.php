@@ -18,6 +18,7 @@ use Tailors\PHPUnit\Constraint\ProvHasMethodTrait;
  * @small
  *
  * @covers \Tailors\PHPUnit\HasMethodTrait
+ * @covers \Tailors\PHPUnit\HasMethodTraitTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *

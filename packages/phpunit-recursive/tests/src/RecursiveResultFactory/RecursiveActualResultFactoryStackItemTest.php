@@ -18,6 +18,7 @@ use Tailors\PHPUnit\Result\DummyTaggedArrayResult;
  * @small
  *
  * @covers \Tailors\PHPUnit\RecursiveResultFactory\RecursiveActualResultFactoryStackItem
+ * @covers \Tailors\PHPUnit\RecursiveResultFactory\RecursiveActualResultFactoryStackItemTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *

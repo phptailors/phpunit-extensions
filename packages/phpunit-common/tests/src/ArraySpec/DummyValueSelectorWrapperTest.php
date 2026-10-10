@@ -22,6 +22,7 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  * @small
  *
  * @covers \Tailors\PHPUnit\ArraySpec\DummyValueSelectorWrapper
+ * @covers \Tailors\PHPUnit\ArraySpec\DummyValueSelectorWrapperTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *

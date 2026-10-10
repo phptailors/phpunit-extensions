@@ -20,6 +20,7 @@ use Tailors\PHPUnit\InvalidArgumentException;
  * @small
  *
  * @covers \Tailors\PHPUnit\Constraint\HasPregCaptures
+ * @covers \Tailors\PHPUnit\Constraint\HasPregCapturesTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *

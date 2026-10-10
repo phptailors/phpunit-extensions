@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\ArraySpec;
 
 use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\Common\AbstractArraySelection;
 use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Comparator\DummyComparator;
 use Tailors\PHPUnit\ResultFactory\DummyResultFactory;
@@ -22,6 +23,7 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
  * @small
  *
  * @covers \Tailors\PHPUnit\ArraySpec\DummyAbstractArraySelectionSpec
+ * @covers \Tailors\PHPUnit\ArraySpec\DummyAbstractArraySelectionSpecTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *
@@ -40,7 +42,7 @@ final class DummyAbstractArraySelectionSpecTest extends TestCase
     {
         $resultFactory = $this->createMock(ResultFactoryInterface::class);
         $valueSelector = $this->createMock(ValueSelectorInterface::class);
-        $this->assertInstanceOf(AbstractArraySelectionSpec::class, new DummyAbstractArraySelectionSpec($resultFactory, $valueSelector, []));
+        $this->assertInstanceOf(AbstractArraySelection::class, new DummyAbstractArraySelectionSpec($resultFactory, $valueSelector, []));
     }
 
     /**

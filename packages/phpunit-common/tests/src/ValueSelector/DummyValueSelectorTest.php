@@ -16,6 +16,7 @@ use PHPUnit\Framework\TestCase;
  * @small
  *
  * @covers \Tailors\PHPUnit\ValueSelector\DummyValueSelector
+ * @covers \Tailors\PHPUnit\ValueSelector\DummyValueSelectorTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *

@@ -16,6 +16,7 @@ use PHPUnit\Framework\TestCase;
  * @small
  *
  * @covers \Tailors\PHPUnit\Common\StaticRandomStrings
+ * @covers \Tailors\PHPUnit\Common\StaticRandomStringsTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *

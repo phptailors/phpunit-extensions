@@ -24,7 +24,7 @@ use Tailors\PHPUnit\Common\TypesInterface;
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-import-type ArrayLike from TypesInterface
- * @psalm-import-type CtorArgs from \Tailors\PHPUnit\Common\AbstractArrayObjectTestCase
+ * @psalm-import-type CtorArgs from AbstractArrayObjectTestCase
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */

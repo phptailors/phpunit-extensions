@@ -17,6 +17,7 @@ use Tailors\PHPUnit\InvalidArgumentException;
  * @small
  *
  * @covers \Tailors\PHPUnit\ValueSelector\ObjectPropertySelector
+ * @covers \Tailors\PHPUnit\ValueSelector\ObjectPropertySelectorTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *
@@ -40,12 +41,13 @@ final class ObjectPropertySelectorTest extends TestCase
         self::assertInstanceOf(AbstractPropertySelector::class, new ObjectPropertySelector());
     }
 
-    // @codeCoverageIgnoreStart
     /**
      * @psalm-return iterable<string, array{
      *      subject: mixed,
      *      expect: mixed
      * }>
+     *
+     * @codeCoverageIgnore
      */
     public static function provSupports(): iterable
     {
@@ -75,8 +77,6 @@ final class ObjectPropertySelectorTest extends TestCase
         ];
     }
 
-    // @codeCoverageIgnoreEnd
-
     /**
      * @dataProvider provSupports
      *
@@ -91,7 +91,6 @@ final class ObjectPropertySelectorTest extends TestCase
         self::assertSame($expect, $selector->supports($subject));
     }
 
-    // @codeCoverageIgnoreStart
     /**
      * @psalm-return iterable<string, array{
      *      object: mixed,
@@ -99,6 +98,8 @@ final class ObjectPropertySelectorTest extends TestCase
      *      return:  mixed,
      *      expect: mixed
      * }>
+     *
+     * @codeCoverageIgnore
      */
     public static function provSelect(): iterable
     {
@@ -159,8 +160,6 @@ final class ObjectPropertySelectorTest extends TestCase
         ];
     }
 
-    // @codeCoverageIgnoreEnd
-
     /**
      * @dataProvider provSelect
      *
@@ -186,12 +185,7 @@ final class ObjectPropertySelectorTest extends TestCase
     public function testSelectThrowsOnPrivateMethod(): void
     {
         $object = new class() {
-            private function foo(): void
-            {
-                // @codeCoverageIgnoreStart
-            }
-
-            // @codeCoverageIgnoreEnd
+            private function foo(): void {}
         };
         $selector = new ObjectPropertySelector();
 
@@ -200,11 +194,7 @@ final class ObjectPropertySelectorTest extends TestCase
 
         /** @psalm-suppress RedundantCondition */
         $selector->select($object, 'foo()');
-
-        // @codeCoverageIgnoreStart
     }
-
-    // @codeCoverageIgnoreEnd
 
     /**
      * @psalm-suppress MissingThrowsDocblock
@@ -222,11 +212,7 @@ final class ObjectPropertySelectorTest extends TestCase
 
         /** @psalm-suppress RedundantCondition */
         $selector->select($object, 'foo');
-
-        // @codeCoverageIgnoreStart
     }
-
-    // @codeCoverageIgnoreEnd
 
     /**
      * @psalm-suppress MissingThrowsDocblock
@@ -252,18 +238,15 @@ final class ObjectPropertySelectorTest extends TestCase
         } finally {
             restore_error_handler();
         }
-
-        // @codeCoverageIgnoreStart
     }
 
-    // @codeCoverageIgnoreEnd
-
-    // @codeCoverageIgnoreStart
     /**
      * @psalm-return iterable<string, array{
      *      key: string,
      *      method: string
      * }>
+     *
+     * @codeCoverageIgnore
      */
     public static function provSelectThrowsOnNonobject(): iterable
     {
@@ -279,8 +262,6 @@ final class ObjectPropertySelectorTest extends TestCase
             'method' => 'selectWithMethod',
         ];
     }
-
-    // @codeCoverageIgnoreEnd
 
     /**
      * @dataProvider provSelectThrowsOnNonobject
@@ -300,11 +281,7 @@ final class ObjectPropertySelectorTest extends TestCase
         $this->expectExceptionMessage($message);
 
         $selector->select(123, $key);
-
-        // @codeCoverageIgnoreStart
     }
-
-    // @codeCoverageIgnoreEnd
 
     /**
      * @psalm-suppress MissingThrowsDocblock

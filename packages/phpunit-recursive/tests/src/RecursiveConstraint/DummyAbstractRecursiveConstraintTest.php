@@ -19,6 +19,7 @@ use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapperInterface;
  * @small
  *
  * @covers \Tailors\PHPUnit\RecursiveConstraint\DummyAbstractRecursiveConstraint
+ * @covers \Tailors\PHPUnit\RecursiveConstraint\DummyAbstractRecursiveConstraintTest
  *
  * @internal This class is not covered by the backward compatibility promise
  */

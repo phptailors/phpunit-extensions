@@ -17,6 +17,7 @@ use PHPUnit\Framework\TestCase;
  * @small
  *
  * @covers \Tailors\PHPUnit\Methods\MethodSpec
+ * @covers \Tailors\PHPUnit\Methods\MethodSpecTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *

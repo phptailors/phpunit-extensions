@@ -26,6 +26,7 @@ use Tailors\PHPUnit\Result\ResultInterface;
  * @small
  *
  * @covers \Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapperVisitor
+ * @covers \Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapperVisitorTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *

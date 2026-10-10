@@ -16,6 +16,7 @@ use PHPUnit\Framework\TestCase;
  * @small
  *
  * @covers \Tailors\PHPUnit\InvalidReturnValueException
+ * @covers \Tailors\PHPUnit\InvalidReturnValueExceptionTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *

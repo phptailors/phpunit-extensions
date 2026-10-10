@@ -19,6 +19,7 @@ use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
  * @small
  *
  * @covers \Tailors\PHPUnit\Arrays\KsortedArrayFactory
+ * @covers \Tailors\PHPUnit\Arrays\KsortedArrayFactoryTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *

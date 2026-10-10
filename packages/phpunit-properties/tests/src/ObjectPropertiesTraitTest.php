@@ -18,6 +18,7 @@ use Tailors\PHPUnit\Properties\ObjectPropertiesSelection;
  * @small
  *
  * @covers \Tailors\PHPUnit\ObjectPropertiesTrait
+ * @covers \Tailors\PHPUnit\ObjectPropertiesTraitTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *

@@ -18,6 +18,7 @@ use Tailors\PHPUnit\InvalidArgumentException;
  * @small
  *
  * @covers \Tailors\PHPUnit\Constraint\ClassPropertiesIdenticalTo
+ * @covers \Tailors\PHPUnit\Constraint\ClassPropertiesIdenticalToTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *

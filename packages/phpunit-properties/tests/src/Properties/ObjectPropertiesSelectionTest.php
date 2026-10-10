@@ -11,7 +11,7 @@
 namespace Tailors\PHPUnit\Properties;
 
 use PHPUnit\Framework\TestCase;
-use Tailors\PHPUnit\ArraySpec\AbstractArraySelectionSpec;
+use Tailors\PHPUnit\Common\AbstractArraySelection;
 use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\ResultFactory\ResultFactoryWrapperInterface;
 use Tailors\PHPUnit\ValueSelector\ObjectPropertySelector;
@@ -21,6 +21,7 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  * @small
  *
  * @covers \Tailors\PHPUnit\Properties\ObjectPropertiesSelection
+ * @covers \Tailors\PHPUnit\Properties\ObjectPropertiesSelectionTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *
@@ -37,7 +38,7 @@ final class ObjectPropertiesSelectionTest extends TestCase
      */
     public function testExtendsAbstractArraySelectionSpec(): void
     {
-        $this->assertInstanceOf(AbstractArraySelectionSpec::class, new ObjectPropertiesSelection([]));
+        $this->assertInstanceOf(AbstractArraySelection::class, new ObjectPropertiesSelection([]));
     }
 
     /**

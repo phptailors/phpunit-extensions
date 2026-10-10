@@ -19,6 +19,7 @@ use Tailors\PHPUnit\Examples\Inheritance\ExampleTrait;
  * @small
  *
  * @covers \Tailors\PHPUnit\ImplementsInterfaceTrait
+ * @covers \Tailors\PHPUnit\ImplementsInterfaceTraitTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *

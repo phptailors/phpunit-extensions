@@ -25,14 +25,14 @@ use Tailors\PHPUnit\Common\TypesInterface;
  */
 trait ProvKsortedArrayTrait
 {
-    // @codeCoverageIgnoreStart
-
     /**
      * @psalm-return iterable<string, array{
      *      expect: array,
      *      actual: mixed,
      *      string: string
      * }>
+     *
+     * @codeCoverageIgnore
      */
     public static function provKsortedArrayIdenticalTo(): iterable
     {
@@ -79,6 +79,8 @@ trait ProvKsortedArrayTrait
      *      actual: mixed,
      *      string: string
      * }>
+     *
+     * @codeCoverageIgnore
      */
     public static function provKsortedArrayEqualButNotIdenticalTo(): iterable
     {
@@ -114,6 +116,8 @@ trait ProvKsortedArrayTrait
      *      actual: mixed,
      *      string: string
      * }>
+     *
+     * @codeCoverageIgnore
      */
     public static function provKsortedArrayNotEqualTo(): iterable
     {
@@ -148,6 +152,8 @@ trait ProvKsortedArrayTrait
      *      actual: mixed,
      *      string: string
      * }>
+     *
+     * @codeCoverageIgnore
      */
     public static function provKsortedArrayNotEqualToNonArray(): iterable
     {
@@ -175,6 +181,4 @@ trait ProvKsortedArrayTrait
             'string' => 'object stdClass',
         ];
     }
-
-    // @codeCoverageIgnoreEnd
 }

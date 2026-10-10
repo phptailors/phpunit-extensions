@@ -11,6 +11,7 @@
 namespace Tailors\PHPUnit\ArraySpec;
 
 use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\Common\AbstractArrayExpectations;
 use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\ResultFactory\DummyResultFactory;
 use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
@@ -19,6 +20,7 @@ use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
  * @small
  *
  * @covers \Tailors\PHPUnit\ArraySpec\DummyAbstractArraySpec
+ * @covers \Tailors\PHPUnit\ArraySpec\DummyAbstractArraySpecTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *
@@ -36,7 +38,7 @@ final class DummyAbstractArraySpecTest extends TestCase
     public function testExtendsAbstractArraySpec(): void
     {
         $resultFactory = $this->createMock(ResultFactoryInterface::class);
-        $this->assertInstanceOf(AbstractArraySpec::class, new DummyAbstractArraySpec($resultFactory, []));
+        $this->assertInstanceOf(AbstractArrayExpectations::class, new DummyAbstractArraySpec($resultFactory, []));
     }
 
     /**

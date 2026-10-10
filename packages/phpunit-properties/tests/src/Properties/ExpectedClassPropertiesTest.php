@@ -17,6 +17,7 @@ use Tailors\PHPUnit\Result\ResultInterfaceTestTrait;
  * @small
  *
  * @covers \Tailors\PHPUnit\Properties\ExpectedClassProperties
+ * @covers \Tailors\PHPUnit\Properties\ExpectedClassPropertiesTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *

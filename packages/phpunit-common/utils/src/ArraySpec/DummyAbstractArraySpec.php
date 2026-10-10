@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit\ArraySpec;
 
+use Tailors\PHPUnit\Common\AbstractArrayExpectations;
 use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
 
@@ -22,11 +23,11 @@ use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
  *
  * @psalm-import-type ArrayLike from TypesInterface
  *
- * @template-extends AbstractArraySpec<SupportedInput>
+ * @template-extends AbstractArrayExpectations<SupportedInput>
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
-final class DummyAbstractArraySpec extends AbstractArraySpec
+final class DummyAbstractArraySpec extends AbstractArrayExpectations
 {
     /**
      * @psalm-param ResultFactoryInterface<SupportedInput> $resultFactory

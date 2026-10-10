@@ -17,6 +17,7 @@ use Tailors\PHPUnit\InvalidArgumentException;
  * @small
  *
  * @covers \Tailors\PHPUnit\Constraint\HasMethod
+ * @covers \Tailors\PHPUnit\Constraint\HasMethodTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *

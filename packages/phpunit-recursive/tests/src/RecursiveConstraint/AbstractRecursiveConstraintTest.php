@@ -38,6 +38,7 @@ use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
  * @small
  *
  * @covers \Tailors\PHPUnit\RecursiveConstraint\AbstractRecursiveConstraint
+ * @covers \Tailors\PHPUnit\RecursiveConstraint\AbstractRecursiveConstraintTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *

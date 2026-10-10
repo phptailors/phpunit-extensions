@@ -18,6 +18,7 @@ use Tailors\PHPUnit\InvalidArgumentException;
  * @small
  *
  * @covers \Tailors\PHPUnit\Constraint\KsortedArrayIdenticalTo
+ * @covers \Tailors\PHPUnit\Constraint\KsortedArrayIdenticalToTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *

@@ -17,14 +17,14 @@ namespace Tailors\PHPUnit\Constraint;
  */
 trait ProvHasPregCapturesTrait
 {
-    // @codeCoverageIgnoreStart
-
     /**
      * @psalm-return iterable<array-key, array{
      *      expect: array,
      *      actual: array,
      *      message: string
      * }>
+     *
+     * @codeCoverageIgnore
      */
     public static function provHasPregCaptures(): iterable
     {
@@ -166,6 +166,8 @@ trait ProvHasPregCapturesTrait
      *      actual: array,
      *      message: string
      * }>
+     *
+     * @codeCoverageIgnore
      */
     public static function provNotHasPregCaptures(): iterable
     {
@@ -186,6 +188,8 @@ trait ProvHasPregCapturesTrait
      *      actual: mixed,
      *      message: string
      * }>
+     *
+     * @codeCoverageIgnore
      */
     public static function provNotHasPregCapturesNonArray(): iterable
     {
@@ -472,8 +476,6 @@ trait ProvHasPregCapturesTrait
             'actual' => ['foo' => []],
         ];
     }
-
-    // @codeCoverageIgnoreEnd
 }
 
 // vim: syntax=php sw=4 ts=4 et:

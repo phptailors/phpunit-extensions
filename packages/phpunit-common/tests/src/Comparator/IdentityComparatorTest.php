@@ -16,6 +16,7 @@ use PHPUnit\Framework\TestCase;
  * @small
  *
  * @covers \Tailors\PHPUnit\Comparator\IdentityComparator
+ * @covers \Tailors\PHPUnit\Comparator\IdentityComparatorTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *

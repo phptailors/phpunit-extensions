@@ -18,6 +18,7 @@ use SebastianBergmann\Exporter\Exporter as SebastianExporter;
  * @small
  *
  * @covers \Tailors\PHPUnit\Common\Exporter
+ * @covers \Tailors\PHPUnit\Common\ExporterTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *

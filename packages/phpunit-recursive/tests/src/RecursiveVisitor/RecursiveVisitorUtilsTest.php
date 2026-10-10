@@ -16,6 +16,7 @@ use PHPUnit\Framework\TestCase;
  * @small
  *
  * @covers \Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorUtils
+ * @covers \Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorUtilsTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *

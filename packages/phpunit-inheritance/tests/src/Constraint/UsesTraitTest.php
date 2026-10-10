@@ -23,6 +23,7 @@ use Tailors\PHPUnit\InvalidArgumentException;
  * @small
  *
  * @covers \Tailors\PHPUnit\Constraint\UsesTrait
+ * @covers \Tailors\PHPUnit\Constraint\UsesTraitTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *

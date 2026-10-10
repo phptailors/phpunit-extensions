@@ -16,7 +16,8 @@ use Tailors\PHPUnit\InvalidArgumentException;
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\ValueSelector\AbstractValueSelector
+ * @covers \Tailors\PHPUnit\ValueSelector\ArrayValueSelector
+ * @covers \Tailors\PHPUnit\ValueSelector\ArrayValueSelectorTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *
@@ -32,12 +33,13 @@ final class ArrayValueSelectorTest extends TestCase
         self::assertInstanceOf(ValueSelectorInterface::class, new ArrayValueSelector());
     }
 
-    // @codeCoverageIgnoreStart
     /**
      * @psalm-return iterable<string, array{
      *      subject: mixed,
      *      expect: bool
      * }>
+     *
+     * @codeCoverageIgnore
      */
     public static function provSupports(): iterable
     {
@@ -82,8 +84,6 @@ final class ArrayValueSelectorTest extends TestCase
         ];
     }
 
-    // @codeCoverageIgnoreEnd
-
     /**
      * @dataProvider provSupports
      *
@@ -97,8 +97,6 @@ final class ArrayValueSelectorTest extends TestCase
         self::assertSame($expect, $selector->supports($subject));
     }
 
-    // @codeCoverageIgnoreStart
-
     /**
      * @psalm-return iterable<string, array{
      *      subject: array|\ArrayAccess,
@@ -106,6 +104,8 @@ final class ArrayValueSelectorTest extends TestCase
      *      return: mixed,
      *      expect: mixed
      * }>
+     *
+     * @codeCoverageIgnore
      */
     public static function provSelect(): iterable
     {
@@ -189,8 +189,6 @@ final class ArrayValueSelectorTest extends TestCase
         ];
     }
 
-    // @codeCoverageIgnoreEnd
-
     /**
      * @dataProvider provSelect
      *
@@ -227,11 +225,7 @@ final class ArrayValueSelectorTest extends TestCase
         $this->expectExceptionMessage($message);
 
         $selector->select(123, 'foo');
-
-        // @codeCoverageIgnoreStart
     }
-
-    // @codeCoverageIgnoreEnd
 
     /**
      * @psalm-suppress MissingThrowsDocblock

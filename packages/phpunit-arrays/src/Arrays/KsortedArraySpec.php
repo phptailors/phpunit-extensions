@@ -10,7 +10,7 @@
 
 namespace Tailors\PHPUnit\Arrays;
 
-use Tailors\PHPUnit\ArraySpec\AbstractArraySpec;
+use Tailors\PHPUnit\Common\AbstractArrayExpectations;
 use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Predicate\ComparatorAwareComplementInterface;
@@ -22,11 +22,11 @@ use Tailors\PHPUnit\Predicate\ComparatorAwareComplementInterface;
  *
  * @psalm-import-type ArrayLike from TypesInterface
  *
- * @template-extends AbstractArraySpec<ArrayLike>
+ * @template-extends AbstractArrayExpectations<ArrayLike>
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
-final class KsortedArraySpec extends AbstractArraySpec implements ComparatorAwareComplementInterface
+final class KsortedArraySpec extends AbstractArrayExpectations implements ComparatorAwareComplementInterface
 {
     /**
      * @psalm-param ArrayLike $array

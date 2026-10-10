@@ -17,6 +17,7 @@ use Tailors\PHPUnit\Result\ResultInterfaceTestTrait;
  * @small
  *
  * @covers \Tailors\PHPUnit\Arrays\ExpectedArrayValues
+ * @covers \Tailors\PHPUnit\Arrays\ExpectedArrayValuesTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *

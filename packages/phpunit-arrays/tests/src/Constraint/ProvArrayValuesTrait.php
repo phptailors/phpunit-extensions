@@ -26,14 +26,14 @@ use Tailors\PHPUnit\Common\TypesInterface;
  */
 trait ProvArrayValuesTrait
 {
-    // @codeCoverageIgnoreStart
-
     /**
      * @psalm-return iterable<string,array {
      *      expect: array,
      *      actual: array|\ArrayObject,
      *      string: string
      * }>
+     *
+     * @codeCoverageIgnore
      */
     public static function provArrayValuesIdenticalTo(): iterable
     {
@@ -104,6 +104,8 @@ trait ProvArrayValuesTrait
      *      actual: array|\ArrayObject,
      *      string: string
      * }>
+     *
+     * @codeCoverageIgnore
      */
     public static function provArrayValuesEqualButNotIdenticalTo(): iterable
     {
@@ -138,6 +140,8 @@ trait ProvArrayValuesTrait
      *      actual: array|\ArrayObject,
      *      string: string
      * }>
+     *
+     * @codeCoverageIgnore
      */
     public static function provArrayValuesNotEqualTo(): iterable
     {
@@ -178,6 +182,8 @@ trait ProvArrayValuesTrait
      *      actual: mixed,
      *      string: string
      * }>
+     *
+     * @codeCoverageIgnore
      */
     public static function provArrayValuesNotEqualToNonArray(): iterable
     {
@@ -205,6 +211,4 @@ trait ProvArrayValuesTrait
             'string' => 'object stdClass',
         ];
     }
-
-    // @codeCoverageIgnoreEnd
 }

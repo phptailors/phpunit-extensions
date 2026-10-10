@@ -22,6 +22,7 @@ use Tailors\PHPUnit\Examples\Inheritance\ExampleTraitUsingTrait;
  * @small
  *
  * @covers \Tailors\PHPUnit\UsesTraitTrait
+ * @covers \Tailors\PHPUnit\UsesTraitTraitTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *

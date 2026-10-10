@@ -18,6 +18,7 @@ use Tailors\PHPUnit\Result\DummyResult;
  * @small
  *
  * @covers \Tailors\PHPUnit\ResultFactory\DummyResultFactory
+ * @covers \Tailors\PHPUnit\ResultFactory\DummyResultFactoryTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *

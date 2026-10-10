@@ -16,6 +16,7 @@ use PHPUnit\Framework\TestCase;
  * @small
  *
  * @covers \Tailors\PHPUnit\InternalErrorException
+ * @covers \Tailors\PHPUnit\InternalErrorExceptionTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *

@@ -18,6 +18,7 @@ use PHPUnit\Framework\Constraint\LogicalOr;
  * @small
  *
  * @covers \Tailors\PHPUnit\Constraint\ConstraintTestCase
+ * @covers \Tailors\PHPUnit\Constraint\ConstraintTestCaseTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *

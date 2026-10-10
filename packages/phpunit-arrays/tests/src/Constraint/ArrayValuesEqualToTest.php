@@ -19,6 +19,7 @@ use Tailors\PHPUnit\RecursiveConstraint\RecursiveConstraintTestCase;
  * @small
  *
  * @covers \Tailors\PHPUnit\Constraint\ArrayValuesEqualTo
+ * @covers \Tailors\PHPUnit\Constraint\ArrayValuesEqualToTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *

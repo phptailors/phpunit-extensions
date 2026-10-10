@@ -18,6 +18,7 @@ use Tailors\PHPUnit\Constraint\ProvClassPropertiesTrait;
  * @small
  *
  * @covers \Tailors\PHPUnit\ClassPropertiesEqualToTrait
+ * @covers \Tailors\PHPUnit\ClassPropertiesEqualToTraitTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *

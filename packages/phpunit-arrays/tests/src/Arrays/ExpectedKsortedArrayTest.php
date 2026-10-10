@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit\Arrays;
 
+use Tailors\PHPUnit\Common\AbstractArrayObjectTestCase;
 use Tailors\PHPUnit\Result\ResultInterface;
 use Tailors\PHPUnit\Result\ResultInterfaceTestTrait;
 
@@ -17,14 +18,15 @@ use Tailors\PHPUnit\Result\ResultInterfaceTestTrait;
  * @small
  *
  * @covers \Tailors\PHPUnit\Arrays\ExpectedKsortedArray
+ * @covers \Tailors\PHPUnit\Arrays\ExpectedKsortedArrayTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type CtorArgs from \Tailors\PHPUnit\Common\AbstractArrayObjectTestCase
+ * @psalm-import-type CtorArgs from AbstractArrayObjectTestCase
  *
- * @var \Tailors\PHPUnit\Common\AbstractArrayObjectTestCase $__phpactor__workaround__unused_import__AbstractArrayResultTestCase
+ * @var AbstractArrayObjectTestCase $__phpactor__workaround__unused_import__AbstractArrayResultTestCase
  */
 final class ExpectedKsortedArrayTest extends AbstractKsortedArrayTestCase
 {

@@ -87,11 +87,7 @@ trait InheritanceConstraintTestTrait
         self::expectExceptionMessageMatches($expect['message']);
 
         $noop->evaluate($subject);
-
-        // @codeCoverageIgnoreStart
     }
-
-    // @codeCoverageIgnoreEnd
 
     /**
      * @dataProvider provFailureDescriptionOfLogicalNotOperator
@@ -110,9 +106,5 @@ trait InheritanceConstraintTestTrait
         self::expectExceptionMessageMatches($expect['message']);
 
         $not->evaluate($subject);
-
-        // @codeCoverageIgnoreStart
     }
-
-    // @codeCoverageIgnoreEnd
 }

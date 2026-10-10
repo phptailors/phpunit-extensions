@@ -16,6 +16,7 @@ use PHPUnit\Framework\TestCase;
  * @small
  *
  * @covers \Tailors\PHPUnit\Comparator\DummyComparator
+ * @covers \Tailors\PHPUnit\Comparator\DummyComparatorTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *

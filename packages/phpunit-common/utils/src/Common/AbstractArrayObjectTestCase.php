@@ -37,6 +37,8 @@ abstract class AbstractArrayObjectTestCase extends TestCase
      *      ctorArgs: CtorArgs,
      *      expect:   mixed
      * }>
+     *
+     * @codeCoverageIgnore
      */
     public static function provArrayObject(): iterable
     {
@@ -64,8 +66,6 @@ abstract class AbstractArrayObjectTestCase extends TestCase
             'expect'   => ['foo' => 'FOO'],
         ];
     }
-
-    // @codeCoverageIgnoreEnd
 
     /**
      * @psalm-suppress MissingThrowsDocblock

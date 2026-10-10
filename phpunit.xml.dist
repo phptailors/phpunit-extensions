@@ -5,7 +5,6 @@
       <directory>./packages/</directory>
     </include>
     <exclude>
-      <directory suffix="Test.php">./packages/*/tests</directory>
       <directory>./packages/*/behat</directory>
       <directory>./packages/*/resources</directory>
       <directory>./packages/*/vendor</directory>

@@ -39,10 +39,10 @@ trait TraitWithMethodFooV4C0Z
  */
 trait ProvHasMethodTrait
 {
-    // @codeCoverageIgnoreStart
-
     /**
      * @psalm-return iterable<string, list{string, mixed, string}>
+     *
+     * @codeCoverageIgnore
      */
     public static function provHasMethodSucceeds(): iterable
     {
@@ -79,6 +79,8 @@ trait ProvHasMethodTrait
 
     /**
      * @psalm-return iterable<string, list{string, mixed, string}>
+     *
+     * @codeCoverageIgnore
      */
     public static function provHasMethodFails(): iterable
     {
@@ -115,8 +117,6 @@ trait ProvHasMethodTrait
             'Failed asserting that 123 has method foo()',
         ];
     }
-
-    // @codeCoverageIgnoreEnd
 }
 
 // vim: syntax=php sw=4 ts=4 et:

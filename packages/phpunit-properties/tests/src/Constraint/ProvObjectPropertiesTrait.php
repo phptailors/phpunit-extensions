@@ -31,14 +31,14 @@ trait ProvObjectPropertiesTrait
      */
     abstract public static function createConstraint(array $args): Constraint;
 
-    // @codeCoverageIgnoreStart
-
     /**
      * @psalm-return iterable<string, array{
      *      expect: array<string, mixed>,
      *      actual: object,
      *      string: string
      * }>
+     *
+     * @codeCoverageIgnore
      */
     public static function provObjectPropertiesIdenticalTo(): iterable
     {
@@ -212,6 +212,8 @@ trait ProvObjectPropertiesTrait
      *      actual: object,
      *      string: string
      * }>
+     *
+     * @codeCoverageIgnore
      */
     public static function provObjectPropertiesEqualButNotIdenticalTo(): iterable
     {
@@ -251,6 +253,8 @@ trait ProvObjectPropertiesTrait
      *      actual: object,
      *      string: string
      * }>
+     *
+     * @codeCoverageIgnore
      */
     public static function provObjectPropertiesNotEqualTo(): iterable
     {
@@ -476,6 +480,8 @@ trait ProvObjectPropertiesTrait
      *      actual: mixed,
      *      string: string
      * }>
+     *
+     * @codeCoverageIgnore
      */
     public static function provObjectPropertiesNotEqualToNonObject(): iterable
     {
@@ -503,6 +509,4 @@ trait ProvObjectPropertiesTrait
             'string' => 'array',
         ];
     }
-
-    // @codeCoverageIgnoreEnd
 }

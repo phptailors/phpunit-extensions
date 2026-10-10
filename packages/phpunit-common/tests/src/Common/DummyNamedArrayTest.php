@@ -16,6 +16,7 @@ use PHPUnit\Framework\TestCase;
  * @small
  *
  * @covers \Tailors\PHPUnit\Common\DummyNamedArray
+ * @covers \Tailors\PHPUnit\Common\DummyNamedArrayTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *

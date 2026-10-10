@@ -20,6 +20,7 @@ use Tailors\PHPUnit\ResultFactory\ResultFactoryWrapperInterface;
  * @small
  *
  * @covers \Tailors\PHPUnit\ArraySpec\DummyResultFactoryWrapper
+ * @covers \Tailors\PHPUnit\ArraySpec\DummyResultFactoryWrapperTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *

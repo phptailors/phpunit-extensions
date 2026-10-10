@@ -21,6 +21,7 @@ use Tailors\PHPUnit\Constraint\ProvObjectPropertiesTrait;
  * @small
  *
  * @covers \Tailors\PHPUnit\ObjectPropertiesEqualToTrait
+ * @covers \Tailors\PHPUnit\ObjectPropertiesEqualToTraitTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *

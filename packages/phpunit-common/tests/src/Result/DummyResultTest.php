@@ -17,6 +17,7 @@ use Tailors\PHPUnit\Common\TypesInterface;
  * @small
  *
  * @covers \Tailors\PHPUnit\Result\DummyResult
+ * @covers \Tailors\PHPUnit\Result\DummyResultTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *

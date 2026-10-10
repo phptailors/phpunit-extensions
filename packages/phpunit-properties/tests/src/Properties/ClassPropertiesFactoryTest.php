@@ -19,6 +19,7 @@ use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
  * @small
  *
  * @covers \Tailors\PHPUnit\Properties\ClassPropertiesFactory
+ * @covers \Tailors\PHPUnit\Properties\ClassPropertiesFactoryTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *

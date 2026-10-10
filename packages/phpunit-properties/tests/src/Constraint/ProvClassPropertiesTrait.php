@@ -25,14 +25,14 @@ use Tailors\PHPUnit\Common\TypesInterface;
  */
 trait ProvClassPropertiesTrait
 {
-    // @codeCoverageIgnoreStart
-
     /**
      * @psalm-return iterable<array-key, array{
      *      expect: array<string, mixed>,
      *      actual: string,
      *      string: string
      * }>
+     *
+     * @codeCoverageIgnore
      */
     public static function provClassPropertiesIdenticalTo(): iterable
     {
@@ -80,6 +80,8 @@ trait ProvClassPropertiesTrait
      *      actual: string,
      *      string: string
      * }>
+     *
+     * @codeCoverageIgnore
      */
     public static function provClassPropertiesEqualButNotIdenticalTo(): iterable
     {
@@ -121,6 +123,8 @@ trait ProvClassPropertiesTrait
      *      actual: class-string,
      *      string: string
      * }>
+     *
+     * @codeCoverageIgnore
      */
     public static function provClassPropertiesNotEqualTo(): iterable
     {
@@ -162,6 +166,8 @@ trait ProvClassPropertiesTrait
      *      actual: mixed,
      *      string: string
      * }>
+     *
+     * @codeCoverageIgnore
      */
     public static function provClassPropertiesNotEqualToNonClass(): iterable
     {
@@ -195,6 +201,4 @@ trait ProvClassPropertiesTrait
             'string' => 'object stdClass',
         ];
     }
-
-    // @codeCoverageIgnoreEnd
 }

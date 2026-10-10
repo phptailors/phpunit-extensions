@@ -11,7 +11,6 @@
 namespace Tailors\PHPUnit\Constraint;
 
 use PHPUnit\Framework\Constraint\Constraint;
-use PHPUnit\Framework\ExpectationFailedException;
 use Tailors\PHPUnit\InvalidArgumentException;
 use Tailors\PHPUnit\RecursiveConstraint\RecursiveConstraintTestCase;
 
@@ -27,13 +26,13 @@ use Tailors\PHPUnit\RecursiveConstraint\RecursiveConstraintTestCase;
  */
 abstract class PropertiesConstraintTestCase extends RecursiveConstraintTestCase
 {
-    // @codeCoverageIgnoreStart
-
     /**
      * @psalm-return iterable<string, array{
      *      array: array,
      *      count: int
      * }>
+     *
+     * @codeCoverageIgnore
      */
     public static function provArrayWithNonStringKeys(): iterable
     {
@@ -57,33 +56,14 @@ abstract class PropertiesConstraintTestCase extends RecursiveConstraintTestCase
         ];
     }
 
-    // @codeCoverageIgnoreEnd
-
     /**
      * @dataProvider provArrayWithNonStringKeys
+     *
+     * @psalm-param array $array
      *
      * @psalm-suppress MissingThrowsDocblock
      */
     final public function testCreateWithNonStringKeys(array $array, int $count): void
-    {
-        $this->examineCreateWithNonStringKeys($array, $count);
-
-        // @codeCoverageIgnoreStart
-    }
-
-    // @codeCoverageIgnoreEnd
-
-    /**
-     * Assert that constraint constructor throws InvalidArgumentException with
-     * appropriate message when provided with an array having one or more
-     * non-string keys.
-     *
-     * @param array $array An array with non-string keys to be passed as an argument to $function
-     * @param int   $count Number of non-string keys in $array
-     *
-     * @throws ExpectationFailedException
-     */
-    private function examineCreateWithNonStringKeys(array $array, int $count): void
     {
         $message = sprintf(
             'Argument 1 passed to %s::create() must be an associative array with string keys, '.
@@ -97,11 +77,7 @@ abstract class PropertiesConstraintTestCase extends RecursiveConstraintTestCase
         $this->expectExceptionMessage($message);
 
         static::createConstraint([$array]);
-
-        // @codeCoverageIgnoreStart
     }
-
-    // @codeCoverageIgnoreEnd
 }
 
 // vim: syntax=php sw=4 ts=4 et:

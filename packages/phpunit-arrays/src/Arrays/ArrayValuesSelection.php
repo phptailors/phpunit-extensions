@@ -10,7 +10,7 @@
 
 namespace Tailors\PHPUnit\Arrays;
 
-use Tailors\PHPUnit\ArraySpec\AbstractArraySelectionSpec;
+use Tailors\PHPUnit\Common\AbstractArraySelection;
 use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\ValueSelector\ArrayValueSelector;
 
@@ -21,11 +21,11 @@ use Tailors\PHPUnit\ValueSelector\ArrayValueSelector;
  *
  * @psalm-import-type ArrayLike from TypesInterface
  *
- * @template-extends AbstractArraySelectionSpec<ArrayLike, array|\ArrayAccess>
+ * @template-extends AbstractArraySelection<ArrayLike, array|\ArrayAccess>
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
-final class ArrayValuesSelection extends AbstractArraySelectionSpec
+final class ArrayValuesSelection extends AbstractArraySelection
 {
     /**
      * @psalm-param ArrayLike $array

@@ -17,6 +17,7 @@ use Tailors\PHPUnit\InvalidArgumentException;
  * @small
  *
  * @covers \Tailors\PHPUnit\ValueSelector\ClassPropertySelector
+ * @covers \Tailors\PHPUnit\ValueSelector\ClassPropertySelectorTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *
@@ -40,12 +41,13 @@ final class ClassPropertySelectorTest extends TestCase
         self::assertInstanceOf(AbstractPropertySelector::class, new ClassPropertySelector());
     }
 
-    // @codeCoverageIgnoreStart
     /**
      * @psalm-return iterable<string, array{
      *      subject: mixed,
      *      expect: mixed
      * }>
+     *
+     * @codeCoverageIgnore
      */
     public static function provSupports(): iterable
     {
@@ -75,8 +77,6 @@ final class ClassPropertySelectorTest extends TestCase
         ];
     }
 
-    // @codeCoverageIgnoreEnd
-
     /**
      * @dataProvider provSupports
      *
@@ -91,7 +91,6 @@ final class ClassPropertySelectorTest extends TestCase
         self::assertSame($expect, $selector->supports($subject));
     }
 
-    // @codeCoverageIgnoreStart
     /**
      * @psalm-return iterable<string, array{
      *      class: string,
@@ -99,6 +98,8 @@ final class ClassPropertySelectorTest extends TestCase
      *      return: bool,
      *      expect: mixed
      * }>
+     *
+     * @codeCoverageIgnore
      */
     public static function provSelect(): iterable
     {
@@ -151,8 +152,6 @@ final class ClassPropertySelectorTest extends TestCase
         ];
     }
 
-    // @codeCoverageIgnoreEnd
-
     /**
      * @dataProvider provSelect
      *
@@ -177,12 +176,7 @@ final class ClassPropertySelectorTest extends TestCase
     public function testSelectThrowsOnPrivateMethod(): void
     {
         $class = get_class(new class() {
-            private static function foo(): void
-            {
-                // @codeCoverageIgnoreStart
-            }
-
-            // @codeCoverageIgnoreEnd
+            private static function foo(): void {}
         });
         $selector = new ClassPropertySelector();
 
@@ -190,11 +184,7 @@ final class ClassPropertySelectorTest extends TestCase
         $this->expectExceptionMessage('private method');
 
         $selector->select($class, 'foo()');
-
-        // @codeCoverageIgnoreStart
     }
-
-    // @codeCoverageIgnoreEnd
 
     /**
      * @psalm-suppress MissingThrowsDocblock
@@ -211,11 +201,7 @@ final class ClassPropertySelectorTest extends TestCase
         $this->expectExceptionMessage('private property');
 
         $selector->select($class, 'foo');
-
-        // @codeCoverageIgnoreStart
     }
-
-    // @codeCoverageIgnoreEnd
 
     /**
      * @psalm-suppress MissingThrowsDocblock
@@ -243,11 +229,7 @@ final class ClassPropertySelectorTest extends TestCase
             $this->expectExceptionMessage('cannot be called statically');
             $selector->select($class, 'foo()');
         }
-
-        // @codeCoverageIgnoreStart
     }
-
-    // @codeCoverageIgnoreEnd
 
     /**
      * @psalm-suppress MissingThrowsDocblock
@@ -264,18 +246,15 @@ final class ClassPropertySelectorTest extends TestCase
         $this->expectExceptionMessage('undeclared static property');
 
         $selector->select($class, 'foo');
-
-        // @codeCoverageIgnoreStart
     }
 
-    // @codeCoverageIgnoreEnd
-
-    // @codeCoverageIgnoreStart
     /**
      * @psalm-return iterable<string, array{
      *      key: string,
      *      method: string
      * }>
+     *
+     * @codeCoverageIgnore
      */
     public static function provSelectThrowsOnNonClass(): iterable
     {
@@ -291,8 +270,6 @@ final class ClassPropertySelectorTest extends TestCase
             'method' => 'selectWithMethod',
         ];
     }
-
-    // @codeCoverageIgnoreEnd
 
     /**
      * @dataProvider provSelectThrowsOnNonClass
@@ -312,11 +289,7 @@ final class ClassPropertySelectorTest extends TestCase
         $this->expectExceptionMessage($message);
 
         $selector->select(123, $key);
-
-        // @codeCoverageIgnoreStart
     }
-
-    // @codeCoverageIgnoreEnd
 
     /**
      * @psalm-suppress MissingThrowsDocblock

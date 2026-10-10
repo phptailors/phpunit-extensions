@@ -11,7 +11,7 @@
 namespace Tailors\PHPUnit\Arrays;
 
 use PHPUnit\Framework\TestCase;
-use Tailors\PHPUnit\ArraySpec\AbstractArraySpec;
+use Tailors\PHPUnit\Common\AbstractArrayExpectations;
 use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Comparator\DummyComparator;
 use Tailors\PHPUnit\Predicate\ComparatorAwareComplementInterface;
@@ -21,6 +21,7 @@ use Tailors\PHPUnit\ResultFactory\ResultFactoryWrapperInterface;
  * @small
  *
  * @covers \Tailors\PHPUnit\Arrays\KsortedArraySpec
+ * @covers \Tailors\PHPUnit\Arrays\KsortedArraySpecTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *
@@ -39,7 +40,7 @@ final class KsortedArraySpecTest extends TestCase
      */
     public function testExtendsAbstractArraySpec(): void
     {
-        $this->assertInstanceOf(AbstractArraySpec::class, new KsortedArraySpec([]));
+        $this->assertInstanceOf(AbstractArrayExpectations::class, new KsortedArraySpec([]));
     }
 
     /**

@@ -8,9 +8,8 @@
  * View the LICENSE file for full copyright and license information.
  */
 
-namespace Tailors\PHPUnit\ArraySpec;
+namespace Tailors\PHPUnit\Common;
 
-use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Predicate\ComparatorAwareComplementInterface;
 use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
@@ -27,13 +26,13 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  *
  * @psalm-import-type ArrayLike from TypesInterface
  *
- * @template-extends AbstractArraySpec<SupportedInput>
+ * @template-extends AbstractArrayExpectations<SupportedInput>
  *
  * @template-implements ValueSelectorWrapperInterface<SupportedSubject>
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
-abstract class AbstractArraySelectionSpec extends AbstractArraySpec implements ValueSelectorWrapperInterface, ComparatorAwareComplementInterface
+abstract class AbstractArraySelection extends AbstractArrayExpectations implements ValueSelectorWrapperInterface, ComparatorAwareComplementInterface
 {
     /**
      * @var ValueSelectorInterface

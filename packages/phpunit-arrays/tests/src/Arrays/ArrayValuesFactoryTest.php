@@ -19,6 +19,7 @@ use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
  * @small
  *
  * @covers \Tailors\PHPUnit\Arrays\ArrayValuesFactory
+ * @covers \Tailors\PHPUnit\Arrays\ArrayValuesFactoryTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *

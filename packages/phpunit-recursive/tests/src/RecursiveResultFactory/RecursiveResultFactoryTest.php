@@ -23,6 +23,7 @@ use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
  * @small
  *
  * @covers \Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactory
+ * @covers \Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactoryTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *

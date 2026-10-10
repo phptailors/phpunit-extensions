@@ -42,11 +42,7 @@ abstract class KsortedConstraintTestCase extends ConstraintTestCase
     final public function testConstraintUnaryOperatorFailure(): void
     {
         $this->examineConstraintUnaryOperatorFailure([[]], null, self::message('null'));
-
-        // @codeCoverageIgnoreStart
     }
-
-    // @codeCoverageIgnoreEnd
 
     final protected static function message(string $export, bool $negative = false): string
     {

@@ -18,6 +18,7 @@ use Tailors\PHPUnit\Constraint\ProvKsortedArrayTrait;
  * @small
  *
  * @covers \Tailors\PHPUnit\KsortedArrayEqualToTrait
+ * @covers \Tailors\PHPUnit\KsortedArrayEqualToTraitTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *

@@ -91,11 +91,7 @@ abstract class ConstraintTestCase extends TestCase
         self::expectExceptionMessage($message);
 
         self::assertThat($actual, $unary);
-
-        // @codeCoverageIgnoreStart
     }
-
-    // @codeCoverageIgnoreEnd
 
     /**
      * @param array $args   arguments passed to createConstraint()
@@ -130,10 +126,7 @@ abstract class ConstraintTestCase extends TestCase
         $this->expectExceptionMessage($message);
 
         $constraint->evaluate($actual);
-        // @codeCoverageIgnoreStart
     }
-
-    // @codeCoverageIgnoreEnd
 
     /**
      * @param array $args   arguments passed to createConstraint()
@@ -167,10 +160,7 @@ abstract class ConstraintTestCase extends TestCase
         $this->expectExceptionMessage($message);
 
         $constraint->evaluate($actual);
-        // @codeCoverageIgnoreStart
     }
-
-    // @codeCoverageIgnoreEnd
 
     /**
      * Returns $constraint wrapped with an UnaryOperator.
