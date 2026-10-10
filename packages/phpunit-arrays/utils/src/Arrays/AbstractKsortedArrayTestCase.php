@@ -24,12 +24,11 @@ use Tailors\PHPUnit\Common\TypesInterface;
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-import-type ArrayLike from TypesInterface
- *
- * @psalm-type CtorArgs = list{0?: ArrayLike}
+ * @psalm-import-type CtorArgs from AbstractArrayResultTestCase
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
-abstract class AbstractArrayValuesTestCase extends AbstractArrayResultTestCase
+abstract class AbstractKsortedArrayTestCase extends AbstractArrayResultTestCase
 {
     use ExportableNameInterfaceTestTrait;
     use TagInterfaceTestTrait;
@@ -37,14 +36,14 @@ abstract class AbstractArrayValuesTestCase extends AbstractArrayResultTestCase
     /**
      * @psalm-param CtorArgs $ctorArgs
      *
-     * @psalm-return AbstractArrayValues
+     * @psalm-return AbstractKsortedArray
      */
     abstract public static function getObject(array $ctorArgs): iterable;
 
     /**
      * @psalm-pure
      *
-     * @psalm-return class-string<AbstractArrayValues>
+     * @psalm-return class-string<AbstractKsortedArray>
      */
     abstract public static function getClass(): string;
 
@@ -58,7 +57,7 @@ abstract class AbstractArrayValuesTestCase extends AbstractArrayResultTestCase
     {
         yield basename(__FILE__).':'.__LINE__ => [
             'object' => static::getObject([]),
-            'tag'    => StaticRandomStrings::familyTag(__NAMESPACE__.'\ArrayValues', 'c225435bd5434279f77fb3cddf138302a5c826ec'),
+            'tag'    => StaticRandomStrings::familyTag(__NAMESPACE__.'\KsortedArray', 'c225435bd5434279f77fb3cddf138302a5c826ec'),
         ];
     }
 
@@ -82,7 +81,7 @@ abstract class AbstractArrayValuesTestCase extends AbstractArrayResultTestCase
     {
         yield basename(__FILE__).':'.__LINE__ => [
             'class' => static::getClass(),
-            'name'  => 'ArrayValues',
+            'name'  => 'KsortedArray',
         ];
     }
 
@@ -96,5 +95,4 @@ abstract class AbstractArrayValuesTestCase extends AbstractArrayResultTestCase
         ];
     }
 }
-
 // vim: syntax=php sw=4 ts=4 et:

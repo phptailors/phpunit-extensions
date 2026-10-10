@@ -10,39 +10,48 @@
 
 namespace Tailors\PHPUnit\Properties;
 
-use Tailors\PHPUnit\Common\TypesInterface;
-
 /**
  * @small
  *
+ * @covers \Tailors\PHPUnit\ArrayResult\AbstractArrayResultTestCase
  * @covers \Tailors\PHPUnit\Properties\AbstractClassProperties
- * @covers \Tailors\PHPUnit\Properties\ClassPropertiesTestCase
+ * @covers \Tailors\PHPUnit\Properties\AbstractClassPropertiesTestCase
  * @covers \Tailors\PHPUnit\Properties\ExpectedClassProperties
  *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type ArrayLike from TypesInterface
- * @psalm-import-type CtorArgs from ClassPropertiesTestCase
- *
- * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
+ * @psalm-import-type CtorArgs from AbstractClassPropertiesTestCase
  */
-final class ExpectedClassPropertiesTest extends ClassPropertiesTestCase
+final class ExpectedClassPropertiesTest extends AbstractClassPropertiesTestCase
 {
+    /**
+     * @psalm-pure
+     */
+    public static function getActual(): bool
+    {
+        return false;
+    }
+
     /**
      * @psalm-param CtorArgs $ctorArgs
      *
-     * @psalm-return ArrayLike
+     * @psalm-return ExpectedClassProperties
      */
-    final public static function getArrayResultObject(array $ctorArgs): iterable
+    public static function getObject(array $ctorArgs): iterable
     {
         return new ExpectedClassProperties(...$ctorArgs);
     }
 
-    public static function getArrayResultActual(): bool
+    /**
+     * @psalm-pure
+     *
+     * @psalm-return class-string<ExpectedClassProperties>
+     */
+    public static function getClass(): string
     {
-        return false;
+        return ExpectedClassProperties::class;
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

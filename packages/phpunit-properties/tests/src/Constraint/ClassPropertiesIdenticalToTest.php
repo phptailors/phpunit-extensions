@@ -38,19 +38,9 @@ final class ClassPropertiesIdenticalToTest extends PropertiesConstraintTestCase
 {
     use ProvClassPropertiesTrait;
 
-    public static function subject(): string
+    public static function complement(): string
     {
-        return 'a class';
-    }
-
-    public static function selectable(): string
-    {
-        return 'properties';
-    }
-
-    public static function adjective(): string
-    {
-        return 'identical to';
+        return 'a class with properties identical to the specified ones';
     }
 
     /**

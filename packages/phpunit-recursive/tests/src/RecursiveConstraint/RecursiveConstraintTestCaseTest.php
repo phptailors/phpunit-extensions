@@ -35,19 +35,9 @@ use Tailors\PHPUnit\InvalidArgumentException;
  */
 final class RecursiveConstraintTestCaseTest extends RecursiveConstraintTestCase
 {
-    public static function subject(): string
+    public static function complement(): string
     {
-        return 'an array';
-    }
-
-    public static function selectable(): string
-    {
-        return 'values';
-    }
-
-    public static function adjective(): string
-    {
-        return 'identical to';
+        return 'an array with values identical to the specified ones';
     }
 
     /**

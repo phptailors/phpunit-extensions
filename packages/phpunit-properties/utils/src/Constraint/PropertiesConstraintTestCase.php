@@ -23,12 +23,18 @@ use Tailors\PHPUnit\RecursiveConstraint\RecursiveConstraintTestCase;
  * @psalm-template ConstraintClass of Constraint
  * @psalm-template CreateConstraintArgs of list
  *
- * @template-extends RecursiveConstraintTestCase<ConstraintClass, CreateConstraintArgs>
+ * @template-extends RecursiveConstraintTestCase<ConstraintClass>
  */
 abstract class PropertiesConstraintTestCase extends RecursiveConstraintTestCase
 {
     // @codeCoverageIgnoreStart
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      array: array,
+     *      count: int
+     * }>
+     */
     public static function provArrayWithNonStringKeys(): iterable
     {
         yield basename(__FILE__).':'.__LINE__ => [
@@ -55,6 +61,8 @@ abstract class PropertiesConstraintTestCase extends RecursiveConstraintTestCase
 
     /**
      * @dataProvider provArrayWithNonStringKeys
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     final public function testCreateWithNonStringKeys(array $array, int $count): void
     {

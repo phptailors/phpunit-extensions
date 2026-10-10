@@ -38,19 +38,9 @@ final class ObjectPropertiesEqualToTest extends PropertiesConstraintTestCase
 {
     use ProvObjectPropertiesTrait;
 
-    public static function subject(): string
+    public static function complement(): string
     {
-        return 'an object';
-    }
-
-    public static function selectable(): string
-    {
-        return 'properties';
-    }
-
-    public static function adjective(): string
-    {
-        return 'equal to';
+        return 'an object with properties equal to the specified ones';
     }
 
     /**

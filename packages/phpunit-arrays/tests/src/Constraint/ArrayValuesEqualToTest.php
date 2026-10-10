@@ -38,19 +38,9 @@ final class ArrayValuesEqualToTest extends RecursiveConstraintTestCase
 {
     use ProvArrayValuesTrait;
 
-    public static function subject(): string
+    public static function complement(): string
     {
-        return 'an array or ArrayAccess';
-    }
-
-    public static function selectable(): string
-    {
-        return 'values';
-    }
-
-    public static function adjective(): string
-    {
-        return 'equal to';
+        return 'an array or ArrayAccess with values equal to the specified ones';
     }
 
     /**

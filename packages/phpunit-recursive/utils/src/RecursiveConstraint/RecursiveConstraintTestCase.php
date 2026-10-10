@@ -39,11 +39,7 @@ use Tailors\PHPUnit\ResultFactory\DummyResultFactory;
  */
 abstract class RecursiveConstraintTestCase extends ConstraintTestCase
 {
-    abstract public static function subject(): string;
-
-    abstract public static function selectable(): string;
-
-    abstract public static function adjective(): string;
+    abstract public static function complement(): string;
 
     /**
      * @psalm-return iterable<string, array{
@@ -165,37 +161,29 @@ abstract class RecursiveConstraintTestCase extends ConstraintTestCase
     /**
      * Assembles expected failure message out of pieces.
      *
-     * @param string $export   A noun representing the actual value, such as
+     * @param string $exported A noun representing the actual value, such as
      *                         "123" or "array" or "object stdClass"
      * @param bool   $negative indicates whether the generated message is for the
      *                         tested constraint (false) or a constraint negated
      *                         with LogicalNot (true)
      */
-    final protected static function message(string $export, bool $negative = false): string
+    final protected static function message(string $exported, bool $negative = false): string
     {
-        return sprintf('Failed asserting that %s.', self::statement($export, $negative));
+        return sprintf('Failed asserting that %s.', self::predicate($exported, $negative));
     }
 
     /**
-     * Assembles a statement which is a part of failure message.
+     * Assembles a predicate which is a part of failure message.
      *
-     * @param string $export   A noun representing the actual value,
-     *                         such as "123" or "array" or "object
-     *                         stdClass"
-     * @param bool   $negative indicates whether the generated statement is for
+     * @param string $exported A noun representing the actual value, such as
+     *                         "123" or "array" or "object stdClass"
+     * @param bool   $negative indicates whether the generated predicate is for
      *                         the constraint under test (false) or a constraint
      *                         negated with LogicalNot (true)
      */
-    final protected static function statement(string $export, bool $negative = false): string
+    final protected static function predicate(string $exported, bool $negative = false): string
     {
-        return sprintf(
-            '%s %s %s with %s %s the specified ones',
-            $export,
-            $negative ? 'fails to be' : 'is',
-            static::subject(),
-            static::selectable(),
-            static::adjective()
-        );
+        return sprintf('%s %s %s', $exported, $negative ? 'fails to be' : 'is', static::complement());
     }
 }
 

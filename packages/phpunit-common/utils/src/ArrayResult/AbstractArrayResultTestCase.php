@@ -10,14 +10,10 @@
 
 namespace Tailors\PHPUnit\ArrayResult;
 
-use PHPUnit\Framework\Exception;
-use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
-use SebastianBergmann\RecursionContext\InvalidArgumentException;
-use Tailors\PHPUnit\Common\StaticRandomStrings;
-use Tailors\PHPUnit\Common\TagInterface;
 use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Result\ResultInterface;
+use Tailors\PHPUnit\Result\ResultInterfaceTestTrait;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -26,134 +22,110 @@ use Tailors\PHPUnit\Result\ResultInterface;
  *
  * @psalm-import-type ArrayLike from TypesInterface
  *
- * @psalm-type CtorArgs = list{0?:iterable<array-key, mixed>}
+ * @psalm-type CtorArgs = list{0?: ArrayLike}
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 abstract class AbstractArrayResultTestCase extends TestCase
 {
-    abstract public static function getArrayResultFamilyName(): string;
-
-    abstract public static function getArrayResultActual(): bool;
+    use ResultInterfaceTestTrait;
 
     /**
-     * @psalm-template CtorArgs of CtorArgs
-     *
+     * @psalm-pure
+     */
+    abstract public static function getActual(): bool;
+
+    /**
      * @psalm-param CtorArgs $ctorArgs
      *
-     * @psalm-return ArrayLike
+     * @psalm-return AbstractArrayResult
      */
-    abstract public static function getArrayResultObject(array $ctorArgs): iterable;
-
-    /**
-     * @throws Exception
-     * @throws ExpectationFailedException
-     * @throws InvalidArgumentException
-     */
-    final public function testImplementsResultInterface(): void
-    {
-        self::assertInstanceOf(ResultInterface::class, static::getArrayResultObject([]));
-    }
-
-    /**
-     * @throws Exception
-     * @throws ExpectationFailedException
-     * @throws InvalidArgumentException
-     */
-    final public function testExtendsArrayObject(): void
-    {
-        self::assertInstanceOf(\ArrayObject::class, static::getArrayResultObject([]));
-    }
+    abstract public static function getObject(array $ctorArgs): iterable;
 
     // @codeCoverageIgnoreStart
     /**
      * @psalm-return iterable<string, array{
-     *      ctor:   CtorArgs,
-     *      expect: mixed
+     *  object: ResultInterface,
+     *  actual: mixed
      * }>
      */
-    public static function provAbstractArrayResult(): iterable
+    public static function provActual(): iterable
+    {
+        yield basename(__FILE__).':'.__LINE__ => [
+            'object' => static::getObject([]),
+            'actual' => static::getActual(),
+        ];
+    }
+
+    /**
+     * @psalm-return iterable<string, array{object: object}>
+     */
+    public static function provImplementsResultInterface(): iterable
+    {
+        yield basename(__FILE__).':'.__LINE__ => [
+            'object' => static::getObject([]),
+        ];
+    }
+
+    /**
+     * @psalm-return iterable<string, array{
+     *      ctorArgs: CtorArgs,
+     *      expect:   mixed
+     * }>
+     */
+    public static function provArray(): iterable
     {
         // #0
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'   => [],
-            'expect' => [],
+            'ctorArgs' => [],
+            'expect'   => [],
         ];
 
         // #1
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'   => [[]],
-            'expect' => [],
+            'ctorArgs' => [[]],
+            'expect'   => [],
         ];
 
         // #2
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'   => [['foo' => 'FOO']],
-            'expect' => ['foo' => 'FOO'],
+            'ctorArgs' => [['foo' => 'FOO']],
+            'expect'   => ['foo' => 'FOO'],
         ];
 
         // #3
         yield basename(__FILE__).':'.__LINE__ => [
-            'ctor'   => [new \ArrayObject(['foo' => 'FOO'])],
-            'expect' => ['foo' => 'FOO'],
+            'ctorArgs' => [new \ArrayObject(['foo' => 'FOO'])],
+            'expect'   => ['foo' => 'FOO'],
         ];
     }
 
     // @codeCoverageIgnoreEnd
 
     /**
-     * @dataProvider provAbstractArrayResult
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    final public function testExtendsArrayObject(): void
+    {
+        self::assertInstanceOf(\ArrayObject::class, static::getObject([]));
+    }
+
+    /**
+     * @dataProvider provArray
      *
      * @param mixed $expect
      *
-     * @throws Exception
-     * @throws ExpectationFailedException
-     * @throws InvalidArgumentException
+     * @psalm-param CtorArgs $ctorArgs
      *
-     * @psalm-param CtorArgs $ctor
+     * @psalm-suppress MissingThrowsDocblock
      */
-    final public function testAbstractArrayResult(array $ctor, $expect): void
+    final public function testArray(array $ctorArgs, $expect): void
     {
-        $object = static::getArrayResultObject($ctor);
+        $object = static::getObject($ctorArgs);
 
-        self::assertInstanceOf(\Traversable::class, $object);
-        self::assertInstanceOf(ResultInterface::class, $object);
         self::assertSame($expect, iterator_to_array($object));
         self::assertSame($expect, (array) $object);
-        self::assertSame(static::getArrayResultActual(), $object->actual());
-    }
-
-    // @codeCoverageIgnoreStart
-    /**
-     * @psalm-return iterable<string,array{ctor: CtorArgs}>
-     */
-    public static function provAbstractArrayResultTag(): iterable
-    {
-        yield basename(__FILE__).':'.__LINE__ => ['ctor' => []];
-
-        yield basename(__FILE__).':'.__LINE__ => ['ctor' => [['foo' => 'FOO']]];
-    }
-    // @codeCoverageIgnoreEnd
-
-    /**
-     * @dataProvider provAbstractArrayResultTag
-     *
-     * @throws Exception
-     * @throws ExpectationFailedException
-     * @throws InvalidArgumentException
-     *
-     * @psalm-param CtorArgs $ctor
-     */
-    final public function testAbstractArrayResultTag(array $ctor): void
-    {
-        $family = static::getArrayResultFamilyName();
-        $familyHex = StaticRandomStrings::get($family);
-        $familyTag = "{$family}:{$familyHex}";
-
-        $object = static::getArrayResultObject($ctor);
-
-        self::assertInstanceOf(TagInterface::class, $object);
-        self::assertSame($familyTag, $object->tag());
+        self::assertSame(static::getActual(), $object->actual());
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

@@ -10,29 +10,26 @@
 
 namespace Tailors\PHPUnit\Arrays;
 
-use Tailors\PHPUnit\Common\TypesInterface;
-
 /**
  * @small
  *
+ * @covers \Tailors\PHPUnit\ArrayResult\AbstractArrayResultTestCase
  * @covers \Tailors\PHPUnit\Arrays\AbstractArrayValues
  * @covers \Tailors\PHPUnit\Arrays\AbstractArrayValuesTestCase
  * @covers \Tailors\PHPUnit\Arrays\ActualArrayValues
- * @covers \Tailors\PHPUnit\Arrays\ArrayValuesTestCase
  *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-import-type ArrayLike from TypesInterface
- *
- * @psalm-type CtorArgs = list{0?: ArrayLike}
- *
- * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
+ * @psalm-import-type CtorArgs from AbstractArrayValuesTestCase
  */
-final class ActualArrayValuesTest extends ArrayValuesTestCase
+final class ActualArrayValuesTest extends AbstractArrayValuesTestCase
 {
-    public static function getArrayResultActual(): bool
+    /**
+     * @psalm-pure
+     */
+    public static function getActual(): bool
     {
         return true;
     }
@@ -40,11 +37,21 @@ final class ActualArrayValuesTest extends ArrayValuesTestCase
     /**
      * @psalm-param CtorArgs $ctorArgs
      *
-     * @psalm-return ArrayLike
+     * @psalm-return ActualArrayValues
      */
-    public static function getArrayResultObject(array $ctorArgs): iterable
+    public static function getObject(array $ctorArgs): iterable
     {
         return new ActualArrayValues(...$ctorArgs);
+    }
+
+    /**
+     * @psalm-pure
+     *
+     * @psalm-return class-string<ActualArrayValues>
+     */
+    public static function getClass(): string
+    {
+        return ActualArrayValues::class;
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

@@ -17,6 +17,7 @@
     <projectFiles>
         <directory name="packages/*/src" />
         <directory name="packages/*/tests/src" />
+        <directory name="packages/*/utils/src" />
     </projectFiles>
     <plugins>
         <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
