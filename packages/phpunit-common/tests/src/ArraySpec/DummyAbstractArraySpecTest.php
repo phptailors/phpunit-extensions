@@ -18,7 +18,6 @@ use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\ArraySpec\AbstractArraySpec
  * @covers \Tailors\PHPUnit\ArraySpec\DummyAbstractArraySpec
  *
  * @internal This class is not covered by the backward compatibility promise

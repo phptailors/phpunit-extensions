@@ -20,8 +20,6 @@ use Tailors\PHPUnit\InvalidArgumentException;
  * @small
  *
  * @covers \Tailors\PHPUnit\Constraint\ExtendsClass
- * @covers \Tailors\PHPUnit\Constraint\InheritanceConstraintTestTrait
- * @covers \Tailors\PHPUnit\Inheritance\AbstractInheritanceConstraint
  *
  * @internal This class is not covered by the backward compatibility promise
  *

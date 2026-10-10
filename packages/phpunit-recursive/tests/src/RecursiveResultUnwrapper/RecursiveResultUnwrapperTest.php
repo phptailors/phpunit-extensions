@@ -18,7 +18,6 @@ use Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversalInterface;
  * @small
  *
  * @covers \Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapper
- * @covers \Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapperVisitor
  *
  * @internal This class is not covered by the backward compatibility promise
  *

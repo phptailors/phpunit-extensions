@@ -25,104 +25,71 @@ use PHPUnit\Framework\TestCase;
  */
 abstract class AbstractArrayObjectTestCase extends TestCase
 {
-    //    use ResultInterfaceTestTrait;
-    //
-    //    /**
-    //     * @psalm-pure
-    //     */
-    //    abstract public static function getActual(): bool;
-    //
-    //    /**
-    //     * @psalm-param CtorArgs $ctorArgs
-    //     *
-    //     * @psalm-return AbstractArrayObject
-    //     */
-    //    abstract public static function getObject(array $ctorArgs): iterable;
-    //
-    //    // @codeCoverageIgnoreStart
-    //    /**
-    //     * @psalm-return iterable<string, array{
-    //     *  object: ResultInterface,
-    //     *  actual: mixed
-    //     * }>
-    //     */
-    //    public static function provActual(): iterable
-    //    {
-    //        yield basename(__FILE__).':'.__LINE__ => [
-    //            'object' => static::getObject([]),
-    //            'actual' => static::getActual(),
-    //        ];
-    //    }
-    //
-    //    /**
-    //     * @psalm-return iterable<string, array{object: object}>
-    //     */
-    //    public static function provImplementsResultInterface(): iterable
-    //    {
-    //        yield basename(__FILE__).':'.__LINE__ => [
-    //            'object' => static::getObject([]),
-    //        ];
-    //    }
-    //
-    //    /**
-    //     * @psalm-return iterable<string, array{
-    //     *      ctorArgs: CtorArgs,
-    //     *      expect:   mixed
-    //     * }>
-    //     */
-    //    public static function provArray(): iterable
-    //    {
-    //        // #0
-    //        yield basename(__FILE__).':'.__LINE__ => [
-    //            'ctorArgs' => [],
-    //            'expect'   => [],
-    //        ];
-    //
-    //        // #1
-    //        yield basename(__FILE__).':'.__LINE__ => [
-    //            'ctorArgs' => [[]],
-    //            'expect'   => [],
-    //        ];
-    //
-    //        // #2
-    //        yield basename(__FILE__).':'.__LINE__ => [
-    //            'ctorArgs' => [['foo' => 'FOO']],
-    //            'expect'   => ['foo' => 'FOO'],
-    //        ];
-    //
-    //        // #3
-    //        yield basename(__FILE__).':'.__LINE__ => [
-    //            'ctorArgs' => [new \ArrayObject(['foo' => 'FOO'])],
-    //            'expect'   => ['foo' => 'FOO'],
-    //        ];
-    //    }
-    //
-    //    // @codeCoverageIgnoreEnd
-    //
-    //    /**
-    //     * @psalm-suppress MissingThrowsDocblock
-    //     */
-    //    final public function testExtendsArrayObject(): void
-    //    {
-    //        self::assertInstanceOf(\ArrayObject::class, static::getObject([]));
-    //    }
-    //
-    //    /**
-    //     * @dataProvider provArray
-    //     *
-    //     * @param mixed $expect
-    //     *
-    //     * @psalm-param CtorArgs $ctorArgs
-    //     *
-    //     * @psalm-suppress MissingThrowsDocblock
-    //     */
-    //    final public function testArray(array $ctorArgs, $expect): void
-    //    {
-    //        $object = static::getObject($ctorArgs);
-    //
-    //        self::assertSame($expect, iterator_to_array($object));
-    //        self::assertSame($expect, (array) $object);
-    //        self::assertSame(static::getActual(), $object->actual());
-    //    }
+    /**
+     * @psalm-param CtorArgs $ctorArgs
+     *
+     * @psalm-return AbstractArrayObject
+     */
+    abstract public static function getObject(array $ctorArgs): iterable;
+
+    /**
+     * @psalm-return iterable<string, array{
+     *      ctorArgs: CtorArgs,
+     *      expect:   mixed
+     * }>
+     */
+    public static function provArrayObject(): iterable
+    {
+        // #0
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctorArgs' => [],
+            'expect'   => [],
+        ];
+
+        // #1
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctorArgs' => [[]],
+            'expect'   => [],
+        ];
+
+        // #2
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctorArgs' => [['foo' => 'FOO']],
+            'expect'   => ['foo' => 'FOO'],
+        ];
+
+        // #3
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctorArgs' => [new \ArrayObject(['foo' => 'FOO'])],
+            'expect'   => ['foo' => 'FOO'],
+        ];
+    }
+
+    // @codeCoverageIgnoreEnd
+
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    final public function testExtendsArrayObject(): void
+    {
+        self::assertInstanceOf(\ArrayObject::class, static::getObject([]));
+    }
+
+    /**
+     * @dataProvider provArrayObject
+     *
+     * @param mixed $expect
+     *
+     * @psalm-param CtorArgs $ctorArgs
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    final public function testArrayObject(array $ctorArgs, $expect): void
+    {
+        $object = static::getObject($ctorArgs);
+
+        self::assertSame($expect, iterator_to_array($object));
+        self::assertSame($expect, (array) $object);
+    }
 }
 // vim: syntax=php sw=4 ts=4 et:

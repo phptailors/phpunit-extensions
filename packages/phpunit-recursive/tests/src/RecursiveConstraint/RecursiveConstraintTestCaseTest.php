@@ -17,7 +17,6 @@ use Tailors\PHPUnit\InvalidArgumentException;
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\RecursiveConstraint\ExampleRecursiveConstraint
  * @covers \Tailors\PHPUnit\RecursiveConstraint\RecursiveConstraintTestCase
  *
  * @internal This class is not covered by the backward compatibility promise

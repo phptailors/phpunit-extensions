@@ -16,10 +16,7 @@ use Tailors\PHPUnit\Result\ResultInterfaceTestTrait;
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Arrays\AbstractKsortedArray
- * @covers \Tailors\PHPUnit\Arrays\AbstractKsortedArrayTestCase
  * @covers \Tailors\PHPUnit\Arrays\ActualKsortedArray
- * @covers \Tailors\PHPUnit\Common\AbstractArrayObjectTestCase
  *
  * @internal This class is not covered by the backward compatibility promise
  *

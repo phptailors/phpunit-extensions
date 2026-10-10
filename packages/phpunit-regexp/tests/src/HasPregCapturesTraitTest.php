@@ -17,7 +17,6 @@ use Tailors\PHPUnit\Constraint\ProvHasPregCapturesTrait;
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Constraint\ProvHasPregCapturesTrait
  * @covers \Tailors\PHPUnit\HasPregCapturesTrait
  *
  * @internal This class is not covered by the backward compatibility promise

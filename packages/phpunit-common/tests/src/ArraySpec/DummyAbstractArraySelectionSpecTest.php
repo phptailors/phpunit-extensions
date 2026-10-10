@@ -21,7 +21,6 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\ArraySpec\AbstractArraySelectionSpec
  * @covers \Tailors\PHPUnit\ArraySpec\DummyAbstractArraySelectionSpec
  *
  * @internal This class is not covered by the backward compatibility promise

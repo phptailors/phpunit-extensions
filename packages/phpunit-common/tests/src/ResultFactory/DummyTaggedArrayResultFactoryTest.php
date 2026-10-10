@@ -19,7 +19,6 @@ use Tailors\PHPUnit\Result\ResultInterface;
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\ResultFactory\AbstractArrayResultFactory
  * @covers \Tailors\PHPUnit\ResultFactory\DummyTaggedArrayResultFactory
  *
  * @internal This class is not covered by the backward compatibility promise

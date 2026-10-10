@@ -16,9 +16,6 @@ use Tailors\PHPUnit\Result\ResultInterfaceTestTrait;
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Common\AbstractArrayObjectTestCase
- * @covers \Tailors\PHPUnit\Properties\AbstractObjectProperties
- * @covers \Tailors\PHPUnit\Properties\AbstractObjectPropertiesTestCase
  * @covers \Tailors\PHPUnit\Properties\ActualObjectProperties
  *
  * @internal This class is not covered by the backward compatibility promise
