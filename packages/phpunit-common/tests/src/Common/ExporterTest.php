@@ -94,10 +94,10 @@ final class ExporterTest extends TestCase
 
         $expected = <<<'EOD'
         DummyNamedArray &0 \(
-            'foo' => Array &0 \(
+            'foo' => Array &0 [\(\[]
                 'bar' => DummyNamedArray &1 \(\),?
                 'rec' => DummyNamedArray &0,?
-            \)
+            [\)\]]
         \)
         EOD;
 
