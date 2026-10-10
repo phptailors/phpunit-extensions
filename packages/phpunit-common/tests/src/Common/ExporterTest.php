@@ -92,18 +92,41 @@ final class ExporterTest extends TestCase
             'rec' => $top,
         ];
 
-        $expected = <<<'EOD'
-        /^DummyNamedArray &0 \(
-            'foo' => Array &0 (?:\(|\[)
-                'bar' => DummyNamedArray &1 \(\),?
-                'rec' => DummyNamedArray &0,?
-            (?:\)|\]),?
-        \)$/m
+        $expected = [];
+        $expected[] = <<<'EOD'
+        DummyNamedArray &0 (
+            'foo' => Array &0 (
+                'bar' => DummyNamedArray &1 ()
+                'rec' => DummyNamedArray &0
+            )
+        )
+        EOD;
+
+        $expected[] = <<<'EOD'
+        DummyNamedArray &0 (
+            'foo' => Array &0 (
+                'bar' => DummyNamedArray &1 (),
+                'rec' => DummyNamedArray &0,
+            ),
+        )
+        EOD;
+
+        $expected[] = <<<'EOD'
+        DummyNamedArray &0 (
+            'foo' => Array &0 [
+                'bar' => DummyNamedArray &1 (),
+                'rec' => DummyNamedArray &0,
+            ],
+        )
         EOD;
 
         $exported = str_replace("\r\n", "\n", Exporter::export($top, true));
 
-        $this->assertMatchesRegularExpression($expected, $exported);
+        $this->assertThat($exported, $this->logicalOr(
+            $this->identicalTo($expected[0]),
+            $this->identicalTo($expected[1]),
+            $this->identicalTo($expected[2])
+        ));
     }
 
     /**
