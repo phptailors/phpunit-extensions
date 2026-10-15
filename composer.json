@@ -18,6 +18,20 @@
         "phpunit/phpunit": "^13.0.0",
         "sebastian/cli-parser": ">=1.0"
     },
+    "replace": {
+        "phptailors/phpunit-arrays": "self.version",
+        "phptailors/phpunit-common": "self.version",
+        "phptailors/phpunit-inheritance": "self.version",
+        "phptailors/phpunit-methods": "self.version",
+        "phptailors/phpunit-properties": "self.version",
+        "phptailors/phpunit-recursive": "self.version",
+        "phptailors/phpunit-regexp": "self.version"
+    },
+    "conflict": {
+        "nikic/php-parser": "< 4.13.2"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "Tailors\\PHPUnit\\": [
@@ -26,6 +40,8 @@
                 "packages/phpunit-inheritance/src/",
                 "packages/phpunit-methods/src/",
                 "packages/phpunit-properties/src/",
+                "packages/phpunit-recursive/src/",
+                "packages/phpunit-recursive/utils/src/",
                 "packages/phpunit-regexp/src/"
             ]
         }
@@ -38,19 +54,10 @@
                 "packages/phpunit-inheritance/tests/src/",
                 "packages/phpunit-methods/tests/src/",
                 "packages/phpunit-properties/tests/src/",
+                "packages/phpunit-recursive/tests/src/",
                 "packages/phpunit-regexp/tests/src/"
             ],
             "Tailors\\PHPUnit\\Docs\\Behat\\": "docs/sphinx/behat/"
-        }
-    },
-    "extra": {
-        "bamarni-bin": {
-            "bin-links": false,
-            "forward-command": false,
-            "target-directory": "vendor-bin"
-        },
-        "branch-alias": {
-            "dev-master": "5.2-dev"
         }
     },
     "config": {
@@ -58,17 +65,11 @@
             "bamarni/composer-bin-plugin": true
         }
     },
-    "replace": {
-        "phptailors/phpunit-arrays": "self.version",
-        "phptailors/phpunit-common": "self.version",
-        "phptailors/phpunit-inheritance": "self.version",
-        "phptailors/phpunit-methods": "self.version",
-        "phptailors/phpunit-properties": "self.version",
-        "phptailors/phpunit-regexp": "self.version"
-    },
-    "conflict": {
-        "nikic/php-parser": "< 4.13.2"
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    "extra": {
+        "bamarni-bin": {
+            "bin-links": false,
+            "forward-command": false,
+            "target-directory": "vendor-bin"
+        }
+    }
 }
