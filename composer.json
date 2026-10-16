@@ -1,5 +1,6 @@
 {
     "name": "phptailors/phpunit-extensions",
+    "type": "library",
     "authors": [
         {
             "name": "Paweł Tomulik",
