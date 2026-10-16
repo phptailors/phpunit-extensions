@@ -125,6 +125,5 @@ for t_php in "${examples[@]}"; do
             -e "s|^\\(Configuration:\\s*\\)\\($abstop\\(/docs\\)\\?/\\)\\?sphinx/examples/phpunit\.xml|\\1phpunit.xml|" \
       | tee "$t_stdout";
 done
-            #-e "s|^\\(\\(phpvfscomposer://\\)\\?$abstop/\\)\\?\\(packages\\|vendor\\)\\(/[\\w-]\\+\\)\\+\\(\\.php\\)\\?:\\d\\+[\\r\\n]\\?||" \
 
 popd > /dev/null
