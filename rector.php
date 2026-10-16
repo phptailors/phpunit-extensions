@@ -11,7 +11,6 @@ return RectorConfig::configure()
     ->withPaths([
         __DIR__.'/packages/*/src/',
         __DIR__.'/packages/*/tests/src/',
-        __DIR__.'/packages/*/tests/static-analysis/',
         __DIR__.'/packages/*/utils/src/',
     ])
     ->withComposerBased(phpunit: true)
