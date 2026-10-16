@@ -13,6 +13,7 @@ namespace Tailors\PHPUnit;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\LogicalNot;
 use PHPUnit\Framework\ExpectationFailedException;
+use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use Tailors\PHPUnit\Constraint\KsortedArrayIdenticalTo;
 
 trait KsortedArrayIdenticalToTrait
@@ -20,23 +21,27 @@ trait KsortedArrayIdenticalToTrait
     /**
      * Evaluates a \PHPUnit\Framework\Constraint\Constraint matcher object.
      *
+     * @param mixed $value
+     *
      * @throws ExpectationFailedException
+     * @throws InvalidArgumentException
      */
-    abstract public static function assertThat(mixed $value, Constraint $constraint, string $message = ''): void;
+    abstract public static function assertThat($value, Constraint $constraint, string $message = ''): void;
 
     /**
      * Asserts that *$actual* is an array identical to *$expected* when key-sorted.
      *
      * @param array  $expected expected array
      * @param mixed  $actual   actual value
-     * @param string $message  failure message
+     * @param string $message  optional failure message
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
+     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertKsortedArrayIdenticalTo(
         array $expected,
-        mixed $actual,
+        $actual,
         string $message = ''
     ): void {
         self::assertThat($actual, self::ksortedArrayIdenticalTo($expected), $message);
@@ -47,14 +52,15 @@ trait KsortedArrayIdenticalToTrait
      *
      * @param array  $expected expected array
      * @param mixed  $actual   actual value
-     * @param string $message  failure message
+     * @param string $message  optional failure message
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
+     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertNotKsortedArrayIdenticalTo(
         array $expected,
-        mixed $actual,
+        $actual,
         string $message = ''
     ): void {
         self::assertThat($actual, new LogicalNot(self::ksortedArrayIdenticalTo($expected)), $message);
@@ -65,7 +71,7 @@ trait KsortedArrayIdenticalToTrait
      *
      * @param array $expected expected array
      *
-     * @throws InvalidArgumentException
+     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function ksortedArrayIdenticalTo(array $expected): KsortedArrayIdenticalTo
     {

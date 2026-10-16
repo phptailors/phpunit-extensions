@@ -10,33 +10,54 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
-use Tailors\PHPUnit\Inheritance\AbstractConstraint;
-use Tailors\PHPUnit\Inheritance\ConstraintImplementationTrait;
+use Tailors\PHPUnit\Inheritance\AbstractInheritanceConstraint;
+use Tailors\PHPUnit\InvalidArgumentException;
+use Tailors\PHPUnit\InvalidReturnValueException;
+use Tailors\PHPUnit\StringArgumentValidator;
 
 /**
  * Constraint that accepts classes that extend given class.
  */
-final class UsesTrait extends AbstractConstraint
+final class UsesTrait extends AbstractInheritanceConstraint
 {
-    use ConstraintImplementationTrait;
+    /**
+     * @throws InvalidArgumentException
+     *
+     * @psalm-assert class-string $expected
+     */
+    public static function create(string $expected): self
+    {
+        (new StringArgumentValidator('trait_exists', 'a trait-string'))->validate(1, $expected);
 
-    private static string $verb = 'uses trait';
-    private static string $negatedVerb = 'does not use trait';
+        return new self($expected);
+    }
+
+    protected function verb(): string
+    {
+        return 'uses trait';
+    }
+
+    protected function negatedVerb(): string
+    {
+        return 'does not use trait';
+    }
 
     /**
-     * @psalm-var array{0:callable, 1:string}
+     * @throws InvalidReturnValueException
+     *
+     * @psalm-return array<trait-string, trait-string>
      */
-    private static array $validation = ['trait_exists', 'a trait-string'];
+    protected function inheritance(string $class): array
+    {
+        $value = class_uses($class);
 
-    /**
-     * @psalm-var callable
-     */
-    private static mixed $inheritance = 'class_uses';
+        return false === $value ? [] : $value;
+    }
 
-    /**
-     * @psalm-var array{0:callable, 1:callable}
-     */
-    private static array $supports = ['class_exists', 'trait_exists'];
+    protected function supports(string $subject): bool
+    {
+        return class_exists($subject) || trait_exists($subject);
+    }
 }
 
 // vim: syntax=php sw=4 ts=4 et:

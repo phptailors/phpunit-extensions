@@ -19,8 +19,11 @@ interface ComparatorInterface
 {
     /**
      * Compares two values.
+     *
+     * @param mixed $left
+     * @param mixed $right
      */
-    public function compare(mixed $left, mixed $right): bool;
+    public function compare($left, $right): bool;
 
     /**
      * Returns an adjective that identifies this comparison operator.

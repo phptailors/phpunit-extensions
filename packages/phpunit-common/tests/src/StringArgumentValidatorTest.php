@@ -16,6 +16,7 @@ use PHPUnit\Framework\TestCase;
  * @small
  *
  * @covers \Tailors\PHPUnit\StringArgumentValidator
+ * @covers \Tailors\PHPUnit\StringArgumentValidatorTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *
@@ -23,12 +24,18 @@ use PHPUnit\Framework\TestCase;
  */
 final class StringArgumentValidatorTest extends TestCase
 {
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testValidateSucceeds(): void
     {
         $validator = new StringArgumentValidator('is_numeric', 'a numeric string');
         self::assertNull($validator->validate(1, '123'));
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testValidateThrowsInvalidArgumentException(): void
     {
         $message = sprintf('Argument 1 passed to %s() must be a numeric string, \'foo\' given.', __METHOD__);

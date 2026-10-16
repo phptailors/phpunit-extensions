@@ -7,19 +7,23 @@ Feature: Examples
     And I should see exit code <exit_code>
 
     Examples:
-      | example_file                                     | stdout_file                                          | stderr_file                                           | exit_code |
-      | "AssertArrayValuesEqualToTest.php"               | "AssertArrayValuesEqualToTest.stdout"                | "AssertArrayValuesEqualToTest.stderr"                 | 1         |
-      | "AssertArrayValuesEqualToRecursiveTest.php"      | "AssertArrayValuesEqualToRecursiveTest.stdout"       | "AssertArrayValuesEqualToRecursiveTest.stderr"        | 1         |
-      | "AssertArrayValuesIdenticalToTest.php"           | "AssertArrayValuesIdenticalToTest.stdout"            | "AssertArrayValuesIdenticalToTest.stderr"             | 1         |
-      | "AssertArrayValuesIdenticalToRecursiveTest.php"  | "AssertArrayValuesIdenticalToRecursiveTest.stdout"   | "AssertArrayValuesIdenticalToRecursiveTest.stderr"    | 1         |
-      | "arrayValuesEqualToTest.php"                     | "arrayValuesEqualToTest.stdout"                      | "arrayValuesEqualToTest.stderr"                       | 1         |
-      | "arrayValuesEqualToRecursiveTest.php"            | "arrayValuesEqualToRecursiveTest.stdout"             | "arrayValuesEqualToRecursiveTest.stderr"              | 1         |
-      | "arrayValuesIdenticalToTest.php"                 | "arrayValuesIdenticalToTest.stdout"                  | "arrayValuesIdenticalToTest.stderr"                   | 1         |
-      | "arrayValuesIdenticalToRecursiveTest.php"        | "arrayValuesIdenticalToRecursiveTest.stdout"         | "arrayValuesIdenticalToRecursiveTest.stderr"          | 1         |
-      | "AssertKsortedArrayEqualToTest.php"              | "AssertKsortedArrayEqualToTest.stdout"               | "AssertKsortedArrayEqualToTest.stderr"                | 1         |
-      | "AssertKsortedArrayIdenticalToTest.php"          | "AssertKsortedArrayIdenticalToTest.stdout"           | "AssertKsortedArrayIdenticalToTest.stderr"            | 1         |
-      | "ksortedArrayEqualToTest.php"                    | "ksortedArrayEqualToTest.stdout"                     | "ksortedArrayEqualToTest.stderr"                      | 1         |
-      | "ksortedArrayIdenticalToTest.php"                | "ksortedArrayIdenticalToTest.stdout"                 | "ksortedArrayIdenticalToTest.stderr"                  | 1         |
+      | example_file                                       | stdout_file                                           | stderr_file                                           | exit_code |
+      | "AssertArrayValuesEqualToTest.php"                 | "AssertArrayValuesEqualToTest.stdout"                 | "AssertArrayValuesEqualToTest.stderr"                 | 1         |
+      | "AssertArrayValuesEqualToRecursiveTest.php"        | "AssertArrayValuesEqualToRecursiveTest.stdout"        | "AssertArrayValuesEqualToRecursiveTest.stderr"        | 1         |
+      | "AssertArrayValuesIdenticalToTest.php"             | "AssertArrayValuesIdenticalToTest.stdout"             | "AssertArrayValuesIdenticalToTest.stderr"             | 1         |
+      | "AssertArrayValuesIdenticalToRecursiveTest.php"    | "AssertArrayValuesIdenticalToRecursiveTest.stdout"    | "AssertArrayValuesIdenticalToRecursiveTest.stderr"    | 1         |
+      | "arrayValuesEqualToTest.php"                       | "arrayValuesEqualToTest.stdout"                       | "arrayValuesEqualToTest.stderr"                       | 1         |
+      | "arrayValuesEqualToRecursiveTest.php"              | "arrayValuesEqualToRecursiveTest.stdout"              | "arrayValuesEqualToRecursiveTest.stderr"              | 1         |
+      | "arrayValuesIdenticalToTest.php"                   | "arrayValuesIdenticalToTest.stdout"                   | "arrayValuesIdenticalToTest.stderr"                   | 1         |
+      | "arrayValuesIdenticalToRecursiveTest.php"          | "arrayValuesIdenticalToRecursiveTest.stdout"          | "arrayValuesIdenticalToRecursiveTest.stderr"          | 1         |
+      | "AssertKsortedArrayEqualToTest.php"                | "AssertKsortedArrayEqualToTest.stdout"                | "AssertKsortedArrayEqualToTest.stderr"                | 1         |
+      | "AssertKsortedArrayIdenticalToTest.php"            | "AssertKsortedArrayIdenticalToTest.stdout"            | "AssertKsortedArrayIdenticalToTest.stderr"            | 1         |
+      | "ksortedArrayEqualToTest.php"                      | "ksortedArrayEqualToTest.stdout"                      | "ksortedArrayEqualToTest.stderr"                      | 1         |
+      | "ksortedArrayIdenticalToTest.php"                  | "ksortedArrayIdenticalToTest.stdout"                  | "ksortedArrayIdenticalToTest.stderr"                  | 1         |
+      | "AssertRecursivelyKsortedArrayEqualToTest.php"     | "AssertRecursivelyKsortedArrayEqualToTest.stdout"     | "AssertRecursivelyKsortedArrayEqualToTest.stderr"     | 1         |
+      | "AssertRecursivelyKsortedArrayIdenticalToTest.php" | "AssertRecursivelyKsortedArrayIdenticalToTest.stdout" | "AssertRecursivelyKsortedArrayIdenticalToTest.stderr" | 1         |
+      | "recursivelyKsortedArrayEqualToTest.php"           | "recursivelyKsortedArrayEqualToTest.stdout"           | "recursivelyKsortedArrayEqualToTest.stderr"           | 1         |
+      | "recursivelyKsortedArrayIdenticalToTest.php"       | "recursivelyKsortedArrayIdenticalToTest.stdout"       | "recursivelyKsortedArrayIdenticalToTest.stderr"       | 1         |
 
   @phpunit-inheritance
   Scenario Outline: Examples for phptailors/phpunit-inheritance

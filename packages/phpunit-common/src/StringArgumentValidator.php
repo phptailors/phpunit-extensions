@@ -22,9 +22,15 @@ final class StringArgumentValidator
      */
     private $validator;
 
-    public function __construct(callable $validator, private readonly string $expected)
+    /**
+     * @var string
+     */
+    private $expected;
+
+    public function __construct(callable $validator, string $expected)
     {
         $this->validator = $validator;
+        $this->expected = $expected;
     }
 
     /**
@@ -40,7 +46,7 @@ final class StringArgumentValidator
     /**
      * @throws InvalidArgumentException
      */
-    private function throwInvalidArgumentException(int $argument, string $value, int $distance = 1): never
+    private function throwInvalidArgumentException(int $argument, string $value, int $distance = 1): void
     {
         $provided = sprintf("'%s'", addslashes($value));
 

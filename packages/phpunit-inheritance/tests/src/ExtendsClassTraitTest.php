@@ -19,6 +19,7 @@ use Tailors\PHPUnit\Examples\Inheritance\ExampleTrait;
  * @small
  *
  * @covers \Tailors\PHPUnit\ExtendsClassTrait
+ * @covers \Tailors\PHPUnit\ExtendsClassTraitTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *
@@ -28,46 +29,64 @@ final class ExtendsClassTraitTest extends TestCase
 {
     use ExtendsClassTrait;
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      class: string,
+     *      subject: mixed,
+     *      message: string
+     * }>
+     *
+     * @codeCoverageIgnore
+     */
     public static function provExtendsClass(): iterable
     {
         $template = 'Failed asserting that %s does not extend class %s.';
 
-        yield 'ExtendsClassTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'class'   => \Exception::class,
             'subject' => \ErrorException::class,
             'message' => sprintf($template, \ErrorException::class, \Exception::class),
         ];
 
-        yield 'ExtendsClassTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'class'   => \Exception::class,
             'subject' => new \ErrorException(),
             'message' => sprintf($template, 'object '.\ErrorException::class, \Exception::class),
         ];
     }
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      class: string,
+     *      subject: mixed,
+     *      message: string
+     * }>
+     *
+     * @codeCoverageIgnore
+     */
     public static function provNotExtendsClass(): iterable
     {
         $template = 'Failed asserting that %s extends class %s.';
 
-        yield 'ExtendsClassTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'class'   => \Error::class,
             'subject' => \ErrorException::class,
             'message' => sprintf($template, \ErrorException::class, \Error::class),
         ];
 
-        yield 'ExtendsClassTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'class'   => \Error::class,
             'subject' => new \ErrorException(),
             'message' => sprintf($template, 'object '.\ErrorException::class, \Error::class),
         ];
 
-        yield 'ExtendsClassTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'class'   => \Error::class,
             'subject' => 'lorem ipsum',
             'message' => sprintf($template, "'lorem ipsum'", \Error::class),
         ];
 
-        yield 'ExtendsClassTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'class'   => \Error::class,
             'subject' => 123,
             'message' => sprintf($template, '123', \Error::class),
@@ -75,74 +94,136 @@ final class ExtendsClassTraitTest extends TestCase
     }
 
     /**
-     * @dataProvider provExtendsClass
+     * @psalm-return iterable<string, array{class: string, subject: mixed}>
+     *
+     * @codeCoverageIgnore
      */
-    public function testAssertExtendsClassSucceeds(string $class, mixed $subject, string $message): void
+    public static function provExtendsClassSucceeds(): iterable
     {
-        self::assertExtendsClass($class, $subject);
+        foreach (self::provExtendsClass() as $key => $case) {
+            yield $key => [
+                'class'   => $case['class'],
+                'subject' => $case['subject'],
+            ];
+        }
     }
 
     /**
-     * @dataProvider provNotExtendsClass
+     * @psalm-return iterable<string, array{class: string, subject: mixed}>
+     *
+     * @codeCoverageIgnore
      */
-    public function testAssertExtendsClassFails(string $class, mixed $subject, string $message): void
+    public static function provNotExtendsClassSucceeds(): iterable
     {
-        self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessage($message);
-
-        self::assertExtendsClass($class, $subject);
+        foreach (self::provNotExtendsClass() as $key => $case) {
+            yield $key => [
+                'class'   => $case['class'],
+                'subject' => $case['subject'],
+            ];
+        }
     }
 
     /**
-     * @dataProvider provNotExtendsClass
+     * @dataProvider provExtendsClassSucceeds
+     *
+     * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertNotExtendsClassSucceeds(string $class, mixed $subject, string $message): void
-    {
-        self::assertNotExtendsClass($class, $subject);
-    }
-
-    /**
-     * @dataProvider provExtendsClass
-     */
-    public function testAssertNotExtendsClassFails(string $class, mixed $subject, string $message): void
-    {
-        self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessage($message);
-
-        self::assertNotExtendsClass($class, $subject);
-    }
-
-    /**
-     * @dataProvider provExtendsClass
-     */
-    public function testExtendsClass(string $class, mixed $subject, string $message): void
+    public function testExtendsClassSucceeds(string $class, $subject): void
     {
         self::assertThat($subject, self::extendsClass($class));
     }
 
     /**
-     * @dataProvider provNotExtendsClass
+     * @dataProvider provExtendsClassSucceeds
+     *
+     * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testNotExtendsClass(string $class, mixed $subject, string $message): void
+    public function testAssertExtendsClassSucceeds(string $class, $subject): void
+    {
+        self::assertExtendsClass($class, $subject);
+    }
+
+    /**
+     * @dataProvider provNotExtendsClassSucceeds
+     *
+     * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testLogicalNotExtendsClassSucceeds(string $class, $subject): void
     {
         self::assertThat($subject, self::logicalNot(self::extendsClass($class)));
     }
 
+    /**
+     * @dataProvider provNotExtendsClassSucceeds
+     *
+     * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testAssertNotExtendsClassSucceeds(string $class, $subject): void
+    {
+        self::assertNotExtendsClass($class, $subject);
+    }
+
+    /**
+     * @dataProvider provNotExtendsClass
+     *
+     * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testAssertExtendsClassFails(string $class, $subject, string $message): void
+    {
+        self::expectException(ExpectationFailedException::class);
+        self::expectExceptionMessage($message);
+
+        self::assertExtendsClass($class, $subject);
+    }
+
+    /**
+     * @dataProvider provExtendsClass
+     *
+     * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testAssertNotExtendsClassFails(string $class, $subject, string $message): void
+    {
+        self::expectException(ExpectationFailedException::class);
+        self::expectExceptionMessage($message);
+
+        self::assertNotExtendsClass($class, $subject);
+    }
+
+    /**
+     * @psalm-return iterable<string, array{
+     *      argument: string,
+     *      message: string
+     * }>
+     *
+     * @codeCoverageIgnore
+     */
     public static function provExtendsClassThrowsInvalidArgumentException(): iterable
     {
         $template = 'Argument 1 passed to %s::create() must be a class-string';
 
-        yield 'ExtendsClassTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'argument' => 'non-class string',
             'message'  => sprintf($template, ExtendsClass::class),
         ];
 
-        yield 'ExtendsClassTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'argument' => \Throwable::class,
             'message'  => sprintf($template, ExtendsClass::class),
         ];
 
-        yield 'ExtendsClassTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'argument' => ExampleTrait::class,
             'message'  => sprintf($template, ExtendsClass::class),
         ];
@@ -150,6 +231,8 @@ final class ExtendsClassTraitTest extends TestCase
 
     /**
      * @dataProvider provExtendsClassThrowsInvalidArgumentException
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testExtendsClassThrowsInvalidArgumentException(string $argument, string $message): void
     {

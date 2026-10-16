@@ -10,67 +10,45 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
-use Tailors\PHPUnit\Comparator\ComparatorInterface;
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Comparator\IdentityComparator;
-use Tailors\PHPUnit\Properties\ExpectedObjectProperties;
-use Tailors\PHPUnit\Properties\ValidateExpectationsTrait;
-use Tailors\PHPUnit\Recursive\AbstractRecursiveConstraint;
-use Tailors\PHPUnit\Recursive\RecursiveConstraintSpecializationTrait;
-use Tailors\PHPUnit\Selector\ObjectPropertySelector;
-use Tailors\PHPUnit\Selector\ValueSelectorInterface;
-use Tailors\PHPUnit\Values\ValuesInterface;
+use Tailors\PHPUnit\InvalidArgumentException;
+use Tailors\PHPUnit\Properties\ObjectPropertiesSelection;
+use Tailors\PHPUnit\Properties\PropertiesValidateExpectationsTrait;
+use Tailors\PHPUnit\RecursiveConstraint\AbstractRecursiveConstraint;
+use Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactory;
+use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapper;
 
 /**
- * Constraint that accepts objects having properties identical to specified ones.
+ * @internal This trait is not covered by the backward compatibility promise
  *
- * Compares only properties present in the array of expectations. A property is
- * defined as either an attribute value or a value returned by object's method
- * callable without arguments. The ``===`` operator (identity) is used for
- * comparison.
+ * @psalm-internal Tailors\PHPUnit
  *
+ * @psalm-import-type ArrayLike from TypesInterface
  *
- * Any key in *$expected* array ending with ``"()"`` is considered to be a
- * method that returns property value.
- *
- *      // ...
- *      $matcher = ObjectPropertiesIdenticalTo::create([
- *          'getName()' => 'John', 'age' => 21
- *      ]);
- *
- *      self::assertThat(new class {
- *          public static $age = 21;
- *          public static getName(): string {
- *              return 'John';
- *          }
- *      }, $matcher);
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 final class ObjectPropertiesIdenticalTo extends AbstractRecursiveConstraint
 {
-    use RecursiveConstraintSpecializationTrait;
-    use ValidateExpectationsTrait;
+    use PropertiesValidateExpectationsTrait;
 
     /**
-     * Creates instance of IdentityComparator.
+     * @psalm-assert iterable<string, mixed> $expectations
+     *
+     * @throws InvalidArgumentException
+     *
+     * @psalm-param ArrayLike $expectations
      */
-    protected static function makeComparator(): ComparatorInterface
+    public static function create(iterable $expectations): self
     {
-        return new IdentityComparator();
-    }
+        self::validateExpectations($expectations, 1);
 
-    /**
-     * Creates instance of ObjectPropertySelector.
-     */
-    protected static function makeSelector(): ValueSelectorInterface
-    {
-        return new ObjectPropertySelector();
-    }
-
-    /**
-     * Creates instance of ValuesInterface to be used as expected values.
-     */
-    protected static function makeExpectedValues(array $array): ValuesInterface
-    {
-        return new ExpectedObjectProperties($array);
+        return new self(
+            new ObjectPropertiesSelection($expectations),
+            new IdentityComparator(),
+            RecursiveResultFactory::create(),
+            RecursiveResultUnwrapper::create()
+        );
     }
 }
 

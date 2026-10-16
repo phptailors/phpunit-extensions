@@ -1,0 +1,59 @@
+<?php declare(strict_types=1);
+
+/*
+ * This file is part of phptailors/phpunit-extensions.
+ *
+ * Copyright (c) Paweł Tomulik <pawel@tomulik.pl>
+ *
+ * View the LICENSE file for full copyright and license information.
+ */
+
+namespace Tailors\PHPUnit\Common;
+
+use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
+use Tailors\PHPUnit\ResultFactory\ResultFactoryWrapperInterface;
+
+/**
+ * @internal This class is not covered by the backward compatibility promise
+ *
+ * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-template SupportedInput
+ *
+ * @psalm-import-type ArrayLike from TypesInterface
+ *
+ * @template-implements ResultFactoryWrapperInterface<SupportedInput>
+ */
+abstract class AbstractArrayExpectations extends AbstractArrayObject implements ResultFactoryWrapperInterface
+{
+    /**
+     * @var ResultFactoryInterface
+     *
+     * @psalm-var ResultFactoryInterface<SupportedInput>
+     *
+     * @psalm-readonly
+     */
+    private $resultFactory;
+
+    /**
+     * @psalm-param ResultFactoryInterface<SupportedInput> $resultFactory
+     * @psalm-param ArrayLike                              $array
+     */
+    protected function __construct(ResultFactoryInterface $resultFactory, iterable $array)
+    {
+        $this->resultFactory = $resultFactory;
+        parent::__construct($array);
+    }
+
+    /**
+     * @psalm-return ResultFactoryInterface<SupportedInput>
+     *
+     * @psalm-mutation-free
+     */
+    final public function getResultFactory(): ResultFactoryInterface
+    {
+        return $this->resultFactory;
+    }
+}
+
+// vim: syntax=php sw=4 ts=4 et:

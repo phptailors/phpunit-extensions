@@ -17,7 +17,11 @@ namespace Tailors\PHPUnit\Comparator;
  */
 final class IdentityComparator implements ComparatorInterface
 {
-    public function compare(mixed $left, mixed $right): bool
+    /**
+     * @param mixed $left
+     * @param mixed $right
+     */
+    public function compare($left, $right): bool
     {
         return $left === $right;
     }

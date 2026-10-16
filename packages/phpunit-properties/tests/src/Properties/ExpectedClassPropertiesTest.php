@@ -10,39 +10,45 @@
 
 namespace Tailors\PHPUnit\Properties;
 
-use Tailors\PHPUnit\Selector\ClassPropertySelector;
-use Tailors\PHPUnit\Selector\ValueSelectorWrapperInterface;
+use Tailors\PHPUnit\Result\ResultInterface;
 
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Properties\AbstractClassProperties
- * @covers \Tailors\PHPUnit\Properties\ClassPropertiesTestCase
+ * @covers \Tailors\PHPUnit\Properties\AbstractClassPropertiesTestCase
  * @covers \Tailors\PHPUnit\Properties\ExpectedClassProperties
+ * @covers \Tailors\PHPUnit\Properties\ExpectedClassPropertiesTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class ExpectedClassPropertiesTest extends ClassPropertiesTestCase
+final class ExpectedClassPropertiesTest extends AbstractClassPropertiesTestCase
 {
-    public static function getValuesClass(): string
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    final public function testImplementsResultInterface(): void
+    {
+        self::assertInstanceOf(ResultInterface::class, new ExpectedClassProperties([]));
+    }
+
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    final public function testExpected(): void
+    {
+        self::assertSame(false, (new ExpectedClassProperties([]))->actual());
+    }
+
+    /**
+     * @psalm-pure
+     *
+     * @psalm-return class-string<ExpectedClassProperties>
+     */
+    public static function getClass(): string
     {
         return ExpectedClassProperties::class;
-    }
-
-    public function testImplementsValueSelectorWrapperInterface(): void
-    {
-        $this->assertInstanceOf(ValueSelectorWrapperInterface::class, new ExpectedClassProperties());
-    }
-
-    public function testGetValueSelector(): void
-    {
-        $values = new ExpectedClassProperties();
-        $selector = $values->getValueSelector();
-
-        $this->assertInstanceOf(ClassPropertySelector::class, $selector);
-        $this->assertSame($selector, $values->getValueSelector());
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

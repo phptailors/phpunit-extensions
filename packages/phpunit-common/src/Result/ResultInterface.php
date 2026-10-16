@@ -10,8 +10,6 @@
 
 namespace Tailors\PHPUnit\Result;
 
-use Tailors\PHPUnit\Common\TagInterface;
-
 /**
  * A constraint evaluation result (either expected, or actual).
  *
@@ -19,11 +17,8 @@ use Tailors\PHPUnit\Common\TagInterface;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-interface ResultInterface extends TagInterface
+interface ResultInterface
 {
-    /**
-     * Returns true if this object represents actual result (as opposite to expected one).
-     */
     public function actual(): bool;
 }
 

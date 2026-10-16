@@ -1,0 +1,1277 @@
+<?php declare(strict_types=1);
+
+/*
+ * This file is part of phptailors/phpunit-extensions.
+ *
+ * Copyright (c) Paweł Tomulik <pawel@tomulik.pl>
+ *
+ * View the LICENSE file for full copyright and license information.
+ */
+
+namespace Tailors\PHPUnit\RecursiveResultUnwrapper;
+
+use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\Common\StaticRandomStrings;
+use Tailors\PHPUnit\Common\StaticTagInterface;
+use Tailors\PHPUnit\Common\TypesInterface;
+use Tailors\PHPUnit\InternalErrorException;
+use Tailors\PHPUnit\InvalidArgumentException;
+use Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversal;
+use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorInterface;
+use Tailors\PHPUnit\Result\DummyArrayResult;
+use Tailors\PHPUnit\Result\DummyTaggedArrayResult;
+use Tailors\PHPUnit\Result\ResultInterface;
+
+/**
+ * @small
+ *
+ * @covers \Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapperVisitor
+ * @covers \Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapperVisitorTest
+ *
+ * @internal This class is not covered by the backward compatibility promise
+ *
+ * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-import-type ArrayLike from TypesInterface
+ *
+ * @psalm-type StackItem     = RecursiveResultUnwrapperStackItem
+ * @psalm-type CtorArgs      = list{0?: bool}
+ * @psalm-type BeginArgs     = list{0: bool}
+ * @psalm-type EnterTestCall = array{args: array{node: ArrayLike}, return: bool, next?: array-key}
+ * @psalm-type CycleTestCall = array{args: array{node: ArrayLike, stack: list<StackItem>}, return: mixed}
+ * @psalm-type VisitTestCall = array{args: array{node: mixed}, key?: array-key}
+ * @psalm-type EndTestCall   = array{args: array{}}
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
+ */
+final class RecursiveResultUnwrapperVisitorTest extends TestCase
+{
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testImplementsRecursiveVisitorInterface(): void
+    {
+        self::assertInstanceOf(RecursiveVisitorInterface::class, new RecursiveResultUnwrapperVisitor(false));
+    }
+
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testImplementsStaticTagInterface(): void
+    {
+        self::assertInstanceOf(StaticTagInterface::class, new RecursiveResultUnwrapperVisitor(false));
+    }
+
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testInitialResult(): void
+    {
+        $visitor = new RecursiveResultUnwrapperVisitor(false);
+        $this->assertNull($visitor->result());
+    }
+
+    /**
+     * @psalm-return \Generator<non-falsy-string, array{
+     *      ctor: CtorArgs,
+     *      calls: non-empty-list<CycleTestCall>
+     * }>
+     *
+     * @codeCoverageIgnore
+     */
+    public static function provCycle(): iterable
+    {
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'  => [false],
+            'calls' => [
+                [
+                    'args'   => [
+                        'node'  => [],
+                        'stack' => [],
+                    ],
+                    'return' => false,
+                ],
+                [
+                    'args'   => [
+                        'node'  => new DummyTaggedArrayResult(false, []),
+                        'stack' => [],
+                    ],
+                    'return' => false,
+                ],
+                [
+                    'args'   => [
+                        'node'  => new DummyTaggedArrayResult(true, []),
+                        'stack' => [],
+                    ],
+                    'return' => false,
+                ],
+            ],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'  => [true],
+            'calls' => [
+                [
+                    'args'   => [
+                        'node'  => [],
+                        'stack' => [],
+                    ],
+                    'return' => false,
+                ],
+                [
+                    'args'   => [
+                        'node'  => new DummyTaggedArrayResult(false, []),
+                        'stack' => [],
+                    ],
+                    'return' => false,
+                ],
+                [
+                    'args'   => [
+                        'node'  => new DummyTaggedArrayResult(true, []),
+                        'stack' => [],
+                    ],
+                    'return' => false,
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider provCycle
+     *
+     * @psalm-param CtorArgs                      $ctor
+     * @psalm-param non-empty-list<CycleTestCall> $calls
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testCycle(array $ctor, array $calls): void
+    {
+        $visitor = new RecursiveResultUnwrapperVisitor(...$ctor);
+
+        foreach ($calls as $call) {
+            $args = $call['args'];
+            $this->assertSame($call['return'], $visitor->cycle($args['node'], $args['stack']));
+        }
+    }
+
+    /**
+     * @psalm-return \Generator<non-falsy-string, array{
+     *      ctor: CtorArgs,
+     *      begin: BeginArgs,
+     *      calls: non-empty-list<EnterTestCall>,
+     *      result: mixed
+     *  }>
+     *
+     * @codeCoverageIgnore
+     */
+    public static function provEnterLeave(): iterable
+    {
+        $tagk = RecursiveResultUnwrapperVisitor::tag();
+        $tagd = (new DummyTaggedArrayResult(false))->tag();
+
+        //
+        // 01
+        //
+
+        $calls01 = [
+            [
+                'args'   => [
+                    'node' => [],
+                ],
+                'return' => true,
+            ],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [],
+            'begin'  => [false],
+            'calls'  => $calls01,
+            'result' => [],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [],
+            'begin'  => [true],
+            'calls'  => $calls01,
+            'result' => [],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [false],
+            'begin'  => [false],
+            'calls'  => $calls01,
+            'result' => [],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [true],
+            'begin'  => [false],
+            'calls'  => $calls01,
+            'result' => [],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [false],
+            'begin'  => [true],
+            'calls'  => $calls01,
+            'result' => [],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [true],
+            'begin'  => [true],
+            'calls'  => $calls01,
+            'result' => [],
+        ];
+
+        //
+        // 02
+        //
+
+        // __construct(false, ...) --> unwrapping only expected values
+        $calls02e = [
+            [
+                'args'   => [
+                    'node' => new DummyTaggedArrayResult(false),
+                ],
+                'return' => true,
+            ],
+        ];
+
+        // __construct(true, ...) --> unwrapping only actual values
+        $calls02a = $calls02e;
+        $calls02a[0]['return'] = false;
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [],
+            'begin'  => [false],
+            'calls'  => $calls02e,
+            'result' => [$tagk => $tagd],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [true],
+            'begin'  => [false],
+            'calls'  => $calls02e,
+            'result' => [$tagk => $tagd],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [false],
+            'begin'  => [false],
+            'calls'  => $calls02e,
+            'result' => [],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [],
+            'begin'  => [true],
+            'calls'  => $calls02a,
+            'result' => null,
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [true],
+            'begin'  => [true],
+            'calls'  => $calls02a,
+            'result' => null,
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [false],
+            'begin'  => [true],
+            'calls'  => $calls02a,
+            'result' => null,
+        ];
+
+        //
+        // 03
+        //
+
+        // __construct(true, ...) --> unwrapping only actual values
+        $calls03a = [
+            [
+                'args'   => [
+                    'node' => new DummyTaggedArrayResult(true),
+                ],
+                'return' => true,
+            ],
+        ];
+
+        // __construct(false, ...) --> unwrapping only expected values
+        $calls03e = $calls03a;
+        $calls03e[0]['return'] = false;
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [],
+            'begin'  => [false],
+            'calls'  => $calls03e,
+            'result' => null,
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [true],
+            'begin'  => [false],
+            'calls'  => $calls03e,
+            'result' => null,
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [false],
+            'begin'  => [false],
+            'calls'  => $calls03e,
+            'result' => null,
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [],
+            'begin'  => [true],
+            'calls'  => $calls03a,
+            'result' => [$tagk => $tagd],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [true],
+            'begin'  => [true],
+            'calls'  => $calls03a,
+            'result' => [$tagk => $tagd],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [false],
+            'begin'  => [true],
+            'calls'  => $calls03a,
+            'result' => [],
+        ];
+
+        //
+        // 04
+        //
+
+        $s04 = [new DummyTaggedArrayResult(false), [], new DummyTaggedArrayResult(false)];
+
+        // __construct(false, ...) --> unwrapping only expected values
+        $calls04e = [
+            [
+                'args'   => [
+                    'node' => $s04[0],
+                ],
+                'return' => true,
+                'next'   => 'foo',
+            ],
+            [
+                'args'   => [
+                    'node' => $s04[1],
+                ],
+                'return' => true,
+                'next'   => 'bar',
+            ],
+            [
+                'args'   => [
+                    'node' => $s04[2],
+                ],
+                'return' => true,
+            ],
+        ];
+
+        // __construct(true, ...) --> unwrapping only actual values
+        $calls04a = [
+            [
+                'args'   => [
+                    'node' => $s04[0],
+                ],
+                'return' => false,
+            ],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [],
+            'begin'  => [false],
+            'calls'  => $calls04e,
+            'result' => [
+                'foo' => [
+                    'bar' => [
+                        $tagk => $tagd,
+                    ],
+                ],
+                $tagk => $tagd,
+            ],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [false],
+            'begin'  => [false],
+            'calls'  => $calls04e,
+            'result' => [
+                'foo' => [
+                    'bar' => [],
+                ],
+            ],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [],
+            'begin'  => [true],
+            'calls'  => $calls04a,
+            'result' => null,
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [false],
+            'begin'  => [true],
+            'calls'  => $calls04a,
+            'result' => null,
+        ];
+
+        //
+        // 05
+        //
+        $s05 = [new DummyTaggedArrayResult(false), [], new DummyTaggedArrayResult(true)];
+
+        // __construct(false, ...) --> unwrapping only expected values
+        $calls05e = [
+            [
+                'args'   => [
+                    'node' => $s05[0],
+                ],
+                'return' => true,
+                'next'   => 'foo',
+            ],
+            [
+                'args'   => [
+                    'node' => $s05[1],
+                ],
+                'return' => true,
+                'next'   => 'bar',
+            ],
+            [
+                'args'   => [
+                    'node' => $s05[2],
+                ],
+                'return' => false,
+            ],
+        ];
+
+        $calls05a = [
+            [
+                'args'   => [
+                    'node' => $s05[0],
+                ],
+                'return' => false,
+            ],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [],
+            'begin'  => [false],
+            'calls'  => $calls05e,
+            'result' => [
+                'foo' => [],
+                $tagk => $tagd,
+            ],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [false],
+            'begin'  => [false],
+            'calls'  => $calls05e,
+            'result' => [
+                'foo' => [],
+            ],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [],
+            'begin'  => [true],
+            'calls'  => $calls05a,
+            'result' => null,
+        ];
+
+        //
+        // 06
+        //
+
+        $s06 = [new DummyTaggedArrayResult(false, [], 'tag1'), [], new DummyTaggedArrayResult(false, [], 'tag2')];
+
+        // __construct(false, ...) --> unwrapping only expected values
+        $calls06e = [
+            [
+                'args'   => [
+                    'node' => $s06[0],
+                ],
+                'return' => true,
+                'next'   => 'foo',
+            ],
+            [
+                'args'   => [
+                    'node' => $s06[1],
+                ],
+                'return' => true,
+                'next'   => 'bar',
+            ],
+            [
+                'args'   => [
+                    'node' => $s06[2],
+                ],
+                'return' => true,
+            ],
+        ];
+
+        $calls06a = [
+            [
+                'args'   => [
+                    'node' => $s06[0],
+                ],
+                'return' => false,
+            ],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [],
+            'begin'  => [false],
+            'calls'  => $calls06e,
+            'result' => [
+                'foo' => [
+                    'bar' => [
+                        $tagk => 'tag2',
+                    ],
+                ],
+                $tagk => 'tag1',
+            ],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [false],
+            'begin'  => [false],
+            'calls'  => $calls06e,
+            'result' => [
+                'foo' => [
+                    'bar' => [],
+                ],
+            ],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [],
+            'begin'  => [true],
+            'calls'  => $calls06a,
+            'result' => null,
+        ];
+
+        //
+        // 07
+        //
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [],
+            'begin'  => [false],
+            'calls'  => [
+                [
+                    'args'   => [
+                        'node' => new DummyArrayResult(false, []),
+                    ],
+                    'return' => true,
+                ],
+            ],
+            'result' => [
+                $tagk => StaticRandomStrings::classTag(DummyArrayResult::class),
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider provEnterLeave
+     *
+     * @param mixed $result
+     *
+     * @psalm-param CtorArgs                      $ctor
+     * @psalm-param BeginArgs                     $begin
+     * @psalm-param non-empty-list<EnterTestCall> $calls
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testEnterLeave(array $ctor, array $begin, array $calls, $result): void
+    {
+        $visitor = new RecursiveResultUnwrapperVisitor(...$ctor);
+        $stack = [];
+
+        $visitor->begin(...$begin);
+
+        foreach ($calls as $call) {
+            $args = $call['args'];
+            $node = $args['node'];
+            $this->assertSame($call['return'], $visitor->enter($node, $stack));
+            if ($call['return'] && array_key_exists('next', $call)) {
+                array_push($stack, $visitor->makeStackItem($node, $call['next'], $stack));
+            }
+        }
+
+        foreach (array_reverse($calls) as $call) {
+            $args = $call['args'];
+            $node = $args['node'];
+            if ($call['return'] && array_key_exists('next', $call)) {
+                $this->assertNotEmpty($stack);
+                $visitor->freeStackItem(array_pop($stack), $stack);
+            }
+            $this->assertNull($visitor->leave($node, $stack, $call['return']));
+        }
+
+        $visitor->end();
+
+        $this->assertSame($result, $visitor->result());
+    }
+
+    /**
+     * @psalm-return \Generator<non-falsy-string, array{
+     *      ctor: CtorArgs,
+     *      begin: BeginArgs,
+     *      root: ArrayLike,
+     *      iter: bool,
+     *      calls: non-empty-list<VisitTestCall>,
+     *      result: mixed
+     *  }>
+     *
+     * @codeCoverageIgnore
+     */
+    public static function provVisit(): iterable
+    {
+        $tagk = RecursiveResultUnwrapperVisitor::tag();
+        $tagg = (new DummyTaggedArrayResult(false))->tag();
+
+        //
+        // 01
+        //
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [],
+            'begin'  => [false],
+            'root'   => [],
+            'iter'   => false,
+            'calls'  => [
+                [
+                    'args' => [
+                        'node' => [],
+                    ],
+                ],
+            ],
+            'result' => [],
+        ];
+
+        //
+        // 02
+        //
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [],
+            'begin'  => [false],
+            'root'   => [],
+            'iter'   => true,
+            'calls'  => [
+                [
+                    'key'  => 'foo',
+                    'args' => [
+                        'node' => 'FOO',
+                    ],
+                ],
+                [
+                    'key'  => 'bar',
+                    'args' => [
+                        'node' => 'BAR',
+                    ],
+                ],
+            ],
+            'result' => [
+                'foo' => 'FOO',
+                'bar' => 'BAR',
+            ],
+        ];
+
+        //
+        // 02
+        //
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [],
+            'begin'  => [true],
+            'root'   => new DummyTaggedArrayResult(true),
+            'iter'   => true,
+            'calls'  => [
+                [
+                    'key'  => 'foo',
+                    'args' => [
+                        'node' => 'FOO',
+                    ],
+                ],
+                [
+                    'key'  => 'bar',
+                    'args' => [
+                        'node' => ['gez' => 'GEZ'],
+                    ],
+                ],
+            ],
+            'result' => [
+                'foo' => 'FOO',
+                'bar' => ['gez' => 'GEZ'],
+                $tagk => $tagg,
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider provVisit
+     *
+     * @param mixed $result
+     *
+     * @psalm-param CtorArgs                      $ctor
+     * @psalm-param BeginArgs                     $begin
+     * @psalm-param non-empty-list<VisitTestCall> $calls
+     * @psalm-param ArrayLike                     $root
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testVisit(array $ctor, array $begin, iterable $root, bool $iter, array $calls, $result): void
+    {
+        $visitor = new RecursiveResultUnwrapperVisitor(...$ctor);
+        $stack = [];
+
+        $visitor->begin(...$begin);
+
+        $i = 0;
+        $this->assertTrue($visitor->enter($root, $stack));
+        foreach ($calls as $call) {
+            $args = $call['args'];
+
+            /** @psalm-var mixed */
+            $node = $args['node'];
+
+            if ($iter) {
+                if (!array_key_exists('key', $call)) {
+                    // @codeCoverageIgnoreStart
+                    // Reached only when the data provider is invalid.
+                    throw new InvalidArgumentException("Invalid data provided, missing \$calls[{$i}]['key'].");
+                    // @codeCoverageIgnoreEnd
+                }
+                array_push($stack, $visitor->makeStackItem($root, $call['key'], $stack));
+            }
+
+            $this->assertNull($visitor->visit($node, $stack, $iter));
+
+            if ($iter) {
+                $this->assertNotEmpty($stack);
+                $visitor->freeStackItem(array_pop($stack), $stack);
+            }
+            ++$i;
+        }
+        $visitor->leave($root, $stack, $iter);
+
+        $visitor->end();
+
+        $this->assertSame($result, $visitor->result());
+    }
+
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testVisitThrowsInvalidArgumentException(): void
+    {
+        $visitor = new RecursiveResultUnwrapperVisitor(false);
+
+        $expected = preg_quote('an array or '.ResultInterface::class.' object', '/');
+        $message = '/Argument [0-9] passed to [a-zA-Z\\\\]*RecursiveResultUnwrapperVisitor::set\(\) must be '.$expected.', string given/';
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessageMatches($message);
+
+        $visitor->visit('', [], false);
+    }
+
+    /**
+     * @psalm-return \Generator<non-falsy-string, array{
+     *      ctor: CtorArgs,
+     *      begin: BeginArgs,
+     *      array: ArrayLike,
+     *      result: mixed
+     *  }>
+     *
+     * @codeCoverageIgnore
+     */
+    public static function provUnwrapAcyclic(): iterable
+    {
+        $actualValues = [
+            '[]'           => new DummyTaggedArrayResult(true, []),
+            '[foo => FOO]' => new DummyTaggedArrayResult(true, ['foo' => 'FOO']),
+            '[baz => BAZ]' => new DummyTaggedArrayResult(true, ['baz' => 'BAZ']),
+        ];
+
+        $expectedValues = [
+            '[]'           => new DummyTaggedArrayResult(false, []),
+            '[foo => FOO]' => new DummyTaggedArrayResult(false, ['foo' => 'FOO']),
+            '[baz => BAZ]' => new DummyTaggedArrayResult(false, ['baz' => 'BAZ']),
+        ];
+        $arrayObject = ['[baz => BAZ]' => new \ArrayObject(['baz' => 'BAZ'])];
+
+        $tagk = RecursiveResultUnwrapperVisitor::tag();
+        $tagd = (new DummyTaggedArrayResult(false))->tag();
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [],
+            'begin'  => [false],
+            'array'  => new DummyTaggedArrayResult(false, []),
+            'result' => [
+                $tagk => $tagd,
+            ],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [],
+            'begin'  => [false],
+            'array'  => new DummyTaggedArrayResult(false, [], 'TAG'),
+            'result' => [
+                $tagk => 'TAG',
+            ],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [],
+            'begin'  => [true],
+            'array'  => $expectedValues['[]'],
+            'result' => $expectedValues['[]'],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [],
+            'begin'  => [true],
+            'array'  => $expectedValues['[foo => FOO]'],
+            'result' => $expectedValues['[foo => FOO]'],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [],
+            'begin'  => [false],
+            'array'  => $actualValues['[]'],
+            'result' => $actualValues['[]'],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [],
+            'begin'  => [false],
+            'array'  => $actualValues['[foo => FOO]'],
+            'result' => $actualValues['[foo => FOO]'],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [],
+            'begin'  => [false],
+            'array'  => new DummyTaggedArrayResult(false, [
+                'foo' => 'FOO',
+            ]),
+            'result' => [
+                'foo' => 'FOO',
+                $tagk => $tagd,
+            ],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [],
+            'begin'  => [false],
+            'array'  => new DummyTaggedArrayResult(false, [
+                'foo' => 'FOO',
+                'bar' => [
+                    'baz' => 'BAZ',
+                    'qux' => 'QUX',
+                ],
+            ]),
+            'result' => [
+                'foo' => 'FOO',
+                'bar' => [
+                    'baz' => 'BAZ',
+                    'qux' => 'QUX',
+                ],
+                $tagk => $tagd,
+            ],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [],
+            'begin'  => [false],
+            'array'  => new DummyTaggedArrayResult(false, [
+                'foo' => 'FOO',
+                'bar' => new DummyTaggedArrayResult(false, [
+                    'baz' => 'BAZ',
+                ]),
+            ]),
+            'result' => [
+                'foo' => 'FOO',
+                'bar' => [
+                    'baz' => 'BAZ',
+                    $tagk => $tagd,
+                ],
+                $tagk => $tagd,
+            ],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [],
+            'begin'  => [false],
+            'array'  => new DummyTaggedArrayResult(false, [
+                'foo' => 'FOO',
+                'bar' => new DummyTaggedArrayResult(false, [
+                    'qux' => new DummyTaggedArrayResult(false, ['baz' => 'BAZ']),
+                    new DummyTaggedArrayResult(false, ['fred' => 'FRED']),
+                ]),
+            ]),
+            'result' => [
+                'foo' => 'FOO',
+                'bar' => [
+                    'qux' => [
+                        'baz' => 'BAZ',
+                        $tagk => $tagd,
+                    ],
+                    0     => [
+                        'fred' => 'FRED',
+                        $tagk  => $tagd,
+                    ],
+                    $tagk => $tagd,
+                ],
+                $tagk => $tagd,
+            ],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [],
+            'begin'  => [false],
+            'array'  => new DummyTaggedArrayResult(false, [
+                'foo' => 'FOO',
+                'bar' => $actualValues['[baz => BAZ]'],
+            ]),
+            'result' => [
+                'foo' => 'FOO',
+                'bar' => $actualValues['[baz => BAZ]'],
+                $tagk => $tagd,
+            ],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [],
+            'begin'  => [true],
+            'array'  => new DummyTaggedArrayResult(true, [
+                'foo' => 'FOO',
+                'bar' => $expectedValues['[baz => BAZ]'],
+            ]),
+            'result' => [
+                'foo' => 'FOO',
+                'bar' => $expectedValues['[baz => BAZ]'],
+                $tagk => $tagd,
+            ],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [],
+            'begin'  => [false],
+            'array'  => new DummyTaggedArrayResult(false, [
+                'foo' => 'FOO',
+                'bar' => $arrayObject['[baz => BAZ]'],
+            ]),
+            'result' => [
+                'foo' => 'FOO',
+                'bar' => $arrayObject['[baz => BAZ]'],
+                $tagk => $tagd,
+            ],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [false], // no tagging
+            'begin'  => [false],
+            'array'  => new DummyTaggedArrayResult(false, [
+                'foo' => 'FOO',
+            ]),
+            'result' => [
+                'foo' => 'FOO',
+            ],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [false], // no tagging
+            'begin'  => [false],
+            'array'  => new DummyTaggedArrayResult(false, [
+                'foo' => new DummyTaggedArrayResult(false, []),
+            ]),
+            'result' => [
+                'foo' => [],
+            ],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [false], // no tagging
+            'begin'  => [false],
+            'array'  => new DummyTaggedArrayResult(false, [
+                'foo' => 'FOO',
+                'bar' => new DummyTaggedArrayResult(false, [
+                    'baz' => 'BAZ',
+                ]),
+            ]),
+            'result' => [
+                'foo' => 'FOO',
+                'bar' => [
+                    'baz' => 'BAZ',
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider provUnwrapAcyclic
+     *
+     * @param mixed $result
+     *
+     * @psalm-param CtorArgs  $ctor
+     * @psalm-param BeginArgs $begin
+     * @psalm-param ArrayLike $array
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testUnwrapAcyclic(array $ctor, array $begin, iterable $array, $result): void
+    {
+        $traversal = new RecursiveTraversal();
+        $visitor = new RecursiveResultUnwrapperVisitor(...$ctor);
+
+        $visitor->begin(...$begin);
+        $traversal->walk($array, $visitor);
+        $visitor->end();
+
+        self::assertSame($result, $visitor->result());
+    }
+
+    /**
+     * @psalm-return \Generator<non-falsy-string, array{
+     *      ctor: CtorArgs,
+     *      begin: BeginArgs,
+     *      array: ArrayLike,
+     *      result: mixed
+     *  }>
+     *
+     * @psalm-suppress MixedAssignment
+     * @psalm-suppress MixedArrayAssignment
+     * @psalm-suppress MixedArrayAccess
+     *
+     * @codeCoverageIgnore
+     */
+    public static function provUnwrapCyclic(): iterable
+    {
+        $tagk = RecursiveResultUnwrapperVisitor::tag();
+        $tagd = (new DummyTaggedArrayResult(false))->tag();
+
+        //
+        // 01
+        //
+        $v01 = new DummyTaggedArrayResult(true, [
+            'foo' => [],
+        ]);
+        $v01['foo']['bar'] = $v01;
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [],
+            'begin'  => [true],
+            'array'  => $v01,
+            'result' => [
+                'foo' => [
+                    'bar' => $v01,
+                ],
+                $tagk => $tagd,
+            ],
+        ];
+
+        //
+        // 02
+        //
+
+        $v02 = new DummyTaggedArrayResult(true, [
+            'foo' => [
+                'bar' => [],
+            ],
+        ]);
+        $v02['foo']['bar']['baz'] = $v02;
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [],
+            'begin'  => [true],
+            'array'  => $v02,
+            'result' => [
+                'foo' => [
+                    'bar' => [
+                        'baz' => $v02,
+                    ],
+                ],
+                $tagk => $tagd,
+            ],
+        ];
+
+        //
+        // 03
+        //
+
+        $v03 = new DummyTaggedArrayResult(true, [
+            'foo' => [
+                'bar' => new DummyTaggedArrayResult(true, [
+                    'baz' => 'BAZ',
+                ]),
+            ],
+        ]);
+        $v03['foo']['bar']['qux'] = $v03['foo']['bar'];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [],
+            'begin'  => [true],
+            'array'  => $v03,
+            'result' => [
+                'foo' => [
+                    'bar' => [
+                        'baz' => 'BAZ',
+                        'qux' => $v03['foo']['bar'],
+                        $tagk => $tagd,
+                    ],
+                ],
+                $tagk => $tagd,
+            ],
+        ];
+
+        //
+        // 04
+        //
+
+        $v04 = new DummyTaggedArrayResult(true, [
+            'foo' => [
+                'bar' => new DummyTaggedArrayResult(true, []),
+                'baz' => new DummyTaggedArrayResult(true, []),
+            ],
+        ]);
+        $v04['foo']['bar']['qux'] = $v04['foo']['baz'];
+        $v04['foo']['baz']['gez'] = $v04['foo']['bar'];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [],
+            'begin'  => [true],
+            'array'  => $v04,
+            'result' => [
+                'foo' => [
+                    'bar' => [
+                        'qux' => [
+                            'gez' => $v04['foo']['bar'],
+                            $tagk => $tagd,
+                        ],
+                        $tagk => $tagd,
+                    ],
+                    'baz' => [
+                        'gez' => [
+                            'qux' => $v04['foo']['baz'],
+                            $tagk => $tagd,
+                        ],
+                        $tagk => $tagd,
+                    ],
+                ],
+                $tagk => $tagd,
+            ],
+        ];
+
+        //
+        // 05
+        //
+
+        $v05 = new DummyTaggedArrayResult(true, [
+            'foo' => [
+                'bar' => [],
+            ],
+        ]);
+        $v05['foo']['baz'] = &$v05['foo'];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [],
+            'begin'  => [true],
+            'array'  => $v05,
+            'result' => [
+                'foo' => [
+                    'bar' => [],
+                    'baz' => &$v05['foo'],
+                ],
+                $tagk => $tagd,
+            ],
+        ];
+
+        //
+        // 06
+        //
+
+        $v06 = [
+            'foo' => new DummyTaggedArrayResult(true, [
+                'bar' => [],
+            ]),
+        ];
+        $v06['foo']['bar']['baz'] = &$v06;
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'ctor'   => [],
+            'begin'  => [true],
+            'array'  => $v06['foo'],
+            'result' => [
+                'bar' => [
+                    'baz' => [
+                        'foo' => $v06['foo'],
+                    ],
+                ],
+                $tagk => $tagd,
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider provUnwrapCyclic
+     *
+     * @param mixed $result
+     *
+     * @psalm-param CtorArgs  $ctor
+     * @psalm-param BeginArgs $begin
+     * @psalm-param ArrayLike $array
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testUnwrapCyclic(array $ctor, array $begin, iterable $array, $result): void
+    {
+        $traversal = new RecursiveTraversal();
+        $visitor = new RecursiveResultUnwrapperVisitor(...$ctor);
+
+        $visitor->begin(...$begin);
+        $traversal->walk($array, $visitor);
+        $visitor->end();
+
+        self::assertSame($result, $visitor->result());
+    }
+
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testLeaveThrowsInternalErrorException(): void
+    {
+        $visitor = new RecursiveResultUnwrapperVisitor();
+
+        $stack = [];
+        $node = new DummyTaggedArrayResult(false, [$visitor::tag() => 'ANYTHING']);
+
+        $visitor->begin(false);
+
+        $iterating = $visitor->enter($node, $stack);
+        $this->assertTrue($iterating);
+        array_push($stack, $visitor->makeStackItem($node, $visitor::tag(), $stack));
+
+        $visitor->visit($node[$visitor::tag()], $stack, $iterating);
+
+        $visitor->freeStackItem(array_pop($stack), $stack);
+
+        $key = preg_quote(var_export($visitor::tag(), true), '/');
+        $this->expectException(InternalErrorException::class);
+        $this->expectExceptionMessageMatches("/^Failed to set \\\$array\\[{$key}\\]: key already exists. Please re-run your tests\.$/");
+
+        $visitor->leave($node, $stack, $iterating);
+
+        /* $visitor->end(); */ // should not be reached
+    }
+}
+// vim: syntax=php sw=4 ts=4 et:

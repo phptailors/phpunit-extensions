@@ -10,20 +10,43 @@
 
 namespace Tailors\PHPUnit\Properties;
 
+use Tailors\PHPUnit\Result\ResultInterface;
+
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Properties\AbstractObjectProperties
+ * @covers \Tailors\PHPUnit\Properties\AbstractObjectPropertiesTestCase
  * @covers \Tailors\PHPUnit\Properties\ActualObjectProperties
- * @covers \Tailors\PHPUnit\Properties\ObjectPropertiesTestCase
+ * @covers \Tailors\PHPUnit\Properties\ActualObjectPropertiesTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class ActualObjectPropertiesTest extends ObjectPropertiesTestCase
+final class ActualObjectPropertiesTest extends AbstractObjectPropertiesTestCase
 {
-    public static function getValuesClass(): string
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    final public function testImplementsResultInterface(): void
+    {
+        self::assertInstanceOf(ResultInterface::class, new ActualObjectProperties([]));
+    }
+
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    final public function testActual(): void
+    {
+        self::assertSame(true, (new ActualObjectProperties([]))->actual());
+    }
+
+    /**
+     * @psalm-pure
+     *
+     * @psalm-return class-string<ActualObjectProperties>
+     */
+    public static function getClass(): string
     {
         return ActualObjectProperties::class;
     }

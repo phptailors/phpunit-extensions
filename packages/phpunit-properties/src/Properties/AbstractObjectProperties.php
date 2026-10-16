@@ -10,22 +10,27 @@
 
 namespace Tailors\PHPUnit\Properties;
 
-use Tailors\PHPUnit\Values\AbstractValues;
-use Tailors\PHPUnit\Values\ValuesInterface;
+use Tailors\PHPUnit\Common\AbstractArrayObject;
+use Tailors\PHPUnit\Common\ExportableNameInterface;
+use Tailors\PHPUnit\Common\StaticRandomStrings;
+use Tailors\PHPUnit\Common\TagInterface;
+use Tailors\PHPUnit\Common\TypesInterface;
 
 /**
- * An array of expected or actual object properties.
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-import-type ArrayLike from TypesInterface
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
-abstract class AbstractObjectProperties extends AbstractValues
+abstract class AbstractObjectProperties extends AbstractArrayObject implements TagInterface, ExportableNameInterface
 {
     /**
-     * @param array|\Traversable $array
+     * @psalm-param ArrayLike $array
      */
-    final public function __construct($array = [])
+    final public function __construct(iterable $array = [])
     {
         parent::__construct($array);
     }
@@ -33,30 +38,17 @@ abstract class AbstractObjectProperties extends AbstractValues
     /**
      * @psalm-return non-empty-string
      */
-    final public function familyName(): string
-    {
-        return __NAMESPACE__.'\ObjectProperties';
-    }
-
-    /**
-     * @psalm-return non-empty-string
-     */
     final public function tag(): string
     {
-        return $this->familyTag();
+        return StaticRandomStrings::familyTag(__NAMESPACE__.'\ObjectProperties', '0f1d9297ad4259f9b8926b83329b4d82448592cd');
     }
 
     /**
-     * @param array|\Traversable $array
+     * @psalm-pure
      */
-    final public function createActualValues($array = []): ValuesInterface
+    final public static function exportableName(): string
     {
-        return new ActualObjectProperties($array);
-    }
-
-    final protected function fallbackFamilyString(): string
-    {
-        return '0f1d9297ad4259f9b8926b83329b4d82448592cd';
+        return 'ObjectProperties';
     }
 }
 

@@ -11,18 +11,24 @@
 namespace Tailors\PHPUnit;
 
 use PHPUnit\Framework\TestCase;
-use Tailors\PHPUnit\Properties\ExpectedClassProperties;
+use Tailors\PHPUnit\Common\TypesInterface;
+use Tailors\PHPUnit\Properties\ClassPropertiesSelection;
 
 /**
  * @small
  *
  * @covers \Tailors\PHPUnit\ClassPropertiesTrait
+ * @covers \Tailors\PHPUnit\ClassPropertiesTraitTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ClassPropertiesArgs = list{0: array|\Traversable}
+ * @psalm-import-type ArrayLike from TypesInterface
+ *
+ * @psalm-type ClassPropertiesArgs = list{0: ArrayLike}
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
 final class ClassPropertiesTraitTest extends TestCase
 {
@@ -30,20 +36,22 @@ final class ClassPropertiesTraitTest extends TestCase
 
     /**
      * @psalm-return iterable<string,array{args: ClassPropertiesArgs, expect: mixed}>
+     *
+     * @codeCoverageIgnore
      */
     public static function provExpectClassProperties(): iterable
     {
-        yield 'ClassPropertiesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'args'   => [[]],
             'expect' => [],
         ];
 
-        yield 'ClassPropertiesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'args'   => [['a' => 'A']],
             'expect' => ['a' => 'A'],
         ];
 
-        yield 'ClassPropertiesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'args'   => [new \ArrayObject(['o' => 'O'])],
             'expect' => ['o' => 'O'],
         ];
@@ -52,13 +60,16 @@ final class ClassPropertiesTraitTest extends TestCase
     /**
      * @dataProvider provExpectClassProperties
      *
+     * @param mixed $expect
+     *
      * @psalm-param ClassPropertiesArgs $args
-     * @psalm-param mixed               $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testExpectedClassProperties(array $args, mixed $expect): void
+    public function testExpectedClassProperties(array $args, $expect): void
     {
         $values = self::classProperties(...$args);
-        self::assertInstanceOf(ExpectedClassProperties::class, $values);
+        self::assertInstanceOf(ClassPropertiesSelection::class, $values);
         self::assertSame($expect, (array) $values);
     }
 }

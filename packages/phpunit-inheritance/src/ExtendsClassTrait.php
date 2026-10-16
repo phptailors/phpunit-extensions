@@ -13,6 +13,7 @@ namespace Tailors\PHPUnit;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\LogicalNot;
 use PHPUnit\Framework\ExpectationFailedException;
+use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use Tailors\PHPUnit\Constraint\ExtendsClass;
 
 trait ExtendsClassTrait
@@ -20,9 +21,12 @@ trait ExtendsClassTrait
     /**
      * Evaluates a \PHPUnit\Framework\Constraint\Constraint matcher object.
      *
+     * @param mixed $value
+     *
      * @throws ExpectationFailedException
+     * @throws InvalidArgumentException
      */
-    abstract public static function assertThat(mixed $value, Constraint $constraint, string $message = ''): void;
+    abstract public static function assertThat($value, Constraint $constraint, string $message = ''): void;
 
     /**
      * Asserts that *$subject* extends the class *$parent*.
@@ -33,8 +37,9 @@ trait ExtendsClassTrait
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
+     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
-    public static function assertExtendsClass(string $parent, mixed $subject, string $message = ''): void
+    public static function assertExtendsClass(string $parent, $subject, string $message = ''): void
     {
         self::assertThat($subject, self::extendsClass($parent), $message);
     }
@@ -48,8 +53,9 @@ trait ExtendsClassTrait
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
+     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
-    public static function assertNotExtendsClass(string $parent, mixed $subject, string $message = ''): void
+    public static function assertNotExtendsClass(string $parent, $subject, string $message = ''): void
     {
         self::assertThat($subject, new LogicalNot(self::extendsClass($parent)), $message);
     }
@@ -59,7 +65,7 @@ trait ExtendsClassTrait
      *
      * @param string $parent name of the class that is expected to be extended
      *
-     * @throws InvalidArgumentException
+     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function extendsClass(string $parent): ExtendsClass
     {

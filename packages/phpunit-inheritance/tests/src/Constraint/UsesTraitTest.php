@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
+use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Examples\Inheritance\ExampleClassNotUsingTrait;
@@ -21,23 +22,33 @@ use Tailors\PHPUnit\InvalidArgumentException;
 /**
  * @small
  *
- * @covers \Tailors\PHPUnit\Constraint\InheritanceConstraintTestTrait
  * @covers \Tailors\PHPUnit\Constraint\UsesTrait
- * @covers \Tailors\PHPUnit\Inheritance\AbstractConstraint
- * @covers \Tailors\PHPUnit\Inheritance\ConstraintImplementationTrait
+ * @covers \Tailors\PHPUnit\Constraint\UsesTraitTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type ExpectExceptionArray = array{exception: class-string<\Exception>, message: string}
  */
 final class UsesTraitTest extends TestCase
 {
     use InheritanceConstraintTestTrait;
 
-    // required by InheritanceConstraintTestTrait
+    /**
+     * @psalm-return iterable<string, array{
+     *      constraint: Constraint,
+     *      subject: mixed,
+     *      expect: ExpectExceptionArray
+     * }>
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     *
+     * @codeCoverageIgnore
+     */
     public static function provFailureDescriptionOfCustomUnaryOperator(): iterable
     {
-        yield 'UsesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'constraint' => UsesTrait::create(ExampleTrait::class),
             'subject'    => \Exception::class,
             'expect'     => [
@@ -47,10 +58,20 @@ final class UsesTraitTest extends TestCase
         ];
     }
 
-    // required by InheritanceConstraintTestTrait
+    /**
+     * @psalm-return iterable<string, array{
+     *      constraint: Constraint,
+     *      subject: mixed,
+     *      expect: ExpectExceptionArray
+     * }>
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     *
+     * @codeCoverageIgnore
+     */
     public static function provFailureDescriptionOfLogicalNotOperator(): iterable
     {
-        yield 'UsesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'constraint' => UsesTrait::create(ExampleTrait::class),
             'subject'    => ExampleClassUsingTrait::class,
             'expect'     => [
@@ -64,84 +85,108 @@ final class UsesTraitTest extends TestCase
         ];
     }
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      trait: string,
+     *      subject: mixed
+     * }>
+     *
+     * @codeCoverageIgnore
+     */
     public static function provUsesTrait(): iterable
     {
-        yield 'UsesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'trait'   => ExampleTrait::class,
             'subject' => ExampleClassUsingTrait::class,
         ];
 
-        yield 'UsesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'trait'   => ExampleTrait::class,
             'subject' => new ExampleClassUsingTrait(),
         ];
 
-        yield 'UsesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'trait'   => ExampleTrait::class,
             'subject' => ExampleTraitUsingTrait::class,
         ];
 
-        // case-insensitive match
-        yield 'UsesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'trait'   => 'tailors\\PhPunit\\eXamples\\inhEritance\eXampletRait',
             'subject' => 'tailors\\PhPunit\\eXamples\\inhEritance\eXampleclAssuSingtRait',
         ];
 
-        yield 'UsesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'trait'   => 'tailors\\PhPunit\\eXamples\\inhEritance\eXampletRait',
             'subject' => new ExampleClassUsingTrait(),
         ];
 
-        yield 'UsesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'trait'   => 'tailors\\PhPunit\\eXamples\\inhEritance\eXampletRait',
             'subject' => 'tailors\\PhPunit\\eXamples\\inhEritance\eXampletRaituSingtRait',
         ];
     }
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      trait: string,
+     *      subject: mixed,
+     *      message: string
+     * }>
+     *
+     * @codeCoverageIgnore
+     */
     public static function provNotUsesTrait(): iterable
     {
         $template = 'Failed asserting that %s uses trait %s.';
 
-        yield 'UsesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'trait'   => ExampleTrait::class,
             'subject' => ExampleClassNotUsingTrait::class,
             'message' => sprintf($template, ExampleClassNotUsingTrait::class, ExampleTrait::class),
         ];
 
-        yield 'UsesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'trait'   => ExampleTrait::class,
             'subject' => new ExampleClassNotUsingTrait(),
             'message' => sprintf($template, 'object '.ExampleClassNotUsingTrait::class, ExampleTrait::class),
         ];
 
-        yield 'UsesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'trait'   => ExampleTrait::class,
             'subject' => 'lorem ipsum',
             'message' => sprintf($template, "'lorem ipsum'", ExampleTrait::class),
         ];
 
-        yield 'UsesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'trait'   => ExampleTrait::class,
             'subject' => 123,
             'message' => sprintf($template, '123', ExampleTrait::class),
         ];
     }
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      argument: string,
+     *      message: string
+     * }>
+     *
+     * @codeCoverageIgnore
+     */
     public static function provConstraintThrowsInvalidArgumentException(): iterable
     {
         $message = '/Argument 1 passed to \S+ must be a trait-string/';
 
-        yield 'UsesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'argument' => 'non-trait string',
             'message'  => $message,
         ];
 
-        yield 'UsesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'argument' => \Exception::class,
             'message'  => $message,
         ];
 
-        yield 'UsesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'argument' => \Throwable::class,
             'message'  => $message,
         ];
@@ -149,8 +194,12 @@ final class UsesTraitTest extends TestCase
 
     /**
      * @dataProvider provUsesTrait
+     *
+     * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testConstraintSucceeds(string $trait, mixed $subject): void
+    public function testConstraintSucceeds(string $trait, $subject): void
     {
         $constraint = UsesTrait::create($trait);
 
@@ -159,8 +208,12 @@ final class UsesTraitTest extends TestCase
 
     /**
      * @dataProvider provNotUsesTrait
+     *
+     * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    public function testConstraintFails(string $trait, mixed $subject, string $message): void
+    public function testConstraintFails(string $trait, $subject, string $message): void
     {
         $constraint = UsesTrait::create($trait);
 
@@ -172,6 +225,8 @@ final class UsesTraitTest extends TestCase
 
     /**
      * @dataProvider provConstraintThrowsInvalidArgumentException
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     public function testConstraintThrowsInvalidArgumentException(string $argument, string $message): void
     {

@@ -13,6 +13,7 @@ namespace Tailors\PHPUnit;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\LogicalNot;
 use PHPUnit\Framework\ExpectationFailedException;
+use SebastianBergmann\RecursionContext\InvalidArgumentException as RecursionContextInvalidArgumentException;
 use Tailors\PHPUnit\Constraint\HasMethod;
 
 trait HasMethodTrait
@@ -20,10 +21,13 @@ trait HasMethodTrait
     /**
      * Evaluates a \PHPUnit\Framework\Constraint\Constraint matcher object.
      *
+     * @param mixed $value
+     *
      * @throws ExpectationFailedException
+     * @throws RecursionContextInvalidArgumentException
      * @throws InvalidArgumentException
      */
-    abstract public static function assertThat(mixed $value, Constraint $constraint, string $message = ''): void;
+    abstract public static function assertThat($value, Constraint $constraint, string $message = ''): void;
 
     /**
      * Asserts that *$subject* has method specified with *$methodSpec*.
@@ -35,6 +39,7 @@ trait HasMethodTrait
      * @param string $message    Optional failure message
      *
      * @throws ExpectationFailedException
+     * @throws RecursionContextInvalidArgumentException
      * @throws InvalidArgumentException
      *
      * // due to psalm bug #9151 we can't use this:
@@ -42,7 +47,7 @@ trait HasMethodTrait
      */
     public static function assertHasMethod(
         string $methodSpec,
-        mixed $subject,
+        $subject,
         string $message = ''
     ): void {
         self::assertThat($subject, self::hasMethod($methodSpec), $message);
@@ -58,11 +63,12 @@ trait HasMethodTrait
      * @param string $message    Optional failure message
      *
      * @throws ExpectationFailedException
+     * @throws RecursionContextInvalidArgumentException
      * @throws InvalidArgumentException
      */
     public static function assertNotHasMethod(
         string $methodSpec,
-        mixed $subject,
+        $subject,
         string $message = ''
     ): void {
         self::assertThat($subject, new LogicalNot(self::hasMethod($methodSpec)), $message);

@@ -13,6 +13,7 @@ namespace Tailors\PHPUnit;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\LogicalNot;
 use PHPUnit\Framework\ExpectationFailedException;
+use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use Tailors\PHPUnit\Constraint\KsortedArrayEqualTo;
 
 trait KsortedArrayEqualToTrait
@@ -20,9 +21,12 @@ trait KsortedArrayEqualToTrait
     /**
      * Evaluates a \PHPUnit\Framework\Constraint\Constraint matcher object.
      *
+     * @param mixed $value
+     *
      * @throws ExpectationFailedException
+     * @throws InvalidArgumentException
      */
-    abstract public static function assertThat(mixed $value, Constraint $constraint, string $message = ''): void;
+    abstract public static function assertThat($value, Constraint $constraint, string $message = ''): void;
 
     /**
      * Asserts that *$actual* is an array equal to *$expected* when key-sorted.
@@ -33,10 +37,11 @@ trait KsortedArrayEqualToTrait
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
+     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertKsortedArrayEqualTo(
         array $expected,
-        mixed $actual,
+        $actual,
         string $message = ''
     ): void {
         self::assertThat($actual, self::ksortedArrayEqualTo($expected), $message);
@@ -51,10 +56,11 @@ trait KsortedArrayEqualToTrait
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
+     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertNotKsortedArrayEqualTo(
         array $expected,
-        mixed $actual,
+        $actual,
         string $message = ''
     ): void {
         self::assertThat($actual, new LogicalNot(self::ksortedArrayEqualTo($expected)), $message);
@@ -65,7 +71,7 @@ trait KsortedArrayEqualToTrait
      *
      * @param array $expected expected array
      *
-     * @throws InvalidArgumentException
+     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function ksortedArrayEqualTo(array $expected): KsortedArrayEqualTo
     {

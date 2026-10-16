@@ -13,6 +13,7 @@ namespace Tailors\PHPUnit;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\LogicalNot;
 use PHPUnit\Framework\ExpectationFailedException;
+use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use Tailors\PHPUnit\Constraint\ImplementsInterface;
 
 trait ImplementsInterfaceTrait
@@ -20,9 +21,12 @@ trait ImplementsInterfaceTrait
     /**
      * Evaluates a \PHPUnit\Framework\Constraint\Constraint matcher object.
      *
+     * @param mixed $value
+     *
      * @throws ExpectationFailedException
+     * @throws InvalidArgumentException
      */
-    abstract public static function assertThat(mixed $value, Constraint $constraint, string $message = ''): void;
+    abstract public static function assertThat($value, Constraint $constraint, string $message = ''): void;
 
     /**
      * Asserts that *$subject* implements *$interface*.
@@ -33,8 +37,9 @@ trait ImplementsInterfaceTrait
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
+     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
-    public static function assertImplementsInterface(string $interface, mixed $subject, string $message = ''): void
+    public static function assertImplementsInterface(string $interface, $subject, string $message = ''): void
     {
         self::assertThat($subject, self::implementsInterface($interface), $message);
     }
@@ -48,8 +53,9 @@ trait ImplementsInterfaceTrait
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
+     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
-    public static function assertNotImplementsInterface(string $interface, mixed $subject, string $message = ''): void
+    public static function assertNotImplementsInterface(string $interface, $subject, string $message = ''): void
     {
         self::assertThat($subject, new LogicalNot(self::implementsInterface($interface)), $message);
     }
@@ -59,7 +65,7 @@ trait ImplementsInterfaceTrait
      *
      * @param string $interface name of the interface that is expected to be implemented
      *
-     * @throws InvalidArgumentException
+     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function implementsInterface(string $interface): ImplementsInterface
     {

@@ -13,6 +13,7 @@ namespace Tailors\PHPUnit;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\LogicalNot;
 use PHPUnit\Framework\ExpectationFailedException;
+use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use Tailors\PHPUnit\Constraint\ArrayValuesEqualTo;
 
 trait ArrayValuesEqualToTrait
@@ -20,9 +21,12 @@ trait ArrayValuesEqualToTrait
     /**
      * Evaluates a \PHPUnit\Framework\Constraint\Constraint matcher object.
      *
+     * @param mixed $value
+     *
      * @throws ExpectationFailedException
+     * @throws InvalidArgumentException
      */
-    abstract public static function assertThat(mixed $value, Constraint $constraint, string $message = ''): void;
+    abstract public static function assertThat($value, Constraint $constraint, string $message = ''): void;
 
     /**
      * Asserts that selected properties of *$actual* are identical to *$expected* ones.
@@ -33,10 +37,11 @@ trait ArrayValuesEqualToTrait
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
+     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertArrayValuesEqualTo(
         array $expected,
-        mixed $actual,
+        $actual,
         string $message = ''
     ): void {
         self::assertThat($actual, self::arrayValuesEqualTo($expected), $message);
@@ -51,10 +56,11 @@ trait ArrayValuesEqualToTrait
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
+     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertNotArrayValuesEqualTo(
         array $expected,
-        mixed $actual,
+        $actual,
         string $message = ''
     ): void {
         self::assertThat($actual, new LogicalNot(self::arrayValuesEqualTo($expected)), $message);
@@ -65,7 +71,7 @@ trait ArrayValuesEqualToTrait
      *
      * @param array $expected an array of expected values
      *
-     * @throws InvalidArgumentException
+     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function arrayValuesEqualTo(array $expected): ArrayValuesEqualTo
     {

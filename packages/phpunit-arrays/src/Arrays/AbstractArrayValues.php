@@ -10,22 +10,27 @@
 
 namespace Tailors\PHPUnit\Arrays;
 
-use Tailors\PHPUnit\Values\AbstractValues;
-use Tailors\PHPUnit\Values\ValuesInterface;
+use Tailors\PHPUnit\Common\AbstractArrayObject;
+use Tailors\PHPUnit\Common\ExportableNameInterface;
+use Tailors\PHPUnit\Common\StaticRandomStrings;
+use Tailors\PHPUnit\Common\TagInterface;
+use Tailors\PHPUnit\Common\TypesInterface;
 
 /**
- * An array of expected or actual array values.
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-import-type ArrayLike from TypesInterface
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
-abstract class AbstractArrayValues extends AbstractValues
+abstract class AbstractArrayValues extends AbstractArrayObject implements TagInterface, ExportableNameInterface
 {
     /**
-     * @param array|\Traversable $array
+     * @psalm-param ArrayLike $array
      */
-    final public function __construct($array = [])
+    final public function __construct(iterable $array = [])
     {
         parent::__construct($array);
     }
@@ -33,30 +38,17 @@ abstract class AbstractArrayValues extends AbstractValues
     /**
      * @psalm-return non-empty-string
      */
-    final public function familyName(): string
-    {
-        return __NAMESPACE__.'\ArrayValues';
-    }
-
-    /**
-     * @psalm-return non-empty-string
-     */
     final public function tag(): string
     {
-        return $this->familyTag();
+        return StaticRandomStrings::familyTag(__NAMESPACE__.'\ArrayValues', 'c225435bd5434279f77fb3cddf138302a5c826ec');
     }
 
     /**
-     * @param array|\Traversable $array
+     * @psalm-pure
      */
-    final public function createActualValues($array = []): ValuesInterface
+    final public static function exportableName(): string
     {
-        return new ActualArrayValues($array);
-    }
-
-    final protected function fallbackFamilyString(): string
-    {
-        return 'c225435bd5434279f77fb3cddf138302a5c826ec';
+        return 'ArrayValues';
     }
 }
 

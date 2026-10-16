@@ -11,82 +11,149 @@
 namespace Tailors\PHPUnit\Constraint;
 
 use PHPUnit\Framework\Constraint\Constraint;
-use Tailors\PHPUnit\Recursive\RecursiveConstraintTestCase;
+use Tailors\PHPUnit\Common\TypesInterface;
+use Tailors\PHPUnit\InvalidArgumentException;
+use Tailors\PHPUnit\RecursiveConstraint\AbstractRecursiveConstraintTestCase;
 
 /**
  * @small
  *
  * @covers \Tailors\PHPUnit\Constraint\ArrayValuesEqualTo
- * @covers \Tailors\PHPUnit\Constraint\ProvArrayValuesTrait
- * @covers \Tailors\PHPUnit\Recursive\RecursiveConstraintTestCase
+ * @covers \Tailors\PHPUnit\Constraint\ArrayValuesEqualToTest
  *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-import-type ArrayLike from TypesInterface
+ *
+ * @psalm-type ConstraintClass = ArrayValuesEqualTo
+ * @psalm-type CtorArgs        = list{ArrayLike}
+ *
+ * @template-extends AbstractRecursiveConstraintTestCase<ArrayValuesEqualTo>
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
-final class ArrayValuesEqualToTest extends RecursiveConstraintTestCase
+final class ArrayValuesEqualToTest extends AbstractRecursiveConstraintTestCase
 {
     use ProvArrayValuesTrait;
 
-    public static function subject(): string
+    /**
+     * @codeCoverageIgnore Called only from providers.
+     */
+    public static function complement(): string
     {
-        return 'an array or ArrayAccess';
-    }
-
-    public static function selectable(): string
-    {
-        return 'values';
-    }
-
-    public static function adjective(): string
-    {
-        return 'equal to';
-    }
-
-    public static function getConstraintClass(): string
-    {
-        return ArrayValuesEqualTo::class;
-    }
-
-    public static function createConstraint(...$args): Constraint
-    {
-        return ArrayValuesEqualTo::create(...$args);
+        return 'an array or ArrayAccess with values equal to the specified ones';
     }
 
     /**
-     * @dataProvider provArrayValuesIdenticalTo
-     * @dataProvider provArrayValuesEqualButNotIdenticalTo
+     * @throws InvalidArgumentException
+     *
+     * @psalm-param CtorArgs $ctorArgs
      */
-    public function testArrayValuesEqualToSucceeds(array $expect, mixed $actual, string $string): void
+    public static function createConstraint(array $ctorArgs): Constraint
     {
-        parent::examineValuesMatchSucceeds($expect, $actual);
+        return ArrayValuesEqualTo::create(...$ctorArgs);
     }
 
     /**
-     * @dataProvider provArrayValuesNotEqualTo
-     * @dataProvider provArrayValuesNotEqualToNonArray
+     * @psalm-return iterable<string, array{
+     *      ctorArgs: CtorArgs,
+     *      actual: mixed
+     * }>
+     *
+     * @codeCoverageIgnore
      */
-    public function testArrayValuesEqualToFails(array $expect, mixed $actual, string $string): void
+    public static function provConstraintEvaluationSucceeds(): iterable
     {
-        parent::examineValuesMatchFails($expect, $actual, $string);
+        $cases = (function (): iterable {
+            yield from self::provArrayValuesIdenticalTo();
+
+            yield from self::provArrayValuesEqualButNotIdenticalTo();
+        })();
+
+        foreach ($cases as $key => $case) {
+            yield $key => [
+                'ctorArgs' => [$case['expect']],
+                'actual'   => $case['actual'],
+            ];
+        }
     }
 
     /**
-     * @dataProvider provArrayValuesNotEqualTo
-     * @dataProvider provArrayValuesNotEqualToNonArray
+     * @psalm-return iterable<string, array{
+     *      ctorArgs: CtorArgs,
+     *      actual: mixed,
+     *      message: string
+     * }>
+     *
+     * @codeCoverageIgnore
      */
-    public function testNotArrayValuesEqualToSucceeds(array $expect, mixed $actual, string $string): void
+    public static function provConstraintEvaluationFails(): iterable
     {
-        parent::examineNotValuesMatchSucceeds($expect, $actual);
+        $cases = (function (): iterable {
+            yield from self::provArrayValuesNotEqualTo();
+
+            yield from self::provArrayValuesNotEqualToNonArray();
+        })();
+
+        foreach ($cases as $key => $case) {
+            yield $key => [
+                'ctorArgs' => [$case['expect']],
+                'actual'   => $case['actual'],
+                'message'  => self::message($case['string']),
+            ];
+        }
     }
 
     /**
-     * @dataProvider provArrayValuesIdenticalTo
-     * @dataProvider provArrayValuesEqualButNotIdenticalTo
+     * @psalm-return iterable<string, array{
+     *      ctorArgs: CtorArgs,
+     *      actual: mixed
+     * }>
+     *
+     * @codeCoverageIgnore
      */
-    public function testNotArrayValuesEqualToFails(array $expect, mixed $actual, string $string): void
+    public static function provNotConstraintEvaluationSucceeds(): iterable
     {
-        parent::examineNotValuesMatchFails($expect, $actual, $string);
+        $cases = (function (): iterable {
+            yield from self::provArrayValuesNotEqualTo();
+
+            yield from self::provArrayValuesNotEqualToNonArray();
+        })();
+
+        foreach ($cases as $key => $case) {
+            yield $key => [
+                'ctorArgs' => [$case['expect']],
+                'actual'   => $case['actual'],
+            ];
+        }
+    }
+
+    /**
+     * @psalm-return iterable<string, array{
+     *      ctorArgs: CtorArgs,
+     *      actual: mixed,
+     *      message: string
+     * }>
+     *
+     * @codeCoverageIgnore
+     */
+    public static function provNotConstraintEvaluationFails(): iterable
+    {
+        $cases = (function (): iterable {
+            yield from self::provArrayValuesIdenticalTo();
+
+            yield from self::provArrayValuesEqualButNotIdenticalTo();
+        })();
+
+        foreach ($cases as $key => $case) {
+            yield $key => [
+                'ctorArgs' => [$case['expect']],
+                'actual'   => $case['actual'],
+                'message'  => self::message($case['string'], true),
+            ];
+        }
     }
 }
 
