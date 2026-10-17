@@ -10,21 +10,43 @@
 
 namespace Tailors\PHPUnit\Arrays;
 
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\Small;
+use Tailors\PHPUnit\Result\ResultInterface;
 
 /**
+ * @small
+ *
+ * @covers \Tailors\PHPUnit\Arrays\AbstractArrayValuesTestCase
+ * @covers \Tailors\PHPUnit\Arrays\ActualArrayValues
+ * @covers \Tailors\PHPUnit\Arrays\ActualArrayValuesTest
+ *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-#[CoversClass(AbstractArrayValues::class)]
-#[CoversClass(ActualArrayValues::class)]
-#[CoversClass(ArrayValuesTestCase::class)]
-#[Small]
-final class ActualArrayValuesTest extends ArrayValuesTestCase
+final class ActualArrayValuesTest extends AbstractArrayValuesTestCase
 {
-    public static function getValuesClass(): string
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    final public function testImplementsResultInterface(): void
+    {
+        self::assertInstanceOf(ResultInterface::class, new ActualArrayValues([]));
+    }
+
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    final public function testExpected(): void
+    {
+        self::assertSame(true, (new ActualArrayValues([]))->actual());
+    }
+
+    /**
+     * @psalm-pure
+     *
+     * @psalm-return class-string<ActualArrayValues>
+     */
+    public static function getClass(): string
     {
         return ActualArrayValues::class;
     }

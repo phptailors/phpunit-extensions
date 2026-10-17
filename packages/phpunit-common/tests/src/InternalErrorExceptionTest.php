@@ -10,22 +10,28 @@
 
 namespace Tailors\PHPUnit;
 
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 
 /**
+ * @small
+ *
+ * @covers \Tailors\PHPUnit\InternalErrorException
+ * @covers \Tailors\PHPUnit\InternalErrorExceptionTest
+ *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-#[CoversClass(InternalErrorException::class)]
-#[Small]
 final class InternalErrorExceptionTest extends TestCase
 {
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testFromBackTrace(): void
     {
         $stack = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1);
+
+        /** @psalm-var array{file: string, line: int, ...} $caller */
         $caller = end($stack);
 
         $exception = InternalErrorException::fromBackTrace('bad dog');

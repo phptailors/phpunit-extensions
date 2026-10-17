@@ -10,51 +10,69 @@
 
 namespace Tailors\PHPUnit\Comparator;
 
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\DataProvider;
-use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 
 /**
+ * @small
+ *
+ * @covers \Tailors\PHPUnit\Comparator\EqualityComparator
+ * @covers \Tailors\PHPUnit\Comparator\EqualityComparatorTest
+ *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-#[CoversClass(EqualityComparator::class)]
-#[Small]
 final class EqualityComparatorTest extends TestCase
 {
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testImplementsComparatorInterface(): void
     {
         self::assertInstanceOf(ComparatorInterface::class, new EqualityComparator());
     }
 
+    /**
+     * @psalm-return iterable<string, list{mixed, mixed, bool}>
+     *
+     * @codeCoverageIgnore
+     */
     public static function provCompare(): iterable
     {
-        yield 'EqualityComparatorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'a', 'a', true,
         ];
 
-        yield 'EqualityComparatorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             '123', 123, true,
         ];
 
-        yield 'EqualityComparatorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             '', null, true,
         ];
 
-        yield 'EqualityComparatorTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'a', 'b', false,
         ];
     }
 
-    #[DataProvider('provCompare')]
-    public function testCompare(mixed $left, mixed $right, bool $expect): void
+    /**
+     * @dataProvider provCompare
+     *
+     * @param mixed $left
+     * @param mixed $right
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testCompare($left, $right, bool $expect): void
     {
         $comparator = new EqualityComparator();
         self::assertSame($expect, $comparator->compare($left, $right));
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testAdjective(): void
     {
         $comparator = new EqualityComparator();

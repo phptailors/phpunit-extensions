@@ -10,75 +10,158 @@
 
 namespace Tailors\PHPUnit;
 
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\DataProvider;
-use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
-use Tailors\PHPUnit\Constraint\KsortedArrayIdenticalTo;
 use Tailors\PHPUnit\Constraint\ProvKsortedArrayTrait;
 
 /**
+ * @small
+ *
+ * @covers \Tailors\PHPUnit\KsortedArrayIdenticalToTrait
+ * @covers \Tailors\PHPUnit\KsortedArrayIdenticalToTraitTest
+ *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type CtorArgs = list{0: array, 1?: int}
  */
-#[CoversClass(KsortedArrayIdenticalToTrait::class)]
-#[Small]
 final class KsortedArrayIdenticalToTraitTest extends TestCase
 {
     use KsortedArrayIdenticalToTrait;
     use ProvKsortedArrayTrait;
 
-    public static function createConstraint(mixed ...$args): KsortedArrayIdenticalTo
+    /**
+     * @psalm-return iterable<string, array{expect: array, actual: mixed}>
+     *
+     * @codeCoverageIgnore
+     */
+    public static function provKsortedArrayIdenticalToSucceeds(): iterable
     {
-        return KsortedArrayIdenticalTo::create(...$args);
+        $cases = (function (): iterable {
+            yield from self::provKsortedArrayIdenticalTo();
+        })();
+
+        foreach ($cases as $key => $case) {
+            yield $key => [
+                'expect' => $case['expect'],
+                'actual' => $case['actual'],
+            ];
+        }
     }
 
-    #[DataProvider('provKsortedArrayIdenticalTo')]
-    public function testKsortedArrayIdenticalToSucceeds(array $expect, mixed $actual, string $string)
+    /**
+     * @psalm-return iterable<string, array{expect: array, actual: mixed}>
+     *
+     * @codeCoverageIgnore
+     */
+    public static function provNotKsortedArrayIdenticalToSucceeds(): iterable
+    {
+        $cases = (function (): iterable {
+            yield from self::provKsortedArrayNotEqualTo();
+
+            yield from self::provKsortedArrayEqualButNotIdenticalTo();
+        })();
+
+        foreach ($cases as $key => $case) {
+            yield $key => [
+                'expect' => $case['expect'],
+                'actual' => $case['actual'],
+            ];
+        }
+    }
+
+    /**
+     * @dataProvider provKsortedArrayIdenticalToSucceeds
+     *
+     * @param mixed $actual
+     *
+     * @psalm-param array $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testKsortedArrayIdenticalToSucceeds(array $expect, $actual): void
     {
         self::assertThat($actual, self::ksortedArrayIdenticalTo($expect));
     }
 
-    #[DataProvider('provKsortedArrayIdenticalTo')]
-    public function testAssertKsortedArrayIdenticalToSucceeds(array $expect, mixed $actual, string $string)
+    /**
+     * @dataProvider provKsortedArrayIdenticalToSucceeds
+     *
+     * @param mixed $actual
+     *
+     * @psalm-param array $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testAssertKsortedArrayIdenticalToSucceeds(array $expect, $actual): void
     {
         self::assertKsortedArrayIdenticalTo($expect, $actual);
     }
 
-    #[DataProvider('provKsortedArrayNotEqualTo')]
-    #[DataProvider('provKsortedArrayEqualButNotIdenticalTo')]
-    public function testAssertKsortedArrayIdenticalToFails(array $expect, mixed $actual, string $string)
+    /**
+     * @dataProvider provNotKsortedArrayIdenticalToSucceeds
+     *
+     * @param mixed $actual
+     *
+     * @psalm-param array $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testNotKsortedArrayIdenticalToSucceeds(array $expect, $actual): void
+    {
+        self::assertThat($actual, self::logicalNot(self::ksortedArrayIdenticalTo($expect)));
+    }
+
+    /**
+     * @dataProvider provNotKsortedArrayIdenticalToSucceeds
+     *
+     * @param mixed $actual
+     *
+     * @psalm-param array $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testAssertNotKsortedArrayIdenticalToSucceeds(array $expect, $actual): void
+    {
+        self::assertNotKsortedArrayIdenticalTo($expect, $actual);
+    }
+
+    /**
+     * @dataProvider provKsortedArrayNotEqualTo
+     * @dataProvider provKsortedArrayEqualButNotIdenticalTo
+     *
+     * @param mixed $actual
+     *
+     * @psalm-param array $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testAssertKsortedArrayIdenticalToFails(array $expect, $actual, string $string): void
     {
         $regexp = '/^Lorem ipsum.\n'.
-            'Failed asserting that .+ is an array '.
-            'identical to specified one when ksorted./';
+            'Failed asserting that '.preg_quote($string, '/').' is an array '.
+            'identical to the specified one when ksorted./';
         self::expectException(ExpectationFailedException::class);
         self::expectExceptionMessageMatches($regexp);
 
         self::assertKsortedArrayIdenticalTo($expect, $actual, 'Lorem ipsum.');
     }
 
-    #[DataProvider('provKsortedArrayNotEqualTo')]
-    public function testNotKsortedArrayIdenticalToSucceeds(array $expect, mixed $actual, string $string)
-    {
-        self::assertThat($actual, self::logicalNot(self::ksortedArrayIdenticalTo($expect)));
-    }
-
-    #[DataProvider('provKsortedArrayNotEqualTo')]
-    #[DataProvider('provKsortedArrayEqualButNotIdenticalTo')]
-    public function testAssertNotKsortedArrayIdenticalToSucceeds(array $expect, mixed $actual, string $string)
-    {
-        self::assertNotKsortedArrayIdenticalTo($expect, $actual);
-    }
-
-    #[DataProvider('provKsortedArrayIdenticalTo')]
-    public function testAssertNotKsortedArrayIdenticalToFails(array $expect, mixed $actual, string $string)
+    /**
+     * @dataProvider provKsortedArrayIdenticalTo
+     *
+     * @param mixed $actual
+     *
+     * @psalm-param array $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testAssertNotKsortedArrayIdenticalToFails(array $expect, $actual, string $string): void
     {
         $regexp = '/^Lorem ipsum.\n'.
-            'Failed asserting that .+ fails to be an array '.
-            'identical to specified one when ksorted./';
+            'Failed asserting that '.preg_quote($string, '/').' fails to be an array '.
+            'identical to the specified one when ksorted./';
         self::expectException(ExpectationFailedException::class);
         self::expectExceptionMessageMatches($regexp);
 

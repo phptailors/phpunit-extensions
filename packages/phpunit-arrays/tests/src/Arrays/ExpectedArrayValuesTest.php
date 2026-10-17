@@ -10,39 +10,45 @@
 
 namespace Tailors\PHPUnit\Arrays;
 
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\Small;
-use Tailors\PHPUnit\Selector\ArrayValueSelector;
-use Tailors\PHPUnit\Selector\ValueSelectorWrapperInterface;
+use Tailors\PHPUnit\Result\ResultInterface;
 
 /**
+ * @small
+ *
+ * @covers \Tailors\PHPUnit\Arrays\AbstractArrayValuesTestCase
+ * @covers \Tailors\PHPUnit\Arrays\ExpectedArrayValues
+ * @covers \Tailors\PHPUnit\Arrays\ExpectedArrayValuesTest
+ *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-#[CoversClass(AbstractArrayValues::class)]
-#[CoversClass(ArrayValuesTestCase::class)]
-#[CoversClass(ExpectedArrayValues::class)]
-#[Small]
-final class ExpectedArrayValuesTest extends ArrayValuesTestCase
+final class ExpectedArrayValuesTest extends AbstractArrayValuesTestCase
 {
-    public static function getValuesClass(): string
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    final public function testImplementsResultInterface(): void
+    {
+        self::assertInstanceOf(ResultInterface::class, new ExpectedArrayValues([]));
+    }
+
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    final public function testExpected(): void
+    {
+        self::assertSame(false, (new ExpectedArrayValues([]))->actual());
+    }
+
+    /**
+     * @psalm-pure
+     *
+     * @psalm-return class-string<ExpectedArrayValues>
+     */
+    public static function getClass(): string
     {
         return ExpectedArrayValues::class;
-    }
-
-    public function testImplementsValueSelectorWrapperInterface(): void
-    {
-        $this->assertInstanceOf(ValueSelectorWrapperInterface::class, new ExpectedArrayValues());
-    }
-
-    public function testGetValueSelector(): void
-    {
-        $values = new ExpectedArrayValues();
-        $selector = $values->getValueSelector();
-
-        $this->assertInstanceOf(ArrayValueSelector::class, $selector);
-        $this->assertSame($selector, $values->getValueSelector());
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

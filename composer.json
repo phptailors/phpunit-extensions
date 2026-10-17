@@ -2,6 +2,7 @@
     "name": "phptailors/phpunit-extensions",
     "description": "Extensions to PHPUnit framework",
     "license": "MIT",
+    "type": "library",
     "authors": [
         {
             "name": "Paweł Tomulik",
@@ -18,14 +19,33 @@
         "phpunit/phpunit": "^11.0.1",
         "sebastian/cli-parser": ">=1.0"
     },
+    "replace": {
+        "phptailors/phpunit-arrays": "3.1.x-dev",
+        "phptailors/phpunit-common": "3.1.x-dev",
+        "phptailors/phpunit-inheritance": "3.1.x-dev",
+        "phptailors/phpunit-methods": "3.1.x-dev",
+        "phptailors/phpunit-properties": "3.1.x-dev",
+        "phptailors/phpunit-recursive": "self.version",
+        "phptailors/phpunit-regexp": "3.1.x-dev"
+    },
+    "conflict": {
+        "nikic/php-parser": "< 4.13.2"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "Tailors\\PHPUnit\\": [
                 "packages/phpunit-arrays/src/",
+                "packages/phpunit-arrays/utils/src/",
                 "packages/phpunit-common/src/",
+                "packages/phpunit-common/utils/src/",
                 "packages/phpunit-inheritance/src/",
                 "packages/phpunit-methods/src/",
                 "packages/phpunit-properties/src/",
+                "packages/phpunit-properties/utils/src/",
+                "packages/phpunit-recursive/src/",
+                "packages/phpunit-recursive/utils/src/",
                 "packages/phpunit-regexp/src/"
             ]
         }
@@ -38,9 +58,15 @@
                 "packages/phpunit-inheritance/tests/src/",
                 "packages/phpunit-methods/tests/src/",
                 "packages/phpunit-properties/tests/src/",
+                "packages/phpunit-recursive/tests/src/",
                 "packages/phpunit-regexp/tests/src/"
             ],
             "Tailors\\PHPUnit\\Docs\\Behat\\": "docs/sphinx/behat/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "bamarni/composer-bin-plugin": true
         }
     },
     "extra": {
@@ -49,23 +75,5 @@
             "forward-command": false,
             "target-directory": "vendor-bin"
         }
-    },
-    "config": {
-        "allow-plugins": {
-            "bamarni/composer-bin-plugin": true
-        }
-    },
-    "replace": {
-        "phptailors/phpunit-arrays": "3.1.x-dev",
-        "phptailors/phpunit-common": "3.1.x-dev",
-        "phptailors/phpunit-inheritance": "3.1.x-dev",
-        "phptailors/phpunit-methods": "3.1.x-dev",
-        "phptailors/phpunit-properties": "3.1.x-dev",
-        "phptailors/phpunit-regexp": "3.1.x-dev"
-    },
-    "conflict": {
-        "nikic/php-parser": "< 4.13.2"
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    }
 }

@@ -11,17 +11,12 @@
 namespace Tailors\PHPUnit\Common;
 
 /**
- * An array of actual or expected values.
- *
  * @internal This interface is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
 interface TagInterface
 {
-    /**
-     * @psalm-return non-empty-string
-     */
     public function tag(): string;
 }
 

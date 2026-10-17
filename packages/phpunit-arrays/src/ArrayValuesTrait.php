@@ -10,19 +10,24 @@
 
 namespace Tailors\PHPUnit;
 
-use Tailors\PHPUnit\Arrays\ExpectedArrayValues;
-use Tailors\PHPUnit\Values\ValuesInterface;
+use Tailors\PHPUnit\Arrays\ArrayValuesSelection;
+use Tailors\PHPUnit\Common\TypesInterface;
 
+/**
+ * @psalm-import-type ArrayLike from TypesInterface
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
+ */
 trait ArrayValuesTrait
 {
     /**
      * Returns an object representing array array values.
      *
-     * @param array|\Traversable $array
+     * @psalm-param ArrayLike $array
      */
-    public static function arrayValues($array): ValuesInterface
+    public static function arrayValues(iterable $array): ArrayValuesSelection
     {
-        return new ExpectedArrayValues($array);
+        return new ArrayValuesSelection($array);
     }
 }
 

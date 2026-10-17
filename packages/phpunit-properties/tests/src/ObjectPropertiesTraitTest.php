@@ -10,55 +10,66 @@
 
 namespace Tailors\PHPUnit;
 
-use PHPUnit\Framework\Attributes\CoversTrait;
-use PHPUnit\Framework\Attributes\DataProvider;
-use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
-use Tailors\PHPUnit\Properties\ExpectedObjectProperties;
+use Tailors\PHPUnit\Common\TypesInterface;
+use Tailors\PHPUnit\Properties\ObjectPropertiesSelection;
 
 /**
+ * @small
+ *
+ * @covers \Tailors\PHPUnit\ObjectPropertiesTrait
+ * @covers \Tailors\PHPUnit\ObjectPropertiesTraitTest
+ *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ObjectPropertiesArgs = list{0: array|\Traversable}
+ * @psalm-import-type ArrayLike from TypesInterface
+ *
+ * @psalm-type ObjectPropertiesArgs = list{0: ArrayLike}
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
-#[CoversTrait(ObjectPropertiesTrait::class)]
-#[Small]
 final class ObjectPropertiesTraitTest extends TestCase
 {
     use ObjectPropertiesTrait;
 
     /**
      * @psalm-return iterable<string,array{args: ObjectPropertiesArgs, expect: mixed}>
+     *
+     * @codeCoverageIgnore
      */
     public static function provExpectObjectProperties(): iterable
     {
-        yield 'ObjectPropertiesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'args'   => [[]],
             'expect' => [],
         ];
 
-        yield 'ObjectPropertiesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'args'   => [['a' => 'A']],
             'expect' => ['a' => 'A'],
         ];
 
-        yield 'ObjectPropertiesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'args'   => [new \ArrayObject(['o' => 'O'])],
             'expect' => ['o' => 'O'],
         ];
     }
 
     /**
+     * @dataProvider provExpectObjectProperties
+     *
+     * @param mixed $expect
+     *
      * @psalm-param ObjectPropertiesArgs $args
-     * @psalm-param mixed                $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    #[DataProvider('provExpectObjectProperties')]
-    public function testExpectedObjectProperties(array $args, mixed $expect): void
+    public function testExpectedObjectProperties(array $args, $expect): void
     {
         $values = self::objectProperties(...$args);
-        self::assertInstanceOf(ExpectedObjectProperties::class, $values);
+        self::assertInstanceOf(ObjectPropertiesSelection::class, $values);
         self::assertSame($expect, (array) $values);
     }
 }

@@ -15,12 +15,12 @@ namespace Tailors\PHPUnit\Preg;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final readonly class CapturesFilter implements CapturesFilterInterface
+final class CapturesFilter implements CapturesFilterInterface
 {
     /**
      * @param int $flags PREG_* flags such as PREG_UNMATCHED_AS_NULL or PREG_OFFSET_CAPTURE
      */
-    public function __construct(private int $flags = 0) {}
+    public function __construct(private readonly int $flags = 0) {}
 
     /**
      * Filter-out all elements of $array with $this->accepts().
@@ -46,25 +46,31 @@ final readonly class CapturesFilter implements CapturesFilterInterface
      *      - $value[0] is a string or PREG_UNMATCHED_AS_NULL is set and $value is null, and
      *      - $value[1] is an integer,
      *
+     * @param mixed $value
+     *
      * @psalm-assert-if-true string|null|array{0:string|null,1:int} $value
      */
-    public function accepts(mixed $value): bool
+    public function accepts($value): bool
     {
         return $this->isScalarCapture($value) || $this->isArrayCapture($value);
     }
 
     /**
+     * @param mixed $value
+     *
      * @psalm-assert-if-true string|null $value
      */
-    private function isScalarCapture(mixed $value): bool
+    private function isScalarCapture($value): bool
     {
         return is_string($value) || (null === $value && (0 !== ($this->flags & PREG_UNMATCHED_AS_NULL)));
     }
 
     /**
+     * @param mixed $value
+     *
      * @psalm-assert-if-true array{0:string|null,1:int} $value
      */
-    private function isArrayCapture(mixed $value): bool
+    private function isArrayCapture($value): bool
     {
         if (!is_array($value) || (0 === ($this->flags & PREG_OFFSET_CAPTURE))) {
             return false;

@@ -28,7 +28,7 @@ namespace Tailors\PHPUnit\Methods;
  *                       |  self::NOT_PROTECTED
  *                       |  self::NOT_PRIVATE )
  */
-final readonly class MethodSpec implements MethodSpecInterface
+final class MethodSpec implements MethodSpecInterface
 {
     public const IS_STATIC = \ReflectionMethod::IS_STATIC;
     public const IS_PUBLIC = \ReflectionMethod::IS_PUBLIC;
@@ -59,11 +59,11 @@ final readonly class MethodSpec implements MethodSpecInterface
      * @psalm-param non-empty-string $name
      */
     public function __construct(
-        private string $name,
-        private ?bool $static = null,
-        private ?int $access = null,
-        private ?bool $abstract = null,
-        private ?bool $final = null
+        private readonly string $name,
+        private readonly ?bool $static = null,
+        private readonly ?int $access = null,
+        private readonly ?bool $abstract = null,
+        private readonly ?bool $final = null
     ) {}
 
     /**

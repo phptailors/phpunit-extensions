@@ -10,77 +10,153 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\DataProvider;
-use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Constraint\Constraint;
-use Tailors\PHPUnit\Recursive\RecursiveConstraintTestCase;
+use Tailors\PHPUnit\Common\TypesInterface;
+use Tailors\PHPUnit\InvalidArgumentException;
+use Tailors\PHPUnit\Properties\AbstractPropertiesConstraintTestCase;
 
 /**
+ * @small
+ *
+ * @covers \Tailors\PHPUnit\Constraint\ObjectPropertiesEqualTo
+ * @covers \Tailors\PHPUnit\Constraint\ObjectPropertiesEqualToTest
+ * @covers \Tailors\PHPUnit\Properties\AbstractPropertiesConstraintTestCase
+ *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-import-type ArrayLike from TypesInterface
+ *
+ * @psalm-type ConstraintClass = ObjectPropertiesEqualTo
+ * @psalm-type CtorArgs        = list{ArrayLike}
+ *
+ * @template-extends AbstractPropertiesConstraintTestCase<ObjectPropertiesEqualTo, list{ArrayLike}>
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
-#[CoversClass(ObjectPropertiesEqualTo::class)]
-#[CoversClass(PropertiesConstraintTestCase::class)]
-#[CoversClass(ProvObjectPropertiesTrait::class)]
-#[CoversClass(RecursiveConstraintTestCase::class)]
-#[Small]
-final class ObjectPropertiesEqualToTest extends PropertiesConstraintTestCase
+final class ObjectPropertiesEqualToTest extends AbstractPropertiesConstraintTestCase
 {
     use ProvObjectPropertiesTrait;
 
-    public static function subject(): string
+    /**
+     * @codeCoverageIgnore Called from providers only.
+     */
+    public static function complement(): string
     {
-        return 'an object';
+        return 'an object with properties equal to the specified ones';
     }
 
-    public static function selectable(): string
+    /**
+     * @throws InvalidArgumentException
+     *
+     * @psalm-param CtorArgs $ctorArgs
+     *
+     * @psalm-return ConstraintClass
+     */
+    public static function createConstraint(array $ctorArgs): Constraint
     {
-        return 'properties';
+        return ObjectPropertiesEqualTo::create(...$ctorArgs);
     }
 
-    public static function adjective(): string
+    /**
+     * @psalm-return iterable<string, array{
+     *      ctorArgs: CtorArgs,
+     *      actual: mixed
+     * }>
+     *
+     * @codeCoverageIgnore
+     */
+    public static function provConstraintEvaluationSucceeds(): iterable
     {
-        return 'equal to';
+        $cases = (function (): iterable {
+            yield from self::provObjectPropertiesIdenticalTo();
+
+            yield from self::provObjectPropertiesEqualButNotIdenticalTo();
+        })();
+
+        foreach ($cases as $key => $case) {
+            yield $key => [
+                'ctorArgs' => [$case['expect']],
+                'actual'   => $case['actual'],
+            ];
+        }
     }
 
-    public static function getConstraintClass(): string
+    /**
+     * @psalm-return iterable<string, array{
+     *      ctorArgs: CtorArgs,
+     *      actual: mixed,
+     *      message: string
+     * }>
+     *
+     * @codeCoverageIgnore
+     */
+    final public static function provConstraintEvaluationFails(): iterable
     {
-        return ObjectPropertiesEqualTo::class;
+        $cases = (function (): iterable {
+            yield from self::provObjectPropertiesNotEqualTo();
+
+            yield from self::provObjectPropertiesNotEqualToNonObject();
+        })();
+
+        foreach ($cases as $key => $case) {
+            yield $key => [
+                'ctorArgs' => [$case['expect']],
+                'actual'   => $case['actual'],
+                'message'  => self::message($case['string']),
+            ];
+        }
     }
 
-    public static function createConstraint(...$args): Constraint
+    /**
+     * @psalm-return iterable<string, array{
+     *      ctorArgs: CtorArgs,
+     *      actual: mixed
+     * }>
+     *
+     * @codeCoverageIgnore
+     */
+    public static function provNotConstraintEvaluationSucceeds(): iterable
     {
-        return ObjectPropertiesEqualTo::create(...$args);
+        $cases = (function (): iterable {
+            yield from self::provObjectPropertiesNotEqualTo();
+
+            yield from self::provObjectPropertiesNotEqualToNonObject();
+        })();
+
+        foreach ($cases as $key => $case) {
+            yield $key => [
+                'ctorArgs' => [$case['expect']],
+                'actual'   => $case['actual'],
+            ];
+        }
     }
 
-    #[DataProvider('provObjectPropertiesIdenticalTo')]
-    #[DataProvider('provObjectPropertiesEqualButNotIdenticalTo')]
-    public function testObjectPropertiesEqualToSucceeds(array $expect, mixed $actual, string $string): void
+    /**
+     * @psalm-return iterable<string, array{
+     *      ctorArgs: CtorArgs,
+     *      actual: mixed,
+     *      message: string
+     * }>
+     *
+     * @codeCoverageIgnore
+     */
+    public static function provNotConstraintEvaluationFails(): iterable
     {
-        parent::examineValuesMatchSucceeds($expect, $actual);
-    }
+        $cases = (function (): iterable {
+            yield from self::provObjectPropertiesIdenticalTo();
 
-    #[DataProvider('provObjectPropertiesNotEqualTo')]
-    #[DataProvider('provObjectPropertiesNotEqualToNonObject')]
-    public function testObjectPropertiesEqualToFails(array $expect, mixed $actual, string $string): void
-    {
-        parent::examineValuesMatchFails($expect, $actual, $string);
-    }
+            yield from self::provObjectPropertiesEqualButNotIdenticalTo();
+        })();
 
-    #[DataProvider('provObjectPropertiesNotEqualTo')]
-    #[DataProvider('provObjectPropertiesNotEqualToNonObject')]
-    public function testNotObjectPropertiesEqualToSucceeds(array $expect, mixed $actual, string $string): void
-    {
-        parent::examineNotValuesMatchSucceeds($expect, $actual);
-    }
-
-    #[DataProvider('provObjectPropertiesIdenticalTo')]
-    #[DataProvider('provObjectPropertiesEqualButNotIdenticalTo')]
-    public function testNotObjectPropertiesEqualToFails(array $expect, mixed $actual, string $string): void
-    {
-        parent::examineNotValuesMatchFails($expect, $actual, $string);
+        foreach ($cases as $key => $case) {
+            yield $key => [
+                'ctorArgs' => [$case['expect']],
+                'actual'   => $case['actual'],
+                'message'  => self::message($case['string'], true),
+            ];
+        }
     }
 }
 

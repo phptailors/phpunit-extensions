@@ -12,6 +12,7 @@ $finder = PhpCsFixer\Finder::create()
     ->files()
     ->in(__DIR__ . '/packages/*/src')
     ->in(__DIR__ . '/packages/*/tests')
+    ->in(__DIR__ . '/packages/*/utils/src')
     ->name('*.php')
 ;
 
@@ -34,7 +35,7 @@ return $config
         'psr_autoloading' => true,
         'binary_operator_spaces' => [
             'operators' => [
-                '=>' => 'align_single_space_minimal',
+                '=>' => 'align_single_space_minimal_by_scope',
                 '='  => 'single_space'
             ],
         ],

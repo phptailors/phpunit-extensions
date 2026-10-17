@@ -10,21 +10,43 @@
 
 namespace Tailors\PHPUnit\Properties;
 
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\Small;
+use Tailors\PHPUnit\Result\ResultInterface;
 
 /**
+ * @small
+ *
+ * @covers \Tailors\PHPUnit\Properties\AbstractClassPropertiesTestCase
+ * @covers \Tailors\PHPUnit\Properties\ActualClassProperties
+ * @covers \Tailors\PHPUnit\Properties\ActualClassPropertiesTest
+ *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-#[CoversClass(AbstractClassProperties::class)]
-#[CoversClass(ActualClassProperties::class)]
-#[CoversClass(ClassPropertiesTestCase::class)]
-#[Small]
-final class ActualClassPropertiesTest extends ClassPropertiesTestCase
+final class ActualClassPropertiesTest extends AbstractClassPropertiesTestCase
 {
-    public static function getValuesClass(): string
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    final public function testImplementsResultInterface(): void
+    {
+        self::assertInstanceOf(ResultInterface::class, new ActualClassProperties([]));
+    }
+
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    final public function testActual(): void
+    {
+        self::assertSame(true, (new ActualClassProperties([]))->actual());
+    }
+
+    /**
+     * @psalm-pure
+     *
+     * @psalm-return class-string<ActualClassProperties>
+     */
+    public static function getClass(): string
     {
         return ActualClassProperties::class;
     }

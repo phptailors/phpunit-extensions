@@ -37,7 +37,7 @@ final class MethodSpecFactory implements MethodSpecFactoryInterface
      *
      * @throws MethodSpecSyntaxError
      */
-    public function fromString(string $string): MethodSpec
+    public function fromString(string $string): MethodSpecInterface
     {
         if (preg_match('/^'.self::RE_NAME.'$/', $string, $matches)) {
             /** @psalm-var non-empty-string */
@@ -92,7 +92,8 @@ final class MethodSpecFactory implements MethodSpecFactoryInterface
     {
         foreach ($expressions as $offset => $expression) {
             if (preg_match('/^'.$expression.'\b/', $string, $matches)) {
-                $string = substr($string, strlen($matches[0]));
+                /** @psalm-suppress RedundantCastGivenDocblockType */
+                $string = (string) substr($string, strlen($matches[0]));
                 unset($expressions[$offset]);
 
                 return true;

@@ -10,45 +10,61 @@
 
 namespace Tailors\PHPUnit;
 
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\DataProvider;
-use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 
 /**
+ * @small
+ *
+ * @covers \Tailors\PHPUnit\InvalidReturnValueException
+ * @covers \Tailors\PHPUnit\InvalidReturnValueExceptionTest
+ *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type FunctionSpec = array{0:object|string,1:string}|\Closure|string|int|null
  */
-#[CoversClass(InvalidReturnValueException::class)]
-#[Small]
 final class InvalidReturnValueExceptionTest extends TestCase
 {
+    /**
+     * @psalm-return iterable<string, list{FunctionSpec, string, string}>
+     *
+     * @codeCoverageIgnore
+     */
     public static function provFromExpectedAndActual(): iterable
     {
-        yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'sprintf', 'a string', 'integer',
         ];
 
-        yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'inexistentFunction', 'a string', 'integer',
         ];
 
-        yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
-            fn (string $s): string => 2, 'a string', 'integer',
+        yield basename(__FILE__).':'.__LINE__ => [
+            /** @psalm-suppress InvalidReturnStatement,InvalidReturnType */
+            fn (): string => 2, 'a string', 'integer',
         ];
 
-        yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             123, 'a string', 'integer',
         ];
 
-        yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             null, 'a string', 'integer',
         ];
     }
 
-    #[DataProvider('provFromExpectedAndActual')]
-    public function testFromExpectedAndActual(mixed $function, string $expected, string $actual): void
+    /**
+     * @dataProvider provFromExpectedAndActual
+     *
+     * @param mixed $function
+     *
+     * @psalm-param FunctionSpec $function
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testFromExpectedAndActual($function, string $expected, string $actual): void
     {
         $name = self::getFunctionName($function);
         $message = sprintf('Return value of %s() must be %s, %s returned', $name, $expected, $actual);
@@ -57,35 +73,50 @@ final class InvalidReturnValueExceptionTest extends TestCase
         self::assertSame($message, $exception->getMessage());
     }
 
+    /**
+     * @psalm-return iterable<string, list{FunctionSpec, string, mixed}>
+     *
+     * @codeCoverageIgnore
+     */
     public static function provFromExpectedTypeAndActualValue(): iterable
     {
-        yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'sprintf', 'string', 123,
         ];
 
-        yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'inexistentFunction', 'string', 123,
         ];
 
-        yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             [self::class, 'provFromExpectedTypeAndActualValue'], 'string', null,
         ];
 
-        yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             [self::class, 'inexistentMethod'], 'string', null,
         ];
 
-        yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             '', 'string', new \stdClass(),
         ];
 
-        yield 'InvalidReturnValueExceptionTest.php:'.__LINE__ => [
-            fn (string $s): string => 2, 'a string', 2,
+        yield basename(__FILE__).':'.__LINE__ => [
+            /** @psalm-suppress InvalidReturnStatement,InvalidReturnType */
+            fn (): string => 2, 'a string', 2,
         ];
     }
 
-    #[DataProvider('provFromExpectedTypeAndActualValue')]
-    public function testFromExpectedTypeAndActualValue(mixed $function, string $expected, mixed $actual): void
+    /**
+     * @dataProvider provFromExpectedTypeAndActualValue
+     *
+     * @param mixed $function
+     * @param mixed $actual
+     *
+     * @psalm-param FunctionSpec $function
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testFromExpectedTypeAndActualValue($function, string $expected, $actual): void
     {
         $name = self::getFunctionName($function);
         $actualType = is_object($actual) ? 'object' : gettype($actual);
@@ -95,7 +126,12 @@ final class InvalidReturnValueExceptionTest extends TestCase
         self::assertSame($message, $exception->getMessage());
     }
 
-    protected static function getFunctionName(mixed $function): string
+    /**
+     * @param mixed $function
+     *
+     * @psalm-param FunctionSpec $function
+     */
+    protected static function getFunctionName($function): string
     {
         if (is_string($function)) {
             $name = $function;
