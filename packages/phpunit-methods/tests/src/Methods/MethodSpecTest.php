@@ -489,10 +489,8 @@ final class MethodSpecTest extends TestCase
      */
     private static function makeMethod(TestCase $test, string $name, int $modifiers = self::IS_PUBLIC): MockObject
     {
-        $stub = $test->getMockBuilder(\stdClass::class)
-            ->addMethods([$name])
-            ->getMock()
-        ;
+        $stub = $test->createMock(DummyClassWithMethodFoo::class);
+
         $stub->expects($test->any())
             ->method($name)
         ;
