@@ -7,7 +7,7 @@ use Rector\DeadCode\Rector\ClassMethod\RemoveUselessReturnTagRector;
 use Rector\DeadCode\Rector\Property\RemoveUselessReadOnlyTagRector;
 use Rector\DeadCode\Rector\Property\RemoveUselessVarTagRector;
 use Rector\PHPUnit\PHPUnit60\Rector\ClassMethod\AddDoesNotPerformAssertionToNonAssertingTestRector;
-use Rector\PHPUnit\Set\PHPUnitSetList;
+use Rector\Php74\Rector\If_\IfToNullCoalescingAssignRector;
 use Rector\Php84\Rector\Foreach_\ForeachToArrayAllRector;
 
 return RectorConfig::configure()
@@ -16,16 +16,7 @@ return RectorConfig::configure()
         __DIR__.'/packages/*/tests/src/',
         __DIR__.'/packages/*/src/',
     ])
-    ->withPreparedSets(
-    )
-    ->withSets([
-        PHPUnitSetList::PHPUNIT_60,
-        PHPUnitSetList::PHPUNIT_70,
-        PHPUnitSetList::PHPUNIT_80,
-        PHPUnitSetList::PHPUNIT_90,
-        PHPUnitSetList::PHPUNIT_100,
-        PHPUnitSetList::PHPUNIT_110,
-    ])
+    ->withComposerBased(phpunit: true)
     ->withPhpSets(
         php84: true
     )
@@ -48,6 +39,8 @@ return RectorConfig::configure()
             // we need the $_value to be passed by reference, but array_all() doesn't handle this.
             __DIR__.'/packages/phpunit-common/src/Common/Exporter.php',
         ],
+        // Leave if(null === ...) for more precise line code coverage
+        IfToNullCoalescingAssignRector::class,
     ])
     ->withRules([
         RemoveUselessParamTagRector::class,

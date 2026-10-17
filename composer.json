@@ -1,5 +1,6 @@
 {
     "name": "phptailors/phpunit-extensions",
+    "type": "library",
     "description": "Extensions to PHPUnit framework",
     "license": "MIT",
     "authors": [
