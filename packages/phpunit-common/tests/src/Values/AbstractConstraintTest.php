@@ -87,9 +87,9 @@ final class AbstractConstraintTest extends TestCase
 
     public function testConstruct(): void
     {
-        $expected = $this->createMock(ValuesInterface::class);
-        $comparator = $this->createMock(ComparatorInterface::class);
-        $valueSelector = $this->createMock(ValueSelectorInterface::class);
+        $expected = $this->createStub(ValuesInterface::class);
+        $comparator = $this->createStub(ComparatorInterface::class);
+        $valueSelector = $this->createStub(ValueSelectorInterface::class);
 
         $constraint = self::createDummyConstraint($this, $expected, $comparator, $valueSelector);
 
@@ -98,7 +98,7 @@ final class AbstractConstraintTest extends TestCase
 
     public function testToString(): void
     {
-        $expected = $this->createMock(ValuesInterface::class);
+        $expected = $this->createStub(ValuesInterface::class);
         $comparator = $this->createMock(ComparatorInterface::class);
 
         $valueSelector = $this->createMock(ValueSelectorInterface::class);
