@@ -180,7 +180,7 @@ final class RecursiveUnwrapperTest extends TestCase
                         'baz' => 'BAZ',
                         $tagk => $tagg,
                     ],
-                    0 => [
+                    0     => [
                         'fred' => 'FRED',
                         $tagk  => $tagg,
                     ],
@@ -206,7 +206,7 @@ final class RecursiveUnwrapperTest extends TestCase
                         'baz' => 'BAZ',
                         $tagk => $tagg,
                     ],
-                    0 => [
+                    0     => [
                         'fred' => 'FRED',
                         $tagk  => $tagg,
                     ],
