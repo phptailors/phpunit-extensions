@@ -10,22 +10,23 @@
 
 namespace Tailors\PHPUnit\Common;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\ResultFactory\DummyResultFactory;
 use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\Common\DummyArrayExpectations
- * @covers \Tailors\PHPUnit\Common\DummyArrayExpectationsTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-import-type ArrayLike from TypesInterface
  */
+#[CoversClass(DummyArrayExpectations::class)]
+#[CoversClass(DummyArrayExpectationsTest::class)]
+#[Small]
 final class DummyArrayExpectationsTest extends TestCase
 {
     /**
@@ -33,7 +34,7 @@ final class DummyArrayExpectationsTest extends TestCase
      */
     public function testExtendsAbstractArraySpec(): void
     {
-        $resultFactory = $this->createMock(ResultFactoryInterface::class);
+        $resultFactory = $this->createStub(ResultFactoryInterface::class);
         $this->assertInstanceOf(AbstractArrayExpectations::class, new DummyArrayExpectations($resultFactory, []));
     }
 
@@ -59,8 +60,6 @@ final class DummyArrayExpectationsTest extends TestCase
     }
 
     /**
-     * @dataProvider provDummyAbstractArraySpec
-     *
      * @psalm-template SupportedInput
      *
      * @psalm-param ResultFactoryInterface<SupportedInput> $factory
@@ -68,6 +67,7 @@ final class DummyArrayExpectationsTest extends TestCase
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provDummyAbstractArraySpec')]
     public function testDummyAbstractArraySpec(ResultFactoryInterface $factory, iterable $array): void
     {
         $dummyArraySpec = new DummyArrayExpectations($factory, $array);

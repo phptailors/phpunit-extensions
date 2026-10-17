@@ -10,17 +10,15 @@
 
 namespace Tailors\PHPUnit\Arrays;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\ResultFactory\AbstractArrayResultFactory;
 use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\Arrays\KsortedArrayFactory
- * @covers \Tailors\PHPUnit\Arrays\KsortedArrayFactoryTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
@@ -31,6 +29,9 @@ use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
+#[CoversClass(KsortedArrayFactory::class)]
+#[CoversClass(KsortedArrayFactoryTest::class)]
+#[Small]
 final class KsortedArrayFactoryTest extends TestCase
 {
     /**
@@ -134,13 +135,12 @@ final class KsortedArrayFactoryTest extends TestCase
     }
 
     /**
-     * @dataProvider provGetResult
-     *
      * @psalm-param ArrayLike            $array
      * @psalm-param GetResultExpectArray $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provGetResult')]
     public function testGetResult(bool $actual, iterable $array, array $expect): void
     {
         $factory = new KsortedArrayFactory();

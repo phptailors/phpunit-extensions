@@ -10,6 +10,9 @@
 
 namespace Tailors\PHPUnit\ResultFactory;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\InvalidArgumentException;
@@ -17,11 +20,6 @@ use Tailors\PHPUnit\Result\DummyArrayResult;
 use Tailors\PHPUnit\Result\ResultInterface;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\ResultFactory\AbstractArrayResultFactory
- * @covers \Tailors\PHPUnit\ResultFactory\AbstractArrayResultFactoryTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
@@ -32,6 +30,9 @@ use Tailors\PHPUnit\Result\ResultInterface;
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
+#[CoversClass(AbstractArrayResultFactory::class)]
+#[CoversClass(AbstractArrayResultFactoryTest::class)]
+#[Small]
 final class AbstractArrayResultFactoryTest extends TestCase
 {
     /**
@@ -93,13 +94,12 @@ final class AbstractArrayResultFactoryTest extends TestCase
     }
 
     /**
-     * @dataProvider provSupports
-     *
      * @param mixed $input
      * @param mixed $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provSupports')]
     public function testSupports($input, $expect): void
     {
         $factory = $this->createStub(AbstractArrayResultFactory::class);
@@ -145,14 +145,13 @@ final class AbstractArrayResultFactoryTest extends TestCase
     }
 
     /**
-     * @dataProvider provGetResult
-     *
      * @param mixed $expect
      *
      * @psalm-param GetResultArgs $args
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provGetResult')]
     public function testGetResult(array $args, $expect): void
     {
         $factory = self::getObject();

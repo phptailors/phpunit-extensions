@@ -10,6 +10,9 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
@@ -17,17 +20,15 @@ use Tailors\PHPUnit\Examples\Inheritance\ExampleTrait;
 use Tailors\PHPUnit\InvalidArgumentException;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\Constraint\ImplementsInterface
- * @covers \Tailors\PHPUnit\Constraint\ImplementsInterfaceTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-type ExpectExceptionArray = array{exception: class-string<\Exception>, message: string}
  */
+#[CoversClass(ImplementsInterface::class)]
+#[CoversClass(ImplementsInterfaceTest::class)]
+#[Small]
 final class ImplementsInterfaceTest extends TestCase
 {
     use InheritanceConstraintTestTrait;
@@ -186,12 +187,11 @@ final class ImplementsInterfaceTest extends TestCase
     }
 
     /**
-     * @dataProvider provImplementsInterface
-     *
      * @param mixed $subject
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provImplementsInterface')]
     public function testConstraintSucceeds(string $interface, $subject): void
     {
         $constraint = ImplementsInterface::create($interface);
@@ -200,12 +200,11 @@ final class ImplementsInterfaceTest extends TestCase
     }
 
     /**
-     * @dataProvider provNotImplementsInterface
-     *
      * @param mixed $subject
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provNotImplementsInterface')]
     public function testConstraintFails(string $interface, $subject, string $message): void
     {
         $constraint = ImplementsInterface::create($interface);
@@ -217,10 +216,9 @@ final class ImplementsInterfaceTest extends TestCase
     }
 
     /**
-     * @dataProvider provThrowsInvalidArgumentException
-     *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provThrowsInvalidArgumentException')]
     public function testThrowsInvalidArgumentException(string $argument, string $message): void
     {
         self::expectException(InvalidArgumentException::class);

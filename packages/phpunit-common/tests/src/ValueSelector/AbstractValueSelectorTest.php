@@ -10,15 +10,13 @@
 
 namespace Tailors\PHPUnit\ValueSelector;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\InvalidArgumentException;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\ValueSelector\AbstractValueSelector
- * @covers \Tailors\PHPUnit\ValueSelector\AbstractValueSelectorTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
@@ -34,6 +32,9 @@ use Tailors\PHPUnit\InvalidArgumentException;
  * @psalm-type SubjectTestCall    = array{return: mixed}
  * @psalm-type SelectableTestCall = array{return: mixed}
  */
+#[CoversClass(AbstractValueSelector::class)]
+#[CoversClass(AbstractValueSelectorTest::class)]
+#[Small]
 final class AbstractValueSelectorTest extends TestCase
 {
     /**
@@ -150,8 +151,6 @@ final class AbstractValueSelectorTest extends TestCase
     }
 
     /**
-     * @dataProvider provAbstractValueSelector
-     *
      * @psalm-param CtorArgs            $ctorArgs
      * @psalm-param ?SupportsTestCall   $supports
      * @psalm-param ?SelectTestCall     $select
@@ -160,6 +159,7 @@ final class AbstractValueSelectorTest extends TestCase
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provAbstractValueSelector')]
     public function testAbstractValueSelector(
         array $ctorArgs,
         ?array $supports = null,

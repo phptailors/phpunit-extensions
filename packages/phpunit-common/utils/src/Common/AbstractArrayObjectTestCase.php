@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit\Common;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -74,14 +75,13 @@ abstract class AbstractArrayObjectTestCase extends TestCase
     }
 
     /**
-     * @dataProvider provArrayObject
-     *
      * @param mixed $expect
      *
      * @psalm-param CtorArgs $ctorArgs
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provArrayObject')]
     final public function testArrayObject(array $ctorArgs, $expect): void
     {
         $object = static::getObject($ctorArgs);

@@ -10,6 +10,9 @@
 
 namespace Tailors\PHPUnit\RecursiveResultFactory;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\ArraySpec\DummyResultFactoryAndValueSelectorWrapper;
 use Tailors\PHPUnit\ArraySpec\DummyResultFactoryWrapper;
@@ -20,11 +23,6 @@ use Tailors\PHPUnit\ResultFactory\DummyResultFactory;
 use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactory
- * @covers \Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactoryTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
@@ -33,6 +31,9 @@ use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
+#[CoversClass(RecursiveResultFactory::class)]
+#[CoversClass(RecursiveResultFactoryTest::class)]
+#[Small]
 final class RecursiveResultFactoryTest extends TestCase
 {
     /**
@@ -288,8 +289,6 @@ final class RecursiveResultFactoryTest extends TestCase
     }
 
     /**
-     * @dataProvider provSupports
-     *
      * @param mixed $input
      * @param mixed $expect
      *
@@ -297,6 +296,7 @@ final class RecursiveResultFactoryTest extends TestCase
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provSupports')]
     public function testSupports(iterable $array, $input, $expect): void
     {
         $expectedResultVisitor = $this->createStub(RecursiveExpectedResultFactoryVisitorInterface::class);

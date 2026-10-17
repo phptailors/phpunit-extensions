@@ -10,20 +10,20 @@
 
 namespace Tailors\PHPUnit\RecursiveResultUnwrapper;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\InternalErrorException;
 use Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversalInterface;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapper
- * @covers \Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapperTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
+#[CoversClass(RecursiveResultUnwrapper::class)]
+#[CoversClass(RecursiveResultUnwrapperTest::class)]
+#[Small]
 final class RecursiveResultUnwrapperTest extends TestCase
 {
     /**

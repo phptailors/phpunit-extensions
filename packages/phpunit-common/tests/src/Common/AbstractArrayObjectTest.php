@@ -10,20 +10,21 @@
 
 namespace Tailors\PHPUnit\Common;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\Common\AbstractArrayObject
- * @covers \Tailors\PHPUnit\Common\AbstractArrayObjectTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-import-type ArrayLike from TypesInterface
  */
+#[CoversClass(AbstractArrayObject::class)]
+#[CoversClass(AbstractArrayObjectTest::class)]
+#[Small]
 final class AbstractArrayObjectTest extends TestCase
 {
     /**
@@ -52,12 +53,11 @@ final class AbstractArrayObjectTest extends TestCase
     }
 
     /**
-     * @dataProvider provAbstractArrayObject
-     *
      * @psalm-param ArrayLike $array
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provAbstractArrayObject')]
     public function testAbstractArrayObject(iterable $array): void
     {
         $arrayObject = new class($array) extends AbstractArrayObject {

@@ -10,19 +10,20 @@
 
 namespace Tailors\PHPUnit\ValueSelector;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\InvalidArgumentException;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\ValueSelector\ObjectPropertySelector
- * @covers \Tailors\PHPUnit\ValueSelector\ObjectPropertySelectorTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
+#[CoversClass(ObjectPropertySelector::class)]
+#[CoversClass(ObjectPropertySelectorTest::class)]
+#[Small]
 final class ObjectPropertySelectorTest extends TestCase
 {
     /**
@@ -78,13 +79,12 @@ final class ObjectPropertySelectorTest extends TestCase
     }
 
     /**
-     * @dataProvider provSupports
-     *
      * @param mixed $subject
      * @param mixed $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provSupports')]
     public function testSupports($subject, $expect): void
     {
         $selector = new ObjectPropertySelector();
@@ -161,8 +161,6 @@ final class ObjectPropertySelectorTest extends TestCase
     }
 
     /**
-     * @dataProvider provSelect
-     *
      * @param mixed $object
      * @param mixed $key
      * @param mixed $return
@@ -172,6 +170,7 @@ final class ObjectPropertySelectorTest extends TestCase
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provSelect')]
     public function testSelect($object, $key, $return, $expect): void
     {
         $selector = new ObjectPropertySelector();
@@ -257,10 +256,9 @@ final class ObjectPropertySelectorTest extends TestCase
     }
 
     /**
-     * @dataProvider provSelectThrowsOnNonobject
-     *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provSelectThrowsOnNonobject')]
     public function testSelectThrowsOnNonobject(string $key): void
     {
         $selector = new ObjectPropertySelector();

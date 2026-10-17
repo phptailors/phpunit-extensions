@@ -10,6 +10,9 @@
 
 namespace Tailors\PHPUnit\Properties;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Common\AbstractArraySelection;
 use Tailors\PHPUnit\Common\TypesInterface;
@@ -18,11 +21,6 @@ use Tailors\PHPUnit\ValueSelector\ObjectPropertySelector;
 use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\Properties\ObjectPropertiesSelection
- * @covers \Tailors\PHPUnit\Properties\ObjectPropertiesSelectionTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
@@ -31,6 +29,9 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
+#[CoversClass(ObjectPropertiesSelection::class)]
+#[CoversClass(ObjectPropertiesSelectionTest::class)]
+#[Small]
 final class ObjectPropertiesSelectionTest extends TestCase
 {
     /**
@@ -76,12 +77,11 @@ final class ObjectPropertiesSelectionTest extends TestCase
     }
 
     /**
-     * @dataProvider provObjectPropertiesSelection
-     *
      * @psalm-param ArrayLike $array
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provObjectPropertiesSelection')]
     public function testObjectPropertiesSelection(iterable $array): void
     {
         $selection = new ObjectPropertiesSelection($array);

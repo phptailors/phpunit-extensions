@@ -10,17 +10,15 @@
 
 namespace Tailors\PHPUnit\Inheritance;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\UnaryOperator;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\Inheritance\AbstractInheritanceConstraint
- * @covers \Tailors\PHPUnit\Inheritance\AbstractInheritanceConstraintTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
@@ -28,6 +26,9 @@ use PHPUnit\Framework\TestCase;
  * @psalm-type CtorArgs       = list{string, string, string, Closure(string):array<string,string>, Closure(string):bool}
  * @psalm-type AssertTestCall = array{other: mixed, exception?: string}
  */
+#[CoversClass(AbstractInheritanceConstraint::class)]
+#[CoversClass(AbstractInheritanceConstraintTest::class)]
+#[Small]
 final class AbstractInheritanceConstraintTest extends TestCase
 {
     /**
@@ -179,12 +180,11 @@ final class AbstractInheritanceConstraintTest extends TestCase
     }
 
     /**
-     * @dataProvider provAbstractInheritanceConstraint
-     *
      * @psalm-param AssertTestCall $assertion
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provAbstractInheritanceConstraint')]
     public function testAbstractInheritanceConstraint(Constraint $constraint, array $assertion): void
     {
         if (null !== ($exception = $assertion['exception'] ?? null)) {

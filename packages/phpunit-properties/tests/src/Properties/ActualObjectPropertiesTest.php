@@ -10,19 +10,19 @@
 
 namespace Tailors\PHPUnit\Properties;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Small;
 use Tailors\PHPUnit\Result\ResultInterface;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\Properties\AbstractObjectPropertiesTestCase
- * @covers \Tailors\PHPUnit\Properties\ActualObjectProperties
- * @covers \Tailors\PHPUnit\Properties\ActualObjectPropertiesTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
+#[CoversClass(AbstractObjectPropertiesTestCase::class)]
+#[CoversClass(ActualObjectProperties::class)]
+#[CoversClass(ActualObjectPropertiesTest::class)]
+#[Small]
 final class ActualObjectPropertiesTest extends AbstractObjectPropertiesTestCase
 {
     /**

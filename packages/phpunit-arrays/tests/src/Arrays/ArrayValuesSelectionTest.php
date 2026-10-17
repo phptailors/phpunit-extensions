@@ -10,6 +10,9 @@
 
 namespace Tailors\PHPUnit\Arrays;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Common\AbstractArraySelection;
 use Tailors\PHPUnit\Common\TypesInterface;
@@ -18,11 +21,6 @@ use Tailors\PHPUnit\ValueSelector\ArrayValueSelector;
 use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\Arrays\ArrayValuesSelection
- * @covers \Tailors\PHPUnit\Arrays\ArrayValuesSelectionTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
@@ -31,6 +29,9 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
+#[CoversClass(ArrayValuesSelection::class)]
+#[CoversClass(ArrayValuesSelectionTest::class)]
+#[Small]
 final class ArrayValuesSelectionTest extends TestCase
 {
     /**
@@ -76,12 +77,11 @@ final class ArrayValuesSelectionTest extends TestCase
     }
 
     /**
-     * @dataProvider provArrayValuesSelection
-     *
      * @psalm-param ArrayLike $array
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provArrayValuesSelection')]
     public function testArrayValuesSelection(iterable $array): void
     {
         $selection = new ArrayValuesSelection($array);

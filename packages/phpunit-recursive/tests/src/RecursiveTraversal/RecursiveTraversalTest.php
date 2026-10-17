@@ -10,16 +10,14 @@
 
 namespace Tailors\PHPUnit\RecursiveTraversal;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\RecursiveVisitor\DummyRecursiveVisitor;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversal
- * @covers \Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversalTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
@@ -30,6 +28,9 @@ use Tailors\PHPUnit\RecursiveVisitor\DummyRecursiveVisitor;
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
+#[CoversClass(RecursiveTraversal::class)]
+#[CoversClass(RecursiveTraversalTest::class)]
+#[Small]
 final class RecursiveTraversalTest extends TestCase
 {
     public function testImplementsRecursiveTraversalInterface(): void
@@ -517,12 +518,11 @@ final class RecursiveTraversalTest extends TestCase
     }
 
     /**
-     * @dataProvider provWalk
-     *
      * @param mixed $expect
      *
      * @psalm-param ArrayLike $array
      */
+    #[DataProvider('provWalk')]
     public function testWalk(iterable &$array, DummyRecursiveVisitor $visitor, $expect): void
     {
         $traversal = new RecursiveTraversal();

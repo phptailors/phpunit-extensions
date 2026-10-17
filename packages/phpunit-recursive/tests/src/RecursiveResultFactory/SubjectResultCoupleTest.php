@@ -10,14 +10,12 @@
 
 namespace Tailors\PHPUnit\RecursiveResultFactory;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\RecursiveResultFactory\SubjectResultCouple
- * @covers \Tailors\PHPUnit\RecursiveResultFactory\SubjectResultCoupleTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
@@ -25,6 +23,9 @@ use PHPUnit\Framework\TestCase;
  * @psalm-type CtorArgs    = list{0: mixed, 1: array|\ArrayAccess}
  * @psalm-type ExpectArray = array{subject: mixed, result: mixed}
  */
+#[CoversClass(SubjectResultCouple::class)]
+#[CoversClass(SubjectResultCoupleTest::class)]
+#[Small]
 final class SubjectResultCoupleTest extends TestCase
 {
     /**
@@ -62,13 +63,12 @@ final class SubjectResultCoupleTest extends TestCase
     }
 
     /**
-     * @dataProvider provSubjectResultCouple
-     *
      * @psalm-param CtorArgs    $ctor
      * @psalm-param ExpectArray $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provSubjectResultCouple')]
     public function testSubjectResultCouple(array $ctor, array $expect): void
     {
         $couple = new SubjectResultCouple(...$ctor);

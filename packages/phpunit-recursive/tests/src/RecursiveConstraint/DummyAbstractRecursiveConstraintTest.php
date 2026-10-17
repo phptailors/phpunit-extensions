@@ -10,19 +10,19 @@
 
 namespace Tailors\PHPUnit\RecursiveConstraint;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactoryInterface;
 use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapperInterface;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\RecursiveConstraint\DummyAbstractRecursiveConstraint
- * @covers \Tailors\PHPUnit\RecursiveConstraint\DummyAbstractRecursiveConstraintTest
- *
  * @internal This class is not covered by the backward compatibility promise
  */
+#[CoversClass(DummyAbstractRecursiveConstraint::class)]
+#[CoversClass(DummyAbstractRecursiveConstraintTest::class)]
+#[Small]
 final class DummyAbstractRecursiveConstraintTest extends TestCase
 {
     /**
@@ -30,11 +30,14 @@ final class DummyAbstractRecursiveConstraintTest extends TestCase
      */
     public function testCreateWithTraversable(): void
     {
+        /** @psalm-var class-string<\Traversable<array-key,mixed>> */
+        $iterable = \Traversable::class;
+
         $constraint = DummyAbstractRecursiveConstraint::create(
-            $this->createMock(\Traversable::class),
-            $this->createMock(ComparatorInterface::class),
-            $this->createMock(RecursiveResultFactoryInterface::class),
-            $this->createMock(RecursiveResultUnwrapperInterface::class)
+            $this->createStub($iterable),
+            $this->createStub(ComparatorInterface::class),
+            $this->createStub(RecursiveResultFactoryInterface::class),
+            $this->createStub(RecursiveResultUnwrapperInterface::class)
         );
 
         $this->assertInstanceOf(DummyAbstractRecursiveConstraint::class, $constraint);
@@ -47,9 +50,9 @@ final class DummyAbstractRecursiveConstraintTest extends TestCase
     {
         $constraint = DummyAbstractRecursiveConstraint::create(
             [],
-            $this->createMock(ComparatorInterface::class),
-            $this->createMock(RecursiveResultFactoryInterface::class),
-            $this->createMock(RecursiveResultUnwrapperInterface::class)
+            $this->createStub(ComparatorInterface::class),
+            $this->createStub(RecursiveResultFactoryInterface::class),
+            $this->createStub(RecursiveResultUnwrapperInterface::class)
         );
 
         $this->assertInstanceOf(DummyAbstractRecursiveConstraint::class, $constraint);

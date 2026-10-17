@@ -10,6 +10,9 @@
 
 namespace Tailors\PHPUnit\RecursiveResultFactory;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\ArraySpec\DummyResultFactoryAndValueSelectorWrapper;
 use Tailors\PHPUnit\ArraySpec\DummyResultFactoryWrapper;
@@ -26,11 +29,6 @@ use Tailors\PHPUnit\ResultFactory\DummyTaggedArrayResultFactory;
 use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\RecursiveResultFactory\RecursiveExpectedResultFactoryVisitor
- * @covers \Tailors\PHPUnit\RecursiveResultFactory\RecursiveExpectedResultFactoryVisitorTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
@@ -43,6 +41,9 @@ use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
+#[CoversClass(RecursiveExpectedResultFactoryVisitor::class)]
+#[CoversClass(RecursiveExpectedResultFactoryVisitorTest::class)]
+#[Small]
 final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
 {
     /**
@@ -114,12 +115,11 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
     }
 
     /**
-     * @dataProvider provCycle
-     *
      * @psalm-param list<StackItem> $stack
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provCycle')]
     public function testCycle(array $stack, string $expect): void
     {
         $rePath = preg_quote($expect, '/');
@@ -430,14 +430,13 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
     }
 
     /**
-     * @dataProvider provEnterLeave
-     *
      * @param mixed $result
      *
      * @psalm-param non-empty-list<EnterTestCall> $calls
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provEnterLeave')]
     public function testEnterLeave(array $calls, $result): void
     {
         $visitor = new RecursiveExpectedResultFactoryVisitor();
@@ -456,6 +455,11 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         foreach (array_reverse($calls) as $call) {
             $args = $call['args'];
             if (array_key_exists('next', $call)) {
+                /**
+                 * @see https://github.com/sebastianbergmann/phpunit/issues/6199
+                 *
+                 * @psalm-var non-empty-list<StackItem> $stack
+                 */
                 $this->assertNotEmpty($stack);
                 $visitor->freeStackItem(array_pop($stack), $stack);
             }
@@ -593,8 +597,6 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
     }
 
     /**
-     * @dataProvider provVisit
-     *
      * @param mixed $result
      *
      * @psalm-param ?EnterTestCall                $enter
@@ -602,6 +604,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provVisit')]
     public function testVisit(?array $enter, array $calls, $result): void
     {
         $visitor = new RecursiveExpectedResultFactoryVisitor();
@@ -624,6 +627,11 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
             }
             $this->assertNull($visitor->visit($args['node'], $stack, $iter));
             if (array_key_exists('key', $call)) {
+                /**
+                 * @see https://github.com/sebastianbergmann/phpunit/issues/6199
+                 *
+                 * @psalm-var non-empty-list<StackItem> $stack
+                 */
                 $this->assertNotEmpty($stack);
                 $visitor->freeStackItem(array_pop($stack), $stack);
             }
@@ -806,14 +814,13 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
     }
 
     /**
-     * @dataProvider provWithRecursiveTraversal
-     *
      * @param mixed $result
      *
      * @psalm-param ArrayLike $array
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provWithRecursiveTraversal')]
     public function testWithRecursiveTraversal(iterable $array, $result): void
     {
         $visitor = new RecursiveExpectedResultFactoryVisitor();

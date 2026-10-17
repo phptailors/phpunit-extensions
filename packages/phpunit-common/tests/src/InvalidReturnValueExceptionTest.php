@@ -10,20 +10,21 @@
 
 namespace Tailors\PHPUnit;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\InvalidReturnValueException
- * @covers \Tailors\PHPUnit\InvalidReturnValueExceptionTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-type FunctionSpec = array{0:object|string,1:string}|\Closure|string|int|null
  */
+#[CoversClass(InvalidReturnValueException::class)]
+#[CoversClass(InvalidReturnValueExceptionTest::class)]
+#[Small]
 final class InvalidReturnValueExceptionTest extends TestCase
 {
     /**
@@ -56,14 +57,13 @@ final class InvalidReturnValueExceptionTest extends TestCase
     }
 
     /**
-     * @dataProvider provFromExpectedAndActual
-     *
      * @param mixed $function
      *
      * @psalm-param FunctionSpec $function
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provFromExpectedAndActual')]
     public function testFromExpectedAndActual($function, string $expected, string $actual): void
     {
         $name = self::getFunctionName($function);
@@ -107,8 +107,6 @@ final class InvalidReturnValueExceptionTest extends TestCase
     }
 
     /**
-     * @dataProvider provFromExpectedTypeAndActualValue
-     *
      * @param mixed $function
      * @param mixed $actual
      *
@@ -116,6 +114,7 @@ final class InvalidReturnValueExceptionTest extends TestCase
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provFromExpectedTypeAndActualValue')]
     public function testFromExpectedTypeAndActualValue($function, string $expected, $actual): void
     {
         $name = self::getFunctionName($function);

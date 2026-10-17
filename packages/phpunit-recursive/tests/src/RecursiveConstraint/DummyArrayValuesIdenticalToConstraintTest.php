@@ -10,15 +10,12 @@
 
 namespace Tailors\PHPUnit\RecursiveConstraint;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Constraint\Constraint;
 use Tailors\PHPUnit\Common\TypesInterface;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\RecursiveConstraint\DummyArrayValuesIdenticalToConstraint
- * @covers \Tailors\PHPUnit\RecursiveConstraint\DummyArrayValuesIdenticalToConstraintTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-import-type ArrayLike from TypesInterface
@@ -29,6 +26,9 @@ use Tailors\PHPUnit\Common\TypesInterface;
  *
  * @var TypesInterface $__phpstan__workaround__unused_import__TypesInterface
  */
+#[CoversClass(DummyArrayValuesIdenticalToConstraint::class)]
+#[CoversClass(DummyArrayValuesIdenticalToConstraintTest::class)]
+#[Small]
 final class DummyArrayValuesIdenticalToConstraintTest extends AbstractRecursiveConstraintTestCase
 {
     /**

@@ -10,19 +10,20 @@
 
 namespace Tailors\PHPUnit\ValueSelector;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\InvalidArgumentException;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\ValueSelector\ClassPropertySelector
- * @covers \Tailors\PHPUnit\ValueSelector\ClassPropertySelectorTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
+#[CoversClass(ClassPropertySelector::class)]
+#[CoversClass(ClassPropertySelectorTest::class)]
+#[Small]
 final class ClassPropertySelectorTest extends TestCase
 {
     /**
@@ -78,13 +79,12 @@ final class ClassPropertySelectorTest extends TestCase
     }
 
     /**
-     * @dataProvider provSupports
-     *
      * @param mixed $subject
      * @param mixed $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provSupports')]
     public function testSupports($subject, $expect): void
     {
         $selector = new ClassPropertySelector();
@@ -153,8 +153,6 @@ final class ClassPropertySelectorTest extends TestCase
     }
 
     /**
-     * @dataProvider provSelect
-     *
      * @param mixed $key
      * @param mixed $return
      * @param mixed $expect
@@ -163,6 +161,7 @@ final class ClassPropertySelectorTest extends TestCase
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provSelect')]
     public function testSelect(string $class, $key, $return, $expect): void
     {
         $selector = new ClassPropertySelector();
@@ -270,10 +269,9 @@ final class ClassPropertySelectorTest extends TestCase
     }
 
     /**
-     * @dataProvider provSelectThrowsOnNonClass
-     *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provSelectThrowsOnNonClass')]
     public function testSelectThrowsOnNonClass(string $key): void
     {
         $selector = new ClassPropertySelector();

@@ -10,6 +10,9 @@
 
 namespace Tailors\PHPUnit\RecursiveMapper;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\CircularDependencyException;
 use Tailors\PHPUnit\Common\TypesInterface;
@@ -18,11 +21,6 @@ use Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversal;
 use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorInterface;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\RecursiveMapper\RecursiveMapperVisitor
- * @covers \Tailors\PHPUnit\RecursiveMapper\RecursiveMapperVisitorTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
@@ -40,6 +38,9 @@ use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorInterface;
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
+#[CoversClass(RecursiveMapperVisitor::class)]
+#[CoversClass(RecursiveMapperVisitorTest::class)]
+#[Small]
 final class RecursiveMapperVisitorTest extends TestCase
 {
     /**
@@ -103,12 +104,11 @@ final class RecursiveMapperVisitorTest extends TestCase
     }
 
     /**
-     * @dataProvider provCycle
-     *
      * @psalm-param CycleTestCall $call
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provCycle')]
     public function testCycle(array $call): void
     {
         $visitor = new RecursiveMapperVisitor();
@@ -452,8 +452,6 @@ final class RecursiveMapperVisitorTest extends TestCase
     }
 
     /**
-     * @dataProvider provEnterLeave
-     *
      * @param mixed $result
      *
      * @psalm-param BeginArgs                     $begin
@@ -461,6 +459,7 @@ final class RecursiveMapperVisitorTest extends TestCase
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provEnterLeave')]
     public function testEnterLeave(array $begin, array $calls, $result): void
     {
         $visitor = new RecursiveMapperVisitor();
@@ -481,6 +480,11 @@ final class RecursiveMapperVisitorTest extends TestCase
             $args = $call['args'];
             $node = $args['node'];
             if ($call['return'] && array_key_exists('next', $call)) {
+                /**
+                 * @see https://github.com/sebastianbergmann/phpunit/issues/6199
+                 *
+                 * @psalm-var non-empty-list<StackItem> $stack
+                 */
                 $this->assertNotEmpty($stack);
                 $visitor->freeStackItem(array_pop($stack), $stack);
             }
@@ -592,8 +596,6 @@ final class RecursiveMapperVisitorTest extends TestCase
     }
 
     /**
-     * @dataProvider provVisit
-     *
      * @param mixed $result
      *
      * @psalm-param BeginArgs                     $begin
@@ -602,6 +604,7 @@ final class RecursiveMapperVisitorTest extends TestCase
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provVisit')]
     public function testVisit(array $begin, iterable $root, bool $iter, array $calls, $result): void
     {
         $visitor = new RecursiveMapperVisitor();
@@ -630,6 +633,11 @@ final class RecursiveMapperVisitorTest extends TestCase
             $this->assertNull($visitor->visit($node, $stack, $iter));
 
             if ($iter) {
+                /**
+                 * @see https://github.com/sebastianbergmann/phpunit/issues/6199
+                 *
+                 * @psalm-var non-empty-list<StackItem> $stack
+                 */
                 $this->assertNotEmpty($stack);
                 $visitor->freeStackItem(array_pop($stack), $stack);
             }
@@ -757,8 +765,6 @@ final class RecursiveMapperVisitorTest extends TestCase
     }
 
     /**
-     * @dataProvider provMapAcyclic
-     *
      * @param mixed $result
      *
      * @psalm-param BeginArgs $begin
@@ -766,6 +772,7 @@ final class RecursiveMapperVisitorTest extends TestCase
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provMapAcyclic')]
     public function testMapAcyclic(array $begin, iterable $array, $result): void
     {
         $traversal = new RecursiveTraversal();
@@ -853,13 +860,12 @@ final class RecursiveMapperVisitorTest extends TestCase
     }
 
     /**
-     * @dataProvider provMapCyclic
-     *
      * @psalm-param BeginArgs $begin
      * @psalm-param ArrayLike $array
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provMapCyclic')]
     public function testMapCyclic(array $begin, iterable &$array, string $message): void
     {
         $traversal = new RecursiveTraversal();

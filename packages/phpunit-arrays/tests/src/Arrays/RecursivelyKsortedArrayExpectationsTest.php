@@ -10,6 +10,9 @@
 
 namespace Tailors\PHPUnit\Arrays;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Common\AbstractArrayExpectations;
 use Tailors\PHPUnit\Common\TypesInterface;
@@ -19,11 +22,6 @@ use Tailors\PHPUnit\RecursiveMapper\RecursiveMapper;
 use Tailors\PHPUnit\ResultFactory\ResultFactoryWrapperInterface;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\Arrays\RecursivelyKsortedArrayExpectations
- * @covers \Tailors\PHPUnit\Arrays\RecursivelyKsortedArrayExpectationsTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
@@ -34,6 +32,9 @@ use Tailors\PHPUnit\ResultFactory\ResultFactoryWrapperInterface;
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
+#[CoversClass(RecursivelyKsortedArrayExpectations::class)]
+#[CoversClass(RecursivelyKsortedArrayExpectationsTest::class)]
+#[Small]
 final class RecursivelyKsortedArrayExpectationsTest extends TestCase
 {
     /**
@@ -200,13 +201,12 @@ final class RecursivelyKsortedArrayExpectationsTest extends TestCase
     }
 
     /**
-     * @dataProvider provRecursivelyKsortedArrayExpectations
-     *
      * @psalm-param CtorArgs                          $ctorArgs
      * @psalm-param array{array: mixed, flags?:mixed} $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provRecursivelyKsortedArrayExpectations')]
     public function testRecursivelyKsortedArrayExpectations(array $ctorArgs, array $expect): void
     {
         $expectations = RecursivelyKsortedArrayExpectations::create(...$ctorArgs);

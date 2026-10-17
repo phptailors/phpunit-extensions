@@ -10,6 +10,9 @@
 
 namespace Tailors\PHPUnit\ArraySpec;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\ResultFactory\DummyResultFactory;
@@ -17,11 +20,6 @@ use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
 use Tailors\PHPUnit\ResultFactory\ResultFactoryWrapperInterface;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\ArraySpec\DummyResultFactoryWrapper
- * @covers \Tailors\PHPUnit\ArraySpec\DummyResultFactoryWrapperTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
@@ -30,6 +28,9 @@ use Tailors\PHPUnit\ResultFactory\ResultFactoryWrapperInterface;
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
+#[CoversClass(DummyResultFactoryWrapper::class)]
+#[CoversClass(DummyResultFactoryWrapperTest::class)]
+#[Small]
 final class DummyResultFactoryWrapperTest extends TestCase
 {
     /**
@@ -89,15 +90,14 @@ final class DummyResultFactoryWrapperTest extends TestCase
     }
 
     /**
-     * @dataProvider provDummyResultFactoryWrapper
-     *
      * @psalm-param ArrayLike $array
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provDummyResultFactoryWrapper')]
     public function testDummyResultFactoryWrapper(iterable $array): void
     {
-        $resultFactory = $this->createMock(ResultFactoryInterface::class);
+        $resultFactory = $this->createStub(ResultFactoryInterface::class);
 
         $dummyResultFactoryWrapper = self::createDummyResultFactoryWrapper($array, $resultFactory);
 

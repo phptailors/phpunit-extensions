@@ -10,18 +10,18 @@
 
 namespace Tailors\PHPUnit\RecursiveMapper;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\RecursiveMapper\RecursiveMapperStackItem
- * @covers \Tailors\PHPUnit\RecursiveMapper\RecursiveMapperStackItemTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
+#[CoversClass(RecursiveMapperStackItem::class)]
+#[CoversClass(RecursiveMapperStackItemTest::class)]
+#[Small]
 final class RecursiveMapperStackItemTest extends TestCase
 {
     /**

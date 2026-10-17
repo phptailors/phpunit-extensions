@@ -10,22 +10,22 @@
 
 namespace Tailors\PHPUnit;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Constraint\ProvRecursivelyKsortedArrayTrait;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\RecursivelyKsortedArrayEqualToTrait
- * @covers \Tailors\PHPUnit\RecursivelyKsortedArrayEqualToTraitTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-type CtorArgs = list{0: array, 1?: int}
  */
+#[CoversClass(RecursivelyKsortedArrayEqualToTraitTest::class)]
+#[Small]
 final class RecursivelyKsortedArrayEqualToTraitTest extends TestCase
 {
     use RecursivelyKsortedArrayEqualToTrait;
@@ -72,70 +72,65 @@ final class RecursivelyKsortedArrayEqualToTraitTest extends TestCase
     }
 
     /**
-     * @dataProvider provRecursivelyKsortedArrayEqualToSucceeds
-     *
      * @param mixed $actual
      *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provRecursivelyKsortedArrayEqualToSucceeds')]
     public function testRecursivelyKsortedArrayEqualToSucceeds(array $expect, $actual): void
     {
         self::assertThat($actual, self::recursivelyKsortedArrayEqualTo($expect));
     }
 
     /**
-     * @dataProvider provRecursivelyKsortedArrayEqualToSucceeds
-     *
      * @param mixed $actual
      *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provRecursivelyKsortedArrayEqualToSucceeds')]
     public function testAssertRecursivelyKsortedArrayEqualToSucceeds(array $expect, $actual): void
     {
         self::assertRecursivelyKsortedArrayEqualTo($expect, $actual);
     }
 
     /**
-     * @dataProvider provNotRecursivelyKsortedArrayEqualToSucceeds
-     *
      * @param mixed $actual
      *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provNotRecursivelyKsortedArrayEqualToSucceeds')]
     public function testLogicalNotRecursivelyKsortedArrayEqualToSucceeds(array $expect, $actual): void
     {
         self::assertThat($actual, self::logicalNot(self::recursivelyKsortedArrayEqualTo($expect)));
     }
 
     /**
-     * @dataProvider provNotRecursivelyKsortedArrayEqualToSucceeds
-     *
      * @param mixed $actual
      *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provNotRecursivelyKsortedArrayEqualToSucceeds')]
     public function testAssertNotRecursivelyKsortedArrayEqualToSucceeds(array $expect, $actual): void
     {
         self::assertNotRecursivelyKsortedArrayEqualTo($expect, $actual);
     }
 
     /**
-     * @dataProvider provRecursivelyKsortedArrayNotEqualTo
-     *
      * @param mixed $actual
      *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provRecursivelyKsortedArrayNotEqualTo')]
     public function testAssertRecursivelyKsortedArrayEqualToFails(array $expect, $actual, string $string): void
     {
         $regexp = '/^Lorem ipsum.\n'.
@@ -148,15 +143,14 @@ final class RecursivelyKsortedArrayEqualToTraitTest extends TestCase
     }
 
     /**
-     * @dataProvider provRecursivelyKsortedArrayIdenticalTo
-     * @dataProvider provRecursivelyKsortedArrayEqualButNotIdenticalTo
-     *
      * @param mixed $actual
      *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provRecursivelyKsortedArrayIdenticalTo')]
+    #[DataProvider('provRecursivelyKsortedArrayEqualButNotIdenticalTo')]
     public function testAssertNotRecursivelyKsortedArrayEqualToFails(array $expect, $actual, string $string): void
     {
         $regexp = '/^Lorem ipsum.\n'.

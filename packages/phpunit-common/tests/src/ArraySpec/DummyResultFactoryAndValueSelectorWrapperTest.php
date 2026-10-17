@@ -10,6 +10,9 @@
 
 namespace Tailors\PHPUnit\ArraySpec;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Comparator\DummyComparator;
@@ -22,11 +25,6 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
 use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\ArraySpec\DummyResultFactoryAndValueSelectorWrapper
- * @covers \Tailors\PHPUnit\ArraySpec\DummyResultFactoryAndValueSelectorWrapperTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
@@ -35,6 +33,9 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
+#[CoversClass(DummyResultFactoryAndValueSelectorWrapper::class)]
+#[CoversClass(DummyResultFactoryAndValueSelectorWrapperTest::class)]
+#[Small]
 final class DummyResultFactoryAndValueSelectorWrapperTest extends TestCase
 {
     /**
@@ -115,12 +116,11 @@ final class DummyResultFactoryAndValueSelectorWrapperTest extends TestCase
     }
 
     /**
-     * @dataProvider provDummyResultFactoryAndValueSelectorWrapper
-     *
      * @psalm-param ArrayLike $array
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provDummyResultFactoryAndValueSelectorWrapper')]
     public function testDummyResultFactoryAndValueSelectorWrapper(iterable $array): void
     {
         $resultFactory = $this->createStub(ResultFactoryInterface::class);

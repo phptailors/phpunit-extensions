@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit\Properties;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Constraint\Constraint;
 use Tailors\PHPUnit\InvalidArgumentException;
 use Tailors\PHPUnit\RecursiveConstraint\AbstractRecursiveConstraintTestCase;
@@ -57,12 +58,11 @@ abstract class AbstractPropertiesConstraintTestCase extends AbstractRecursiveCon
     }
 
     /**
-     * @dataProvider provArrayWithNonStringKeys
-     *
      * @psalm-param array $array
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provArrayWithNonStringKeys')]
     final public function testCreateWithNonStringKeys(array $array, int $count): void
     {
         $message = sprintf(

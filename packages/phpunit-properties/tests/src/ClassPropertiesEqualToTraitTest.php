@@ -10,20 +10,20 @@
 
 namespace Tailors\PHPUnit;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Constraint\ProvClassPropertiesTrait;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\ClassPropertiesEqualToTrait
- * @covers \Tailors\PHPUnit\ClassPropertiesEqualToTraitTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
+#[CoversClass(ClassPropertiesEqualToTraitTest::class)]
+#[Small]
 final class ClassPropertiesEqualToTraitTest extends TestCase
 {
     use ClassPropertiesEqualToTrait;
@@ -70,60 +70,55 @@ final class ClassPropertiesEqualToTraitTest extends TestCase
     }
 
     /**
-     * @dataProvider provClassPropertiesEqualToSucceeds
-     *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provClassPropertiesEqualToSucceeds')]
     public function testClassPropertiesEqualToSucceeds(array $expect, string $actual): void
     {
         self::assertThat($actual, self::classPropertiesEqualTo($expect));
     }
 
     /**
-     * @dataProvider provClassPropertiesEqualToSucceeds
-     *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provClassPropertiesEqualToSucceeds')]
     public function testAssertClassPropertiesEqualToSucceeds(array $expect, string $actual): void
     {
         self::assertClassPropertiesEqualTo($expect, $actual);
     }
 
     /**
-     * @dataProvider provNotClassPropertiesEqualToSucceeds
-     *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provNotClassPropertiesEqualToSucceeds')]
     public function testNotClassPropertiesEqualToSucceeds(array $expect, string $actual): void
     {
         self::assertThat($actual, self::logicalNot(self::classPropertiesEqualTo($expect)));
     }
 
     /**
-     * @dataProvider provNotClassPropertiesEqualToSucceeds
-     *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provNotClassPropertiesEqualToSucceeds')]
     public function testAssertNotClassPropertiesEqualToSucceeds(array $expect, string $actual): void
     {
         self::assertNotClassPropertiesEqualTo($expect, $actual);
     }
 
     /**
-     * @dataProvider provClassPropertiesNotEqualTo
-     *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provClassPropertiesNotEqualTo')]
     public function testAssertClassPropertiesEqualToFails(array $expect, string $actual, string $string): void
     {
         $regexp = '/^Lorem ipsum.\n'.
@@ -136,13 +131,12 @@ final class ClassPropertiesEqualToTraitTest extends TestCase
     }
 
     /**
-     * @dataProvider provClassPropertiesIdenticalTo
-     * @dataProvider provClassPropertiesEqualButNotIdenticalTo
-     *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provClassPropertiesIdenticalTo')]
+    #[DataProvider('provClassPropertiesEqualButNotIdenticalTo')]
     public function testAssertNotClassPropertiesEqualToFails(array $expect, string $actual, string $string): void
     {
         $regexp = '/^Lorem ipsum.\n'.

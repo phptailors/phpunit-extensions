@@ -10,16 +10,13 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Constraint\Constraint;
 use Tailors\PHPUnit\Common\AbstractConstraintTestCase;
 use Tailors\PHPUnit\InvalidArgumentException;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\Constraint\HasMethod
- * @covers \Tailors\PHPUnit\Constraint\HasMethodTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
@@ -29,6 +26,9 @@ use Tailors\PHPUnit\InvalidArgumentException;
  *
  * @template-extends AbstractConstraintTestCase<HasMethod, list{string}>
  */
+#[CoversClass(HasMethod::class)]
+#[CoversClass(HasMethodTest::class)]
+#[Small]
 final class HasMethodTest extends AbstractConstraintTestCase
 {
     use ProvHasMethodTrait;

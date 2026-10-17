@@ -10,6 +10,9 @@
 
 namespace Tailors\PHPUnit\Common;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Comparator\DummyComparator;
 use Tailors\PHPUnit\ResultFactory\DummyResultFactory;
@@ -18,17 +21,15 @@ use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
 use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\Common\DummyArraySelection
- * @covers \Tailors\PHPUnit\Common\DummyArraySelectionTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-import-type ArrayLike from TypesInterface
  */
+#[CoversClass(DummyArraySelection::class)]
+#[CoversClass(DummyArraySelectionTest::class)]
+#[Small]
 final class DummyArraySelectionTest extends TestCase
 {
     /**
@@ -66,8 +67,6 @@ final class DummyArraySelectionTest extends TestCase
     }
 
     /**
-     * @dataProvider provDummyArraySelection
-     *
      * @psalm-template SupportedInput
      * @psalm-template SupportedSubject
      *
@@ -77,6 +76,7 @@ final class DummyArraySelectionTest extends TestCase
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provDummyArraySelection')]
     public function testDummyArraySelection(
         ResultFactoryInterface $factory,
         ValueSelectorInterface $selector,

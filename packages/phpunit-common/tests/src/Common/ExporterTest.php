@@ -10,22 +10,23 @@
 
 namespace Tailors\PHPUnit\Common;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use SebastianBergmann\Exporter\Exporter as SebastianExporter;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\Common\Exporter
- * @covers \Tailors\PHPUnit\Common\ExporterTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-type ExportArgs = list{0:mixed, 1?:bool}
  */
+#[CoversClass(\Tailors\PHPUnit\Common\Exporter::class)]
+#[CoversClass(ExporterTest::class)]
+#[Small]
 final class ExporterTest extends TestCase
 {
     /**
@@ -47,12 +48,11 @@ final class ExporterTest extends TestCase
     }
 
     /**
-     * @dataProvider provExport
-     *
      * @psalm-param ExportArgs $args
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provExport')]
     public function testExport(array $args, string $format): void
     {
         $this->assertStringMatchesFormat($format, Exporter::export(...$args));

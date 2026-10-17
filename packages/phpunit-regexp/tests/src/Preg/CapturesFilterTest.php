@@ -10,20 +10,21 @@
 
 namespace Tailors\PHPUnit\Preg;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\Preg\CapturesFilter
- * @covers \Tailors\PHPUnit\Preg\CapturesFilterTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-type CtorArgs = list{0?: int}
  */
+#[CoversClass(CapturesFilter::class)]
+#[CoversClass(CapturesFilterTest::class)]
+#[Small]
 final class CapturesFilterTest extends TestCase
 {
     /**
@@ -43,12 +44,11 @@ final class CapturesFilterTest extends TestCase
     }
 
     /**
-     * @dataProvider provConstruct
-     *
      * @psalm-param CtorArgs $ctorArgs
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provConstruct')]
     public function testConstruct(array $ctorArgs): void
     {
         $filter = new CapturesFilter(...$ctorArgs);
@@ -198,8 +198,6 @@ final class CapturesFilterTest extends TestCase
     }
 
     /**
-     * @dataProvider provIsCapture
-     *
      * @param mixed $value
      * @param mixed $expect
      *
@@ -207,6 +205,7 @@ final class CapturesFilterTest extends TestCase
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provIsCapture')]
     public function testIsCapture(array $ctorArgs, $value, $expect): void
     {
         $filter = new CapturesFilter(...$ctorArgs);
@@ -278,8 +277,6 @@ final class CapturesFilterTest extends TestCase
     }
 
     /**
-     * @dataProvider provFilter
-     *
      * @param mixed $expect
      *
      * @psalm-param CtorArgs $ctorArgs
@@ -287,6 +284,7 @@ final class CapturesFilterTest extends TestCase
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provFilter')]
     public function testFilter(array $ctorArgs, array $array, $expect): void
     {
         $filter = new CapturesFilter(...$ctorArgs);

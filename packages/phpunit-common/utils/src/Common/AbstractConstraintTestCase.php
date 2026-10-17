@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit\Common;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\UnaryOperator;
 use PHPUnit\Framework\Exception;
@@ -80,14 +81,13 @@ abstract class AbstractConstraintTestCase extends TestCase
     abstract public static function provNotConstraintEvaluationFails(): iterable;
 
     /**
-     * @dataProvider provConstraintUnaryOperatorFailure
-     *
      * @param mixed $actual
      *
      * @psalm-param CtorArgs $ctorArgs
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provConstraintUnaryOperatorFailure')]
     final public function testConstraintUnaryOperatorFailure(array $ctorArgs, $actual, string $message): void
     {
         $constraint = static::createConstraint($ctorArgs);
@@ -101,8 +101,6 @@ abstract class AbstractConstraintTestCase extends TestCase
     }
 
     /**
-     * @dataProvider provConstraintEvaluationSucceeds
-     *
      * @param array $ctorArgs arguments passed to createConstraint()
      * @param mixed $actual   actual value
      *
@@ -110,6 +108,7 @@ abstract class AbstractConstraintTestCase extends TestCase
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provConstraintEvaluationSucceeds')]
     final public function testConstraintEvaluationSucceeds(array $ctorArgs, $actual): void
     {
         $constraint = static::createConstraint($ctorArgs);
@@ -117,8 +116,6 @@ abstract class AbstractConstraintTestCase extends TestCase
     }
 
     /**
-     * @dataProvider provConstraintEvaluationFails
-     *
      * @param array $ctorArgs arguments passed to createConstraint()
      * @param mixed $actual
      *
@@ -126,6 +123,7 @@ abstract class AbstractConstraintTestCase extends TestCase
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provConstraintEvaluationFails')]
     final public function testConstraintEvaluationFails(array $ctorArgs, $actual, string $message): void
     {
         $constraint = static::createConstraint($ctorArgs);
@@ -137,14 +135,13 @@ abstract class AbstractConstraintTestCase extends TestCase
     }
 
     /**
-     * @dataProvider provNotConstraintEvaluationSucceeds
-     *
      * @param mixed $actual
      *
      * @psalm-param CtorArgs $ctorArgs
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provNotConstraintEvaluationSucceeds')]
     final public function testNotConstraintEvaluationSucceeds(array $ctorArgs, $actual): void
     {
         $constraint = self::logicalNot(static::createConstraint($ctorArgs));
@@ -152,14 +149,13 @@ abstract class AbstractConstraintTestCase extends TestCase
     }
 
     /**
-     * @dataProvider provNotConstraintEvaluationFails
-     *
      * @param mixed $actual
      *
      * @psalm-param CtorArgs $ctorArgs
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provNotConstraintEvaluationFails')]
     final public function testNotConstraintEvaluationFails(array $ctorArgs, $actual, string $message): void
     {
         $constraint = self::logicalNot(static::createConstraint($ctorArgs));

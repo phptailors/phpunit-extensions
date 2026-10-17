@@ -10,15 +10,14 @@
 
 namespace Tailors\PHPUnit;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Arrays\KsortedArrayExpectations;
 use Tailors\PHPUnit\Common\TypesInterface;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\KsortedArrayTraitTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
@@ -29,6 +28,8 @@ use Tailors\PHPUnit\Common\TypesInterface;
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
+#[CoversClass(KsortedArrayTraitTest::class)]
+#[Small]
 final class KsortedArrayTraitTest extends TestCase
 {
     use KsortedArrayTrait;
@@ -62,14 +63,13 @@ final class KsortedArrayTraitTest extends TestCase
     }
 
     /**
-     * @dataProvider provExpectKsortedArray
-     *
      * @param mixed $expect
      *
      * @psalm-param KsortedArrayArgs $args
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provExpectKsortedArray')]
     public function testExpectedKsortedArray(array $args, $expect): void
     {
         $values = self::ksortedArray(...$args);

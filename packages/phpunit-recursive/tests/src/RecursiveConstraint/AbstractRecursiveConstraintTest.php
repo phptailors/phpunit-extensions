@@ -11,6 +11,9 @@
 namespace Tailors\PHPUnit\RecursiveConstraint;
 
 use PHPUnit\Event\NoPreviousThrowableException;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\UnaryOperator;
 use PHPUnit\Framework\ExpectationFailedException;
@@ -38,11 +41,6 @@ use Tailors\PHPUnit\ResultFactory\DummyTaggedArrayResultFactory;
 use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\RecursiveConstraint\AbstractRecursiveConstraint
- * @covers \Tailors\PHPUnit\RecursiveConstraint\AbstractRecursiveConstraintTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
@@ -54,6 +52,9 @@ use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
+#[CoversClass(AbstractRecursiveConstraint::class)]
+#[CoversClass(AbstractRecursiveConstraintTest::class)]
+#[Small]
 final class AbstractRecursiveConstraintTest extends TestCase
 {
     /**
@@ -74,7 +75,9 @@ final class AbstractRecursiveConstraintTest extends TestCase
 
         $valueSelector = new DummyValueSelector(false, false, 'a tree', 'apples');
 
-        $expectations = new DummyValueSelectorWrapper($valueSelector, $this->createStub(\Traversable::class));
+        /** @psalm-var class-string<\Traversable<array-key,mixed>> */
+        $iterable = \Traversable::class;
+        $expectations = new DummyValueSelectorWrapper($valueSelector, $this->createStub($iterable));
 
         $constraint = $this->createDummyConstraint($expectations, $comparator);
 
@@ -255,8 +258,6 @@ final class AbstractRecursiveConstraintTest extends TestCase
     }
 
     /**
-     * @dataProvider provEvaluate
-     *
      * @param mixed $expect
      *
      * @psalm-param Constraint     $constraint
@@ -265,6 +266,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provEvaluate')]
     public function testEvaluate(Constraint $constraint, array $args, array $expect): void
     {
         if (array_key_exists('exception', $expect) && array_key_exists('message', $expect)) {
@@ -311,31 +313,30 @@ final class AbstractRecursiveConstraintTest extends TestCase
     }
 
     /**
-     * @dataProvider provEvaluateWithNonUnwrappableResult
-     *
      * @param mixed $expectResult
      * @param mixed $actualResult
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provEvaluateWithNonUnwrappableResult')]
     public function testEvaluateWithNonUnwrappableResult($expectResult, $actualResult): void
     {
         $expectations = new DummyResultFactoryWrapper(new DummyResultFactory(true), []);
 
         $recursiveResultFactory = $this->createMock(RecursiveResultFactoryInterface::class);
 
-        $recursiveResultFactory->expects($this->any())
+        $recursiveResultFactory
             ->method('supports')
             ->willReturn(true)
         ;
 
-        $recursiveResultFactory->expects($this->any())
+        $recursiveResultFactory
             ->method('getExpectedResult')
             ->with($expectations)
             ->willReturn($expectResult)
         ;
 
-        $recursiveResultFactory->expects($this->any())
+        $recursiveResultFactory
             ->method('getActualResult')
             ->with($expectations)
             ->willReturn($actualResult)

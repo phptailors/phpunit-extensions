@@ -10,6 +10,9 @@
 
 namespace Tailors\PHPUnit\ArraySpec;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Comparator\DummyComparator;
@@ -19,11 +22,6 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
 use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\ArraySpec\DummyValueSelectorWrapper
- * @covers \Tailors\PHPUnit\ArraySpec\DummyValueSelectorWrapperTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
@@ -32,6 +30,9 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
+#[CoversClass(DummyValueSelectorWrapper::class)]
+#[CoversClass(DummyValueSelectorWrapperTest::class)]
+#[Small]
 final class DummyValueSelectorWrapperTest extends TestCase
 {
     /**
@@ -99,15 +100,14 @@ final class DummyValueSelectorWrapperTest extends TestCase
     }
 
     /**
-     * @dataProvider provDummyValueSelectorWrapper
-     *
      * @psalm-param ArrayLike $array
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provDummyValueSelectorWrapper')]
     public function testDummyValueSelectorWrapper(iterable $array): void
     {
-        $valueSelector = $this->createMock(ValueSelectorInterface::class);
+        $valueSelector = $this->createStub(ValueSelectorInterface::class);
 
         $dummyValueSelectorWrapper = self::createDummyValueSelectorWrapper($array, $valueSelector);
 

@@ -10,6 +10,7 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\UnaryOperator;
 use PHPUnit\Framework\TestCase;
@@ -39,14 +40,13 @@ trait InheritanceConstraintTestTrait
     abstract public static function provFailureDescriptionOfCustomUnaryOperator(): iterable;
 
     /**
-     * @dataProvider provFailureDescriptionOfCustomUnaryOperator
-     *
      * @param mixed $subject
      *
      * @psalm-param ExpectExceptionArray $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provFailureDescriptionOfCustomUnaryOperator')]
     public function testFailureDescriptionOfCustomUnaryOperator(Constraint $constraint, $subject, array $expect): void
     {
         $noop = new class($constraint) extends UnaryOperator {
@@ -68,14 +68,13 @@ trait InheritanceConstraintTestTrait
     }
 
     /**
-     * @dataProvider provFailureDescriptionOfLogicalNotOperator
-     *
      * @param mixed $subject
      *
      * @psalm-param ExpectExceptionArray $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provFailureDescriptionOfLogicalNotOperator')]
     public function testFailureDescriptionOfLogicalNotOperator(Constraint $constraint, $subject, array $expect): void
     {
         $not = self::logicalNot($constraint);

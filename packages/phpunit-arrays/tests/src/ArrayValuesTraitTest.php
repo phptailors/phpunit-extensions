@@ -10,15 +10,14 @@
 
 namespace Tailors\PHPUnit;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Arrays\ArrayValuesSelection;
 use Tailors\PHPUnit\Common\TypesInterface;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\ArrayValuesTraitTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
@@ -29,6 +28,8 @@ use Tailors\PHPUnit\Common\TypesInterface;
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
+#[CoversClass(ArrayValuesTraitTest::class)]
+#[Small]
 final class ArrayValuesTraitTest extends TestCase
 {
     use ArrayValuesTrait;
@@ -57,14 +58,13 @@ final class ArrayValuesTraitTest extends TestCase
     }
 
     /**
-     * @dataProvider provExpectArrayValues
-     *
      * @param mixed $expect
      *
      * @psalm-param ArrayValuesArgs $args
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provExpectArrayValues')]
     public function testExpectedArrayValues(array $args, $expect): void
     {
         $values = self::arrayValues(...$args);

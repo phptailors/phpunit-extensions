@@ -10,17 +10,15 @@
 
 namespace Tailors\PHPUnit;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Constraint\ProvArrayValuesTrait;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\ArrayValuesIdenticalToTrait
- * @covers \Tailors\PHPUnit\ArrayValuesIdenticalToTraitTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
@@ -29,6 +27,8 @@ use Tailors\PHPUnit\Constraint\ProvArrayValuesTrait;
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
+#[CoversClass(ArrayValuesIdenticalToTraitTest::class)]
+#[Small]
 final class ArrayValuesIdenticalToTraitTest extends TestCase
 {
     use ArrayValuesIdenticalToTrait;
@@ -75,71 +75,66 @@ final class ArrayValuesIdenticalToTraitTest extends TestCase
     }
 
     /**
-     * @dataProvider provArrayValuesIdenticalToSucceeds
-     *
      * @param mixed $actual
      *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provArrayValuesIdenticalToSucceeds')]
     public function testArrayValuesIdenticalToSucceeds(array $expect, $actual): void
     {
         self::assertThat($actual, self::arrayValuesIdenticalTo($expect));
     }
 
     /**
-     * @dataProvider provArrayValuesIdenticalToSucceeds
-     *
      * @param mixed $actual
      *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provArrayValuesIdenticalToSucceeds')]
     public function testAssertArrayValuesIdenticalToSucceeds(array $expect, $actual): void
     {
         self::assertArrayValuesIdenticalTo($expect, $actual);
     }
 
     /**
-     * @dataProvider provNotArrayValuesIdenticalToSucceeds
-     *
      * @param mixed $actual
      *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provNotArrayValuesIdenticalToSucceeds')]
     public function testLogicalNotArrayValuesIdenticalToSucceeds(array $expect, $actual): void
     {
         self::assertThat($actual, self::logicalNot(self::arrayValuesIdenticalTo($expect)));
     }
 
     /**
-     * @dataProvider provNotArrayValuesIdenticalToSucceeds
-     *
      * @param mixed $actual
      *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provNotArrayValuesIdenticalToSucceeds')]
     public function testAssertNotArrayValuesIdenticalToSucceeds(array $expect, $actual): void
     {
         self::assertNotArrayValuesIdenticalTo($expect, $actual);
     }
 
     /**
-     * @dataProvider provArrayValuesNotEqualTo
-     * @dataProvider provArrayValuesEqualButNotIdenticalTo
-     *
      * @param mixed $actual
      *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provArrayValuesNotEqualTo')]
+    #[DataProvider('provArrayValuesEqualButNotIdenticalTo')]
     public function testAssertArrayValuesIdenticalToFails(array $expect, $actual, string $string): void
     {
         $regexp = '/^Lorem ipsum.\n'.
@@ -152,14 +147,13 @@ final class ArrayValuesIdenticalToTraitTest extends TestCase
     }
 
     /**
-     * @dataProvider provArrayValuesIdenticalTo
-     *
      * @param mixed $actual
      *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provArrayValuesIdenticalTo')]
     public function testAssertNotArrayValuesIdenticalToFails(array $expect, $actual, string $string): void
     {
         $regexp = '/^Lorem ipsum.\n'.

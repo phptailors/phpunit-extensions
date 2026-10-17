@@ -10,16 +10,14 @@
 
 namespace Tailors\PHPUnit\RecursiveResultFactory;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Result\DummyTaggedArrayResult;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\RecursiveResultFactory\RecursiveExpectedResultFactoryStackItem
- * @covers \Tailors\PHPUnit\RecursiveResultFactory\RecursiveExpectedResultFactoryStackItemTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
@@ -32,6 +30,9 @@ use Tailors\PHPUnit\Result\DummyTaggedArrayResult;
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
+#[CoversClass(RecursiveExpectedResultFactoryStackItem::class)]
+#[CoversClass(RecursiveExpectedResultFactoryStackItemTest::class)]
+#[Small]
 final class RecursiveExpectedResultFactoryStackItemTest extends TestCase
 {
     /**
@@ -70,13 +71,12 @@ final class RecursiveExpectedResultFactoryStackItemTest extends TestCase
     }
 
     /**
-     * @dataProvider provConstruct
-     *
      * @psalm-param CtorArgs   $ctor
      * @psalm-param CtorExpect $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provConstruct')]
     public function testConstruct(array $ctor, array $expect): void
     {
         $item = new RecursiveExpectedResultFactoryStackItem(...$ctor);
@@ -138,8 +138,6 @@ final class RecursiveExpectedResultFactoryStackItemTest extends TestCase
     }
 
     /**
-     * @dataProvider provSet
-     *
      * @param mixed $value
      *
      * @psalm-param CtorArgs  $ctor
@@ -147,6 +145,7 @@ final class RecursiveExpectedResultFactoryStackItemTest extends TestCase
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provSet')]
     public function testSet(array $ctor, $value, array $expect): void
     {
         $item = new RecursiveExpectedResultFactoryStackItem(...$ctor);

@@ -10,19 +10,19 @@
 
 namespace Tailors\PHPUnit\Arrays;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Small;
 use Tailors\PHPUnit\Result\ResultInterface;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\Arrays\AbstractArrayValuesTestCase
- * @covers \Tailors\PHPUnit\Arrays\ActualArrayValues
- * @covers \Tailors\PHPUnit\Arrays\ActualArrayValuesTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
+#[CoversClass(AbstractArrayValuesTestCase::class)]
+#[CoversClass(ActualArrayValues::class)]
+#[CoversClass(ActualArrayValuesTest::class)]
+#[Small]
 final class ActualArrayValuesTest extends AbstractArrayValuesTestCase
 {
     /**

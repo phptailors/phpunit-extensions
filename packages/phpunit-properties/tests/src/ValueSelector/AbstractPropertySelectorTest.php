@@ -10,15 +10,13 @@
 
 namespace Tailors\PHPUnit\ValueSelector;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\InvalidArgumentException;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\ValueSelector\AbstractPropertySelector
- * @covers \Tailors\PHPUnit\ValueSelector\AbstractPropertySelectorTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
@@ -27,6 +25,9 @@ use Tailors\PHPUnit\InvalidArgumentException;
  * @psalm-type CallSupports = array{input: mixed, return: mixed}
  * @psalm-type CallSelect   = array{subject: mixed, key: array-key, retval?: mixed, return?: mixed, exception?: string}
  */
+#[CoversClass(AbstractPropertySelector::class)]
+#[CoversClass(AbstractPropertySelectorTest::class)]
+#[Small]
 final class AbstractPropertySelectorTest extends TestCase
 {
     /**
@@ -238,14 +239,13 @@ final class AbstractPropertySelectorTest extends TestCase
     }
 
     /**
-     * @dataProvider provAbstractPropertySelector
-     *
      * @psalm-param CtorArgs     $ctorArgs
      * @psalm-param CallSupports $supports
      * @psalm-param CallSelect   $select
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provAbstractPropertySelector')]
     public function testAbstractPropertySelector(array $ctorArgs, ?array $supports = null, ?array $select = null): void
     {
         $selector = self::getObject($ctorArgs);

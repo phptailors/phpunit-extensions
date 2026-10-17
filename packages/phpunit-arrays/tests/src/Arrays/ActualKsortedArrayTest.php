@@ -10,18 +10,18 @@
 
 namespace Tailors\PHPUnit\Arrays;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Small;
 use Tailors\PHPUnit\Result\ResultInterface;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\Arrays\ActualKsortedArray
- * @covers \Tailors\PHPUnit\Arrays\ActualKsortedArrayTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
+#[CoversClass(ActualKsortedArray::class)]
+#[CoversClass(ActualKsortedArrayTest::class)]
+#[Small]
 final class ActualKsortedArrayTest extends AbstractKsortedArrayTestCase
 {
     /**

@@ -10,16 +10,13 @@
 
 namespace Tailors\PHPUnit\Common;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\IsTrue;
 use PHPUnit\Framework\Constraint\LogicalOr;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\Common\AbstractConstraintTestCase
- * @covers \Tailors\PHPUnit\Common\AbstractConstraintTestCaseTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
@@ -28,6 +25,9 @@ use PHPUnit\Framework\Constraint\LogicalOr;
  *
  * @template-extends AbstractConstraintTestCase<Constraint, list{}>
  */
+#[CoversClass(AbstractConstraintTestCase::class)]
+#[CoversClass(AbstractConstraintTestCaseTest::class)]
+#[Small]
 final class AbstractConstraintTestCaseTest extends AbstractConstraintTestCase
 {
     /**

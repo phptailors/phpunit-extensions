@@ -10,16 +10,14 @@
 
 namespace Tailors\PHPUnit;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Properties\ObjectPropertiesSelection;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\ObjectPropertiesTrait
- * @covers \Tailors\PHPUnit\ObjectPropertiesTraitTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
@@ -30,6 +28,8 @@ use Tailors\PHPUnit\Properties\ObjectPropertiesSelection;
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
+#[CoversClass(ObjectPropertiesTraitTest::class)]
+#[Small]
 final class ObjectPropertiesTraitTest extends TestCase
 {
     use ObjectPropertiesTrait;
@@ -58,14 +58,13 @@ final class ObjectPropertiesTraitTest extends TestCase
     }
 
     /**
-     * @dataProvider provExpectObjectProperties
-     *
      * @param mixed $expect
      *
      * @psalm-param ObjectPropertiesArgs $args
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provExpectObjectProperties')]
     public function testExpectedObjectProperties(array $args, $expect): void
     {
         $values = self::objectProperties(...$args);

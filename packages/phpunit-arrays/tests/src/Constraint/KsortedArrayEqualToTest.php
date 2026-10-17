@@ -10,17 +10,13 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Constraint\Constraint;
 use Tailors\PHPUnit\Arrays\KsortedConstraintTestCase;
 use Tailors\PHPUnit\InvalidArgumentException;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\Arrays\KsortedConstraintTestCase
- * @covers \Tailors\PHPUnit\Constraint\KsortedArrayEqualTo
- * @covers \Tailors\PHPUnit\Constraint\KsortedArrayEqualToTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
@@ -30,6 +26,10 @@ use Tailors\PHPUnit\InvalidArgumentException;
  *
  * @template-extends KsortedConstraintTestCase<KsortedArrayEqualTo>
  */
+#[CoversClass(KsortedConstraintTestCase::class)]
+#[CoversClass(KsortedArrayEqualTo::class)]
+#[CoversClass(KsortedArrayEqualToTest::class)]
+#[Small]
 final class KsortedArrayEqualToTest extends KsortedConstraintTestCase
 {
     use ProvKsortedArrayTrait;

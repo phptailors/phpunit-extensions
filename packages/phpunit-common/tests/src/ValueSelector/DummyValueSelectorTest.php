@@ -10,14 +10,12 @@
 
 namespace Tailors\PHPUnit\ValueSelector;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\ValueSelector\DummyValueSelector
- * @covers \Tailors\PHPUnit\ValueSelector\DummyValueSelectorTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
@@ -33,6 +31,9 @@ use PHPUnit\Framework\TestCase;
  * @psalm-type SubjectTestCall    = array{return: mixed}
  * @psalm-type SelectableTestCall = array{return: mixed}
  */
+#[CoversClass(DummyValueSelector::class)]
+#[CoversClass(DummyValueSelectorTest::class)]
+#[Small]
 final class DummyValueSelectorTest extends TestCase
 {
     /**
@@ -158,8 +159,6 @@ final class DummyValueSelectorTest extends TestCase
     }
 
     /**
-     * @dataProvider provDummyValueSelector
-     *
      * @psalm-param CtorArgs            $ctor
      * @psalm-param ?SupportsTestCall   $supports
      * @psalm-param ?SelectTestCall     $select
@@ -168,6 +167,7 @@ final class DummyValueSelectorTest extends TestCase
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provDummyValueSelector')]
     public function testDummyValueSelector(
         array $ctor,
         ?array $supports = null,

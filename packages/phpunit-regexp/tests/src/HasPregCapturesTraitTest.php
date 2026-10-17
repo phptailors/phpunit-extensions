@@ -10,20 +10,20 @@
 
 namespace Tailors\PHPUnit;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Constraint\ProvHasPregCapturesTrait;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\HasPregCapturesTrait
- * @covers \Tailors\PHPUnit\HasPregCapturesTraitTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
+#[CoversClass(HasPregCapturesTraitTest::class)]
+#[Small]
 final class HasPregCapturesTraitTest extends TestCase
 {
     use HasPregCapturesTrait;
@@ -74,65 +74,60 @@ final class HasPregCapturesTraitTest extends TestCase
     }
 
     /**
-     * @dataProvider provHasPregCapturesSucceeds
-     *
      * @psalm-param array $expect
      * @psalm-param array $actual
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provHasPregCapturesSucceeds')]
     public function testHasPregCapturesSucceeds(array $expect, array $actual): void
     {
         self::assertThat($actual, self::hasPregCaptures($expect));
     }
 
     /**
-     * @dataProvider provHasPregCapturesSucceeds
-     *
      * @psalm-param array $expect
      * @psalm-param array $actual
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provHasPregCapturesSucceeds')]
     public function testAssertHasPregCapturesSucceeds(array $expect, array $actual): void
     {
         self::assertHasPregCaptures($expect, $actual);
     }
 
     /**
-     * @dataProvider provNotHasPregCapturesSucceeds
-     *
      * @psalm-param array $expect
      * @psalm-param array $actual
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provNotHasPregCapturesSucceeds')]
     public function testLogicalNotHasPregCaptureSucceeds(array $expect, array $actual): void
     {
         self::assertThat($actual, self::logicalNot(self::hasPregCaptures($expect)));
     }
 
     /**
-     * @dataProvider provNotHasPregCapturesSucceeds
-     *
      * @psalm-param array $expect
      * @psalm-param array $actual
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provNotHasPregCapturesSucceeds')]
     public function testAssertNotHasPregCaptureSucceeds(array $expect, array $actual): void
     {
         self::assertNotHasPregCaptures($expect, $actual);
     }
 
     /**
-     * @dataProvider provNotHasPregCaptures
-     *
      * @psalm-param array $expect
      * @psalm-param array $actual
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provNotHasPregCaptures')]
     public function testAssertHasPregCapturesFails(array $expect, array $actual, string $message): void
     {
         $this->expectException(ExpectationFailedException::class);
@@ -142,13 +137,12 @@ final class HasPregCapturesTraitTest extends TestCase
     }
 
     /**
-     * @dataProvider provHasPregCaptures
-     *
      * @psalm-param array $expect
      * @psalm-param array $actual
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provHasPregCaptures')]
     public function testAssertNotHasPregCaptureFails(array $expect, array $actual, string $message): void
     {
         $this->expectException(ExpectationFailedException::class);
@@ -157,15 +151,14 @@ final class HasPregCapturesTraitTest extends TestCase
     }
 
     /**
-     * @dataProvider provNotHasPregCaptures
-     * @dataProvider provNotHasPregCapturesNonArray
-     *
      * @param mixed $actual
      *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provNotHasPregCaptures')]
+    #[DataProvider('provNotHasPregCapturesNonArray')]
     public function testHasPregCapturesFails(array $expect, $actual, string $message): void
     {
         $this->expectException(ExpectationFailedException::class);

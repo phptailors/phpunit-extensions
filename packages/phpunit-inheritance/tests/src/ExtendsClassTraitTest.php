@@ -10,21 +10,21 @@
 
 namespace Tailors\PHPUnit;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Constraint\ExtendsClass;
 use Tailors\PHPUnit\Examples\Inheritance\ExampleTrait;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\ExtendsClassTrait
- * @covers \Tailors\PHPUnit\ExtendsClassTraitTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
+#[CoversClass(ExtendsClassTraitTest::class)]
+#[Small]
 final class ExtendsClassTraitTest extends TestCase
 {
     use ExtendsClassTrait;
@@ -124,60 +124,55 @@ final class ExtendsClassTraitTest extends TestCase
     }
 
     /**
-     * @dataProvider provExtendsClassSucceeds
-     *
      * @param mixed $subject
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provExtendsClassSucceeds')]
     public function testExtendsClassSucceeds(string $class, $subject): void
     {
         self::assertThat($subject, self::extendsClass($class));
     }
 
     /**
-     * @dataProvider provExtendsClassSucceeds
-     *
      * @param mixed $subject
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provExtendsClassSucceeds')]
     public function testAssertExtendsClassSucceeds(string $class, $subject): void
     {
         self::assertExtendsClass($class, $subject);
     }
 
     /**
-     * @dataProvider provNotExtendsClassSucceeds
-     *
      * @param mixed $subject
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provNotExtendsClassSucceeds')]
     public function testLogicalNotExtendsClassSucceeds(string $class, $subject): void
     {
         self::assertThat($subject, self::logicalNot(self::extendsClass($class)));
     }
 
     /**
-     * @dataProvider provNotExtendsClassSucceeds
-     *
      * @param mixed $subject
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provNotExtendsClassSucceeds')]
     public function testAssertNotExtendsClassSucceeds(string $class, $subject): void
     {
         self::assertNotExtendsClass($class, $subject);
     }
 
     /**
-     * @dataProvider provNotExtendsClass
-     *
      * @param mixed $subject
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provNotExtendsClass')]
     public function testAssertExtendsClassFails(string $class, $subject, string $message): void
     {
         self::expectException(ExpectationFailedException::class);
@@ -187,12 +182,11 @@ final class ExtendsClassTraitTest extends TestCase
     }
 
     /**
-     * @dataProvider provExtendsClass
-     *
      * @param mixed $subject
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provExtendsClass')]
     public function testAssertNotExtendsClassFails(string $class, $subject, string $message): void
     {
         self::expectException(ExpectationFailedException::class);
@@ -230,10 +224,9 @@ final class ExtendsClassTraitTest extends TestCase
     }
 
     /**
-     * @dataProvider provExtendsClassThrowsInvalidArgumentException
-     *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provExtendsClassThrowsInvalidArgumentException')]
     public function testExtendsClassThrowsInvalidArgumentException(string $argument, string $message): void
     {
         self::expectException(InvalidArgumentException::class);

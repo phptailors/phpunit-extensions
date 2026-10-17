@@ -10,22 +10,22 @@
 
 namespace Tailors\PHPUnit;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Constraint\ProvRecursivelyKsortedArrayTrait;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\RecursivelyKsortedArrayIdenticalToTrait
- * @covers \Tailors\PHPUnit\RecursivelyKsortedArrayIdenticalToTraitTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-type CtorArgs = list{0: array, 1?: int}
  */
+#[CoversClass(RecursivelyKsortedArrayIdenticalToTraitTest::class)]
+#[Small]
 final class RecursivelyKsortedArrayIdenticalToTraitTest extends TestCase
 {
     use RecursivelyKsortedArrayIdenticalToTrait;
@@ -72,71 +72,66 @@ final class RecursivelyKsortedArrayIdenticalToTraitTest extends TestCase
     }
 
     /**
-     * @dataProvider provRecursivelyKsortedArrayIdenticalToSucceeds
-     *
      * @param mixed $actual
      *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provRecursivelyKsortedArrayIdenticalToSucceeds')]
     public function testRecursivelyKsortedArrayIdenticalToSucceeds(array $expect, $actual): void
     {
         self::assertThat($actual, self::recursivelyKsortedArrayIdenticalTo($expect));
     }
 
     /**
-     * @dataProvider provRecursivelyKsortedArrayIdenticalToSucceeds
-     *
      * @param mixed $actual
      *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provRecursivelyKsortedArrayIdenticalToSucceeds')]
     public function testAssertRecursivelyKsortedArrayIdenticalToSucceeds(array $expect, $actual): void
     {
         self::assertRecursivelyKsortedArrayIdenticalTo($expect, $actual);
     }
 
     /**
-     * @dataProvider provNotRecursivelyKsortedArrayIdenticalToSucceeds
-     *
      * @param mixed $actual
      *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provNotRecursivelyKsortedArrayIdenticalToSucceeds')]
     public function testNotRecursivelyKsortedArrayIdenticalToSucceeds(array $expect, $actual): void
     {
         self::assertThat($actual, self::logicalNot(self::recursivelyKsortedArrayIdenticalTo($expect)));
     }
 
     /**
-     * @dataProvider provNotRecursivelyKsortedArrayIdenticalToSucceeds
-     *
      * @param mixed $actual
      *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provNotRecursivelyKsortedArrayIdenticalToSucceeds')]
     public function testAssertNotRecursivelyKsortedArrayIdenticalToSucceeds(array $expect, $actual): void
     {
         self::assertNotRecursivelyKsortedArrayIdenticalTo($expect, $actual);
     }
 
     /**
-     * @dataProvider provRecursivelyKsortedArrayNotEqualTo
-     * @dataProvider provRecursivelyKsortedArrayEqualButNotIdenticalTo
-     *
      * @param mixed $actual
      *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provRecursivelyKsortedArrayNotEqualTo')]
+    #[DataProvider('provRecursivelyKsortedArrayEqualButNotIdenticalTo')]
     public function testAssertRecursivelyKsortedArrayIdenticalToFails(array $expect, $actual, string $string): void
     {
         $regexp = '/^Lorem ipsum.\n'.
@@ -149,14 +144,13 @@ final class RecursivelyKsortedArrayIdenticalToTraitTest extends TestCase
     }
 
     /**
-     * @dataProvider provRecursivelyKsortedArrayIdenticalTo
-     *
      * @param mixed $actual
      *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provRecursivelyKsortedArrayIdenticalTo')]
     public function testAssertNotRecursivelyKsortedArrayIdenticalToFails(array $expect, $actual, string $string): void
     {
         $regexp = '/^Lorem ipsum.\n'.

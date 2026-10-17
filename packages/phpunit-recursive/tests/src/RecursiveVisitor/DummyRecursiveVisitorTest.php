@@ -10,16 +10,14 @@
 
 namespace Tailors\PHPUnit\RecursiveVisitor;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Result\DummyTaggedArrayResult;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\RecursiveVisitor\DummyRecursiveVisitor
- * @covers \Tailors\PHPUnit\RecursiveVisitor\DummyRecursiveVisitorTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
@@ -34,6 +32,9 @@ use Tailors\PHPUnit\Result\DummyTaggedArrayResult;
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
+#[CoversClass(DummyRecursiveVisitor::class)]
+#[CoversClass(DummyRecursiveVisitorTest::class)]
+#[Small]
 final class DummyRecursiveVisitorTest extends TestCase
 {
     /**
@@ -77,13 +78,12 @@ final class DummyRecursiveVisitorTest extends TestCase
     }
 
     /**
-     * @dataProvider provDummyRecursiveVisitor
-     *
      * @psalm-param CtorArgs $ctor
      * @psalm-param Expect   $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provDummyRecursiveVisitor')]
     public function testDummyRecursiveVisitor(array $ctor, array $expect): void
     {
         $node = new DummyTaggedArrayResult(false, ['foo' => 'FOO']);

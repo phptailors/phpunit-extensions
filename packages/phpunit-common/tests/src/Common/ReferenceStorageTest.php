@@ -10,18 +10,19 @@
 
 namespace Tailors\PHPUnit\Common;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\Common\ReferenceStorage
- * @covers \Tailors\PHPUnit\Common\ReferenceStorageTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
+#[CoversClass(ReferenceStorage::class)]
+#[CoversClass(ReferenceStorageTest::class)]
+#[Small]
 final class ReferenceStorageTest extends TestCase
 {
     /**
@@ -35,12 +36,11 @@ final class ReferenceStorageTest extends TestCase
     }
 
     /**
-     * @dataProvider provAddAndCount
-     *
      * @psalm-param array $values
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provAddAndCount')]
     public function testAddAndCount(array $values, int $expect): void
     {
         $storage = new ReferenceStorage();
@@ -54,12 +54,11 @@ final class ReferenceStorageTest extends TestCase
     }
 
     /**
-     * @dataProvider provAddRemoveContains
-     *
      * @psalm-param array $values
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provAddRemoveContains')]
     public function testAddRemoveContains(array $values): void
     {
         $storage = new ReferenceStorage();

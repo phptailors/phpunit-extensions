@@ -10,17 +10,14 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Constraint\Constraint;
 use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\InvalidArgumentException;
 use Tailors\PHPUnit\RecursiveConstraint\AbstractRecursiveConstraintTestCase;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\Constraint\ArrayValuesIdenticalTo
- * @covers \Tailors\PHPUnit\Constraint\ArrayValuesIdenticalToTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
@@ -34,6 +31,9 @@ use Tailors\PHPUnit\RecursiveConstraint\AbstractRecursiveConstraintTestCase;
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
+#[CoversClass(ArrayValuesIdenticalTo::class)]
+#[CoversClass(ArrayValuesIdenticalToTest::class)]
+#[Small]
 final class ArrayValuesIdenticalToTest extends AbstractRecursiveConstraintTestCase
 {
     use ProvArrayValuesTrait;

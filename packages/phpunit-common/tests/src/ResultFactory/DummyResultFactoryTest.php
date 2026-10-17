@@ -10,16 +10,14 @@
 
 namespace Tailors\PHPUnit\ResultFactory;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Result\DummyResult;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\ResultFactory\DummyResultFactory
- * @covers \Tailors\PHPUnit\ResultFactory\DummyResultFactoryTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
@@ -28,6 +26,9 @@ use Tailors\PHPUnit\Result\DummyResult;
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
+#[CoversClass(DummyResultFactory::class)]
+#[CoversClass(DummyResultFactoryTest::class)]
+#[Small]
 final class DummyResultFactoryTest extends TestCase
 {
     /**
@@ -110,8 +111,6 @@ final class DummyResultFactoryTest extends TestCase
     }
 
     /**
-     * @dataProvider provDummyResultFactory
-     *
      * @param bool|\Closure $supports
      * @param mixed         $input
      *
@@ -120,6 +119,7 @@ final class DummyResultFactoryTest extends TestCase
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provDummyResultFactory')]
     public function testDummyResultFactory($supports, $input, bool $actual, array $expect): void
     {
         $dummyResultFactory = new DummyResultFactory($supports);

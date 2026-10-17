@@ -10,16 +10,13 @@
 
 namespace Tailors\PHPUnit\RecursiveConstraint;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Constraint\Constraint;
 use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\InvalidArgumentException;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\RecursiveConstraint\AbstractRecursiveConstraintTestCase
- * @covers \Tailors\PHPUnit\RecursiveConstraint\AbstractRecursiveConstraintTestCaseTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
@@ -33,6 +30,9 @@ use Tailors\PHPUnit\InvalidArgumentException;
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
+#[CoversClass(AbstractRecursiveConstraintTestCase::class)]
+#[CoversClass(AbstractRecursiveConstraintTestCaseTest::class)]
+#[Small]
 final class AbstractRecursiveConstraintTestCaseTest extends AbstractRecursiveConstraintTestCase
 {
     /**

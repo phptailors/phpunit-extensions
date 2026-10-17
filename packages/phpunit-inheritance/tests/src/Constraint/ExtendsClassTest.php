@@ -10,6 +10,9 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
@@ -17,17 +20,15 @@ use Tailors\PHPUnit\Examples\Inheritance\ExampleTrait;
 use Tailors\PHPUnit\InvalidArgumentException;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\Constraint\ExtendsClass
- * @covers \Tailors\PHPUnit\Constraint\ExtendsClassTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-type ExpectExceptionArray = array{exception: class-string<\Exception>, message: string}
  */
+#[CoversClass(ExtendsClass::class)]
+#[CoversClass(ExtendsClassTest::class)]
+#[Small]
 final class ExtendsClassTest extends TestCase
 {
     use InheritanceConstraintTestTrait;
@@ -176,12 +177,11 @@ final class ExtendsClassTest extends TestCase
     }
 
     /**
-     * @dataProvider provExtendsClass
-     *
      * @param mixed $subject
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provExtendsClass')]
     public function testConstraintSucceeds(string $class, $subject): void
     {
         $constraint = ExtendsClass::create($class);
@@ -190,12 +190,11 @@ final class ExtendsClassTest extends TestCase
     }
 
     /**
-     * @dataProvider provNotExtendsClass
-     *
      * @param mixed $subject
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provNotExtendsClass')]
     public function testConstraintFails(string $class, $subject, string $message): void
     {
         $constraint = ExtendsClass::create($class);
@@ -207,10 +206,9 @@ final class ExtendsClassTest extends TestCase
     }
 
     /**
-     * @dataProvider provThrowsInvalidArgumentException
-     *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provThrowsInvalidArgumentException')]
     public function testThrowsInvalidArgumentException(string $argument, string $message): void
     {
         self::expectException(InvalidArgumentException::class);

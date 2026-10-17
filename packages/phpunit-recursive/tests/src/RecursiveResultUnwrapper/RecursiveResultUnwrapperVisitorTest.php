@@ -10,6 +10,9 @@
 
 namespace Tailors\PHPUnit\RecursiveResultUnwrapper;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Common\StaticRandomStrings;
 use Tailors\PHPUnit\Common\StaticTagInterface;
@@ -23,11 +26,6 @@ use Tailors\PHPUnit\Result\DummyTaggedArrayResult;
 use Tailors\PHPUnit\Result\ResultInterface;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapperVisitor
- * @covers \Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapperVisitorTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
@@ -44,6 +42,9 @@ use Tailors\PHPUnit\Result\ResultInterface;
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
+#[CoversClass(RecursiveResultUnwrapperVisitor::class)]
+#[CoversClass(RecursiveResultUnwrapperVisitorTest::class)]
+#[Small]
 final class RecursiveResultUnwrapperVisitorTest extends TestCase
 {
     /**
@@ -137,13 +138,12 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
     }
 
     /**
-     * @dataProvider provCycle
-     *
      * @psalm-param CtorArgs                      $ctor
      * @psalm-param non-empty-list<CycleTestCall> $calls
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provCycle')]
     public function testCycle(array $ctor, array $calls): void
     {
         $visitor = new RecursiveResultUnwrapperVisitor(...$ctor);
@@ -580,8 +580,6 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
     }
 
     /**
-     * @dataProvider provEnterLeave
-     *
      * @param mixed $result
      *
      * @psalm-param CtorArgs                      $ctor
@@ -590,6 +588,7 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provEnterLeave')]
     public function testEnterLeave(array $ctor, array $begin, array $calls, $result): void
     {
         $visitor = new RecursiveResultUnwrapperVisitor(...$ctor);
@@ -610,6 +609,11 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
             $args = $call['args'];
             $node = $args['node'];
             if ($call['return'] && array_key_exists('next', $call)) {
+                /**
+                 * @see https://github.com/sebastianbergmann/phpunit/issues/6199
+                 *
+                 * @psalm-var non-empty-list<StackItem> $stack
+                 */
                 $this->assertNotEmpty($stack);
                 $visitor->freeStackItem(array_pop($stack), $stack);
             }
@@ -718,8 +722,6 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
     }
 
     /**
-     * @dataProvider provVisit
-     *
      * @param mixed $result
      *
      * @psalm-param CtorArgs                      $ctor
@@ -729,6 +731,7 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provVisit')]
     public function testVisit(array $ctor, array $begin, iterable $root, bool $iter, array $calls, $result): void
     {
         $visitor = new RecursiveResultUnwrapperVisitor(...$ctor);
@@ -757,6 +760,11 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
             $this->assertNull($visitor->visit($node, $stack, $iter));
 
             if ($iter) {
+                /**
+                 * @see https://github.com/sebastianbergmann/phpunit/issues/6199
+                 *
+                 * @psalm-var non-empty-list<StackItem> $stack
+                 */
                 $this->assertNotEmpty($stack);
                 $visitor->freeStackItem(array_pop($stack), $stack);
             }
@@ -1019,8 +1027,6 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
     }
 
     /**
-     * @dataProvider provUnwrapAcyclic
-     *
      * @param mixed $result
      *
      * @psalm-param CtorArgs  $ctor
@@ -1029,6 +1035,7 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provUnwrapAcyclic')]
     public function testUnwrapAcyclic(array $ctor, array $begin, iterable $array, $result): void
     {
         $traversal = new RecursiveTraversal();
@@ -1223,8 +1230,6 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
     }
 
     /**
-     * @dataProvider provUnwrapCyclic
-     *
      * @param mixed $result
      *
      * @psalm-param CtorArgs  $ctor
@@ -1233,6 +1238,7 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provUnwrapCyclic')]
     public function testUnwrapCyclic(array $ctor, array $begin, iterable $array, $result): void
     {
         $traversal = new RecursiveTraversal();

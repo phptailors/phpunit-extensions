@@ -10,18 +10,14 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Constraint\Constraint;
 use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\InvalidArgumentException;
 use Tailors\PHPUnit\Properties\AbstractPropertiesConstraintTestCase;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\Constraint\ObjectPropertiesIdenticalTo
- * @covers \Tailors\PHPUnit\Constraint\ObjectPropertiesIdenticalToTest
- * @covers \Tailors\PHPUnit\Properties\AbstractPropertiesConstraintTestCase
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
@@ -35,6 +31,10 @@ use Tailors\PHPUnit\Properties\AbstractPropertiesConstraintTestCase;
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
+#[CoversClass(ObjectPropertiesIdenticalTo::class)]
+#[CoversClass(ObjectPropertiesIdenticalToTest::class)]
+#[CoversClass(AbstractPropertiesConstraintTestCase::class)]
+#[Small]
 final class ObjectPropertiesIdenticalToTest extends AbstractPropertiesConstraintTestCase
 {
     use ProvObjectPropertiesTrait;

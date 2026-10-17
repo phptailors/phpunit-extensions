@@ -10,18 +10,18 @@
 
 namespace Tailors\PHPUnit\Common;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\Common\StaticRandomStrings
- * @covers \Tailors\PHPUnit\Common\StaticRandomStringsTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
+#[CoversClass(StaticRandomStrings::class)]
+#[CoversClass(StaticRandomStringsTest::class)]
+#[Small]
 final class StaticRandomStringsTest extends TestCase
 {
     /**

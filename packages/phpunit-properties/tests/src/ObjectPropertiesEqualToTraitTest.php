@@ -10,17 +10,15 @@
 
 namespace Tailors\PHPUnit;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Constraint\ProvObjectPropertiesTrait;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\ObjectPropertiesEqualToTrait
- * @covers \Tailors\PHPUnit\ObjectPropertiesEqualToTraitTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
@@ -31,6 +29,8 @@ use Tailors\PHPUnit\Constraint\ProvObjectPropertiesTrait;
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
+#[CoversClass(ObjectPropertiesEqualToTraitTest::class)]
+#[Small]
 final class ObjectPropertiesEqualToTraitTest extends TestCase
 {
     use ObjectPropertiesEqualToTrait;
@@ -77,60 +77,55 @@ final class ObjectPropertiesEqualToTraitTest extends TestCase
     }
 
     /**
-     * @dataProvider provObjectPropertiesEqualToSucceeds
-     *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provObjectPropertiesEqualToSucceeds')]
     public function testObjectPropertiesEqualToSucceeds(array $expect, object $actual): void
     {
         self::assertThat($actual, self::objectPropertiesEqualTo($expect));
     }
 
     /**
-     * @dataProvider provObjectPropertiesEqualToSucceeds
-     *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provObjectPropertiesEqualToSucceeds')]
     public function testAssertObjectPropertiesEqualToSucceeds(array $expect, object $actual): void
     {
         self::assertObjectPropertiesEqualTo($expect, $actual);
     }
 
     /**
-     * @dataProvider provNotObjectPropertiesEqualToSucceeds
-     *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provNotObjectPropertiesEqualToSucceeds')]
     public function testLogicalNotObjectPropertiesEqualToSucceds(array $expect, object $actual): void
     {
         self::assertThat($actual, self::logicalNot(self::objectPropertiesEqualTo($expect)));
     }
 
     /**
-     * @dataProvider provNotObjectPropertiesEqualToSucceeds
-     *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provNotObjectPropertiesEqualToSucceeds')]
     public function testAssertNotObjectPropertiesEqualToSucceeds(array $expect, object $actual): void
     {
         self::assertNotObjectPropertiesEqualTo($expect, $actual);
     }
 
     /**
-     * @dataProvider provObjectPropertiesNotEqualTo
-     *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provObjectPropertiesNotEqualTo')]
     public function testAssertObjectPropertiesEqualToFails(array $expect, object $actual, string $string): void
     {
         $regexp = '/^Lorem ipsum.\n'.
@@ -143,13 +138,12 @@ final class ObjectPropertiesEqualToTraitTest extends TestCase
     }
 
     /**
-     * @dataProvider provObjectPropertiesIdenticalTo
-     * @dataProvider provObjectPropertiesEqualButNotIdenticalTo
-     *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provObjectPropertiesIdenticalTo')]
+    #[DataProvider('provObjectPropertiesEqualButNotIdenticalTo')]
     public function testAssertNotObjectPropertiesEqualToFails(array $expect, object $actual, string $string): void
     {
         $regexp = '/^Lorem ipsum.\n'.

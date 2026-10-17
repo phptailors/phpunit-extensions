@@ -10,17 +10,14 @@
 
 namespace Tailors\PHPUnit\RecursiveMapper;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\InternalErrorException;
 use Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversalInterface;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\RecursiveMapper\RecursiveMapper
- * @covers \Tailors\PHPUnit\RecursiveMapper\RecursiveMapperTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
@@ -29,6 +26,9 @@ use Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversalInterface;
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
+#[CoversClass(RecursiveMapper::class)]
+#[CoversClass(RecursiveMapperTest::class)]
+#[Small]
 final class RecursiveMapperTest extends TestCase
 {
     /**

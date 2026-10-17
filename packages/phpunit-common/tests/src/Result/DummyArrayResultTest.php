@@ -10,16 +10,14 @@
 
 namespace Tailors\PHPUnit\Result;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Common\TagInterface;
 use Tailors\PHPUnit\Common\TypesInterface;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\Result\DummyArrayResult
- * @covers \Tailors\PHPUnit\Result\DummyArrayResultTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
@@ -31,6 +29,9 @@ use Tailors\PHPUnit\Common\TypesInterface;
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
+#[CoversClass(DummyArrayResult::class)]
+#[CoversClass(DummyArrayResultTest::class)]
+#[Small]
 final class DummyArrayResultTest extends TestCase
 {
     /**
@@ -90,13 +91,12 @@ final class DummyArrayResultTest extends TestCase
     }
 
     /**
-     * @dataProvider provDummyArrayResult
-     *
      * @psalm-param CtorArgs    $ctor
      * @psalm-param ExpectArray $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provDummyArrayResult')]
     public function testDummyArrayResult(array $ctor, array $expect): void
     {
         $arrayResult = new DummyArrayResult(...$ctor);

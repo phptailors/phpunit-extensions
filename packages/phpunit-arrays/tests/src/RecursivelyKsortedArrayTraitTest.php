@@ -10,15 +10,14 @@
 
 namespace Tailors\PHPUnit;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Arrays\RecursivelyKsortedArrayExpectations;
 use Tailors\PHPUnit\Common\TypesInterface;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\RecursivelyKsortedArrayTraitTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
@@ -29,6 +28,8 @@ use Tailors\PHPUnit\Common\TypesInterface;
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
+#[CoversClass(RecursivelyKsortedArrayTraitTest::class)]
+#[Small]
 final class RecursivelyKsortedArrayTraitTest extends TestCase
 {
     use RecursivelyKsortedArrayTrait;
@@ -62,14 +63,13 @@ final class RecursivelyKsortedArrayTraitTest extends TestCase
     }
 
     /**
-     * @dataProvider provExpectRecursivelyKsortedArray
-     *
      * @param mixed $expect
      *
      * @psalm-param RecursivelyKsortedArrayArgs $args
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provExpectRecursivelyKsortedArray')]
     public function testExpectedRecursivelyKsortedArray(array $args, $expect): void
     {
         $values = self::recursivelyKsortedArray(...$args);

@@ -10,23 +10,24 @@
 
 namespace Tailors\PHPUnit\Common;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\ResultFactory\DummyResultFactory;
 use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
 use Tailors\PHPUnit\ResultFactory\ResultFactoryWrapperInterface;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\Common\AbstractArrayExpectations
- * @covers \Tailors\PHPUnit\Common\AbstractArrayExpectationsTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-import-type ArrayLike from TypesInterface
  */
+#[CoversClass(AbstractArrayExpectations::class)]
+#[CoversClass(AbstractArrayExpectationsTest::class)]
+#[Small]
 final class AbstractArrayExpectationsTest extends TestCase
 {
     /**
@@ -69,8 +70,6 @@ final class AbstractArrayExpectationsTest extends TestCase
     }
 
     /**
-     * @dataProvider provAbstractArrayExpectations
-     *
      * @psalm-template SupportedInput
      *
      * @psalm-param ResultFactoryInterface<SupportedInput> $resultFactory
@@ -78,6 +77,7 @@ final class AbstractArrayExpectationsTest extends TestCase
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provAbstractArrayExpectations')]
     public function testAbstractArrayExpectations(ResultFactoryInterface $resultFactory, iterable $array): void
     {
         $arrayExpectations = self::getTestableObject($resultFactory, $array);

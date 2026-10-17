@@ -10,20 +10,21 @@
 
 namespace Tailors\PHPUnit\RecursiveVisitor;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorUtils
- * @covers \Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorUtilsTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-type StackItem = RecursiveVisitorStackItemInterface
  */
+#[CoversClass(RecursiveVisitorUtils::class)]
+#[CoversClass(RecursiveVisitorUtilsTest::class)]
+#[Small]
 final class RecursiveVisitorUtilsTest extends TestCase
 {
     /**
@@ -57,14 +58,13 @@ final class RecursiveVisitorUtilsTest extends TestCase
     }
 
     /**
-     * @dataProvider provPathAsList
-     *
      * @param mixed $expect
      *
      * @psalm-param list<StackItem> $stack
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provPathAsList')]
     public function testPathAsList(array $stack, $expect): void
     {
         $this->assertSame($expect, RecursiveVisitorUtils::pathAsList($stack));
@@ -101,14 +101,13 @@ final class RecursiveVisitorUtilsTest extends TestCase
     }
 
     /**
-     * @dataProvider provPathAsString
-     *
      * @param mixed $expect
      *
      * @psalm-param list<StackItem> $stack
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provPathAsString')]
     public function testPathAsString(array $stack, $expect): void
     {
         $this->assertSame($expect, RecursiveVisitorUtils::pathAsString($stack));

@@ -10,6 +10,8 @@
 
 namespace Tailors\PHPUnit\Arrays;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Small;
 use Tailors\PHPUnit\Common\AbstractArrayObject;
 use Tailors\PHPUnit\Common\AbstractArrayObjectTestCase;
 use Tailors\PHPUnit\Common\ExportableNameInterface;
@@ -17,18 +19,16 @@ use Tailors\PHPUnit\Common\StaticRandomStrings;
 use Tailors\PHPUnit\Common\TagInterface;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\Arrays\AbstractKsortedArray
- * @covers \Tailors\PHPUnit\Arrays\AbstractKsortedArrayTest
- * @covers \Tailors\PHPUnit\Common\AbstractArrayObjectTestCase
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
  * @psalm-import-type CtorArgs from AbstractArrayObjectTestCase
  */
+#[CoversClass(AbstractKsortedArray::class)]
+#[CoversClass(AbstractKsortedArrayTest::class)]
+#[CoversClass(AbstractArrayObjectTestCase::class)]
+#[Small]
 final class AbstractKsortedArrayTest extends AbstractArrayObjectTestCase
 {
     /**

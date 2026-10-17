@@ -10,18 +10,19 @@
 
 namespace Tailors\PHPUnit\Comparator;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\Comparator\EqualityComparator
- * @covers \Tailors\PHPUnit\Comparator\EqualityComparatorTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
+#[CoversClass(EqualityComparator::class)]
+#[CoversClass(EqualityComparatorTest::class)]
+#[Small]
 final class EqualityComparatorTest extends TestCase
 {
     /**
@@ -57,13 +58,12 @@ final class EqualityComparatorTest extends TestCase
     }
 
     /**
-     * @dataProvider provCompare
-     *
      * @param mixed $left
      * @param mixed $right
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provCompare')]
     public function testCompare($left, $right, bool $expect): void
     {
         $comparator = new EqualityComparator();

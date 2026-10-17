@@ -10,6 +10,9 @@
 
 namespace Tailors\PHPUnit\RecursiveResultFactory;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\ArraySpec\DummyResultFactoryAndValueSelectorWrapper;
 use Tailors\PHPUnit\ArraySpec\DummyResultFactoryWrapper;
@@ -27,11 +30,6 @@ use Tailors\PHPUnit\ResultFactory\DummyTaggedArrayResultFactory;
 use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
 
 /**
- * @small
- *
- * @covers \Tailors\PHPUnit\RecursiveResultFactory\RecursiveActualResultFactoryVisitor
- * @covers \Tailors\PHPUnit\RecursiveResultFactory\RecursiveActualResultFactoryVisitorTest
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
@@ -45,6 +43,9 @@ use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
+#[CoversClass(RecursiveActualResultFactoryVisitor::class)]
+#[CoversClass(RecursiveActualResultFactoryVisitorTest::class)]
+#[Small]
 final class RecursiveActualResultFactoryVisitorTest extends TestCase
 {
     /**
@@ -116,12 +117,11 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
     }
 
     /**
-     * @dataProvider provCycle
-     *
      * @psalm-param list<StackItem> $stack
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provCycle')]
     public function testCycle(array $stack, string $expect): void
     {
         $rePath = preg_quote($expect, '/');
@@ -481,8 +481,6 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
     }
 
     /**
-     * @dataProvider provEnterLeave
-     *
      * @param mixed $result
      *
      * @psalm-param BeginArgs                     $begin
@@ -490,6 +488,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provEnterLeave')]
     public function testEnterLeave(array $begin, array $calls, $result): void
     {
         $visitor = new RecursiveActualResultFactoryVisitor();
@@ -508,6 +507,11 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         foreach (array_reverse($calls) as $call) {
             $args = $call['args'];
             if (array_key_exists('next', $call)) {
+                /**
+                 * @see https://github.com/sebastianbergmann/phpunit/issues/6199
+                 *
+                 * @psalm-var non-empty-list<StackItem> $stack
+                 */
                 $this->assertNotEmpty($stack);
                 $visitor->freeStackItem(array_pop($stack), $stack);
             }
@@ -711,8 +715,6 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
     }
 
     /**
-     * @dataProvider provVisit
-     *
      * @param mixed $result
      *
      * @psalm-param BeginArgs                     $begin
@@ -721,6 +723,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provVisit')]
     public function testVisit(array $begin, ?array $enter, array $calls, $result): void
     {
         $visitor = new RecursiveActualResultFactoryVisitor();
@@ -743,6 +746,11 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
             }
             $this->assertNull($visitor->visit($args['node'], $stack, $iter));
             if (array_key_exists('key', $call)) {
+                /**
+                 * @see https://github.com/sebastianbergmann/phpunit/issues/6199
+                 *
+                 * @psalm-var non-empty-list<StackItem> $stack
+                 */
                 $this->assertNotEmpty($stack);
                 $visitor->freeStackItem(array_pop($stack), $stack);
             }
@@ -1180,8 +1188,6 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
     }
 
     /**
-     * @dataProvider provWithRecursiveTraversal
-     *
      * @param mixed $result
      *
      * @psalm-param BeginArgs $begin
@@ -1189,6 +1195,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
      *
      * @psalm-suppress MissingThrowsDocblock
      */
+    #[DataProvider('provWithRecursiveTraversal')]
     public function testWithRecursiveTraversal(array $begin, iterable $array, $result): void
     {
         $visitor = new RecursiveActualResultFactoryVisitor();
