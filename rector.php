@@ -7,7 +7,7 @@ use Rector\DeadCode\Rector\ClassMethod\RemoveUselessReturnTagRector;
 use Rector\DeadCode\Rector\Property\RemoveUselessReadOnlyTagRector;
 use Rector\DeadCode\Rector\Property\RemoveUselessVarTagRector;
 use Rector\PHPUnit\PHPUnit60\Rector\ClassMethod\AddDoesNotPerformAssertionToNonAssertingTestRector;
-use Rector\PHPUnit\Set\PHPUnitSetList;
+use Rector\Php74\Rector\If_\IfToNullCoalescingAssignRector;
 
 return RectorConfig::configure()
     ->withPaths([
@@ -34,6 +34,8 @@ return RectorConfig::configure()
         // Psalm 6.x has bug: https://github.com/vimeo/psalm/issues/11038
         // We'll avoid first-class callables for the moment and prefer delegation.
         ArrowFunctionDelegatingCallToFirstClassCallableRector::class => true,
+        // Leave if(null === ...) for more precise line code coverage
+        IfToNullCoalescingAssignRector::class,
     ])
     ->withRules([
         RemoveUselessParamTagRector::class,
