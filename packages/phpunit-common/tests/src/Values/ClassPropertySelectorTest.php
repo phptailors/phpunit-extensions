@@ -107,7 +107,7 @@ final class ClassPropertySelectorTest extends TestCase
     {
         // #0
         yield 'ClassPropertySelectorTest.php:'.__LINE__ => [
-            'class' => (new class() {
+            'class'  => (new class() {
                 public static $foo = 'FOO';
             })::class,
             'key'    => 'foo',
@@ -117,7 +117,7 @@ final class ClassPropertySelectorTest extends TestCase
 
         // #1
         yield 'ClassPropertySelectorTest.php:'.__LINE__ => [
-            'class' => (new class() {
+            'class'  => (new class() {
                 public static $foo = 'FOO';
             })::class,
             'key'    => 'bar',
@@ -127,7 +127,7 @@ final class ClassPropertySelectorTest extends TestCase
 
         // #2
         yield 'ClassPropertySelectorTest.php:'.__LINE__ => [
-            'class' => (new class() {
+            'class'  => (new class() {
                 public static function foo()
                 {
                     return 'FOO';
@@ -140,7 +140,7 @@ final class ClassPropertySelectorTest extends TestCase
 
         // #3
         yield 'ClassPropertySelectorTest.php:'.__LINE__ => [
-            'class' => (new class() {
+            'class'  => (new class() {
                 public static function foo()
                 {
                     return 'FOO';

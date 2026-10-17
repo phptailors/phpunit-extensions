@@ -246,7 +246,7 @@ final class RecursiveTraversalTest extends TestCase
                 fn (mixed $value, array $stack): bool => ['baz', 'qux', 'baz'] !== array_map(fn ($item) => $item->key(), $stack),
                 true
             ),
-            'expect' => [
+            'expect'  => [
                 ['func' => 'enter', 'node' => $v08, 'path' => []],
                 ['func' => 'makeStackItem', 'node' => $v08, 'key' => 'foo', 'path' => []],
                 ['func' => 'visit', 'node' => $v08['foo'], 'path' => ['foo']],
