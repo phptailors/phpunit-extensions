@@ -38,31 +38,15 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
 final class DummyResultFactoryAndValueSelectorWrapper extends \ArrayObject implements ResultFactoryWrapperInterface, ValueSelectorWrapperInterface, ComparatorAwareComplementInterface
 {
     /**
-     * @var ResultFactoryInterface
-     *
-     * @psalm-param ResultFactoryInterface<SupportedInput>
-     *
-     * @psalm-readonly
-     */
-    private $resultFactory;
-
-    /**
-     * @var ValueSelectorInterface
-     *
-     * @psalm-readonly
-     */
-    private $valueSelector;
-
-    /**
      * @psalm-param ResultFactoryInterface<SupportedInput>   $resultFactory
      * @psalm-param ValueSelectorInterface<SupportedSubject> $valueSelector
      * @psalm-param ArrayLike                                $array
      */
-    public function __construct(ResultFactoryInterface $resultFactory, ValueSelectorInterface $valueSelector, iterable $array)
-    {
-        $this->resultFactory = $resultFactory;
-        $this->valueSelector = $valueSelector;
-
+    public function __construct(
+        private readonly ResultFactoryInterface $resultFactory,
+        private readonly ValueSelectorInterface $valueSelector,
+        iterable $array
+    ) {
         if (!is_array($array)) {
             $array = iterator_to_array($array);
         }

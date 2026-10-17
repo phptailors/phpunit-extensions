@@ -174,7 +174,7 @@ final class ExporterTest extends TestCase
 
         try {
             $this->assertSame($expected, Exporter::export($data, true));
-        } catch (ExpectationFailedException $e) {
+        } catch (ExpectationFailedException) {
             $this->markTestSkipped(
                 'Multiline strings containing ExportableNameInterface objects cannot be handled correctly with this version of Exporter'
             );

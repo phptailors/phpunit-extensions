@@ -56,58 +56,15 @@ final class MethodSpec implements MethodSpecInterface
     ];
 
     /**
-     * @var string
-     *
-     * @psalm-var non-empty-string
-     *
-     * @psalm-readonly
-     */
-    private $name;
-
-    /**
-     * @var ?bool
-     *
-     * @psalm-readonly
-     */
-    private $static;
-
-    /**
-     * @var ?int
-     *
-     * @psalm-readonly
-     */
-    private $access;
-
-    /**
-     * @var ?bool
-     *
-     * @psalm-readonly
-     */
-    private $abstract;
-
-    /**
-     * @var ?bool
-     *
-     * @psalm-readonly
-     */
-    private $final;
-
-    /**
      * @psalm-param non-empty-string $name
      */
     public function __construct(
-        string $name,
-        ?bool $static = null,
-        ?int $access = null,
-        ?bool $abstract = null,
-        ?bool $final = null
-    ) {
-        $this->name = $name;
-        $this->static = $static;
-        $this->access = $access;
-        $this->abstract = $abstract;
-        $this->final = $final;
-    }
+        private readonly string $name,
+        private readonly ?bool $static = null,
+        private readonly ?int $access = null,
+        private readonly ?bool $abstract = null,
+        private readonly ?bool $final = null
+    ) {}
 
     /**
      * {@inheridoc}.

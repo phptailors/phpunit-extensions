@@ -13,7 +13,6 @@ namespace Tailors\PHPUnit\Inheritance;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\LogicalNot;
 use PHPUnit\Framework\Constraint\Operator;
-use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use Tailors\PHPUnit\Common\Exporter;
 
 /**
@@ -27,19 +26,9 @@ use Tailors\PHPUnit\Common\Exporter;
 abstract class AbstractInheritanceConstraint extends Constraint
 {
     /**
-     * @var string
-     *
-     * @psalm-readonly
-     */
-    private $expected;
-
-    /**
      * Initializes the constraint.
      */
-    protected function __construct(string $expected)
-    {
-        $this->expected = $expected;
-    }
+    protected function __construct(private readonly string $expected) {}
 
     /**
      * Returns a string representation of the constraint.
@@ -58,14 +47,14 @@ abstract class AbstractInheritanceConstraint extends Constraint
     final public function matches($other): bool
     {
         if (is_object($other)) {
-            $other = get_class($other);
+            $other = $other::class;
         }
 
         if (!is_string($other) || !$this->supports($other)) {
             return false;
         }
 
-        return in_array(strtolower($this->expected), array_map('strtolower', $this->inheritance($other)), true);
+        return in_array(strtolower($this->expected), array_map(strtolower(...), $this->inheritance($other)), true);
     }
 
     /**
@@ -144,8 +133,6 @@ abstract class AbstractInheritanceConstraint extends Constraint
      * @param Operator $operator the $operator of the expression
      * @param mixed    $role     role of $this constraint in the $operator expression
      * @param mixed    $other    evaluated value or object
-     *
-     * @throws InvalidArgumentException
      */
     final protected function failureDescriptionInContext(Operator $operator, $role, $other): string
     {
@@ -162,13 +149,11 @@ abstract class AbstractInheritanceConstraint extends Constraint
      * Returns short representation of $subject for failureDescription().
      *
      * @param mixed $subject
-     *
-     * @throws InvalidArgumentException
      */
     private function short($subject): string
     {
         if (is_object($subject)) {
-            $subject = 'object '.get_class($subject);
+            $subject = 'object '.$subject::class;
         } elseif (!is_string($subject) || !$this->supports($subject)) {
             $subject = Exporter::export($subject);
         }

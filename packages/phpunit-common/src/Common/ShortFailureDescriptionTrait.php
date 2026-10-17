@@ -11,7 +11,6 @@
 namespace Tailors\PHPUnit\Common;
 
 use PHPUnit\Framework\Constraint\Operator;
-use SebastianBergmann\RecursionContext\InvalidArgumentException;
 
 /**
  * @internal This trait is not covered by the backward compatibility promise
@@ -32,8 +31,6 @@ trait ShortFailureDescriptionTrait
      * cases. This method should return the second part of that sentence.
      *
      * @param mixed $other evaluated value or object
-     *
-     * @throws InvalidArgumentException
      */
     final public function failureDescription($other): string
     {
@@ -55,8 +52,6 @@ trait ShortFailureDescriptionTrait
      * @param Operator $operator the $operator of the expression
      * @param mixed    $role     role of $this constraint in the $operator expression
      * @param mixed    $other    evaluated value or object
-     *
-     * @throws InvalidArgumentException
      */
     final public function failureDescriptionInContext(Operator $operator, $role, $other): string
     {
@@ -90,13 +85,11 @@ trait ShortFailureDescriptionTrait
      * Returns short representation of $subject for failureDescription().
      *
      * @param mixed $subject
-     *
-     * @throws InvalidArgumentException
      */
     private function short($subject, bool $exportObjects = false): string
     {
         if (is_object($subject)) {
-            return 'object '.get_class($subject);
+            return 'object '.$subject::class;
         }
 
         if (is_array($subject)) {

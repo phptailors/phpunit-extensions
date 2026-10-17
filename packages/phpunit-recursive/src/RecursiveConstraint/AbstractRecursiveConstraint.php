@@ -15,7 +15,6 @@ use PHPUnit\Framework\Constraint\LogicalNot;
 use PHPUnit\Framework\Constraint\Operator;
 use PHPUnit\Framework\ExpectationFailedException;
 use SebastianBergmann\Comparator\ComparisonFailure;
-use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use Tailors\PHPUnit\Common\Exporter;
 use Tailors\PHPUnit\Common\ShortFailureDescriptionTrait;
 use Tailors\PHPUnit\Common\TypesInterface;
@@ -39,43 +38,14 @@ abstract class AbstractRecursiveConstraint extends Constraint
     use ShortFailureDescriptionTrait;
 
     /**
-     * @var iterable
-     *
-     * @psalm-var ArrayLike
-     *
-     * @psalm-readonly
-     */
-    private $expectations;
-
-    /**
-     * @var ComparatorInterface
-     */
-    private $comparator;
-
-    /**
-     * @var RecursiveResultFactoryInterface
-     */
-    private $recursiveResultFactory;
-
-    /**
-     * @var RecursiveResultUnwrapperInterface
-     */
-    private $recursiveResultUnwrapper;
-
-    /**
      * @psalm-param ArrayLike $expectations
      */
     final protected function __construct(
-        iterable $expectations,
-        ComparatorInterface $comparator,
-        RecursiveResultFactoryInterface $recursiveResultFactory,
-        RecursiveResultUnwrapperInterface $recursiveResultUnwrapper
-    ) {
-        $this->expectations = $expectations;
-        $this->comparator = $comparator;
-        $this->recursiveResultFactory = $recursiveResultFactory;
-        $this->recursiveResultUnwrapper = $recursiveResultUnwrapper;
-    }
+        private iterable $expectations,
+        private ComparatorInterface $comparator,
+        private RecursiveResultFactoryInterface $recursiveResultFactory,
+        private RecursiveResultUnwrapperInterface $recursiveResultUnwrapper
+    ) {}
 
     /**
      * Returns a string representation of the constraint.
@@ -102,7 +72,6 @@ abstract class AbstractRecursiveConstraint extends Constraint
      * @param mixed $other
      *
      * @throws ExpectationFailedException
-     * @throws InvalidArgumentException
      */
     final public function evaluate($other, string $description = '', bool $returnResult = false): ?bool
     {

@@ -76,7 +76,7 @@ abstract class AbstractArrayResultFactory implements ResultFactoryInterface
         }
 
         $expected = 'an array or Traversable';
-        $provided = is_object($input) ? get_class($input) : gettype($input);
+        $provided = get_debug_type($input);
 
         throw InvalidArgumentException::fromBackTrace($argument, $expected, $provided, $distance + 1);
     }

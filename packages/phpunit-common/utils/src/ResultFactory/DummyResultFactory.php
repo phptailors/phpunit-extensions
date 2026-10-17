@@ -23,17 +23,9 @@ use Tailors\PHPUnit\Result\ResultInterface;
 final class DummyResultFactory implements ResultFactoryInterface
 {
     /**
-     * @var bool|\Closure(mixed):bool
-     */
-    private $supports;
-
-    /**
      * @param bool|\Closure(mixed):bool $supports
      */
-    public function __construct($supports)
-    {
-        $this->supports = $supports;
-    }
+    public function __construct(private $supports) {}
 
     /**
      * @param mixed $input

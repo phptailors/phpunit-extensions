@@ -26,32 +26,13 @@ use Tailors\PHPUnit\Result\ResultInterface;
 final class DummyTaggedArrayResultFactory extends AbstractArrayResultFactory
 {
     /**
-     * @var ?string
-     *
-     * @psalm-var ?non-falsy-string
-     *
-     * @psalm-readonly
-     */
-    private $tag;
-
-    /**
-     * @var ?\Closure
-     *
-     * @psalm-var ?\Closure(ArrayLike): array
-     *
-     * @psalm-readonly
-     */
-    private $modifier;
-
-    /**
      * @psalm-param ?non-falsy-string          $tag
      * @psalm-param ?\Closure(ArrayLike):array $modifier
      */
-    public function __construct(?string $tag = null, ?\Closure $modifier = null)
-    {
-        $this->tag = $tag;
-        $this->modifier = $modifier;
-    }
+    public function __construct(
+        private readonly ?string $tag = null,
+        private readonly ?\Closure $modifier = null
+    ) {}
 
     /**
      * @psalm-param ArrayLike $input

@@ -199,7 +199,7 @@ final class RecursiveMapperVisitor implements RecursiveMapperVisitorInterface
         if (0 === $count) {
             if (!is_iterable($value)) {
                 $expected = 'an iterable';
-                $actual = is_object($value) ? get_class($value) : gettype($value);
+                $actual = get_debug_type($value);
 
                 /** @psalm-suppress MissingThrowsDocblock */
                 throw InvalidArgumentException::fromBackTrace(2, $expected, $actual);
@@ -215,13 +215,11 @@ final class RecursiveMapperVisitor implements RecursiveMapperVisitorInterface
     }
 
     /**
-     * @return never
-     *
      * @throws CircularDependencyException
      *
      * @psalm-param list<StackItem> $stack
      */
-    private static function throwCircular(array $stack): void
+    private static function throwCircular(array $stack): never
     {
         $pathString = RecursiveVisitorUtils::pathAsString($stack);
 

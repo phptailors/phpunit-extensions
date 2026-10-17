@@ -42,9 +42,7 @@ final class DummyArrayValuesIdenticalToConstraint extends AbstractRecursiveConst
                 /**
                  * @param mixed $subject
                  */
-                function ($subject): bool {
-                    return is_array($subject);
-                },
+                fn ($subject): bool => is_array($subject),
                 /**
                  * @param mixed $key
                  * @param mixed $retval

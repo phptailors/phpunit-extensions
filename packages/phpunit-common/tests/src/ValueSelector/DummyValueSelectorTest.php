@@ -48,15 +48,14 @@ final class DummyValueSelectorTest extends TestCase
      */
     public static function provDummyValueSelector(): iterable
     {
-        $supports =
-        /**
-         * @param mixed $subject
-         *
-         * @psalm-param mixed $subject
-         */
-        function ($subject): bool {
-            return is_array($subject);
-        };
+        $supports = (
+            /**
+             * @param mixed $subject
+             *
+             * @psalm-param mixed $subject
+             */
+            fn ($subject): bool => is_array($subject)
+        );
 
         $select =
         /**

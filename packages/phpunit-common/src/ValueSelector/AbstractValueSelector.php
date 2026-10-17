@@ -61,7 +61,7 @@ abstract class AbstractValueSelector implements ValueSelectorInterface
     final protected function assertSupports($subject, int $argument, int $distance = 1): void
     {
         if (!$this->supports($subject)) {
-            $provided = is_object($subject) ? 'an object '.get_class($subject) : gettype($subject);
+            $provided = is_object($subject) ? 'an object '.$subject::class : gettype($subject);
 
             throw InvalidArgumentException::fromBackTrace($argument, $this->subject(), $provided, 1 + $distance);
         }

@@ -27,25 +27,10 @@ use Tailors\PHPUnit\Common\TypesInterface;
 final class DummyTaggedArrayResult extends \ArrayObject implements ResultInterface, TagInterface
 {
     /**
-     * @var bool
-     *
-     * @psalm-readonly
-     */
-    private $actual;
-
-    /**
-     * @var ?string
-     */
-    private $tag;
-
-    /**
      * @psalm-param ArrayLike $array
      */
-    public function __construct(bool $actual, iterable $array = [], ?string $tag = null)
+    public function __construct(private readonly bool $actual, iterable $array = [], private readonly ?string $tag = null)
     {
-        $this->actual = $actual;
-        $this->tag = $tag;
-
         if (!is_array($array)) {
             $array = iterator_to_array($array);
         }

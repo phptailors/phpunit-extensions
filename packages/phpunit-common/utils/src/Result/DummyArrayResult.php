@@ -26,19 +26,10 @@ use Tailors\PHPUnit\Common\TypesInterface;
 final class DummyArrayResult extends \ArrayObject implements ResultInterface
 {
     /**
-     * @var bool
-     *
-     * @psalm-readonly
-     */
-    private $actual;
-
-    /**
      * @psalm-param ArrayLike $array
      */
-    public function __construct(bool $actual, iterable $array = [])
+    public function __construct(private readonly bool $actual, iterable $array = [])
     {
-        $this->actual = $actual;
-
         if (!is_array($array)) {
             $array = iterator_to_array($array);
         }

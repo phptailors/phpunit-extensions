@@ -159,15 +159,14 @@ final class RecursiveMapperVisitorTest extends TestCase
                 return true;
             };
 
-        $valMap01 =
+        $valMap01 = (
             /**
              * @param mixed $value
              *
              * @return mixed
              */
-            function ($value) {
-                return $value;
-            };
+            fn ($value) => $value
+        );
 
         yield basename(__FILE__).':'.__LINE__ => [
             'begin'  => [],
@@ -230,15 +229,14 @@ final class RecursiveMapperVisitorTest extends TestCase
                 return true;
             };
 
-        $valMap02 =
+        $valMap02 = (
             /**
              * @param mixed $value
              *
              * @return mixed
              */
-            function ($value) {
-                return $value;
-            };
+            fn ($value) => $value
+        );
 
         yield basename(__FILE__).':'.__LINE__ => [
             'begin'  => [],
@@ -559,15 +557,14 @@ final class RecursiveMapperVisitorTest extends TestCase
 
         $arrObj02 = new \ArrayObject(['gez' => 'GEZ']);
 
-        $valMap02 =
+        $valMap02 = (
             /**
              * @param mixed $value
              *
              * @return mixed
              */
-            function ($value) use ($arrObj02) {
-                return ['gez' => 'GEZ'] === $value ? $arrObj02 : $value;
-            };
+            fn ($value) => ['gez' => 'GEZ'] === $value ? $arrObj02 : $value
+        );
 
         yield basename(__FILE__).':'.__LINE__ => [
             'begin'  => [null, $valMap02],
@@ -809,9 +806,7 @@ final class RecursiveMapperVisitorTest extends TestCase
         $v01['foo']['bar']['baz'] = $v01;
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'begin'   => [function (): bool {
-                return true;
-            }],
+            'begin'   => [fn (): bool => true],
             'array'   => $v01,
             'message' => 'Circular dependency found in nested array at $array[\'foo\'][\'bar\'][\'baz\'].',
         ];
@@ -831,9 +826,7 @@ final class RecursiveMapperVisitorTest extends TestCase
         $v02['foo']['bar']['qux'] = $v02['foo']['bar'];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'begin'   => [function (): bool {
-                return true;
-            }],
+            'begin'   => [fn (): bool => true],
             'array'   => $v02,
             'message' => 'Circular dependency found in nested array at $array[\'foo\'][\'bar\'][\'qux\'].',
         ];
@@ -853,9 +846,7 @@ final class RecursiveMapperVisitorTest extends TestCase
         $v03['foo']['baz']['gez'] = $v03['foo']['bar'];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'begin'   => [function (): bool {
-                return true;
-            }],
+            'begin'   => [fn (): bool => true],
             'array'   => $v03,
             'message' => 'Circular dependency found in nested array at $array[\'foo\'][\'bar\'][\'qux\'][\'gez\'].',
         ];

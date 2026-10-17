@@ -208,7 +208,7 @@ final class KsortedArrayExpectationsTest extends TestCase
              */
             function (iterable &$node): bool {
                 if ($node instanceof \ArrayAccess) {
-                    $node = ['_' => get_class($node)];
+                    $node = ['_' => $node::class];
 
                     return true;
                 }

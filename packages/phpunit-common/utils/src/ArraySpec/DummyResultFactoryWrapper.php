@@ -32,22 +32,11 @@ use Tailors\PHPUnit\ResultFactory\ResultFactoryWrapperInterface;
 final class DummyResultFactoryWrapper extends \ArrayObject implements ResultFactoryWrapperInterface
 {
     /**
-     * @var ResultFactoryInterface
-     *
-     * @psalm-param ResultFactoryInterface<SupportedInput>
-     *
-     * @psalm-readonly
-     */
-    private $resultFactory;
-
-    /**
      * @psalm-param ResultFactoryInterface<SupportedInput> $resultFactory
      * @psalm-param ArrayLike                              $array
      */
-    public function __construct(ResultFactoryInterface $resultFactory, iterable $array)
+    public function __construct(private readonly ResultFactoryInterface $resultFactory, iterable $array)
     {
-        $this->resultFactory = $resultFactory;
-
         if (!is_array($array)) {
             $array = iterator_to_array($array);
         }

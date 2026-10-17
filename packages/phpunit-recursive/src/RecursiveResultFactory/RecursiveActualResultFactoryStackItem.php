@@ -25,42 +25,16 @@ use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorStackItemInterface;
 final class RecursiveActualResultFactoryStackItem implements RecursiveVisitorStackItemInterface
 {
     /**
-     * @var iterable
-     *
-     * @psalm-var ArrayLike
-     *
-     * @psalm-readonly
-     */
-    private $node;
-
-    /**
-     * @var mixed
-     *
-     * @psalm-var array-key
-     *
-     * @psalm-readonly
-     */
-    private $key;
-
-    /**
-     * @var SubjectResultCouple
-     *
-     * @psalm-readonly
-     */
-    private $current;
-
-    /**
      * @param mixed $key
      *
      * @psalm-param ArrayLike $node
      * @psalm-param array-key $key
      */
-    public function __construct(iterable $node, $key, SubjectResultCouple $current)
-    {
-        $this->node = $node;
-        $this->key = $key;
-        $this->current = $current;
-    }
+    public function __construct(
+        private readonly iterable $node,
+        private $key,
+        private readonly SubjectResultCouple $current
+    ) {}
 
     /**
      * @psalm-return ArrayLike

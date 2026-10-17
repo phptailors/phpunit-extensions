@@ -39,25 +39,14 @@ use Tailors\PHPUnit\Preg\CapturesFilterInterface;
 final class HasPregCaptures extends Constraint
 {
     /**
-     * @psalm-var array<array-key, CaptureExpectation>
-     */
-    private $expected;
-
-    /**
-     * @var CapturesFilterInterface
-     */
-    private $filter;
-
-    /**
      * Initializes the constraint.
      *
      * @psalm-param array<array-key, CaptureExpectation> $expected
      */
-    private function __construct(array $expected, CapturesFilterInterface $filter)
-    {
-        $this->expected = $expected;
-        $this->filter = $filter;
-    }
+    private function __construct(
+        private readonly array $expected,
+        private readonly CapturesFilterInterface $filter
+    ) {}
 
     /**
      * Initializes the constraint.
@@ -95,7 +84,6 @@ final class HasPregCaptures extends Constraint
      * @param mixed $other
      *
      * @throws ExpectationFailedException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     public function evaluate($other, string $description = '', bool $returnResult = false): ?bool
     {
@@ -151,7 +139,7 @@ final class HasPregCaptures extends Constraint
     protected function failureDescription($other): string
     {
         if (is_object($other)) {
-            $what = 'object '.get_class($other);
+            $what = 'object '.$other::class;
         } else {
             $what = gettype($other);
         }

@@ -13,7 +13,6 @@ namespace Tailors\PHPUnit;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\LogicalNot;
 use PHPUnit\Framework\ExpectationFailedException;
-use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use Tailors\PHPUnit\Constraint\ClassPropertiesEqualTo;
 
 trait ClassPropertiesEqualToTrait
@@ -24,7 +23,6 @@ trait ClassPropertiesEqualToTrait
      * @param mixed $value
      *
      * @throws ExpectationFailedException
-     * @throws InvalidArgumentException
      */
     abstract public static function assertThat($value, Constraint $constraint, string $message = ''): void;
 
@@ -38,7 +36,6 @@ trait ClassPropertiesEqualToTrait
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
-     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertClassPropertiesEqualTo(
         array $expected,
@@ -59,7 +56,6 @@ trait ClassPropertiesEqualToTrait
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
-     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertNotClassPropertiesEqualTo(
         array $expected,
@@ -75,7 +71,7 @@ trait ClassPropertiesEqualToTrait
      * @param array $expected An array of key => value pairs with expected
      *                        values of attributes
      *
-     * @throws \Tailors\PHPUnit\InvalidArgumentException when non-string keys are found in *$expected*
+     * @throws InvalidArgumentException when non-string keys are found in *$expected*
      */
     public static function classPropertiesEqualTo(array $expected): ClassPropertiesEqualTo
     {

@@ -72,9 +72,7 @@ final class AbstractPropertySelectorTest extends TestCase
              *
              * @psalm-assert-if-true class-string $input
              */
-            function ($input): bool {
-                return is_string($input) && class_exists($input);
-            },
+            fn ($input): bool => is_string($input) && class_exists($input),
 
             /**
              * @param mixed $subject
@@ -87,9 +85,7 @@ final class AbstractPropertySelectorTest extends TestCase
              *
              * @psalm-suppress UnusedClosureParam
              */
-            function ($subject, $key) {
-                return $subject::${$key};
-            },
+            fn ($subject, $key) => $subject::${$key},
         ];
 
         $objectPropertySelector = [
@@ -100,9 +96,7 @@ final class AbstractPropertySelectorTest extends TestCase
              *
              * @psalm-assert-if-true class-string $input
              */
-            function ($input): bool {
-                return is_object($input);
-            },
+            fn ($input): bool => is_object($input),
 
             /**
              * @param mixed $subject
@@ -113,9 +107,7 @@ final class AbstractPropertySelectorTest extends TestCase
              * @psalm-param class-string $subject
              * @psalm-param array-key    $key
              */
-            function ($subject, $key) {
-                return $subject->{$key};
-            },
+            fn ($subject, $key) => $subject->{$key},
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
@@ -295,40 +287,14 @@ final class AbstractPropertySelectorTest extends TestCase
              */
             class(...$ctorArgs) extends AbstractPropertySelector {
                 /**
-                 * @var string
-                 *
-                 * @read-only
-                 */
-                private $subject;
-
-                /**
-                 * @var \Closure
-                 *
-                 * @psalm-var \Closure(mixed):bool
-                 *
-                 * @read-only
-                 */
-                private $supports;
-
-                /**
-                 * @var \Closure
-                 *
-                 * @psalm-var \Closure(SubjectType,array-key):mixed
-                 *
-                 * @read-only
-                 */
-                private $getSubjectAttribute;
-
-                /**
                  * @psalm-param \Closure(mixed):bool                  $supports
                  * @psalm-param \Closure(SubjectType,array-key):mixed $getSubjectAttribute
                  */
-                public function __construct(string $subject, \Closure $supports, \Closure $getSubjectAttribute)
-                {
-                    $this->subject = $subject;
-                    $this->supports = $supports;
-                    $this->getSubjectAttribute = $getSubjectAttribute;
-                }
+                public function __construct(
+                    private readonly string $subject,
+                    private readonly \Closure $supports,
+                    private readonly \Closure $getSubjectAttribute
+                ) {}
 
                 /**
                  * @param mixed $input

@@ -124,13 +124,13 @@ trait ProvObjectPropertiesTrait
         yield basename(__FILE__).':'.__LINE__ => [
             'expect' => [],
             'actual' => $jsmith,
-            'string' => 'object '.get_class($jsmith),
+            'string' => 'object '.$jsmith::class,
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['name' => 'John', 'last' => 'Smith', 'age' => 21, 'wife' => $esmith],
             'actual' => $jsmith,
-            'string' => 'object '.get_class($jsmith),
+            'string' => 'object '.$jsmith::class,
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
@@ -141,31 +141,31 @@ trait ProvObjectPropertiesTrait
                 'wife' => $esmith,
             ],
             'actual' => $jsmith,
-            'string' => 'object '.get_class($jsmith),
+            'string' => 'object '.$jsmith::class,
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['name' => 'John', 'last' => 'Smith', 'age' => 21],
             'actual' => $jsmith,
-            'string' => 'object '.get_class($jsmith),
+            'string' => 'object '.$jsmith::class,
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['name' => 'John', 'last' => 'Smith'],
             'actual' => $jsmith,
-            'string' => 'object '.get_class($jsmith),
+            'string' => 'object '.$jsmith::class,
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['age' => 21],
             'actual' => $jsmith,
-            'string' => 'object '.get_class($jsmith),
+            'string' => 'object '.$jsmith::class,
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['age' => 21, 'getSalary()' => 123, 'getDebit()' => -123],
             'actual' => $jsmith,
-            'string' => 'object '.get_class($jsmith),
+            'string' => 'object '.$jsmith::class,
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
@@ -173,7 +173,7 @@ trait ProvObjectPropertiesTrait
                 'family' => [$esmith],
             ],
             'actual' => $jsmith,
-            'string' => 'object '.get_class($jsmith),
+            'string' => 'object '.$jsmith::class,
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
@@ -190,7 +190,7 @@ trait ProvObjectPropertiesTrait
                 ],
             ],
             'actual' => $registry,
-            'string' => 'object '.get_class($registry),
+            'string' => 'object '.$registry::class,
         ];
     }
 
@@ -231,7 +231,7 @@ trait ProvObjectPropertiesTrait
                 'boolFalse'   => 0,
             ],
             'actual' => $object,
-            'string' => 'object '.get_class($object),
+            'string' => 'object '.$object::class,
         ];
     }
 
@@ -354,43 +354,43 @@ trait ProvObjectPropertiesTrait
         yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['name' => 'John', 'last' => 'Brown', 'age' => 21],
             'actual' => $jsmith,
-            'string' => 'object '.get_class($jsmith),
+            'string' => 'object '.$jsmith::class,
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['name' => 'John', 'last' => 'Smith', 'wife' => null],
             'actual' => $jsmith,
-            'string' => 'object '.get_class($jsmith),
+            'string' => 'object '.$jsmith::class,
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['name' => 'John', 'last' => 'Smith', 'wife' => 'Emily'],
             'actual' => $jsmith,
-            'string' => 'object '.get_class($jsmith),
+            'string' => 'object '.$jsmith::class,
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['name' => 'John', 'last' => 'Smith', 'wife' => $hbrown],
             'actual' => $jsmith,
-            'string' => 'object '.get_class($jsmith),
+            'string' => 'object '.$jsmith::class,
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['name' => 'John', 'last' => 'Brown'],
             'actual' => $jsmith,
-            'string' => 'object '.get_class($jsmith),
+            'string' => 'object '.$jsmith::class,
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['age' => 19],
             'actual' => $jsmith,
-            'string' => 'object '.get_class($jsmith),
+            'string' => 'object '.$jsmith::class,
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['age' => 21, 'getSalary()' => 1230],
             'actual' => $jsmith,
-            'string' => 'object '.get_class($jsmith),
+            'string' => 'object '.$jsmith::class,
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
@@ -412,7 +412,7 @@ trait ProvObjectPropertiesTrait
                 ],
             ],
             'actual' => $jsmith,
-            'string' => 'object '.get_class($jsmith),
+            'string' => 'object '.$jsmith::class,
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
@@ -422,7 +422,7 @@ trait ProvObjectPropertiesTrait
                 ],
             ],
             'actual' => $jsmith,
-            'string' => 'object '.get_class($jsmith),
+            'string' => 'object '.$jsmith::class,
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
@@ -439,7 +439,7 @@ trait ProvObjectPropertiesTrait
                 ],
             ],
             'actual' => $registry,
-            'string' => 'object '.get_class($registry),
+            'string' => 'object '.$registry::class,
         ];
 
         /** @psalm-suppress MissingThrowsDocblock */
@@ -458,7 +458,7 @@ trait ProvObjectPropertiesTrait
                 ]),
             ],
             'actual' => $registry,
-            'string' => 'object '.get_class($registry),
+            'string' => 'object '.$registry::class,
         ];
     }
 

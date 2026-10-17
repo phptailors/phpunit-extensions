@@ -17,17 +17,7 @@ namespace Tailors\PHPUnit\Result;
  */
 final class DummyResult implements ResultInterface
 {
-    /**
-     * @var bool
-     *
-     * @psalm-readonly
-     */
-    private $actual;
-
-    public function __construct(bool $actual)
-    {
-        $this->actual = $actual;
-    }
+    public function __construct(private readonly bool $actual) {}
 
     /**
      * @psalm-mutation-free

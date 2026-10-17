@@ -13,7 +13,6 @@ namespace Tailors\PHPUnit;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\LogicalNot;
 use PHPUnit\Framework\ExpectationFailedException;
-use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use Tailors\PHPUnit\Constraint\ClassPropertiesIdenticalTo;
 
 trait ClassPropertiesIdenticalToTrait
@@ -24,7 +23,6 @@ trait ClassPropertiesIdenticalToTrait
      * @param mixed $value
      *
      * @throws ExpectationFailedException
-     * @throws InvalidArgumentException
      */
     abstract public static function assertThat($value, Constraint $constraint, string $message = ''): void;
 
@@ -39,7 +37,6 @@ trait ClassPropertiesIdenticalToTrait
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
-     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertClassPropertiesIdenticalTo(
         array $expected,
@@ -59,7 +56,6 @@ trait ClassPropertiesIdenticalToTrait
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
-     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertNotClassPropertiesIdenticalTo(
         array $expected,
@@ -75,7 +71,7 @@ trait ClassPropertiesIdenticalToTrait
      * @param array $expected An array of key => value pairs with expected
      *                        values of attributes
      *
-     * @throws \Tailors\PHPUnit\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public static function classPropertiesIdenticalTo(array $expected): ClassPropertiesIdenticalTo
     {

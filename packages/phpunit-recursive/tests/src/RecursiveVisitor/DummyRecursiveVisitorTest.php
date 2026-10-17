@@ -64,14 +64,10 @@ final class DummyRecursiveVisitorTest extends TestCase
         yield basename(__FILE__).':'.__LINE__ => [
             'ctor'   => [
                 /** @psalm-param mixed $node */
-                function ($node, array $stack): bool {
-                    return false;
-                },
+                fn ($node, array $stack): bool => false,
 
                 /** @psalm-param mixed $node */
-                function ($node, array $stack): bool {
-                    return true;
-                },
+                fn ($node, array $stack): bool => true,
             ],
             'expect' => [
                 'enter' => false,

@@ -29,25 +29,10 @@ use Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversalInterface;
  */
 final class RecursiveMapper implements RecursiveMapperInterface
 {
-    /**
-     * @var RecursiveMapperVisitorInterface
-     *
-     * @psalm-readonly
-     */
-    private $visitor;
-
-    /**
-     * @var RecursiveTraversalInterface
-     *
-     * @psalm-readonly
-     */
-    private $traversal;
-
-    public function __construct(RecursiveMapperVisitorInterface $visitor, RecursiveTraversalInterface $traversal)
-    {
-        $this->visitor = $visitor;
-        $this->traversal = $traversal;
-    }
+    public function __construct(
+        private readonly RecursiveMapperVisitorInterface $visitor,
+        private readonly RecursiveTraversalInterface $traversal
+    ) {}
 
     public static function create(): self
     {

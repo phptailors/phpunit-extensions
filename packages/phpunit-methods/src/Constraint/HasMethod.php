@@ -21,15 +21,7 @@ use Tailors\PHPUnit\Methods\MethodSpecSyntaxError;
  */
 final class HasMethod extends Constraint
 {
-    /**
-     * @var MethodSpecInterface
-     */
-    private $methodSpec;
-
-    public function __construct(MethodSpecInterface $methodSpec)
-    {
-        $this->methodSpec = $methodSpec;
-    }
+    public function __construct(private readonly MethodSpecInterface $methodSpec) {}
 
     /**
      * @throws InvalidArgumentException
@@ -70,7 +62,7 @@ final class HasMethod extends Constraint
 
         try {
             $method = new \ReflectionMethod($other, $this->methodSpec->getName());
-        } catch (\ReflectionException $exception) {
+        } catch (\ReflectionException) {
             return false;
         }
 

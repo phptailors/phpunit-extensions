@@ -25,29 +25,6 @@ use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorStackItemInterface;
 final class RecursiveMapperStackItem implements RecursiveVisitorStackItemInterface
 {
     /**
-     * @var iterable
-     *
-     * @psalm-var ArrayLike
-     *
-     * @psalm-readonly
-     */
-    private $node;
-
-    /**
-     * @var mixed
-     *
-     * @psalm-var array-key
-     *
-     * @psalm-readonly
-     */
-    private $key;
-
-    /**
-     * @var array|\ArrayAccess
-     */
-    private $result;
-
-    /**
      * @param mixed              $key
      * @param array|\ArrayAccess $result
      *
@@ -55,12 +32,11 @@ final class RecursiveMapperStackItem implements RecursiveVisitorStackItemInterfa
      * @psalm-param array-key          $key
      * @psalm-param array|\ArrayAccess $result
      */
-    public function __construct(iterable $node, $key, $result)
-    {
-        $this->node = $node;
-        $this->key = $key;
-        $this->result = $result;
-    }
+    public function __construct(
+        private readonly iterable $node,
+        private $key,
+        private $result
+    ) {}
 
     /**
      * @psalm-return ArrayLike

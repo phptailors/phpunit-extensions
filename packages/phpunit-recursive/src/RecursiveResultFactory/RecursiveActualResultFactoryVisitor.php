@@ -160,13 +160,11 @@ final class RecursiveActualResultFactoryVisitor implements RecursiveActualResult
     }
 
     /**
-     * @return never
-     *
      * @throws CircularDependencyException
      *
      * @psalm-param list<StackItem> $stack
      */
-    private static function throwCircular(array $stack): void
+    private static function throwCircular(array $stack): never
     {
         $pathString = RecursiveVisitorUtils::pathAsString($stack);
 

@@ -220,12 +220,8 @@ final class RecursiveResultFactoryTest extends TestCase
 
         yield basename(__FILE__).':'.__LINE__ => [
             'array'  => new DummyResultFactoryAndValueSelectorWrapper(
-                new DummyResultFactory(function ($input): bool {
-                    return is_array($input);
-                }),
-                new DummyValueSelector(function ($subject): bool {
-                    return is_array($subject);
-                }, false, '', ''),
+                new DummyResultFactory(fn ($input): bool => is_array($input)),
+                new DummyValueSelector(fn ($subject): bool => is_array($subject), false, '', ''),
                 [],
             ),
             'input'  => [],
@@ -234,9 +230,7 @@ final class RecursiveResultFactoryTest extends TestCase
 
         yield basename(__FILE__).':'.__LINE__ => [
             'array'  => new DummyResultFactoryAndValueSelectorWrapper(
-                new DummyResultFactory(function ($input): bool {
-                    return is_array($input);
-                }),
+                new DummyResultFactory(fn ($input): bool => is_array($input)),
                 new DummyValueSelector(true),
                 [],
             ),
@@ -246,12 +240,8 @@ final class RecursiveResultFactoryTest extends TestCase
 
         yield basename(__FILE__).':'.__LINE__ => [
             'array'  => new DummyResultFactoryAndValueSelectorWrapper(
-                new DummyResultFactory(function ($input): bool {
-                    return [] === $input;
-                }),
-                new DummyValueSelector(function ($subject): bool {
-                    return is_iterable($subject);
-                }),
+                new DummyResultFactory(fn ($input): bool => [] === $input),
+                new DummyValueSelector(fn ($subject): bool => is_iterable($subject)),
                 [],
             ),
             'input'  => new \ArrayObject([]),
@@ -261,9 +251,7 @@ final class RecursiveResultFactoryTest extends TestCase
         yield basename(__FILE__).':'.__LINE__ => [
             'array'  => new DummyResultFactoryAndValueSelectorWrapper(
                 new DummyResultFactory(true),
-                new DummyValueSelector(function ($subject): bool {
-                    return is_array($subject);
-                }, false, '', ''),
+                new DummyValueSelector(fn ($subject): bool => is_array($subject), false, '', ''),
                 [],
             ),
             'input'  => [],
@@ -273,9 +261,7 @@ final class RecursiveResultFactoryTest extends TestCase
         yield basename(__FILE__).':'.__LINE__ => [
             'array'  => new DummyResultFactoryAndValueSelectorWrapper(
                 new DummyResultFactory(true),
-                new DummyValueSelector(function ($subject): bool {
-                    return is_array($subject);
-                }, false, '', ''),
+                new DummyValueSelector(fn ($subject): bool => is_array($subject), false, '', ''),
                 [],
             ),
             'input'  => new \ArrayObject([]),
@@ -284,9 +270,7 @@ final class RecursiveResultFactoryTest extends TestCase
 
         yield basename(__FILE__).':'.__LINE__ => [
             'array'  => new DummyResultFactoryWrapper(
-                new DummyResultFactory(function ($input): bool {
-                    return is_array($input);
-                }),
+                new DummyResultFactory(fn ($input): bool => is_array($input)),
                 [],
             ),
             'input'  => [],
@@ -295,9 +279,7 @@ final class RecursiveResultFactoryTest extends TestCase
 
         yield basename(__FILE__).':'.__LINE__ => [
             'array'  => new DummyResultFactoryWrapper(
-                new DummyResultFactory(function ($input): bool {
-                    return is_array($input);
-                }),
+                new DummyResultFactory(fn ($input): bool => is_array($input)),
                 [],
             ),
             'input'  => new \ArrayObject([]),

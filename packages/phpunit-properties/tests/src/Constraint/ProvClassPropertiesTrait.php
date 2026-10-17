@@ -29,7 +29,7 @@ trait ProvClassPropertiesTrait
     public static function provClassPropertiesIdenticalTo(): iterable
     {
         $classes = [
-            get_class(new class() {
+            (new class() {
                 /** @var string */
                 public static $emptyString = '';
 
@@ -44,7 +44,7 @@ trait ProvClassPropertiesTrait
 
                 /** @var bool */
                 public static $boolFalse = false;
-            }),
+            })::class,
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
@@ -78,7 +78,7 @@ trait ProvClassPropertiesTrait
     public static function provClassPropertiesEqualButNotIdenticalTo(): iterable
     {
         $classes = [
-            get_class(new class() {
+            (new class() {
                 /** @var string */
                 public static $emptyString = '';
 
@@ -93,7 +93,7 @@ trait ProvClassPropertiesTrait
 
                 /** @var bool */
                 public static $boolFalse = false;
-            }),
+            })::class,
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
@@ -121,7 +121,7 @@ trait ProvClassPropertiesTrait
     public static function provClassPropertiesNotEqualTo(): iterable
     {
         $classes = [
-            get_class(new class() {
+            (new class() {
                 /** @var string */
                 public static $emptyString = '';
 
@@ -136,7 +136,7 @@ trait ProvClassPropertiesTrait
 
                 /** @var bool */
                 public static $boolFalse = false;
-            }),
+            })::class,
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [

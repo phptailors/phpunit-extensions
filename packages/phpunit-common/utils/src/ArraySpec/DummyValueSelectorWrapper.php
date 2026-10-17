@@ -34,20 +34,11 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
 final class DummyValueSelectorWrapper extends \ArrayObject implements ValueSelectorWrapperInterface, ComparatorAwareComplementInterface
 {
     /**
-     * @var ValueSelectorInterface
-     *
-     * @psalm-readonly
-     */
-    private $valueSelector;
-
-    /**
      * @psalm-param ValueSelectorInterface<SupportedSubject> $valueSelector
      * @psalm-param ArrayLike                                $array
      */
-    public function __construct(ValueSelectorInterface $valueSelector, iterable $array)
+    public function __construct(private readonly ValueSelectorInterface $valueSelector, iterable $array)
     {
-        $this->valueSelector = $valueSelector;
-
         if (!is_array($array)) {
             $array = iterator_to_array($array);
         }

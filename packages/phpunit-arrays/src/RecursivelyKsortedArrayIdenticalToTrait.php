@@ -13,7 +13,6 @@ namespace Tailors\PHPUnit;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\LogicalNot;
 use PHPUnit\Framework\ExpectationFailedException;
-use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use Tailors\PHPUnit\Constraint\RecursivelyKsortedArrayIdenticalTo;
 
 trait RecursivelyKsortedArrayIdenticalToTrait
@@ -24,7 +23,6 @@ trait RecursivelyKsortedArrayIdenticalToTrait
      * @param mixed $value
      *
      * @throws ExpectationFailedException
-     * @throws InvalidArgumentException
      */
     abstract public static function assertThat($value, Constraint $constraint, string $message = ''): void;
 
@@ -37,7 +35,6 @@ trait RecursivelyKsortedArrayIdenticalToTrait
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
-     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertRecursivelyKsortedArrayIdenticalTo(
         array $expected,
@@ -57,7 +54,6 @@ trait RecursivelyKsortedArrayIdenticalToTrait
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
-     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertNotRecursivelyKsortedArrayIdenticalTo(
         array $expected,
@@ -73,7 +69,7 @@ trait RecursivelyKsortedArrayIdenticalToTrait
      *
      * @param array $expected expected array
      *
-     * @throws \Tailors\PHPUnit\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public static function recursivelyKsortedArrayIdenticalTo(array $expected, int $flags = SORT_REGULAR): RecursivelyKsortedArrayIdenticalTo
     {

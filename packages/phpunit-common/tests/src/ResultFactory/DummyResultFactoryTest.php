@@ -90,9 +90,7 @@ final class DummyResultFactoryTest extends TestCase
 
         yield basename(__FILE__).':'.__LINE__ => [
             'supports' => /** @psalm-param mixed $input */
-            function ($input): bool {
-                return is_array($input);
-            },
+            fn ($input): bool => is_array($input),
             'input'    => [],
             'actual'   => false,
             'expect'   => [
@@ -102,9 +100,7 @@ final class DummyResultFactoryTest extends TestCase
 
         yield basename(__FILE__).':'.__LINE__ => [
             'supports' => /** @psalm-param mixed $input */
-            function ($input): bool {
-                return is_array($input);
-            },
+            fn ($input): bool => is_array($input),
             'input'    => null,
             'actual'   => false,
             'expect'   => [

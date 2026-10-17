@@ -25,43 +25,17 @@ use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorStackItemInterface;
 final class RecursiveResultUnwrapperStackItem implements RecursiveVisitorStackItemInterface
 {
     /**
-     * @var iterable
-     *
-     * @psalm-var ArrayLike
-     *
-     * @psalm-readonly
-     */
-    private $node;
-
-    /**
-     * @var mixed
-     *
-     * @psalm-var array-key
-     *
-     * @psalm-readonly
-     */
-    private $key;
-
-    /**
-     * @var array
-     *
-     * @psalm-var array<array-key, mixed>
-     */
-    private $result;
-
-    /**
      * @param mixed $key
      *
      * @psalm-param ArrayLike               $node
      * @psalm-param array-key               $key
      * @psalm-param array<array-key, mixed> $result
      */
-    public function __construct(iterable $node, $key, array $result)
-    {
-        $this->node = $node;
-        $this->key = $key;
-        $this->result = $result;
-    }
+    public function __construct(
+        private readonly iterable $node,
+        private $key,
+        private array $result
+    ) {}
 
     /**
      * @psalm-return ArrayLike

@@ -37,31 +37,15 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     private $trace;
 
     /**
-     * @var bool|\Closure
-     *
-     * @psalm-var bool|\Closure(ArrayLike, list<StackItem>):bool
-     */
-    private $enter;
-
-    /**
-     * @var bool|\Closure
-     *
-     * @psalm-var bool|\Closure(ArrayLike, list<StackItem>):bool
-     */
-    private $cycle;
-
-    /**
      * @param bool|\Closure $enter
      * @param bool|\Closure $cycle
      *
      * @psalm-param bool|\Closure(ArrayLike, list<StackItem>):bool $enter
      * @psalm-param bool|\Closure(ArrayLike, list<StackItem>):bool $cycle
      */
-    public function __construct($enter = true, $cycle = false)
+    public function __construct(private $enter = true, private $cycle = false)
     {
         $this->trace = [];
-        $this->enter = $enter;
-        $this->cycle = $cycle;
     }
 
     /**
@@ -157,7 +141,7 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
      */
     private static function path(array $stack): array
     {
-        return array_map(function ($item) { return $item->key(); }, $stack);
+        return array_map(fn ($item) => $item->key(), $stack);
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

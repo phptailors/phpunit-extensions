@@ -61,9 +61,7 @@ final class AbstractInheritanceConstraintTest extends TestCase
             return false === $value ? [] : $value;
         };
 
-        $class_exists = function (string $subject): bool {
-            return class_exists($subject);
-        };
+        $class_exists = (fn (string $subject): bool => class_exists($subject));
 
         $extendsException = self::getObject([\Exception::class, 'extends', 'does not extend', $class_parents, $class_exists]);
         $implementsThrowable = self::getObject([\Throwable::class, 'implements', 'does not implement', $class_implements, $class_exists]);
@@ -208,9 +206,7 @@ final class AbstractInheritanceConstraintTest extends TestCase
             return false === $value ? [] : $value;
         };
 
-        $class_exists = function (string $subject): bool {
-            return class_exists($subject);
-        };
+        $class_exists = (fn (string $subject): bool => class_exists($subject));
 
         $constraint = self::getObject([\Exception::class, 'extends', 'does not extend', $class_parents, $class_exists]);
 

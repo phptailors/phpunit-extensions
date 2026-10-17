@@ -43,7 +43,7 @@ final class InvalidReturnValueExceptionTest extends TestCase
 
         yield basename(__FILE__).':'.__LINE__ => [
             /** @psalm-suppress InvalidReturnStatement,InvalidReturnType */
-            function (): string { return 2; }, 'a string', 'integer',
+            fn (): string => 2, 'a string', 'integer',
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
@@ -102,7 +102,7 @@ final class InvalidReturnValueExceptionTest extends TestCase
 
         yield basename(__FILE__).':'.__LINE__ => [
             /** @psalm-suppress InvalidReturnStatement,InvalidReturnType */
-            function (): string { return 2; }, 'a string', 2,
+            fn (): string => 2, 'a string', 2,
         ];
     }
 
@@ -136,7 +136,7 @@ final class InvalidReturnValueExceptionTest extends TestCase
         if (is_string($function)) {
             $name = $function;
         } elseif (is_array($function)) {
-            $name = sprintf('%s::%s', is_object($function[0]) ? get_class($function[0]) : $function[0], $function[1]);
+            $name = sprintf('%s::%s', is_object($function[0]) ? $function[0]::class : $function[0], $function[1]);
         } else {
             is_callable($function, true, $name);
         }

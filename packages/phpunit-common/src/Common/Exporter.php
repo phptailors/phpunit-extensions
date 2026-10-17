@@ -12,7 +12,6 @@ namespace Tailors\PHPUnit\Common;
 
 use SebastianBergmann\Exporter\Exporter as SebastianExporter;
 use SebastianBergmann\RecursionContext\Context;
-use SebastianBergmann\RecursionContext\InvalidArgumentException;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -25,18 +24,18 @@ final class Exporter
      * @psalm-suppress MixedInferredReturnType
      *
      * @param mixed $value
-     *
-     * @throws InvalidArgumentException
      */
     public static function export($value, bool $exportObjects = false): string
     {
         // @codeCoverageIgnoreStart
 
+        /** @psalm-suppress DeprecatedClass */
         if (class_exists(\PHPUnit\Util\Exporter::class)) {
             /**
              * @psalm-suppress InternalClass
              * @psalm-suppress InternalMethod
              * @psalm-suppress MixedArgument
+             * @psalm-suppress DeprecatedClass
              */
             return self::postprocessOutput(\PHPUnit\Util\Exporter::export($value, $exportObjects));
         }
@@ -51,8 +50,6 @@ final class Exporter
 
     /**
      * @param mixed $value
-     *
-     * @throws InvalidArgumentException
      *
      * @psalm-param mixed $value
      */

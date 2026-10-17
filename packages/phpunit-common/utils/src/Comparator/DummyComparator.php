@@ -17,15 +17,7 @@ namespace Tailors\PHPUnit\Comparator;
  */
 final class DummyComparator implements ComparatorInterface
 {
-    private $compare;
-
-    private $adjective;
-
-    public function __construct(bool $compare, string $adjective)
-    {
-        $this->compare = $compare;
-        $this->adjective = $adjective;
-    }
+    public function __construct(private readonly bool $compare, private readonly string $adjective) {}
 
     public function compare($left, $right): bool
     {

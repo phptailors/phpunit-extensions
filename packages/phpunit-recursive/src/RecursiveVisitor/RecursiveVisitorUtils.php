@@ -26,9 +26,7 @@ final class RecursiveVisitorUtils
     {
         $path = self::pathAsList($stack);
 
-        return implode('', array_map(function ($key) {
-            return '['.var_export($key, true).']';
-        }, $path));
+        return implode('', array_map(fn ($key) => '['.var_export($key, true).']', $path));
     }
 
     /**
@@ -40,9 +38,7 @@ final class RecursiveVisitorUtils
      */
     public static function pathAsList(array $stack): array
     {
-        return array_map(function ($item) {
-            return $item->key();
-        }, $stack);
+        return array_map(fn ($item) => $item->key(), $stack);
     }
 }
 

@@ -13,7 +13,6 @@ namespace Tailors\PHPUnit;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\LogicalNot;
 use PHPUnit\Framework\ExpectationFailedException;
-use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use Tailors\PHPUnit\Constraint\ImplementsInterface;
 
 trait ImplementsInterfaceTrait
@@ -24,7 +23,6 @@ trait ImplementsInterfaceTrait
      * @param mixed $value
      *
      * @throws ExpectationFailedException
-     * @throws InvalidArgumentException
      */
     abstract public static function assertThat($value, Constraint $constraint, string $message = ''): void;
 
@@ -37,7 +35,6 @@ trait ImplementsInterfaceTrait
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
-     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertImplementsInterface(string $interface, $subject, string $message = ''): void
     {
@@ -53,7 +50,6 @@ trait ImplementsInterfaceTrait
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
-     * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
     public static function assertNotImplementsInterface(string $interface, $subject, string $message = ''): void
     {
@@ -65,7 +61,7 @@ trait ImplementsInterfaceTrait
      *
      * @param string $interface name of the interface that is expected to be implemented
      *
-     * @throws \Tailors\PHPUnit\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public static function implementsInterface(string $interface): ImplementsInterface
     {

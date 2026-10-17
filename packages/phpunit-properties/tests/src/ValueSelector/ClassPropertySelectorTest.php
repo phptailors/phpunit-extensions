@@ -67,7 +67,7 @@ final class ClassPropertySelectorTest extends TestCase
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
-            'subject' => get_class(new class() {}),
+            'subject' => (new class() {})::class,
             'expect'  => true,
         ];
 
@@ -105,10 +105,10 @@ final class ClassPropertySelectorTest extends TestCase
     {
         // #0
         yield basename(__FILE__).':'.__LINE__ => [
-            'class'  => get_class(new class() {
+            'class'  => (new class() {
                 /** @var string */
                 public static $foo = 'FOO';
-            }),
+            })::class,
             'key'    => 'foo',
             'return' => true,
             'expect' => 'FOO',
@@ -116,10 +116,10 @@ final class ClassPropertySelectorTest extends TestCase
 
         // #1
         yield basename(__FILE__).':'.__LINE__ => [
-            'class'  => get_class(new class() {
+            'class'  => (new class() {
                 /** @var string */
                 public static $foo = 'FOO';
-            }),
+            })::class,
             'key'    => 'bar',
             'return' => false,
             'expect' => null,
@@ -127,12 +127,12 @@ final class ClassPropertySelectorTest extends TestCase
 
         // #2
         yield basename(__FILE__).':'.__LINE__ => [
-            'class'  => get_class(new class() {
+            'class'  => (new class() {
                 public static function foo(): string
                 {
                     return 'FOO';
                 }
-            }),
+            })::class,
             'key'    => 'foo()',
             'return' => true,
             'expect' => 'FOO',
@@ -140,12 +140,12 @@ final class ClassPropertySelectorTest extends TestCase
 
         // #3
         yield basename(__FILE__).':'.__LINE__ => [
-            'class'  => get_class(new class() {
+            'class'  => (new class() {
                 public static function foo(): string
                 {
                     return 'FOO';
                 }
-            }),
+            })::class,
             'key'    => 'bar()',
             'return' => false,
             'expect' => null,
@@ -175,9 +175,9 @@ final class ClassPropertySelectorTest extends TestCase
      */
     public function testSelectThrowsOnPrivateMethod(): void
     {
-        $class = get_class(new class() {
+        $class = (new class() {
             private static function foo(): void {}
-        });
+        })::class;
         $selector = new ClassPropertySelector();
 
         $this->expectException(\Error::class);
@@ -191,10 +191,10 @@ final class ClassPropertySelectorTest extends TestCase
      */
     public function testSelectThrowsOnPrivateAttribute(): void
     {
-        $class = get_class(new class() {
+        $class = (new class() {
             /** @var string */
             private $foo = 'FOO';
-        });
+        })::class;
         $selector = new ClassPropertySelector();
 
         $this->expectException(\Error::class);
@@ -241,10 +241,10 @@ final class ClassPropertySelectorTest extends TestCase
      */
     public function testSelectThrowsOnNonStaticProperty(): void
     {
-        $class = get_class(new class() {
+        $class = (new class() {
             /** @var string */
             public $foo = 'FOO';
-        });
+        })::class;
         $selector = new ClassPropertySelector();
 
         $this->expectException(\Error::class);

@@ -25,17 +25,7 @@ use Tailors\PHPUnit\ResultFactory\AbstractArrayResultFactory;
  */
 final class KsortedArrayFactory extends AbstractArrayResultFactory
 {
-    /**
-     * @var int
-     *
-     * @psalm-readonly
-     */
-    private $flags;
-
-    public function __construct(int $flags = SORT_REGULAR)
-    {
-        $this->flags = $flags;
-    }
+    public function __construct(private readonly int $flags = SORT_REGULAR) {}
 
     /**
      * @psalm-param ArrayLike $input

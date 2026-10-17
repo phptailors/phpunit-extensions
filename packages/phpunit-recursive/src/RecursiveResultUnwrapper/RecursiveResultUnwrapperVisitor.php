@@ -34,13 +34,6 @@ use Tailors\PHPUnit\Result\ResultInterface;
 final class RecursiveResultUnwrapperVisitor implements RecursiveResultUnwrapperVisitorInterface, StaticTagInterface
 {
     /**
-     * @var bool
-     *
-     * @psalm-readonly
-     */
-    private $tagging;
-
-    /**
      * @var ?bool
      */
     private $actual;
@@ -55,9 +48,8 @@ final class RecursiveResultUnwrapperVisitor implements RecursiveResultUnwrapperV
      */
     private $current;
 
-    public function __construct(bool $tagging = true)
+    public function __construct(private readonly bool $tagging = true)
     {
-        $this->tagging = $tagging;
         $this->actual = null;
         $this->current = [];
     }
@@ -198,7 +190,7 @@ final class RecursiveResultUnwrapperVisitor implements RecursiveResultUnwrapperV
         if (0 === $count) {
             if (!is_array($value) && !$value instanceof ResultInterface) {
                 $expected = 'an array or '.ResultInterface::class.' object';
-                $actual = is_object($value) ? get_class($value) : gettype($value);
+                $actual = get_debug_type($value);
 
                 /** @psalm-suppress MissingThrowsDocblock */
                 throw InvalidArgumentException::fromBackTrace(2, $expected, $actual);

@@ -14,7 +14,6 @@ use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\UnaryOperator;
 use PHPUnit\Framework\Exception;
 use PHPUnit\Framework\ExpectationFailedException;
-use PHPUnit\Framework\MockObject\ReflectionException;
 use PHPUnit\Framework\MockObject\RuntimeException;
 use PHPUnit\Framework\TestCase;
 
@@ -176,7 +175,6 @@ abstract class AbstractConstraintTestCase extends TestCase
      *
      * @throws Exception
      * @throws RuntimeException
-     * @throws ReflectionException
      */
     final protected function wrapWithUnaryOperator(
         Constraint $constraint,
@@ -184,16 +182,8 @@ abstract class AbstractConstraintTestCase extends TestCase
         int $precedence = 1
     ): UnaryOperator {
         return new class($constraint, $operator, $precedence) extends UnaryOperator {
-            /** @var string */
-            private $operator;
-
-            /** @var int */
-            private $precedence;
-
-            public function __construct(Constraint $constraint, string $operator, int $precedence)
+            public function __construct(Constraint $constraint, private readonly string $operator, private readonly int $precedence)
             {
-                $this->operator = $operator;
-                $this->precedence = $precedence;
                 parent::__construct($constraint);
             }
 

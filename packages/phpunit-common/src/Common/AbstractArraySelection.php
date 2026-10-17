@@ -33,24 +33,16 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
 abstract class AbstractArraySelection extends AbstractArrayExpectations implements ValueSelectorWrapperInterface, ComparatorAwareComplementInterface
 {
     /**
-     * @var ValueSelectorInterface
-     *
-     * @psalm-var ValueSelectorInterface<SupportedSubject>
-     *
-     * @psalm-readonly
-     */
-    private $valueSelector;
-
-    /**
      * @psalm-param ResultFactoryInterface<SupportedInput>   $resultFactory
      * @psalm-param ValueSelectorInterface<SupportedSubject> $valueSelector
      * @psalm-param ArrayLike                                $array
      */
-    protected function __construct(ResultFactoryInterface $resultFactory, ValueSelectorInterface $valueSelector, iterable $array)
-    {
+    protected function __construct(
+        ResultFactoryInterface $resultFactory,
+        private readonly ValueSelectorInterface $valueSelector,
+        iterable $array
+    ) {
         parent::__construct($resultFactory, $array);
-
-        $this->valueSelector = $valueSelector;
     }
 
     /**

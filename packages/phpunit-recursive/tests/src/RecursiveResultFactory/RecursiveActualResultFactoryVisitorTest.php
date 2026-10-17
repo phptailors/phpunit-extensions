@@ -92,9 +92,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         // 02
         //
 
-        $s02 = array_map(function ($key) {
-            return new RecursiveActualResultFactoryStackItem([], $key, new SubjectResultCouple([], []));
-        }, ['foo', 3, 'bar']);
+        $s02 = array_map(fn ($key) => new RecursiveActualResultFactoryStackItem([], $key, new SubjectResultCouple([], [])), ['foo', 3, 'bar']);
 
         yield basename(__FILE__).':'.__LINE__ => [
             'stack'  => $s02,
@@ -105,10 +103,11 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         // 03
         //
 
-        $s03 = array_map(function ($key) {
+        $s03 = array_map(
             /** @psalm-suppress PossiblyNullArgument,PossiblyFalseArgument */
-            return new RecursiveActualResultFactoryStackItem([], $key, new SubjectResultCouple([], []));
-        }, [null, 3, false]);
+            fn ($key) => new RecursiveActualResultFactoryStackItem([], $key, new SubjectResultCouple([], [])),
+            [null, 3, false]
+        );
 
         yield basename(__FILE__).':'.__LINE__ => [
             'stack'  => $s03,
@@ -1240,9 +1239,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
     private static function getArrayObjectSelector(): DummyValueSelector
     {
         return new DummyValueSelector(
-            function ($subject): bool {
-                return is_object($subject) && \ArrayObject::class === get_class($subject);
-            },
+            fn ($subject): bool => is_object($subject) && \ArrayObject::class === $subject::class,
             /**
              * @param mixed $key
              * @param mixed $retval
@@ -1269,9 +1266,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
      */
     private static function getExceptionPropertySelector(): DummyValueSelector
     {
-        return new DummyValueSelector(function ($subject): bool {
-            return is_object($subject) && $subject instanceof \Exception;
-        }, function ($subject, $key, &$retval): bool {
+        return new DummyValueSelector(fn ($subject): bool => is_object($subject) && $subject instanceof \Exception, function ($subject, $key, &$retval): bool {
             if (!is_object($subject) || !$subject instanceof \Exception) {
                 return false;
             }
@@ -1300,9 +1295,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
     private static function getNamespaceVariableSelector(array $namespaces): DummyValueSelector
     {
         return new DummyValueSelector(
-            function ($subject) use ($namespaces): bool {
-                return is_string($subject) && array_key_exists($subject, $namespaces);
-            },
+            fn ($subject): bool => is_string($subject) && array_key_exists($subject, $namespaces),
             /**
              * @param mixed $subject
              * @param mixed $key

@@ -13,7 +13,6 @@ namespace Tailors\PHPUnit;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\LogicalNot;
 use PHPUnit\Framework\ExpectationFailedException;
-use SebastianBergmann\RecursionContext\InvalidArgumentException as RecursionContextInvalidArgumentException;
 use Tailors\PHPUnit\Constraint\HasMethod;
 
 trait HasMethodTrait
@@ -24,7 +23,6 @@ trait HasMethodTrait
      * @param mixed $value
      *
      * @throws ExpectationFailedException
-     * @throws RecursionContextInvalidArgumentException
      * @throws InvalidArgumentException
      */
     abstract public static function assertThat($value, Constraint $constraint, string $message = ''): void;
@@ -39,7 +37,6 @@ trait HasMethodTrait
      * @param string $message    Optional failure message
      *
      * @throws ExpectationFailedException
-     * @throws RecursionContextInvalidArgumentException
      * @throws InvalidArgumentException
      *
      * // due to psalm bug #9151 we can't use this:
@@ -63,7 +60,6 @@ trait HasMethodTrait
      * @param string $message    Optional failure message
      *
      * @throws ExpectationFailedException
-     * @throws RecursionContextInvalidArgumentException
      * @throws InvalidArgumentException
      */
     public static function assertNotHasMethod(

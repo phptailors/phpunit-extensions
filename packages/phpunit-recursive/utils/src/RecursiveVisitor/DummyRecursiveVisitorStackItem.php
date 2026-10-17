@@ -24,34 +24,12 @@ use Tailors\PHPUnit\Common\TypesInterface;
 final class DummyRecursiveVisitorStackItem implements RecursiveVisitorStackItemInterface
 {
     /**
-     * @var iterable
-     *
-     * @psalm-var ArrayLike
-     *
-     * @psalm-readonly
-     */
-    private $node;
-
-    /**
-     * @var mixed
-     *
-     * @psalm-var array-key
-     *
-     * @psalm-readonly
-     */
-    private $key;
-
-    /**
      * @param mixed $key
      *
      * @psalm-param ArrayLike $node
      * @psalm-param array-key $key
      */
-    public function __construct(iterable $node, $key)
-    {
-        $this->node = $node;
-        $this->key = $key;
-    }
+    public function __construct(private readonly iterable $node, private $key) {}
 
     /**
      * @psalm-return ArrayLike

@@ -18,26 +18,10 @@ namespace Tailors\PHPUnit\RecursiveResultFactory;
 final class SubjectResultCouple
 {
     /**
-     * @var mixed
-     *
-     * @psalm-readonly
-     */
-    public $subject;
-
-    /**
-     * @var array|\ArrayAccess
-     */
-    public $result;
-
-    /**
      * @param mixed              $subject
      * @param array|\ArrayAccess $result
      */
-    public function __construct($subject, $result)
-    {
-        $this->subject = $subject;
-        $this->result = $result;
-    }
+    public function __construct(public $subject, public $result) {}
 }
 
 // vim: syntax=php sw=4 ts=4 et:

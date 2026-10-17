@@ -27,34 +27,11 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  */
 final class RecursiveResultFactory implements RecursiveResultFactoryInterface
 {
-    /**
-     * @var RecursiveExpectedResultFactoryVisitorInterface
-     */
-    private $expectedResultVisitor;
-
-    /**
-     * @var RecursiveActualResultFactoryVisitorInterface
-     *
-     * @psalm-readonly
-     */
-    private $actualResultVisitor;
-
-    /**
-     * @var RecursiveTraversalInterface
-     *
-     * @psalm-readonly
-     */
-    private $traversal;
-
     public function __construct(
-        RecursiveExpectedResultFactoryVisitorInterface $expectedResultVisitor,
-        RecursiveActualResultFactoryVisitorInterface $actualResultVisitor,
-        RecursiveTraversalInterface $traversal
-    ) {
-        $this->expectedResultVisitor = $expectedResultVisitor;
-        $this->actualResultVisitor = $actualResultVisitor;
-        $this->traversal = $traversal;
-    }
+        private readonly RecursiveExpectedResultFactoryVisitorInterface $expectedResultVisitor,
+        private readonly RecursiveActualResultFactoryVisitorInterface $actualResultVisitor,
+        private readonly RecursiveTraversalInterface $traversal
+    ) {}
 
     public static function create(): self
     {

@@ -217,9 +217,7 @@ final class RecursiveTraversalTest extends TestCase
 
         yield basename(__FILE__).':'.__LINE__ => [
             'array'   => $a06,
-            'visitor' => new DummyRecursiveVisitor(function ($node, array $stack): bool {
-                return count($stack) < 1;
-            }),
+            'visitor' => new DummyRecursiveVisitor(fn ($node, array $stack): bool => count($stack) < 1),
             'expect'  => [
                 ['func' => 'enter', 'node' => $a06, 'path' => []],
                 ['func' => 'makeStackItem', 'node' => $a06, 'key' => 'foo', 'path' => []],
@@ -288,9 +286,7 @@ final class RecursiveTraversalTest extends TestCase
 
         yield basename(__FILE__).':'.__LINE__ => [
             'array'   => $a08,
-            'visitor' => new DummyRecursiveVisitor(function ($value, array $stack) {
-                return ['baz', 'qux', 'baz'] !== array_map(function ($item) { return $item->key(); }, $stack);
-            }, true),
+            'visitor' => new DummyRecursiveVisitor(fn ($value, array $stack) => ['baz', 'qux', 'baz'] !== array_map(fn ($item) => $item->key(), $stack), true),
             'expect'  => [
                 ['func' => 'enter', 'node' => $a08, 'path' => []],
                 ['func' => 'makeStackItem', 'node' => $a08, 'key' => 'foo', 'path' => []],
@@ -338,9 +334,7 @@ final class RecursiveTraversalTest extends TestCase
 
         yield basename(__FILE__).':'.__LINE__ => [
             'array'   => $a09,
-            'visitor' => new DummyRecursiveVisitor(function ($values, array $stack) {
-                return count($stack) < 1;
-            }),
+            'visitor' => new DummyRecursiveVisitor(fn ($values, array $stack) => count($stack) < 1),
             'expect'  => [
                 ['func' => 'enter', 'node' => $a09, 'path' => []],
                 ['func' => 'makeStackItem', 'node' => $a09, 'key' => 'foo', 'path' => []],
@@ -391,9 +385,7 @@ final class RecursiveTraversalTest extends TestCase
 
         yield basename(__FILE__).':'.__LINE__ => [
             'array'   => $a10,
-            'visitor' => new DummyRecursiveVisitor(function ($value, array $stack): bool {
-                return count($stack) < 2;
-            }),
+            'visitor' => new DummyRecursiveVisitor(fn ($value, array $stack): bool => count($stack) < 2),
             'expect'  => [
                 ['func' => 'enter', 'node' => $a10, 'path' => []],
                 ['func' => 'makeStackItem', 'node' => $a10, 'key' => 'foo', 'path' => []],
@@ -426,9 +418,7 @@ final class RecursiveTraversalTest extends TestCase
 
         yield basename(__FILE__).':'.__LINE__ => [
             'array'   => $a10,
-            'visitor' => new DummyRecursiveVisitor(function ($value, array $stack): bool {
-                return count($stack) < 1;
-            }),
+            'visitor' => new DummyRecursiveVisitor(fn ($value, array $stack): bool => count($stack) < 1),
             'expect'  => [
                 ['func' => 'enter', 'node' => $a10, 'path' => []],
                 ['func' => 'makeStackItem', 'node' => $a10, 'key' => 'foo', 'path' => []],

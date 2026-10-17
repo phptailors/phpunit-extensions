@@ -10,9 +10,12 @@
 
 namespace Tailors\PHPUnit\RecursiveConstraint;
 
+use PHPUnit\Event\NoPreviousThrowableException;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\UnaryOperator;
 use PHPUnit\Framework\ExpectationFailedException;
+use PHPUnit\Framework\InvalidArgumentException;
+use PHPUnit\Framework\MockObject\Exception;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\ArraySpec\DummyResultFactoryAndValueSelectorWrapper;
 use Tailors\PHPUnit\ArraySpec\DummyResultFactoryWrapper;
@@ -347,6 +350,10 @@ final class AbstractRecursiveConstraintTest extends TestCase
     }
 
     /**
+     * @throws InvalidArgumentException
+     * @throws Exception
+     * @throws NoPreviousThrowableException
+     *
      * @psalm-param ArrayLike $expected
      */
     private function createDummyConstraint(
@@ -414,9 +421,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
             /**
              * @param mixed $subject
              */
-            function ($subject): bool {
-                return is_array($subject);
-            },
+            fn ($subject): bool => is_array($subject),
             /**
              * @param array $subject
              * @param mixed $key

@@ -58,15 +58,14 @@ final class AbstractValueSelectorTest extends TestCase
      */
     public static function provAbstractValueSelector(): iterable
     {
-        $supportsArray =
-        /**
-         * @param mixed $subject
-         *
-         * @psalm-param mixed $subject
-         */
-        function ($subject): bool {
-            return is_array($subject);
-        };
+        $supportsArray = (
+            /**
+             * @param mixed $subject
+             *
+             * @psalm-param mixed $subject
+             */
+            fn ($subject): bool => is_array($subject)
+        );
 
         $selectFromArray =
         /**
@@ -214,48 +213,15 @@ final class AbstractValueSelectorTest extends TestCase
              */
             class(...$ctorArgs) extends AbstractValueSelector {
                 /**
-                 * @var \Closure
-                 *
-                 * @psalm-var \Closure(mixed):bool
-                 *
-                 * @psalm-readonly
-                 */
-                private $supports;
-
-                /**
-                 * @var \Closure
-                 *
-                 * @psalm-var Closure(mixed,mixed,mixed):bool
-                 *
-                 * @psalm-readonly
-                 */
-                private $select;
-
-                /**
-                 * @var string
-                 *
-                 * @psalm-readonly
-                 */
-                private $subject;
-
-                /**
-                 * @var string
-                 *
-                 * @psalm-readonly
-                 */
-                private $selectable;
-
-                /**
                  * @psalm-param pure-Closure(mixed):bool        $supports
                  * @psalm-param Closure(mixed,mixed,mixed):bool $select
                  */
-                public function __construct(\Closure $supports, \Closure $select, string $subject, string $selectable)
-                {
-                    $this->supports = $supports;
-                    $this->select = $select;
-                    $this->subject = $subject;
-                    $this->selectable = $selectable;
-                }
+                public function __construct(
+                    private readonly \Closure $supports,
+                    private readonly \Closure $select,
+                    private readonly string $subject,
+                    private readonly string $selectable
+                ) {}
 
                 /**
                  * @param mixed $input

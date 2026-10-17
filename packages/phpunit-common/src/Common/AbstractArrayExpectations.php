@@ -27,21 +27,11 @@ use Tailors\PHPUnit\ResultFactory\ResultFactoryWrapperInterface;
 abstract class AbstractArrayExpectations extends AbstractArrayObject implements ResultFactoryWrapperInterface
 {
     /**
-     * @var ResultFactoryInterface
-     *
-     * @psalm-var ResultFactoryInterface<SupportedInput>
-     *
-     * @psalm-readonly
-     */
-    private $resultFactory;
-
-    /**
      * @psalm-param ResultFactoryInterface<SupportedInput> $resultFactory
      * @psalm-param ArrayLike                              $array
      */
-    protected function __construct(ResultFactoryInterface $resultFactory, iterable $array)
+    protected function __construct(private readonly ResultFactoryInterface $resultFactory, iterable $array)
     {
-        $this->resultFactory = $resultFactory;
         parent::__construct($array);
     }
 

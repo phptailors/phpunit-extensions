@@ -59,7 +59,7 @@ final class StaticRandomStrings
      */
     public static function classTag($objectOrClass, ?string $fallback = null): string
     {
-        $class = is_object($objectOrClass) ? get_class($objectOrClass) : $objectOrClass;
+        $class = is_object($objectOrClass) ? $objectOrClass::class : $objectOrClass;
 
         if (null === $fallback) {
             /** @psalm-var non-empty-string */

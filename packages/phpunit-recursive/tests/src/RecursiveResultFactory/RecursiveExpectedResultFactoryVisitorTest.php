@@ -90,9 +90,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         // 02
         //
 
-        $s02 = array_map(function ($key) {
-            return new RecursiveExpectedResultFactoryStackItem([], $key, []);
-        }, ['foo', 3, 'bar']);
+        $s02 = array_map(fn ($key) => new RecursiveExpectedResultFactoryStackItem([], $key, []), ['foo', 3, 'bar']);
 
         yield basename(__FILE__).':'.__LINE__ => [
             'stack'  => $s02,
@@ -104,10 +102,8 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         //
 
         $s03 = array_map(
-            function ($key) {
-                /** @psalm-suppress PossiblyNullArgument, PossiblyFalseArgument */
-                return new RecursiveExpectedResultFactoryStackItem([], $key, []);
-            },
+            /** @psalm-suppress PossiblyNullArgument, PossiblyFalseArgument */
+            fn ($key) => new RecursiveExpectedResultFactoryStackItem([], $key, []),
             [null, 3, false]
         );
 
