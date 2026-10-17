@@ -34,7 +34,7 @@ return $config
         'psr_autoloading' => true,
         'binary_operator_spaces' => [
             'operators' => [
-                '=>' => 'align_single_space_minimal',
+                '=>' => 'align_single_space_minimal_by_scope',
                 '='  => 'single_space'
             ],
         ],
