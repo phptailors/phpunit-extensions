@@ -16,7 +16,6 @@
                 "packages/phpunit-common/utils/src/",
                 "packages/phpunit-inheritance/src/",
                 "packages/phpunit-methods/src/",
-                "packages/phpunit-methods/utils/src/",
                 "packages/phpunit-properties/src/",
                 "packages/phpunit-properties/utils/src/",
                 "packages/phpunit-recursive/src/",
