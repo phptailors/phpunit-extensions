@@ -262,7 +262,7 @@ final class MethodSpecTest extends TestCase
     {
         yield [
             ['bar'],
-            fn (TestCase $test) => self::makeMethod($test, 'foo'),
+            fn (TestCase $test) => self::makeMethodFoo($test),
             false,
         ];
 
@@ -283,7 +283,7 @@ final class MethodSpecTest extends TestCase
         foreach ($cases1 as $modifiers) {
             yield [
                 ['foo'],
-                fn (TestCase $test) => self::makeMethod($test, 'foo', ...$modifiers),
+                fn (TestCase $test) => self::makeMethodFoo($test, ...$modifiers),
                 true,
             ];
         }
@@ -303,13 +303,13 @@ final class MethodSpecTest extends TestCase
 
             yield [
                 array_merge(['foo'], $args),
-                fn (TestCase $test) => self::makeMethod($test, 'foo', $modifier),
+                fn (TestCase $test) => self::makeMethodFoo($test, $modifier),
                 true,
             ];
 
             yield [
                 array_merge(['foo'], $args),
-                fn (TestCase $test) => self::makeMethod($test, 'foo', self::MMASK & ~$modifier),
+                fn (TestCase $test) => self::makeMethodFoo($test, self::MMASK & ~$modifier),
                 false,
             ];
 
@@ -317,13 +317,13 @@ final class MethodSpecTest extends TestCase
 
             yield [
                 array_merge(['foo'], $args),
-                fn (TestCase $test) => self::makeMethod($test, 'foo', $modifier),
+                fn (TestCase $test) => self::makeMethodFoo($test, $modifier),
                 false,
             ];
 
             yield [
                 array_merge(['foo'], $args),
-                fn (TestCase $test) => self::makeMethod($test, 'foo', self::MMASK & ~$modifier),
+                fn (TestCase $test) => self::makeMethodFoo($test, self::MMASK & ~$modifier),
                 true,
             ];
         }
@@ -339,13 +339,13 @@ final class MethodSpecTest extends TestCase
         foreach ($cases3 as $modifier) {
             yield [
                 ['foo', null, $modifier],
-                fn (TestCase $test) => self::makeMethod($test, 'foo', $modifier),
+                fn (TestCase $test) => self::makeMethodFoo($test, $modifier),
                 true,
             ];
 
             yield [
                 ['foo', null, $modifier],
-                fn (TestCase $test) => self::makeMethod($test, 'foo', self::VMASK & ~$modifier),
+                fn (TestCase $test) => self::makeMethodFoo($test, self::VMASK & ~$modifier),
                 false,
             ];
         }
@@ -467,24 +467,23 @@ final class MethodSpecTest extends TestCase
     }
 
     /**
-     * @psalm-param non-empty-string $name
-     *
      * @psalm-return MockObject&\ReflectionMethod
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    private static function makeMethod(TestCase $test, string $name, int $modifiers = self::IS_PUBLIC): MockObject
+    private static function makeMethodFoo(TestCase $test, int $modifiers = self::IS_PUBLIC): MockObject
     {
-        $stub = $test->getMockBuilder(\stdClass::class)
-            ->addMethods([$name])
-            ->getMock()
-        ;
-        $stub->expects($test->any())
-            ->method($name)
-        ;
+        $object = new class {
+            /**
+             * @psalm-suppress PossiblyUnusedMethod
+             *
+             * @codeCoverageIgnore
+             */
+            public function foo(): void {}
+        };
 
         $method = $test->getMockBuilder(\ReflectionMethod::class)
-            ->setConstructorArgs([$stub, $name])
+            ->setConstructorArgs([$object, 'foo'])
             ->getMock()
         ;
 
