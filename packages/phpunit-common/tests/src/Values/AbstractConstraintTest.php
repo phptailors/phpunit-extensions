@@ -152,14 +152,14 @@ final class AbstractConstraintTest extends TestCase
             'operator' => function (TestCase $test) use ($constraint): Operator {
                 return self::logicalNot($constraint($test));
             },
-            'expect' => 'fails to be a tree with apples having colors specified',
+            'expect'   => 'fails to be a tree with apples having colors specified',
         ];
 
         yield 'AbstractConstraintTest.php:'.__LINE__ => [
             'operator' => function (TestCase $test) use ($constraint): Operator {
                 return self::logicalOr($constraint($test));
             },
-            'expect' => 'is a tree with apples having colors specified',
+            'expect'   => 'is a tree with apples having colors specified',
         ];
     }
 
@@ -263,8 +263,8 @@ final class AbstractConstraintTest extends TestCase
             'constraint' => function (TestCase $test) use ($fooFOO): Constraint {
                 return self::logicalNot($fooFOO($test));
             },
-            'args'   => [['foo' => 'FOO', 'bar' => 'BAR']],
-            'expect' => [
+            'args'       => [['foo' => 'FOO', 'bar' => 'BAR']],
+            'expect'     => [
                 'exception' => ExpectationFailedException::class,
                 'message'   => 'array fails to be an array or ArrayAccess with values identical to specified',
             ],

@@ -48,7 +48,7 @@ final class DummyRecursiveVisitorTest extends TestCase
         ];
 
         yield 'DummyRecursiveVisitorTest.php:'.__LINE__ => [
-            'args' => [
+            'args'   => [
                 function ($node, array $stack): bool {
                     return false;
                 },

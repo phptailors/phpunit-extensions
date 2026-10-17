@@ -242,7 +242,7 @@ final class RecursiveTraversalTest extends TestCase
             'visitor' => new DummyRecursiveVisitor(function ($value, array $stack) {
                 return ['baz', 'qux', 'baz'] !== array_map(function ($item) { return $item->key(); }, $stack);
             }, true),
-            'expect' => [
+            'expect'  => [
                 ['func' => 'enter', 'node' => $v08, 'path' => []],
                 ['func' => 'makeStackItem', 'node' => $v08, 'key' => 'foo', 'path' => []],
                 ['func' => 'visit', 'node' => $v08['foo'], 'path' => ['foo']],
@@ -304,7 +304,7 @@ final class RecursiveTraversalTest extends TestCase
             'visitor' => new DummyRecursiveVisitor(function ($values, array $stack) {
                 return count($stack) < 1;
             }),
-            'expect' => [
+            'expect'  => [
                 ['func' => 'enter', 'node' => $v09, 'path' => []],
                 ['func' => 'makeStackItem', 'node' => $v09, 'key' => 'foo', 'path' => []],
                 ['func' => 'enter', 'node' => $v09['foo'], 'path' => ['foo']],
@@ -359,7 +359,7 @@ final class RecursiveTraversalTest extends TestCase
             'visitor' => new DummyRecursiveVisitor(function ($value, array $stack): bool {
                 return count($stack) < 2;
             }),
-            'expect' => [
+            'expect'  => [
                 ['func' => 'enter', 'node' => $v10, 'path' => []],
                 ['func' => 'makeStackItem', 'node' => $v10, 'key' => 'foo', 'path' => []],
                 ['func' => 'enter', 'node' => $v10['foo'], 'path' => ['foo']],
@@ -395,7 +395,7 @@ final class RecursiveTraversalTest extends TestCase
             'visitor' => new DummyRecursiveVisitor(function ($value, array $stack): bool {
                 return count($stack) < 1;
             }),
-            'expect' => [
+            'expect'  => [
                 ['func' => 'enter', 'node' => $v10, 'path' => []],
                 ['func' => 'makeStackItem', 'node' => $v10, 'key' => 'foo', 'path' => []],
                 ['func' => 'enter', 'node' => $v10['foo'], 'path' => ['foo']],

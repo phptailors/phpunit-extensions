@@ -133,36 +133,36 @@ final class ArrayValueSelectorTest extends TestCase
             'subject' => [
                 'foo' => 'FOO',
             ],
-            'key'    => 'foo',
-            'return' => true,
-            'expect' => 'FOO',
+            'key'     => 'foo',
+            'return'  => true,
+            'expect'  => 'FOO',
         ];
 
         yield 'ArrayValueSelectorTest.php:'.__LINE__ => [
             'subject' => [
                 'foo' => 'FOO',
             ],
-            'key'    => 'bar',
-            'return' => false,
-            'expect' => null,
+            'key'     => 'bar',
+            'return'  => false,
+            'expect'  => null,
         ];
 
         yield 'ArrayValueSelectorTest.php:'.__LINE__ => [
             'subject' => new \ArrayObject([
                 'foo' => 'FOO',
             ]),
-            'key'    => 'foo',
-            'return' => true,
-            'expect' => 'FOO',
+            'key'     => 'foo',
+            'return'  => true,
+            'expect'  => 'FOO',
         ];
 
         yield 'ArrayValueSelectorTest.php:'.__LINE__ => [
             'subject' => new \ArrayObject([
                 'foo' => 'FOO',
             ]),
-            'key'    => 'bar',
-            'return' => false,
-            'expect' => null,
+            'key'     => 'bar',
+            'return'  => false,
+            'expect'  => null,
         ];
 
         yield 'ArrayValueSelectorTest.php:'.__LINE__ => [
