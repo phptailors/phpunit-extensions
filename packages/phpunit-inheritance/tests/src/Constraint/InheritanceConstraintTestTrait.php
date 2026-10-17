@@ -49,19 +49,17 @@ trait InheritanceConstraintTestTrait
      */
     public function testFailureDescriptionOfCustomUnaryOperator(Constraint $constraint, $subject, array $expect): void
     {
-        $noop = $this->getMockBuilder(UnaryOperator::class)
-            ->setConstructorArgs([$constraint])
-            ->getMockForAbstractClass()
-        ;
+        $noop = new class($constraint) extends UnaryOperator {
+            public function operator(): string
+            {
+                return 'noop';
+            }
 
-        $noop->expects(self::any())
-            ->method('operator')
-            ->willReturn('noop')
-        ;
-        $noop->expects(self::any())
-            ->method('precedence')
-            ->willReturn(1)
-        ;
+            public function precedence(): int
+            {
+                return 1;
+            }
+        };
 
         self::expectException($expect['exception']);
         self::expectExceptionMessageMatches($expect['message']);
