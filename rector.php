@@ -1,6 +1,7 @@
 <?php
 
 use Rector\Config\RectorConfig;
+use Rector\DeadCode\Rector\ClassMethod\RemoveMixedDocblockOverruledByNativeTypeRector;
 use Rector\DeadCode\Rector\ClassMethod\RemoveUselessParamTagRector;
 use Rector\DeadCode\Rector\ClassMethod\RemoveUselessReturnTagRector;
 use Rector\DeadCode\Rector\Property\RemoveUselessReadOnlyTagRector;
@@ -24,6 +25,7 @@ return RectorConfig::configure()
         RemoveUselessReadOnlyTagRector::class,
         RemoveUselessReturnTagRector::class,
         RemoveUselessVarTagRector::class,
+        RemoveMixedDocblockOverruledByNativeTypeRector::class,
     ])
     ->withImportNames(
         importShortClasses: false,
