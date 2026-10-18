@@ -57,6 +57,9 @@ final class RecursiveMapperVisitor implements RecursiveMapperVisitorInterface
 
     public function __construct()
     {
+        $this->arrayMapper = null;
+        $this->valueMapper = null;
+        $this->result = null;
         $this->current = [];
     }
 

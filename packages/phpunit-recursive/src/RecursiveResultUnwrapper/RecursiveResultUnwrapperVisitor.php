@@ -59,6 +59,7 @@ final class RecursiveResultUnwrapperVisitor implements RecursiveResultUnwrapperV
     {
         $this->tagging = $tagging;
         $this->actual = null;
+        $this->result = null;
         $this->current = [];
     }
 
