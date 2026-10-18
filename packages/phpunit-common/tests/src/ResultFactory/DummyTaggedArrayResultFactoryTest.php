@@ -171,8 +171,8 @@ final class DummyTaggedArrayResultFactoryTest extends TestCase
         $method = preg_quote(AbstractArrayResultFactory::class.'::getResult()', '/');
         $message = "/^Argument 2 passed to {$method} must be an array or Traversable, string given\\./";
 
-        self::expectException(InvalidArgumentException::class);
-        self::expectExceptionMessageMatches($message);
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessageMatches($message);
 
         $factory->getResult(false, 'X');
     }

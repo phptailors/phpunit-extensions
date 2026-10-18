@@ -142,8 +142,8 @@ final class KsortedArrayIdenticalToTraitTest extends TestCase
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that '.preg_quote($string, '/').' is an array '.
             'identical to the specified one when ksorted./';
-        self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessageMatches($regexp);
+        $this->expectException(ExpectationFailedException::class);
+        $this->expectExceptionMessageMatches($regexp);
 
         self::assertKsortedArrayIdenticalTo($expect, $actual, 'Lorem ipsum.');
     }
@@ -162,8 +162,8 @@ final class KsortedArrayIdenticalToTraitTest extends TestCase
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that '.preg_quote($string, '/').' fails to be an array '.
             'identical to the specified one when ksorted./';
-        self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessageMatches($regexp);
+        $this->expectException(ExpectationFailedException::class);
+        $this->expectExceptionMessageMatches($regexp);
 
         self::assertNotKsortedArrayIdenticalTo($expect, $actual, 'Lorem ipsum.');
     }

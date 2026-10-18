@@ -303,8 +303,8 @@ final class MethodSpecFactoryTest extends TestCase
     {
         $factory = new MethodSpecFactory();
 
-        self::expectException(MethodSpecSyntaxError::class);
-        self::expectExceptionMessage(sprintf('syntax error at "%s"', $at));
+        $this->expectException(MethodSpecSyntaxError::class);
+        $this->expectExceptionMessage(sprintf('syntax error at "%s"', $at));
 
         $factory->fromString($string);
     }

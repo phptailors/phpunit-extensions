@@ -141,8 +141,8 @@ final class RecursivelyKsortedArrayEqualToTraitTest extends TestCase
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that '.preg_quote($string, '/').' is an array '.
             'equal to the specified one when ksorted recursively./';
-        self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessageMatches($regexp);
+        $this->expectException(ExpectationFailedException::class);
+        $this->expectExceptionMessageMatches($regexp);
 
         self::assertRecursivelyKsortedArrayEqualTo($expect, $actual, 'Lorem ipsum.');
     }
@@ -162,8 +162,8 @@ final class RecursivelyKsortedArrayEqualToTraitTest extends TestCase
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that '.preg_quote($string, '/').' fails to be an array '.
             'equal to the specified one when ksorted recursively./';
-        self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessageMatches($regexp);
+        $this->expectException(ExpectationFailedException::class);
+        $this->expectExceptionMessageMatches($regexp);
 
         self::assertNotRecursivelyKsortedArrayEqualTo($expect, $actual, 'Lorem ipsum.');
     }

@@ -126,8 +126,8 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
     public function testCycle(array $stack, string $expect): void
     {
         $rePath = preg_quote($expect, '/');
-        self::expectException(CircularDependencyException::class);
-        self::expectExceptionMessageMatches("/^Circular dependency found in nested array at \\\$array{$rePath}\\.$/");
+        $this->expectException(CircularDependencyException::class);
+        $this->expectExceptionMessageMatches("/^Circular dependency found in nested array at \\\$array{$rePath}\\.$/");
 
         (new RecursiveActualResultFactoryVisitor())->cycle([], $stack);
     }
@@ -1215,8 +1215,8 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
     {
         $visitor = new RecursiveActualResultFactoryVisitor();
 
-        self::expectException(InternalErrorException::class);
-        self::expectExceptionMessage('$this->current is null');
+        $this->expectException(InternalErrorException::class);
+        $this->expectExceptionMessage('$this->current is null');
 
         $visitor->makeStackItem([], '', []);
     }
@@ -1228,8 +1228,8 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
     {
         $visitor = new RecursiveActualResultFactoryVisitor();
 
-        self::expectException(InternalErrorException::class);
-        self::expectExceptionMessage('$this->current is null');
+        $this->expectException(InternalErrorException::class);
+        $this->expectExceptionMessage('$this->current is null');
 
         $visitor->leave([], [], true);
     }
