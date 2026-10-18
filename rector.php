@@ -42,6 +42,3 @@ return RectorConfig::configure()
     ->withConfiguredRule(RenameClassRector::class, [
     ])
 ;
-
-
-
