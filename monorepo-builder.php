@@ -7,7 +7,10 @@ use Symplify\MonorepoBuilder\Release\ReleaseWorker\PushTagReleaseWorker;
 use Symplify\MonorepoBuilder\Release\ReleaseWorker\TagVersionReleaseWorker;
 use Symplify\MonorepoBuilder\Release\ReleaseWorker\UpdateReplaceReleaseWorker;
 use Tailors\MonorepoBuilder\MostRecentTagResolver;
+use Tailors\MonorepoBuilder\RestoreCurrentMutualDependenciesReleaseWorker;
+use Tailors\MonorepoBuilder\RestoreReplaceReleaseWorker;
 use Tailors\MonorepoBuilder\SetCurrentMutualDependenciesReleaseWorker;
+use Tailors\MonorepoBuilder\UpdateBranchAliasReleaseWorker;
 
 return
 static function (MBConfig $mbConfig) : void {
@@ -51,11 +54,15 @@ static function (MBConfig $mbConfig) : void {
         ],
     ]);
 
+    $mbConfig->packageAliasFormat('<major>.<minor>.x-dev');
     $mbConfig->disableDefaultWorkers();
     $mbConfig->workers([
         UpdateReplaceReleaseWorker::class,
         SetCurrentMutualDependenciesReleaseWorker::class,
         TagVersionReleaseWorker::class,
         PushTagReleaseWorker::class,
+        RestoreCurrentMutualDependenciesReleaseWorker::class,
+        RestoreReplaceReleaseWorker::class,
+        UpdateBranchAliasReleaseWorker::class,
     ]);
 };
