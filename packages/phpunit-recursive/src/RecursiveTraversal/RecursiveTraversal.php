@@ -128,15 +128,13 @@ final class RecursiveTraversal implements RecursiveTraversalInterface
     }
 
     /**
-     * @param mixed $value
-     *
      * @psalm-template StackItem of RecursiveVisitorStackItemInterface
      *
      * @psalm-param RecursiveVisitorInterface<StackItem> $visitor
      *
      * @psalm-if-this-is self<StackItem>
      */
-    private function visitOrWalkRecursive(&$value, RecursiveVisitorInterface $visitor): void
+    private function visitOrWalkRecursive(mixed &$value, RecursiveVisitorInterface $visitor): void
     {
         if (is_iterable($value)) {
             /** @psalm-var ArrayLike $value */

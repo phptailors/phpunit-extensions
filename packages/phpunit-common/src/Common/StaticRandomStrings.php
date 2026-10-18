@@ -20,14 +20,12 @@ final class StaticRandomStrings
     public const STRINGLEN = 40;
 
     /**
-     * @param mixed $key
-     *
      * @psalm-param array-key         $key
      * @psalm-param ?non-empty-string $fallback
      *
      * @psalm-return non-empty-string
      */
-    public static function get($key, ?string $fallback = null): string
+    public static function get(mixed $key, ?string $fallback = null): string
     {
         /** @psalm-var array<mixed,non-falsy-string> */
         static $strings = [];

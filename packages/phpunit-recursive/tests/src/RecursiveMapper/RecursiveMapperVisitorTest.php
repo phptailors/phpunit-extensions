@@ -165,7 +165,7 @@ final class RecursiveMapperVisitorTest extends TestCase
              *
              * @return mixed
              */
-            fn ($value) => $value
+            fn (mixed $value): mixed => $value
         );
 
         yield basename(__FILE__).':'.__LINE__ => [
@@ -235,7 +235,7 @@ final class RecursiveMapperVisitorTest extends TestCase
              *
              * @return mixed
              */
-            fn ($value) => $value
+            fn (mixed $value): mixed => $value
         );
 
         yield basename(__FILE__).':'.__LINE__ => [
@@ -567,7 +567,7 @@ final class RecursiveMapperVisitorTest extends TestCase
              *
              * @return mixed
              */
-            fn ($value) => ['gez' => 'GEZ'] === $value ? $arrObj02 : $value
+            fn (mixed $value): mixed => ['gez' => 'GEZ'] === $value ? $arrObj02 : $value
         );
 
         yield basename(__FILE__).':'.__LINE__ => [
@@ -683,7 +683,7 @@ final class RecursiveMapperVisitorTest extends TestCase
              *
              * @return mixed
              */
-            function ($value) {
+            function (mixed $value): mixed {
                 if (is_string($value)) {
                     return strtolower($value);
                 }

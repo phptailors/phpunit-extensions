@@ -134,11 +134,9 @@ final class RecursiveMapperVisitor implements RecursiveMapperVisitorInterface
     }
 
     /**
-     * @param mixed $node
-     *
      * @psalm-param list<StackItem> $stack
      */
-    public function visit($node, array $stack, bool $iterating): void
+    public function visit(mixed $node, array $stack, bool $iterating): void
     {
         if (null === $this->valueMapper) {
             /** @psalm-var mixed */
@@ -165,15 +163,13 @@ final class RecursiveMapperVisitor implements RecursiveMapperVisitorInterface
     }
 
     /**
-     * @param mixed $key
-     *
      * @psalm-param ArrayLike       $node
      * @psalm-param array-key       $key
      * @psalm-param list<StackItem> $stack
      *
      * @psalm-return StackItem
      */
-    public function makeStackItem(iterable $node, $key, array $stack): RecursiveVisitorStackItemInterface
+    public function makeStackItem(iterable $node, mixed $key, array $stack): RecursiveVisitorStackItemInterface
     {
         return new RecursiveMapperStackItem($node, $key, $this->current);
     }
@@ -188,11 +184,9 @@ final class RecursiveMapperVisitor implements RecursiveMapperVisitorInterface
     }
 
     /**
-     * @param mixed $value
-     *
      * @psalm-param list<StackItem> $stack
      */
-    private function set(array $stack, $value): void
+    private function set(array $stack, mixed $value): void
     {
         $count = count($stack);
 

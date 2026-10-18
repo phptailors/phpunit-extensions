@@ -99,7 +99,7 @@ final class RecursiveMapperTest extends TestCase
              *
              * @return mixed
              */
-            function ($value) {
+            function (mixed $value): mixed {
                 // @codeCoverageIgnoreStart
                 return $value;
                 // @codeCoverageIgnoreEnd

@@ -73,11 +73,9 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param mixed $node
-     *
      * @psalm-param list<StackItem> $stack
      */
-    public function visit($node, array $stack, bool $iterating): void
+    public function visit(mixed $node, array $stack, bool $iterating): void
     {
         $this->trace[] = ['func' => 'visit', 'node' => $node, 'path' => self::path($stack)];
     }
@@ -98,7 +96,6 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
     }
 
     /**
-     * @param mixed     $key
      * @param ArrayLike $node
      *
      * @psalm-param array-key       $key
@@ -106,7 +103,7 @@ final class DummyRecursiveVisitor implements RecursiveVisitorInterface
      *
      * @psalm-return StackItem
      */
-    public function makeStackItem(iterable $node, $key, array $stack): RecursiveVisitorStackItemInterface
+    public function makeStackItem(iterable $node, mixed $key, array $stack): RecursiveVisitorStackItemInterface
     {
         $this->trace[] = ['func' => 'makeStackItem', 'node' => $node, 'key' => $key, 'path' => self::path($stack)];
 

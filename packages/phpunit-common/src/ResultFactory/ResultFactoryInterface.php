@@ -26,13 +26,11 @@ use Tailors\PHPUnit\Result\ResultInterface;
 interface ResultFactoryInterface extends SupportInterface
 {
     /**
-     * @param mixed $input
-     *
      * @throws InvalidArgumentException
      *
      * @psalm-assert SupportedInput $input
      */
-    public function getResult(bool $actual, $input): ResultInterface;
+    public function getResult(bool $actual, mixed $input): ResultInterface;
 }
 
 // vim: syntax=php sw=4 ts=4 et:

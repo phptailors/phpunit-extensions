@@ -23,17 +23,11 @@ use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorInterface;
  */
 interface RecursiveActualResultFactoryVisitorInterface extends RecursiveVisitorInterface
 {
-    /**
-     * @param mixed $subject
-     */
-    public function begin($subject): void;
+    public function begin(mixed $subject): void;
 
     public function end(): void;
 
-    /**
-     * @return mixed
-     */
-    public function result();
+    public function result(): mixed;
 }
 
 // vim: syntax=php sw=4 ts=4 et:

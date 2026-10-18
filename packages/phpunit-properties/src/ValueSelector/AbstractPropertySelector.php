@@ -31,14 +31,10 @@ abstract class AbstractPropertySelector extends AbstractValueSelector
     }
 
     /**
-     * @param mixed $subject
-     * @param mixed $key
-     * @param mixed $retval
-     *
      * @psalm-param SubjectType $subject
      * @psalm-param array-key   $key
      */
-    final protected function selectFromSupported($subject, $key, &$retval = null): bool
+    final protected function selectFromSupported(mixed $subject, mixed $key, mixed &$retval = null): bool
     {
         /** @psalm-suppress RedundantCastGivenDocblockType */
         $method = ('()' === (string) substr((string) $key, -2)) ? (string) substr((string) $key, 0, -2) : null;
@@ -50,25 +46,17 @@ abstract class AbstractPropertySelector extends AbstractValueSelector
     }
 
     /**
-     * @param mixed $subject
-     * @param mixed $key
-     *
-     * @return mixed
-     *
      * @psalm-param SubjectType $subject
      * @psalm-param array-key   $key
      */
-    abstract protected function getSubjectAttribute($subject, $key);
+    abstract protected function getSubjectAttribute(mixed $subject, mixed $key): mixed;
 
     /**
-     * @param mixed $subject
-     * @param mixed $retval
-     *
      * @param-out mixed $retval
      *
      * @psalm-param object|class-string $subject
      */
-    final protected function selectWithMethod($subject, string $method, &$retval = null): bool
+    final protected function selectWithMethod(mixed $subject, string $method, mixed &$retval = null): bool
     {
         if (!method_exists($subject, $method)) {
             return false;
@@ -81,16 +69,12 @@ abstract class AbstractPropertySelector extends AbstractValueSelector
     }
 
     /**
-     * @param mixed $subject
-     * @param mixed $key
-     * @param mixed $retval
-     *
      * @param-out mixed $retval
      *
      * @psalm-param SubjectType $subject
      * @psalm-param array-key   $key
      */
-    final protected function selectWithAttribute($subject, $key, &$retval = null): bool
+    final protected function selectWithAttribute(mixed $subject, mixed $key, mixed &$retval = null): bool
     {
         $key = (string) $key;
         if (!property_exists($subject, $key)) {

@@ -20,11 +20,9 @@ namespace Tailors\PHPUnit\Common;
 interface SupportInterface
 {
     /**
-     * @param mixed $input
-     *
      * @psalm-assert-if-true SupportedInput $input
      */
-    public function supports($input): bool;
+    public function supports(mixed $input): bool;
 }
 
 // vim: syntax=php sw=4 ts=4 et:

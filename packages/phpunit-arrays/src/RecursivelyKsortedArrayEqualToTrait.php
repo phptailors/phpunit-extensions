@@ -20,11 +20,9 @@ trait RecursivelyKsortedArrayEqualToTrait
     /**
      * Evaluates a \PHPUnit\Framework\Constraint\Constraint matcher object.
      *
-     * @param mixed $value
-     *
      * @throws ExpectationFailedException
      */
-    abstract public static function assertThat($value, Constraint $constraint, string $message = ''): void;
+    abstract public static function assertThat(mixed $value, Constraint $constraint, string $message = ''): void;
 
     /**
      * Asserts that *$actual* is an array equal to *$expected* when key-sorted recursively.
@@ -38,7 +36,7 @@ trait RecursivelyKsortedArrayEqualToTrait
      */
     public static function assertRecursivelyKsortedArrayEqualTo(
         array $expected,
-        $actual,
+        mixed $actual,
         string $message = '',
         int $flags = SORT_REGULAR
     ): void {
@@ -57,7 +55,7 @@ trait RecursivelyKsortedArrayEqualToTrait
      */
     public static function assertNotRecursivelyKsortedArrayEqualTo(
         array $expected,
-        $actual,
+        mixed $actual,
         string $message = '',
         int $flags = SORT_REGULAR
     ): void {

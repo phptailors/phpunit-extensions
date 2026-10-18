@@ -865,12 +865,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         $visitor->leave([], [], true);
     }
 
-    /**
-     * @param mixed $input
-     *
-     * @return mixed
-     */
-    private static function unwrapWithResultUnwrapper($input)
+    private static function unwrapWithResultUnwrapper(mixed $input): mixed
     {
         if (is_array($input) || is_iterable($input) && $input instanceof ResultInterface) {
             /** @psalm-var ArrayLike $input */

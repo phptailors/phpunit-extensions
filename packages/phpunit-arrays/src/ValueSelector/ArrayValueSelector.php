@@ -22,11 +22,9 @@ use Tailors\PHPUnit\InvalidArgumentException;
 final class ArrayValueSelector extends AbstractValueSelector
 {
     /**
-     * @param mixed $input
-     *
      * @psalm-assert-if-true array|\ArrayAccess $input
      */
-    public function supports($input): bool
+    public function supports(mixed $input): bool
     {
         return is_array($input) || $input instanceof \ArrayAccess;
     }
@@ -49,10 +47,6 @@ final class ArrayValueSelector extends AbstractValueSelector
     }
 
     /**
-     * @param mixed $subject
-     * @param mixed $key
-     * @param mixed $retval
-     *
      * @param-out mixed $retval
      *
      * @throws InvalidArgumentException
@@ -60,7 +54,7 @@ final class ArrayValueSelector extends AbstractValueSelector
      * @psalm-param array|\ArrayAccess $subject
      * @psalm-param array-key          $key
      */
-    protected function selectFromSupported($subject, $key, &$retval = null): bool
+    protected function selectFromSupported(mixed $subject, mixed $key, mixed &$retval = null): bool
     {
         if (self::subjectHasKey($subject, $key)) {
             /** @psalm-var mixed */
@@ -73,13 +67,10 @@ final class ArrayValueSelector extends AbstractValueSelector
     }
 
     /**
-     * @param mixed $subject
-     * @param mixed $key
-     *
      * @psalm-param array|\ArrayAccess $subject
      * @psalm-param array-key          $key
      */
-    private static function subjectHasKey($subject, $key): bool
+    private static function subjectHasKey(mixed $subject, mixed $key): bool
     {
         if ($subject instanceof \ArrayAccess) {
             return $subject->offsetExists($key);

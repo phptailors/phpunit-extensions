@@ -27,10 +27,7 @@ final class DummyResultFactory implements ResultFactoryInterface
      */
     public function __construct(private $supports) {}
 
-    /**
-     * @param mixed $input
-     */
-    public function supports($input): bool
+    public function supports(mixed $input): bool
     {
         if (is_callable($this->supports)) {
             return call_user_func($this->supports, $input);
@@ -40,11 +37,9 @@ final class DummyResultFactory implements ResultFactoryInterface
     }
 
     /**
-     * @param mixed $input
-     *
      * @psalm-assert SupportedInput $input
      */
-    public function getResult(bool $actual, $input): ResultInterface
+    public function getResult(bool $actual, mixed $input): ResultInterface
     {
         return new DummyResult($actual);
     }

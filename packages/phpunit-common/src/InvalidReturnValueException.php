@@ -18,7 +18,6 @@ namespace Tailors\PHPUnit;
 final class InvalidReturnValueException extends \LogicException implements ExceptionInterface
 {
     /**
-     * @param mixed $function
      * @param mixed $actualValue Actual value
      *
      * @psalm-template ActualType
@@ -27,17 +26,14 @@ final class InvalidReturnValueException extends \LogicException implements Excep
      *
      * @psalm-param-out ActualType $actualValue
      */
-    public static function fromExpectedTypeAndActualValue($function, string $expectedType, &$actualValue): self
+    public static function fromExpectedTypeAndActualValue(mixed $function, string $expectedType, mixed &$actualValue): self
     {
         $actualType = is_object($actualValue) ? 'object' : gettype($actualValue);
 
         return self::fromExpectedAndActual($function, sprintf('of the type %s', $expectedType), $actualType);
     }
 
-    /**
-     * @param mixed $function
-     */
-    public static function fromExpectedAndActual($function, string $expected, string $actual): self
+    public static function fromExpectedAndActual(mixed $function, string $expected, string $actual): self
     {
         is_callable($function, true, $name);
 

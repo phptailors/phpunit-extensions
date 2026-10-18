@@ -678,7 +678,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
              *
              * @psalm-param-out mixed $retval
              */
-            function ($subject, $key, &$retval) use ($c04): bool {
+            function (mixed $subject, mixed $key, mixed &$retval) use ($c04): bool {
                 if (!($c04 % 2) || !is_array($subject) || !array_key_exists($key, $subject)) {
                     return false;
                 }
@@ -1255,7 +1255,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
              *
              * @psalm-param-out mixed $retval
              */
-            function (\ArrayAccess $subject, $key, &$retval): bool {
+            function (\ArrayAccess $subject, mixed $key, mixed &$retval): bool {
                 if (!$subject->offsetExists($key)) {
                     return false;
                 }
@@ -1312,7 +1312,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
              *
              * @psalm-param-out mixed $retval
              */
-            function ($subject, $key, &$retval) use ($namespaces): bool {
+            function (mixed $subject, mixed $key, mixed &$retval) use ($namespaces): bool {
                 if (!is_string($subject) || !array_key_exists($subject, $namespaces)) {
                     return false;
                 }
@@ -1329,12 +1329,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
         );
     }
 
-    /**
-     * @param mixed $input
-     *
-     * @return mixed
-     */
-    private static function unwrapWithResultUnwrapper($input)
+    private static function unwrapWithResultUnwrapper(mixed $input): mixed
     {
         if (is_array($input) || is_iterable($input) && $input instanceof ResultInterface) {
             /** @psalm-var ArrayLike $input */

@@ -19,7 +19,7 @@ final class DummyComparator implements ComparatorInterface
 {
     public function __construct(private readonly bool $compare, private readonly string $adjective) {}
 
-    public function compare($left, $right): bool
+    public function compare(mixed $left, mixed $right): bool
     {
         return $this->compare;
     }
