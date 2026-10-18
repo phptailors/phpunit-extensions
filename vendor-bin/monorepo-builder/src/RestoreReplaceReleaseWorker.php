@@ -45,7 +45,7 @@ final readonly class RestoreReplaceReleaseWorker implements ReleaseWorkerInterfa
         $rootComposerJson->setReplace($newReplace);
 
         $rootFileInfo = $rootComposerJson->getFileInfo();
-        if (! $rootFileInfo instanceof SmartFileInfo) {
+        if (null === $rootFileInfo) {
             throw new MissingComposerJsonException();
         }
 
