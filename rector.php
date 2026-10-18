@@ -2,6 +2,7 @@
 
 use Rector\CodingStyle\Rector\ArrowFunction\ArrowFunctionDelegatingCallToFirstClassCallableRector;
 use Rector\Config\RectorConfig;
+use Rector\DeadCode\Rector\ClassMethod\RemoveMixedDocblockOverruledByNativeTypeRector;
 use Rector\DeadCode\Rector\ClassMethod\RemoveUselessParamTagRector;
 use Rector\DeadCode\Rector\ClassMethod\RemoveUselessReturnTagRector;
 use Rector\DeadCode\Rector\Property\RemoveUselessReadOnlyTagRector;
@@ -15,8 +16,6 @@ return RectorConfig::configure()
         __DIR__.'/packages/*/tests/src/',
         __DIR__.'/packages/*/utils/src/',
     ])
-    ->withPreparedSets(
-    )
     ->withComposerBased(phpunit: true)
     ->withPhpSets(
         php81: true
@@ -34,6 +33,7 @@ return RectorConfig::configure()
         RemoveUselessReadOnlyTagRector::class,
         RemoveUselessReturnTagRector::class,
         RemoveUselessVarTagRector::class,
+        RemoveMixedDocblockOverruledByNativeTypeRector::class,
     ])
     ->withImportNames(
         importShortClasses: false,
