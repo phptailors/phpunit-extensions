@@ -319,18 +319,18 @@ final class AbstractRecursiveConstraintTest extends TestCase
 
         $recursiveResultFactory = $this->createMock(RecursiveResultFactoryInterface::class);
 
-        $recursiveResultFactory->expects($this->any())
+        $recursiveResultFactory->expects($this->atLeast(1))
             ->method('supports')
             ->willReturn(true)
         ;
 
-        $recursiveResultFactory->expects($this->any())
+        $recursiveResultFactory->expects($this->atLeast(1))
             ->method('getExpectedResult')
             ->with($expectations)
             ->willReturn($expectResult)
         ;
 
-        $recursiveResultFactory->expects($this->any())
+        $recursiveResultFactory->expects($this->atLeast(1))
             ->method('getActualResult')
             ->with($expectations)
             ->willReturn($actualResult)
