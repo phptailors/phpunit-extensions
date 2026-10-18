@@ -51,6 +51,7 @@ final class RecursiveResultUnwrapperVisitor implements RecursiveResultUnwrapperV
     public function __construct(private readonly bool $tagging = true)
     {
         $this->actual = null;
+        $this->result = null;
         $this->current = [];
     }
 
