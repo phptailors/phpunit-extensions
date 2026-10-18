@@ -26,7 +26,6 @@
         "phptailors/phpunit-methods": "self.version",
         "phptailors/phpunit-properties": "self.version",
         "phptailors/phpunit-recursive": "self.version",
-        "phptailors/phpunit-recursive": "self.version",
         "phptailors/phpunit-regexp": "self.version"
     },
     "conflict": {
@@ -37,6 +36,17 @@
     "autoload": {
         "psr-4": {
             "Tailors\\PHPUnit\\": [
+                "packages/phpunit-arrays/src/",
+                "packages/phpunit-arrays/utils/src/",
+                "packages/phpunit-common/src/",
+                "packages/phpunit-common/utils/src/",
+                "packages/phpunit-inheritance/src/",
+                "packages/phpunit-methods/src/",
+                "packages/phpunit-properties/src/",
+                "packages/phpunit-properties/utils/src/",
+                "packages/phpunit-recursive/src/",
+                "packages/phpunit-recursive/utils/src/",
+                "packages/phpunit-regexp/src/"
             ]
         }
     },
