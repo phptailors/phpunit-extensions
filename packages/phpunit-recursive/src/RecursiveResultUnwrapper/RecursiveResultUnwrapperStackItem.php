@@ -64,10 +64,7 @@ final class RecursiveResultUnwrapperStackItem implements RecursiveVisitorStackIt
         return $this->result;
     }
 
-    /**
-     * @param mixed $value
-     */
-    public function set($value): void
+    public function set(mixed $value): void
     {
         $this->result[$this->key] = $value;
     }

@@ -165,7 +165,7 @@ final class RecursiveMapperVisitorTest extends TestCase
              *
              * @return mixed
              */
-            fn ($value) => $value
+            fn (mixed $value) => $value
         );
 
         yield basename(__FILE__).':'.__LINE__ => [
@@ -235,7 +235,7 @@ final class RecursiveMapperVisitorTest extends TestCase
              *
              * @return mixed
              */
-            fn ($value) => $value
+            fn (mixed $value) => $value
         );
 
         yield basename(__FILE__).':'.__LINE__ => [
@@ -454,14 +454,12 @@ final class RecursiveMapperVisitorTest extends TestCase
     /**
      * @dataProvider provEnterLeave
      *
-     * @param mixed $result
-     *
      * @psalm-param BeginArgs                     $begin
      * @psalm-param non-empty-list<EnterTestCall> $calls
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testEnterLeave(array $begin, array $calls, $result): void
+    public function testEnterLeave(array $begin, array $calls, mixed $result): void
     {
         $visitor = new RecursiveMapperVisitor();
         $stack = [];
@@ -563,7 +561,7 @@ final class RecursiveMapperVisitorTest extends TestCase
              *
              * @return mixed
              */
-            fn ($value) => ['gez' => 'GEZ'] === $value ? $arrObj02 : $value
+            fn (mixed $value) => ['gez' => 'GEZ'] === $value ? $arrObj02 : $value
         );
 
         yield basename(__FILE__).':'.__LINE__ => [
@@ -594,15 +592,13 @@ final class RecursiveMapperVisitorTest extends TestCase
     /**
      * @dataProvider provVisit
      *
-     * @param mixed $result
-     *
      * @psalm-param BeginArgs                     $begin
      * @psalm-param non-empty-list<VisitTestCall> $calls
      * @psalm-param ArrayLike                     $root
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testVisit(array $begin, iterable $root, bool $iter, array $calls, $result): void
+    public function testVisit(array $begin, iterable $root, bool $iter, array $calls, mixed $result): void
     {
         $visitor = new RecursiveMapperVisitor();
         $stack = [];
@@ -675,7 +671,7 @@ final class RecursiveMapperVisitorTest extends TestCase
              *
              * @return mixed
              */
-            function ($value) {
+            function (mixed $value) {
                 if (is_string($value)) {
                     return strtolower($value);
                 }
@@ -759,14 +755,12 @@ final class RecursiveMapperVisitorTest extends TestCase
     /**
      * @dataProvider provMapAcyclic
      *
-     * @param mixed $result
-     *
      * @psalm-param BeginArgs $begin
      * @psalm-param ArrayLike $array
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testMapAcyclic(array $begin, iterable $array, $result): void
+    public function testMapAcyclic(array $begin, iterable $array, mixed $result): void
     {
         $traversal = new RecursiveTraversal();
         $visitor = new RecursiveMapperVisitor();

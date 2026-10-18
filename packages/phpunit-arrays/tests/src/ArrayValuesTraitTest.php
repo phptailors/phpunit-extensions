@@ -59,13 +59,11 @@ final class ArrayValuesTraitTest extends TestCase
     /**
      * @dataProvider provExpectArrayValues
      *
-     * @param mixed $expect
-     *
      * @psalm-param ArrayValuesArgs $args
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testExpectedArrayValues(array $args, $expect): void
+    public function testExpectedArrayValues(array $args, mixed $expect): void
     {
         $values = self::arrayValues(...$args);
         self::assertInstanceOf(ArrayValuesSelection::class, $values);

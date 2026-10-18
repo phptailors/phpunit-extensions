@@ -114,11 +114,9 @@ final class RecursiveExpectedResultFactoryVisitor implements RecursiveExpectedRe
     }
 
     /**
-     * @param mixed $node
-     *
      * @psalm-param list<StackItem> $stack
      */
-    public function visit($node, array $stack, bool $iterating): void
+    public function visit(mixed $node, array $stack, bool $iterating): void
     {
         $this->set($stack, $node);
     }
@@ -137,15 +135,13 @@ final class RecursiveExpectedResultFactoryVisitor implements RecursiveExpectedRe
     }
 
     /**
-     * @param mixed $key
-     *
      * @psalm-param ArrayLike       $node
      * @psalm-param array-key       $key
      * @psalm-param list<StackItem> $stack
      *
      * @psalm-return StackItem
      */
-    public function makeStackItem(iterable $node, $key, array $stack): RecursiveVisitorStackItemInterface
+    public function makeStackItem(iterable $node, mixed $key, array $stack): RecursiveVisitorStackItemInterface
     {
         if (null === $this->current) {
             /** @psalm-suppress MissingThrowsDocblock */
@@ -177,11 +173,9 @@ final class RecursiveExpectedResultFactoryVisitor implements RecursiveExpectedRe
     }
 
     /**
-     * @param mixed $result
-     *
      * @psalm-param list<StackItem> $stack
      */
-    private function set(array $stack, $result): void
+    private function set(array $stack, mixed $result): void
     {
         if (0 === ($count = count($stack))) {
             $this->result = $result;

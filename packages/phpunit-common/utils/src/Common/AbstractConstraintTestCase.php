@@ -82,13 +82,11 @@ abstract class AbstractConstraintTestCase extends TestCase
     /**
      * @dataProvider provConstraintUnaryOperatorFailure
      *
-     * @param mixed $actual
-     *
      * @psalm-param CtorArgs $ctorArgs
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    final public function testConstraintUnaryOperatorFailure(array $ctorArgs, $actual, string $message): void
+    final public function testConstraintUnaryOperatorFailure(array $ctorArgs, mixed $actual, string $message): void
     {
         $constraint = static::createConstraint($ctorArgs);
 
@@ -110,7 +108,7 @@ abstract class AbstractConstraintTestCase extends TestCase
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    final public function testConstraintEvaluationSucceeds(array $ctorArgs, $actual): void
+    final public function testConstraintEvaluationSucceeds(array $ctorArgs, mixed $actual): void
     {
         $constraint = static::createConstraint($ctorArgs);
         self::assertThat($actual, $constraint);
@@ -120,13 +118,12 @@ abstract class AbstractConstraintTestCase extends TestCase
      * @dataProvider provConstraintEvaluationFails
      *
      * @param array $ctorArgs arguments passed to createConstraint()
-     * @param mixed $actual
      *
      * @psalm-param CtorArgs $ctorArgs
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    final public function testConstraintEvaluationFails(array $ctorArgs, $actual, string $message): void
+    final public function testConstraintEvaluationFails(array $ctorArgs, mixed $actual, string $message): void
     {
         $constraint = static::createConstraint($ctorArgs);
 
@@ -139,13 +136,11 @@ abstract class AbstractConstraintTestCase extends TestCase
     /**
      * @dataProvider provNotConstraintEvaluationSucceeds
      *
-     * @param mixed $actual
-     *
      * @psalm-param CtorArgs $ctorArgs
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    final public function testNotConstraintEvaluationSucceeds(array $ctorArgs, $actual): void
+    final public function testNotConstraintEvaluationSucceeds(array $ctorArgs, mixed $actual): void
     {
         $constraint = self::logicalNot(static::createConstraint($ctorArgs));
         self::assertThat($actual, $constraint);
@@ -154,13 +149,11 @@ abstract class AbstractConstraintTestCase extends TestCase
     /**
      * @dataProvider provNotConstraintEvaluationFails
      *
-     * @param mixed $actual
-     *
      * @psalm-param CtorArgs $ctorArgs
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    final public function testNotConstraintEvaluationFails(array $ctorArgs, $actual, string $message): void
+    final public function testNotConstraintEvaluationFails(array $ctorArgs, mixed $actual, string $message): void
     {
         $constraint = self::logicalNot(static::createConstraint($ctorArgs));
 

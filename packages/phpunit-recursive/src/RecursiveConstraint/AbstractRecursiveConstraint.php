@@ -69,11 +69,9 @@ abstract class AbstractRecursiveConstraint extends Constraint
      * a boolean value instead: true in case of success, false in case of a
      * failure.
      *
-     * @param mixed $other
-     *
      * @throws ExpectationFailedException
      */
-    final public function evaluate($other, string $description = '', bool $returnResult = false): ?bool
+    final public function evaluate(mixed $other, string $description = '', bool $returnResult = false): ?bool
     {
         $success = $this->matches($other);
 
@@ -119,7 +117,7 @@ abstract class AbstractRecursiveConstraint extends Constraint
      * @param Operator $operator the $operator of the expression
      * @param mixed    $role     role of $this constraint in the $operator expression
      */
-    final protected function toStringInContext(Operator $operator, $role): string
+    final protected function toStringInContext(Operator $operator, mixed $role): string
     {
         if ($operator instanceof LogicalNot) {
             if ($this->expectations instanceof ComparatorAwareComplementInterface) {
@@ -138,7 +136,7 @@ abstract class AbstractRecursiveConstraint extends Constraint
      *
      * @param mixed $other value or object to evaluate
      */
-    final protected function matches($other): bool
+    final protected function matches(mixed $other): bool
     {
         if (!$this->recursiveResultFactory->supports($this->expectations, $other)) {
             return false;
@@ -160,11 +158,9 @@ abstract class AbstractRecursiveConstraint extends Constraint
     }
 
     /**
-     * @param mixed $result
-     *
      * @return mixed
      */
-    private function unwrapResult(bool $actual, $result)
+    private function unwrapResult(bool $actual, mixed $result)
     {
         if (is_array($result) || is_iterable($result) && $result instanceof ResultInterface) {
             /** @psalm-var ArrayLike $result */

@@ -311,12 +311,9 @@ final class AbstractRecursiveConstraintTest extends TestCase
     /**
      * @dataProvider provEvaluateWithNonUnwrappableResult
      *
-     * @param mixed $expectResult
-     * @param mixed $actualResult
-     *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testEvaluateWithNonUnwrappableResult($expectResult, $actualResult): void
+    public function testEvaluateWithNonUnwrappableResult(mixed $expectResult, mixed $actualResult): void
     {
         $expectations = new DummyResultFactoryWrapper(new DummyResultFactory(true), []);
 
@@ -419,7 +416,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
             /**
              * @param mixed $subject
              */
-            fn ($subject): bool => is_array($subject),
+            fn (mixed $subject): bool => is_array($subject),
             /**
              * @param array $subject
              * @param mixed $key
@@ -429,7 +426,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
              *
              * @psalm-param-out mixed $retval
              */
-            function ($subject, $key, &$retval): bool {
+            function (array $subject, mixed $key, mixed &$retval): bool {
                 if (!array_key_exists($key, $subject)) {
                     return false;
                 }

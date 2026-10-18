@@ -64,13 +64,11 @@ final class RecursivelyKsortedArrayTraitTest extends TestCase
     /**
      * @dataProvider provExpectRecursivelyKsortedArray
      *
-     * @param mixed $expect
-     *
      * @psalm-param RecursivelyKsortedArrayArgs $args
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testExpectedRecursivelyKsortedArray(array $args, $expect): void
+    public function testExpectedRecursivelyKsortedArray(array $args, mixed $expect): void
     {
         $values = self::recursivelyKsortedArray(...$args);
         self::assertInstanceOf(RecursivelyKsortedArrayExpectations::class, $values);

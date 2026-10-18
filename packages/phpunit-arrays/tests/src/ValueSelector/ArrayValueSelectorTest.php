@@ -87,11 +87,9 @@ final class ArrayValueSelectorTest extends TestCase
     /**
      * @dataProvider provSupports
      *
-     * @param mixed $subject
-     *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testSupports($subject, bool $expect): void
+    public function testSupports(mixed $subject, bool $expect): void
     {
         $selector = new ArrayValueSelector();
         self::assertSame($expect, $selector->supports($subject));
@@ -192,17 +190,12 @@ final class ArrayValueSelectorTest extends TestCase
     /**
      * @dataProvider provSelect
      *
-     * @param mixed $subject
-     * @param mixed $key
-     * @param mixed $return
-     * @param mixed $expect
-     *
      * @psalm-param array|\ArrayAccess $subject
      * @psalm-param array-key          $key
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testSelect($subject, $key, $return, $expect): void
+    public function testSelect(mixed $subject, mixed $key, mixed $return, mixed $expect): void
     {
         $selector = new ArrayValueSelector();
         self::assertSame($return, $selector->select($subject, $key, $retval));

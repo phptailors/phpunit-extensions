@@ -59,12 +59,9 @@ final class EqualityComparatorTest extends TestCase
     /**
      * @dataProvider provCompare
      *
-     * @param mixed $left
-     * @param mixed $right
-     *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testCompare($left, $right, bool $expect): void
+    public function testCompare(mixed $left, mixed $right, bool $expect): void
     {
         $comparator = new EqualityComparator();
         self::assertSame($expect, $comparator->compare($left, $right));

@@ -77,13 +77,11 @@ final class ArrayValuesEqualToTraitTest extends TestCase
     /**
      * @dataProvider provArrayValuesEqualToSucceeds
      *
-     * @param mixed $actual
-     *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testArrayValuesEqualToSucceeds(array $expect, $actual): void
+    public function testArrayValuesEqualToSucceeds(array $expect, mixed $actual): void
     {
         self::assertThat($actual, self::arrayValuesEqualTo($expect));
     }
@@ -91,13 +89,11 @@ final class ArrayValuesEqualToTraitTest extends TestCase
     /**
      * @dataProvider provArrayValuesEqualToSucceeds
      *
-     * @param mixed $actual
-     *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertArrayValuesEqualToSucceeds(array $expect, $actual): void
+    public function testAssertArrayValuesEqualToSucceeds(array $expect, mixed $actual): void
     {
         self::assertArrayValuesEqualTo($expect, $actual);
     }
@@ -105,13 +101,11 @@ final class ArrayValuesEqualToTraitTest extends TestCase
     /**
      * @dataProvider provNotArrayValuesEqualToSucceeds
      *
-     * @param mixed $actual
-     *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testLogicalNotArrayValuesEqualToSucceeds(array $expect, $actual): void
+    public function testLogicalNotArrayValuesEqualToSucceeds(array $expect, mixed $actual): void
     {
         self::assertThat($actual, self::logicalNot(self::arrayValuesEqualTo($expect)));
     }
@@ -119,13 +113,11 @@ final class ArrayValuesEqualToTraitTest extends TestCase
     /**
      * @dataProvider provNotArrayValuesEqualToSucceeds
      *
-     * @param mixed $actual
-     *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertNotArrayValuesEqualToSucceeds(array $expect, $actual): void
+    public function testAssertNotArrayValuesEqualToSucceeds(array $expect, mixed $actual): void
     {
         self::assertNotArrayValuesEqualTo($expect, $actual);
     }
@@ -133,13 +125,11 @@ final class ArrayValuesEqualToTraitTest extends TestCase
     /**
      * @dataProvider provArrayValuesNotEqualTo
      *
-     * @param mixed $actual
-     *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertArrayValuesEqualToFails(array $expect, $actual, string $string): void
+    public function testAssertArrayValuesEqualToFails(array $expect, mixed $actual, string $string): void
     {
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that '.preg_quote($string, '/').' is an array or ArrayAccess '.
@@ -154,13 +144,11 @@ final class ArrayValuesEqualToTraitTest extends TestCase
      * @dataProvider provArrayValuesIdenticalTo
      * @dataProvider provArrayValuesEqualButNotIdenticalTo
      *
-     * @param mixed $actual
-     *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertNotArrayValuesEqualToFails(array $expect, $actual, string $string): void
+    public function testAssertNotArrayValuesEqualToFails(array $expect, mixed $actual, string $string): void
     {
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that '.preg_quote($string, '/').' fails to be an array or ArrayAccess '.

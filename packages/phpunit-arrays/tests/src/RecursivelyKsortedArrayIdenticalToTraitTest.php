@@ -74,13 +74,11 @@ final class RecursivelyKsortedArrayIdenticalToTraitTest extends TestCase
     /**
      * @dataProvider provRecursivelyKsortedArrayIdenticalToSucceeds
      *
-     * @param mixed $actual
-     *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testRecursivelyKsortedArrayIdenticalToSucceeds(array $expect, $actual): void
+    public function testRecursivelyKsortedArrayIdenticalToSucceeds(array $expect, mixed $actual): void
     {
         self::assertThat($actual, self::recursivelyKsortedArrayIdenticalTo($expect));
     }
@@ -88,13 +86,11 @@ final class RecursivelyKsortedArrayIdenticalToTraitTest extends TestCase
     /**
      * @dataProvider provRecursivelyKsortedArrayIdenticalToSucceeds
      *
-     * @param mixed $actual
-     *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertRecursivelyKsortedArrayIdenticalToSucceeds(array $expect, $actual): void
+    public function testAssertRecursivelyKsortedArrayIdenticalToSucceeds(array $expect, mixed $actual): void
     {
         self::assertRecursivelyKsortedArrayIdenticalTo($expect, $actual);
     }
@@ -102,13 +98,11 @@ final class RecursivelyKsortedArrayIdenticalToTraitTest extends TestCase
     /**
      * @dataProvider provNotRecursivelyKsortedArrayIdenticalToSucceeds
      *
-     * @param mixed $actual
-     *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testNotRecursivelyKsortedArrayIdenticalToSucceeds(array $expect, $actual): void
+    public function testNotRecursivelyKsortedArrayIdenticalToSucceeds(array $expect, mixed $actual): void
     {
         self::assertThat($actual, self::logicalNot(self::recursivelyKsortedArrayIdenticalTo($expect)));
     }
@@ -116,13 +110,11 @@ final class RecursivelyKsortedArrayIdenticalToTraitTest extends TestCase
     /**
      * @dataProvider provNotRecursivelyKsortedArrayIdenticalToSucceeds
      *
-     * @param mixed $actual
-     *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertNotRecursivelyKsortedArrayIdenticalToSucceeds(array $expect, $actual): void
+    public function testAssertNotRecursivelyKsortedArrayIdenticalToSucceeds(array $expect, mixed $actual): void
     {
         self::assertNotRecursivelyKsortedArrayIdenticalTo($expect, $actual);
     }
@@ -131,13 +123,11 @@ final class RecursivelyKsortedArrayIdenticalToTraitTest extends TestCase
      * @dataProvider provRecursivelyKsortedArrayNotEqualTo
      * @dataProvider provRecursivelyKsortedArrayEqualButNotIdenticalTo
      *
-     * @param mixed $actual
-     *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertRecursivelyKsortedArrayIdenticalToFails(array $expect, $actual, string $string): void
+    public function testAssertRecursivelyKsortedArrayIdenticalToFails(array $expect, mixed $actual, string $string): void
     {
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that '.preg_quote($string, '/').' is an array '.
@@ -151,13 +141,11 @@ final class RecursivelyKsortedArrayIdenticalToTraitTest extends TestCase
     /**
      * @dataProvider provRecursivelyKsortedArrayIdenticalTo
      *
-     * @param mixed $actual
-     *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertNotRecursivelyKsortedArrayIdenticalToFails(array $expect, $actual, string $string): void
+    public function testAssertNotRecursivelyKsortedArrayIdenticalToFails(array $expect, mixed $actual, string $string): void
     {
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that '.preg_quote($string, '/').' fails to be an array '.

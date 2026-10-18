@@ -77,10 +77,7 @@ final class AbstractInheritanceConstraintTest extends TestCase
                 return 5;
             }
 
-            /**
-             * @param mixed $other
-             */
-            protected function matches($other): bool
+            protected function matches(mixed $other): bool
             {
                 /**
                  * @var bool

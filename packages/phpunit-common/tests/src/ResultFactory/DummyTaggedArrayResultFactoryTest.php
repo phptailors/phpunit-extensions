@@ -130,14 +130,12 @@ final class DummyTaggedArrayResultFactoryTest extends TestCase
     /**
      * @dataProvider provGetResult
      *
-     * @param mixed $expect
-     *
      * @psalm-param CtorArgs      $ctor
      * @psalm-param GetResultArgs $args
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testGetResult(array $ctor, array $args, $expect): void
+    public function testGetResult(array $ctor, array $args, mixed $expect): void
     {
         $factory = new DummyTaggedArrayResultFactory(...$ctor);
 

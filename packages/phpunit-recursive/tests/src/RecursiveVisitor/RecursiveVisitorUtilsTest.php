@@ -59,13 +59,11 @@ final class RecursiveVisitorUtilsTest extends TestCase
     /**
      * @dataProvider provPathAsList
      *
-     * @param mixed $expect
-     *
      * @psalm-param list<StackItem> $stack
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testPathAsList(array $stack, $expect): void
+    public function testPathAsList(array $stack, mixed $expect): void
     {
         $this->assertSame($expect, RecursiveVisitorUtils::pathAsList($stack));
     }
@@ -103,13 +101,11 @@ final class RecursiveVisitorUtilsTest extends TestCase
     /**
      * @dataProvider provPathAsString
      *
-     * @param mixed $expect
-     *
      * @psalm-param list<StackItem> $stack
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testPathAsString(array $stack, $expect): void
+    public function testPathAsString(array $stack, mixed $expect): void
     {
         $this->assertSame($expect, RecursiveVisitorUtils::pathAsString($stack));
     }

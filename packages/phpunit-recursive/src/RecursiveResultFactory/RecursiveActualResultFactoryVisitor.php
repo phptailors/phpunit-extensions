@@ -47,10 +47,7 @@ final class RecursiveActualResultFactoryVisitor implements RecursiveActualResult
      */
     private $current;
 
-    /**
-     * @param mixed $subject
-     */
-    public function begin($subject): void
+    public function begin(mixed $subject): void
     {
         $this->subject = $subject;
         $this->result = null;
@@ -105,11 +102,9 @@ final class RecursiveActualResultFactoryVisitor implements RecursiveActualResult
     }
 
     /**
-     * @param mixed $node
-     *
      * @psalm-param list<StackItem> $stack
      */
-    public function visit($node, array $stack, bool $iterating): void
+    public function visit(mixed $node, array $stack, bool $iterating): void
     {
         if (!$this->selectSubject($stack, $subject)) {
             return;
@@ -132,15 +127,13 @@ final class RecursiveActualResultFactoryVisitor implements RecursiveActualResult
     }
 
     /**
-     * @param mixed $key
-     *
      * @psalm-param ArrayLike       $node
      * @psalm-param array-key       $key
      * @psalm-param list<StackItem> $stack
      *
      * @psalm-return StackItem
      */
-    public function makeStackItem(iterable $node, $key, array $stack): RecursiveVisitorStackItemInterface
+    public function makeStackItem(iterable $node, mixed $key, array $stack): RecursiveVisitorStackItemInterface
     {
         if (null === $this->current) {
             /** @psalm-suppress MissingThrowsDocblock */
@@ -172,13 +165,11 @@ final class RecursiveActualResultFactoryVisitor implements RecursiveActualResult
     }
 
     /**
-     * @param mixed $subject
-     *
      * @psalm-param list<StackItem> $stack
      *
      * @psalm-param-out mixed $subject
      */
-    private function selectSubject(array $stack, &$subject): bool
+    private function selectSubject(array $stack, mixed &$subject): bool
     {
         if (0 === ($count = count($stack))) {
             /** @psalm-var mixed */
@@ -223,10 +214,6 @@ final class RecursiveActualResultFactoryVisitor implements RecursiveActualResult
     }
 
     /**
-     * @param mixed $subject
-     * @param mixed $key
-     * @param mixed $retval
-     *
      * @psalm-template SupportedSubject
      *
      * @psalm-param ValueSelectorInterface<SupportedSubject> $valueSelector
@@ -234,7 +221,7 @@ final class RecursiveActualResultFactoryVisitor implements RecursiveActualResult
      *
      * @psalm-param-out mixed $retval
      */
-    private function selectWithValueSelector(ValueSelectorInterface $valueSelector, $subject, $key, &$retval): bool
+    private function selectWithValueSelector(ValueSelectorInterface $valueSelector, mixed $subject, mixed $key, mixed &$retval): bool
     {
         if (!$valueSelector->supports($subject)) {
             return false;
@@ -245,11 +232,9 @@ final class RecursiveActualResultFactoryVisitor implements RecursiveActualResult
     }
 
     /**
-     * @param mixed $subject
-     *
      * @psalm-param ArrayLike $spec
      */
-    private function enterIfSpecYieldsAnArray(iterable $spec, $subject): bool
+    private function enterIfSpecYieldsAnArray(iterable $spec, mixed $subject): bool
     {
         if ($spec instanceof ValueSelectorWrapperInterface) {
             return $this->enterIfSelectionYieldsAnArray($spec, $subject);
@@ -269,13 +254,11 @@ final class RecursiveActualResultFactoryVisitor implements RecursiveActualResult
     }
 
     /**
-     * @param mixed $subject
-     *
      * @psalm-template SupportedSubject
      *
      * @psalm-param ValueSelectorWrapperInterface<SupportedSubject> $spec
      */
-    private function enterIfSelectionYieldsAnArray(ValueSelectorWrapperInterface $spec, $subject): bool
+    private function enterIfSelectionYieldsAnArray(ValueSelectorWrapperInterface $spec, mixed $subject): bool
     {
         $valueSelector = $spec->getValueSelector();
 
@@ -291,16 +274,13 @@ final class RecursiveActualResultFactoryVisitor implements RecursiveActualResult
     }
 
     /**
-     * @param mixed $input
-     * @param mixed $subject
-     *
      * @psalm-template SupportedInput
      *
      * @psalm-param ResultFactoryWrapperInterface<SupportedInput> $spec
      *
      * @psalm-assert-if-true SupportedInput $input
      */
-    private function enterIfFactoryYieldsAnArray(ResultFactoryWrapperInterface $spec, $input, $subject): bool
+    private function enterIfFactoryYieldsAnArray(ResultFactoryWrapperInterface $spec, mixed $input, mixed $subject): bool
     {
         $factory = $spec->getResultFactory();
 
@@ -321,11 +301,9 @@ final class RecursiveActualResultFactoryVisitor implements RecursiveActualResult
     }
 
     /**
-     * @param mixed $result
-     *
      * @psalm-param list<StackItem> $stack
      */
-    private function set(array $stack, $result): void
+    private function set(array $stack, mixed $result): void
     {
         if (0 === ($count = count($stack))) {
             $this->result = $result;

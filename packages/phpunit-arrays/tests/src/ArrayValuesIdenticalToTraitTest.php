@@ -77,13 +77,11 @@ final class ArrayValuesIdenticalToTraitTest extends TestCase
     /**
      * @dataProvider provArrayValuesIdenticalToSucceeds
      *
-     * @param mixed $actual
-     *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testArrayValuesIdenticalToSucceeds(array $expect, $actual): void
+    public function testArrayValuesIdenticalToSucceeds(array $expect, mixed $actual): void
     {
         self::assertThat($actual, self::arrayValuesIdenticalTo($expect));
     }
@@ -91,13 +89,11 @@ final class ArrayValuesIdenticalToTraitTest extends TestCase
     /**
      * @dataProvider provArrayValuesIdenticalToSucceeds
      *
-     * @param mixed $actual
-     *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertArrayValuesIdenticalToSucceeds(array $expect, $actual): void
+    public function testAssertArrayValuesIdenticalToSucceeds(array $expect, mixed $actual): void
     {
         self::assertArrayValuesIdenticalTo($expect, $actual);
     }
@@ -105,13 +101,11 @@ final class ArrayValuesIdenticalToTraitTest extends TestCase
     /**
      * @dataProvider provNotArrayValuesIdenticalToSucceeds
      *
-     * @param mixed $actual
-     *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testLogicalNotArrayValuesIdenticalToSucceeds(array $expect, $actual): void
+    public function testLogicalNotArrayValuesIdenticalToSucceeds(array $expect, mixed $actual): void
     {
         self::assertThat($actual, self::logicalNot(self::arrayValuesIdenticalTo($expect)));
     }
@@ -119,13 +113,11 @@ final class ArrayValuesIdenticalToTraitTest extends TestCase
     /**
      * @dataProvider provNotArrayValuesIdenticalToSucceeds
      *
-     * @param mixed $actual
-     *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertNotArrayValuesIdenticalToSucceeds(array $expect, $actual): void
+    public function testAssertNotArrayValuesIdenticalToSucceeds(array $expect, mixed $actual): void
     {
         self::assertNotArrayValuesIdenticalTo($expect, $actual);
     }
@@ -134,13 +126,11 @@ final class ArrayValuesIdenticalToTraitTest extends TestCase
      * @dataProvider provArrayValuesNotEqualTo
      * @dataProvider provArrayValuesEqualButNotIdenticalTo
      *
-     * @param mixed $actual
-     *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertArrayValuesIdenticalToFails(array $expect, $actual, string $string): void
+    public function testAssertArrayValuesIdenticalToFails(array $expect, mixed $actual, string $string): void
     {
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that '.preg_quote($string, '/').' is an array or ArrayAccess '.
@@ -154,13 +144,11 @@ final class ArrayValuesIdenticalToTraitTest extends TestCase
     /**
      * @dataProvider provArrayValuesIdenticalTo
      *
-     * @param mixed $actual
-     *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertNotArrayValuesIdenticalToFails(array $expect, $actual, string $string): void
+    public function testAssertNotArrayValuesIdenticalToFails(array $expect, mixed $actual, string $string): void
     {
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that '.preg_quote($string, '/').' fails to be an array or ArrayAccess '.

@@ -200,14 +200,11 @@ final class CapturesFilterTest extends TestCase
     /**
      * @dataProvider provIsCapture
      *
-     * @param mixed $value
-     * @param mixed $expect
-     *
      * @psalm-param CtorArgs $ctorArgs
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testIsCapture(array $ctorArgs, $value, $expect): void
+    public function testIsCapture(array $ctorArgs, mixed $value, mixed $expect): void
     {
         $filter = new CapturesFilter(...$ctorArgs);
         $this->assertSame($expect, $filter->accepts($value));
@@ -280,14 +277,12 @@ final class CapturesFilterTest extends TestCase
     /**
      * @dataProvider provFilter
      *
-     * @param mixed $expect
-     *
      * @psalm-param CtorArgs $ctorArgs
      * @psalm-param array    $array
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testFilter(array $ctorArgs, array $array, $expect): void
+    public function testFilter(array $ctorArgs, array $array, mixed $expect): void
     {
         $filter = new CapturesFilter(...$ctorArgs);
         $this->assertSame($expect, $filter->filter($array));

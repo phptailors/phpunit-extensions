@@ -582,15 +582,13 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
     /**
      * @dataProvider provEnterLeave
      *
-     * @param mixed $result
-     *
      * @psalm-param CtorArgs                      $ctor
      * @psalm-param BeginArgs                     $begin
      * @psalm-param non-empty-list<EnterTestCall> $calls
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testEnterLeave(array $ctor, array $begin, array $calls, $result): void
+    public function testEnterLeave(array $ctor, array $begin, array $calls, mixed $result): void
     {
         $visitor = new RecursiveResultUnwrapperVisitor(...$ctor);
         $stack = [];
@@ -720,8 +718,6 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
     /**
      * @dataProvider provVisit
      *
-     * @param mixed $result
-     *
      * @psalm-param CtorArgs                      $ctor
      * @psalm-param BeginArgs                     $begin
      * @psalm-param non-empty-list<VisitTestCall> $calls
@@ -729,7 +725,7 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testVisit(array $ctor, array $begin, iterable $root, bool $iter, array $calls, $result): void
+    public function testVisit(array $ctor, array $begin, iterable $root, bool $iter, array $calls, mixed $result): void
     {
         $visitor = new RecursiveResultUnwrapperVisitor(...$ctor);
         $stack = [];
@@ -1021,15 +1017,13 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
     /**
      * @dataProvider provUnwrapAcyclic
      *
-     * @param mixed $result
-     *
      * @psalm-param CtorArgs  $ctor
      * @psalm-param BeginArgs $begin
      * @psalm-param ArrayLike $array
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testUnwrapAcyclic(array $ctor, array $begin, iterable $array, $result): void
+    public function testUnwrapAcyclic(array $ctor, array $begin, iterable $array, mixed $result): void
     {
         $traversal = new RecursiveTraversal();
         $visitor = new RecursiveResultUnwrapperVisitor(...$ctor);
@@ -1225,15 +1219,13 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
     /**
      * @dataProvider provUnwrapCyclic
      *
-     * @param mixed $result
-     *
      * @psalm-param CtorArgs  $ctor
      * @psalm-param BeginArgs $begin
      * @psalm-param ArrayLike $array
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testUnwrapCyclic(array $ctor, array $begin, iterable $array, $result): void
+    public function testUnwrapCyclic(array $ctor, array $begin, iterable $array, mixed $result): void
     {
         $traversal = new RecursiveTraversal();
         $visitor = new RecursiveResultUnwrapperVisitor(...$ctor);

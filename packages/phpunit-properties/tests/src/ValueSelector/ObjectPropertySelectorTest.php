@@ -80,12 +80,9 @@ final class ObjectPropertySelectorTest extends TestCase
     /**
      * @dataProvider provSupports
      *
-     * @param mixed $subject
-     * @param mixed $expect
-     *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testSupports($subject, $expect): void
+    public function testSupports(mixed $subject, mixed $expect): void
     {
         $selector = new ObjectPropertySelector();
         self::assertSame($expect, $selector->supports($subject));
@@ -163,16 +160,11 @@ final class ObjectPropertySelectorTest extends TestCase
     /**
      * @dataProvider provSelect
      *
-     * @param mixed $object
-     * @param mixed $key
-     * @param mixed $return
-     * @param mixed $expect
-     *
      * @psalm-param array-key $key
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testSelect($object, $key, $return, $expect): void
+    public function testSelect(mixed $object, mixed $key, mixed $return, mixed $expect): void
     {
         $selector = new ObjectPropertySelector();
         self::assertSame($return, $selector->select($object, $key, $retval));

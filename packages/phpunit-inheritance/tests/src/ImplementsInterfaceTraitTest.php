@@ -132,11 +132,9 @@ final class ImplementsInterfaceTraitTest extends TestCase
     /**
      * @dataProvider provImplementsInterfaceSucceeds
      *
-     * @param mixed $subject
-     *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testImplementsInterfaceSucceeds(string $interface, $subject): void
+    public function testImplementsInterfaceSucceeds(string $interface, mixed $subject): void
     {
         self::assertThat($subject, self::implementsInterface($interface));
     }
@@ -144,11 +142,9 @@ final class ImplementsInterfaceTraitTest extends TestCase
     /**
      * @dataProvider provImplementsInterfaceSucceeds
      *
-     * @param mixed $subject
-     *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertImplementsInterfaceSucceeds(string $interface, $subject): void
+    public function testAssertImplementsInterfaceSucceeds(string $interface, mixed $subject): void
     {
         self::assertImplementsInterface($interface, $subject);
     }
@@ -156,11 +152,9 @@ final class ImplementsInterfaceTraitTest extends TestCase
     /**
      * @dataProvider provNotImplementsInterfaceSucceeds
      *
-     * @param mixed $subject
-     *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testLogicalNotImplementsInterfaceSucceeds(string $interface, $subject): void
+    public function testLogicalNotImplementsInterfaceSucceeds(string $interface, mixed $subject): void
     {
         self::assertThat($subject, self::logicalNot(self::implementsInterface($interface)));
     }
@@ -168,11 +162,9 @@ final class ImplementsInterfaceTraitTest extends TestCase
     /**
      * @dataProvider provNotImplementsInterfaceSucceeds
      *
-     * @param mixed $subject
-     *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertNotImplementsInterfaceSucceeds(string $interface, $subject): void
+    public function testAssertNotImplementsInterfaceSucceeds(string $interface, mixed $subject): void
     {
         self::assertNotImplementsInterface($interface, $subject);
     }
@@ -180,11 +172,9 @@ final class ImplementsInterfaceTraitTest extends TestCase
     /**
      * @dataProvider provNotImplementsInterface
      *
-     * @param mixed $subject
-     *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertImplementsInterfaceFails(string $interface, $subject, string $message): void
+    public function testAssertImplementsInterfaceFails(string $interface, mixed $subject, string $message): void
     {
         self::expectException(ExpectationFailedException::class);
         self::expectExceptionMessage($message);
@@ -195,11 +185,9 @@ final class ImplementsInterfaceTraitTest extends TestCase
     /**
      * @dataProvider provImplementsInterface
      *
-     * @param mixed $subject
-     *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertNotImplementsInterfaceFails(string $interface, $subject, string $message): void
+    public function testAssertNotImplementsInterfaceFails(string $interface, mixed $subject, string $message): void
     {
         self::expectException(ExpectationFailedException::class);
         self::expectExceptionMessage($message);

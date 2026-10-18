@@ -24,20 +24,16 @@ use Tailors\PHPUnit\Common\TypesInterface;
 interface RecursiveResultFactoryInterface
 {
     /**
-     * @param mixed $input
-     *
      * @psalm-param ArrayLike $array
      */
-    public function supports(iterable $array, $input): bool;
+    public function supports(iterable $array, mixed $input): bool;
 
     /**
-     * @param mixed $input
-     *
      * @return mixed
      *
      * @psalm-param ArrayLike $array
      */
-    public function getActualResult(iterable $array, $input);
+    public function getActualResult(iterable $array, mixed $input);
 
     /**
      * @return mixed

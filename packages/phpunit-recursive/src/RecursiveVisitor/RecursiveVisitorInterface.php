@@ -38,11 +38,9 @@ interface RecursiveVisitorInterface
     public function leave(iterable $node, array $stack, bool $iterating): void;
 
     /**
-     * @param mixed $node
-     *
      * @psalm-param list<StackItem> $stack
      */
-    public function visit($node, array $stack, bool $iterating): void;
+    public function visit(mixed $node, array $stack, bool $iterating): void;
 
     /**
      * @psalm-param ArrayLike       $node
@@ -51,15 +49,13 @@ interface RecursiveVisitorInterface
     public function cycle(iterable $node, array $stack): bool;
 
     /**
-     * @param mixed $key
-     *
      * @psalm-param ArrayLike       $node
      * @psalm-param array-key       $key
      * @psalm-param list<StackItem> $stack
      *
      * @psalm-return StackItem
      */
-    public function makeStackItem(iterable $node, $key, array $stack): RecursiveVisitorStackItemInterface;
+    public function makeStackItem(iterable $node, mixed $key, array $stack): RecursiveVisitorStackItemInterface;
 
     /**
      * @psalm-param StackItem       $item

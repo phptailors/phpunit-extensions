@@ -162,14 +162,12 @@ final class RecursiveActualResultFactoryStackItemTest extends TestCase
     /**
      * @dataProvider provSet
      *
-     * @param mixed $value
-     *
      * @psalm-param CtorArgs  $ctor
      * @psalm-param SetExpect $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testSet(array $ctor, $value, array $expect): void
+    public function testSet(array $ctor, mixed $value, array $expect): void
     {
         $item = new RecursiveActualResultFactoryStackItem(...$ctor);
 

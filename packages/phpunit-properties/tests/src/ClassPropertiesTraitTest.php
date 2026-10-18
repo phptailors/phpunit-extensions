@@ -60,13 +60,11 @@ final class ClassPropertiesTraitTest extends TestCase
     /**
      * @dataProvider provExpectClassProperties
      *
-     * @param mixed $expect
-     *
      * @psalm-param ClassPropertiesArgs $args
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testExpectedClassProperties(array $args, $expect): void
+    public function testExpectedClassProperties(array $args, mixed $expect): void
     {
         $values = self::classProperties(...$args);
         self::assertInstanceOf(ClassPropertiesSelection::class, $values);

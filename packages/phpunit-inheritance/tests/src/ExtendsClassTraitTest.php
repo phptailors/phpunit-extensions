@@ -126,11 +126,9 @@ final class ExtendsClassTraitTest extends TestCase
     /**
      * @dataProvider provExtendsClassSucceeds
      *
-     * @param mixed $subject
-     *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testExtendsClassSucceeds(string $class, $subject): void
+    public function testExtendsClassSucceeds(string $class, mixed $subject): void
     {
         self::assertThat($subject, self::extendsClass($class));
     }
@@ -138,11 +136,9 @@ final class ExtendsClassTraitTest extends TestCase
     /**
      * @dataProvider provExtendsClassSucceeds
      *
-     * @param mixed $subject
-     *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertExtendsClassSucceeds(string $class, $subject): void
+    public function testAssertExtendsClassSucceeds(string $class, mixed $subject): void
     {
         self::assertExtendsClass($class, $subject);
     }
@@ -150,11 +146,9 @@ final class ExtendsClassTraitTest extends TestCase
     /**
      * @dataProvider provNotExtendsClassSucceeds
      *
-     * @param mixed $subject
-     *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testLogicalNotExtendsClassSucceeds(string $class, $subject): void
+    public function testLogicalNotExtendsClassSucceeds(string $class, mixed $subject): void
     {
         self::assertThat($subject, self::logicalNot(self::extendsClass($class)));
     }
@@ -162,11 +156,9 @@ final class ExtendsClassTraitTest extends TestCase
     /**
      * @dataProvider provNotExtendsClassSucceeds
      *
-     * @param mixed $subject
-     *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertNotExtendsClassSucceeds(string $class, $subject): void
+    public function testAssertNotExtendsClassSucceeds(string $class, mixed $subject): void
     {
         self::assertNotExtendsClass($class, $subject);
     }
@@ -174,11 +166,9 @@ final class ExtendsClassTraitTest extends TestCase
     /**
      * @dataProvider provNotExtendsClass
      *
-     * @param mixed $subject
-     *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertExtendsClassFails(string $class, $subject, string $message): void
+    public function testAssertExtendsClassFails(string $class, mixed $subject, string $message): void
     {
         self::expectException(ExpectationFailedException::class);
         self::expectExceptionMessage($message);
@@ -189,11 +179,9 @@ final class ExtendsClassTraitTest extends TestCase
     /**
      * @dataProvider provExtendsClass
      *
-     * @param mixed $subject
-     *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertNotExtendsClassFails(string $class, $subject, string $message): void
+    public function testAssertNotExtendsClassFails(string $class, mixed $subject, string $message): void
     {
         self::expectException(ExpectationFailedException::class);
         self::expectExceptionMessage($message);

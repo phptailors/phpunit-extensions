@@ -160,13 +160,11 @@ final class HasPregCapturesTraitTest extends TestCase
      * @dataProvider provNotHasPregCaptures
      * @dataProvider provNotHasPregCapturesNonArray
      *
-     * @param mixed $actual
-     *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testHasPregCapturesFails(array $expect, $actual, string $message): void
+    public function testHasPregCapturesFails(array $expect, mixed $actual, string $message): void
     {
         $this->expectException(ExpectationFailedException::class);
         $this->expectExceptionMessage(sprintf('Failed asserting that %s.', $message));

@@ -76,13 +76,11 @@ abstract class AbstractArrayObjectTestCase extends TestCase
     /**
      * @dataProvider provArrayObject
      *
-     * @param mixed $expect
-     *
      * @psalm-param CtorArgs $ctorArgs
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    final public function testArrayObject(array $ctorArgs, $expect): void
+    final public function testArrayObject(array $ctorArgs, mixed $expect): void
     {
         $object = static::getObject($ctorArgs);
 

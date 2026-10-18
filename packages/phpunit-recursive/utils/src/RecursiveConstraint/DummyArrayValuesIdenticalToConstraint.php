@@ -42,7 +42,7 @@ final class DummyArrayValuesIdenticalToConstraint extends AbstractRecursiveConst
                 /**
                  * @param mixed $subject
                  */
-                fn ($subject): bool => is_array($subject),
+                fn (mixed $subject): bool => is_array($subject),
                 /**
                  * @param mixed $key
                  * @param mixed $retval
@@ -51,7 +51,7 @@ final class DummyArrayValuesIdenticalToConstraint extends AbstractRecursiveConst
                  *
                  * @psalm-param-out mixed $retval
                  */
-                function (array $subject, $key, &$retval) {
+                function (array $subject, mixed $key, mixed &$retval) {
                     if (!array_key_exists($key, $subject)) {
                         return false;
                     }

@@ -64,13 +64,11 @@ final class KsortedArrayTraitTest extends TestCase
     /**
      * @dataProvider provExpectKsortedArray
      *
-     * @param mixed $expect
-     *
      * @psalm-param KsortedArrayArgs $args
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testExpectedKsortedArray(array $args, $expect): void
+    public function testExpectedKsortedArray(array $args, mixed $expect): void
     {
         $values = self::ksortedArray(...$args);
         self::assertInstanceOf(KsortedArrayExpectations::class, $values);

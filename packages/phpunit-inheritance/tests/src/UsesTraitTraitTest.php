@@ -135,11 +135,9 @@ final class UsesTraitTraitTest extends TestCase
     /**
      * @dataProvider provUsesTraitSucceeds
      *
-     * @param mixed $subject
-     *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testUsesTraitSucceeds(string $trait, $subject): void
+    public function testUsesTraitSucceeds(string $trait, mixed $subject): void
     {
         self::assertThat($subject, self::usesTrait($trait));
     }
@@ -147,11 +145,9 @@ final class UsesTraitTraitTest extends TestCase
     /**
      * @dataProvider provUsesTraitSucceeds
      *
-     * @param mixed $subject
-     *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertUsesTraitSucceeds(string $trait, $subject): void
+    public function testAssertUsesTraitSucceeds(string $trait, mixed $subject): void
     {
         self::assertUsesTrait($trait, $subject);
     }
@@ -159,11 +155,9 @@ final class UsesTraitTraitTest extends TestCase
     /**
      * @dataProvider provNotUsesTraitSucceeds
      *
-     * @param mixed $subject
-     *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testLogicalNotUsesTraitSucceeds(string $trait, $subject): void
+    public function testLogicalNotUsesTraitSucceeds(string $trait, mixed $subject): void
     {
         self::assertThat($subject, self::logicalNot(self::usesTrait($trait)));
     }
@@ -171,11 +165,9 @@ final class UsesTraitTraitTest extends TestCase
     /**
      * @dataProvider provNotUsesTraitSucceeds
      *
-     * @param mixed $subject
-     *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertNotUsesTraitSucceeds(string $trait, $subject): void
+    public function testAssertNotUsesTraitSucceeds(string $trait, mixed $subject): void
     {
         self::assertNotUsesTrait($trait, $subject);
     }
@@ -183,11 +175,9 @@ final class UsesTraitTraitTest extends TestCase
     /**
      * @dataProvider provUsesTrait
      *
-     * @param mixed $subject
-     *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertNotUsesTraitFails(string $trait, $subject, string $message): void
+    public function testAssertNotUsesTraitFails(string $trait, mixed $subject, string $message): void
     {
         self::expectException(ExpectationFailedException::class);
         self::expectExceptionMessage($message);
@@ -198,11 +188,9 @@ final class UsesTraitTraitTest extends TestCase
     /**
      * @dataProvider provNotUsesTrait
      *
-     * @param mixed $subject
-     *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertUsesTraitFails(string $trait, $subject, string $message): void
+    public function testAssertUsesTraitFails(string $trait, mixed $subject, string $message): void
     {
         self::expectException(ExpectationFailedException::class);
         self::expectExceptionMessage($message);

@@ -72,7 +72,7 @@ final class AbstractPropertySelectorTest extends TestCase
              *
              * @psalm-assert-if-true class-string $input
              */
-            fn ($input): bool => is_string($input) && class_exists($input),
+            fn (mixed $input): bool => is_string($input) && class_exists($input),
 
             /**
              * @param mixed $subject
@@ -85,7 +85,7 @@ final class AbstractPropertySelectorTest extends TestCase
              *
              * @psalm-suppress UnusedClosureParam
              */
-            fn ($subject, $key) => $subject::${$key},
+            fn (mixed $subject, mixed $key) => $subject::${$key},
         ];
 
         $objectPropertySelector = [
@@ -96,7 +96,7 @@ final class AbstractPropertySelectorTest extends TestCase
              *
              * @psalm-assert-if-true class-string $input
              */
-            fn ($input): bool => is_object($input),
+            fn (mixed $input): bool => is_object($input),
 
             /**
              * @param mixed $subject
@@ -107,7 +107,7 @@ final class AbstractPropertySelectorTest extends TestCase
              * @psalm-param class-string $subject
              * @psalm-param array-key    $key
              */
-            fn ($subject, $key) => $subject->{$key},
+            fn (mixed $subject, mixed $key) => $subject->{$key},
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
@@ -297,11 +297,9 @@ final class AbstractPropertySelectorTest extends TestCase
                 ) {}
 
                 /**
-                 * @param mixed $input
-                 *
                  * @psalm-assert-if-true SubjectType $input
                  */
-                public function supports($input): bool
+                public function supports(mixed $input): bool
                 {
                     return call_user_func($this->supports, $input);
                 }
@@ -312,15 +310,12 @@ final class AbstractPropertySelectorTest extends TestCase
                 }
 
                 /**
-                 * @param mixed $subject
-                 * @param mixed $key
-                 *
                  * @return mixed
                  *
                  * @psalm-param SubjectType $subject
                  * @psalm-param array-key   $key
                  */
-                protected function getSubjectAttribute($subject, $key)
+                protected function getSubjectAttribute(mixed $subject, mixed $key)
                 {
                     return call_user_func($this->getSubjectAttribute, $subject, $key);
                 }

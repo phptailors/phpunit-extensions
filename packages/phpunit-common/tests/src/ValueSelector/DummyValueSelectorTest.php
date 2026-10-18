@@ -54,7 +54,7 @@ final class DummyValueSelectorTest extends TestCase
              *
              * @psalm-param mixed $subject
              */
-            fn ($subject): bool => is_array($subject)
+            fn (mixed $subject): bool => is_array($subject)
         );
 
         $select =
@@ -67,7 +67,7 @@ final class DummyValueSelectorTest extends TestCase
          * @psalm-param array-key $key
          * @psalm-param mixed     $retval
          */
-        function ($subject, $key, &$retval): bool {
+        function (mixed $subject, mixed $key, mixed &$retval): bool {
             if (!array_key_exists($key, $subject)) {
                 return false;
             }

@@ -83,13 +83,11 @@ final class HasPregCapturesTest extends TestCase
     /**
      * @dataProvider provHasPregCapturesSucceeds
      *
-     * @param mixed $actual
-     *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testHasPregCapturesSucceeds(array $expect, $actual): void
+    public function testHasPregCapturesSucceeds(array $expect, mixed $actual): void
     {
         $constraint = HasPregCaptures::create($expect);
         self::assertThat($actual, $constraint);
@@ -98,13 +96,11 @@ final class HasPregCapturesTest extends TestCase
     /**
      * @dataProvider provNotHasPregCapturesSucceeds
      *
-     * @param mixed $actual
-     *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testNotHasPregCapturesSucceeds(array $expect, $actual): void
+    public function testNotHasPregCapturesSucceeds(array $expect, mixed $actual): void
     {
         $constraint = new LogicalNot(HasPregCaptures::create($expect));
         self::assertThat($actual, $constraint);
@@ -114,13 +110,11 @@ final class HasPregCapturesTest extends TestCase
      * @dataProvider provNotHasPregCaptures
      * @dataProvider provNotHasPregCapturesNonArray
      *
-     * @param mixed $actual
-     *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testHasPregCapturesFails(array $expect, $actual, string $message): void
+    public function testHasPregCapturesFails(array $expect, mixed $actual, string $message): void
     {
         $constraint = HasPregCaptures::create($expect);
 
@@ -133,13 +127,11 @@ final class HasPregCapturesTest extends TestCase
     /**
      * @dataProvider provHasPregCaptures
      *
-     * @param mixed $actual
-     *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testNotHasPregCapturesFails(array $expect, $actual, string $message): void
+    public function testNotHasPregCapturesFails(array $expect, mixed $actual, string $message): void
     {
         $constraint = new LogicalNot(HasPregCaptures::create($expect));
 

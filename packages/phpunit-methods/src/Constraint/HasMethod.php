@@ -50,11 +50,9 @@ final class HasMethod extends Constraint
     }
 
     /**
-     * @param mixed $other
-     *
      * @psalm-assert-if-true object|class-string|trait-string|interface-string $other
      */
-    final protected function matches($other): bool
+    final protected function matches(mixed $other): bool
     {
         if (!$this->ensureCanReflectAsClass($other)) {
             return false;
@@ -70,11 +68,9 @@ final class HasMethod extends Constraint
     }
 
     /**
-     * @param mixed $other
-     *
      * @psalm-assert-if-true object|class-string|trait-string|interface-string $other
      */
-    private function ensureCanReflectAsClass($other): bool
+    private function ensureCanReflectAsClass(mixed $other): bool
     {
         return is_object($other) || (is_string($other) && (
             interface_exists($other) || class_exists($other) || trait_exists($other)

@@ -519,11 +519,9 @@ final class RecursiveTraversalTest extends TestCase
     /**
      * @dataProvider provWalk
      *
-     * @param mixed $expect
-     *
      * @psalm-param ArrayLike $array
      */
-    public function testWalk(iterable &$array, DummyRecursiveVisitor $visitor, $expect): void
+    public function testWalk(iterable &$array, DummyRecursiveVisitor $visitor, mixed $expect): void
     {
         $traversal = new RecursiveTraversal();
 

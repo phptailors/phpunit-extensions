@@ -23,10 +23,7 @@ use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorInterface;
  */
 interface RecursiveActualResultFactoryVisitorInterface extends RecursiveVisitorInterface
 {
-    /**
-     * @param mixed $subject
-     */
-    public function begin($subject): void;
+    public function begin(mixed $subject): void;
 
     public function end(): void;
 

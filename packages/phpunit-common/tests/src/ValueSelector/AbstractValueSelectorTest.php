@@ -64,7 +64,7 @@ final class AbstractValueSelectorTest extends TestCase
              *
              * @psalm-param mixed $subject
              */
-            fn ($subject): bool => is_array($subject)
+            fn (mixed $subject): bool => is_array($subject)
         );
 
         $selectFromArray =
@@ -77,7 +77,7 @@ final class AbstractValueSelectorTest extends TestCase
          * @psalm-param array-key $key
          * @psalm-param mixed     $retval
          */
-        function ($subject, $key, &$retval): bool {
+        function (mixed $subject, mixed $key, mixed &$retval): bool {
             if (!array_key_exists($key, $subject)) {
                 return false;
             }
@@ -223,23 +223,16 @@ final class AbstractValueSelectorTest extends TestCase
                     private readonly string $selectable
                 ) {}
 
-                /**
-                 * @param mixed $input
-                 */
-                public function supports($input): bool
+                public function supports(mixed $input): bool
                 {
                     return call_user_func($this->supports, $input);
                 }
 
                 /**
-                 * @param mixed $subject
-                 * @param mixed $key
-                 * @param mixed $retval
-                 *
                  * @psalm-param array-key   $key
                  * @psalm-param SubjectType $subject
                  */
-                protected function selectFromSupported($subject, $key, &$retval = null): bool
+                protected function selectFromSupported(mixed $subject, mixed $key, mixed &$retval = null): bool
                 {
                     return call_user_func_array($this->select, [$subject, $key, &$retval]);
                 }

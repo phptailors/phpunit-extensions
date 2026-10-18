@@ -59,10 +59,7 @@ final class RecursiveExpectedResultFactoryStackItem implements RecursiveVisitorS
         return $this->key;
     }
 
-    /**
-     * @param mixed $value
-     */
-    public function set($value): void
+    public function set(mixed $value): void
     {
         $this->result[$this->key] = $value;
     }

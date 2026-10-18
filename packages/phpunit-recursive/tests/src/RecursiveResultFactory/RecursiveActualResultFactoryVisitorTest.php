@@ -483,14 +483,12 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
     /**
      * @dataProvider provEnterLeave
      *
-     * @param mixed $result
-     *
      * @psalm-param BeginArgs                     $begin
      * @psalm-param non-empty-list<EnterTestCall> $calls
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testEnterLeave(array $begin, array $calls, $result): void
+    public function testEnterLeave(array $begin, array $calls, mixed $result): void
     {
         $visitor = new RecursiveActualResultFactoryVisitor();
         $stack = [];
@@ -674,7 +672,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
              *
              * @psalm-param-out mixed $retval
              */
-            function ($subject, $key, &$retval) use ($c04): bool {
+            function (mixed $subject, mixed $key, mixed &$retval) use ($c04): bool {
                 if (!($c04 % 2) || !is_array($subject) || !array_key_exists($key, $subject)) {
                     return false;
                 }
@@ -713,15 +711,13 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
     /**
      * @dataProvider provVisit
      *
-     * @param mixed $result
-     *
      * @psalm-param BeginArgs                     $begin
      * @psalm-param ?EnterTestCall                $enter
      * @psalm-param non-empty-list<VisitTestCall> $calls
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testVisit(array $begin, ?array $enter, array $calls, $result): void
+    public function testVisit(array $begin, ?array $enter, array $calls, mixed $result): void
     {
         $visitor = new RecursiveActualResultFactoryVisitor();
         $stack = [];
@@ -1182,14 +1178,12 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
     /**
      * @dataProvider provWithRecursiveTraversal
      *
-     * @param mixed $result
-     *
      * @psalm-param BeginArgs $begin
      * @psalm-param ArrayLike $array
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testWithRecursiveTraversal(array $begin, iterable $array, $result): void
+    public function testWithRecursiveTraversal(array $begin, iterable $array, mixed $result): void
     {
         $visitor = new RecursiveActualResultFactoryVisitor();
         $traversal = new RecursiveTraversal();
@@ -1248,7 +1242,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
              *
              * @psalm-param-out mixed $retval
              */
-            function (\ArrayAccess $subject, $key, &$retval): bool {
+            function (\ArrayAccess $subject, mixed $key, mixed &$retval): bool {
                 if (!$subject->offsetExists($key)) {
                     return false;
                 }
@@ -1305,7 +1299,7 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
              *
              * @psalm-param-out mixed $retval
              */
-            function ($subject, $key, &$retval) use ($namespaces): bool {
+            function (mixed $subject, mixed $key, mixed &$retval) use ($namespaces): bool {
                 if (!is_string($subject) || !array_key_exists($subject, $namespaces)) {
                     return false;
                 }
@@ -1323,11 +1317,9 @@ final class RecursiveActualResultFactoryVisitorTest extends TestCase
     }
 
     /**
-     * @param mixed $input
-     *
      * @return mixed
      */
-    private static function unwrapWithResultUnwrapper($input)
+    private static function unwrapWithResultUnwrapper(mixed $input)
     {
         if (is_array($input) || is_iterable($input) && $input instanceof ResultInterface) {
             /** @psalm-var ArrayLike $input */

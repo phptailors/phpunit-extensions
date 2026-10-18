@@ -432,13 +432,11 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
     /**
      * @dataProvider provEnterLeave
      *
-     * @param mixed $result
-     *
      * @psalm-param non-empty-list<EnterTestCall> $calls
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testEnterLeave(array $calls, $result): void
+    public function testEnterLeave(array $calls, mixed $result): void
     {
         $visitor = new RecursiveExpectedResultFactoryVisitor();
         $stack = [];
@@ -595,14 +593,12 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
     /**
      * @dataProvider provVisit
      *
-     * @param mixed $result
-     *
      * @psalm-param ?EnterTestCall                $enter
      * @psalm-param non-empty-list<VisitTestCall> $calls
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testVisit(?array $enter, array $calls, $result): void
+    public function testVisit(?array $enter, array $calls, mixed $result): void
     {
         $visitor = new RecursiveExpectedResultFactoryVisitor();
         $stack = [];
@@ -808,13 +804,11 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
     /**
      * @dataProvider provWithRecursiveTraversal
      *
-     * @param mixed $result
-     *
      * @psalm-param ArrayLike $array
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testWithRecursiveTraversal(iterable $array, $result): void
+    public function testWithRecursiveTraversal(iterable $array, mixed $result): void
     {
         $visitor = new RecursiveExpectedResultFactoryVisitor();
         $traversal = new RecursiveTraversal();
@@ -859,11 +853,9 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
     }
 
     /**
-     * @param mixed $input
-     *
      * @return mixed
      */
-    private static function unwrapWithResultUnwrapper($input)
+    private static function unwrapWithResultUnwrapper(mixed $input)
     {
         if (is_array($input) || is_iterable($input) && $input instanceof ResultInterface) {
             /** @psalm-var ArrayLike $input */

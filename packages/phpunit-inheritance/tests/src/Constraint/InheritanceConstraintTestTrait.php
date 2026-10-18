@@ -41,13 +41,11 @@ trait InheritanceConstraintTestTrait
     /**
      * @dataProvider provFailureDescriptionOfCustomUnaryOperator
      *
-     * @param mixed $subject
-     *
      * @psalm-param ExpectExceptionArray $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testFailureDescriptionOfCustomUnaryOperator(Constraint $constraint, $subject, array $expect): void
+    public function testFailureDescriptionOfCustomUnaryOperator(Constraint $constraint, mixed $subject, array $expect): void
     {
         $noop = new class($constraint) extends UnaryOperator {
             public function operator(): string
@@ -70,13 +68,11 @@ trait InheritanceConstraintTestTrait
     /**
      * @dataProvider provFailureDescriptionOfLogicalNotOperator
      *
-     * @param mixed $subject
-     *
      * @psalm-param ExpectExceptionArray $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testFailureDescriptionOfLogicalNotOperator(Constraint $constraint, $subject, array $expect): void
+    public function testFailureDescriptionOfLogicalNotOperator(Constraint $constraint, mixed $subject, array $expect): void
     {
         $not = self::logicalNot($constraint);
 

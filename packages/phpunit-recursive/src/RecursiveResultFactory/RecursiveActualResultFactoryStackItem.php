@@ -58,10 +58,7 @@ final class RecursiveActualResultFactoryStackItem implements RecursiveVisitorSta
         return $this->key;
     }
 
-    /**
-     * @param mixed $value
-     */
-    public function set($value): void
+    public function set(mixed $value): void
     {
         $this->current->result[$this->key] = $value;
     }

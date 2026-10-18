@@ -178,11 +178,9 @@ final class ExtendsClassTest extends TestCase
     /**
      * @dataProvider provExtendsClass
      *
-     * @param mixed $subject
-     *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testConstraintSucceeds(string $class, $subject): void
+    public function testConstraintSucceeds(string $class, mixed $subject): void
     {
         $constraint = ExtendsClass::create($class);
 
@@ -192,11 +190,9 @@ final class ExtendsClassTest extends TestCase
     /**
      * @dataProvider provNotExtendsClass
      *
-     * @param mixed $subject
-     *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testConstraintFails(string $class, $subject, string $message): void
+    public function testConstraintFails(string $class, mixed $subject, string $message): void
     {
         $constraint = ExtendsClass::create($class);
 

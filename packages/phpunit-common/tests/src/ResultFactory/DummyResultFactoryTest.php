@@ -112,15 +112,12 @@ final class DummyResultFactoryTest extends TestCase
     /**
      * @dataProvider provDummyResultFactory
      *
-     * @param bool|\Closure $supports
-     * @param mixed         $input
-     *
      * @psalm-param bool|\Closure(mixed):bool $supports
      * @psalm-param array{supports: mixed}    $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testDummyResultFactory($supports, $input, bool $actual, array $expect): void
+    public function testDummyResultFactory(bool|\Closure $supports, mixed $input, bool $actual, array $expect): void
     {
         $dummyResultFactory = new DummyResultFactory($supports);
 

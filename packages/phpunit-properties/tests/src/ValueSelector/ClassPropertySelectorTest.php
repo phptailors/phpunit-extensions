@@ -80,12 +80,9 @@ final class ClassPropertySelectorTest extends TestCase
     /**
      * @dataProvider provSupports
      *
-     * @param mixed $subject
-     * @param mixed $expect
-     *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testSupports($subject, $expect): void
+    public function testSupports(mixed $subject, mixed $expect): void
     {
         $selector = new ClassPropertySelector();
         self::assertSame($expect, $selector->supports($subject));
@@ -155,15 +152,11 @@ final class ClassPropertySelectorTest extends TestCase
     /**
      * @dataProvider provSelect
      *
-     * @param mixed $key
-     * @param mixed $return
-     * @param mixed $expect
-     *
      * @psalm-param array-key $key
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testSelect(string $class, $key, $return, $expect): void
+    public function testSelect(string $class, mixed $key, mixed $return, mixed $expect): void
     {
         $selector = new ClassPropertySelector();
         self::assertSame($return, $selector->select($class, $key, $retval));

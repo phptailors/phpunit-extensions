@@ -95,12 +95,9 @@ final class AbstractArrayResultFactoryTest extends TestCase
     /**
      * @dataProvider provSupports
      *
-     * @param mixed $input
-     * @param mixed $expect
-     *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testSupports($input, $expect): void
+    public function testSupports(mixed $input, mixed $expect): void
     {
         $factory = $this->createStub(AbstractArrayResultFactory::class);
 
@@ -147,13 +144,11 @@ final class AbstractArrayResultFactoryTest extends TestCase
     /**
      * @dataProvider provGetResult
      *
-     * @param mixed $expect
-     *
      * @psalm-param GetResultArgs $args
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testGetResult(array $args, $expect): void
+    public function testGetResult(array $args, mixed $expect): void
     {
         $factory = self::getObject();
 

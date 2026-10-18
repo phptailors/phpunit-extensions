@@ -33,10 +33,7 @@ final class DummyValueSelector implements ValueSelectorInterface
         private readonly string $selectable = ''
     ) {}
 
-    /**
-     * @param mixed $input
-     */
-    public function supports($input): bool
+    public function supports(mixed $input): bool
     {
         if (is_bool($this->supports)) {
             return $this->supports;
@@ -46,15 +43,11 @@ final class DummyValueSelector implements ValueSelectorInterface
     }
 
     /**
-     * @param mixed $subject
-     * @param mixed $key
-     * @param mixed $retval
-     *
      * @psalm-param array-key $key
      *
      * @psalm-param-out mixed $retval
      */
-    public function select($subject, $key, &$retval): bool
+    public function select(mixed $subject, mixed $key, mixed &$retval): bool
     {
         if (is_bool($this->select)) {
             return $this->select;

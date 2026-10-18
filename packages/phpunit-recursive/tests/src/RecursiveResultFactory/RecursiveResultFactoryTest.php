@@ -290,14 +290,11 @@ final class RecursiveResultFactoryTest extends TestCase
     /**
      * @dataProvider provSupports
      *
-     * @param mixed $input
-     * @param mixed $expect
-     *
      * @psalm-param ArrayLike $array
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testSupports(iterable $array, $input, $expect): void
+    public function testSupports(iterable $array, mixed $input, mixed $expect): void
     {
         $expectedResultVisitor = $this->createStub(RecursiveExpectedResultFactoryVisitorInterface::class);
         $actualResultVisitor = $this->createStub(RecursiveActualResultFactoryVisitorInterface::class);

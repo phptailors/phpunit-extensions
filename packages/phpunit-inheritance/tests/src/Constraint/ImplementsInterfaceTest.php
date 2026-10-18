@@ -188,11 +188,9 @@ final class ImplementsInterfaceTest extends TestCase
     /**
      * @dataProvider provImplementsInterface
      *
-     * @param mixed $subject
-     *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testConstraintSucceeds(string $interface, $subject): void
+    public function testConstraintSucceeds(string $interface, mixed $subject): void
     {
         $constraint = ImplementsInterface::create($interface);
 
@@ -202,11 +200,9 @@ final class ImplementsInterfaceTest extends TestCase
     /**
      * @dataProvider provNotImplementsInterface
      *
-     * @param mixed $subject
-     *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testConstraintFails(string $interface, $subject, string $message): void
+    public function testConstraintFails(string $interface, mixed $subject, string $message): void
     {
         $constraint = ImplementsInterface::create($interface);
 

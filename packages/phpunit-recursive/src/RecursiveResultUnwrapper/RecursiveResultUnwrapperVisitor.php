@@ -135,11 +135,9 @@ final class RecursiveResultUnwrapperVisitor implements RecursiveResultUnwrapperV
     }
 
     /**
-     * @param mixed $node
-     *
      * @psalm-param list<StackItem> $stack
      */
-    public function visit($node, array $stack, bool $iterating): void
+    public function visit(mixed $node, array $stack, bool $iterating): void
     {
         $this->set($stack, $node);
     }
@@ -156,15 +154,13 @@ final class RecursiveResultUnwrapperVisitor implements RecursiveResultUnwrapperV
     }
 
     /**
-     * @param mixed $key
-     *
      * @psalm-param ArrayLike       $node
      * @psalm-param array-key       $key
      * @psalm-param list<StackItem> $stack
      *
      * @psalm-return StackItem
      */
-    public function makeStackItem(iterable $node, $key, array $stack): RecursiveVisitorStackItemInterface
+    public function makeStackItem(iterable $node, mixed $key, array $stack): RecursiveVisitorStackItemInterface
     {
         return new RecursiveResultUnwrapperStackItem($node, $key, $this->current);
     }
@@ -179,11 +175,9 @@ final class RecursiveResultUnwrapperVisitor implements RecursiveResultUnwrapperV
     }
 
     /**
-     * @param mixed $value
-     *
      * @psalm-param list<StackItem> $stack
      */
-    private function set(array $stack, $value): void
+    private function set(array $stack, mixed $value): void
     {
         $count = count($stack);
 
