@@ -3,15 +3,14 @@
 use Symplify\MonorepoBuilder\ComposerJsonManipulator\ValueObject\ComposerJsonSection;
 use Symplify\MonorepoBuilder\Config\MBConfig;
 use Symplify\MonorepoBuilder\Contract\Git\TagResolverInterface;
-use Symplify\MonorepoBuilder\Release\ReleaseWorker\PushNextDevReleaseWorker;
 use Symplify\MonorepoBuilder\Release\ReleaseWorker\PushTagReleaseWorker;
-use Symplify\MonorepoBuilder\Release\ReleaseWorker\SetNextMutualDependenciesReleaseWorker;
 use Symplify\MonorepoBuilder\Release\ReleaseWorker\TagVersionReleaseWorker;
-use Tailors\MonorepoBuilder\UpdateBranchAliasReleaseWorker;
 use Symplify\MonorepoBuilder\Release\ReleaseWorker\UpdateReplaceReleaseWorker;
 use Tailors\MonorepoBuilder\MostRecentTagResolver;
-use Tailors\MonorepoBuilder\SetCurrentMutualDependenciesReleaseWorker;
 use Tailors\MonorepoBuilder\RestoreCurrentMutualDependenciesReleaseWorker;
+use Tailors\MonorepoBuilder\RestoreReplaceReleaseWorker;
+use Tailors\MonorepoBuilder\SetCurrentMutualDependenciesReleaseWorker;
+use Tailors\MonorepoBuilder\UpdateBranchAliasReleaseWorker;
 
 return
 static function (MBConfig $mbConfig) : void {
@@ -63,6 +62,7 @@ static function (MBConfig $mbConfig) : void {
         TagVersionReleaseWorker::class,
         PushTagReleaseWorker::class,
         RestoreCurrentMutualDependenciesReleaseWorker::class,
+        RestoreReplaceReleaseWorker::class,
         UpdateBranchAliasReleaseWorker::class,
     ]);
 };

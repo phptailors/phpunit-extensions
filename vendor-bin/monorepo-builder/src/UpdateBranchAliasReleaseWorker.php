@@ -21,7 +21,7 @@ final readonly class UpdateBranchAliasReleaseWorker implements ReleaseWorkerInte
 
     public function work(Version $version): void
     {
-        $nextAlias = $this->getNextAliasFormat($version);
+        $nextAlias = $this->getRestoreAliasFormat($version);
 
         $this->devMasterAliasUpdater->updateFileInfosWithAlias(
             $this->composerJsonProvider->getPackagesComposerFileInfos(),
@@ -31,12 +31,12 @@ final readonly class UpdateBranchAliasReleaseWorker implements ReleaseWorkerInte
 
     public function getDescription(Version $version): string
     {
-        $nextAlias = $this->getNextAliasFormat($version);
+        $nextAlias = $this->getRestoreAliasFormat($version);
 
         return sprintf('Set branch alias "%s" to all packages', $nextAlias);
     }
 
-    private function getNextAliasFormat(Version $version): string
+    private function getRestoreAliasFormat(Version $version): string
     {
         if (!$version->hasPreReleaseSuffix()) {
             $version = new Version($version->getVersionString().'-dev');
