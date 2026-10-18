@@ -111,8 +111,8 @@ final class HasMethodTraitTest extends TestCase
     #[DataProvider('provNotHasMethod')]
     public function testAssertHasMethodFails(string $method, $subject, string $message): void
     {
-        self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessage($message);
+        $this->expectException(ExpectationFailedException::class);
+        $this->expectExceptionMessage($message);
 
         self::assertHasMethod($method, $subject);
     }
@@ -125,8 +125,8 @@ final class HasMethodTraitTest extends TestCase
     #[DataProvider('provHasMethod')]
     public function testAssertNotHasMethodFails(string $method, $subject, string $message): void
     {
-        self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessage($message);
+        $this->expectException(ExpectationFailedException::class);
+        $this->expectExceptionMessage($message);
 
         self::assertNotHasMethod($method, $subject);
     }

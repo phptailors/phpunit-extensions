@@ -42,8 +42,8 @@ final class StringArgumentValidatorTest extends TestCase
 
         $validator = new StringArgumentValidator('is_numeric', 'a numeric string');
 
-        self::expectException(InvalidArgumentException::class);
-        self::expectExceptionMessage($message);
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage($message);
 
         $validator->validate(1, 'foo');
     }

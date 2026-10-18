@@ -209,8 +209,8 @@ final class ImplementsInterfaceTest extends TestCase
     {
         $constraint = ImplementsInterface::create($interface);
 
-        self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessage($message);
+        $this->expectException(ExpectationFailedException::class);
+        $this->expectExceptionMessage($message);
 
         $constraint->evaluate($subject);
     }
@@ -221,8 +221,8 @@ final class ImplementsInterfaceTest extends TestCase
     #[DataProvider('provThrowsInvalidArgumentException')]
     public function testThrowsInvalidArgumentException(string $argument, string $message): void
     {
-        self::expectException(InvalidArgumentException::class);
-        self::expectExceptionMessageMatches($message);
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessageMatches($message);
 
         ImplementsInterface::create($argument);
     }
