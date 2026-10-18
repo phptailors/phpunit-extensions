@@ -7,6 +7,7 @@ use Symplify\MonorepoBuilder\Release\ReleaseWorker\PushTagReleaseWorker;
 use Symplify\MonorepoBuilder\Release\ReleaseWorker\TagVersionReleaseWorker;
 use Symplify\MonorepoBuilder\Release\ReleaseWorker\UpdateReplaceReleaseWorker;
 use Tailors\MonorepoBuilder\MostRecentTagResolver;
+use Tailors\MonorepoBuilder\PushRestoredDevReleaseWorker as TailorsPushRestoredDevReleaseWorker;
 use Tailors\MonorepoBuilder\RestoreCurrentMutualDependenciesReleaseWorker;
 use Tailors\MonorepoBuilder\RestoreReplaceReleaseWorker;
 use Tailors\MonorepoBuilder\SetCurrentMutualDependenciesReleaseWorker;
@@ -64,5 +65,6 @@ static function (MBConfig $mbConfig) : void {
         RestoreCurrentMutualDependenciesReleaseWorker::class,
         RestoreReplaceReleaseWorker::class,
         UpdateBranchAliasReleaseWorker::class,
+        TailorsPushRestoredDevReleaseWorker::class,
     ]);
 };
