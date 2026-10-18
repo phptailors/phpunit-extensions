@@ -26,7 +26,7 @@ return RectorConfig::configure()
         ArrowFunctionDelegatingCallToFirstClassCallableRector::class => true,
 
         // Leave if(null === ...) for more precise line code coverage
-        IfToNullCoalescingAssignRector::class,
+        IfToNullCoalescingAssignRector::class => true,
     ])
     ->withRules([
         RemoveUselessParamTagRector::class,
