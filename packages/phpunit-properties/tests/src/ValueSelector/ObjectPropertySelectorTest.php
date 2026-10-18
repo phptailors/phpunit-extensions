@@ -189,8 +189,8 @@ final class ObjectPropertySelectorTest extends TestCase
         };
         $selector = new ObjectPropertySelector();
 
-        self::expectException(\Error::class);
-        self::expectExceptionMessageIsOrContains('private method');
+        $this->expectException(\Error::class);
+        $this->expectExceptionMessageIsOrContains('private method');
 
         /** @psalm-suppress RedundantCondition */
         $selector->select($object, 'foo()');
@@ -206,8 +206,8 @@ final class ObjectPropertySelectorTest extends TestCase
         };
         $selector = new ObjectPropertySelector();
 
-        self::expectException(\Error::class);
-        self::expectExceptionMessageIsOrContains('private property');
+        $this->expectException(\Error::class);
+        $this->expectExceptionMessageIsOrContains('private property');
 
         /** @psalm-suppress RedundantCondition */
         $selector->select($object, 'foo');
@@ -228,8 +228,8 @@ final class ObjectPropertySelectorTest extends TestCase
             set_error_handler(static function (int $severity, string $message): void {
                 throw new \ErrorException($message, $severity);
             });
-            self::expectException(\ErrorException::class);
-            self::expectExceptionMessageIsOrContains('static property');
+            $this->expectException(\ErrorException::class);
+            $this->expectExceptionMessageIsOrContains('static property');
 
             /** @psalm-suppress RedundantCondition */
             $selector->select($object, 'foo');
@@ -267,8 +267,8 @@ final class ObjectPropertySelectorTest extends TestCase
             AbstractValueSelector::class,
             gettype(123)
         );
-        self::expectException(InvalidArgumentException::class);
-        self::expectExceptionMessageIsOrContains($message);
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessageIsOrContains($message);
 
         $selector->select(123, $key);
     }

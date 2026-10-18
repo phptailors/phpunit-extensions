@@ -183,8 +183,8 @@ final class ImplementsInterfaceTraitTest extends TestCase
     #[DataProvider('provNotImplementsInterface')]
     public function testAssertImplementsInterfaceFails(string $interface, $subject, string $message): void
     {
-        self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessageIsOrContains($message);
+        $this->expectException(ExpectationFailedException::class);
+        $this->expectExceptionMessageIsOrContains($message);
 
         self::assertImplementsInterface($interface, $subject);
     }
@@ -197,8 +197,8 @@ final class ImplementsInterfaceTraitTest extends TestCase
     #[DataProvider('provImplementsInterface')]
     public function testAssertNotImplementsInterfaceFails(string $interface, $subject, string $message): void
     {
-        self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessageIsOrContains($message);
+        $this->expectException(ExpectationFailedException::class);
+        $this->expectExceptionMessageIsOrContains($message);
 
         self::assertNotImplementsInterface($interface, $subject);
     }
@@ -237,8 +237,8 @@ final class ImplementsInterfaceTraitTest extends TestCase
     #[DataProvider('provImplementsInterfaceThrowsInvalidArgumentException')]
     public function testImplementsInterfaceThrowsInvalidArgumentException(string $argument, string $message): void
     {
-        self::expectException(InvalidArgumentException::class);
-        self::expectExceptionMessageIsOrContains($message);
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessageIsOrContains($message);
 
         self::implementsInterface($argument);
     }

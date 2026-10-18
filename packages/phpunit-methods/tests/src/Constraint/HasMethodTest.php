@@ -156,8 +156,8 @@ final class HasMethodTest extends AbstractConstraintTestCase
      */
     public function testCreateThrowsInvalidArgumentException(): void
     {
-        self::expectException(InvalidArgumentException::class);
-        self::expectExceptionMessageIsOrContains(
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessageIsOrContains(
             'Argument 1 passed to '.HasMethod::class.'::create() must be method specification,'.
             ' \'public function foo??\' (syntax error at "??") given.'
         );

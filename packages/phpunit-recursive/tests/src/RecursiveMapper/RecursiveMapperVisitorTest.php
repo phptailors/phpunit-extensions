@@ -118,8 +118,8 @@ final class RecursiveMapperVisitorTest extends TestCase
 
         $args = $call['args'];
 
-        self::expectException(CircularDependencyException::class);
-        self::expectExceptionMessageIsOrContains($call['message']);
+        $this->expectException(CircularDependencyException::class);
+        $this->expectExceptionMessageIsOrContains($call['message']);
 
         self::assertNull($visitor->cycle($args['node'], $args['stack']));
     }
@@ -876,8 +876,8 @@ final class RecursiveMapperVisitorTest extends TestCase
 
         $visitor->begin(...$begin);
 
-        self::expectException(CircularDependencyException::class);
-        self::expectExceptionMessageIsOrContains($message);
+        $this->expectException(CircularDependencyException::class);
+        $this->expectExceptionMessageIsOrContains($message);
 
         $traversal->walk($array, $visitor);
     }
@@ -900,8 +900,8 @@ final class RecursiveMapperVisitorTest extends TestCase
         $visitor->begin();
 
         $message = 'Circular dependency found in nested array at $array[\'foo\'][\'bar\'].';
-        self::expectException(CircularDependencyException::class);
-        self::expectExceptionMessageIsOrContains($message);
+        $this->expectException(CircularDependencyException::class);
+        $this->expectExceptionMessageIsOrContains($message);
 
         $traversal->walk($array, $visitor);
     }
@@ -913,8 +913,8 @@ final class RecursiveMapperVisitorTest extends TestCase
     {
         $visitor = new RecursiveMapperVisitor();
 
-        self::expectException(InvalidArgumentException::class);
-        self::expectExceptionMessageIsOrContains('Argument 2 passed to '.RecursiveMapperVisitor::class.'::set() must be an iterable, string given.');
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessageIsOrContains('Argument 2 passed to '.RecursiveMapperVisitor::class.'::set() must be an iterable, string given.');
 
         $visitor->visit('xxx', [], false);
     }

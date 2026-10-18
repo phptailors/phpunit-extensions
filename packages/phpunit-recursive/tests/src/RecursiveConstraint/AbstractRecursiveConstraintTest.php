@@ -271,8 +271,8 @@ final class AbstractRecursiveConstraintTest extends TestCase
     public function testEvaluate(Constraint $constraint, array $args, array $expect): void
     {
         if (array_key_exists('exception', $expect) && array_key_exists('message', $expect)) {
-            self::expectException($expect['exception']);
-            self::expectExceptionMessageIsOrContains($expect['message']);
+            $this->expectException($expect['exception']);
+            $this->expectExceptionMessageIsOrContains($expect['message']);
         }
 
         $actual = $constraint->evaluate(...$args);
@@ -345,8 +345,8 @@ final class AbstractRecursiveConstraintTest extends TestCase
 
         $constraint = $this->createDummyConstraint($expectations, null, $recursiveResultFactory);
 
-        self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessageIsOrContains('Failed asserting that \'value\' satisfies the recursive constraint');
+        $this->expectException(ExpectationFailedException::class);
+        $this->expectExceptionMessageIsOrContains('Failed asserting that \'value\' satisfies the recursive constraint');
 
         self::assertNull($constraint->evaluate('value'));
     }

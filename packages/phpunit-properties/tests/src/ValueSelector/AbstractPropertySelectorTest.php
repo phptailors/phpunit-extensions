@@ -259,8 +259,8 @@ final class AbstractPropertySelectorTest extends TestCase
 
         if (null !== $select) {
             if (null !== ($exception = $select['exception'] ?? null)) {
-                self::expectException(InvalidArgumentException::class);
-                self::expectExceptionMessageIsOrContains($exception);
+                $this->expectException(InvalidArgumentException::class);
+                $this->expectExceptionMessageIsOrContains($exception);
             }
 
             $return = $selector->select($select['subject'], $select['key'], $retval);

@@ -218,8 +218,8 @@ final class UsesTraitTest extends TestCase
     {
         $constraint = UsesTrait::create($trait);
 
-        self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessageIsOrContains($message);
+        $this->expectException(ExpectationFailedException::class);
+        $this->expectExceptionMessageIsOrContains($message);
 
         $constraint->evaluate($subject);
     }
@@ -230,8 +230,8 @@ final class UsesTraitTest extends TestCase
     #[DataProvider('provConstraintThrowsInvalidArgumentException')]
     public function testConstraintThrowsInvalidArgumentException(string $argument, string $message): void
     {
-        self::expectException(InvalidArgumentException::class);
-        self::expectExceptionMessageMatches($message);
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessageMatches($message);
 
         UsesTrait::create($argument);
     }

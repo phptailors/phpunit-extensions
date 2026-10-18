@@ -97,8 +97,8 @@ abstract class AbstractConstraintTestCase extends TestCase
 
         $unary = $this->wrapWithUnaryOperator($constraint);
 
-        self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessageIsOrContains($message);
+        $this->expectException(ExpectationFailedException::class);
+        $this->expectExceptionMessageIsOrContains($message);
 
         self::assertThat($actual, $unary);
     }
@@ -131,8 +131,8 @@ abstract class AbstractConstraintTestCase extends TestCase
     {
         $constraint = static::createConstraint($ctorArgs);
 
-        self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessageIsOrContains($message);
+        $this->expectException(ExpectationFailedException::class);
+        $this->expectExceptionMessageIsOrContains($message);
 
         $constraint->evaluate($actual);
     }
@@ -163,8 +163,8 @@ abstract class AbstractConstraintTestCase extends TestCase
     {
         $constraint = self::logicalNot(static::createConstraint($ctorArgs));
 
-        self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessageIsOrContains($message);
+        $this->expectException(ExpectationFailedException::class);
+        $this->expectExceptionMessageIsOrContains($message);
 
         $constraint->evaluate($actual);
     }
