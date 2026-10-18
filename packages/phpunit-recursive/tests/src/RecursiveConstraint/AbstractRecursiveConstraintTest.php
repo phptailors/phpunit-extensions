@@ -258,8 +258,6 @@ final class AbstractRecursiveConstraintTest extends TestCase
     }
 
     /**
-     * @param mixed $expect
-     *
      * @psalm-param Constraint     $constraint
      * @psalm-param EvaluateArgs   $args
      * @psalm-param EvaluateExpect $expect
