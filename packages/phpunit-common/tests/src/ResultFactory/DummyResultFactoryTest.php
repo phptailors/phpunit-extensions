@@ -35,7 +35,7 @@ final class DummyResultFactoryTest extends TestCase
      */
     public function testImplementsResultFactoryInterface(): void
     {
-        $this->assertInstanceOf(ResultFactoryInterface::class, new DummyResultFactory(false));
+        self::assertInstanceOf(ResultFactoryInterface::class, new DummyResultFactory(false));
     }
 
     /**
@@ -121,11 +121,11 @@ final class DummyResultFactoryTest extends TestCase
     {
         $dummyResultFactory = new DummyResultFactory($supports);
 
-        $this->assertSame($expect['supports'], $dummyResultFactory->supports($input));
+        self::assertSame($expect['supports'], $dummyResultFactory->supports($input));
 
         $result = $dummyResultFactory->getResult($actual, $input);
 
-        $this->assertInstanceOf(DummyResult::class, $result);
-        $this->assertSame($actual, $result->actual());
+        self::assertInstanceOf(DummyResult::class, $result);
+        self::assertSame($actual, $result->actual());
     }
 }

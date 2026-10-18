@@ -31,7 +31,7 @@ final class ReferenceStorageTest extends TestCase
     {
         $storage = new ReferenceStorage();
 
-        $this->assertSame(0, count($storage));
+        self::assertSame(0, count($storage));
     }
 
     /**
@@ -50,7 +50,7 @@ final class ReferenceStorageTest extends TestCase
             $storage->add($value);
         }
 
-        $this->assertSame($expect, count($storage));
+        self::assertSame($expect, count($storage));
     }
 
     /**
@@ -66,15 +66,15 @@ final class ReferenceStorageTest extends TestCase
 
         /** @psalm-var mixed $value */
         foreach ($values as &$value) {
-            $this->assertFalse($storage->contains($value));
+            self::assertFalse($storage->contains($value));
             $storage->add($value);
-            $this->assertTrue($storage->contains($value));
+            self::assertTrue($storage->contains($value));
         }
 
         /** @psalm-var mixed $value */
         foreach ($values as &$value) {
             $storage->remove($value);
-            $this->assertFalse($storage->contains($value));
+            self::assertFalse($storage->contains($value));
         }
     }
 
@@ -90,8 +90,8 @@ final class ReferenceStorageTest extends TestCase
 
         $storage->add($var1);
 
-        $this->assertTrue($storage->contains($var1));
-        $this->assertTrue($storage->contains($var2));
+        self::assertTrue($storage->contains($var1));
+        self::assertTrue($storage->contains($var2));
     }
 
     /**
@@ -112,41 +112,41 @@ final class ReferenceStorageTest extends TestCase
         $arr3['arr2'] = $arr2;
 
         $storage->add($arr1);
-        $this->assertTrue($storage->contains($arr1));
-        $this->assertFalse($storage->contains($arr1['arr2']));
-        $this->assertFalse($storage->contains($arr1['arr3']));
-        $this->assertFalse($storage->contains($arr2));
-        $this->assertTrue($storage->contains($arr2['arr1']));
-        $this->assertFalse($storage->contains($arr2['arr3']));
-        $this->assertFalse($storage->contains($arr3));
-        $this->assertFalse($storage->contains($arr3['arr1']));
-        $this->assertFalse($storage->contains($arr3['arr2']));
+        self::assertTrue($storage->contains($arr1));
+        self::assertFalse($storage->contains($arr1['arr2']));
+        self::assertFalse($storage->contains($arr1['arr3']));
+        self::assertFalse($storage->contains($arr2));
+        self::assertTrue($storage->contains($arr2['arr1']));
+        self::assertFalse($storage->contains($arr2['arr3']));
+        self::assertFalse($storage->contains($arr3));
+        self::assertFalse($storage->contains($arr3['arr1']));
+        self::assertFalse($storage->contains($arr3['arr2']));
 
         $storage->add($arr2);
-        $this->assertTrue($storage->contains($arr1));
-        $this->assertTrue($storage->contains($arr1['arr2']));
-        $this->assertFalse($storage->contains($arr1['arr3']));
-        $this->assertTrue($storage->contains($arr2));
-        $this->assertTrue($storage->contains($arr2['arr1']));
-        $this->assertFalse($storage->contains($arr2['arr3']));
-        $this->assertFalse($storage->contains($arr3));
-        $this->assertFalse($storage->contains($arr3['arr1']));
-        $this->assertFalse($storage->contains($arr3['arr2']));
+        self::assertTrue($storage->contains($arr1));
+        self::assertTrue($storage->contains($arr1['arr2']));
+        self::assertFalse($storage->contains($arr1['arr3']));
+        self::assertTrue($storage->contains($arr2));
+        self::assertTrue($storage->contains($arr2['arr1']));
+        self::assertFalse($storage->contains($arr2['arr3']));
+        self::assertFalse($storage->contains($arr3));
+        self::assertFalse($storage->contains($arr3['arr1']));
+        self::assertFalse($storage->contains($arr3['arr2']));
 
         $storage->add($arr3);
-        $this->assertTrue($storage->contains($arr1));
-        $this->assertTrue($storage->contains($arr1['arr2']));
-        $this->assertTrue($storage->contains($arr1['arr3']));
-        $this->assertTrue($storage->contains($arr2));
-        $this->assertTrue($storage->contains($arr2['arr1']));
-        $this->assertTrue($storage->contains($arr2['arr3']));
-        $this->assertTrue($storage->contains($arr3));
-        $this->assertFalse($storage->contains($arr3['arr1']));
-        $this->assertFalse($storage->contains($arr3['arr2']));
-        $this->assertTrue($storage->contains($arr3['arr1']['arr2']));
-        $this->assertTrue($storage->contains($arr3['arr1']['arr3']));
-        $this->assertTrue($storage->contains($arr3['arr2']['arr1']));
-        $this->assertTrue($storage->contains($arr3['arr2']['arr3']));
+        self::assertTrue($storage->contains($arr1));
+        self::assertTrue($storage->contains($arr1['arr2']));
+        self::assertTrue($storage->contains($arr1['arr3']));
+        self::assertTrue($storage->contains($arr2));
+        self::assertTrue($storage->contains($arr2['arr1']));
+        self::assertTrue($storage->contains($arr2['arr3']));
+        self::assertTrue($storage->contains($arr3));
+        self::assertFalse($storage->contains($arr3['arr1']));
+        self::assertFalse($storage->contains($arr3['arr2']));
+        self::assertTrue($storage->contains($arr3['arr1']['arr2']));
+        self::assertTrue($storage->contains($arr3['arr1']['arr3']));
+        self::assertTrue($storage->contains($arr3['arr2']['arr1']));
+        self::assertTrue($storage->contains($arr3['arr2']['arr3']));
     }
 
     /**
@@ -160,9 +160,9 @@ final class ReferenceStorageTest extends TestCase
         $arr['foo']['bar'] = &$arr;
 
         $storage->add($arr);
-        $this->assertTrue($storage->contains($arr));
-        $this->assertFalse($storage->contains($arr['foo']));
-        $this->assertTrue($storage->contains($arr['foo']['bar']));
+        self::assertTrue($storage->contains($arr));
+        self::assertFalse($storage->contains($arr['foo']));
+        self::assertTrue($storage->contains($arr['foo']['bar']));
     }
 
     /**
@@ -175,13 +175,13 @@ final class ReferenceStorageTest extends TestCase
 
         $var = 'var';
         $storage->add($var);
-        $this->assertSame('var', $var);
+        self::assertSame('var', $var);
 
-        $this->assertTrue($storage->contains($var));
-        $this->assertSame('var', $var);
+        self::assertTrue($storage->contains($var));
+        self::assertSame('var', $var);
 
         $storage->remove($var);
-        $this->assertSame('var', $var);
+        self::assertSame('var', $var);
     }
 
     /**

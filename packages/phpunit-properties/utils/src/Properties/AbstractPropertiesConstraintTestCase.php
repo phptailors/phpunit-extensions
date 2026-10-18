@@ -73,8 +73,8 @@ abstract class AbstractPropertiesConstraintTestCase extends AbstractRecursiveCon
             $count > 1 ? 'keys' : 'key'
         );
 
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage($message);
+        self::expectException(InvalidArgumentException::class);
+        self::expectExceptionMessage($message);
 
         static::createConstraint([$array]);
     }

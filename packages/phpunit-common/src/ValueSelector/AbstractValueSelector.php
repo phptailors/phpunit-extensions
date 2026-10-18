@@ -32,7 +32,7 @@ abstract class AbstractValueSelector implements ValueSelectorInterface
      */
     final public function select(mixed $subject, mixed $key, mixed &$retval = null): bool
     {
-        $this->assertSupports($subject, 1);
+        self::assertSupports($subject, 1);
 
         return $this->selectFromSupported($subject, $key, $retval);
     }

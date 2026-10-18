@@ -171,8 +171,8 @@ final class ClassPropertySelectorTest extends TestCase
         })::class;
         $selector = new ClassPropertySelector();
 
-        $this->expectException(\Error::class);
-        $this->expectExceptionMessage('private method');
+        self::expectException(\Error::class);
+        self::expectExceptionMessage('private method');
 
         $selector->select($class, 'foo()');
     }
@@ -187,8 +187,8 @@ final class ClassPropertySelectorTest extends TestCase
         })::class;
         $selector = new ClassPropertySelector();
 
-        $this->expectException(\Error::class);
-        $this->expectExceptionMessage('private property');
+        self::expectException(\Error::class);
+        self::expectExceptionMessage('private property');
 
         $selector->select($class, 'foo');
     }
@@ -209,8 +209,8 @@ final class ClassPropertySelectorTest extends TestCase
                 set_error_handler(static function (int $severity, string $message): void {
                     throw new \ErrorException($message, $severity);
                 });
-                $this->expectException(\ErrorException::class);
-                $this->expectExceptionMessage('should not be called statically');
+                self::expectException(\ErrorException::class);
+                self::expectExceptionMessage('should not be called statically');
 
                 $selector->select($class, 'foo()');
             } finally {
@@ -219,8 +219,8 @@ final class ClassPropertySelectorTest extends TestCase
         // @codeCoverageIgnoreEnd
         } else {
             // @codeCoverageIgnoreStart
-            $this->expectException(\TypeError::class);
-            $this->expectExceptionMessage('cannot be called statically');
+            self::expectException(\TypeError::class);
+            self::expectExceptionMessage('cannot be called statically');
             $selector->select($class, 'foo()');
             // @codeCoverageIgnoreEnd
         }
@@ -236,8 +236,8 @@ final class ClassPropertySelectorTest extends TestCase
         })::class;
         $selector = new ClassPropertySelector();
 
-        $this->expectException(\Error::class);
-        $this->expectExceptionMessage('undeclared static property');
+        self::expectException(\Error::class);
+        self::expectExceptionMessage('undeclared static property');
 
         $selector->select($class, 'foo');
     }
@@ -272,8 +272,8 @@ final class ClassPropertySelectorTest extends TestCase
             AbstractValueSelector::class,
             gettype(123)
         );
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage($message);
+        self::expectException(InvalidArgumentException::class);
+        self::expectExceptionMessage($message);
 
         $selector->select(123, $key);
     }

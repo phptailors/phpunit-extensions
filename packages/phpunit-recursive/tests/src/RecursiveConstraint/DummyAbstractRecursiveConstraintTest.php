@@ -37,7 +37,7 @@ final class DummyAbstractRecursiveConstraintTest extends TestCase
             $this->createStub(RecursiveResultUnwrapperInterface::class)
         );
 
-        $this->assertInstanceOf(DummyAbstractRecursiveConstraint::class, $constraint);
+        self::assertInstanceOf(DummyAbstractRecursiveConstraint::class, $constraint);
     }
 
     /**
@@ -52,7 +52,7 @@ final class DummyAbstractRecursiveConstraintTest extends TestCase
             $this->createStub(RecursiveResultUnwrapperInterface::class)
         );
 
-        $this->assertInstanceOf(DummyAbstractRecursiveConstraint::class, $constraint);
+        self::assertInstanceOf(DummyAbstractRecursiveConstraint::class, $constraint);
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

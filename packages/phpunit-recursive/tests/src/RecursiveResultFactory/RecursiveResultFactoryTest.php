@@ -79,7 +79,7 @@ final class RecursiveResultFactoryTest extends TestCase
             ->willReturn(['out' => 'OUT'])
         ;
 
-        $this->assertSame(['out' => 'OUT'], $recursiveResultFactory->getExpectedResult(['foo' => 'FOO']));
+        self::assertSame(['out' => 'OUT'], $recursiveResultFactory->getExpectedResult(['foo' => 'FOO']));
     }
 
     /**
@@ -112,7 +112,7 @@ final class RecursiveResultFactoryTest extends TestCase
             ->willReturn(['out' => 'OUT'])
         ;
 
-        $this->assertSame(['out' => 'OUT'], $recursiveResultFactory->getActualResult(['foo' => 'FOO'], ['in' => 'IN']));
+        self::assertSame(['out' => 'OUT'], $recursiveResultFactory->getActualResult(['foo' => 'FOO'], ['in' => 'IN']));
     }
 
     /**
@@ -122,8 +122,8 @@ final class RecursiveResultFactoryTest extends TestCase
     {
         $recursiveResultFactory = RecursiveResultFactory::create();
 
-        $this->assertSame(['a' => 'A'], $recursiveResultFactory->getExpectedResult(['a' => 'A']));
-        $this->assertSame(['x' => 'X'], $recursiveResultFactory->getActualResult(['a' => 'A'], ['x' => 'X']));
+        self::assertSame(['a' => 'A'], $recursiveResultFactory->getExpectedResult(['a' => 'A']));
+        self::assertSame(['x' => 'X'], $recursiveResultFactory->getActualResult(['a' => 'A'], ['x' => 'X']));
     }
 
     /**
@@ -302,7 +302,7 @@ final class RecursiveResultFactoryTest extends TestCase
 
         $recursiveResultFactory = new RecursiveResultFactory($expectedResultVisitor, $actualResultVisitor, $traversal);
 
-        $this->assertSame($expect, $recursiveResultFactory->supports($array, $input));
+        self::assertSame($expect, $recursiveResultFactory->supports($array, $input));
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

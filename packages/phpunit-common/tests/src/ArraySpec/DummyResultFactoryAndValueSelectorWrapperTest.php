@@ -61,7 +61,7 @@ final class DummyResultFactoryAndValueSelectorWrapperTest extends TestCase
      */
     public function testExtendsArrayObject(): void
     {
-        $this->assertInstanceOf(\ArrayObject::class, self::createDummyResultFactoryAndValueSelectorWrapper([]));
+        self::assertInstanceOf(\ArrayObject::class, self::createDummyResultFactoryAndValueSelectorWrapper([]));
     }
 
     /**
@@ -69,7 +69,7 @@ final class DummyResultFactoryAndValueSelectorWrapperTest extends TestCase
      */
     public function testImplementsResultFactoryWrapperInterface(): void
     {
-        $this->assertInstanceOf(ResultFactoryWrapperInterface::class, self::createDummyResultFactoryAndValueSelectorWrapper([]));
+        self::assertInstanceOf(ResultFactoryWrapperInterface::class, self::createDummyResultFactoryAndValueSelectorWrapper([]));
     }
 
     /**
@@ -77,7 +77,7 @@ final class DummyResultFactoryAndValueSelectorWrapperTest extends TestCase
      */
     public function testImplementsValueSelectorWrapperInterface(): void
     {
-        $this->assertInstanceOf(ValueSelectorWrapperInterface::class, self::createDummyResultFactoryAndValueSelectorWrapper([]));
+        self::assertInstanceOf(ValueSelectorWrapperInterface::class, self::createDummyResultFactoryAndValueSelectorWrapper([]));
     }
 
     /**
@@ -85,7 +85,7 @@ final class DummyResultFactoryAndValueSelectorWrapperTest extends TestCase
      */
     public function testImplementsComparatorAwareComplementInterface(): void
     {
-        $this->assertInstanceOf(ComparatorAwareComplementInterface::class, self::createDummyResultFactoryAndValueSelectorWrapper([]));
+        self::assertInstanceOf(ComparatorAwareComplementInterface::class, self::createDummyResultFactoryAndValueSelectorWrapper([]));
     }
 
     /**
@@ -128,11 +128,11 @@ final class DummyResultFactoryAndValueSelectorWrapperTest extends TestCase
 
         $dummyWrapper = self::createDummyResultFactoryAndValueSelectorWrapper($array, $resultFactory, $valueSelector);
 
-        $this->assertSame($resultFactory, $dummyWrapper->getResultFactory());
-        $this->assertSame($valueSelector, $dummyWrapper->getValueSelector());
+        self::assertSame($resultFactory, $dummyWrapper->getResultFactory());
+        self::assertSame($valueSelector, $dummyWrapper->getValueSelector());
 
         $expect = is_array($array) ? $array : iterator_to_array($array);
-        $this->assertSame($expect, iterator_to_array($dummyWrapper));
+        self::assertSame($expect, iterator_to_array($dummyWrapper));
     }
 
     /**
@@ -148,6 +148,6 @@ final class DummyResultFactoryAndValueSelectorWrapperTest extends TestCase
 
         $comparator = new DummyComparator(false, 'similar to');
 
-        $this->assertSame('rainbow with colors similar to the specified ones', $dummyWrapper->complement($comparator));
+        self::assertSame('rainbow with colors similar to the specified ones', $dummyWrapper->complement($comparator));
     }
 }

@@ -41,7 +41,7 @@ final class ObjectPropertiesFactoryTest extends TestCase
      */
     public function testExtendsAbstractArrayResultFactory(): void
     {
-        $this->assertInstanceOf(AbstractArrayResultFactory::class, new ObjectPropertiesFactory());
+        self::assertInstanceOf(AbstractArrayResultFactory::class, new ObjectPropertiesFactory());
     }
 
     /**
@@ -49,7 +49,7 @@ final class ObjectPropertiesFactoryTest extends TestCase
      */
     public function testImplementsResultFactoryInterface(): void
     {
-        $this->assertInstanceOf(ResultFactoryInterface::class, new ObjectPropertiesFactory());
+        self::assertInstanceOf(ResultFactoryInterface::class, new ObjectPropertiesFactory());
     }
 
     /**
@@ -114,11 +114,11 @@ final class ObjectPropertiesFactoryTest extends TestCase
 
         $result = $factory->getResult($actual, $array);
 
-        $this->assertInstanceOf($expect['class'], $result);
+        self::assertInstanceOf($expect['class'], $result);
 
         /** @psalm-suppress RedundantConditionGivenDocblockType */
-        $this->assertIsIterable($result);
-        $this->assertSame($expect['array'], iterator_to_array($result));
+        self::assertIsIterable($result);
+        self::assertSame($expect['array'], iterator_to_array($result));
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

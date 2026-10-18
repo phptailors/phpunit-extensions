@@ -56,7 +56,7 @@ final class RecursiveMapperVisitorTest extends TestCase
     public function testInitialResult(): void
     {
         $visitor = new RecursiveMapperVisitor();
-        $this->assertNull($visitor->result());
+        self::assertNull($visitor->result());
     }
 
     /**
@@ -115,10 +115,10 @@ final class RecursiveMapperVisitorTest extends TestCase
 
         $args = $call['args'];
 
-        $this->expectException(CircularDependencyException::class);
-        $this->expectExceptionMessage($call['message']);
+        self::expectException(CircularDependencyException::class);
+        self::expectExceptionMessage($call['message']);
 
-        $this->assertNull($visitor->cycle($args['node'], $args['stack']));
+        self::assertNull($visitor->cycle($args['node'], $args['stack']));
     }
 
     /**
@@ -469,7 +469,7 @@ final class RecursiveMapperVisitorTest extends TestCase
         foreach ($calls as $call) {
             $args = $call['args'];
             $node = $args['node'];
-            $this->assertSame($call['return'], $visitor->enter($node, $stack));
+            self::assertSame($call['return'], $visitor->enter($node, $stack));
             if ($call['return'] && array_key_exists('next', $call)) {
                 array_push($stack, $visitor->makeStackItem($node, $call['next'], $stack));
             }
@@ -479,15 +479,15 @@ final class RecursiveMapperVisitorTest extends TestCase
             $args = $call['args'];
             $node = $args['node'];
             if ($call['return'] && array_key_exists('next', $call)) {
-                $this->assertNotEmpty($stack);
+                self::assertNotEmpty($stack);
                 $visitor->freeStackItem(array_pop($stack), $stack);
             }
-            $this->assertNull($visitor->leave($node, $stack, $call['return']));
+            self::assertNull($visitor->leave($node, $stack, $call['return']));
         }
 
         $visitor->end();
 
-        $this->assertSame($result, $visitor->result());
+        self::assertSame($result, $visitor->result());
     }
 
     /**
@@ -606,7 +606,7 @@ final class RecursiveMapperVisitorTest extends TestCase
         $visitor->begin(...$begin);
 
         $i = 0;
-        $this->assertTrue($visitor->enter($root, $stack));
+        self::assertTrue($visitor->enter($root, $stack));
         foreach ($calls as $call) {
             $args = $call['args'];
 
@@ -623,10 +623,10 @@ final class RecursiveMapperVisitorTest extends TestCase
                 array_push($stack, $visitor->makeStackItem($root, $call['key'], $stack));
             }
 
-            $this->assertNull($visitor->visit($node, $stack, $iter));
+            self::assertNull($visitor->visit($node, $stack, $iter));
 
             if ($iter) {
-                $this->assertNotEmpty($stack);
+                self::assertNotEmpty($stack);
                 $visitor->freeStackItem(array_pop($stack), $stack);
             }
             ++$i;
@@ -635,7 +635,7 @@ final class RecursiveMapperVisitorTest extends TestCase
 
         $visitor->end();
 
-        $this->assertSame($result, $visitor->result());
+        self::assertSame($result, $visitor->result());
     }
 
     /**
@@ -861,8 +861,8 @@ final class RecursiveMapperVisitorTest extends TestCase
 
         $visitor->begin(...$begin);
 
-        $this->expectException(CircularDependencyException::class);
-        $this->expectExceptionMessage($message);
+        self::expectException(CircularDependencyException::class);
+        self::expectExceptionMessage($message);
 
         $traversal->walk($array, $visitor);
     }
@@ -885,8 +885,8 @@ final class RecursiveMapperVisitorTest extends TestCase
         $visitor->begin();
 
         $message = 'Circular dependency found in nested array at $array[\'foo\'][\'bar\'].';
-        $this->expectException(CircularDependencyException::class);
-        $this->expectExceptionMessage($message);
+        self::expectException(CircularDependencyException::class);
+        self::expectExceptionMessage($message);
 
         $traversal->walk($array, $visitor);
     }
@@ -898,8 +898,8 @@ final class RecursiveMapperVisitorTest extends TestCase
     {
         $visitor = new RecursiveMapperVisitor();
 
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Argument 2 passed to '.RecursiveMapperVisitor::class.'::set() must be an iterable, string given.');
+        self::expectException(InvalidArgumentException::class);
+        self::expectExceptionMessage('Argument 2 passed to '.RecursiveMapperVisitor::class.'::set() must be an iterable, string given.');
 
         $visitor->visit('xxx', [], false);
     }

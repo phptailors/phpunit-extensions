@@ -38,7 +38,7 @@ final class DummyArrayResultTest extends TestCase
      */
     public function testExtendsArrayObject(): void
     {
-        $this->assertInstanceOf(\ArrayObject::class, new DummyArrayResult(false));
+        self::assertInstanceOf(\ArrayObject::class, new DummyArrayResult(false));
     }
 
     /**
@@ -46,7 +46,7 @@ final class DummyArrayResultTest extends TestCase
      */
     public function testImplementsResultInterface(): void
     {
-        $this->assertInstanceOf(ResultInterface::class, new DummyArrayResult(false));
+        self::assertInstanceOf(ResultInterface::class, new DummyArrayResult(false));
     }
 
     /**
@@ -54,7 +54,7 @@ final class DummyArrayResultTest extends TestCase
      */
     public function testNotImplementsTagInterface(): void
     {
-        $this->assertNotInstanceOf(TagInterface::class, new DummyArrayResult(false));
+        self::assertNotInstanceOf(TagInterface::class, new DummyArrayResult(false));
     }
 
     /**
@@ -101,9 +101,9 @@ final class DummyArrayResultTest extends TestCase
     {
         $arrayResult = new DummyArrayResult(...$ctor);
 
-        $this->assertSame($expect['actual'], $arrayResult->actual());
-        $this->assertSame($expect['array'], iterator_to_array($arrayResult));
-        $this->assertSame($expect['array'], (array) $arrayResult);
+        self::assertSame($expect['actual'], $arrayResult->actual());
+        self::assertSame($expect['array'], iterator_to_array($arrayResult));
+        self::assertSame($expect['array'], (array) $arrayResult);
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

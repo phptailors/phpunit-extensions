@@ -34,7 +34,7 @@ final class DummyArrayExpectationsTest extends TestCase
     public function testExtendsAbstractArraySpec(): void
     {
         $resultFactory = $this->createStub(ResultFactoryInterface::class);
-        $this->assertInstanceOf(AbstractArrayExpectations::class, new DummyArrayExpectations($resultFactory, []));
+        self::assertInstanceOf(AbstractArrayExpectations::class, new DummyArrayExpectations($resultFactory, []));
     }
 
     /**
@@ -72,9 +72,9 @@ final class DummyArrayExpectationsTest extends TestCase
     {
         $dummyArraySpec = new DummyArrayExpectations($factory, $array);
 
-        $this->assertSame($factory, $dummyArraySpec->getResultFactory());
+        self::assertSame($factory, $dummyArraySpec->getResultFactory());
 
         $expect = is_array($array) ? $array : iterator_to_array($array);
-        $this->assertSame($expect, iterator_to_array($dummyArraySpec));
+        self::assertSame($expect, iterator_to_array($dummyArraySpec));
     }
 }
