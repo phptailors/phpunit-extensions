@@ -42,7 +42,7 @@ final class KsortedArrayExpectationsTest extends TestCase
      */
     public function testExtendsAbstractArraySpec(): void
     {
-        $this->assertInstanceOf(AbstractArrayExpectations::class, new KsortedArrayExpectations([]));
+        self::assertInstanceOf(AbstractArrayExpectations::class, new KsortedArrayExpectations([]));
     }
 
     /**
@@ -50,7 +50,7 @@ final class KsortedArrayExpectationsTest extends TestCase
      */
     public function testImplementsResultFactoryWrapperInterface(): void
     {
-        $this->assertInstanceOf(ResultFactoryWrapperInterface::class, new KsortedArrayExpectations([]));
+        self::assertInstanceOf(ResultFactoryWrapperInterface::class, new KsortedArrayExpectations([]));
     }
 
     /**
@@ -58,7 +58,7 @@ final class KsortedArrayExpectationsTest extends TestCase
      */
     public function testImplementsComparatorAwareComplementInterface(): void
     {
-        $this->assertInstanceOf(ComparatorAwareComplementInterface::class, new KsortedArrayExpectations([]));
+        self::assertInstanceOf(ComparatorAwareComplementInterface::class, new KsortedArrayExpectations([]));
     }
 
     /**
@@ -216,7 +216,7 @@ final class KsortedArrayExpectationsTest extends TestCase
                 return is_array($node);
             };
 
-        $this->assertSame($expect['array'], $mapper->map($expectations, $unwrapper));
+        self::assertSame($expect['array'], $mapper->map($expectations, $unwrapper));
     }
 
     /**
@@ -227,7 +227,7 @@ final class KsortedArrayExpectationsTest extends TestCase
         $expectations = new KsortedArrayExpectations([]);
         $comparator = new DummyComparator(false, 'similar to');
 
-        $this->assertSame('an array similar to the specified one when ksorted', $expectations->complement($comparator));
+        self::assertSame('an array similar to the specified one when ksorted', $expectations->complement($comparator));
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

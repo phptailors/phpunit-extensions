@@ -31,9 +31,9 @@ final class RecursiveMapperStackItemTest extends TestCase
     {
         $item = new RecursiveMapperStackItem(['node'], 'key', ['result']);
 
-        $this->assertSame(['node'], $item->node());
-        $this->assertSame('key', $item->key());
-        $this->assertSame(['result'], $item->result());
+        self::assertSame(['node'], $item->node());
+        self::assertSame('key', $item->key());
+        self::assertSame(['result'], $item->result());
     }
 
     /**
@@ -43,11 +43,11 @@ final class RecursiveMapperStackItemTest extends TestCase
     {
         $item = new RecursiveMapperStackItem(['node'], 'key', ['result']);
 
-        $this->assertSame(['result'], $item->result());
+        self::assertSame(['result'], $item->result());
 
         $item->set('val');
 
-        $this->assertSame(['result', 'key' => 'val'], $item->result());
+        self::assertSame(['result', 'key' => 'val'], $item->result());
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

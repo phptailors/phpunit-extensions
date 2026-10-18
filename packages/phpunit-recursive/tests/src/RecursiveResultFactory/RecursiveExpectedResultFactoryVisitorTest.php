@@ -68,7 +68,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
     public function testInitialResult(): void
     {
         $visitor = new RecursiveExpectedResultFactoryVisitor();
-        $this->assertNull($visitor->result());
+        self::assertNull($visitor->result());
     }
 
     /**
@@ -123,8 +123,8 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
     public function testCycle(array $stack, string $expect): void
     {
         $rePath = preg_quote($expect, '/');
-        $this->expectException(CircularDependencyException::class);
-        $this->expectExceptionMessageMatches("/^Circular dependency found in nested array at \\\$array{$rePath}\\.$/");
+        self::expectException(CircularDependencyException::class);
+        self::expectExceptionMessageMatches("/^Circular dependency found in nested array at \\\$array{$rePath}\\.$/");
 
         (new RecursiveExpectedResultFactoryVisitor())->cycle([], $stack);
     }
@@ -446,7 +446,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
 
         foreach ($calls as $call) {
             $args = $call['args'];
-            $this->assertSame($call['return'], $visitor->enter($args['node'], $stack));
+            self::assertSame($call['return'], $visitor->enter($args['node'], $stack));
             if (array_key_exists('next', $call)) {
                 array_push($stack, $visitor->makeStackItem($args['node'], $call['next'], $stack));
             }
@@ -460,10 +460,10 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
                  *
                  * @psalm-var non-empty-list<StackItem> $stack
                  */
-                $this->assertNotEmpty($stack);
+                self::assertNotEmpty($stack);
                 $visitor->freeStackItem(array_pop($stack), $stack);
             }
-            $this->assertNull($visitor->leave($args['node'], $stack, $call['return']));
+            self::assertNull($visitor->leave($args['node'], $stack, $call['return']));
         }
 
         $visitor->end();
@@ -474,7 +474,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         /** @psalm-var mixed $actual */
         $actual = self::unwrapWithResultUnwrapper($visitor->result());
 
-        $this->assertSame($expect, $actual);
+        self::assertSame($expect, $actual);
     }
 
     /**
@@ -614,7 +614,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
 
         if (null !== $enter) {
             $args = $enter['args'];
-            $this->assertSame($enter['return'], $visitor->enter($args['node'], $stack));
+            self::assertSame($enter['return'], $visitor->enter($args['node'], $stack));
         }
 
         $iter = null === $enter ? false : $enter['return'];
@@ -622,24 +622,24 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         foreach ($calls as $call) {
             $args = $call['args'];
             if (array_key_exists('key', $call)) {
-                $this->assertNotNull($enter);
+                self::assertNotNull($enter);
                 array_push($stack, $visitor->makeStackItem($enter['args']['node'], $call['key'], $stack));
             }
-            $this->assertNull($visitor->visit($args['node'], $stack, $iter));
+            self::assertNull($visitor->visit($args['node'], $stack, $iter));
             if (array_key_exists('key', $call)) {
                 /**
                  * @see https://github.com/sebastianbergmann/phpunit/issues/6199
                  *
                  * @psalm-var non-empty-list<StackItem> $stack
                  */
-                $this->assertNotEmpty($stack);
+                self::assertNotEmpty($stack);
                 $visitor->freeStackItem(array_pop($stack), $stack);
             }
         }
 
         if (null !== $enter) {
             $args = $enter['args'];
-            $this->assertNull($visitor->leave($args['node'], $stack, $enter['return']));
+            self::assertNull($visitor->leave($args['node'], $stack, $enter['return']));
         }
 
         $visitor->end();
@@ -650,7 +650,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         /** @psalm-var mixed $actual*/
         $actual = self::unwrapWithResultUnwrapper($visitor->result());
 
-        $this->assertSame($expect, $actual);
+        self::assertSame($expect, $actual);
     }
 
     /**
@@ -836,7 +836,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         /** @psalm-var mixed $actual */
         $actual = self::unwrapWithResultUnwrapper($visitor->result());
 
-        $this->assertSame($expect, $actual);
+        self::assertSame($expect, $actual);
     }
 
     /**
@@ -846,8 +846,8 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
     {
         $visitor = new RecursiveExpectedResultFactoryVisitor();
 
-        $this->expectException(InternalErrorException::class);
-        $this->expectExceptionMessage('$this->current is null');
+        self::expectException(InternalErrorException::class);
+        self::expectExceptionMessage('$this->current is null');
 
         $visitor->makeStackItem([], '', []);
     }
@@ -859,8 +859,8 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
     {
         $visitor = new RecursiveExpectedResultFactoryVisitor();
 
-        $this->expectException(InternalErrorException::class);
-        $this->expectExceptionMessage('$this->current is null');
+        self::expectException(InternalErrorException::class);
+        self::expectExceptionMessage('$this->current is null');
 
         $visitor->leave([], [], true);
     }

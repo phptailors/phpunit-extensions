@@ -40,7 +40,7 @@ final class AbstractArraySelectionTest extends TestCase
     public function testExtendsAbstractArrayExpectations(): void
     {
         $arraySelection = $this->createStub(AbstractArraySelection::class);
-        $this->assertInstanceOf(AbstractArrayExpectations::class, $arraySelection);
+        self::assertInstanceOf(AbstractArrayExpectations::class, $arraySelection);
     }
 
     /**
@@ -49,7 +49,7 @@ final class AbstractArraySelectionTest extends TestCase
     public function testImplementsValueSelectorWrapperInterface(): void
     {
         $arraySelection = $this->createStub(AbstractArraySelection::class);
-        $this->assertInstanceOf(ValueSelectorWrapperInterface::class, $arraySelection);
+        self::assertInstanceOf(ValueSelectorWrapperInterface::class, $arraySelection);
     }
 
     /**
@@ -58,7 +58,7 @@ final class AbstractArraySelectionTest extends TestCase
     public function testImplementsComparatorAwareComplementInterface(): void
     {
         $arraySelection = $this->createStub(AbstractArraySelection::class);
-        $this->assertInstanceOf(ComparatorAwareComplementInterface::class, $arraySelection);
+        self::assertInstanceOf(ComparatorAwareComplementInterface::class, $arraySelection);
     }
 
     /**
@@ -103,11 +103,11 @@ final class AbstractArraySelectionTest extends TestCase
     ): void {
         $arraySelection = self::getTestableObject($resultFactory, $valueSelector, $array);
 
-        $this->assertSame($resultFactory, $arraySelection->getResultFactory());
-        $this->assertSame($valueSelector, $arraySelection->getValueSelector());
+        self::assertSame($resultFactory, $arraySelection->getResultFactory());
+        self::assertSame($valueSelector, $arraySelection->getValueSelector());
 
         $expect = is_array($array) ? $array : iterator_to_array($array);
-        $this->assertSame($expect, iterator_to_array($arraySelection));
+        self::assertSame($expect, iterator_to_array($arraySelection));
     }
 
     /**
@@ -123,7 +123,7 @@ final class AbstractArraySelectionTest extends TestCase
 
         $comparator = new DummyComparator(false, 'similar to');
 
-        $this->assertSame('rainbow with colors similar to the specified ones', $arraySelection->complement($comparator));
+        self::assertSame('rainbow with colors similar to the specified ones', $arraySelection->complement($comparator));
     }
 
     /**
