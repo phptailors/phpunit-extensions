@@ -114,8 +114,7 @@ final class ArrayValueSelectorTest extends TestCase
          * @template-implements \ArrayAccess<array-key, mixed>
          */
         class() implements \ArrayAccess {
-            /** @var string */
-            private $foo;
+            private readonly string $foo;
 
             public function __construct()
             {

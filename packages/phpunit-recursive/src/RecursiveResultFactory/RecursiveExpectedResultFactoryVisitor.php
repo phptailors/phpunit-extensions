@@ -30,15 +30,12 @@ use Tailors\PHPUnit\ResultFactory\ResultFactoryWrapperInterface;
  */
 final class RecursiveExpectedResultFactoryVisitor implements RecursiveExpectedResultFactoryVisitorInterface
 {
-    /**
-     * @var mixed
-     */
-    private $result;
+    private mixed $result;
 
     /**
      * @var ?array|\ArrayAccess
      */
-    private $current;
+    private array|\ArrayAccess|null $current;
 
     public function __construct()
     {

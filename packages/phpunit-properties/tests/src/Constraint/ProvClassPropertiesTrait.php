@@ -30,20 +30,15 @@ trait ProvClassPropertiesTrait
     {
         $classes = [
             (new class() {
-                /** @var string */
-                public static $emptyString = '';
+                public static string $emptyString = '';
 
-                /** @var mixed */
-                public static $null;
+                public static mixed $null = null;
 
-                /** @var string */
-                public static $string123 = '123';
+                public static string $string123 = '123';
 
-                /** @var int */
-                public static $int321 = 321;
+                public static int $int321 = 321;
 
-                /** @var bool */
-                public static $boolFalse = false;
+                public static bool $boolFalse = false;
             })::class,
         ];
 
@@ -79,20 +74,15 @@ trait ProvClassPropertiesTrait
     {
         $classes = [
             (new class() {
-                /** @var string */
-                public static $emptyString = '';
+                public static string $emptyString = '';
 
-                /** @var mixed */
-                public static $null;
+                public static mixed $null = null;
 
-                /** @var string */
-                public static $string123 = '123';
+                public static string $string123 = '123';
 
-                /** @var int */
-                public static $int321 = 321;
+                public static int $int321 = 321;
 
-                /** @var bool */
-                public static $boolFalse = false;
+                public static bool $boolFalse = false;
             })::class,
         ];
 
@@ -122,20 +112,15 @@ trait ProvClassPropertiesTrait
     {
         $classes = [
             (new class() {
-                /** @var string */
-                public static $emptyString = '';
+                public static string $emptyString = '';
 
-                /** @var mixed */
-                public static $null;
+                public static mixed $null = null;
 
-                /** @var string */
-                public static $string123 = '123';
+                public static string $string123 = '123';
 
-                /** @var int */
-                public static $int321 = 321;
+                public static int $int321 = 321;
 
-                /** @var bool */
-                public static $boolFalse = false;
+                public static bool $boolFalse = false;
             })::class,
         ];
 

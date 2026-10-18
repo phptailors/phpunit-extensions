@@ -30,11 +30,9 @@ use Tailors\PHPUnit\Common\TypesInterface;
 final class DummyRecursiveVisitor implements RecursiveVisitorInterface
 {
     /**
-     * @var array
-     *
      * @psalm-var Trace
      */
-    private $trace;
+    private array $trace;
 
     /**
      * @param bool|\Closure $enter
