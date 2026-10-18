@@ -10,7 +10,8 @@
     "PHPUnit\\Util\\Exporter",
     "SebastianBergmann\\Comparator\\ComparisonFailure",
     "SebastianBergmann\\Exporter\\Exporter",
-    "SebastianBergmann\\RecursionContext\\Context"
+    "SebastianBergmann\\RecursionContext\\Context",
+    "Tailors\\PHPUnit\\Polyfill\\ExpectExceptionMessageIsOrContainsTrait"
   ],
   "php-core-extensions" : [
     "Core",
