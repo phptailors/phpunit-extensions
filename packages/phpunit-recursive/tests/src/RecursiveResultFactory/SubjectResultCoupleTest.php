@@ -73,8 +73,8 @@ final class SubjectResultCoupleTest extends TestCase
     {
         $couple = new SubjectResultCouple(...$ctor);
 
-        $this->assertSame($expect['subject'], $couple->subject);
-        $this->assertSame($expect['result'], $couple->result);
+        self::assertSame($expect['subject'], $couple->subject);
+        self::assertSame($expect['result'], $couple->result);
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

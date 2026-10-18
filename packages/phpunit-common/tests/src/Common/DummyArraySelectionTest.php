@@ -39,7 +39,7 @@ final class DummyArraySelectionTest extends TestCase
     {
         $resultFactory = $this->createStub(ResultFactoryInterface::class);
         $valueSelector = $this->createStub(ValueSelectorInterface::class);
-        $this->assertInstanceOf(AbstractArraySelection::class, new DummyArraySelection($resultFactory, $valueSelector, []));
+        self::assertInstanceOf(AbstractArraySelection::class, new DummyArraySelection($resultFactory, $valueSelector, []));
     }
 
     /**
@@ -84,11 +84,11 @@ final class DummyArraySelectionTest extends TestCase
     ): void {
         $dummyArraySelectionSpec = new DummyArraySelection($factory, $selector, $array);
 
-        $this->assertSame($factory, $dummyArraySelectionSpec->getResultFactory());
-        $this->assertSame($selector, $dummyArraySelectionSpec->getValueSelector());
+        self::assertSame($factory, $dummyArraySelectionSpec->getResultFactory());
+        self::assertSame($selector, $dummyArraySelectionSpec->getValueSelector());
 
         $expect = is_array($array) ? $array : iterator_to_array($array);
-        $this->assertSame($expect, iterator_to_array($dummyArraySelectionSpec));
+        self::assertSame($expect, iterator_to_array($dummyArraySelectionSpec));
     }
 
     /**
@@ -104,6 +104,6 @@ final class DummyArraySelectionTest extends TestCase
 
         $comparator = new DummyComparator(false, 'similar to');
 
-        $this->assertSame('rainbow with colors similar to the specified ones', $dummyArraySelectionSpec->complement($comparator));
+        self::assertSame('rainbow with colors similar to the specified ones', $dummyArraySelectionSpec->complement($comparator));
     }
 }

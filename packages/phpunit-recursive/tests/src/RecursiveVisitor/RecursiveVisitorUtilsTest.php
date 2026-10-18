@@ -67,7 +67,7 @@ final class RecursiveVisitorUtilsTest extends TestCase
     #[DataProvider('provPathAsList')]
     public function testPathAsList(array $stack, $expect): void
     {
-        $this->assertSame($expect, RecursiveVisitorUtils::pathAsList($stack));
+        self::assertSame($expect, RecursiveVisitorUtils::pathAsList($stack));
     }
 
     /**
@@ -110,7 +110,7 @@ final class RecursiveVisitorUtilsTest extends TestCase
     #[DataProvider('provPathAsString')]
     public function testPathAsString(array $stack, $expect): void
     {
-        $this->assertSame($expect, RecursiveVisitorUtils::pathAsString($stack));
+        self::assertSame($expect, RecursiveVisitorUtils::pathAsString($stack));
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

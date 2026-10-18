@@ -31,8 +31,8 @@ final class DummyRecursiveVisitorStackItemTest extends TestCase
     {
         $item = new DummyRecursiveVisitorStackItem(['node'], 'key');
 
-        $this->assertSame(['node'], $item->node());
-        $this->assertSame('key', $item->key());
+        self::assertSame(['node'], $item->node());
+        self::assertSame('key', $item->key());
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

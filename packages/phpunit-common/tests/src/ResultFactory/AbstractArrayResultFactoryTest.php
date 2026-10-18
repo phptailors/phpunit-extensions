@@ -42,7 +42,7 @@ final class AbstractArrayResultFactoryTest extends TestCase
     {
         $object = $this->createStub(AbstractArrayResultFactory::class);
 
-        $this->assertInstanceOf(ResultFactoryInterface::class, $object);
+        self::assertInstanceOf(ResultFactoryInterface::class, $object);
     }
 
     /**
@@ -104,7 +104,7 @@ final class AbstractArrayResultFactoryTest extends TestCase
     {
         $factory = $this->createStub(AbstractArrayResultFactory::class);
 
-        $this->assertSame($expect, $factory->supports($input));
+        self::assertSame($expect, $factory->supports($input));
     }
 
     /**
@@ -157,17 +157,17 @@ final class AbstractArrayResultFactoryTest extends TestCase
         $factory = self::getObject();
 
         $input = $args[1];
-        $this->assertTrue($factory->supports($input));
+        self::assertTrue($factory->supports($input));
 
         $result = $factory->getResult(...$args);
 
-        $this->assertInstanceOf(\Traversable::class, $result);
-        $this->assertInstanceOf(ResultInterface::class, $result);
+        self::assertInstanceOf(\Traversable::class, $result);
+        self::assertInstanceOf(ResultInterface::class, $result);
 
         $actual = $args[0];
 
-        $this->assertSame($actual, $result->actual());
-        $this->assertSame($expect, iterator_to_array($result));
+        self::assertSame($actual, $result->actual());
+        self::assertSame($expect, iterator_to_array($result));
     }
 
     /**
@@ -177,13 +177,13 @@ final class AbstractArrayResultFactoryTest extends TestCase
     {
         $factory = self::getObject();
 
-        $this->assertFalse($factory->supports('X'));
+        self::assertFalse($factory->supports('X'));
 
         $method = preg_quote(AbstractArrayResultFactory::class.'::getResult()', '/');
         $message = "/^Argument 2 passed to {$method} must be an array or Traversable, string given\\./";
 
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessageMatches($message);
+        self::expectException(InvalidArgumentException::class);
+        self::expectExceptionMessageMatches($message);
 
         $factory->getResult(false, 'X');
     }

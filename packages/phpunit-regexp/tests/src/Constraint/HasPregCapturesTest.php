@@ -122,10 +122,10 @@ final class HasPregCapturesTest extends TestCase
     {
         $constraint = HasPregCaptures::create($expect);
 
-        $this->expectException(ExpectationFailedException::class);
-        $this->expectExceptionMessage($message);
+        self::expectException(ExpectationFailedException::class);
+        self::expectExceptionMessage($message);
 
-        $this->assertNull($constraint->evaluate($actual));
+        self::assertNull($constraint->evaluate($actual));
     }
 
     /**
@@ -140,10 +140,10 @@ final class HasPregCapturesTest extends TestCase
     {
         $constraint = new LogicalNot(HasPregCaptures::create($expect));
 
-        $this->expectException(ExpectationFailedException::class);
-        $this->expectExceptionMessage($message);
+        self::expectException(ExpectationFailedException::class);
+        self::expectExceptionMessage($message);
 
-        $this->assertNull($constraint->evaluate($actual));
+        self::assertNull($constraint->evaluate($actual));
     }
 
     /**
@@ -188,8 +188,8 @@ final class HasPregCapturesTest extends TestCase
     #[DataProvider('provCreateThrowsInvalidArgumentException')]
     public function testCreateThrowsInvalidArgumentException(array $args, string $message): void
     {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage($message);
+        self::expectException(InvalidArgumentException::class);
+        self::expectExceptionMessage($message);
 
         HasPregCaptures::create(...$args);
     }

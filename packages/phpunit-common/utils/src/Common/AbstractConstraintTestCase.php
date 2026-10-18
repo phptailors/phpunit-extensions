@@ -128,8 +128,8 @@ abstract class AbstractConstraintTestCase extends TestCase
     {
         $constraint = static::createConstraint($ctorArgs);
 
-        $this->expectException(ExpectationFailedException::class);
-        $this->expectExceptionMessage($message);
+        self::expectException(ExpectationFailedException::class);
+        self::expectExceptionMessage($message);
 
         $constraint->evaluate($actual);
     }
@@ -160,8 +160,8 @@ abstract class AbstractConstraintTestCase extends TestCase
     {
         $constraint = self::logicalNot(static::createConstraint($ctorArgs));
 
-        $this->expectException(ExpectationFailedException::class);
-        $this->expectExceptionMessage($message);
+        self::expectException(ExpectationFailedException::class);
+        self::expectExceptionMessage($message);
 
         $constraint->evaluate($actual);
     }

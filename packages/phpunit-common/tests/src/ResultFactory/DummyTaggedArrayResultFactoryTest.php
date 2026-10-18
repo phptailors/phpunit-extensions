@@ -43,7 +43,7 @@ final class DummyTaggedArrayResultFactoryTest extends TestCase
     {
         $object = new DummyTaggedArrayResultFactory();
 
-        $this->assertInstanceOf(ResultFactoryInterface::class, $object);
+        self::assertInstanceOf(ResultFactoryInterface::class, $object);
     }
 
     /**
@@ -53,7 +53,7 @@ final class DummyTaggedArrayResultFactoryTest extends TestCase
     {
         $object = new DummyTaggedArrayResultFactory();
 
-        $this->assertInstanceOf(AbstractArrayResultFactory::class, $object);
+        self::assertInstanceOf(AbstractArrayResultFactory::class, $object);
     }
 
     /**
@@ -142,21 +142,21 @@ final class DummyTaggedArrayResultFactoryTest extends TestCase
         $factory = new DummyTaggedArrayResultFactory(...$ctor);
 
         $input = $args[1];
-        $this->assertTrue($factory->supports($input));
+        self::assertTrue($factory->supports($input));
 
         $result = $factory->getResult(...$args);
 
-        $this->assertInstanceOf(ResultInterface::class, $result);
-        $this->assertInstanceOf(\Traversable::class, $result);
-        $this->assertInstanceOf(DummyTaggedArrayResult::class, $result);
+        self::assertInstanceOf(ResultInterface::class, $result);
+        self::assertInstanceOf(\Traversable::class, $result);
+        self::assertInstanceOf(DummyTaggedArrayResult::class, $result);
 
         $actual = $args[0];
 
-        $this->assertSame($actual, $result->actual());
-        $this->assertSame($expect, iterator_to_array($result));
+        self::assertSame($actual, $result->actual());
+        self::assertSame($expect, iterator_to_array($result));
 
         $tag = $ctor[0] ?? DummyTaggedArrayResult::class.':a1a44e79c791a1fe22ac49067eef00b222d10131';
-        $this->assertSame($tag, $result->tag());
+        self::assertSame($tag, $result->tag());
     }
 
     /**
@@ -166,13 +166,13 @@ final class DummyTaggedArrayResultFactoryTest extends TestCase
     {
         $factory = new DummyTaggedArrayResultFactory();
 
-        $this->assertFalse($factory->supports('X'));
+        self::assertFalse($factory->supports('X'));
 
         $method = preg_quote(AbstractArrayResultFactory::class.'::getResult()', '/');
         $message = "/^Argument 2 passed to {$method} must be an array or Traversable, string given\\./";
 
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessageMatches($message);
+        self::expectException(InvalidArgumentException::class);
+        self::expectExceptionMessageMatches($message);
 
         $factory->getResult(false, 'X');
     }
