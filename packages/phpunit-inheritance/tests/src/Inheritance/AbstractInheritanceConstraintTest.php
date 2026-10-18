@@ -217,49 +217,17 @@ final class AbstractInheritanceConstraintTest extends TestCase
     {
         return new class(...$ctorArgs) extends AbstractInheritanceConstraint {
             /**
-             * @var string
-             *
-             * @read-only
-             */
-            public $verb;
-
-            /**
-             * @var string
-             *
-             * @read-only
-             */
-            public $negatedVerb;
-
-            /**
-             * @var \Closure
-             *
-             * @psalm-var Closure(string):array<string, string>
-             *
-             * @read-only
-             */
-            public $inheritance;
-
-            /**
-             * @var \Closure
-             *
-             * @psalm-var Closure(string):bool
-             *
-             * @read-only
-             */
-            public $supports;
-
-            /**
              * @psalm-param Closure(string):array<string, string> $inheritance
              * @psalm-param Closure(string):bool                  $supports
              */
-            public function __construct(string $expects, string $verb, string $negatedVerb, \Closure $inheritance, \Closure $supports)
-            {
+            public function __construct(
+                string $expects,
+                public readonly string $verb,
+                public readonly string $negatedVerb,
+                public readonly \Closure $inheritance,
+                public readonly \Closure $supports
+            ) {
                 parent::__construct($expects);
-
-                $this->verb = $verb;
-                $this->negatedVerb = $negatedVerb;
-                $this->inheritance = $inheritance;
-                $this->supports = $supports;
             }
 
             protected function verb(): string

@@ -28,17 +28,12 @@ use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorStackItemInterface;
  */
 final class RecursiveTraversal implements RecursiveTraversalInterface
 {
-    /**
-     * @var ReferenceStorage
-     */
-    private $seen;
+    private ReferenceStorage $seen;
 
     /**
-     * @var array
-     *
      * @psalm-var list<VisitorStackItem>
      */
-    private $stack;
+    private array $stack;
 
     /**
      * Initializes the object.
