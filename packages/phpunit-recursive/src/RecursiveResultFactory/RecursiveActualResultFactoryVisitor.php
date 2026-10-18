@@ -271,7 +271,6 @@ final class RecursiveActualResultFactoryVisitor implements RecursiveActualResult
     }
 
     /**
-     * @param mixed $spec
      * @param mixed $subject
      *
      * @psalm-template SupportedSubject

@@ -254,8 +254,6 @@ final class AbstractRecursiveConstraintTest extends TestCase
     /**
      * @dataProvider provEvaluate
      *
-     * @param mixed $expect
-     *
      * @psalm-param Constraint     $constraint
      * @psalm-param EvaluateArgs   $args
      * @psalm-param EvaluateExpect $expect
