@@ -17,6 +17,11 @@ use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 
 if (!function_exists('Tailors\\PHPUnit\\testInvalidArgumentExceptionFromBackTrace')) {
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     *
+     * @codeCoverageIgnore
+     */
     function testInvalidArgumentExceptionFromBackTrace(
         int $argument,
         string $expected,
@@ -43,16 +48,25 @@ if (!function_exists('Tailors\\PHPUnit\\testInvalidArgumentExceptionFromBackTrac
  * @psalm-internal Tailors\PHPUnit
  */
 #[CoversClass(InvalidArgumentException::class)]
+#[CoversClass(InvalidArgumentExceptionTest::class)]
 #[Small]
 final class InvalidArgumentExceptionTest extends TestCase
 {
+    /**
+     * @psalm-return iterable<string, list{int, string, string}>
+     *
+     * @codeCoverageIgnore
+     */
     public static function provFromBackTrace(): iterable
     {
-        yield 'InvalidArgumentExceptionTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             1, 'a string', 'an integer',
         ];
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     #[DataProvider('provFromBackTrace')]
     public function testFromBackTrace(int $argument, string $expected, string $provided): void
     {
@@ -68,6 +82,9 @@ final class InvalidArgumentExceptionTest extends TestCase
         self::assertSame($message, $exception->getMessage());
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     #[DataProvider('provFromBackTrace')]
     public function testFromBackTraceFromFunction(int $argument, string $expected, string $provided): void
     {

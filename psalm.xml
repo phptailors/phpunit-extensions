@@ -16,12 +16,14 @@
 >
     <projectFiles>
         <directory name="packages/*/src" />
-        <directory name="packages/*/tests/static-analysis" />
+        <directory name="packages/*/tests/src" />
+        <directory name="packages/*/utils/src" />
     </projectFiles>
     <plugins>
         <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
     </plugins>
     <stubs>
         <file name=".psalm/stubs/Countable.php"/>
+        <file name=".psalm/stubs/Tailors/PHPUnit/Pollyfil/ExpectExceptionMessageIsOrContainsTrait.php"/>
     </stubs>
 </psalm>

@@ -20,19 +20,59 @@ use PHPUnit\Framework\TestCase;
  * @psalm-internal Tailors\PHPUnit
  */
 #[CoversClass(StaticRandomStrings::class)]
+#[CoversClass(StaticRandomStringsTest::class)]
 #[Small]
 final class StaticRandomStringsTest extends TestCase
 {
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testGet(): void
     {
         $str0 = StaticRandomStrings::get('str0');
         $str1 = StaticRandomStrings::get('str1');
 
-        $this->assertSame(StaticRandomStrings::STRINGLEN, strlen($str0));
-        $this->assertSame(StaticRandomStrings::STRINGLEN, strlen($str1));
+        self::assertSame(StaticRandomStrings::STRINGLEN, strlen($str0));
+        self::assertSame(StaticRandomStrings::STRINGLEN, strlen($str1));
 
-        $this->assertSame($str0, StaticRandomStrings::get('str0'));
-        $this->assertNotEquals($str0, $str1);
+        self::assertSame($str0, StaticRandomStrings::get('str0'));
+        self::assertNotEquals($str0, $str1);
+    }
+
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testClassTag(): void
+    {
+        $tag0 = StaticRandomStrings::classTag(new \Exception(''));
+        $tag1 = StaticRandomStrings::classTag(self::class);
+
+        self::assertSame(StaticRandomStrings::STRINGLEN + 1 + strlen(\Exception::class), strlen($tag0));
+        self::assertSame(StaticRandomStrings::STRINGLEN + 1 + strlen(self::class), strlen($tag1));
+
+        self::assertSame($tag0, StaticRandomStrings::classTag(\Exception::class));
+        self::assertNotEquals($tag0, $tag1);
+
+        self::assertStringStartsWith(\Exception::class.':', $tag0);
+        self::assertStringStartsWith(self::class.':', $tag1);
+    }
+
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testFamilyTag(): void
+    {
+        $tag0 = StaticRandomStrings::familyTag('Smith');
+        $tag1 = StaticRandomStrings::familyTag('Brown');
+
+        self::assertSame(StaticRandomStrings::STRINGLEN + 1 + strlen('Smith'), strlen($tag0));
+        self::assertSame(StaticRandomStrings::STRINGLEN + 1 + strlen('Brown'), strlen($tag1));
+
+        self::assertSame($tag0, StaticRandomStrings::familyTag('Smith'));
+        self::assertNotEquals($tag0, $tag1);
+
+        self::assertStringStartsWith('Smith:', $tag0);
+        self::assertStringStartsWith('Brown:', $tag1);
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

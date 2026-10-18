@@ -10,14 +10,14 @@
 
 namespace Tailors\PHPUnit\Properties;
 
+use Tailors\PHPUnit\Result\ResultInterface;
+
 /**
- * An array of actual object properties.
- *
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class ActualObjectProperties extends AbstractObjectProperties
+final class ActualObjectProperties extends AbstractObjectProperties implements ResultInterface
 {
     /**
      * @psalm-mutation-free

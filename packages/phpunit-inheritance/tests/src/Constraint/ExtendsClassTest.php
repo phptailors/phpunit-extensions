@@ -11,35 +11,44 @@
 namespace Tailors\PHPUnit\Constraint;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Small;
+use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Examples\Inheritance\ExampleTrait;
-use Tailors\PHPUnit\Inheritance\AbstractConstraint;
-use Tailors\PHPUnit\Inheritance\ConstraintImplementationTrait;
 use Tailors\PHPUnit\InvalidArgumentException;
+use Tailors\PHPUnit\Polyfill\ExpectExceptionMessageIsOrContainsTrait;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type ExpectExceptionArray = array{exception: class-string<\Exception>, message: string}
  */
 #[CoversClass(ExtendsClass::class)]
-#[CoversTrait(InheritanceConstraintTestTrait::class)]
-#[CoversClass(AbstractConstraint::class)]
-#[CoversTrait(ConstraintImplementationTrait::class)]
+#[CoversClass(ExtendsClassTest::class)]
 #[Small]
 final class ExtendsClassTest extends TestCase
 {
+    use ExpectExceptionMessageIsOrContainsTrait;
     use InheritanceConstraintTestTrait;
 
-    // required by InheritanceConstraintTestTrait
-    #[\Override]
+    /**
+     * @psalm-return iterable<string, array{
+     *      constraint: Constraint,
+     *      subject: mixed,
+     *      expect: ExpectExceptionArray
+     * }>
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     *
+     * @codeCoverageIgnore
+     */
     public static function provFailureDescriptionOfCustomUnaryOperator(): iterable
     {
-        yield 'ExtendsClassTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'constraint' => ExtendsClass::create(\ErrorException::class),
             'subject'    => \Exception::class,
             'expect'     => [
@@ -49,10 +58,20 @@ final class ExtendsClassTest extends TestCase
         ];
     }
 
-    // required by InheritanceConstraintTestTrait
+    /**
+     * @psalm-return iterable<string, array{
+     *      constraint: Constraint,
+     *      subject: mixed,
+     *      expect: ExpectExceptionArray
+     * }>
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     *
+     * @codeCoverageIgnore
+     */
     public static function provFailureDescriptionOfLogicalNotOperator(): iterable
     {
-        yield 'ExtendsClassTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'constraint' => ExtendsClass::create(\Exception::class),
             'subject'    => \ErrorException::class,
             'expect'     => [
@@ -62,106 +81,140 @@ final class ExtendsClassTest extends TestCase
         ];
     }
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      class: string,
+     *      subject: mixed
+     * }>
+     *
+     * @codeCoverageIgnore
+     */
     public static function provExtendsClass(): iterable
     {
-        // class extends class
-        yield 'ExtendsClassTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'class'   => \Exception::class,
             'subject' => \ErrorException::class,
         ];
 
-        // object of class that extends class
-        yield 'ExtendsClassTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'class'   => \Exception::class,
             'subject' => new \ErrorException(),
         ];
 
-        // class extends class - case insensitive match
-        yield 'ExtendsClassTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'class'   => 'eXceptiOn',
             'subject' => 'errOreXceptiOn',
         ];
 
-        // object of class that extends class -- case insensitive match
-        yield 'ExtendsClassTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'class'   => 'eXceptiOn',
             'subject' => new \ErrorException(),
         ];
     }
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      class: class-string,
+     *      subject: mixed,
+     *      message: string
+     * }>
+     *
+     * @codeCoverageIgnore
+     */
     public static function provNotExtendsClass(): iterable
     {
         $template = 'Failed asserting that %s extends class %s.';
 
-        yield 'ExtendsClassTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'class'   => \Error::class,
             'subject' => \ErrorException::class,
             'message' => sprintf($template, \ErrorException::class, \Error::class),
         ];
 
-        yield 'ExtendsClassTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'class'   => \Error::class,
             'subject' => new \ErrorException(),
             'message' => sprintf($template, 'object '.\ErrorException::class, \Error::class),
         ];
 
-        yield 'ExtendsClassTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'class'   => \Error::class,
             'subject' => 'lorem ipsum',
             'message' => sprintf($template, "'lorem ipsum'", \Error::class),
         ];
 
-        yield 'ExtendsClassTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'class'   => \Error::class,
             'subject' => 123,
             'message' => sprintf($template, '123', \Error::class),
         ];
     }
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      argument: string,
+     *      message: string
+     * }>
+     *
+     * @codeCoverageIgnore
+     */
     public static function provThrowsInvalidArgumentException(): iterable
     {
         $message = '/Argument 1 passed to \S+ must be a class-string/';
 
-        yield 'ExtendsClassTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'argument' => 'non-class string',
             'message'  => $message,
         ];
 
-        yield 'ExtendsClassTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'argument' => \Throwable::class,
             'message'  => $message,
         ];
 
-        yield 'ExtendsClassTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'argument' => ExampleTrait::class,
             'message'  => $message,
         ];
     }
 
+    /**
+     * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
     #[DataProvider('provExtendsClass')]
-    public function testConstraintSucceeds(string $class, mixed $subject): void
+    public function testConstraintSucceeds(string $class, $subject): void
     {
         $constraint = ExtendsClass::create($class);
 
         self::assertTrue($constraint->evaluate($subject, '', true));
     }
 
+    /**
+     * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
     #[DataProvider('provNotExtendsClass')]
-    public function testConstraintFails(string $class, mixed $subject, string $message): void
+    public function testConstraintFails(string $class, $subject, string $message): void
     {
         $constraint = ExtendsClass::create($class);
 
-        self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessage($message);
+        $this->expectException(ExpectationFailedException::class);
+        $this->expectExceptionMessageIsOrContains($message);
 
         $constraint->evaluate($subject);
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     #[DataProvider('provThrowsInvalidArgumentException')]
     public function testThrowsInvalidArgumentException(string $argument, string $message): void
     {
-        self::expectException(InvalidArgumentException::class);
-        self::expectExceptionMessageMatches($message);
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessageMatches($message);
 
         ExtendsClass::create($argument);
     }

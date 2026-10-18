@@ -32,7 +32,6 @@ final class ReferenceStorage implements \Countable
         $this->objects = new \SplObjectStorage();
     }
 
-    #[\Override]
     public function count(): int
     {
         return count($this->references) + count($this->objects);
@@ -162,7 +161,7 @@ final class ReferenceStorage implements \Countable
      */
     private function getReferenceId(mixed &$value): string
     {
-        if (!class_exists(\ReflectionReference::class)) {
+        if (!class_exists(\ReflectionReference::class) || !method_exists(\ReflectionReference::class, 'fromArrayElement')) {
             // @codeCoverageIgnoreStart
             /** @psalm-var mixed $reference */
             foreach ($this->references as $id => &$reference) {

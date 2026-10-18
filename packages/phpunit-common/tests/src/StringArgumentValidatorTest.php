@@ -13,6 +13,7 @@ namespace Tailors\PHPUnit;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\Polyfill\ExpectExceptionMessageIsOrContainsTrait;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -20,15 +21,24 @@ use PHPUnit\Framework\TestCase;
  * @psalm-internal Tailors\PHPUnit
  */
 #[CoversClass(StringArgumentValidator::class)]
+#[CoversClass(StringArgumentValidatorTest::class)]
 #[Small]
 final class StringArgumentValidatorTest extends TestCase
 {
+    use ExpectExceptionMessageIsOrContainsTrait;
+
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testValidateSucceeds(): void
     {
         $validator = new StringArgumentValidator('is_numeric', 'a numeric string');
         self::assertNull($validator->validate(1, '123'));
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testValidateThrowsInvalidArgumentException(): void
     {
         $message = sprintf('Argument 1 passed to %s() must be a numeric string, \'foo\' given.', __METHOD__);
@@ -36,7 +46,7 @@ final class StringArgumentValidatorTest extends TestCase
         $validator = new StringArgumentValidator('is_numeric', 'a numeric string');
 
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage($message);
+        $this->expectExceptionMessageIsOrContains($message);
 
         $validator->validate(1, 'foo');
     }

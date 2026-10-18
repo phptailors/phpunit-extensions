@@ -10,19 +10,36 @@
 
 namespace Tailors\PHPUnit\Methods;
 
-use Closure;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Small;
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
-use ReflectionMethod;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type CtorArgs          = list{
+ *                               0: non-empty-string,
+ *                               1?: ?bool,
+ *                               2?: ?int,
+ *                               3?: ?bool,
+ *                               4?: ?bool,
+ *                               ...
+ *                               }
+ * @psalm-type CtorExpectArray   = array{
+ *                               name: mixed,
+ *                               static: mixed,
+ *                               access: mixed,
+ *                               abstract: mixed,
+ *                               final: mixed,
+ *                               }
+ * @psalm-type MethodStubFactory = \Closure(TestCase):Stub&\ReflectionMethod
  */
 #[CoversClass(MethodSpec::class)]
+#[CoversClass(MethodSpecTest::class)]
 #[Small]
 final class MethodSpecTest extends TestCase
 {
@@ -47,29 +64,68 @@ final class MethodSpecTest extends TestCase
         | self::IS_PRIVATE;
 
     /**
-     * @psalm-return iterable<array-key,array{
-     *  0: array{0:non-empty-string, 1?:?bool, 2?:?int, 3?:?bool, 4?:?bool},
-     *  1: array{name:mixed, static:mixed, access:mixed, abstract:mixed, final:mixed}
-     * }>
+     * @psalm-return iterable<string, list{CtorArgs, CtorExpectArray}>
+     *
+     * @codeCoverageIgnore
      */
     public static function provConstructor(): iterable
     {
-        for ($n = 0; $n <= 4; ++$n) {
-            $args = array_fill(0, $n, null);
+        yield basename(__FILE__).':'.__LINE__ => [
+            ['foo'],
+            [
+                'name'     => 'foo',
+                'static'   => null,
+                'access'   => null,
+                'abstract' => null,
+                'final'    => null,
+            ],
+        ];
 
-            yield [
-                ['foo', ...$args],
-                [
-                    'name'     => 'foo',
-                    'static'   => null,
-                    'access'   => null,
-                    'abstract' => null,
-                    'final'    => null,
-                ],
-            ];
-        }
+        yield basename(__FILE__).':'.__LINE__ => [
+            ['foo', null],
+            [
+                'name'     => 'foo',
+                'static'   => null,
+                'access'   => null,
+                'abstract' => null,
+                'final'    => null,
+            ],
+        ];
 
-        yield [
+        yield basename(__FILE__).':'.__LINE__ => [
+            ['foo', null, null],
+            [
+                'name'     => 'foo',
+                'static'   => null,
+                'access'   => null,
+                'abstract' => null,
+                'final'    => null,
+            ],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            ['foo', null, null, null],
+            [
+                'name'     => 'foo',
+                'static'   => null,
+                'access'   => null,
+                'abstract' => null,
+                'final'    => null,
+            ],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            ['foo', null, null, null, null],
+            [
+                'name'     => 'foo',
+                'static'   => null,
+                'access'   => null,
+                'abstract' => null,
+                'final'    => null,
+            ],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
             ['foo', true],
             [
                 'name'     => 'foo',
@@ -80,7 +136,7 @@ final class MethodSpecTest extends TestCase
             ],
         ];
 
-        yield [
+        yield basename(__FILE__).':'.__LINE__ => [
             ['foo', false],
             [
                 'name'     => 'foo',
@@ -91,7 +147,7 @@ final class MethodSpecTest extends TestCase
             ],
         ];
 
-        yield [
+        yield basename(__FILE__).':'.__LINE__ => [
             ['foo', null, self::IS_PUBLIC],
             [
                 'name'     => 'foo',
@@ -102,7 +158,7 @@ final class MethodSpecTest extends TestCase
             ],
         ];
 
-        yield [
+        yield basename(__FILE__).':'.__LINE__ => [
             ['foo', null, self::IS_PROTECTED],
             [
                 'name'     => 'foo',
@@ -113,7 +169,7 @@ final class MethodSpecTest extends TestCase
             ],
         ];
 
-        yield [
+        yield basename(__FILE__).':'.__LINE__ => [
             ['foo', null, self::IS_PRIVATE],
             [
                 'name'     => 'foo',
@@ -124,7 +180,7 @@ final class MethodSpecTest extends TestCase
             ],
         ];
 
-        yield [
+        yield basename(__FILE__).':'.__LINE__ => [
             ['foo', null, self::IS_PUBLIC | self::IS_PROTECTED],
             [
                 'name'     => 'foo',
@@ -135,7 +191,7 @@ final class MethodSpecTest extends TestCase
             ],
         ];
 
-        yield [
+        yield basename(__FILE__).':'.__LINE__ => [
             ['foo', null, null, false],
             [
                 'name'     => 'foo',
@@ -146,7 +202,7 @@ final class MethodSpecTest extends TestCase
             ],
         ];
 
-        yield [
+        yield basename(__FILE__).':'.__LINE__ => [
             ['foo', null, null, true],
             [
                 'name'     => 'foo',
@@ -157,7 +213,7 @@ final class MethodSpecTest extends TestCase
             ],
         ];
 
-        yield [
+        yield basename(__FILE__).':'.__LINE__ => [
             ['foo', null, null, null, false],
             [
                 'name'     => 'foo',
@@ -168,7 +224,7 @@ final class MethodSpecTest extends TestCase
             ],
         ];
 
-        yield [
+        yield basename(__FILE__).':'.__LINE__ => [
             ['foo', null, null, null, true],
             [
                 'name'     => 'foo',
@@ -180,24 +236,35 @@ final class MethodSpecTest extends TestCase
         ];
     }
 
+    /**
+     * @psalm-param CtorArgs        $ctorArgs
+     * @psalm-param CtorExpectArray $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
     #[DataProvider('provConstructor')]
-    public function testConstructor(array $args, array $expect): void
+    public function testConstructor(array $ctorArgs, array $expect): void
     {
-        $spec = new MethodSpec(...$args);
-        $this->assertSame($expect['name'], $spec->getName());
-        $this->assertSame($expect['static'], $spec->getStatic());
-        $this->assertSame($expect['access'], $spec->getAccess());
-        $this->assertSame($expect['abstract'], $spec->getAbstract());
-        $this->assertSame($expect['final'], $spec->getFinal());
+        $spec = new MethodSpec(...$ctorArgs);
+        self::assertSame($expect['name'], $spec->getName());
+        self::assertSame($expect['static'], $spec->getStatic());
+        self::assertSame($expect['access'], $spec->getAccess());
+        self::assertSame($expect['abstract'], $spec->getAbstract());
+        self::assertSame($expect['final'], $spec->getFinal());
     }
 
     /**
-     * @psalm-return iterable<array-key, array{0: array{0: non-empty-string, 1?: ?bool, 2?: ?int, 3?: ?bool, 4?: ?bool}, 1: Closure(TestCase):ReflectionMethod, 2: bool}>
+     * @psalm-return iterable<array-key, list{CtorArgs, MethodStubFactory, bool}>
+     *
+     * @codeCoverageIgnore
      */
     public static function provMatches(): iterable
     {
-        // just name
-        yield [['bar'], fn (TestCase $test) => self::makeMethod($test, 'foo'), false];
+        yield [
+            ['bar'],
+            fn (TestCase $test) => self::makeMethodFoo($test),
+            false,
+        ];
 
         $cases1 = [
             [],
@@ -214,7 +281,11 @@ final class MethodSpecTest extends TestCase
         ];
 
         foreach ($cases1 as $modifiers) {
-            yield [['foo'], fn (TestCase $test) => self::makeMethod($test, 'foo', ...$modifiers), true];
+            yield [
+                ['foo'],
+                fn (TestCase $test) => self::makeMethodFoo($test, ...$modifiers),
+                true,
+            ];
         }
 
         // Test single boolean modifier (static, abstract, final)
@@ -231,28 +302,28 @@ final class MethodSpecTest extends TestCase
             $args[$n] = true;
 
             yield [
-                ['foo', ...$args],
-                fn (TestCase $test) => self::makeMethod($test, 'foo', $modifier),
+                array_merge(['foo'], $args),
+                fn (TestCase $test) => self::makeMethodFoo($test, $modifier),
                 true,
             ];
 
             yield [
-                ['foo', ...$args],
-                fn (TestCase $test) => self::makeMethod($test, 'foo', self::MMASK & ~$modifier),
+                array_merge(['foo'], $args),
+                fn (TestCase $test) => self::makeMethodFoo($test, self::MMASK & ~$modifier),
                 false,
             ];
 
             $args[$n] = false;
 
             yield [
-                ['foo', ...$args],
-                fn (TestCase $test) => self::makeMethod($test, 'foo', $modifier),
+                array_merge(['foo'], $args),
+                fn (TestCase $test) => self::makeMethodFoo($test, $modifier),
                 false,
             ];
 
             yield [
-                ['foo', ...$args],
-                fn (TestCase $test) => self::makeMethod($test, 'foo', self::MMASK & ~$modifier),
+                array_merge(['foo'], $args),
+                fn (TestCase $test) => self::makeMethodFoo($test, self::MMASK & ~$modifier),
                 true,
             ];
         }
@@ -268,134 +339,149 @@ final class MethodSpecTest extends TestCase
         foreach ($cases3 as $modifier) {
             yield [
                 ['foo', null, $modifier],
-                fn (TestCase $test) => self::makeMethod($test, 'foo', $modifier),
+                fn (TestCase $test) => self::makeMethodFoo($test, $modifier),
                 true,
             ];
 
             yield [
                 ['foo', null, $modifier],
-                fn (TestCase $test) => self::makeMethod($test, 'foo', self::VMASK & ~$modifier),
+                fn (TestCase $test) => self::makeMethodFoo($test, self::VMASK & ~$modifier),
                 false,
             ];
         }
     }
 
     /**
-     * @psalm-param list                     $args
-     * @psalm-param \Closure(TestCase):mixed $method
+     * @psalm-param CtorArgs          $ctorArgs
+     * @psalm-param MethodStubFactory $method
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     #[DataProvider('provMatches')]
-    public function testMatches(array $args, \Closure $method, bool $expect): void
+    public function testMatches(array $ctorArgs, \Closure $method, bool $expect): void
     {
-        $spec = new MethodSpec(...$args);
-        $this->assertSame($expect, $spec->matches($method($this)));
+        $spec = new MethodSpec(...$ctorArgs);
+        self::assertSame($expect, $spec->matches($method($this)));
     }
 
     /**
-     * @psalm-return array<array-key,array{
-     *  0: array{0:non-empty-string, 1?:?bool, 2?:?int, 3?:?bool, 4?:?bool},
-     *  1: string
-     * }>
+     * @psalm-return iterable<string, list{CtorArgs, string}>
+     *
+     * @codeCoverageIgnore
      */
     public static function provToString(): iterable
     {
-        yield 'MethodSpecTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             ['foo'],
             'method foo',
         ];
 
-        yield 'MethodSpecTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             ['foo', false],
             '!static method foo',
         ];
 
-        yield 'MethodSpecTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             ['foo', true],
             'static method foo',
         ];
 
-        yield 'MethodSpecTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             ['foo', null, self::IS_PUBLIC],
             'public method foo',
         ];
 
-        yield 'MethodSpecTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             ['foo', null, self::IS_PROTECTED],
             'protected method foo',
         ];
 
-        yield 'MethodSpecTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             ['foo', null, self::IS_PRIVATE],
             'private method foo',
         ];
 
-        yield 'MethodSpecTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             ['foo', null, self::IS_PROTECTED | self::IS_PRIVATE],
             '!public method foo',
         ];
 
-        yield 'MethodSpecTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             ['foo', null, self::IS_PUBLIC | self::IS_PRIVATE],
             '!protected method foo',
         ];
 
-        yield 'MethodSpecTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             ['foo', null, self::IS_PUBLIC | self::IS_PROTECTED],
             '!private method foo',
         ];
 
-        yield 'MethodSpecTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             ['foo', null, self::IS_PUBLIC | self::IS_PROTECTED | self::IS_PRIVATE],
             'method foo',
         ];
 
-        yield 'MethodSpecTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             ['foo', true, self::IS_PUBLIC],
             'public static method foo',
         ];
 
-        yield 'MethodSpecTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             ['foo', false, self::IS_PUBLIC],
             'public !static method foo',
         ];
 
-        yield 'MethodSpecTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             ['foo', true, self::IS_PUBLIC, true],
             'abstract public static method foo',
         ];
 
-        yield 'MethodSpecTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             ['foo', true, self::IS_PUBLIC, false],
             '!abstract public static method foo',
         ];
 
-        yield 'MethodSpecTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             ['foo', true, self::IS_PUBLIC, null, true],
             'final public static method foo',
         ];
 
-        yield 'MethodSpecTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             ['foo', true, self::IS_PUBLIC, null, false],
             '!final public static method foo',
         ];
     }
 
+    /**
+     * @psalm-param CtorArgs $ctorArgs
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
     #[DataProvider('provToString')]
-    public function testToString(array $args, string $expect): void
+    public function testToString(array $ctorArgs, string $expect): void
     {
-        $spec = new MethodSpec(...$args);
-        $this->assertSame($expect, $spec->toString());
+        $spec = new MethodSpec(...$ctorArgs);
+        self::assertSame($expect, $spec->toString());
     }
 
-    private static function makeMethod(TestCase $test, string $name, int $modifiers = self::IS_PUBLIC)
+    /**
+     * @psalm-return Stub&\ReflectionMethod
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    private static function makeMethodFoo(TestCase $test, int $modifiers = self::IS_PUBLIC)
     {
-        $stub = $test->getStubBuilder(DummyClassWithMethodFoo::class)
-            ->getStub()
-        ;
-        $stub->method($name);
+        $object = new class {
+            /**
+             * @psalm-suppress PossiblyUnusedMethod
+             *
+             * @codeCoverageIgnore
+             */
+            public function foo(): void {}
+        };
 
         $method = $test->getStubBuilder(\ReflectionMethod::class)
-            ->setConstructorArgs([$stub, $name])
+            ->setConstructorArgs([$object, 'foo'])
             ->getStub()
         ;
 

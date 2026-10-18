@@ -10,79 +10,157 @@
 
 namespace Tailors\PHPUnit;
 
-use PHPUnit\Framework\Attributes\CoversTrait;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
-use Tailors\PHPUnit\Constraint\ArrayValuesEqualTo;
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Constraint\ProvArrayValuesTrait;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-import-type ArrayLike from TypesInterface
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
-#[CoversTrait(ArrayValuesEqualToTrait::class)]
+#[CoversClass(ArrayValuesEqualToTraitTest::class)]
 #[Small]
 final class ArrayValuesEqualToTraitTest extends TestCase
 {
     use ArrayValuesEqualToTrait;
     use ProvArrayValuesTrait;
 
-    #[\Override]
-    public static function createConstraint(mixed ...$args): ArrayValuesEqualTo
+    /**
+     * @psalm-return iterable<string, array{expect: array, actual: mixed}>
+     *
+     * @codeCoverageIgnore
+     */
+    public static function provArrayValuesEqualToSucceeds(): iterable
     {
-        return ArrayValuesEqualTo::create(...$args);
+        $cases = (function (): iterable {
+            yield from self::provArrayValuesIdenticalTo();
+
+            yield from self::provArrayValuesEqualButNotIdenticalTo();
+        })();
+
+        foreach ($cases as $key => $case) {
+            yield $key => [
+                'expect' => $case['expect'],
+                'actual' => $case['actual'],
+            ];
+        }
     }
 
-    #[DataProvider('provArrayValuesIdenticalTo')]
-    #[DataProvider('provArrayValuesEqualButNotIdenticalTo')]
-    public function testArrayValuesEqualToSucceeds(array $expect, mixed $actual, string $string)
+    /**
+     * @psalm-return iterable<string, array{expect: array, actual: mixed}>
+     *
+     * @codeCoverageIgnore
+     */
+    public static function provNotArrayValuesEqualToSucceeds(): iterable
+    {
+        $cases = (function (): iterable {
+            yield from self::provArrayValuesNotEqualTo();
+        })();
+
+        foreach ($cases as $key => $case) {
+            yield $key => [
+                'expect' => $case['expect'],
+                'actual' => $case['actual'],
+            ];
+        }
+    }
+
+    /**
+     * @param mixed $actual
+     *
+     * @psalm-param array $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    #[DataProvider('provArrayValuesEqualToSucceeds')]
+    public function testArrayValuesEqualToSucceeds(array $expect, $actual): void
     {
         self::assertThat($actual, self::arrayValuesEqualTo($expect));
     }
 
-    #[DataProvider('provArrayValuesIdenticalTo')]
-    #[DataProvider('provArrayValuesEqualButNotIdenticalTo')]
-    public function testAssertArrayValuesEqualToSucceeds(array $expect, mixed $actual, string $string)
+    /**
+     * @param mixed $actual
+     *
+     * @psalm-param array $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    #[DataProvider('provArrayValuesEqualToSucceeds')]
+    public function testAssertArrayValuesEqualToSucceeds(array $expect, $actual): void
     {
         self::assertArrayValuesEqualTo($expect, $actual);
     }
 
-    #[DataProvider('provArrayValuesNotEqualTo')]
-    public function testAssertArrayValuesEqualToFails(array $expect, mixed $actual, string $string)
-    {
-        $regexp = '/^Lorem ipsum.\n'.
-            'Failed asserting that .+ is an array or ArrayAccess '.
-            'with values equal to specified./';
-        self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessageMatches($regexp);
-
-        self::assertArrayValuesEqualTo($expect, $actual, 'Lorem ipsum.');
-    }
-
-    #[DataProvider('provArrayValuesNotEqualTo')]
-    public function testNotArrayValuesEqualToSucceeds(array $expect, mixed $actual, string $string)
+    /**
+     * @param mixed $actual
+     *
+     * @psalm-param array $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    #[DataProvider('provNotArrayValuesEqualToSucceeds')]
+    public function testLogicalNotArrayValuesEqualToSucceeds(array $expect, $actual): void
     {
         self::assertThat($actual, self::logicalNot(self::arrayValuesEqualTo($expect)));
     }
 
-    #[DataProvider('provArrayValuesNotEqualTo')]
-    public function testAssertNotArrayValuesEqualToSucceeds(array $expect, mixed $actual, string $string)
+    /**
+     * @param mixed $actual
+     *
+     * @psalm-param array $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    #[DataProvider('provNotArrayValuesEqualToSucceeds')]
+    public function testAssertNotArrayValuesEqualToSucceeds(array $expect, $actual): void
     {
         self::assertNotArrayValuesEqualTo($expect, $actual);
     }
 
-    #[DataProvider('provArrayValuesIdenticalTo')]
-    #[DataProvider('provArrayValuesEqualButNotIdenticalTo')]
-    public function testAssertNotArrayValuesEqualToFails(array $expect, mixed $actual, string $string)
+    /**
+     * @param mixed $actual
+     *
+     * @psalm-param array $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    #[DataProvider('provArrayValuesNotEqualTo')]
+    public function testAssertArrayValuesEqualToFails(array $expect, $actual, string $string): void
     {
         $regexp = '/^Lorem ipsum.\n'.
-            'Failed asserting that .+ fails to be an array or ArrayAccess '.
-            'with values equal to specified./';
-        self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessageMatches($regexp);
+            'Failed asserting that '.preg_quote($string, '/').' is an array or ArrayAccess '.
+            'with values equal to the specified ones./';
+        $this->expectException(ExpectationFailedException::class);
+        $this->expectExceptionMessageMatches($regexp);
+
+        self::assertArrayValuesEqualTo($expect, $actual, 'Lorem ipsum.');
+    }
+
+    /**
+     * @param mixed $actual
+     *
+     * @psalm-param array $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    #[DataProvider('provArrayValuesIdenticalTo')]
+    #[DataProvider('provArrayValuesEqualButNotIdenticalTo')]
+    public function testAssertNotArrayValuesEqualToFails(array $expect, $actual, string $string): void
+    {
+        $regexp = '/^Lorem ipsum.\n'.
+            'Failed asserting that '.preg_quote($string, '/').' fails to be an array or ArrayAccess '.
+            'with values equal to the specified ones./';
+        $this->expectException(ExpectationFailedException::class);
+        $this->expectExceptionMessageMatches($regexp);
 
         self::assertNotArrayValuesEqualTo($expect, $actual, 'Lorem ipsum.');
     }

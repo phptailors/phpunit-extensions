@@ -12,10 +12,8 @@ namespace Tailors\PHPUnit\Constraint;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Constraint\Constraint;
-use PHPUnit\Framework\Constraint\LogicalNot;
 use PHPUnit\Framework\Constraint\UnaryOperator;
-use PHPUnit\Framework\MockObject\MockBuilder;
-use PHPUnit\Framework\MockObject\Rule\AnyInvokedCount;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @small
@@ -23,25 +21,33 @@ use PHPUnit\Framework\MockObject\Rule\AnyInvokedCount;
  * @internal This trait is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type ExpectExceptionArray = array{exception: class-string<\Exception>, message: string}
+ *
+ * @psalm-require-extends TestCase
+ *
+ * @var TestCase $__phpactor__workaround__unused_import__TestCase
  */
 trait InheritanceConstraintTestTrait
 {
+    /**
+     * @psalm-return iterable<string, array{
+     *      constraint: Constraint,
+     *      subject: mixed,
+     *      expect: ExpectExceptionArray
+     * }>
+     */
     abstract public static function provFailureDescriptionOfCustomUnaryOperator(): iterable;
 
-    abstract public function expectException(string $exception): void;
-
-    abstract public function expectExceptionMessage(string $message): void;
-
-    abstract public function getMockBuilder(string $className): MockBuilder;
-
-    abstract public function any(): AnyInvokedCount;
-
-    abstract public static function assertThat($value, Constraint $constraint, string $message = ''): void;
-
-    abstract public static function logicalNot(Constraint $constraint): LogicalNot;
-
+    /**
+     * @param mixed $subject
+     *
+     * @psalm-param ExpectExceptionArray $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
     #[DataProvider('provFailureDescriptionOfCustomUnaryOperator')]
-    public function testFailureDescriptionOfCustomUnaryOperator(Constraint $constraint, mixed $subject, array $expect): void
+    public function testFailureDescriptionOfCustomUnaryOperator(Constraint $constraint, $subject, array $expect): void
     {
         $noop = new class($constraint) extends UnaryOperator {
             public function operator(): string
@@ -55,29 +61,27 @@ trait InheritanceConstraintTestTrait
             }
         };
 
-        $regexp = '/Iterator implements interface Throwable/';
-
-        self::expectException($expect['exception']);
-        self::expectExceptionMessageMatches($expect['message']);
+        $this->expectException($expect['exception']);
+        $this->expectExceptionMessageMatches($expect['message']);
 
         $noop->evaluate($subject);
-
-        // @codeCoverageIgnoreStart
     }
 
-    // @codeCoverageIgnoreEnd
+    /**
+     * @param mixed $subject
+     *
+     * @psalm-param ExpectExceptionArray $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
     #[DataProvider('provFailureDescriptionOfLogicalNotOperator')]
-    public function testFailureDescriptionOfLogicalNotOperator(Constraint $constraint, mixed $subject, array $expect): void
+    public function testFailureDescriptionOfLogicalNotOperator(Constraint $constraint, $subject, array $expect): void
     {
         $not = self::logicalNot($constraint);
 
-        self::expectException($expect['exception']);
-        self::expectExceptionMessageMatches($expect['message']);
+        $this->expectException($expect['exception']);
+        $this->expectExceptionMessageMatches($expect['message']);
 
         $not->evaluate($subject);
-
-        // @codeCoverageIgnoreStart
     }
-
-    // @codeCoverageIgnoreEnd
 }

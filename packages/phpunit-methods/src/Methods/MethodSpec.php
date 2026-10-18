@@ -69,7 +69,6 @@ final readonly class MethodSpec implements MethodSpecInterface
     /**
      * {@inheridoc}.
      */
-    #[\Override]
     public function getName(): string
     {
         return $this->name;
@@ -78,7 +77,6 @@ final readonly class MethodSpec implements MethodSpecInterface
     /**
      * {@inheridoc}.
      */
-    #[\Override]
     public function getStatic(): ?bool
     {
         return $this->static;
@@ -87,7 +85,6 @@ final readonly class MethodSpec implements MethodSpecInterface
     /**
      * {@inheridoc}.
      */
-    #[\Override]
     public function getAccess(): ?int
     {
         return $this->access;
@@ -96,7 +93,6 @@ final readonly class MethodSpec implements MethodSpecInterface
     /**
      * {@inheridoc}.
      */
-    #[\Override]
     public function getAbstract(): ?bool
     {
         return $this->abstract;
@@ -105,7 +101,6 @@ final readonly class MethodSpec implements MethodSpecInterface
     /**
      * {@inheridoc}.
      */
-    #[\Override]
     public function getFinal(): ?bool
     {
         return $this->final;
@@ -114,7 +109,6 @@ final readonly class MethodSpec implements MethodSpecInterface
     /**
      * {@inheridoc}.
      */
-    #[\Override]
     public function matches(\ReflectionMethod $method): bool
     {
         return $this->matchName($method)
@@ -127,7 +121,6 @@ final readonly class MethodSpec implements MethodSpecInterface
     /**
      * {@inheridoc}.
      */
-    #[\Override]
     public function toString(): string
     {
         $final = $this->getFinalModifierString();

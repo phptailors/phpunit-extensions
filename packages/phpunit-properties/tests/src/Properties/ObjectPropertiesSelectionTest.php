@@ -1,0 +1,96 @@
+<?php declare(strict_types=1);
+
+/*
+ * This file is part of phptailors/phpunit-extensions.
+ *
+ * Copyright (c) Paweł Tomulik <pawel@tomulik.pl>
+ *
+ * View the LICENSE file for full copyright and license information.
+ */
+
+namespace Tailors\PHPUnit\Properties;
+
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
+use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\Common\AbstractArraySelection;
+use Tailors\PHPUnit\Common\TypesInterface;
+use Tailors\PHPUnit\ResultFactory\ResultFactoryWrapperInterface;
+use Tailors\PHPUnit\ValueSelector\ObjectPropertySelector;
+use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
+
+/**
+ * @internal This class is not covered by the backward compatibility promise
+ *
+ * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-import-type ArrayLike from TypesInterface
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
+ */
+#[CoversClass(ObjectPropertiesSelection::class)]
+#[CoversClass(ObjectPropertiesSelectionTest::class)]
+#[Small]
+final class ObjectPropertiesSelectionTest extends TestCase
+{
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testExtendsAbstractArraySelectionSpec(): void
+    {
+        self::assertInstanceOf(AbstractArraySelection::class, new ObjectPropertiesSelection([]));
+    }
+
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testImplementsResultFactoryWrapperInterface(): void
+    {
+        self::assertInstanceOf(ResultFactoryWrapperInterface::class, new ObjectPropertiesSelection([]));
+    }
+
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testImplementValueSelectorWrapperInterface(): void
+    {
+        self::assertInstanceOf(ValueSelectorWrapperInterface::class, new ObjectPropertiesSelection([]));
+    }
+
+    /**
+     * @psalm-return iterable<string, array{
+     *      array: ArrayLike
+     * }>
+     *
+     * @codeCoverageIgnore
+     */
+    public static function provObjectPropertiesSelection(): iterable
+    {
+        yield basename(__FILE__).':'.__LINE__ => [
+            'array' => ['a' => 'A'],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'array' => new \ArrayObject(['a' => 'A']),
+        ];
+    }
+
+    /**
+     * @psalm-param ArrayLike $array
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    #[DataProvider('provObjectPropertiesSelection')]
+    public function testObjectPropertiesSelection(iterable $array): void
+    {
+        $selection = new ObjectPropertiesSelection($array);
+
+        self::assertInstanceOf(ObjectPropertiesFactory::class, $selection->getResultFactory());
+        self::assertInstanceOf(ObjectPropertySelector::class, $selection->getValueSelector());
+
+        $expect = is_array($array) ? $array : iterator_to_array($array);
+        self::assertSame($expect, iterator_to_array($selection));
+    }
+}
+// vim: syntax=php sw=4 ts=4 et:

@@ -17,7 +17,6 @@ namespace Tailors\PHPUnit\Comparator;
  */
 final class EqualityComparator implements ComparatorInterface
 {
-    #[\Override]
     public function compare(mixed $left, mixed $right): bool
     {
         return $left == $right;
@@ -28,7 +27,6 @@ final class EqualityComparator implements ComparatorInterface
      *
      * @return string "equal to"
      */
-    #[\Override]
     public function adjective(): string
     {
         return 'equal to';

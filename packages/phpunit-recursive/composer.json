@@ -1,18 +1,14 @@
 {
     "name": "phptailors/phpunit-recursive",
     "description": "Support for recursive constraints",
-    "type": "library",
     "license": "MIT",
-    "support": {
-        "issues": "https://github.com/phptailors/phpunit-extensions/issues",
-        "source": "https://github.com/phptailors/phpunit-extensions"
-    },
     "authors": [
         {
             "name": "Paweł Tomulik",
             "email": "pawel@tomulik.pl"
         }
     ],
+    "type": "library",
     "require": {
         "php": "^8.4.1",
         "phptailors/phpunit-common": "^5.2.x-dev"
@@ -22,7 +18,10 @@
     },
     "autoload": {
         "psr-4": {
-            "Tailors\\PHPUnit\\": ["src/", "utils/src/"]
+            "Tailors\\PHPUnit\\": [
+                "src/",
+                "utils/src/"
+            ]
         }
     },
     "autoload-dev": {
@@ -37,6 +36,10 @@
     },
     "conflict": {
         "nikic/php-parser": "< 4.13.2"
+    },
+    "support": {
+        "issues": "https://github.com/phptailors/phpunit-extensions/issues",
+        "source": "https://github.com/phptailors/phpunit-extensions"
     },
     "minimum-stability": "dev",
     "prefer-stable": true

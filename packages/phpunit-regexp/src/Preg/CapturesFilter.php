@@ -20,12 +20,7 @@ final readonly class CapturesFilter implements CapturesFilterInterface
     /**
      * @param int $flags PREG_* flags such as PREG_UNMATCHED_AS_NULL or PREG_OFFSET_CAPTURE
      */
-    public function __construct(
-        /**
-         * @psalm-readonly
-         */
-        private int $flags = 0
-    ) {}
+    public function __construct(private int $flags = 0) {}
 
     /**
      * Filter-out all elements of $array with $this->accepts().
@@ -34,7 +29,6 @@ final readonly class CapturesFilter implements CapturesFilterInterface
      *
      * @psalm-return array<array-key, string|null|array{0:string|null,1:int}>
      */
-    #[\Override]
     public function filter(array $array): array
     {
         return array_filter($array, fn (mixed $val) => $this->accepts($val));
@@ -54,7 +48,6 @@ final readonly class CapturesFilter implements CapturesFilterInterface
      *
      * @psalm-assert-if-true string|null|array{0:string|null,1:int} $value
      */
-    #[\Override]
     public function accepts(mixed $value): bool
     {
         return $this->isScalarCapture($value) || $this->isArrayCapture($value);
