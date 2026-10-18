@@ -38,7 +38,7 @@ final class PushRestoredDevReleaseWorker implements ReleaseWorkerInterface
         $versionInString = $this->getVersionDev($version);
 
         $gitAddCommitCommand = sprintf(
-            'git add . && git commit --allow-empty -m "re-open %s" && git push"',
+            'git add . && git commit --allow-empty -m "re-open %s" && git push',
             $versionInString,
         );
 
