@@ -25,7 +25,7 @@
         "phptailors/phpunit-inheritance": "4.1.x-dev",
         "phptailors/phpunit-methods": "4.1.x-dev",
         "phptailors/phpunit-properties": "4.1.x-dev",
-        "phptailors/phpunit-recursive": "self.version",
+        "phptailors/phpunit-recursive": "4.1.x-dev",
         "phptailors/phpunit-regexp": "4.1.x-dev"
     },
     "conflict": {
