@@ -97,7 +97,7 @@ final class DummyResultFactoryWrapperTest extends TestCase
      */
     public function testDummyResultFactoryWrapper(iterable $array): void
     {
-        $resultFactory = $this->createMock(ResultFactoryInterface::class);
+        $resultFactory = $this->createStub(ResultFactoryInterface::class);
 
         $dummyResultFactoryWrapper = self::createDummyResultFactoryWrapper($array, $resultFactory);
 

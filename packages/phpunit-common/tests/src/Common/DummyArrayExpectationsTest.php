@@ -33,7 +33,7 @@ final class DummyArrayExpectationsTest extends TestCase
      */
     public function testExtendsAbstractArraySpec(): void
     {
-        $resultFactory = $this->createMock(ResultFactoryInterface::class);
+        $resultFactory = $this->createStub(ResultFactoryInterface::class);
         $this->assertInstanceOf(AbstractArrayExpectations::class, new DummyArrayExpectations($resultFactory, []));
     }
 
