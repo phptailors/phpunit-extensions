@@ -16,8 +16,6 @@ return RectorConfig::configure()
         __DIR__.'/packages/*/tests/src/',
         __DIR__.'/packages/*/utils/src/',
     ])
-    ->withPreparedSets(
-    )
     ->withComposerBased(phpunit: true)
     ->withPhpSets(
         php81: true
