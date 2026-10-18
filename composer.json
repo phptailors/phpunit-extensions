@@ -25,7 +25,7 @@
         "phptailors/phpunit-inheritance": "3.1.x-dev",
         "phptailors/phpunit-methods": "3.1.x-dev",
         "phptailors/phpunit-properties": "3.1.x-dev",
-        "phptailors/phpunit-recursive": "self.version",
+        "phptailors/phpunit-recursive": "3.1.x-dev",
         "phptailors/phpunit-regexp": "3.1.x-dev"
     },
     "conflict": {
