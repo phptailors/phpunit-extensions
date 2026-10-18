@@ -28,6 +28,7 @@ final class Exporter
         // @codeCoverageIgnoreStart
 
         if (self::isExportable($value) || $exportObjects) {
+            /** @psalm-suppress MissingThrowsDocblock */
             return self::postprocessOutput((new SebastianExporter())->export($value));
         }
 
