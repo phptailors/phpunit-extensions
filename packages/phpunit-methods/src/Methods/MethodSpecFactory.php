@@ -15,20 +15,20 @@ namespace Tailors\PHPUnit\Methods;
  */
 final class MethodSpecFactory implements MethodSpecFactoryInterface
 {
-    public const int IS_PUBLIC = MethodSpec::IS_PUBLIC;
-    public const int IS_PROTECTED = MethodSpec::IS_PROTECTED;
-    public const int IS_PRIVATE = MethodSpec::IS_PRIVATE;
-    public const int NOT_PUBLIC = MethodSpec::NOT_PUBLIC;
-    public const int NOT_PROTECTED = MethodSpec::NOT_PROTECTED;
-    public const int NOT_PRIVATE = MethodSpec::NOT_PRIVATE;
-    public const array ACCESS_MAP = MethodSpec::ACCESS_MAP;
+    public const IS_PUBLIC = MethodSpec::IS_PUBLIC;
+    public const IS_PROTECTED = MethodSpec::IS_PROTECTED;
+    public const IS_PRIVATE = MethodSpec::IS_PRIVATE;
+    public const NOT_PUBLIC = MethodSpec::NOT_PUBLIC;
+    public const NOT_PROTECTED = MethodSpec::NOT_PROTECTED;
+    public const NOT_PRIVATE = MethodSpec::NOT_PRIVATE;
+    public const ACCESS_MAP = MethodSpec::ACCESS_MAP;
 
-    private const string RE_STATIC = '(?<static>!?static)';
-    private const string RE_ACCESS = '(?<access>(?:!?public)|(?:!?protected)|(?:!?private))';
-    private const string RE_ABSTRACT = '(?<abstract>!?abstract)';
-    private const string RE_FINAL = '(?<final>!?final)';
-    private const string RE_IDENT = '[a-zA-z_][0-9a-zA-Z_]*';
-    private const string RE_NAME = '(?<name>'.self::RE_IDENT.')';
+    private const RE_STATIC = '(?<static>!?static)';
+    private const RE_ACCESS = '(?<access>(?:!?public)|(?:!?protected)|(?:!?private))';
+    private const RE_ABSTRACT = '(?<abstract>!?abstract)';
+    private const RE_FINAL = '(?<final>!?final)';
+    private const RE_IDENT = '[a-zA-z_][0-9a-zA-Z_]*';
+    private const RE_NAME = '(?<name>'.self::RE_IDENT.')';
 
     /**
      * Parses string containing method requirement specification.
@@ -37,8 +37,7 @@ final class MethodSpecFactory implements MethodSpecFactoryInterface
      *
      * @throws MethodSpecSyntaxError
      */
-    #[\Override]
-    public function fromString(string $string): MethodSpec
+    public function fromString(string $string): MethodSpecInterface
     {
         if (preg_match('/^'.self::RE_NAME.'$/', $string, $matches)) {
             /** @psalm-var non-empty-string */
@@ -93,7 +92,8 @@ final class MethodSpecFactory implements MethodSpecFactoryInterface
     {
         foreach ($expressions as $offset => $expression) {
             if (preg_match('/^'.$expression.'\b/', $string, $matches)) {
-                $string = substr($string, strlen($matches[0]));
+                /** @psalm-suppress RedundantCastGivenDocblockType */
+                $string = (string) substr($string, strlen($matches[0]));
                 unset($expressions[$offset]);
 
                 return true;

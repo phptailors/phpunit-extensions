@@ -1,0 +1,121 @@
+<?php declare(strict_types=1);
+
+/*
+ * This file is part of phptailors/phpunit-extensions.
+ *
+ * Copyright (c) Paweł Tomulik <pawel@tomulik.pl>
+ *
+ * View the LICENSE file for full copyright and license information.
+ */
+
+namespace Tailors\PHPUnit\Arrays;
+
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
+use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\Common\TypesInterface;
+use Tailors\PHPUnit\ResultFactory\AbstractArrayResultFactory;
+use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
+
+/**
+ * @internal This class is not covered by the backward compatibility promise
+ *
+ * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-import-type ArrayLike from TypesInterface
+ *
+ * @psalm-type GetResultExpectArray = array{class: class-string, array: mixed}
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
+ */
+#[CoversClass(ArrayValuesFactory::class)]
+#[CoversClass(ArrayValuesFactoryTest::class)]
+#[Small]
+final class ArrayValuesFactoryTest extends TestCase
+{
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testExtendsAbstractArrayResultFactory(): void
+    {
+        $this->assertInstanceOf(AbstractArrayResultFactory::class, new ArrayValuesFactory());
+    }
+
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testImplementsResultFactoryInterface(): void
+    {
+        $this->assertInstanceOf(ResultFactoryInterface::class, new ArrayValuesFactory());
+    }
+
+    /**
+     * @psalm-return iterable<string, array{
+     *      actual: bool,
+     *      array: ArrayLike,
+     *      expect: GetResultExpectArray
+     * }>
+     *
+     * @codeCoverageIgnore
+     */
+    public static function provGetResult(): iterable
+    {
+        yield basename(__FILE__).':'.__LINE__ => [
+            'actual' => false,
+            'array'  => ['a' => 'A'],
+            'expect' => [
+                'class' => ExpectedArrayValues::class,
+                'array' => ['a' => 'A'],
+            ],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'actual' => true,
+            'array'  => ['a' => 'A'],
+            'expect' => [
+                'class' => ActualArrayValues::class,
+                'array' => ['a' => 'A'],
+            ],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'actual' => false,
+            'array'  => new \ArrayObject(['a' => 'A']),
+            'expect' => [
+                'class' => ExpectedArrayValues::class,
+                'array' => ['a' => 'A'],
+            ],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'actual' => true,
+            'array'  => new \ArrayObject(['a' => 'A']),
+            'expect' => [
+                'class' => ActualArrayValues::class,
+                'array' => ['a' => 'A'],
+            ],
+        ];
+    }
+
+    /**
+     * @psalm-param ArrayLike            $array
+     * @psalm-param GetResultExpectArray $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    #[DataProvider('provGetResult')]
+    public function testGetResult(bool $actual, iterable $array, array $expect): void
+    {
+        $factory = new ArrayValuesFactory();
+
+        $result = $factory->getResult($actual, $array);
+
+        $this->assertInstanceOf($expect['class'], $result);
+
+        /** @psalm-suppress RedundantConditionGivenDocblockType */
+        $this->assertIsIterable($result);
+        $this->assertSame($expect['array'], iterator_to_array($result));
+    }
+}
+// vim: syntax=php sw=4 ts=4 et:

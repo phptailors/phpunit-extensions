@@ -753,6 +753,106 @@ recursively specifications of object properties. For more details, see
   :linenos:
   :language: none
 
+.. _assertions.assertRecursivelyKsortedArrayEqualTo:
+
+assertRecursivelyKsortedArrayEqualTo()
+--------------------------------------
+
+.. list-table:: Prerequisites for :ref:`assertions.assertRecursivelyKsortedArrayEqualTo`
+   :width: 100%
+   :widths: 25 75
+   :header-rows: 0
+
+   * - Package
+     - phptailors/phpunit-arrays
+   * - Trait
+     - :class:`Tailors\\PHPUnit\\RecursivelyKsortedArrayEqualToTrait`
+
+Synopsis:
+
+.. code:: php
+
+  function assertRecursivelyKsortedArrayEqualTo(array $expected, mixed $actual[, string $message = ''[, int $flags = SORT_REGULAR]])
+
+Reports an error identified by ``$message`` if ``$actual`` array is not equal
+to ``$expected`` when key-sorted **recursively** (tested with ``==`` operator). If ``$actual``
+is not an array, the constraint fails.
+
+The arguments are:
+
+- ``$expected`` - an array of expected values,
+- ``$actual`` - an actual value,
+- ``$message`` - optional failure message,
+- ``$flags`` - optional sort flags passed to ``ksort()``.
+
+The method
+
+.. code:: php
+
+  function assertNotRecursivelyKsortedArrayEqualTo(array $expected, mixed $actual[, string $message = ''[, int $flags = SORT_REGULAR]])
+
+is the inverse of this.
+
+.. literalinclude:: examples/AssertRecursivelyKsortedArrayEqualToTest.php
+   :linenos:
+   :caption: Usage of :ref:`assertions.assertRecursivelyKsortedArrayEqualTo`
+   :name: assertions.assertRecursivelyKsortedArrayEqualTo.example
+
+.. literalinclude:: examples/AssertRecursivelyKsortedArrayEqualToTest.stdout
+   :linenos:
+   :language: none
+
+
+.. _assertions.assertRecursivelyKsortedArrayIdenticalTo:
+
+assertRecursivelyKsortedArrayIdenticalTo()
+------------------------------------------
+
+.. list-table:: Prerequisites for :ref:`assertions.assertRecursivelyKsortedArrayIdenticalTo`
+   :width: 100%
+   :widths: 25 75
+   :header-rows: 0
+
+   * - Package
+     - phptailors/phpunit-arrays
+   * - Trait
+     - :class:`Tailors\\PHPUnit\\RecursivelyKsortedArrayIdenticalToTrait`
+
+Synopsis:
+
+.. code:: php
+
+  function assertRecursivelyKsortedArrayIdenticalTo(array $expected, mixed $actual[, string $message = ''[, int $flags = SORT_REGULAR]])
+
+Reports an error identified by ``$message`` if ``$actual`` is not identical to
+``$expected`` one when key-sorted (tested with ``===`` operator). If
+``$actual`` is not an array, the constraint fails.
+
+The arguments are:
+
+- ``$expected`` - an array of expected values,
+- ``$actual`` - actual value,
+- ``$message`` - optional failure message,
+- ``$flags`` - optional sort flags passed to ``ksort()``.
+
+The method
+
+.. code:: php
+
+  function assertNotRecursivelyKsortedArrayIdenticalTo(array $expected, mixed $actual[, string $message = ''[, int $flags = SORT_REGULAR]])
+
+is the inverse of this.
+
+.. literalinclude:: examples/AssertRecursivelyKsortedArrayIdenticalToTest.php
+   :linenos:
+   :caption: Usage of :ref:`assertions.assertRecursivelyKsortedArrayIdenticalTo`
+   :name: assertions.assertRecursivelyKsortedArrayIdenticalTo.example
+
+.. literalinclude:: examples/AssertRecursivelyKsortedArrayIdenticalToTest.stdout
+   :linenos:
+   :language: none
+
+
 .. _assertions.assertUsesTrait:
 
 assertUsesTrait()

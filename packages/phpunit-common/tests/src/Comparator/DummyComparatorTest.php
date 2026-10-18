@@ -20,9 +20,13 @@ use PHPUnit\Framework\TestCase;
  * @psalm-internal Tailors\PHPUnit
  */
 #[CoversClass(DummyComparator::class)]
+#[CoversClass(DummyComparatorTest::class)]
 #[Small]
 final class DummyComparatorTest extends TestCase
 {
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testDummyComparator(): void
     {
         // Mostly for code coverage.

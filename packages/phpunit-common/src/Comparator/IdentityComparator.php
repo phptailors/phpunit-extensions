@@ -17,8 +17,11 @@ namespace Tailors\PHPUnit\Comparator;
  */
 final class IdentityComparator implements ComparatorInterface
 {
-    #[\Override]
-    public function compare(mixed $left, mixed $right): bool
+    /**
+     * @param mixed $left
+     * @param mixed $right
+     */
+    public function compare($left, $right): bool
     {
         return $left === $right;
     }
@@ -28,7 +31,6 @@ final class IdentityComparator implements ComparatorInterface
      *
      * @return string "identical to"
      */
-    #[\Override]
     public function adjective(): string
     {
         return 'identical to';

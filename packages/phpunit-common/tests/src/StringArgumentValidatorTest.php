@@ -20,15 +20,22 @@ use PHPUnit\Framework\TestCase;
  * @psalm-internal Tailors\PHPUnit
  */
 #[CoversClass(StringArgumentValidator::class)]
+#[CoversClass(StringArgumentValidatorTest::class)]
 #[Small]
 final class StringArgumentValidatorTest extends TestCase
 {
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testValidateSucceeds(): void
     {
         $validator = new StringArgumentValidator('is_numeric', 'a numeric string');
         self::assertNull($validator->validate(1, '123'));
     }
 
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
     public function testValidateThrowsInvalidArgumentException(): void
     {
         $message = sprintf('Argument 1 passed to %s() must be a numeric string, \'foo\' given.', __METHOD__);

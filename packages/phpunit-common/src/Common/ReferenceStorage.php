@@ -18,34 +18,39 @@ namespace Tailors\PHPUnit\Common;
 final class ReferenceStorage implements \Countable
 {
     /**
+     * @var array
+     *
      * @psalm-var array<string,mixed>
      */
-    private array $references = [];
+    private $references = [];
 
     /**
+     * @var \SplObjectStorage
+     *
      * @psalm-var \SplObjectStorage<object, null>
      */
-    private readonly \SplObjectStorage $objects;
+    private $objects;
 
     public function __construct()
     {
         $this->objects = new \SplObjectStorage();
     }
 
-    #[\Override]
     public function count(): int
     {
         return count($this->references) + count($this->objects);
     }
 
     /**
+     * @param mixed $value
+     *
      * @psalm-template T
      *
      * @psalm-param T $value
      *
      * @psalm-param-out T $value
      */
-    public function add(mixed &$value): void
+    public function add(&$value): void
     {
         if (is_object($value)) {
             $this->addObject($value);
@@ -57,13 +62,15 @@ final class ReferenceStorage implements \Countable
     }
 
     /**
+     * @param mixed $value
+     *
      * @psalm-template T
      *
      * @psalm-param T $value
      *
      * @psalm-param-out T $value
      */
-    public function remove(mixed &$value): void
+    public function remove(&$value): void
     {
         if (is_object($value)) {
             $this->removeObject($value);
@@ -75,13 +82,15 @@ final class ReferenceStorage implements \Countable
     }
 
     /**
+     * @param mixed $value
+     *
      * @psalm-template T
      *
      * @psalm-param T $value
      *
      * @psalm-param-out T $value
      */
-    public function contains(mixed &$value): bool
+    public function contains(&$value): bool
     {
         if (is_object($value)) {
             return $this->containsObject($value);
@@ -98,13 +107,15 @@ final class ReferenceStorage implements \Countable
     }
 
     /**
+     * @param mixed $value
+     *
      * @psalm-template T
      *
      * @psalm-param T $value
      *
      * @psalm-param-out T $value
      */
-    private function addReference(mixed &$value): void
+    private function addReference(&$value): void
     {
         $id = $this->getReferenceId($value);
         if (!array_key_exists($id, $this->references)) {
@@ -120,13 +131,15 @@ final class ReferenceStorage implements \Countable
     }
 
     /**
+     * @param mixed $value
+     *
      * @psalm-template T
      *
      * @psalm-param T $value
      *
      * @psalm-param-out T $value
      */
-    private function removeReference(mixed &$value): void
+    private function removeReference(&$value): void
     {
         $id = $this->getReferenceId($value);
         if (array_key_exists($id, $this->references)) {
@@ -140,13 +153,15 @@ final class ReferenceStorage implements \Countable
     }
 
     /**
+     * @param mixed $value
+     *
      * @psalm-template T
      *
      * @psalm-param T $value
      *
      * @psalm-param-out T $value
      */
-    private function containsReference(mixed &$value): bool
+    private function containsReference(&$value): bool
     {
         $id = $this->getReferenceId($value);
 
@@ -154,15 +169,17 @@ final class ReferenceStorage implements \Countable
     }
 
     /**
+     * @param mixed $value
+     *
      * @psalm-template T
      *
      * @psalm-param T $value
      *
      * @psalm-param-out T $value
      */
-    private function getReferenceId(mixed &$value): string
+    private function getReferenceId(&$value): string
     {
-        if (!class_exists(\ReflectionReference::class)) {
+        if (!class_exists(\ReflectionReference::class) || !method_exists(\ReflectionReference::class, 'fromArrayElement')) {
             // @codeCoverageIgnoreStart
             /** @psalm-var mixed $reference */
             foreach ($this->references as $id => &$reference) {

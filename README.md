@@ -129,7 +129,7 @@ composer require --dev phptailors/phpunit-arrays
 Testing class hierarches: whether a class implements interface, uses trait, etc.,
 
 ```shell
-composer require --dev phptailors/phpunit-arrays
+composer require --dev phptailors/phpunit-inheritance
 ```
 
 #### [phpunit-methods](https://packagist.org/packages/phptailors/phpunit-methods)
@@ -137,7 +137,7 @@ composer require --dev phptailors/phpunit-arrays
 Ensuring methods' existence and modifiers (is it private? is it final? or, maybe, is it static?).
 
 ```shell
-composer require --dev phptailors/phpunit-arrays
+composer require --dev phptailors/phpunit-methods
 ```
 
 #### [phpunit-properties](https://packagist.org/packages/phptailors/phpunit-properties)
@@ -145,7 +145,7 @@ composer require --dev phptailors/phpunit-arrays
 Testing for objects' state (property values checked using convenient array-like notation).
 
 ```shell
-composer require --dev phptailors/phpunit-arrays
+composer require --dev phptailors/phpunit-properties
 ```
 
 #### [phpunit-regexp](https://packagist.org/packages/phptailors/phpunit-regexp)
@@ -153,7 +153,7 @@ composer require --dev phptailors/phpunit-arrays
 Testing capture groups in regular expressions, useful for projects that implement tokenizers or parsers.
 
 ```shell
-composer require --dev phptailors/phpunit-arrays
+composer require --dev phptailors/phpunit-regexp
 ```
 
 ## Versioning

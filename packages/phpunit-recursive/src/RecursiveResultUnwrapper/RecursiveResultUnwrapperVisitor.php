@@ -1,0 +1,216 @@
+<?php declare(strict_types=1);
+
+/*
+ * This file is part of phptailors/phpunit-extensions.
+ *
+ * Copyright (c) Paweł Tomulik <pawel@tomulik.pl>
+ *
+ * View the LICENSE file for full copyright and license information.
+ */
+
+namespace Tailors\PHPUnit\RecursiveResultUnwrapper;
+
+use Tailors\PHPUnit\Common\StaticRandomStrings;
+use Tailors\PHPUnit\Common\StaticTagInterface;
+use Tailors\PHPUnit\Common\TagInterface;
+use Tailors\PHPUnit\Common\TypesInterface;
+use Tailors\PHPUnit\InternalErrorException;
+use Tailors\PHPUnit\InvalidArgumentException;
+use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorStackItemInterface;
+use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorUtils;
+use Tailors\PHPUnit\Result\ResultInterface;
+
+/**
+ * @internal This interface is not covered by the backward compatibility promise
+ *
+ * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type StackItem = RecursiveResultUnwrapperStackItem
+ *
+ * @psalm-import-type ArrayLike from TypesInterface
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
+ */
+final class RecursiveResultUnwrapperVisitor implements RecursiveResultUnwrapperVisitorInterface, StaticTagInterface
+{
+    /**
+     * @var ?bool
+     */
+    private $actual;
+
+    /**
+     * @var null|array|ResultInterface
+     */
+    private $result;
+
+    /**
+     * @var array
+     */
+    private $current;
+
+    public function __construct(private readonly bool $tagging = true)
+    {
+        $this->actual = null;
+        $this->current = [];
+    }
+
+    /**
+     * @psalm-return non-falsy-string
+     */
+    public static function tag(): string
+    {
+        return StaticRandomStrings::familyTag(__NAMESPACE__.'\UnwrappedResult', '4694a81d074f3386a9b8c7c2ad04914e120f1a10');
+    }
+
+    public function begin(bool $actual): void
+    {
+        $this->actual = $actual;
+        $this->result = null;
+        $this->current = [];
+    }
+
+    public function end(): void
+    {
+        $this->actual = null;
+        $this->current = [];
+    }
+
+    /**
+     * @return null|array|ResultInterface
+     *
+     * @psalm-mutation-free
+     */
+    public function result()
+    {
+        return $this->result;
+    }
+
+    /**
+     * @psalm-param ArrayLike       $node
+     * @psalm-param list<StackItem> $stack
+     */
+    public function enter(iterable $node, array $stack): bool
+    {
+        if ($node instanceof ResultInterface) {
+            $iterate = $node->actual() === $this->actual;
+        } else {
+            $iterate = is_array($node);
+        }
+
+        if ($iterate) {
+            $this->current = [];
+        }
+
+        return $iterate;
+    }
+
+    /**
+     * @psalm-param ArrayLike       $node
+     * @psalm-param list<StackItem> $stack
+     */
+    public function leave(iterable $node, array $stack, bool $iterating): void
+    {
+        if (!$iterating) {
+            return;
+        }
+
+        if ($node instanceof \Traversable && $this->tagging) {
+            $tag = self::tag();
+            if (array_key_exists($tag, $this->current)) {
+                $key = var_export($tag, true);
+                $path = RecursiveVisitorUtils::pathAsString($stack)."[{$key}]";
+
+                /** @psalm-suppress MissingThrowsDocblock */
+                throw InternalErrorException::fromBackTrace(
+                    'Failed to set $array'.$path.': key already exists. Please re-run your tests.'
+                );
+            }
+
+            // Distinguish unwrapped values from regular arrays
+            // by adding object's tag at the end of $array.
+            $this->current[$tag] = $this->getNodeTag($node);
+        }
+
+        $this->set($stack, $this->current);
+    }
+
+    /**
+     * @param mixed $node
+     *
+     * @psalm-param list<StackItem> $stack
+     */
+    public function visit($node, array $stack, bool $iterating): void
+    {
+        $this->set($stack, $node);
+    }
+
+    /**
+     * @psalm-param ArrayLike       $node
+     * @psalm-param list<StackItem> $stack
+     */
+    public function cycle(iterable $node, array $stack): bool
+    {
+        $this->set($stack, $node);
+
+        return false;
+    }
+
+    /**
+     * @param mixed $key
+     *
+     * @psalm-param ArrayLike       $node
+     * @psalm-param array-key       $key
+     * @psalm-param list<StackItem> $stack
+     *
+     * @psalm-return StackItem
+     */
+    public function makeStackItem(iterable $node, $key, array $stack): RecursiveVisitorStackItemInterface
+    {
+        return new RecursiveResultUnwrapperStackItem($node, $key, $this->current);
+    }
+
+    /**
+     * @psalm-param StackItem       $item
+     * @psalm-param list<StackItem> $stack
+     */
+    public function freeStackItem(RecursiveVisitorStackItemInterface $item, array $stack): void
+    {
+        $this->current = $item->result();
+    }
+
+    /**
+     * @param mixed $value
+     *
+     * @psalm-param list<StackItem> $stack
+     */
+    private function set(array $stack, $value): void
+    {
+        $count = count($stack);
+
+        if (0 === $count) {
+            if (!is_array($value) && !$value instanceof ResultInterface) {
+                $expected = 'an array or '.ResultInterface::class.' object';
+                $actual = get_debug_type($value);
+
+                /** @psalm-suppress MissingThrowsDocblock */
+                throw InvalidArgumentException::fromBackTrace(2, $expected, $actual);
+            }
+            $this->result = $value;
+
+            return;
+        }
+
+        $stack[$count - 1]->set($value);
+    }
+
+    private function getNodeTag(object $node): string
+    {
+        if ($node instanceof TagInterface) {
+            return $node->tag();
+        }
+
+        return StaticRandomStrings::classTag($node);
+    }
+}
+
+// vim: syntax=php sw=4 ts=4 et:

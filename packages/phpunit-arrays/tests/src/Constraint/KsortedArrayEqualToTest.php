@@ -11,71 +11,145 @@
 namespace Tailors\PHPUnit\Constraint;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversTrait;
-use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Constraint\Constraint;
-use Tailors\PHPUnit\Arrays\AbstractKsortedConstraint;
 use Tailors\PHPUnit\Arrays\KsortedConstraintTestCase;
+use Tailors\PHPUnit\InvalidArgumentException;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-type ConstraintClass = KsortedArrayEqualTo
+ * @psalm-type CtorArgs        = list{0: array, 1?: int}
+ *
+ * @template-extends KsortedConstraintTestCase<KsortedArrayEqualTo>
  */
-#[CoversClass(AbstractKsortedConstraint::class)]
 #[CoversClass(KsortedConstraintTestCase::class)]
 #[CoversClass(KsortedArrayEqualTo::class)]
-#[CoversTrait(ProvKsortedArrayTrait::class)]
+#[CoversClass(KsortedArrayEqualToTest::class)]
 #[Small]
 final class KsortedArrayEqualToTest extends KsortedConstraintTestCase
 {
     use ProvKsortedArrayTrait;
 
-    #[\Override]
+    /**
+     * @codeCoverageIgnore Called only from providers.
+     */
     public static function adjective(): string
     {
         return 'equal to';
     }
 
-    #[\Override]
-    public static function getConstraintClass(): string
+    /**
+     * @throws InvalidArgumentException
+     *
+     * @psalm-param CtorArgs $ctorArgs
+     */
+    public static function createConstraint(array $ctorArgs): Constraint
     {
-        return KsortedArrayEqualTo::class;
+        return KsortedArrayEqualTo::create(...$ctorArgs);
     }
 
-    #[\Override]
-    public static function createConstraint(...$args): Constraint
+    /**
+     * @psalm-return iterable<string, array{
+     *      ctorArgs: CtorArgs,
+     *      actual: mixed
+     * }>
+     *
+     * @codeCoverageIgnore
+     */
+    public static function provConstraintEvaluationSucceeds(): iterable
     {
-        return KsortedArrayEqualTo::create(...$args);
+        $cases = (function (): iterable {
+            yield from self::provKsortedArrayIdenticalTo();
+
+            yield from self::provKsortedArrayEqualButNotIdenticalTo();
+        })();
+
+        foreach ($cases as $key => $case) {
+            yield $key => [
+                'ctorArgs' => [$case['expect']],
+                'actual'   => $case['actual'],
+            ];
+        }
     }
 
-    #[DataProvider('provKsortedArrayIdenticalTo')]
-    #[DataProvider('provKsortedArrayEqualButNotIdenticalTo')]
-    public function testKsortedArrayEqualToSucceeds(array $expect, mixed $actual, string $string): void
+    /**
+     * @psalm-return iterable<string, array{
+     *      ctorArgs: CtorArgs,
+     *      actual: mixed,
+     *      message: string
+     * }>
+     *
+     * @codeCoverageIgnore
+     */
+    public static function provConstraintEvaluationFails(): iterable
     {
-        parent::examineConstraintMatchSucceeds([$expect], $actual);
+        $cases = (function (): iterable {
+            yield from self::provKsortedArrayNotEqualTo();
+
+            yield from self::provKsortedArrayNotEqualToNonArray();
+        })();
+
+        foreach ($cases as $key => $case) {
+            yield $key => [
+                'ctorArgs' => [$case['expect']],
+                'actual'   => $case['actual'],
+                'message'  => self::message($case['string']),
+            ];
+        }
     }
 
-    #[DataProvider('provKsortedArrayNotEqualTo')]
-    #[DataProvider('provKsortedArrayNotEqualToNonArray')]
-    public function testKsortedArrayEqualToFails(array $expect, mixed $actual, string $string): void
+    /**
+     * @psalm-return iterable<string, array{
+     *      ctorArgs: CtorArgs,
+     *      actual: mixed
+     * }>
+     *
+     * @codeCoverageIgnore
+     */
+    public static function provNotConstraintEvaluationSucceeds(): iterable
     {
-        parent::examineConstraintMatchFails([$expect], $actual, self::message($string));
+        $cases = (function (): iterable {
+            yield from self::provKsortedArrayNotEqualTo();
+
+            yield from self::provKsortedArrayNotEqualToNonArray();
+        })();
+
+        foreach ($cases as $key => $case) {
+            yield $key => [
+                'ctorArgs' => [$case['expect']],
+                'actual'   => $case['actual'],
+            ];
+        }
     }
 
-    #[DataProvider('provKsortedArrayNotEqualTo')]
-    #[DataProvider('provKsortedArrayNotEqualToNonArray')]
-    public function testNotKsortedArrayEqualToSucceeds(array $expect, mixed $actual, string $string): void
+    /**
+     * @psalm-return iterable<string, array{
+     *      ctorArgs: CtorArgs,
+     *      actual: mixed,
+     *      message: string
+     * }>
+     *
+     * @codeCoverageIgnore
+     */
+    public static function provNotConstraintEvaluationFails(): iterable
     {
-        parent::examineNotConstraintMatchSucceeds([$expect], $actual);
-    }
+        $cases = (function (): iterable {
+            yield from self::provKsortedArrayIdenticalTo();
 
-    #[DataProvider('provKsortedArrayIdenticalTo')]
-    #[DataProvider('provKsortedArrayEqualButNotIdenticalTo')]
-    public function testNotKsortedArrayEqualToFails(array $expect, mixed $actual, string $string): void
-    {
-        parent::examineNotConstraintMatchFails([$expect], $actual, self::message($string, true));
+            yield from self::provKsortedArrayEqualButNotIdenticalTo();
+        })();
+
+        foreach ($cases as $key => $case) {
+            yield $key => [
+                'ctorArgs' => [$case['expect']],
+                'actual'   => $case['actual'],
+                'message'  => self::message($case['string'], true),
+            ];
+        }
     }
 }
 
