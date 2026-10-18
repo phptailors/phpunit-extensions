@@ -199,8 +199,8 @@ final class ExtendsClassTest extends TestCase
     {
         $constraint = ExtendsClass::create($class);
 
-        self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessage($message);
+        $this->expectException(ExpectationFailedException::class);
+        $this->expectExceptionMessage($message);
 
         $constraint->evaluate($subject);
     }
@@ -211,8 +211,8 @@ final class ExtendsClassTest extends TestCase
     #[DataProvider('provThrowsInvalidArgumentException')]
     public function testThrowsInvalidArgumentException(string $argument, string $message): void
     {
-        self::expectException(InvalidArgumentException::class);
-        self::expectExceptionMessageMatches($message);
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessageMatches($message);
 
         ExtendsClass::create($argument);
     }

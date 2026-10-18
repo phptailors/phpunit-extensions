@@ -786,8 +786,8 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
 
         $expected = preg_quote('an array or '.ResultInterface::class.' object', '/');
         $message = '/Argument [0-9] passed to [a-zA-Z\\\\]*RecursiveResultUnwrapperVisitor::set\(\) must be '.$expected.', string given/';
-        self::expectException(InvalidArgumentException::class);
-        self::expectExceptionMessageMatches($message);
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessageMatches($message);
 
         $visitor->visit('', [], false);
     }
@@ -1272,8 +1272,8 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
         $visitor->freeStackItem(array_pop($stack), $stack);
 
         $key = preg_quote(var_export($visitor::tag(), true), '/');
-        self::expectException(InternalErrorException::class);
-        self::expectExceptionMessageMatches("/^Failed to set \\\$array\\[{$key}\\]: key already exists. Please re-run your tests\.$/");
+        $this->expectException(InternalErrorException::class);
+        $this->expectExceptionMessageMatches("/^Failed to set \\\$array\\[{$key}\\]: key already exists. Please re-run your tests\.$/");
 
         $visitor->leave($node, $stack, $iterating);
 

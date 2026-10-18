@@ -140,8 +140,8 @@ final class ArrayValuesIdenticalToTraitTest extends TestCase
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that '.preg_quote($string, '/').' is an array or ArrayAccess '.
             'with values identical to the specified ones./';
-        self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessageMatches($regexp);
+        $this->expectException(ExpectationFailedException::class);
+        $this->expectExceptionMessageMatches($regexp);
 
         self::assertArrayValuesIdenticalTo($expect, $actual, 'Lorem ipsum.');
     }
@@ -159,8 +159,8 @@ final class ArrayValuesIdenticalToTraitTest extends TestCase
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that '.preg_quote($string, '/').' fails to be an array or ArrayAccess '.
             'with values identical to the specified ones./';
-        self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessageMatches($regexp);
+        $this->expectException(ExpectationFailedException::class);
+        $this->expectExceptionMessageMatches($regexp);
 
         self::assertNotArrayValuesIdenticalTo($expect, $actual, 'Lorem ipsum.');
     }

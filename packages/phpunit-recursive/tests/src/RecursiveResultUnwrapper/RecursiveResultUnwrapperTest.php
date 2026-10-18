@@ -111,8 +111,8 @@ final class RecursiveResultUnwrapperTest extends TestCase
             ->willReturn(null)
         ;
 
-        self::expectException(InternalErrorException::class);
-        self::expectExceptionMessageMatches('/^(?:\\$\w+(?:->\w+)*)->result\(\) returned null$/');
+        $this->expectException(InternalErrorException::class);
+        $this->expectExceptionMessageMatches('/^(?:\\$\w+(?:->\w+)*)->result\(\) returned null$/');
 
         $recursiveResultUnwrapper->unwrap(false, []);
     }
