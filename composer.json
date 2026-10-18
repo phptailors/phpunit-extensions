@@ -2,13 +2,13 @@
     "name": "phptailors/phpunit-extensions",
     "description": "Extensions to PHPUnit framework",
     "license": "MIT",
+    "type": "library",
     "authors": [
         {
             "name": "Paweł Tomulik",
             "email": "pawel@tomulik.pl"
         }
     ],
-    "type": "library",
     "require": {
         "ext-mbstring": "*",
         "php": "^8.4.1"
