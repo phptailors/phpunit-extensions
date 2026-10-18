@@ -7,6 +7,7 @@ use Rector\DeadCode\Rector\ClassMethod\RemoveUselessParamTagRector;
 use Rector\DeadCode\Rector\ClassMethod\RemoveUselessReturnTagRector;
 use Rector\DeadCode\Rector\Property\RemoveUselessReadOnlyTagRector;
 use Rector\DeadCode\Rector\Property\RemoveUselessVarTagRector;
+use Rector\PHPUnit\PHPUnit120\Rector\Class_\AllowMockObjectsForDataProviderRector;
 use Rector\Php74\Rector\If_\IfToNullCoalescingAssignRector;
 use Rector\Renaming\Rector\Name\RenameClassRector;
 
@@ -27,6 +28,8 @@ return RectorConfig::configure()
 
         // Leave if(null === ...) for more precise line code coverage
         IfToNullCoalescingAssignRector::class => true,
+        // Do not...
+        AllowMockObjectsForDataProviderRector::class => true,
     ])
     ->withRules([
         RemoveUselessParamTagRector::class,

@@ -2,6 +2,7 @@
     "name": "phptailors/phpunit-extensions",
     "description": "Extensions to PHPUnit framework",
     "license": "MIT",
+    "type": "library",
     "authors": [
         {
             "name": "Paweł Tomulik",
