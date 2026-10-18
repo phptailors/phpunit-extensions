@@ -25,7 +25,7 @@
         "phptailors/phpunit-inheritance": "5.1.x-dev",
         "phptailors/phpunit-methods": "5.1.x-dev",
         "phptailors/phpunit-properties": "5.1.x-dev",
-        "phptailors/phpunit-recursive": "self.version",
+        "phptailors/phpunit-recursive": "5.1.x-dev",
         "phptailors/phpunit-regexp": "5.1.x-dev"
     },
     "conflict": {
