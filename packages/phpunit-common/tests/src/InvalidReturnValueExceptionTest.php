@@ -126,11 +126,9 @@ final class InvalidReturnValueExceptionTest extends TestCase
     }
 
     /**
-     * @param mixed $function
-     *
      * @psalm-param FunctionSpec $function
      */
-    protected static function getFunctionName($function): string
+    protected static function getFunctionName(mixed $function): string
     {
         if (is_string($function)) {
             $name = $function;

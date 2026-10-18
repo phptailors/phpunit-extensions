@@ -28,10 +28,7 @@ interface RecursiveResultUnwrapperVisitorInterface extends RecursiveVisitorInter
 
     public function end(): void;
 
-    /**
-     * @return null|array|ResultInterface
-     */
-    public function result();
+    public function result(): array|ResultInterface|null;
 }
 
 // vim: syntax=php sw=4 ts=4 et:

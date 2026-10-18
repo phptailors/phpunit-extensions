@@ -22,10 +22,8 @@ final class Exporter
 {
     /**
      * @psalm-suppress MixedInferredReturnType
-     *
-     * @param mixed $value
      */
-    public static function export($value, bool $exportObjects = false): string
+    public static function export(mixed $value, bool $exportObjects = false): string
     {
         // @codeCoverageIgnoreStart
 
@@ -38,11 +36,9 @@ final class Exporter
     }
 
     /**
-     * @param mixed $value
-     *
      * @psalm-param mixed $value
      */
-    private static function isExportable(&$value, ?Context $context = null): bool
+    private static function isExportable(mixed &$value, ?Context $context = null): bool
     {
         // @codeCoverageIgnoreStart
 

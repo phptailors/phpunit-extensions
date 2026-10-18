@@ -31,13 +31,11 @@ interface RecursiveVisitorStackItemInterface
     public function node(): iterable;
 
     /**
-     * @return mixed
-     *
      * @psalm-return array-key
      *
      * @psalm-mutation-free
      */
-    public function key();
+    public function key(): mixed;
 }
 
 // vim: syntax=php sw=4 ts=4 et:

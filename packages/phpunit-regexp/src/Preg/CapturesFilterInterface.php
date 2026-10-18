@@ -38,11 +38,9 @@ interface CapturesFilterInterface
      *      - $value[0] is a string or PREG_UNMATCHED_AS_NULL is set and $value is null, and
      *      - $value[1] is an integer,
      *
-     * @param mixed $value
-     *
      * @psalm-assert-if-true string|null|array{0:string|null,1:int} $value
      */
-    public function accepts($value): bool;
+    public function accepts(mixed $value): bool;
 }
 
 // vim: syntax=php sw=4 ts=4 et:

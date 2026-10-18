@@ -30,25 +30,21 @@ use Tailors\PHPUnit\Result\ResultInterface;
 abstract class AbstractArrayResultFactory implements ResultFactoryInterface
 {
     /**
-     * @param mixed $input
-     *
      * @psalm-assert-if-true SupportedInput $input
      */
-    final public function supports($input): bool
+    final public function supports(mixed $input): bool
     {
         return is_iterable($input);
     }
 
     /**
-     * @param mixed $input
-     *
      * @throws InvalidArgumentException
      *
      * @psalm-assert SupportedInput $input
      *
      * @psalm-return ResultInterface&\Traversable
      */
-    final public function getResult(bool $actual, $input): ResultInterface
+    final public function getResult(bool $actual, mixed $input): ResultInterface
     {
         $this->assertSupports($input, 2);
 
@@ -63,13 +59,11 @@ abstract class AbstractArrayResultFactory implements ResultFactoryInterface
     abstract protected function getArrayResult(bool $actual, iterable $input): ResultInterface;
 
     /**
-     * @param mixed $input
-     *
      * @throws InvalidArgumentException
      *
      * @psalm-assert SupportedInput $input
      */
-    final protected function assertSupports($input, int $argument, int $distance = 1): void
+    final protected function assertSupports(mixed $input, int $argument, int $distance = 1): void
     {
         if ($this->supports($input)) {
             return;

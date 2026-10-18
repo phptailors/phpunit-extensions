@@ -47,21 +47,16 @@ final class RecursiveActualResultFactoryStackItem implements RecursiveVisitorSta
     }
 
     /**
-     * @return mixed
-     *
      * @psalm-return array-key
      *
      * @psalm-mutation-free
      */
-    public function key()
+    public function key(): mixed
     {
         return $this->key;
     }
 
-    /**
-     * @param mixed $value
-     */
-    public function set($value): void
+    public function set(mixed $value): void
     {
         $this->current->result[$this->key] = $value;
     }

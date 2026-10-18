@@ -44,7 +44,7 @@ abstract class AbstractInheritanceConstraint extends Constraint
      *
      * @param mixed $other value or object to evaluate
      */
-    final public function matches($other): bool
+    final public function matches(mixed $other): bool
     {
         if (is_object($other)) {
             $other = $other::class;
@@ -65,7 +65,7 @@ abstract class AbstractInheritanceConstraint extends Constraint
      *
      * @param mixed $other evaluated value or object
      */
-    final public function failureDescription($other): string
+    final public function failureDescription(mixed $other): string
     {
         return $this->short($other).' '.$this->toString();
     }
@@ -109,7 +109,7 @@ abstract class AbstractInheritanceConstraint extends Constraint
      * @param Operator $operator the $operator of the expression
      * @param mixed    $role     role of $this constraint in the $operator expression
      */
-    final protected function toStringInContext(Operator $operator, $role): string
+    final protected function toStringInContext(Operator $operator, mixed $role): string
     {
         if ($operator instanceof LogicalNot) {
             return sprintf('%s %s', $this->negatedVerb(), $this->expected);
@@ -134,7 +134,7 @@ abstract class AbstractInheritanceConstraint extends Constraint
      * @param mixed    $role     role of $this constraint in the $operator expression
      * @param mixed    $other    evaluated value or object
      */
-    final protected function failureDescriptionInContext(Operator $operator, $role, $other): string
+    final protected function failureDescriptionInContext(Operator $operator, mixed $role, mixed $other): string
     {
         $string = $this->toStringInContext($operator, $role);
 
@@ -147,10 +147,8 @@ abstract class AbstractInheritanceConstraint extends Constraint
 
     /**
      * Returns short representation of $subject for failureDescription().
-     *
-     * @param mixed $subject
      */
-    private function short($subject): string
+    private function short(mixed $subject): string
     {
         if (is_object($subject)) {
             $subject = 'object '.$subject::class;

@@ -42,13 +42,11 @@ final class DummyRecursiveVisitorStackItem implements RecursiveVisitorStackItemI
     }
 
     /**
-     * @return mixed
-     *
      * @psalm-return array-key
      *
      * @psalm-mutation-free
      */
-    public function key()
+    public function key(): mixed
     {
         return $this->key;
     }

@@ -48,13 +48,11 @@ final class RecursiveResultUnwrapperStackItem implements RecursiveVisitorStackIt
     }
 
     /**
-     * @return mixed
-     *
      * @psalm-return array-key
      *
      * @psalm-mutation-free
      */
-    public function key()
+    public function key(): mixed
     {
         return $this->key;
     }
@@ -64,10 +62,7 @@ final class RecursiveResultUnwrapperStackItem implements RecursiveVisitorStackIt
         return $this->result;
     }
 
-    /**
-     * @param mixed $value
-     */
-    public function set($value): void
+    public function set(mixed $value): void
     {
         $this->result[$this->key] = $value;
     }

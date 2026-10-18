@@ -25,11 +25,9 @@ use Tailors\PHPUnit\Result\ResultInterface;
 interface RecursiveResultUnwrapperInterface
 {
     /**
-     * @return array|ResultInterface
-     *
      * @psalm-param ArrayLike $array
      */
-    public function unwrap(bool $actual, iterable $array);
+    public function unwrap(bool $actual, iterable $array): array|ResultInterface;
 }
 
 // vim: syntax=php sw=4 ts=4 et:

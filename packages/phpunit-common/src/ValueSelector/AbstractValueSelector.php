@@ -24,17 +24,13 @@ use Tailors\PHPUnit\InvalidArgumentException;
 abstract class AbstractValueSelector implements ValueSelectorInterface
 {
     /**
-     * @param mixed $subject
-     * @param mixed $key
-     * @param mixed $retval
-     *
      * @throws InvalidArgumentException
      *
      * @psalm-param array-key $key
      *
      * @psalm-assert SubjectType $subject
      */
-    final public function select($subject, $key, &$retval = null): bool
+    final public function select(mixed $subject, mixed $key, mixed &$retval = null): bool
     {
         $this->assertSupports($subject, 1);
 
@@ -42,23 +38,17 @@ abstract class AbstractValueSelector implements ValueSelectorInterface
     }
 
     /**
-     * @param mixed $subject
-     * @param mixed $key
-     * @param mixed $retval
-     *
      * @psalm-param SubjectType $subject
      * @psalm-param array-key   $key
      */
-    abstract protected function selectFromSupported($subject, $key, &$retval = null): bool;
+    abstract protected function selectFromSupported(mixed $subject, mixed $key, mixed &$retval = null): bool;
 
     /**
      * @psalm-assert SubjectType $subject
      *
-     * @param mixed $subject
-     *
      * @throws InvalidArgumentException
      */
-    final protected function assertSupports($subject, int $argument, int $distance = 1): void
+    final protected function assertSupports(mixed $subject, int $argument, int $distance = 1): void
     {
         if (!$this->supports($subject)) {
             $provided = is_object($subject) ? 'an object '.$subject::class : gettype($subject);

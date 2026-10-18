@@ -43,14 +43,12 @@ final readonly class RecursiveResultFactory implements RecursiveResultFactoryInt
     }
 
     /**
-     * @param mixed $input
-     *
      * @psalm-param ArrayLike $array
      *
      * @psalm-template TValueSelectorSupportedInput
      * @psalm-template TResultFactorySupportedInput
      */
-    public function supports(iterable $array, $input): bool
+    public function supports(iterable $array, mixed $input): bool
     {
         if ($array instanceof ValueSelectorWrapperInterface) {
             /** @psalm-var ValueSelectorWrapperInterface<TValueSelectorSupportedInput> $array */
@@ -79,13 +77,9 @@ final readonly class RecursiveResultFactory implements RecursiveResultFactoryInt
     }
 
     /**
-     * @param mixed $input
-     *
-     * @return mixed
-     *
      * @psalm-param ArrayLike $array
      */
-    public function getActualResult(iterable $array, $input)
+    public function getActualResult(iterable $array, mixed $input): mixed
     {
         $this->actualResultVisitor->begin($input);
 
@@ -97,11 +91,9 @@ final readonly class RecursiveResultFactory implements RecursiveResultFactoryInt
     }
 
     /**
-     * @return mixed
-     *
      * @psalm-param ArrayLike $array
      */
-    public function getExpectedResult(iterable $array)
+    public function getExpectedResult(iterable $array): mixed
     {
         $this->expectedResultVisitor->begin();
 
