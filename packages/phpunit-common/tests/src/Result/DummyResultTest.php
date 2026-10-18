@@ -35,7 +35,7 @@ final class DummyResultTest extends TestCase
      */
     public function testImplementsResultInterface(): void
     {
-        $this->assertInstanceOf(ResultInterface::class, new DummyResult(false));
+        self::assertInstanceOf(ResultInterface::class, new DummyResult(false));
     }
 
     /**
@@ -64,6 +64,6 @@ final class DummyResultTest extends TestCase
     {
         $dummyResult = new DummyResult($actual);
 
-        $this->assertSame($actual, $dummyResult->actual());
+        self::assertSame($actual, $dummyResult->actual());
     }
 }

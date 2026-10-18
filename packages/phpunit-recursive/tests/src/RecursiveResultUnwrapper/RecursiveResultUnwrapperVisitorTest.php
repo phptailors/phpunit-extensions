@@ -69,7 +69,7 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
     public function testInitialResult(): void
     {
         $visitor = new RecursiveResultUnwrapperVisitor(false);
-        $this->assertNull($visitor->result());
+        self::assertNull($visitor->result());
     }
 
     /**
@@ -150,7 +150,7 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
 
         foreach ($calls as $call) {
             $args = $call['args'];
-            $this->assertSame($call['return'], $visitor->cycle($args['node'], $args['stack']));
+            self::assertSame($call['return'], $visitor->cycle($args['node'], $args['stack']));
         }
     }
 
@@ -599,7 +599,7 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
         foreach ($calls as $call) {
             $args = $call['args'];
             $node = $args['node'];
-            $this->assertSame($call['return'], $visitor->enter($node, $stack));
+            self::assertSame($call['return'], $visitor->enter($node, $stack));
             if ($call['return'] && array_key_exists('next', $call)) {
                 array_push($stack, $visitor->makeStackItem($node, $call['next'], $stack));
             }
@@ -614,15 +614,15 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
                  *
                  * @psalm-var non-empty-list<StackItem> $stack
                  */
-                $this->assertNotEmpty($stack);
+                self::assertNotEmpty($stack);
                 $visitor->freeStackItem(array_pop($stack), $stack);
             }
-            $this->assertNull($visitor->leave($node, $stack, $call['return']));
+            self::assertNull($visitor->leave($node, $stack, $call['return']));
         }
 
         $visitor->end();
 
-        $this->assertSame($result, $visitor->result());
+        self::assertSame($result, $visitor->result());
     }
 
     /**
@@ -740,7 +740,7 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
         $visitor->begin(...$begin);
 
         $i = 0;
-        $this->assertTrue($visitor->enter($root, $stack));
+        self::assertTrue($visitor->enter($root, $stack));
         foreach ($calls as $call) {
             $args = $call['args'];
 
@@ -757,7 +757,7 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
                 array_push($stack, $visitor->makeStackItem($root, $call['key'], $stack));
             }
 
-            $this->assertNull($visitor->visit($node, $stack, $iter));
+            self::assertNull($visitor->visit($node, $stack, $iter));
 
             if ($iter) {
                 /**
@@ -765,7 +765,7 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
                  *
                  * @psalm-var non-empty-list<StackItem> $stack
                  */
-                $this->assertNotEmpty($stack);
+                self::assertNotEmpty($stack);
                 $visitor->freeStackItem(array_pop($stack), $stack);
             }
             ++$i;
@@ -774,7 +774,7 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
 
         $visitor->end();
 
-        $this->assertSame($result, $visitor->result());
+        self::assertSame($result, $visitor->result());
     }
 
     /**
@@ -786,8 +786,8 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
 
         $expected = preg_quote('an array or '.ResultInterface::class.' object', '/');
         $message = '/Argument [0-9] passed to [a-zA-Z\\\\]*RecursiveResultUnwrapperVisitor::set\(\) must be '.$expected.', string given/';
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessageMatches($message);
+        self::expectException(InvalidArgumentException::class);
+        self::expectExceptionMessageMatches($message);
 
         $visitor->visit('', [], false);
     }
@@ -1264,7 +1264,7 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
         $visitor->begin(false);
 
         $iterating = $visitor->enter($node, $stack);
-        $this->assertTrue($iterating);
+        self::assertTrue($iterating);
         array_push($stack, $visitor->makeStackItem($node, $visitor::tag(), $stack));
 
         $visitor->visit($node[$visitor::tag()], $stack, $iterating);
@@ -1272,8 +1272,8 @@ final class RecursiveResultUnwrapperVisitorTest extends TestCase
         $visitor->freeStackItem(array_pop($stack), $stack);
 
         $key = preg_quote(var_export($visitor::tag(), true), '/');
-        $this->expectException(InternalErrorException::class);
-        $this->expectExceptionMessageMatches("/^Failed to set \\\$array\\[{$key}\\]: key already exists. Please re-run your tests\.$/");
+        self::expectException(InternalErrorException::class);
+        self::expectExceptionMessageMatches("/^Failed to set \\\$array\\[{$key}\\]: key already exists. Please re-run your tests\.$/");
 
         $visitor->leave($node, $stack, $iterating);
 

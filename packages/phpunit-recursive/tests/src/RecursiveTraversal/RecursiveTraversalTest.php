@@ -530,7 +530,7 @@ final class RecursiveTraversalTest extends TestCase
         $traversal->walk($array, $visitor);
 
         /** @psalm-suppress MissingThrowsDocblock */
-        $this->assertSame($expect, $visitor->trace());
+        self::assertSame($expect, $visitor->trace());
     }
 
     public function testWalkWithCircularArray(): void
@@ -561,7 +561,7 @@ final class RecursiveTraversalTest extends TestCase
         $traversal->walk($array, $visitor);
 
         /** @psalm-suppress MissingThrowsDocblock */
-        $this->assertSame($expect, $visitor->trace());
+        self::assertSame($expect, $visitor->trace());
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

@@ -75,7 +75,7 @@ final class RecursiveResultUnwrapperTest extends TestCase
             ->willReturn(['out' => 'OUT'])
         ;
 
-        $this->assertSame(['out' => 'OUT'], $recursiveResultUnwrapper->unwrap(true, ['in' => 'IN']));
+        self::assertSame(['out' => 'OUT'], $recursiveResultUnwrapper->unwrap(true, ['in' => 'IN']));
     }
 
     /**
@@ -111,8 +111,8 @@ final class RecursiveResultUnwrapperTest extends TestCase
             ->willReturn(null)
         ;
 
-        $this->expectException(InternalErrorException::class);
-        $this->expectExceptionMessageMatches('/^(?:\\$\w+(?:->\w+)*)->result\(\) returned null$/');
+        self::expectException(InternalErrorException::class);
+        self::expectExceptionMessageMatches('/^(?:\\$\w+(?:->\w+)*)->result\(\) returned null$/');
 
         $recursiveResultUnwrapper->unwrap(false, []);
     }
@@ -124,7 +124,7 @@ final class RecursiveResultUnwrapperTest extends TestCase
     {
         $recursiveResultUnwrapper = RecursiveResultUnwrapper::create();
 
-        $this->assertSame(['x' => 'X'], $recursiveResultUnwrapper->unwrap(false, ['x' => 'X']));
+        self::assertSame(['x' => 'X'], $recursiveResultUnwrapper->unwrap(false, ['x' => 'X']));
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

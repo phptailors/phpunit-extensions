@@ -39,7 +39,7 @@ final class ArrayValuesSelectionTest extends TestCase
      */
     public function testExtendsAbstractArraySelectionSpec(): void
     {
-        $this->assertInstanceOf(AbstractArraySelection::class, new ArrayValuesSelection([]));
+        self::assertInstanceOf(AbstractArraySelection::class, new ArrayValuesSelection([]));
     }
 
     /**
@@ -47,7 +47,7 @@ final class ArrayValuesSelectionTest extends TestCase
      */
     public function testImplementsResultFactoryWrapperInterface(): void
     {
-        $this->assertInstanceOf(ResultFactoryWrapperInterface::class, new ArrayValuesSelection([]));
+        self::assertInstanceOf(ResultFactoryWrapperInterface::class, new ArrayValuesSelection([]));
     }
 
     /**
@@ -55,7 +55,7 @@ final class ArrayValuesSelectionTest extends TestCase
      */
     public function testImplementValueSelectorWrapperInterface(): void
     {
-        $this->assertInstanceOf(ValueSelectorWrapperInterface::class, new ArrayValuesSelection([]));
+        self::assertInstanceOf(ValueSelectorWrapperInterface::class, new ArrayValuesSelection([]));
     }
 
     /**
@@ -86,11 +86,11 @@ final class ArrayValuesSelectionTest extends TestCase
     {
         $selection = new ArrayValuesSelection($array);
 
-        $this->assertInstanceOf(ArrayValuesFactory::class, $selection->getResultFactory());
-        $this->assertInstanceOf(ArrayValueSelector::class, $selection->getValueSelector());
+        self::assertInstanceOf(ArrayValuesFactory::class, $selection->getResultFactory());
+        self::assertInstanceOf(ArrayValueSelector::class, $selection->getValueSelector());
 
         $expect = is_array($array) ? $array : iterator_to_array($array);
-        $this->assertSame($expect, iterator_to_array($selection));
+        self::assertSame($expect, iterator_to_array($selection));
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

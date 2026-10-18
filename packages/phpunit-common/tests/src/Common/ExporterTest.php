@@ -55,7 +55,7 @@ final class ExporterTest extends TestCase
     #[DataProvider('provExport')]
     public function testExport(array $args, string $format): void
     {
-        $this->assertStringMatchesFormat($format, Exporter::export(...$args));
+        self::assertStringMatchesFormat($format, Exporter::export(...$args));
     }
 
     /**
@@ -66,7 +66,7 @@ final class ExporterTest extends TestCase
         $array = [];
         $array[0] = &$array;
         $format = (new SebastianExporter())->export($array);
-        $this->assertStringMatchesFormat($format, Exporter::export($array));
+        self::assertStringMatchesFormat($format, Exporter::export($array));
     }
 
     /**
@@ -77,8 +77,8 @@ final class ExporterTest extends TestCase
         $array = ['foo' => new \ArrayObject()];
         $array['foo'][0] = &$array;
         $format = (new SebastianExporter())->export($array);
-        $this->assertStringMatchesFormat('{enable export of objects to see this value}', Exporter::export($array));
-        $this->assertStringMatchesFormat($format, Exporter::export($array, true));
+        self::assertStringMatchesFormat('{enable export of objects to see this value}', Exporter::export($array));
+        self::assertStringMatchesFormat($format, Exporter::export($array, true));
     }
 
     /**
@@ -122,7 +122,7 @@ final class ExporterTest extends TestCase
 
         $exported = str_replace("\r", '', Exporter::export($top, true));
 
-        $this->assertThat($exported, $this->logicalOr(
+        self::assertThat($exported, $this->logicalOr(
             $this->identicalTo(str_replace("\r", '', $expected[0])),
             $this->identicalTo(str_replace("\r", '', $expected[1])),
             $this->identicalTo(str_replace("\r", '', $expected[2]))
@@ -136,7 +136,7 @@ final class ExporterTest extends TestCase
     {
         $data = 'Tailors\InExistent\Class Object #123 ()';
         $expected = (new SebastianExporter())->export($data);
-        $this->assertSame($expected, Exporter::export($data, true));
+        self::assertSame($expected, Exporter::export($data, true));
     }
 
     /**
@@ -146,7 +146,7 @@ final class ExporterTest extends TestCase
     {
         $data = self::class.' Object #123 ()';
         $expected = (new SebastianExporter())->export($data);
-        $this->assertSame($expected, Exporter::export($data, true));
+        self::assertSame($expected, Exporter::export($data, true));
     }
 
     /**
@@ -156,7 +156,7 @@ final class ExporterTest extends TestCase
     {
         $data = DummyNamedArray::class.' Object #123 ()';
         $expected = (new SebastianExporter())->export($data);
-        $this->assertSame($expected, Exporter::export($data, true));
+        self::assertSame($expected, Exporter::export($data, true));
     }
 
     /**
@@ -173,7 +173,7 @@ final class ExporterTest extends TestCase
         $expected = (new SebastianExporter())->export($data);
 
         try {
-            $this->assertSame($expected, Exporter::export($data, true));
+            self::assertSame($expected, Exporter::export($data, true));
         } catch (ExpectationFailedException) {
             $this->markTestSkipped(
                 'Multiline strings containing ExportableNameInterface objects cannot be handled correctly with this version of Exporter'

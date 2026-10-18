@@ -37,7 +37,7 @@ final class AbstractInheritanceConstraintTest extends TestCase
     public function testExtendsConstraint(): void
     {
         $constraint = $this->createStub(AbstractInheritanceConstraint::class);
-        $this->assertInstanceOf(Constraint::class, $constraint);
+        self::assertInstanceOf(Constraint::class, $constraint);
     }
 
     /**
@@ -185,8 +185,8 @@ final class AbstractInheritanceConstraintTest extends TestCase
     public function testAbstractInheritanceConstraint(Constraint $constraint, array $assertion): void
     {
         if (null !== ($exception = $assertion['exception'] ?? null)) {
-            $this->expectException(ExpectationFailedException::class);
-            $this->expectExceptionMessage($exception);
+            self::expectException(ExpectationFailedException::class);
+            self::expectExceptionMessage($exception);
         }
 
         self::assertThat($assertion['other'], $constraint);
