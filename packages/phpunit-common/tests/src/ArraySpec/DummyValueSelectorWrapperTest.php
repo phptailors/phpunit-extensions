@@ -107,7 +107,7 @@ final class DummyValueSelectorWrapperTest extends TestCase
      */
     public function testDummyValueSelectorWrapper(iterable $array): void
     {
-        $valueSelector = $this->createMock(ValueSelectorInterface::class);
+        $valueSelector = $this->createStub(ValueSelectorInterface::class);
 
         $dummyValueSelectorWrapper = self::createDummyValueSelectorWrapper($array, $valueSelector);
 

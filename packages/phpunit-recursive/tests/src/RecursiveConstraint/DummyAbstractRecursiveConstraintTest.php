@@ -31,10 +31,10 @@ final class DummyAbstractRecursiveConstraintTest extends TestCase
     public function testCreateWithTraversable(): void
     {
         $constraint = DummyAbstractRecursiveConstraint::create(
-            $this->createMock(\Traversable::class),
-            $this->createMock(ComparatorInterface::class),
-            $this->createMock(RecursiveResultFactoryInterface::class),
-            $this->createMock(RecursiveResultUnwrapperInterface::class)
+            $this->createStub(\Traversable::class),
+            $this->createStub(ComparatorInterface::class),
+            $this->createStub(RecursiveResultFactoryInterface::class),
+            $this->createStub(RecursiveResultUnwrapperInterface::class)
         );
 
         $this->assertInstanceOf(DummyAbstractRecursiveConstraint::class, $constraint);
@@ -47,9 +47,9 @@ final class DummyAbstractRecursiveConstraintTest extends TestCase
     {
         $constraint = DummyAbstractRecursiveConstraint::create(
             [],
-            $this->createMock(ComparatorInterface::class),
-            $this->createMock(RecursiveResultFactoryInterface::class),
-            $this->createMock(RecursiveResultUnwrapperInterface::class)
+            $this->createStub(ComparatorInterface::class),
+            $this->createStub(RecursiveResultFactoryInterface::class),
+            $this->createStub(RecursiveResultUnwrapperInterface::class)
         );
 
         $this->assertInstanceOf(DummyAbstractRecursiveConstraint::class, $constraint);
