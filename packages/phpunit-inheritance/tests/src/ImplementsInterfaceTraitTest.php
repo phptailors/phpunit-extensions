@@ -176,8 +176,8 @@ final class ImplementsInterfaceTraitTest extends TestCase
      */
     public function testAssertImplementsInterfaceFails(string $interface, mixed $subject, string $message): void
     {
-        self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessage($message);
+        $this->expectException(ExpectationFailedException::class);
+        $this->expectExceptionMessage($message);
 
         self::assertImplementsInterface($interface, $subject);
     }
@@ -189,8 +189,8 @@ final class ImplementsInterfaceTraitTest extends TestCase
      */
     public function testAssertNotImplementsInterfaceFails(string $interface, mixed $subject, string $message): void
     {
-        self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessage($message);
+        $this->expectException(ExpectationFailedException::class);
+        $this->expectExceptionMessage($message);
 
         self::assertNotImplementsInterface($interface, $subject);
     }
@@ -230,8 +230,8 @@ final class ImplementsInterfaceTraitTest extends TestCase
      */
     public function testImplementsInterfaceThrowsInvalidArgumentException(string $argument, string $message): void
     {
-        self::expectException(InvalidArgumentException::class);
-        self::expectExceptionMessage($message);
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage($message);
 
         self::implementsInterface($argument);
     }

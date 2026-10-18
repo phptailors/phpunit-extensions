@@ -170,8 +170,8 @@ final class ExtendsClassTraitTest extends TestCase
      */
     public function testAssertExtendsClassFails(string $class, mixed $subject, string $message): void
     {
-        self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessage($message);
+        $this->expectException(ExpectationFailedException::class);
+        $this->expectExceptionMessage($message);
 
         self::assertExtendsClass($class, $subject);
     }
@@ -183,8 +183,8 @@ final class ExtendsClassTraitTest extends TestCase
      */
     public function testAssertNotExtendsClassFails(string $class, mixed $subject, string $message): void
     {
-        self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessage($message);
+        $this->expectException(ExpectationFailedException::class);
+        $this->expectExceptionMessage($message);
 
         self::assertNotExtendsClass($class, $subject);
     }
@@ -224,8 +224,8 @@ final class ExtendsClassTraitTest extends TestCase
      */
     public function testExtendsClassThrowsInvalidArgumentException(string $argument, string $message): void
     {
-        self::expectException(InvalidArgumentException::class);
-        self::expectExceptionMessage($message);
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage($message);
 
         self::extendsClass($argument);
     }

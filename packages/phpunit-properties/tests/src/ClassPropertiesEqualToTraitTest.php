@@ -129,8 +129,8 @@ final class ClassPropertiesEqualToTraitTest extends TestCase
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that '.preg_quote($string, '/').' is a class '.
             'with properties equal to the specified ones./';
-        self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessageMatches($regexp);
+        $this->expectException(ExpectationFailedException::class);
+        $this->expectExceptionMessageMatches($regexp);
 
         self::assertClassPropertiesEqualTo($expect, $actual, 'Lorem ipsum.');
     }
@@ -148,8 +148,8 @@ final class ClassPropertiesEqualToTraitTest extends TestCase
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that '.preg_quote($string, '/').' fails to be a class '.
             'with properties equal to the specified ones./';
-        self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessageMatches($regexp);
+        $this->expectException(ExpectationFailedException::class);
+        $this->expectExceptionMessageMatches($regexp);
 
         self::assertNotClassPropertiesEqualTo($expect, $actual, 'Lorem ipsum.');
     }

@@ -192,8 +192,8 @@ final class AbstractValueSelectorTest extends TestCase
             }
 
             if (array_key_exists('exception', $select)) {
-                self::expectException(InvalidArgumentException::class);
-                self::expectExceptionMessage($select['exception']);
+                $this->expectException(InvalidArgumentException::class);
+                $this->expectExceptionMessage($select['exception']);
 
                 $selector->select(...$args);
             }

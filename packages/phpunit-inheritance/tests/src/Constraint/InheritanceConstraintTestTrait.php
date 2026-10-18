@@ -59,8 +59,8 @@ trait InheritanceConstraintTestTrait
             }
         };
 
-        self::expectException($expect['exception']);
-        self::expectExceptionMessageMatches($expect['message']);
+        $this->expectException($expect['exception']);
+        $this->expectExceptionMessageMatches($expect['message']);
 
         $noop->evaluate($subject);
     }
@@ -76,8 +76,8 @@ trait InheritanceConstraintTestTrait
     {
         $not = self::logicalNot($constraint);
 
-        self::expectException($expect['exception']);
-        self::expectExceptionMessageMatches($expect['message']);
+        $this->expectException($expect['exception']);
+        $this->expectExceptionMessageMatches($expect['message']);
 
         $not->evaluate($subject);
     }

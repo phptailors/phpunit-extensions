@@ -179,8 +179,8 @@ final class UsesTraitTraitTest extends TestCase
      */
     public function testAssertNotUsesTraitFails(string $trait, mixed $subject, string $message): void
     {
-        self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessage($message);
+        $this->expectException(ExpectationFailedException::class);
+        $this->expectExceptionMessage($message);
 
         self::assertNotUsesTrait($trait, $subject);
     }
@@ -192,8 +192,8 @@ final class UsesTraitTraitTest extends TestCase
      */
     public function testAssertUsesTraitFails(string $trait, mixed $subject, string $message): void
     {
-        self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessage($message);
+        $this->expectException(ExpectationFailedException::class);
+        $this->expectExceptionMessage($message);
 
         self::assertUsesTrait($trait, $subject);
     }
@@ -233,8 +233,8 @@ final class UsesTraitTraitTest extends TestCase
      */
     public function testUsesTraitThrowsInvalidArgumentException(string $argument, string $message): void
     {
-        self::expectException(InvalidArgumentException::class);
-        self::expectExceptionMessage($message);
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage($message);
 
         self::usesTrait($argument);
     }

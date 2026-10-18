@@ -137,8 +137,8 @@ final class ObjectPropertiesIdenticalToTraitTest extends TestCase
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that '.preg_quote($string, '/').' is an object '.
             'with properties identical to the specified ones./';
-        self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessageMatches($regexp);
+        $this->expectException(ExpectationFailedException::class);
+        $this->expectExceptionMessageMatches($regexp);
 
         self::assertObjectPropertiesIdenticalTo($expect, $actual, 'Lorem ipsum.');
     }
@@ -155,8 +155,8 @@ final class ObjectPropertiesIdenticalToTraitTest extends TestCase
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that '.preg_quote($string, '/').' fails to be an object '.
             'with properties identical to the specified ones./';
-        self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessageMatches($regexp);
+        $this->expectException(ExpectationFailedException::class);
+        $this->expectExceptionMessageMatches($regexp);
 
         self::assertNotObjectPropertiesIdenticalTo($expect, $actual, 'Lorem ipsum.');
     }
