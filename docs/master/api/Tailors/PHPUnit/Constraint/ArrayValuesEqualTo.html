@@ -86,24 +86,20 @@
 
     
     <p>final         class
-    <strong>ArrayValuesEqualTo</strong>        extends <abbr title="Tailors\PHPUnit\Recursive\AbstractRecursiveConstraint">AbstractRecursiveConstraint</abbr>
+    <strong>ArrayValuesEqualTo</strong>        extends <a href="../../../Tailors/PHPUnit/RecursiveConstraint/AbstractRecursiveConstraint.html"><abbr title="Tailors\PHPUnit\RecursiveConstraint\AbstractRecursiveConstraint">AbstractRecursiveConstraint</abbr></a>
 </p>
 
         
     
-        
+                        <table>
+            <tr>
+                <td><span class="label label-warning">internal</span></td>
+                <td>&nbsp;This trait is not covered by the backward compatibility promise</td>
+            </tr>
+        </table>
+                &nbsp;
+    
 
-            <div class="description">
-            <p><p>Constraint that accepts arrays having values equal to specified ones.</p></p>            <p><p>Compares only values present in the array of expectations. The <code>==</code>
-operator (equality) is used for comparison.</p>
-<pre><code> $matcher = ArrayValuesEqualTo::create([
-     'name' =&gt; 'John', 'age' =&gt; '21'
- ]);
-
- self::assertThat([
-     'age' =&gt; 21,
-     'name' =&gt; 'John',
- ], $matcher);</code></pre></p>        </div>
             
                 <h2>Traits</h2>
 
@@ -111,12 +107,7 @@ operator (equality) is used for comparison.</p>
     <div class="container-fluid underlined">
                     <div class="row">
                 <div class="col-md-6">
-                    <a href="../../../Tailors/PHPUnit/Recursive/RecursiveConstraintSpecializationTrait.html"><abbr title="Tailors\PHPUnit\Recursive\RecursiveConstraintSpecializationTrait">RecursiveConstraintSpecializationTrait</abbr></a>    </div>
-                <div class="col-md-6"></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-6">
-                    <a href="../../../Tailors/PHPUnit/Arrays/ValidateExpectationsTrait.html"><abbr title="Tailors\PHPUnit\Arrays\ValidateExpectationsTrait">ValidateExpectationsTrait</abbr></a>    </div>
+                    <a href="../../../Tailors/PHPUnit/Common/ShortFailureDescriptionTrait.html"><abbr title="Tailors\PHPUnit\Common\ShortFailureDescriptionTrait">ShortFailureDescriptionTrait</abbr></a>    </div>
                 <div class="col-md-6"></div>
             </div>
             </div>
@@ -128,56 +119,94 @@ operator (equality) is used for comparison.</p>
             <div class="container-fluid underlined">
                     <div class="row">
                 <div class="col-md-2 type">
-                    static&nbsp;<a href="../../../Tailors/PHPUnit/Recursive/RecursiveConstraintSpecializationTrait.html"><abbr title="Tailors\PHPUnit\Recursive\RecursiveConstraintSpecializationTrait">RecursiveConstraintSpecializationTrait</abbr></a>
+                    string
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_create">create</a>(array $expected)
+                    <a href="#method_toString">toString</a>()
+        
+                                            <p><p>Returns a string representation of the constraint.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Common/ShortFailureDescriptionTrait.html#method_toString">
+<abbr title="Tailors\PHPUnit\Common\ShortFailureDescriptionTrait">ShortFailureDescriptionTrait</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_failureDescription">failureDescription</a>(mixed $other)
+        
+                                            <p><p>Returns the description of the failure.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Common/ShortFailureDescriptionTrait.html#method_failureDescription">
+<abbr title="Tailors\PHPUnit\Common\ShortFailureDescriptionTrait">ShortFailureDescriptionTrait</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_failureDescriptionInContext">failureDescriptionInContext</a>(<abbr title="PHPUnit\Framework\Constraint\Operator">Operator</abbr> $operator, mixed $role, mixed $other)
+        
+                                            <p><p>Returns the description of the failure when this constraint appears in
+context of an $operator expression.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Common/ShortFailureDescriptionTrait.html#method_failureDescriptionInContext">
+<abbr title="Tailors\PHPUnit\Common\ShortFailureDescriptionTrait">ShortFailureDescriptionTrait</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_toStringInContext">toStringInContext</a>(<abbr title="PHPUnit\Framework\Constraint\Operator">Operator</abbr> $operator, mixed $role)
+        
+                                            <p><p>Returns a custom string representation of the constraint object when it
+appears in context of an $operator expression.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Common/ShortFailureDescriptionTrait.html#method_toStringInContext">
+<abbr title="Tailors\PHPUnit\Common\ShortFailureDescriptionTrait">ShortFailureDescriptionTrait</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8">
+                    <a href="#method___construct">__construct</a>(<abbr title="Tailors\PHPUnit\RecursiveConstraint\iterable">iterable</abbr> $expectations, <a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a> $comparator, <a href="../../../Tailors/PHPUnit/RecursiveResultFactory/RecursiveResultFactoryInterface.html"><abbr title="Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactoryInterface">RecursiveResultFactoryInterface</abbr></a> $recursiveResultFactory, <a href="../../../Tailors/PHPUnit/RecursiveResultUnwrapper/RecursiveResultUnwrapperInterface.html"><abbr title="Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapperInterface">RecursiveResultUnwrapperInterface</abbr></a> $recursiveResultUnwrapper)
         
                                             <p class="no-description">No description</p>
                                     </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Recursive/RecursiveConstraintSpecializationTrait.html#method_create">
-<abbr title="Tailors\PHPUnit\Recursive\RecursiveConstraintSpecializationTrait">RecursiveConstraintSpecializationTrait</abbr></a></small></div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/RecursiveConstraint/AbstractRecursiveConstraint.html#method___construct">
+<abbr title="Tailors\PHPUnit\RecursiveConstraint\AbstractRecursiveConstraint">AbstractRecursiveConstraint</abbr></a></small></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    static&nbsp;void
+                    bool|null
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_validateExpectations">validateExpectations</a>(array $expected, int $argument, int $distance = 1)
+                    <a href="#method_evaluate">evaluate</a>(mixed $other, string $description = &#039;&#039;, bool $returnResult = false)
+        
+                                            <p><p>Evaluates the constraint for parameter $other.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/RecursiveConstraint/AbstractRecursiveConstraint.html#method_evaluate">
+<abbr title="Tailors\PHPUnit\RecursiveConstraint\AbstractRecursiveConstraint">AbstractRecursiveConstraint</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    bool
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_matches">matches</a>(mixed $other)
+        
+                                            <p><p>Evaluates the constraint for parameter $other. Returns true if the
+constraint is met, false otherwise.</p></p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/RecursiveConstraint/AbstractRecursiveConstraint.html#method_matches">
+<abbr title="Tailors\PHPUnit\RecursiveConstraint\AbstractRecursiveConstraint">AbstractRecursiveConstraint</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;<a href="../../../Tailors/PHPUnit/Constraint/ArrayValuesEqualTo.html"><abbr title="Tailors\PHPUnit\Constraint\ArrayValuesEqualTo">ArrayValuesEqualTo</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_create">create</a>(<abbr title="Tailors\PHPUnit\Constraint\iterable">iterable</abbr> $expectations)
         
                                             <p class="no-description">No description</p>
                                     </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Arrays/ValidateExpectationsTrait.html#method_validateExpectations">
-<abbr title="Tailors\PHPUnit\Arrays\ValidateExpectationsTrait">ValidateExpectationsTrait</abbr></a></small></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    static&nbsp;<a href="../../../Tailors/PHPUnit/Selector/ValueSelectorInterface.html"><abbr title="Tailors\PHPUnit\Selector\ValueSelectorInterface">ValueSelectorInterface</abbr></a>
-                </div>
-                <div class="col-md-8">
-                    <a href="#method_makeSelector">makeSelector</a>()
-        
-                                            <p><p>Creates instance of ArrayValueSelector.</p></p>                </div>
-                <div class="col-md-2"></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    static&nbsp;<a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a>
-                </div>
-                <div class="col-md-8">
-                    <a href="#method_makeComparator">makeComparator</a>()
-        
-                                            <p><p>Creates instance of EqualityComparator.</p></p>                </div>
-                <div class="col-md-2"></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    static&nbsp;<a href="../../../Tailors/PHPUnit/Values/ValuesInterface.html"><abbr title="Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr></a>
-                </div>
-                <div class="col-md-8">
-                    <a href="#method_makeExpectedValues">makeExpectedValues</a>(array $array)
-        
-                                            <p><p>Creates instance of ValuesInterface to be used as expected values.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -187,11 +216,201 @@ operator (equality) is used for comparison.</p>
 
             <div id="method-details">
                     <div class="method-item">
-                    <h3 id="method_create">
-        <div class="location">in <a href="../../../Tailors/PHPUnit/Recursive/RecursiveConstraintSpecializationTrait.html#method_create">
-<abbr title="Tailors\PHPUnit\Recursive\RecursiveConstraintSpecializationTrait">RecursiveConstraintSpecializationTrait</abbr></a> at line 28</div>
-        <code>        static            <a href="../../../Tailors/PHPUnit/Recursive/RecursiveConstraintSpecializationTrait.html"><abbr title="Tailors\PHPUnit\Recursive\RecursiveConstraintSpecializationTrait">RecursiveConstraintSpecializationTrait</abbr></a>
-    <strong>create</strong>(array $expected)
+                    <h3 id="method_toString">
+        <div class="location">in <a href="../../../Tailors/PHPUnit/Common/ShortFailureDescriptionTrait.html#method_toString">
+<abbr title="Tailors\PHPUnit\Common\ShortFailureDescriptionTrait">ShortFailureDescriptionTrait</abbr></a> at line 25</div>
+        <code>    abstract                string
+    <strong>toString</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Returns a string representation of the constraint.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_failureDescription">
+        <div class="location">in <a href="../../../Tailors/PHPUnit/Common/ShortFailureDescriptionTrait.html#method_failureDescription">
+<abbr title="Tailors\PHPUnit\Common\ShortFailureDescriptionTrait">ShortFailureDescriptionTrait</abbr></a> at line 35</div>
+        <code>final                    string
+    <strong>failureDescription</strong>(mixed $other)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Returns the description of the failure.</p></p>                <p><p>The beginning of failure messages is &quot;Failed asserting that&quot; in most
+cases. This method should return the second part of that sentence.</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>mixed</td>
+                <td>$other</td>
+                <td><p>evaluated value or object</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_failureDescriptionInContext">
+        <div class="location">in <a href="../../../Tailors/PHPUnit/Common/ShortFailureDescriptionTrait.html#method_failureDescriptionInContext">
+<abbr title="Tailors\PHPUnit\Common\ShortFailureDescriptionTrait">ShortFailureDescriptionTrait</abbr></a> at line 56</div>
+        <code>final                    string
+    <strong>failureDescriptionInContext</strong>(<abbr title="PHPUnit\Framework\Constraint\Operator">Operator</abbr> $operator, mixed $role, mixed $other)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Returns the description of the failure when this constraint appears in
+context of an $operator expression.</p></p>                <p><p>The purpose of this method is to provide meaningful failure description
+in context of operators such as LogicalNot. Native PHPUnit constraints
+are supported out of the box by LogicalNot, but externally developed
+ones had no way to provide correct messages in this context.</p>
+<p>The method shall return empty string, when it does not handle
+customization by itself.</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="PHPUnit\Framework\Constraint\Operator">Operator</abbr></td>
+                <td>$operator</td>
+                <td><p>the $operator of the expression</p></td>
+            </tr>
+                    <tr>
+                <td>mixed</td>
+                <td>$role</td>
+                <td><p>role of $this constraint in the $operator expression</p></td>
+            </tr>
+                    <tr>
+                <td>mixed</td>
+                <td>$other</td>
+                <td><p>evaluated value or object</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_toStringInContext">
+        <div class="location">in <a href="../../../Tailors/PHPUnit/Common/ShortFailureDescriptionTrait.html#method_toStringInContext">
+<abbr title="Tailors\PHPUnit\Common\ShortFailureDescriptionTrait">ShortFailureDescriptionTrait</abbr></a> at line 82</div>
+        <code>    abstract        protected        string
+    <strong>toStringInContext</strong>(<abbr title="PHPUnit\Framework\Constraint\Operator">Operator</abbr> $operator, mixed $role)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Returns a custom string representation of the constraint object when it
+appears in context of an $operator expression.</p></p>                <p><p>The purpose of this method is to provide meaningful descriptive string
+in context of operators such as LogicalNot. Native PHPUnit constraints
+are supported out of the box by LogicalNot, but externally developed
+ones had no way to provide correct strings in this context.</p>
+<p>The method shall return empty string, when it does not handle
+customization by itself.</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="PHPUnit\Framework\Constraint\Operator">Operator</abbr></td>
+                <td>$operator</td>
+                <td><p>the $operator of the expression</p></td>
+            </tr>
+                    <tr>
+                <td>mixed</td>
+                <td>$role</td>
+                <td><p>role of $this constraint in the $operator expression</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method___construct">
+        <div class="location">in <a href="../../../Tailors/PHPUnit/RecursiveConstraint/AbstractRecursiveConstraint.html#method___construct">
+<abbr title="Tailors\PHPUnit\RecursiveConstraint\AbstractRecursiveConstraint">AbstractRecursiveConstraint</abbr></a> at line 43</div>
+        <code>final            protected        
+    <strong>__construct</strong>(<abbr title="Tailors\PHPUnit\RecursiveConstraint\iterable">iterable</abbr> $expectations, <a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a> $comparator, <a href="../../../Tailors/PHPUnit/RecursiveResultFactory/RecursiveResultFactoryInterface.html"><abbr title="Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactoryInterface">RecursiveResultFactoryInterface</abbr></a> $recursiveResultFactory, <a href="../../../Tailors/PHPUnit/RecursiveResultUnwrapper/RecursiveResultUnwrapperInterface.html"><abbr title="Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapperInterface">RecursiveResultUnwrapperInterface</abbr></a> $recursiveResultUnwrapper)
         </code>
     </h3>
     <div class="details">    
@@ -207,8 +426,71 @@ operator (equality) is used for comparison.</p>
 
                     <table class="table table-condensed">
                     <tr>
-                <td>array</td>
-                <td>$expected</td>
+                <td><abbr title="Tailors\PHPUnit\RecursiveConstraint\iterable">iterable</abbr></td>
+                <td>$expectations</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td><a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a></td>
+                <td>$comparator</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td><a href="../../../Tailors/PHPUnit/RecursiveResultFactory/RecursiveResultFactoryInterface.html"><abbr title="Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactoryInterface">RecursiveResultFactoryInterface</abbr></a></td>
+                <td>$recursiveResultFactory</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td><a href="../../../Tailors/PHPUnit/RecursiveResultUnwrapper/RecursiveResultUnwrapperInterface.html"><abbr title="Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapperInterface">RecursiveResultUnwrapperInterface</abbr></a></td>
+                <td>$recursiveResultUnwrapper</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_evaluate">
+        <div class="location">in <a href="../../../Tailors/PHPUnit/RecursiveConstraint/AbstractRecursiveConstraint.html#method_evaluate">
+<abbr title="Tailors\PHPUnit\RecursiveConstraint\AbstractRecursiveConstraint">AbstractRecursiveConstraint</abbr></a> at line 74</div>
+        <code>final                    bool|null
+    <strong>evaluate</strong>(mixed $other, string $description = &#039;&#039;, bool $returnResult = false)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Evaluates the constraint for parameter $other.</p></p>                <p><p>If $returnResult is set to false (the default), an exception is thrown
+in case of a failure. null is returned otherwise.</p>
+<p>If $returnResult is true, the result of the evaluation is returned as
+a boolean value instead: true in case of success, false in case of a
+failure.</p></p>        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>mixed</td>
+                <td>$other</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$description</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>bool</td>
+                <td>$returnResult</td>
                 <td></td>
             </tr>
             </table>
@@ -218,7 +500,7 @@ operator (equality) is used for comparison.</p>
 
                     <table class="table table-condensed">
         <tr>
-            <td><a href="../../../Tailors/PHPUnit/Recursive/RecursiveConstraintSpecializationTrait.html"><abbr title="Tailors\PHPUnit\Recursive\RecursiveConstraintSpecializationTrait">RecursiveConstraintSpecializationTrait</abbr></a></td>
+            <td>bool|null</td>
             <td></td>
         </tr>
     </table>
@@ -228,7 +510,7 @@ operator (equality) is used for comparison.</p>
 
                     <table class="table table-condensed">
                     <tr>
-                <td><a href="../../../Tailors/PHPUnit/InvalidArgumentException.html"><abbr title="Tailors\PHPUnit\InvalidArgumentException">InvalidArgumentException</abbr></a></td>
+                <td><abbr title="PHPUnit\Framework\ExpectationFailedException">ExpectationFailedException</abbr></td>
                 <td></td>
             </tr>
             </table>
@@ -240,11 +522,54 @@ operator (equality) is used for comparison.</p>
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_validateExpectations">
-        <div class="location">in <a href="../../../Tailors/PHPUnit/Arrays/ValidateExpectationsTrait.html#method_validateExpectations">
-<abbr title="Tailors\PHPUnit\Arrays\ValidateExpectationsTrait">ValidateExpectationsTrait</abbr></a> at line 23</div>
-        <code>        static    protected        void
-    <strong>validateExpectations</strong>(array $expected, int $argument, int $distance = 1)
+                    <h3 id="method_matches">
+        <div class="location">in <a href="../../../Tailors/PHPUnit/RecursiveConstraint/AbstractRecursiveConstraint.html#method_matches">
+<abbr title="Tailors\PHPUnit\RecursiveConstraint\AbstractRecursiveConstraint">AbstractRecursiveConstraint</abbr></a> at line 139</div>
+        <code>final            protected        bool
+    <strong>matches</strong>(mixed $other)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Evaluates the constraint for parameter $other. Returns true if the
+constraint is met, false otherwise.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>mixed</td>
+                <td>$other</td>
+                <td><p>value or object to evaluate</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_create">
+        <div class="location">at line 34</div>
+        <code>        static            <a href="../../../Tailors/PHPUnit/Constraint/ArrayValuesEqualTo.html"><abbr title="Tailors\PHPUnit\Constraint\ArrayValuesEqualTo">ArrayValuesEqualTo</abbr></a>
+    <strong>create</strong>(<abbr title="Tailors\PHPUnit\Constraint\iterable">iterable</abbr> $expectations)
         </code>
     </h3>
     <div class="details">    
@@ -260,18 +585,8 @@ operator (equality) is used for comparison.</p>
 
                     <table class="table table-condensed">
                     <tr>
-                <td>array</td>
-                <td>$expected</td>
-                <td></td>
-            </tr>
-                    <tr>
-                <td>int</td>
-                <td>$argument</td>
-                <td></td>
-            </tr>
-                    <tr>
-                <td>int</td>
-                <td>$distance</td>
+                <td><abbr title="Tailors\PHPUnit\Constraint\iterable">iterable</abbr></td>
+                <td>$expectations</td>
                 <td></td>
             </tr>
             </table>
@@ -281,113 +596,7 @@ operator (equality) is used for comparison.</p>
 
                     <table class="table table-condensed">
         <tr>
-            <td>void</td>
-            <td></td>
-        </tr>
-    </table>
-
-            
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
-                    <h3 id="method_makeSelector">
-        <div class="location">at line 56</div>
-        <code>        static    protected        <a href="../../../Tailors/PHPUnit/Selector/ValueSelectorInterface.html"><abbr title="Tailors\PHPUnit\Selector\ValueSelectorInterface">ValueSelectorInterface</abbr></a>
-    <strong>makeSelector</strong>()
-        </code>
-    </h3>
-    <div class="details">    
-    
-            
-
-        <div class="method-description">
-                            <p><p>Creates instance of ArrayValueSelector.</p></p>                        
-        </div>
-        <div class="tags">
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td><a href="../../../Tailors/PHPUnit/Selector/ValueSelectorInterface.html"><abbr title="Tailors\PHPUnit\Selector\ValueSelectorInterface">ValueSelectorInterface</abbr></a></td>
-            <td></td>
-        </tr>
-    </table>
-
-            
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
-                    <h3 id="method_makeComparator">
-        <div class="location">at line 47</div>
-        <code>        static    protected        <a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a>
-    <strong>makeComparator</strong>()
-        </code>
-    </h3>
-    <div class="details">    
-    
-            
-
-        <div class="method-description">
-                            <p><p>Creates instance of EqualityComparator.</p></p>                        
-        </div>
-        <div class="tags">
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td><a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a></td>
-            <td></td>
-        </tr>
-    </table>
-
-            
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
-                    <h3 id="method_makeExpectedValues">
-        <div class="location">at line 65</div>
-        <code>        static    protected        <a href="../../../Tailors/PHPUnit/Values/ValuesInterface.html"><abbr title="Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr></a>
-    <strong>makeExpectedValues</strong>(array $array)
-        </code>
-    </h3>
-    <div class="details">    
-    
-            
-
-        <div class="method-description">
-                            <p><p>Creates instance of ValuesInterface to be used as expected values.</p></p>                        
-        </div>
-        <div class="tags">
-                            <h4>Parameters</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td>array</td>
-                <td>$array</td>
-                <td></td>
-            </tr>
-            </table>
-
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td><a href="../../../Tailors/PHPUnit/Values/ValuesInterface.html"><abbr title="Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr></a></td>
+            <td><a href="../../../Tailors/PHPUnit/Constraint/ArrayValuesEqualTo.html"><abbr title="Tailors\PHPUnit\Constraint\ArrayValuesEqualTo">ArrayValuesEqualTo</abbr></a></td>
             <td></td>
         </tr>
     </table>

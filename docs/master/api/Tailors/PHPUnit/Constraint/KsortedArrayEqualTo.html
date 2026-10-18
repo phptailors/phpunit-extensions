@@ -86,22 +86,20 @@
 
     
     <p>final         class
-    <strong>KsortedArrayEqualTo</strong>        extends <a href="../../../Tailors/PHPUnit/Arrays/AbstractKsortedConstraint.html"><abbr title="Tailors\PHPUnit\Arrays\AbstractKsortedConstraint">AbstractKsortedConstraint</abbr></a>
+    <strong>KsortedArrayEqualTo</strong>        extends <a href="../../../Tailors/PHPUnit/RecursiveConstraint/AbstractRecursiveConstraint.html"><abbr title="Tailors\PHPUnit\RecursiveConstraint\AbstractRecursiveConstraint">AbstractRecursiveConstraint</abbr></a>
 </p>
 
         
     
-        
+                        <table>
+            <tr>
+                <td><span class="label label-warning">internal</span></td>
+                <td>&nbsp;This class is not covered by the backward compatibility promise</td>
+            </tr>
+        </table>
+                &nbsp;
+    
 
-            <div class="description">
-            <p><p>Constraint that accepts arrays equal to specified one when key-sorted.</p></p>            <p><p>The <code>==</code> operator (equality) is used for comparison.</p>
-<p>$matcher = KsortedArrayEqualTo::create([
-'name' =&gt; 'John', 'age' =&gt; '21'
-]);</p>
-<p>self::assertThat([
-'age' =&gt; 21,
-'name' =&gt; 'John',
-], $matcher);</p></p>        </div>
             
                 <h2>Traits</h2>
 
@@ -170,12 +168,12 @@ appears in context of an $operator expression.</p></p>                </div>
                     
                 </div>
                 <div class="col-md-8">
-                    <a href="#method___construct">__construct</a>(<a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a> $comparator, array $expected, int $flags)
+                    <a href="#method___construct">__construct</a>(<abbr title="Tailors\PHPUnit\RecursiveConstraint\iterable">iterable</abbr> $expectations, <a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a> $comparator, <a href="../../../Tailors/PHPUnit/RecursiveResultFactory/RecursiveResultFactoryInterface.html"><abbr title="Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactoryInterface">RecursiveResultFactoryInterface</abbr></a> $recursiveResultFactory, <a href="../../../Tailors/PHPUnit/RecursiveResultUnwrapper/RecursiveResultUnwrapperInterface.html"><abbr title="Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapperInterface">RecursiveResultUnwrapperInterface</abbr></a> $recursiveResultUnwrapper)
         
                                             <p class="no-description">No description</p>
                                     </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Arrays/AbstractKsortedConstraint.html#method___construct">
-<abbr title="Tailors\PHPUnit\Arrays\AbstractKsortedConstraint">AbstractKsortedConstraint</abbr></a></small></div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/RecursiveConstraint/AbstractRecursiveConstraint.html#method___construct">
+<abbr title="Tailors\PHPUnit\RecursiveConstraint\AbstractRecursiveConstraint">AbstractRecursiveConstraint</abbr></a></small></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
@@ -185,19 +183,8 @@ appears in context of an $operator expression.</p></p>                </div>
                     <a href="#method_evaluate">evaluate</a>(mixed $other, string $description = &#039;&#039;, bool $returnResult = false)
         
                                             <p><p>Evaluates the constraint for parameter $other.</p></p>                </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Arrays/AbstractKsortedConstraint.html#method_evaluate">
-<abbr title="Tailors\PHPUnit\Arrays\AbstractKsortedConstraint">AbstractKsortedConstraint</abbr></a></small></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    array
-                </div>
-                <div class="col-md-8">
-                    <a href="#method_ksorted">ksorted</a>(array $array)
-        
-                                            <p><p>Returns key-sorted copy of $array.</p></p>                </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Arrays/AbstractKsortedConstraint.html#method_ksorted">
-<abbr title="Tailors\PHPUnit\Arrays\AbstractKsortedConstraint">AbstractKsortedConstraint</abbr></a></small></div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/RecursiveConstraint/AbstractRecursiveConstraint.html#method_evaluate">
+<abbr title="Tailors\PHPUnit\RecursiveConstraint\AbstractRecursiveConstraint">AbstractRecursiveConstraint</abbr></a></small></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
@@ -208,27 +195,15 @@ appears in context of an $operator expression.</p></p>                </div>
         
                                             <p><p>Evaluates the constraint for parameter $other. Returns true if the
 constraint is met, false otherwise.</p></p>                </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Arrays/AbstractKsortedConstraint.html#method_matches">
-<abbr title="Tailors\PHPUnit\Arrays\AbstractKsortedConstraint">AbstractKsortedConstraint</abbr></a></small></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    bool
-                </div>
-                <div class="col-md-8">
-                    <a href="#method_supports">supports</a>(mixed $other)
-        
-                                            <p class="no-description">No description</p>
-                                    </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Arrays/AbstractKsortedConstraint.html#method_supports">
-<abbr title="Tailors\PHPUnit\Arrays\AbstractKsortedConstraint">AbstractKsortedConstraint</abbr></a></small></div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/RecursiveConstraint/AbstractRecursiveConstraint.html#method_matches">
+<abbr title="Tailors\PHPUnit\RecursiveConstraint\AbstractRecursiveConstraint">AbstractRecursiveConstraint</abbr></a></small></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
                     static&nbsp;<a href="../../../Tailors/PHPUnit/Constraint/KsortedArrayEqualTo.html"><abbr title="Tailors\PHPUnit\Constraint\KsortedArrayEqualTo">KsortedArrayEqualTo</abbr></a>
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_create">create</a>(array $expected, int $flags = SORT_REGULAR)
+                    <a href="#method_create">create</a>(<abbr title="Tailors\PHPUnit\Constraint\iterable">iterable</abbr> $expectations, int $flags = SORT_REGULAR)
         
                                             <p class="no-description">No description</p>
                                     </div>
@@ -331,7 +306,7 @@ cases. This method should return the second part of that sentence.</p></p>
 
         <div class="method-description">
                             <p><p>Returns the description of the failure when this constraint appears in
-context of an $operator expression.</p></p>                <p><p>The purpose of this method is to provide meaningful failue description
+context of an $operator expression.</p></p>                <p><p>The purpose of this method is to provide meaningful failure description
 in context of operators such as LogicalNot. Native PHPUnit constraints
 are supported out of the box by LogicalNot, but externally developed
 ones had no way to provide correct messages in this context.</p>
@@ -432,10 +407,10 @@ customization by itself.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method___construct">
-        <div class="location">in <a href="../../../Tailors/PHPUnit/Arrays/AbstractKsortedConstraint.html#method___construct">
-<abbr title="Tailors\PHPUnit\Arrays\AbstractKsortedConstraint">AbstractKsortedConstraint</abbr></a> at line 30</div>
+        <div class="location">in <a href="../../../Tailors/PHPUnit/RecursiveConstraint/AbstractRecursiveConstraint.html#method___construct">
+<abbr title="Tailors\PHPUnit\RecursiveConstraint\AbstractRecursiveConstraint">AbstractRecursiveConstraint</abbr></a> at line 43</div>
         <code>final            protected        
-    <strong>__construct</strong>(<a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a> $comparator, array $expected, int $flags)
+    <strong>__construct</strong>(<abbr title="Tailors\PHPUnit\RecursiveConstraint\iterable">iterable</abbr> $expectations, <a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a> $comparator, <a href="../../../Tailors/PHPUnit/RecursiveResultFactory/RecursiveResultFactoryInterface.html"><abbr title="Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactoryInterface">RecursiveResultFactoryInterface</abbr></a> $recursiveResultFactory, <a href="../../../Tailors/PHPUnit/RecursiveResultUnwrapper/RecursiveResultUnwrapperInterface.html"><abbr title="Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapperInterface">RecursiveResultUnwrapperInterface</abbr></a> $recursiveResultUnwrapper)
         </code>
     </h3>
     <div class="details">    
@@ -451,18 +426,23 @@ customization by itself.</p></p>
 
                     <table class="table table-condensed">
                     <tr>
+                <td><abbr title="Tailors\PHPUnit\RecursiveConstraint\iterable">iterable</abbr></td>
+                <td>$expectations</td>
+                <td></td>
+            </tr>
+                    <tr>
                 <td><a href="../../../Tailors/PHPUnit/Comparator/ComparatorInterface.html"><abbr title="Tailors\PHPUnit\Comparator\ComparatorInterface">ComparatorInterface</abbr></a></td>
                 <td>$comparator</td>
                 <td></td>
             </tr>
                     <tr>
-                <td>array</td>
-                <td>$expected</td>
+                <td><a href="../../../Tailors/PHPUnit/RecursiveResultFactory/RecursiveResultFactoryInterface.html"><abbr title="Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactoryInterface">RecursiveResultFactoryInterface</abbr></a></td>
+                <td>$recursiveResultFactory</td>
                 <td></td>
             </tr>
                     <tr>
-                <td>int</td>
-                <td>$flags</td>
+                <td><a href="../../../Tailors/PHPUnit/RecursiveResultUnwrapper/RecursiveResultUnwrapperInterface.html"><abbr title="Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapperInterface">RecursiveResultUnwrapperInterface</abbr></a></td>
+                <td>$recursiveResultUnwrapper</td>
                 <td></td>
             </tr>
             </table>
@@ -477,8 +457,8 @@ customization by itself.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_evaluate">
-        <div class="location">in <a href="../../../Tailors/PHPUnit/Arrays/AbstractKsortedConstraint.html#method_evaluate">
-<abbr title="Tailors\PHPUnit\Arrays\AbstractKsortedConstraint">AbstractKsortedConstraint</abbr></a> at line 57</div>
+        <div class="location">in <a href="../../../Tailors/PHPUnit/RecursiveConstraint/AbstractRecursiveConstraint.html#method_evaluate">
+<abbr title="Tailors\PHPUnit\RecursiveConstraint\AbstractRecursiveConstraint">AbstractRecursiveConstraint</abbr></a> at line 74</div>
         <code>final                    bool|null
     <strong>evaluate</strong>(mixed $other, string $description = &#039;&#039;, bool $returnResult = false)
         </code>
@@ -533,55 +513,8 @@ failure.</p></p>
                 <td><abbr title="PHPUnit\Framework\ExpectationFailedException">ExpectationFailedException</abbr></td>
                 <td></td>
             </tr>
-                    <tr>
-                <td><a href="../../../Tailors/PHPUnit/CircularDependencyException.html"><abbr title="Tailors\PHPUnit\CircularDependencyException">CircularDependencyException</abbr></a></td>
-                <td></td>
-            </tr>
             </table>
 
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
-                    <h3 id="method_ksorted">
-        <div class="location">in <a href="../../../Tailors/PHPUnit/Arrays/AbstractKsortedConstraint.html#method_ksorted">
-<abbr title="Tailors\PHPUnit\Arrays\AbstractKsortedConstraint">AbstractKsortedConstraint</abbr></a> at line 87</div>
-        <code>final                    array
-    <strong>ksorted</strong>(array $array)
-        </code>
-    </h3>
-    <div class="details">    
-    
-            
-
-        <div class="method-description">
-                            <p><p>Returns key-sorted copy of $array.</p></p>                        
-        </div>
-        <div class="tags">
-                            <h4>Parameters</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td>array</td>
-                <td>$array</td>
-                <td></td>
-            </tr>
-            </table>
-
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td>array</td>
-            <td></td>
-        </tr>
-    </table>
-
-            
             
             
                     </div>
@@ -590,8 +523,8 @@ failure.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_matches">
-        <div class="location">in <a href="../../../Tailors/PHPUnit/Arrays/AbstractKsortedConstraint.html#method_matches">
-<abbr title="Tailors\PHPUnit\Arrays\AbstractKsortedConstraint">AbstractKsortedConstraint</abbr></a> at line 128</div>
+        <div class="location">in <a href="../../../Tailors/PHPUnit/RecursiveConstraint/AbstractRecursiveConstraint.html#method_matches">
+<abbr title="Tailors\PHPUnit\RecursiveConstraint\AbstractRecursiveConstraint">AbstractRecursiveConstraint</abbr></a> at line 139</div>
         <code>final            protected        bool
     <strong>matches</strong>(mixed $other)
         </code>
@@ -633,54 +566,10 @@ constraint is met, false otherwise.</p></p>
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_supports">
-        <div class="location">in <a href="../../../Tailors/PHPUnit/Arrays/AbstractKsortedConstraint.html#method_supports">
-<abbr title="Tailors\PHPUnit\Arrays\AbstractKsortedConstraint">AbstractKsortedConstraint</abbr></a> at line 143</div>
-        <code>final            protected        bool
-    <strong>supports</strong>(mixed $other)
-        </code>
-    </h3>
-    <div class="details">    
-    
-            
-
-        <div class="method-description">
-                            <p class="no-description">No description</p>
-                    
-        </div>
-        <div class="tags">
-                            <h4>Parameters</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td>mixed</td>
-                <td>$other</td>
-                <td><p>value or object to evaluate</p></td>
-            </tr>
-            </table>
-
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td>bool</td>
-            <td></td>
-        </tr>
-    </table>
-
-            
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
                     <h3 id="method_create">
-        <div class="location">at line 33</div>
+        <div class="location">at line 34</div>
         <code>        static            <a href="../../../Tailors/PHPUnit/Constraint/KsortedArrayEqualTo.html"><abbr title="Tailors\PHPUnit\Constraint\KsortedArrayEqualTo">KsortedArrayEqualTo</abbr></a>
-    <strong>create</strong>(array $expected, int $flags = SORT_REGULAR)
+    <strong>create</strong>(<abbr title="Tailors\PHPUnit\Constraint\iterable">iterable</abbr> $expectations, int $flags = SORT_REGULAR)
         </code>
     </h3>
     <div class="details">    
@@ -696,8 +585,8 @@ constraint is met, false otherwise.</p></p>
 
                     <table class="table table-condensed">
                     <tr>
-                <td>array</td>
-                <td>$expected</td>
+                <td><abbr title="Tailors\PHPUnit\Constraint\iterable">iterable</abbr></td>
+                <td>$expectations</td>
                 <td></td>
             </tr>
                     <tr>

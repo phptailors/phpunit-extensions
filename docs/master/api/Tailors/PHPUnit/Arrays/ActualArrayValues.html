@@ -86,7 +86,7 @@
 
     
     <p>final         class
-    <strong>ActualArrayValues</strong>        extends <a href="../../../Tailors/PHPUnit/Arrays/AbstractArrayValues.html"><abbr title="Tailors\PHPUnit\Arrays\AbstractArrayValues">AbstractArrayValues</abbr></a>
+    <strong>ActualArrayValues</strong>        extends <a href="../../../Tailors/PHPUnit/Arrays/AbstractArrayValues.html"><abbr title="Tailors\PHPUnit\Arrays\AbstractArrayValues">AbstractArrayValues</abbr></a>        implements        <a href="../../../Tailors/PHPUnit/Result/ResultInterface.html"><abbr title="Tailors\PHPUnit\Result\ResultInterface">ResultInterface</abbr></a>
 </p>
 
         
@@ -100,8 +100,6 @@
                 &nbsp;
     
 
-            <div class="description">
-            <p><p>An array of actual values.</p></p>                    </div>
             
         
     
@@ -114,47 +112,11 @@
                     
                 </div>
                 <div class="col-md-8">
-                    <a href="#method___construct">__construct</a>(array|Traversable $array = [])
+                    <a href="#method___construct">__construct</a>(<abbr title="Tailors\PHPUnit\Common\iterable">iterable</abbr> $array = [])
         
                                             <p class="no-description">No description</p>
                                     </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Arrays/AbstractArrayValues.html#method___construct">
-<abbr title="Tailors\PHPUnit\Arrays\AbstractArrayValues">AbstractArrayValues</abbr></a></small></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    string
-                </div>
-                <div class="col-md-8">
-                    <a href="#method_familyTag">familyTag</a>()
-        
-                                            <p class="no-description">No description</p>
-                                    </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Values/AbstractValues.html#method_familyTag">
-<abbr title="Tailors\PHPUnit\Values\AbstractValues">AbstractValues</abbr></a></small></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    string
-                </div>
-                <div class="col-md-8">
-                    <a href="#method_familyName">familyName</a>()
-        
-                                            <p class="no-description">No description</p>
-                                    </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Arrays/AbstractArrayValues.html#method_familyName">
-<abbr title="Tailors\PHPUnit\Arrays\AbstractArrayValues">AbstractArrayValues</abbr></a></small></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    string
-                </div>
-                <div class="col-md-8">
-                    <a href="#method_fallbackFamilyString">fallbackFamilyString</a>()
-        
-                                            <p class="no-description">No description</p>
-                                    </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Arrays/AbstractArrayValues.html#method_fallbackFamilyString">
 <abbr title="Tailors\PHPUnit\Arrays\AbstractArrayValues">AbstractArrayValues</abbr></a></small></div>
             </div>
                     <div class="row">
@@ -171,14 +133,14 @@
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    <a href="../../../Tailors/PHPUnit/Values/ValuesInterface.html"><abbr title="Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr></a>
+                    static&nbsp;string
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_createActualValues">createActualValues</a>(array|Traversable $array = [])
+                    <a href="#method_exportableName">exportableName</a>()
         
                                             <p class="no-description">No description</p>
                                     </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Arrays/AbstractArrayValues.html#method_createActualValues">
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Tailors/PHPUnit/Arrays/AbstractArrayValues.html#method_exportableName">
 <abbr title="Tailors\PHPUnit\Arrays\AbstractArrayValues">AbstractArrayValues</abbr></a></small></div>
             </div>
                     <div class="row">
@@ -201,9 +163,9 @@
                     <div class="method-item">
                     <h3 id="method___construct">
         <div class="location">in <a href="../../../Tailors/PHPUnit/Arrays/AbstractArrayValues.html#method___construct">
-<abbr title="Tailors\PHPUnit\Arrays\AbstractArrayValues">AbstractArrayValues</abbr></a> at line 28</div>
+<abbr title="Tailors\PHPUnit\Arrays\AbstractArrayValues">AbstractArrayValues</abbr></a> at line 33</div>
         <code>final                    
-    <strong>__construct</strong>(array|Traversable $array = [])
+    <strong>__construct</strong>(<abbr title="Tailors\PHPUnit\Common\iterable">iterable</abbr> $array = [])
         </code>
     </h3>
     <div class="details">    
@@ -219,7 +181,7 @@
 
                     <table class="table table-condensed">
                     <tr>
-                <td>array|Traversable</td>
+                <td><abbr title="Tailors\PHPUnit\Common\iterable">iterable</abbr></td>
                 <td>$array</td>
                 <td></td>
             </tr>
@@ -234,111 +196,9 @@
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_familyTag">
-        <div class="location">in <a href="../../../Tailors/PHPUnit/Values/AbstractValues.html#method_familyTag">
-<abbr title="Tailors\PHPUnit\Values\AbstractValues">AbstractValues</abbr></a> at line 38</div>
-        <code>final            protected        string
-    <strong>familyTag</strong>()
-        </code>
-    </h3>
-    <div class="details">    
-    
-            
-
-        <div class="method-description">
-                            <p class="no-description">No description</p>
-                    
-        </div>
-        <div class="tags">
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td>string</td>
-            <td></td>
-        </tr>
-    </table>
-
-            
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
-                    <h3 id="method_familyName">
-        <div class="location">in <a href="../../../Tailors/PHPUnit/Arrays/AbstractArrayValues.html#method_familyName">
-<abbr title="Tailors\PHPUnit\Arrays\AbstractArrayValues">AbstractArrayValues</abbr></a> at line 36</div>
-        <code>final                    string
-    <strong>familyName</strong>()
-        </code>
-    </h3>
-    <div class="details">    
-    
-            
-
-        <div class="method-description">
-                            <p class="no-description">No description</p>
-                    
-        </div>
-        <div class="tags">
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td>string</td>
-            <td></td>
-        </tr>
-    </table>
-
-            
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
-                    <h3 id="method_fallbackFamilyString">
-        <div class="location">in <a href="../../../Tailors/PHPUnit/Arrays/AbstractArrayValues.html#method_fallbackFamilyString">
-<abbr title="Tailors\PHPUnit\Arrays\AbstractArrayValues">AbstractArrayValues</abbr></a> at line 57</div>
-        <code>final            protected        string
-    <strong>fallbackFamilyString</strong>()
-        </code>
-    </h3>
-    <div class="details">    
-    
-            
-
-        <div class="method-description">
-                            <p class="no-description">No description</p>
-                    
-        </div>
-        <div class="tags">
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td>string</td>
-            <td></td>
-        </tr>
-    </table>
-
-            
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
                     <h3 id="method_tag">
         <div class="location">in <a href="../../../Tailors/PHPUnit/Arrays/AbstractArrayValues.html#method_tag">
-<abbr title="Tailors\PHPUnit\Arrays\AbstractArrayValues">AbstractArrayValues</abbr></a> at line 44</div>
+<abbr title="Tailors\PHPUnit\Arrays\AbstractArrayValues">AbstractArrayValues</abbr></a> at line 41</div>
         <code>final                    string
     <strong>tag</strong>()
         </code>
@@ -370,11 +230,11 @@
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_createActualValues">
-        <div class="location">in <a href="../../../Tailors/PHPUnit/Arrays/AbstractArrayValues.html#method_createActualValues">
-<abbr title="Tailors\PHPUnit\Arrays\AbstractArrayValues">AbstractArrayValues</abbr></a> at line 52</div>
-        <code>final                    <a href="../../../Tailors/PHPUnit/Values/ValuesInterface.html"><abbr title="Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr></a>
-    <strong>createActualValues</strong>(array|Traversable $array = [])
+                    <h3 id="method_exportableName">
+        <div class="location">in <a href="../../../Tailors/PHPUnit/Arrays/AbstractArrayValues.html#method_exportableName">
+<abbr title="Tailors\PHPUnit\Arrays\AbstractArrayValues">AbstractArrayValues</abbr></a> at line 49</div>
+        <code>final        static            string
+    <strong>exportableName</strong>()
         </code>
     </h3>
     <div class="details">    
@@ -386,22 +246,12 @@
                     
         </div>
         <div class="tags">
-                            <h4>Parameters</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td>array|Traversable</td>
-                <td>$array</td>
-                <td></td>
-            </tr>
-            </table>
-
             
                             <h4>Return Value</h4>
 
                     <table class="table table-condensed">
         <tr>
-            <td><a href="../../../Tailors/PHPUnit/Values/ValuesInterface.html"><abbr title="Tailors\PHPUnit\Values\ValuesInterface">ValuesInterface</abbr></a></td>
+            <td>string</td>
             <td></td>
         </tr>
     </table>

@@ -49,7 +49,9 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">3. Utilities</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#arrayvalues">arrayValues()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#classproperties">classProperties()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ksortedarray">ksortedArray()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#objectproperties">objectProperties()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#recursivelyksortedarray">recursivelyKsortedArray()</a></li>
 </ul>
 </li>
 </ul>
@@ -230,10 +232,10 @@ constraints (e.g. <a class="reference internal" href="constraints.html#constrain
 recursively with other selection-related utilities such as
 <a class="reference internal" href="#utilities-arrayvalues"><span class="std std-ref">arrayValues()</span></a> or <a class="reference internal" href="#utilities-objectproperties"><span class="std std-ref">objectProperties()</span></a>.</p>
 </section>
-<section id="objectproperties">
-<span id="utilities-objectproperties"></span><h2>objectProperties()<a class="headerlink" href="#objectproperties" title="Permalink to this heading"></a></h2>
+<section id="ksortedarray">
+<span id="utilities-ksortedarray"></span><h2>ksortedArray()<a class="headerlink" href="#ksortedarray" title="Permalink to this heading"></a></h2>
 <table class="docutils align-default" id="id4" style="width: 100%">
-<caption><span class="caption-text">Prerequisites for objectProperties()</span><a class="headerlink" href="#id4" title="Permalink to this table"></a></caption>
+<caption><span class="caption-text">Prerequisites for ksortedArray()</span><a class="headerlink" href="#id4" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 75%" />
@@ -243,7 +245,72 @@ recursively with other selection-related utilities such as
 <td><p>phptailors/phpunit-arrays: <code class="docutils literal notranslate"><span class="pre">^1.1</span> <span class="pre">||</span> <span class="pre">^2.1</span> <span class="pre">||</span> <span class="pre">^3.1</span> <span class="pre">||</span> <span class="pre">^4.1</span> <span class="pre">||</span> <span class="pre">^5.1</span></code></p></td>
 </tr>
 <tr class="row-even"><td><p>Trait</p></td>
-<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/Tailors/PHPUnit/ClassPropertiesTrait.html" title="Tailors\PHPUnit\ClassPropertiesTrait"><span class="pre">ClassPropertiesTrait</span></a></code></p></td>
+<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/Tailors/PHPUnit/KsortedArrayTrait.html" title="Tailors\PHPUnit\KsortedArrayTrait"><span class="pre">KsortedArrayTrait</span></a></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Since versions <code class="docutils literal notranslate"><span class="pre">*.1</span></code> (<code class="docutils literal notranslate"><span class="pre">1.1</span></code>, <code class="docutils literal notranslate"><span class="pre">2.1</span></code>, <code class="docutils literal notranslate"><span class="pre">3.1</span></code>, …) it’s possible to
+treat arrays nested somewhere in data structure same way as they are
+handled at the top level by <a class="reference internal" href="constraints.html#constraints-ksortedarrayequalto"><span class="std std-ref">ksortedArrayEqualTo()</span></a> or
+<a class="reference internal" href="constraints.html#constraints-ksortedarrayidenticalto"><span class="std std-ref">ksortedArrayIdenticalTo()</span></a> constraint. To achieve this, wrap
+the array nested somewhere in your expectation specs (<code class="docutils literal notranslate"><span class="pre">$expected</span></code>) with
+<code class="docutils literal notranslate"><span class="pre">ksortedArray()</span></code>:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="nv">$expected</span> <span class="o">=</span> <span class="p">[</span>
+     <span class="s1">&#39;a&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;b&#39;</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">ksortedArray</span><span class="p">([</span>
+          <span class="s1">&#39;d&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;BD&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;c&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;BC&#39;</span>
+     <span class="p">])</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<p>The above specification of <code class="docutils literal notranslate"><span class="pre">$expected</span></code> will match arrays, such as</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="nv">$actual</span> <span class="o">=</span> <span class="p">[</span>
+     <span class="s1">&#39;e&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+         <span class="s1">&#39;f&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;EF&#39;</span><span class="p">,</span>
+     <span class="p">],</span>
+     <span class="s1">&#39;b&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+         <span class="s1">&#39;c&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;BC&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;d&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;BD&#39;</span>
+     <span class="p">],</span>
+     <span class="s1">&#39;a&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<p>when compared with <a class="reference internal" href="constraints.html#constraints-arrayvaluesidenticalto"><span class="std std-ref">arrayValuesIdenticalTo()</span></a>.</p>
+<p>Without <code class="docutils literal notranslate"><span class="pre">ksortedArray([...])</span></code>, the value under <code class="docutils literal notranslate"><span class="pre">$actual['b']</span></code> would be
+compared verbatim, that is only the exact sub-array <code class="docutils literal notranslate"><span class="pre">['d'</span> <span class="pre">=&gt;</span> <span class="pre">'BD',</span> <span class="pre">'c'</span> <span class="pre">=&gt;</span> <span class="pre">'BC']</span></code>
+would match (the order of items in array is important in this consideration).</p>
+<p><a class="reference internal" href="#utilities-ksortedarray"><span class="std std-ref">ksortedArray()</span></a> may be applied at any level and may be used recursively</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="nv">$expected</span> <span class="o">=</span> <span class="p">[</span>
+     <span class="s1">&#39;a&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+         <span class="s1">&#39;b&#39;</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">ksortedArray</span><span class="p">([</span>
+             <span class="c1">// ...</span>
+         <span class="p">])</span>
+     <span class="p">],</span>
+     <span class="s1">&#39;c&#39;</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">ksortedArray</span><span class="p">([</span>
+         <span class="s1">&#39;d&#39;</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">ksortedArray</span><span class="p">([</span> <span class="cm">/* ... */</span> <span class="p">])</span>
+     <span class="p">])</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<p>The utility may be mixed recursively with other utilities such as
+<a class="reference internal" href="#utilities-arrayvalues"><span class="std std-ref">arrayValues()</span></a> or <a class="reference internal" href="#utilities-objectproperties"><span class="std std-ref">objectProperties()</span></a>.</p>
+</section>
+<section id="objectproperties">
+<span id="utilities-objectproperties"></span><h2>objectProperties()<a class="headerlink" href="#objectproperties" title="Permalink to this heading"></a></h2>
+<table class="docutils align-default" id="id5" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for objectProperties()</span><a class="headerlink" href="#id5" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Package</p></td>
+<td><p>phptailors/phpunit-arrays: <code class="docutils literal notranslate"><span class="pre">^1.1</span> <span class="pre">||</span> <span class="pre">^2.1</span> <span class="pre">||</span> <span class="pre">^3.1</span> <span class="pre">||</span> <span class="pre">^4.1</span> <span class="pre">||</span> <span class="pre">^5.1</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Trait</p></td>
+<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/Tailors/PHPUnit/ObjectPropertiesTrait.html" title="Tailors\PHPUnit\ObjectPropertiesTrait"><span class="pre">ObjectPropertiesTrait</span></a></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -304,6 +371,61 @@ would match.</p>
 constraints (e.g. <a class="reference internal" href="constraints.html#constraints-objectpropertiesequalto"><span class="std std-ref">objectPropertiesEqualTo()</span></a>). It may be mixed
 recursively with other selection-related utilities such as
 <a class="reference internal" href="#utilities-arrayvalues"><span class="std std-ref">arrayValues()</span></a> or <a class="reference internal" href="#utilities-objectproperties"><span class="std std-ref">objectProperties()</span></a>.</p>
+</section>
+<section id="recursivelyksortedarray">
+<span id="utilities-recursivelyksortedarray"></span><h2>recursivelyKsortedArray()<a class="headerlink" href="#recursivelyksortedarray" title="Permalink to this heading"></a></h2>
+<table class="docutils align-default" id="id6" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for recursivelyKsortedArray()</span><a class="headerlink" href="#id6" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Package</p></td>
+<td><p>phptailors/phpunit-arrays: <code class="docutils literal notranslate"><span class="pre">^1.1</span> <span class="pre">||</span> <span class="pre">^2.1</span> <span class="pre">||</span> <span class="pre">^3.1</span> <span class="pre">||</span> <span class="pre">^4.1</span> <span class="pre">||</span> <span class="pre">^5.1</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Trait</p></td>
+<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/Tailors/PHPUnit/RecursivelyKsortedArrayTrait.html" title="Tailors\PHPUnit\RecursivelyKsortedArrayTrait"><span class="pre">RecursivelyKsortedArrayTrait</span></a></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Since versions <code class="docutils literal notranslate"><span class="pre">*.1</span></code> (<code class="docutils literal notranslate"><span class="pre">1.1</span></code>, <code class="docutils literal notranslate"><span class="pre">2.1</span></code>, <code class="docutils literal notranslate"><span class="pre">3.1</span></code>, …) it’s possible to
+treat arrays nested somewhere in data structure same way as they are
+handled at the top level by <a class="reference internal" href="constraints.html#constraints-recursivelyksortedarrayequalto"><span class="std std-ref">recursivelyKsortedArrayEqualTo()</span></a> or
+<a class="reference internal" href="constraints.html#constraints-recursivelyksortedarrayidenticalto"><span class="std std-ref">recursivelyKsortedArrayIdenticalTo()</span></a> constraint. To achieve
+this, wrap the array nested somewhere in your expectation specs (<code class="docutils literal notranslate"><span class="pre">$expected</span></code>)
+with <code class="docutils literal notranslate"><span class="pre">recursivelyKsortedArray()</span></code>:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="nv">$expected</span> <span class="o">=</span> <span class="p">[</span>
+     <span class="s1">&#39;a&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;b&#39;</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">recursivelyKsortedArray</span><span class="p">([</span>
+          <span class="s1">&#39;e&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+              <span class="s1">&#39;g&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;BEG&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;f&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;BEF&#39;</span>
+          <span class="p">],</span>
+          <span class="s1">&#39;d&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;BD&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;c&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;BC&#39;</span>
+     <span class="p">])</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<p>The above specification of <code class="docutils literal notranslate"><span class="pre">$expected</span></code> will match arrays, such as</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="nv">$actual</span> <span class="o">=</span> <span class="p">[</span>
+     <span class="s1">&#39;h&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+         <span class="s1">&#39;i&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;HI&#39;</span><span class="p">,</span>
+     <span class="p">],</span>
+     <span class="s1">&#39;b&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+         <span class="s1">&#39;c&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;BC&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;d&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;BD&#39;</span>
+         <span class="s1">&#39;e&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+             <span class="s1">&#39;f&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;BEF&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;g&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;BEG&#39;</span><span class="p">,</span>
+         <span class="p">],</span>
+     <span class="p">],</span>
+     <span class="s1">&#39;a&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<p>when compared with <a class="reference internal" href="constraints.html#constraints-arrayvaluesidenticalto"><span class="std std-ref">arrayValuesIdenticalTo()</span></a>.</p>
 </section>
 </section>
 

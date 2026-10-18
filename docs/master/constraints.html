@@ -59,6 +59,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#ksortedarrayidenticalto">ksortedArrayIdenticalTo()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#objectpropertiesequalto">objectPropertiesEqualTo()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#objectpropertiesidenticalto">objectPropertiesIdenticalTo()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#recursivelyksortedarrayequalto">recursivelyKsortedArrayEqualTo()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#recursivelyksortedarrayidenticalto">recursivelyKsortedArrayIdenticalTo()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#usestrait">usesTrait()</a></li>
 </ul>
 </li>
@@ -144,36 +146,35 @@ operator <code class="docutils literal notranslate"><span class="pre">==</span><
 </pre></div>
 </div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 11.1.2 by Sebastian Bergmann and contributors.
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.66 by Sebastian Bergmann and contributors.
 <span class="linenos"> 2</span>
-<span class="linenos"> 3</span>Runtime:       PHP 8.3.6
+<span class="linenos"> 3</span>Runtime:       PHP 8.4.26
 <span class="linenos"> 4</span>Configuration: phpunit.xml
 <span class="linenos"> 5</span>
 <span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
 <span class="linenos"> 7</span>
-<span class="linenos"> 8</span>Time: 00:00.007, Memory: 8.00 MB
+<span class="linenos"> 8</span>Time: 00:00.011, Memory: 10.00 MB
 <span class="linenos"> 9</span>
 <span class="linenos">10</span>There was 1 failure:
 <span class="linenos">11</span>
 <span class="linenos">12</span>1) arrayValuesEqualToTest::testFailure
-<span class="linenos">13</span>Failed asserting that array is an array or ArrayAccess with values equal to specified.
+<span class="linenos">13</span>Failed asserting that array is an array or ArrayAccess with values equal to the specified ones.
 <span class="linenos">14</span>--- Expected
 <span class="linenos">15</span>+++ Actual
 <span class="linenos">16</span>@@ @@
-<span class="linenos">17</span>-Tailors\PHPUnit\Arrays\ExpectedArrayValues Object #447 (
+<span class="linenos">17</span> ArrayValues &amp;0 (
 <span class="linenos">18</span>-    &#39;int&#39; =&gt; 123,
 <span class="linenos">19</span>-    1 =&gt; &#39;&#39;,
 <span class="linenos">20</span>-    &#39;foo&#39; =&gt; &#39;BAR&#39;,
-<span class="linenos">21</span>+Tailors\PHPUnit\Arrays\ActualArrayValues Object #444 (
-<span class="linenos">22</span>+    &#39;int&#39; =&gt; &#39;123&#39;,
-<span class="linenos">23</span>+    1 =&gt; null,
-<span class="linenos">24</span>+    &#39;foo&#39; =&gt; &#39;FOO&#39;,
-<span class="linenos">25</span> )
-<span class="linenos">26</span>
-<span class="linenos">27</span>arrayValuesEqualToTest.php:16
-<span class="linenos">28</span>
-<span class="linenos">29</span>FAILURES!
-<span class="linenos">30</span>Tests: 2, Assertions: 2, Failures: 1.
+<span class="linenos">21</span>+    &#39;int&#39; =&gt; &#39;123&#39;,
+<span class="linenos">22</span>+    1 =&gt; null,
+<span class="linenos">23</span>+    &#39;foo&#39; =&gt; &#39;FOO&#39;,
+<span class="linenos">24</span> )
+<span class="linenos">25</span>
+<span class="linenos">26</span>arrayValuesEqualToTest.php:16
+<span class="linenos">27</span>
+<span class="linenos">28</span>FAILURES!
+<span class="linenos">29</span>Tests: 2, Assertions: 2, Failures: 1.
 </pre></div>
 </div>
 <p>Since versions <code class="docutils literal notranslate"><span class="pre">*.1</span></code> (<code class="docutils literal notranslate"><span class="pre">1.1</span></code>, <code class="docutils literal notranslate"><span class="pre">2.1</span></code>, <code class="docutils literal notranslate"><span class="pre">3.1</span></code>, …) it’s possible to nest
@@ -226,37 +227,36 @@ recursively specification of array values. For more details, see
 </pre></div>
 </div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.63 by Sebastian Bergmann and contributors.
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.66 by Sebastian Bergmann and contributors.
 <span class="linenos"> 2</span>
-<span class="linenos"> 3</span>Runtime:       PHP 8.2.30
+<span class="linenos"> 3</span>Runtime:       PHP 8.4.26
 <span class="linenos"> 4</span>Configuration: phpunit.xml
 <span class="linenos"> 5</span>
 <span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
 <span class="linenos"> 7</span>
-<span class="linenos"> 8</span>Time: 00:00.016, Memory: 8.00 MB
+<span class="linenos"> 8</span>Time: 00:00.011, Memory: 10.00 MB
 <span class="linenos"> 9</span>
 <span class="linenos">10</span>There was 1 failure:
 <span class="linenos">11</span>
 <span class="linenos">12</span>1) arrayValuesEqualToRecursiveTest::testFailure
-<span class="linenos">13</span>Failed asserting that array is an array or ArrayAccess with values equal to specified.
+<span class="linenos">13</span>Failed asserting that array is an array or ArrayAccess with values equal to the specified ones.
 <span class="linenos">14</span>--- Expected
 <span class="linenos">15</span>+++ Actual
 <span class="linenos">16</span>@@ @@
-<span class="linenos">17</span>-Tailors\PHPUnit\Arrays\ExpectedArrayValues Object #452 (
-<span class="linenos">18</span>+Tailors\PHPUnit\Arrays\ActualArrayValues Object #343 (
-<span class="linenos">19</span>     &#39;sub&#39; =&gt; Array &amp;0 [
-<span class="linenos">20</span>-        &#39;int&#39; =&gt; &#39;321&#39;,
-<span class="linenos">21</span>+        &#39;int&#39; =&gt; 321,
-<span class="linenos">22</span>+        &#39;bar&#39; =&gt; &#39;BAR&#39;,
-<span class="linenos">23</span>     ],
-<span class="linenos">24</span>-    &#39;int&#39; =&gt; 123,
-<span class="linenos">25</span>+    &#39;int&#39; =&gt; &#39;123&#39;,
-<span class="linenos">26</span> )
-<span class="linenos">27</span>
-<span class="linenos">28</span>arrayValuesEqualToRecursiveTest.php:32
-<span class="linenos">29</span>
-<span class="linenos">30</span>FAILURES!
-<span class="linenos">31</span>Tests: 2, Assertions: 2, Failures: 1.
+<span class="linenos">17</span> ArrayValues &amp;0 (
+<span class="linenos">18</span>     &#39;sub&#39; =&gt; Array &amp;0 [
+<span class="linenos">19</span>-        &#39;int&#39; =&gt; &#39;321&#39;,
+<span class="linenos">20</span>+        &#39;int&#39; =&gt; 321,
+<span class="linenos">21</span>+        &#39;bar&#39; =&gt; &#39;BAR&#39;,
+<span class="linenos">22</span>     ],
+<span class="linenos">23</span>-    &#39;int&#39; =&gt; 123,
+<span class="linenos">24</span>+    &#39;int&#39; =&gt; &#39;123&#39;,
+<span class="linenos">25</span> )
+<span class="linenos">26</span>
+<span class="linenos">27</span>arrayValuesEqualToRecursiveTest.php:32
+<span class="linenos">28</span>
+<span class="linenos">29</span>FAILURES!
+<span class="linenos">30</span>Tests: 2, Assertions: 2, Failures: 1.
 </pre></div>
 </div>
 </section>
@@ -309,33 +309,32 @@ identical to <code class="docutils literal notranslate"><span class="pre">$expec
 </pre></div>
 </div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 11.1.2 by Sebastian Bergmann and contributors.
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.66 by Sebastian Bergmann and contributors.
 <span class="linenos"> 2</span>
-<span class="linenos"> 3</span>Runtime:       PHP 8.3.6
+<span class="linenos"> 3</span>Runtime:       PHP 8.4.26
 <span class="linenos"> 4</span>Configuration: phpunit.xml
 <span class="linenos"> 5</span>
 <span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
 <span class="linenos"> 7</span>
-<span class="linenos"> 8</span>Time: 00:00.007, Memory: 8.00 MB
+<span class="linenos"> 8</span>Time: 00:00.011, Memory: 10.00 MB
 <span class="linenos"> 9</span>
 <span class="linenos">10</span>There was 1 failure:
 <span class="linenos">11</span>
 <span class="linenos">12</span>1) arrayValuesIdenticalToTest::testFailure
-<span class="linenos">13</span>Failed asserting that array is an array or ArrayAccess with values identical to specified.
+<span class="linenos">13</span>Failed asserting that array is an array or ArrayAccess with values identical to the specified ones.
 <span class="linenos">14</span>--- Expected
 <span class="linenos">15</span>+++ Actual
 <span class="linenos">16</span>@@ @@
-<span class="linenos">17</span>-Tailors\PHPUnit\Arrays\ExpectedArrayValues Object #447 (
-<span class="linenos">18</span>+Tailors\PHPUnit\Arrays\ActualArrayValues Object #444 (
-<span class="linenos">19</span>     &#39;int&#39; =&gt; 123,
-<span class="linenos">20</span>-    1 =&gt; null,
-<span class="linenos">21</span>+    1 =&gt; &#39;&#39;,
-<span class="linenos">22</span> )
-<span class="linenos">23</span>
-<span class="linenos">24</span>arrayValuesIdenticalToTest.php:16
-<span class="linenos">25</span>
-<span class="linenos">26</span>FAILURES!
-<span class="linenos">27</span>Tests: 2, Assertions: 2, Failures: 1.
+<span class="linenos">17</span> ArrayValues &amp;0 (
+<span class="linenos">18</span>     &#39;int&#39; =&gt; 123,
+<span class="linenos">19</span>-    1 =&gt; null,
+<span class="linenos">20</span>+    1 =&gt; &#39;&#39;,
+<span class="linenos">21</span> )
+<span class="linenos">22</span>
+<span class="linenos">23</span>arrayValuesIdenticalToTest.php:16
+<span class="linenos">24</span>
+<span class="linenos">25</span>FAILURES!
+<span class="linenos">26</span>Tests: 2, Assertions: 2, Failures: 1.
 </pre></div>
 </div>
 <p>Since versions <code class="docutils literal notranslate"><span class="pre">*.1</span></code> (<code class="docutils literal notranslate"><span class="pre">1.1</span></code>, <code class="docutils literal notranslate"><span class="pre">2.1</span></code>, <code class="docutils literal notranslate"><span class="pre">3.1</span></code>, …) it’s possible to nest
@@ -388,35 +387,34 @@ recursively specification of array values. For more details, see
 </pre></div>
 </div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.63 by Sebastian Bergmann and contributors.
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.66 by Sebastian Bergmann and contributors.
 <span class="linenos"> 2</span>
-<span class="linenos"> 3</span>Runtime:       PHP 8.2.30
+<span class="linenos"> 3</span>Runtime:       PHP 8.4.26
 <span class="linenos"> 4</span>Configuration: phpunit.xml
 <span class="linenos"> 5</span>
 <span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
 <span class="linenos"> 7</span>
-<span class="linenos"> 8</span>Time: 00:00.016, Memory: 8.00 MB
+<span class="linenos"> 8</span>Time: 00:00.011, Memory: 10.00 MB
 <span class="linenos"> 9</span>
 <span class="linenos">10</span>There was 1 failure:
 <span class="linenos">11</span>
 <span class="linenos">12</span>1) arrayValuesIdenticalToRecursiveTest::testFailure
-<span class="linenos">13</span>Failed asserting that array is an array or ArrayAccess with values identical to specified.
+<span class="linenos">13</span>Failed asserting that array is an array or ArrayAccess with values identical to the specified ones.
 <span class="linenos">14</span>--- Expected
 <span class="linenos">15</span>+++ Actual
 <span class="linenos">16</span>@@ @@
-<span class="linenos">17</span>-Tailors\PHPUnit\Arrays\ExpectedArrayValues Object #426 (
-<span class="linenos">18</span>+Tailors\PHPUnit\Arrays\ActualArrayValues Object #343 (
-<span class="linenos">19</span>     &#39;sub&#39; =&gt; Array &amp;0 [
-<span class="linenos">20</span>         &#39;int&#39; =&gt; 321,
-<span class="linenos">21</span>+        &#39;bar&#39; =&gt; &#39;BAR&#39;,
-<span class="linenos">22</span>     ],
-<span class="linenos">23</span>     &#39;int&#39; =&gt; 123,
-<span class="linenos">24</span> )
-<span class="linenos">25</span>
-<span class="linenos">26</span>arrayValuesIdenticalToRecursiveTest.php:32
-<span class="linenos">27</span>
-<span class="linenos">28</span>FAILURES!
-<span class="linenos">29</span>Tests: 2, Assertions: 2, Failures: 1.
+<span class="linenos">17</span> ArrayValues &amp;0 (
+<span class="linenos">18</span>     &#39;sub&#39; =&gt; Array &amp;0 [
+<span class="linenos">19</span>         &#39;int&#39; =&gt; 321,
+<span class="linenos">20</span>+        &#39;bar&#39; =&gt; &#39;BAR&#39;,
+<span class="linenos">21</span>     ],
+<span class="linenos">22</span>     &#39;int&#39; =&gt; 123,
+<span class="linenos">23</span> )
+<span class="linenos">24</span>
+<span class="linenos">25</span>arrayValuesIdenticalToRecursiveTest.php:32
+<span class="linenos">26</span>
+<span class="linenos">27</span>FAILURES!
+<span class="linenos">28</span>Tests: 2, Assertions: 2, Failures: 1.
 </pre></div>
 </div>
 </section>
@@ -480,34 +478,33 @@ recursively specification of array values. For more details, see
 </pre></div>
 </div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 11.1.2 by Sebastian Bergmann and contributors.
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.66 by Sebastian Bergmann and contributors.
 <span class="linenos"> 2</span>
-<span class="linenos"> 3</span>Runtime:       PHP 8.3.6
+<span class="linenos"> 3</span>Runtime:       PHP 8.4.26
 <span class="linenos"> 4</span>Configuration: phpunit.xml
 <span class="linenos"> 5</span>
 <span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
 <span class="linenos"> 7</span>
-<span class="linenos"> 8</span>Time: 00:00.007, Memory: 8.00 MB
+<span class="linenos"> 8</span>Time: 00:00.012, Memory: 10.00 MB
 <span class="linenos"> 9</span>
 <span class="linenos">10</span>There was 1 failure:
 <span class="linenos">11</span>
 <span class="linenos">12</span>1) classPropertiesEqualToTest::testFailure
-<span class="linenos">13</span>Failed asserting that classPropertiesEqualToTest is a class with properties equal to specified.
+<span class="linenos">13</span>Failed asserting that classPropertiesEqualToTest is a class with properties equal to the specified ones.
 <span class="linenos">14</span>--- Expected
 <span class="linenos">15</span>+++ Actual
 <span class="linenos">16</span>@@ @@
-<span class="linenos">17</span>-Tailors\PHPUnit\Properties\ExpectedClassProperties Object #451 (
+<span class="linenos">17</span> ClassProperties &amp;0 (
 <span class="linenos">18</span>-    &#39;attribute&#39; =&gt; &#39;123&#39;,
 <span class="linenos">19</span>-    &#39;getValue()&#39; =&gt; null,
-<span class="linenos">20</span>+Tailors\PHPUnit\Properties\ActualClassProperties Object #448 (
-<span class="linenos">21</span>+    &#39;attribute&#39; =&gt; 123,
-<span class="linenos">22</span>+    &#39;getValue()&#39; =&gt; 321,
-<span class="linenos">23</span> )
-<span class="linenos">24</span>
-<span class="linenos">25</span>classPropertiesEqualToTest.php:26
-<span class="linenos">26</span>
-<span class="linenos">27</span>FAILURES!
-<span class="linenos">28</span>Tests: 2, Assertions: 2, Failures: 1.
+<span class="linenos">20</span>+    &#39;attribute&#39; =&gt; 123,
+<span class="linenos">21</span>+    &#39;getValue()&#39; =&gt; 321,
+<span class="linenos">22</span> )
+<span class="linenos">23</span>
+<span class="linenos">24</span>classPropertiesEqualToTest.php:26
+<span class="linenos">25</span>
+<span class="linenos">26</span>FAILURES!
+<span class="linenos">27</span>Tests: 2, Assertions: 2, Failures: 1.
 </pre></div>
 </div>
 <p>Since versions <code class="docutils literal notranslate"><span class="pre">*.1</span></code> (<code class="docutils literal notranslate"><span class="pre">1.1</span></code>, <code class="docutils literal notranslate"><span class="pre">2.1</span></code>, <code class="docutils literal notranslate"><span class="pre">3.1</span></code>, …) it’s possible to nest
@@ -549,36 +546,35 @@ recursively specifications of class properties. For more details, see
 </pre></div>
 </div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.63 by Sebastian Bergmann and contributors.
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.66 by Sebastian Bergmann and contributors.
 <span class="linenos"> 2</span>
-<span class="linenos"> 3</span>Runtime:       PHP 8.2.30
+<span class="linenos"> 3</span>Runtime:       PHP 8.4.26
 <span class="linenos"> 4</span>Configuration: phpunit.xml
 <span class="linenos"> 5</span>
 <span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
 <span class="linenos"> 7</span>
-<span class="linenos"> 8</span>Time: 00:00.016, Memory: 8.00 MB
+<span class="linenos"> 8</span>Time: 00:00.012, Memory: 10.00 MB
 <span class="linenos"> 9</span>
 <span class="linenos">10</span>There was 1 failure:
 <span class="linenos">11</span>
 <span class="linenos">12</span>1) classPropertiesEqualToRecursiveTest::testFailure
-<span class="linenos">13</span>Failed asserting that classPropertiesEqualToRecursiveTest is a class with properties equal to specified.
+<span class="linenos">13</span>Failed asserting that classPropertiesEqualToRecursiveTest is a class with properties equal to the specified ones.
 <span class="linenos">14</span>--- Expected
 <span class="linenos">15</span>+++ Actual
 <span class="linenos">16</span>@@ @@
-<span class="linenos">17</span>-Tailors\PHPUnit\Properties\ExpectedClassProperties Object #461 (
+<span class="linenos">17</span> ClassProperties &amp;0 (
 <span class="linenos">18</span>-    &#39;attribute&#39; =&gt; &#39;123&#39;,
 <span class="linenos">19</span>-    &#39;nested&#39; =&gt; Array &amp;0 [
 <span class="linenos">20</span>-        &#39;other&#39; =&gt; &#39;321&#39;,
 <span class="linenos">21</span>-    ],
-<span class="linenos">22</span>+Tailors\PHPUnit\Properties\ActualClassProperties Object #343 (
-<span class="linenos">23</span>+    &#39;attribute&#39; =&gt; 123,
-<span class="linenos">24</span>+    &#39;nested&#39; =&gt; &#39;classPropertiesEqualToRecursiveTest&#39;,
-<span class="linenos">25</span> )
-<span class="linenos">26</span>
-<span class="linenos">27</span>classPropertiesEqualToRecursiveTest.php:24
-<span class="linenos">28</span>
-<span class="linenos">29</span>FAILURES!
-<span class="linenos">30</span>Tests: 2, Assertions: 2, Failures: 1.
+<span class="linenos">22</span>+    &#39;attribute&#39; =&gt; 123,
+<span class="linenos">23</span>+    &#39;nested&#39; =&gt; &#39;classPropertiesEqualToRecursiveTest&#39;,
+<span class="linenos">24</span> )
+<span class="linenos">25</span>
+<span class="linenos">26</span>classPropertiesEqualToRecursiveTest.php:24
+<span class="linenos">27</span>
+<span class="linenos">28</span>FAILURES!
+<span class="linenos">29</span>Tests: 2, Assertions: 2, Failures: 1.
 </pre></div>
 </div>
 </section>
@@ -642,34 +638,33 @@ recursively specifications of class properties. For more details, see
 </pre></div>
 </div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 11.1.2 by Sebastian Bergmann and contributors.
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.66 by Sebastian Bergmann and contributors.
 <span class="linenos"> 2</span>
-<span class="linenos"> 3</span>Runtime:       PHP 8.3.6
+<span class="linenos"> 3</span>Runtime:       PHP 8.4.26
 <span class="linenos"> 4</span>Configuration: phpunit.xml
 <span class="linenos"> 5</span>
 <span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
 <span class="linenos"> 7</span>
-<span class="linenos"> 8</span>Time: 00:00.007, Memory: 8.00 MB
+<span class="linenos"> 8</span>Time: 00:00.012, Memory: 10.00 MB
 <span class="linenos"> 9</span>
 <span class="linenos">10</span>There was 1 failure:
 <span class="linenos">11</span>
 <span class="linenos">12</span>1) classPropertiesIdenticalToTest::testFailure
-<span class="linenos">13</span>Failed asserting that classPropertiesIdenticalToTest is a class with properties identical to specified.
+<span class="linenos">13</span>Failed asserting that classPropertiesIdenticalToTest is a class with properties identical to the specified ones.
 <span class="linenos">14</span>--- Expected
 <span class="linenos">15</span>+++ Actual
 <span class="linenos">16</span>@@ @@
-<span class="linenos">17</span>-Tailors\PHPUnit\Properties\ExpectedClassProperties Object #451 (
+<span class="linenos">17</span> ClassProperties &amp;0 (
 <span class="linenos">18</span>-    &#39;attribute&#39; =&gt; &#39;123&#39;,
 <span class="linenos">19</span>-    &#39;getValue()&#39; =&gt; null,
-<span class="linenos">20</span>+Tailors\PHPUnit\Properties\ActualClassProperties Object #448 (
-<span class="linenos">21</span>+    &#39;attribute&#39; =&gt; 123,
-<span class="linenos">22</span>+    &#39;getValue()&#39; =&gt; 321,
-<span class="linenos">23</span> )
-<span class="linenos">24</span>
-<span class="linenos">25</span>classPropertiesIdenticalToTest.php:26
-<span class="linenos">26</span>
-<span class="linenos">27</span>FAILURES!
-<span class="linenos">28</span>Tests: 2, Assertions: 2, Failures: 1.
+<span class="linenos">20</span>+    &#39;attribute&#39; =&gt; 123,
+<span class="linenos">21</span>+    &#39;getValue()&#39; =&gt; 321,
+<span class="linenos">22</span> )
+<span class="linenos">23</span>
+<span class="linenos">24</span>classPropertiesIdenticalToTest.php:26
+<span class="linenos">25</span>
+<span class="linenos">26</span>FAILURES!
+<span class="linenos">27</span>Tests: 2, Assertions: 2, Failures: 1.
 </pre></div>
 </div>
 <p>Since versions <code class="docutils literal notranslate"><span class="pre">*.1</span></code> (<code class="docutils literal notranslate"><span class="pre">1.1</span></code>, <code class="docutils literal notranslate"><span class="pre">2.1</span></code>, <code class="docutils literal notranslate"><span class="pre">3.1</span></code>, …) it’s possible to nest
@@ -711,35 +706,34 @@ recursively specifications of class properties. For more details, see
 </pre></div>
 </div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.63 by Sebastian Bergmann and contributors.
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.66 by Sebastian Bergmann and contributors.
 <span class="linenos"> 2</span>
-<span class="linenos"> 3</span>Runtime:       PHP 8.2.30
+<span class="linenos"> 3</span>Runtime:       PHP 8.4.26
 <span class="linenos"> 4</span>Configuration: phpunit.xml
 <span class="linenos"> 5</span>
 <span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
 <span class="linenos"> 7</span>
-<span class="linenos"> 8</span>Time: 00:00.016, Memory: 8.00 MB
+<span class="linenos"> 8</span>Time: 00:00.011, Memory: 10.00 MB
 <span class="linenos"> 9</span>
 <span class="linenos">10</span>There was 1 failure:
 <span class="linenos">11</span>
 <span class="linenos">12</span>1) classPropertiesIdenticalToRecursiveTest::testFailure
-<span class="linenos">13</span>Failed asserting that classPropertiesIdenticalToRecursiveTest is a class with properties identical to specified.
+<span class="linenos">13</span>Failed asserting that classPropertiesIdenticalToRecursiveTest is a class with properties identical to the specified ones.
 <span class="linenos">14</span>--- Expected
 <span class="linenos">15</span>+++ Actual
 <span class="linenos">16</span>@@ @@
-<span class="linenos">17</span>-Tailors\PHPUnit\Properties\ExpectedClassProperties Object #461 (
-<span class="linenos">18</span>+Tailors\PHPUnit\Properties\ActualClassProperties Object #343 (
-<span class="linenos">19</span>     &#39;attribute&#39; =&gt; 123,
-<span class="linenos">20</span>-    &#39;nested&#39; =&gt; Array &amp;0 [
-<span class="linenos">21</span>-        &#39;other&#39; =&gt; 321,
-<span class="linenos">22</span>-    ],
-<span class="linenos">23</span>+    &#39;nested&#39; =&gt; &#39;classPropertiesIdenticalToRecursiveTest&#39;,
-<span class="linenos">24</span> )
-<span class="linenos">25</span>
-<span class="linenos">26</span>classPropertiesIdenticalToRecursiveTest.php:24
-<span class="linenos">27</span>
-<span class="linenos">28</span>FAILURES!
-<span class="linenos">29</span>Tests: 2, Assertions: 2, Failures: 1.
+<span class="linenos">17</span> ClassProperties &amp;0 (
+<span class="linenos">18</span>     &#39;attribute&#39; =&gt; 123,
+<span class="linenos">19</span>-    &#39;nested&#39; =&gt; Array &amp;0 [
+<span class="linenos">20</span>-        &#39;other&#39; =&gt; 321,
+<span class="linenos">21</span>-    ],
+<span class="linenos">22</span>+    &#39;nested&#39; =&gt; &#39;classPropertiesIdenticalToRecursiveTest&#39;,
+<span class="linenos">23</span> )
+<span class="linenos">24</span>
+<span class="linenos">25</span>classPropertiesIdenticalToRecursiveTest.php:24
+<span class="linenos">26</span>
+<span class="linenos">27</span>FAILURES!
+<span class="linenos">28</span>Tests: 2, Assertions: 2, Failures: 1.
 </pre></div>
 </div>
 </section>
@@ -802,14 +796,14 @@ that</p>
 </pre></div>
 </div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 11.1.2 by Sebastian Bergmann and contributors.
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.66 by Sebastian Bergmann and contributors.
 <span class="linenos"> 2</span>
-<span class="linenos"> 3</span>Runtime:       PHP 8.3.6
+<span class="linenos"> 3</span>Runtime:       PHP 8.4.26
 <span class="linenos"> 4</span>Configuration: phpunit.xml
 <span class="linenos"> 5</span>
 <span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
 <span class="linenos"> 7</span>
-<span class="linenos"> 8</span>Time: 00:00.006, Memory: 8.00 MB
+<span class="linenos"> 8</span>Time: 00:00.007, Memory: 8.00 MB
 <span class="linenos"> 9</span>
 <span class="linenos">10</span>There was 1 failure:
 <span class="linenos">11</span>
@@ -921,9 +915,9 @@ in a matched method.</p>
 </pre></div>
 </div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 11.1.2 by Sebastian Bergmann and contributors.
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.66 by Sebastian Bergmann and contributors.
 <span class="linenos"> 2</span>
-<span class="linenos"> 3</span>Runtime:       PHP 8.3.6
+<span class="linenos"> 3</span>Runtime:       PHP 8.4.26
 <span class="linenos"> 4</span>Configuration: phpunit.xml
 <span class="linenos"> 5</span>
 <span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
@@ -1020,14 +1014,14 @@ properly only with arrays obtained from <code class="docutils literal notranslat
 </pre></div>
 </div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 11.1.2 by Sebastian Bergmann and contributors.
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.66 by Sebastian Bergmann and contributors.
 <span class="linenos"> 2</span>
-<span class="linenos"> 3</span>Runtime:       PHP 8.3.6
+<span class="linenos"> 3</span>Runtime:       PHP 8.4.26
 <span class="linenos"> 4</span>Configuration: phpunit.xml
 <span class="linenos"> 5</span>
 <span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
 <span class="linenos"> 7</span>
-<span class="linenos"> 8</span>Time: 00:00.006, Memory: 8.00 MB
+<span class="linenos"> 8</span>Time: 00:00.008, Memory: 8.00 MB
 <span class="linenos"> 9</span>
 <span class="linenos">10</span>There was 1 failure:
 <span class="linenos">11</span>
@@ -1099,14 +1093,14 @@ properly only with arrays obtained from <code class="docutils literal notranslat
 </pre></div>
 </div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 11.1.2 by Sebastian Bergmann and contributors.
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.66 by Sebastian Bergmann and contributors.
 <span class="linenos"> 2</span>
-<span class="linenos"> 3</span>Runtime:       PHP 8.3.6
+<span class="linenos"> 3</span>Runtime:       PHP 8.4.26
 <span class="linenos"> 4</span>Configuration: phpunit.xml
 <span class="linenos"> 5</span>
 <span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
 <span class="linenos"> 7</span>
-<span class="linenos"> 8</span>Time: 00:00.013, Memory: 8.00 MB
+<span class="linenos"> 8</span>Time: 00:00.012, Memory: 8.00 MB
 <span class="linenos"> 9</span>
 <span class="linenos">10</span>There was 1 failure:
 <span class="linenos">11</span>
@@ -1168,29 +1162,29 @@ properly only with arrays obtained from <code class="docutils literal notranslat
 </pre></div>
 </div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 11.1.2 by Sebastian Bergmann and contributors.
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.66 by Sebastian Bergmann and contributors.
 <span class="linenos"> 2</span>
-<span class="linenos"> 3</span>Runtime:       PHP 8.3.6
+<span class="linenos"> 3</span>Runtime:       PHP 8.4.26
 <span class="linenos"> 4</span>Configuration: phpunit.xml
 <span class="linenos"> 5</span>
 <span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
 <span class="linenos"> 7</span>
-<span class="linenos"> 8</span>Time: 00:00.006, Memory: 8.00 MB
+<span class="linenos"> 8</span>Time: 00:00.011, Memory: 10.00 MB
 <span class="linenos"> 9</span>
 <span class="linenos">10</span>There was 1 failure:
 <span class="linenos">11</span>
 <span class="linenos">12</span>1) ksortedArrayEqualToTest::testFailure
-<span class="linenos">13</span>Failed asserting that array is an array equal to specified one when ksorted.
+<span class="linenos">13</span>Failed asserting that array is an array equal to the specified one when ksorted.
 <span class="linenos">14</span>--- Expected
 <span class="linenos">15</span>+++ Actual
 <span class="linenos">16</span>@@ @@
-<span class="linenos">17</span> Array &amp;0 [
+<span class="linenos">17</span> KsortedArray &amp;0 (
 <span class="linenos">18</span>     1 =&gt; &#39;&#39;,
 <span class="linenos">19</span>-    &#39;foo&#39; =&gt; &#39;BAR&#39;,
 <span class="linenos">20</span>-    &#39;int&#39; =&gt; 123,
 <span class="linenos">21</span>+    &#39;foo&#39; =&gt; &#39;FOO&#39;,
 <span class="linenos">22</span>+    &#39;int&#39; =&gt; &#39;123&#39;,
-<span class="linenos">23</span> ]
+<span class="linenos">23</span> )
 <span class="linenos">24</span>
 <span class="linenos">25</span>ksortedArrayEqualToTest.php:16
 <span class="linenos">26</span>
@@ -1247,28 +1241,28 @@ properly only with arrays obtained from <code class="docutils literal notranslat
 </pre></div>
 </div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 11.1.2 by Sebastian Bergmann and contributors.
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.66 by Sebastian Bergmann and contributors.
 <span class="linenos"> 2</span>
-<span class="linenos"> 3</span>Runtime:       PHP 8.3.6
+<span class="linenos"> 3</span>Runtime:       PHP 8.4.26
 <span class="linenos"> 4</span>Configuration: phpunit.xml
 <span class="linenos"> 5</span>
 <span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
 <span class="linenos"> 7</span>
-<span class="linenos"> 8</span>Time: 00:00.051, Memory: 8.00 MB
+<span class="linenos"> 8</span>Time: 00:00.019, Memory: 10.00 MB
 <span class="linenos"> 9</span>
 <span class="linenos">10</span>There was 1 failure:
 <span class="linenos">11</span>
 <span class="linenos">12</span>1) ksortedArrayIdenticalToTest::testFailure
-<span class="linenos">13</span>Failed asserting that array is an array identical to specified one when ksorted.
+<span class="linenos">13</span>Failed asserting that array is an array identical to the specified one when ksorted.
 <span class="linenos">14</span>--- Expected
 <span class="linenos">15</span>+++ Actual
 <span class="linenos">16</span>@@ @@
-<span class="linenos">17</span> Array &amp;0 [
+<span class="linenos">17</span> KsortedArray &amp;0 (
 <span class="linenos">18</span>-    1 =&gt; null,
 <span class="linenos">19</span>+    1 =&gt; &#39;&#39;,
 <span class="linenos">20</span>     &#39;foo&#39; =&gt; &#39;FOO&#39;,
 <span class="linenos">21</span>     &#39;int&#39; =&gt; 123,
-<span class="linenos">22</span> ]
+<span class="linenos">22</span> )
 <span class="linenos">23</span>
 <span class="linenos">24</span>ksortedArrayIdenticalToTest.php:16
 <span class="linenos">25</span>
@@ -1337,34 +1331,33 @@ properly only with arrays obtained from <code class="docutils literal notranslat
 </pre></div>
 </div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 11.1.2 by Sebastian Bergmann and contributors.
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.66 by Sebastian Bergmann and contributors.
 <span class="linenos"> 2</span>
-<span class="linenos"> 3</span>Runtime:       PHP 8.3.6
+<span class="linenos"> 3</span>Runtime:       PHP 8.4.26
 <span class="linenos"> 4</span>Configuration: phpunit.xml
 <span class="linenos"> 5</span>
 <span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
 <span class="linenos"> 7</span>
-<span class="linenos"> 8</span>Time: 00:00.009, Memory: 8.00 MB
+<span class="linenos"> 8</span>Time: 00:00.012, Memory: 10.00 MB
 <span class="linenos"> 9</span>
 <span class="linenos">10</span>There was 1 failure:
 <span class="linenos">11</span>
 <span class="linenos">12</span>1) objectPropertiesEqualToTest::testFailure
-<span class="linenos">13</span>Failed asserting that object objectPropertiesEqualToTest is an object with properties equal to specified.
+<span class="linenos">13</span>Failed asserting that object objectPropertiesEqualToTest is an object with properties equal to the specified ones.
 <span class="linenos">14</span>--- Expected
 <span class="linenos">15</span>+++ Actual
 <span class="linenos">16</span>@@ @@
-<span class="linenos">17</span>-Tailors\PHPUnit\Properties\ExpectedObjectProperties Object #451 (
+<span class="linenos">17</span> ObjectProperties &amp;0 (
 <span class="linenos">18</span>-    &#39;attribute&#39; =&gt; &#39;123&#39;,
 <span class="linenos">19</span>-    &#39;getValue()&#39; =&gt; null,
-<span class="linenos">20</span>+Tailors\PHPUnit\Properties\ActualObjectProperties Object #448 (
-<span class="linenos">21</span>+    &#39;attribute&#39; =&gt; 123,
-<span class="linenos">22</span>+    &#39;getValue()&#39; =&gt; 321,
-<span class="linenos">23</span> )
-<span class="linenos">24</span>
-<span class="linenos">25</span>objectPropertiesEqualToTest.php:26
-<span class="linenos">26</span>
-<span class="linenos">27</span>FAILURES!
-<span class="linenos">28</span>Tests: 2, Assertions: 2, Failures: 1.
+<span class="linenos">20</span>+    &#39;attribute&#39; =&gt; 123,
+<span class="linenos">21</span>+    &#39;getValue()&#39; =&gt; 321,
+<span class="linenos">22</span> )
+<span class="linenos">23</span>
+<span class="linenos">24</span>objectPropertiesEqualToTest.php:26
+<span class="linenos">25</span>
+<span class="linenos">26</span>FAILURES!
+<span class="linenos">27</span>Tests: 2, Assertions: 2, Failures: 1.
 </pre></div>
 </div>
 <p>Since versions <code class="docutils literal notranslate"><span class="pre">*.1</span></code> (<code class="docutils literal notranslate"><span class="pre">1.1</span></code>, <code class="docutils literal notranslate"><span class="pre">2.1</span></code>, <code class="docutils literal notranslate"><span class="pre">3.1</span></code>, …) it’s possible to nest
@@ -1412,44 +1405,43 @@ recursively specifications of object properties. For more details, see
 </pre></div>
 </div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.63 by Sebastian Bergmann and contributors.
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.66 by Sebastian Bergmann and contributors.
 <span class="linenos"> 2</span>
-<span class="linenos"> 3</span>Runtime:       PHP 8.2.30
+<span class="linenos"> 3</span>Runtime:       PHP 8.4.26
 <span class="linenos"> 4</span>Configuration: phpunit.xml
 <span class="linenos"> 5</span>
 <span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
 <span class="linenos"> 7</span>
-<span class="linenos"> 8</span>Time: 00:00.010, Memory: 8.00 MB
+<span class="linenos"> 8</span>Time: 00:00.012, Memory: 10.00 MB
 <span class="linenos"> 9</span>
 <span class="linenos">10</span>There was 1 failure:
 <span class="linenos">11</span>
 <span class="linenos">12</span>1) objectPropertiesEqualToRecursiveTest::testFailure
-<span class="linenos">13</span>Failed asserting that object objectPropertiesEqualToRecursiveTest is an object with properties equal to specified.
+<span class="linenos">13</span>Failed asserting that object objectPropertiesEqualToRecursiveTest is an object with properties equal to the specified ones.
 <span class="linenos">14</span>--- Expected
 <span class="linenos">15</span>+++ Actual
 <span class="linenos">16</span>@@ @@
-<span class="linenos">17</span>-Tailors\PHPUnit\Properties\ExpectedObjectProperties Object #466 (
+<span class="linenos">17</span> ObjectProperties &amp;0 (
 <span class="linenos">18</span>-    &#39;attribute&#39; =&gt; &#39;123&#39;,
 <span class="linenos">19</span>-    &#39;nested()&#39; =&gt; Array &amp;0 [
 <span class="linenos">20</span>-        &#39;getMessage()&#39; =&gt; &#39;FOO&#39;,
 <span class="linenos">21</span>-        &#39;getCode()&#39; =&gt; &#39;456&#39;,
 <span class="linenos">22</span>-    ],
-<span class="linenos">23</span>+Tailors\PHPUnit\Properties\ActualObjectProperties Object #484 (
-<span class="linenos">24</span>+    &#39;attribute&#39; =&gt; 123,
-<span class="linenos">25</span>+    &#39;nested()&#39; =&gt; Exception Object #464 (
-<span class="linenos">26</span>+        &#39;message&#39; =&gt; &#39;FOO&#39;,
-<span class="linenos">27</span>+        &#39;string&#39; =&gt; &#39;&#39;,
-<span class="linenos">28</span>+        &#39;code&#39; =&gt; 456,
-<span class="linenos">29</span>+        &#39;file&#39; =&gt; &#39;objectPropertiesEqualToRecursiveTest.php&#39;,
-<span class="linenos">30</span>+        &#39;line&#39; =&gt; 13,
-<span class="linenos">31</span>+        &#39;previous&#39; =&gt; null,
-<span class="linenos">32</span>+    ),
-<span class="linenos">33</span> )
-<span class="linenos">34</span>
-<span class="linenos">35</span>objectPropertiesEqualToRecursiveTest.php:29
-<span class="linenos">36</span>
-<span class="linenos">37</span>FAILURES!
-<span class="linenos">38</span>Tests: 2, Assertions: 2, Failures: 1.
+<span class="linenos">23</span>+    &#39;attribute&#39; =&gt; 123,
+<span class="linenos">24</span>+    &#39;nested()&#39; =&gt; Exception Object #480 (
+<span class="linenos">25</span>+        &#39;message&#39; =&gt; &#39;FOO&#39;,
+<span class="linenos">26</span>+        &#39;string&#39; =&gt; &#39;&#39;,
+<span class="linenos">27</span>+        &#39;code&#39; =&gt; 456,
+<span class="linenos">28</span>+        &#39;file&#39; =&gt; &#39;objectPropertiesEqualToRecursiveTest.php&#39;,
+<span class="linenos">29</span>+        &#39;line&#39; =&gt; 13,
+<span class="linenos">30</span>+        &#39;previous&#39; =&gt; null,
+<span class="linenos">31</span>+    ),
+<span class="linenos">32</span> )
+<span class="linenos">33</span>
+<span class="linenos">34</span>objectPropertiesEqualToRecursiveTest.php:29
+<span class="linenos">35</span>
+<span class="linenos">36</span>FAILURES!
+<span class="linenos">37</span>Tests: 2, Assertions: 2, Failures: 1.
 </pre></div>
 </div>
 </section>
@@ -1513,34 +1505,33 @@ recursively specifications of object properties. For more details, see
 </pre></div>
 </div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 11.1.2 by Sebastian Bergmann and contributors.
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.66 by Sebastian Bergmann and contributors.
 <span class="linenos"> 2</span>
-<span class="linenos"> 3</span>Runtime:       PHP 8.3.6
+<span class="linenos"> 3</span>Runtime:       PHP 8.4.26
 <span class="linenos"> 4</span>Configuration: phpunit.xml
 <span class="linenos"> 5</span>
 <span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
 <span class="linenos"> 7</span>
-<span class="linenos"> 8</span>Time: 00:00.007, Memory: 8.00 MB
+<span class="linenos"> 8</span>Time: 00:00.011, Memory: 10.00 MB
 <span class="linenos"> 9</span>
 <span class="linenos">10</span>There was 1 failure:
 <span class="linenos">11</span>
 <span class="linenos">12</span>1) objectPropertiesIdenticalToTest::testFailure
-<span class="linenos">13</span>Failed asserting that object objectPropertiesIdenticalToTest is an object with properties identical to specified.
+<span class="linenos">13</span>Failed asserting that object objectPropertiesIdenticalToTest is an object with properties identical to the specified ones.
 <span class="linenos">14</span>--- Expected
 <span class="linenos">15</span>+++ Actual
 <span class="linenos">16</span>@@ @@
-<span class="linenos">17</span>-Tailors\PHPUnit\Properties\ExpectedObjectProperties Object #451 (
+<span class="linenos">17</span> ObjectProperties &amp;0 (
 <span class="linenos">18</span>-    &#39;attribute&#39; =&gt; &#39;123&#39;,
 <span class="linenos">19</span>-    &#39;getValue()&#39; =&gt; null,
-<span class="linenos">20</span>+Tailors\PHPUnit\Properties\ActualObjectProperties Object #448 (
-<span class="linenos">21</span>+    &#39;attribute&#39; =&gt; 123,
-<span class="linenos">22</span>+    &#39;getValue()&#39; =&gt; 321,
-<span class="linenos">23</span> )
-<span class="linenos">24</span>
-<span class="linenos">25</span>objectPropertiesIdenticalToTest.php:26
-<span class="linenos">26</span>
-<span class="linenos">27</span>FAILURES!
-<span class="linenos">28</span>Tests: 2, Assertions: 2, Failures: 1.
+<span class="linenos">20</span>+    &#39;attribute&#39; =&gt; 123,
+<span class="linenos">21</span>+    &#39;getValue()&#39; =&gt; 321,
+<span class="linenos">22</span> )
+<span class="linenos">23</span>
+<span class="linenos">24</span>objectPropertiesIdenticalToTest.php:26
+<span class="linenos">25</span>
+<span class="linenos">26</span>FAILURES!
+<span class="linenos">27</span>Tests: 2, Assertions: 2, Failures: 1.
 </pre></div>
 </div>
 <p>Since versions <code class="docutils literal notranslate"><span class="pre">*.1</span></code> (<code class="docutils literal notranslate"><span class="pre">1.1</span></code>, <code class="docutils literal notranslate"><span class="pre">2.1</span></code>, <code class="docutils literal notranslate"><span class="pre">3.1</span></code>, …) it’s possible to nest
@@ -1588,50 +1579,210 @@ recursively specifications of object properties. For more details, see
 </pre></div>
 </div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.63 by Sebastian Bergmann and contributors.
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.66 by Sebastian Bergmann and contributors.
 <span class="linenos"> 2</span>
-<span class="linenos"> 3</span>Runtime:       PHP 8.2.30
+<span class="linenos"> 3</span>Runtime:       PHP 8.4.26
 <span class="linenos"> 4</span>Configuration: phpunit.xml
 <span class="linenos"> 5</span>
 <span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
 <span class="linenos"> 7</span>
-<span class="linenos"> 8</span>Time: 00:00.014, Memory: 8.00 MB
+<span class="linenos"> 8</span>Time: 00:00.011, Memory: 10.00 MB
 <span class="linenos"> 9</span>
 <span class="linenos">10</span>There was 1 failure:
 <span class="linenos">11</span>
 <span class="linenos">12</span>1) objectPropertiesIdenticalToRecursiveTest::testFailure
-<span class="linenos">13</span>Failed asserting that object objectPropertiesIdenticalToRecursiveTest is an object with properties identical to specified.
+<span class="linenos">13</span>Failed asserting that object objectPropertiesIdenticalToRecursiveTest is an object with properties identical to the specified ones.
 <span class="linenos">14</span>--- Expected
 <span class="linenos">15</span>+++ Actual
 <span class="linenos">16</span>@@ @@
-<span class="linenos">17</span>-Tailors\PHPUnit\Properties\ExpectedObjectProperties Object #467 (
-<span class="linenos">18</span>+Tailors\PHPUnit\Properties\ActualObjectProperties Object #485 (
-<span class="linenos">19</span>     &#39;attribute&#39; =&gt; 123,
-<span class="linenos">20</span>-    &#39;nested()&#39; =&gt; Array &amp;0 [
-<span class="linenos">21</span>-        &#39;getMessage()&#39; =&gt; &#39;FOO&#39;,
-<span class="linenos">22</span>-        &#39;getCode()&#39; =&gt; 456,
-<span class="linenos">23</span>-    ],
-<span class="linenos">24</span>+    &#39;nested()&#39; =&gt; Exception Object #465 (
-<span class="linenos">25</span>+        &#39;message&#39; =&gt; &#39;FOO&#39;,
-<span class="linenos">26</span>+        &#39;string&#39; =&gt; &#39;&#39;,
-<span class="linenos">27</span>+        &#39;code&#39; =&gt; 456,
-<span class="linenos">28</span>+        &#39;file&#39; =&gt; &#39;objectPropertiesIdenticalToRecursiveTest.php&#39;,
-<span class="linenos">29</span>+        &#39;line&#39; =&gt; 13,
-<span class="linenos">30</span>+        &#39;previous&#39; =&gt; null,
-<span class="linenos">31</span>+    ),
-<span class="linenos">32</span> )
-<span class="linenos">33</span>
-<span class="linenos">34</span>objectPropertiesIdenticalToRecursiveTest.php:29
-<span class="linenos">35</span>
-<span class="linenos">36</span>FAILURES!
-<span class="linenos">37</span>Tests: 2, Assertions: 2, Failures: 1.
+<span class="linenos">17</span> ObjectProperties &amp;0 (
+<span class="linenos">18</span>     &#39;attribute&#39; =&gt; 123,
+<span class="linenos">19</span>-    &#39;nested()&#39; =&gt; Array &amp;0 [
+<span class="linenos">20</span>-        &#39;getMessage()&#39; =&gt; &#39;FOO&#39;,
+<span class="linenos">21</span>-        &#39;getCode()&#39; =&gt; 456,
+<span class="linenos">22</span>-    ],
+<span class="linenos">23</span>+    &#39;nested()&#39; =&gt; Exception Object #480 (
+<span class="linenos">24</span>+        &#39;message&#39; =&gt; &#39;FOO&#39;,
+<span class="linenos">25</span>+        &#39;string&#39; =&gt; &#39;&#39;,
+<span class="linenos">26</span>+        &#39;code&#39; =&gt; 456,
+<span class="linenos">27</span>+        &#39;file&#39; =&gt; &#39;objectPropertiesIdenticalToRecursiveTest.php&#39;,
+<span class="linenos">28</span>+        &#39;line&#39; =&gt; 13,
+<span class="linenos">29</span>+        &#39;previous&#39; =&gt; null,
+<span class="linenos">30</span>+    ),
+<span class="linenos">31</span> )
+<span class="linenos">32</span>
+<span class="linenos">33</span>objectPropertiesIdenticalToRecursiveTest.php:29
+<span class="linenos">34</span>
+<span class="linenos">35</span>FAILURES!
+<span class="linenos">36</span>Tests: 2, Assertions: 2, Failures: 1.
+</pre></div>
+</div>
+</section>
+<section id="recursivelyksortedarrayequalto">
+<span id="constraints-recursivelyksortedarrayequalto"></span><h2>recursivelyKsortedArrayEqualTo()<a class="headerlink" href="#recursivelyksortedarrayequalto" title="Permalink to this heading"></a></h2>
+<table class="docutils align-default" id="id14" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for <a class="reference internal" href="#constraints-recursivelyksortedarrayequalto"><span class="std std-ref">recursivelyKsortedArrayEqualTo()</span></a></span><a class="headerlink" href="#id14" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Package</p></td>
+<td><p>phptailors/phpunit-arrays</p></td>
+</tr>
+<tr class="row-even"><td><p>Trait</p></td>
+<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/Tailors/PHPUnit/RecursivelyKsortedArrayEqualToTrait.html" title="Tailors\PHPUnit\RecursivelyKsortedArrayEqualToTrait"><span class="pre">RecursivelyKsortedArrayEqualToTrait</span></a></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Synopsis:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">recursivelyKsortedArrayEqualTo</span><span class="p">(</span><span class="k">array</span> <span class="nv">$expected</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Creates <code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/Tailors/PHPUnit/Constraint/RecursivelyKsortedArrayEqualTo.html" title="Tailors\PHPUnit\Constraint\RecursivelyKsortedArrayEqualTo"><span class="pre">RecursivelyKsortedArrayEqualTo</span></a></code> constraint.</p>
+<p>The constraint accepts arrays that are equal to <code class="docutils literal notranslate"><span class="pre">$expected</span></code> when key-sorted <strong>recursively</strong>.</p>
+<div class="literal-block-wrapper docutils container" id="constraints-recursivelyksortedarrayequalto-example">
+<div class="code-block-caption"><span class="caption-text">Usage of <a class="reference internal" href="#constraints-recursivelyksortedarrayequalto"><span class="std std-ref">recursivelyKsortedArrayEqualTo()</span></a></span><a class="headerlink" href="#constraints-recursivelyksortedarrayequalto-example" title="Permalink to this code"></a></div>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">final</span> <span class="k">class</span> <span class="nc">recursivelyKsortedArrayEqualToTest</span> <span class="k">extends</span> <span class="nx">\PHPUnit\Framework\TestCase</span>
+<span class="linenos"> 4</span><span class="p">{</span>
+<span class="linenos"> 5</span>    <span class="k">use</span> <span class="nx">\Tailors\PHPUnit\RecursivelyKsortedArrayEqualToTrait</span><span class="p">;</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testSuccess</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="linenos"> 8</span>    <span class="p">{</span>
+<span class="linenos"> 9</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertThat</span><span class="p">([</span><span class="s1">&#39;int&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;123&#39;</span><span class="p">,</span> <span class="s1">&#39;arr&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="mi">1</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;FOO&#39;</span><span class="p">]],</span>
+<span class="linenos">10</span>            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">recursivelyKsortedArrayEqualTo</span><span class="p">([</span><span class="s1">&#39;arr&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;foo&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;FOO&#39;</span><span class="p">,</span> <span class="mi">1</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">],</span> <span class="s1">&#39;int&#39;</span> <span class="o">=&gt;</span> <span class="mi">123</span> <span class="p">])</span>
+<span class="linenos">11</span>        <span class="p">);</span>
+<span class="linenos">12</span>    <span class="p">}</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testFailure</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="linenos">15</span>    <span class="p">{</span>
+<span class="linenos">16</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertThat</span><span class="p">([</span><span class="s1">&#39;int&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;123&#39;</span><span class="p">,</span> <span class="s1">&#39;arr&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="mi">1</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;FOO&#39;</span><span class="p">]],</span>
+<span class="linenos">17</span>            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">recursivelyKsortedArrayEqualTo</span><span class="p">([</span><span class="s1">&#39;int&#39;</span> <span class="o">=&gt;</span> <span class="mi">123</span><span class="p">,</span>  <span class="s1">&#39;arr&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="mi">1</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;BAR&#39;</span><span class="p">]])</span>
+<span class="linenos">18</span>        <span class="p">);</span>
+<span class="linenos">19</span>    <span class="p">}</span>
+<span class="linenos">20</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.66 by Sebastian Bergmann and contributors.
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span>Runtime:       PHP 8.4.26
+<span class="linenos"> 4</span>Configuration: phpunit.xml
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>Time: 00:00.011, Memory: 10.00 MB
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>There was 1 failure:
+<span class="linenos">11</span>
+<span class="linenos">12</span>1) recursivelyKsortedArrayEqualToTest::testFailure
+<span class="linenos">13</span>Failed asserting that array is an array equal to the specified one when ksorted recursively.
+<span class="linenos">14</span>--- Expected
+<span class="linenos">15</span>+++ Actual
+<span class="linenos">16</span>@@ @@
+<span class="linenos">17</span> KsortedArray &amp;0 (
+<span class="linenos">18</span>     &#39;arr&#39; =&gt; KsortedArray &amp;1 (
+<span class="linenos">19</span>         1 =&gt; &#39;&#39;,
+<span class="linenos">20</span>-        &#39;foo&#39; =&gt; &#39;BAR&#39;,
+<span class="linenos">21</span>+        &#39;foo&#39; =&gt; &#39;FOO&#39;,
+<span class="linenos">22</span>     ),
+<span class="linenos">23</span>-    &#39;int&#39; =&gt; 123,
+<span class="linenos">24</span>+    &#39;int&#39; =&gt; &#39;123&#39;,
+<span class="linenos">25</span> )
+<span class="linenos">26</span>
+<span class="linenos">27</span>recursivelyKsortedArrayEqualToTest.php:16
+<span class="linenos">28</span>
+<span class="linenos">29</span>FAILURES!
+<span class="linenos">30</span>Tests: 2, Assertions: 2, Failures: 1.
+</pre></div>
+</div>
+</section>
+<section id="recursivelyksortedarrayidenticalto">
+<span id="constraints-recursivelyksortedarrayidenticalto"></span><h2>recursivelyKsortedArrayIdenticalTo()<a class="headerlink" href="#recursivelyksortedarrayidenticalto" title="Permalink to this heading"></a></h2>
+<table class="docutils align-default" id="id15" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for <a class="reference internal" href="#constraints-recursivelyksortedarrayidenticalto"><span class="std std-ref">recursivelyKsortedArrayIdenticalTo()</span></a></span><a class="headerlink" href="#id15" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Package</p></td>
+<td><p>phptailors/phpunit-arrays</p></td>
+</tr>
+<tr class="row-even"><td><p>Trait</p></td>
+<td><p><code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/Tailors/PHPUnit/RecursivelyKsortedArrayIdenticalToTrait.html" title="Tailors\PHPUnit\RecursivelyKsortedArrayIdenticalToTrait"><span class="pre">RecursivelyKsortedArrayIdenticalToTrait</span></a></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Synopsis:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">recursivelyKsortedArrayIdenticalTo</span><span class="p">(</span><span class="k">array</span> <span class="nv">$expected</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Creates <code class="docutils literal notranslate"><a class="reference external" href="/phpunit-extensions/docs/master/api/Tailors/PHPUnit/Constraint/RecursivelyKsortedArrayIdenticalTo.html" title="Tailors\PHPUnit\Constraint\RecursivelyKsortedArrayIdenticalTo"><span class="pre">RecursivelyKsortedArrayIdenticalTo</span></a></code> constraint.</p>
+<p>The constraint accepts arrays identical to <code class="docutils literal notranslate"><span class="pre">$expected</span></code> when key-sorted <strong>recursively</strong>.</p>
+<div class="literal-block-wrapper docutils container" id="constraints-recursivelyksortedarrayidenticalto-example">
+<div class="code-block-caption"><span class="caption-text">Usage of <a class="reference internal" href="#constraints-recursivelyksortedarrayidenticalto"><span class="std std-ref">recursivelyKsortedArrayIdenticalTo()</span></a></span><a class="headerlink" href="#constraints-recursivelyksortedarrayidenticalto-example" title="Permalink to this code"></a></div>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">final</span> <span class="k">class</span> <span class="nc">recursivelyKsortedArrayIdenticalToTest</span> <span class="k">extends</span> <span class="nx">\PHPUnit\Framework\TestCase</span>
+<span class="linenos"> 4</span><span class="p">{</span>
+<span class="linenos"> 5</span>    <span class="k">use</span> <span class="nx">\Tailors\PHPUnit\RecursivelyKsortedArrayIdenticalToTrait</span><span class="p">;</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testSuccess</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="linenos"> 8</span>    <span class="p">{</span>
+<span class="linenos"> 9</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertThat</span><span class="p">([</span><span class="s1">&#39;int&#39;</span> <span class="o">=&gt;</span> <span class="mi">123</span><span class="p">,</span> <span class="s1">&#39;arr&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="mi">1</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;FOO&#39;</span><span class="p">]],</span>
+<span class="linenos">10</span>            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">recursivelyKsortedArrayIdenticalTo</span><span class="p">([</span><span class="s1">&#39;arr&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;foo&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;FOO&#39;</span><span class="p">,</span> <span class="mi">1</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">],</span> <span class="s1">&#39;int&#39;</span> <span class="o">=&gt;</span> <span class="mi">123</span><span class="p">])</span>
+<span class="linenos">11</span>        <span class="p">);</span>
+<span class="linenos">12</span>    <span class="p">}</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testFailure</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="linenos">15</span>    <span class="p">{</span>
+<span class="linenos">16</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertThat</span><span class="p">([</span><span class="s1">&#39;int&#39;</span> <span class="o">=&gt;</span> <span class="mi">123</span><span class="p">,</span> <span class="s1">&#39;arr&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="mi">1</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;FOO&#39;</span><span class="p">]],</span>
+<span class="linenos">17</span>            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">recursivelyKsortedArrayIdenticalTo</span><span class="p">([</span><span class="s1">&#39;arr&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;foo&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;FOO&#39;</span><span class="p">,</span> <span class="mi">1</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">],</span> <span class="s1">&#39;int&#39;</span> <span class="o">=&gt;</span> <span class="mi">123</span><span class="p">])</span>
+<span class="linenos">18</span>        <span class="p">);</span>
+<span class="linenos">19</span>    <span class="p">}</span>
+<span class="linenos">20</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.66 by Sebastian Bergmann and contributors.
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span>Runtime:       PHP 8.4.26
+<span class="linenos"> 4</span>Configuration: phpunit.xml
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>Time: 00:00.011, Memory: 10.00 MB
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>There was 1 failure:
+<span class="linenos">11</span>
+<span class="linenos">12</span>1) recursivelyKsortedArrayIdenticalToTest::testFailure
+<span class="linenos">13</span>Failed asserting that array is an array identical to the specified one when ksorted recursively.
+<span class="linenos">14</span>--- Expected
+<span class="linenos">15</span>+++ Actual
+<span class="linenos">16</span>@@ @@
+<span class="linenos">17</span> KsortedArray &amp;0 (
+<span class="linenos">18</span>     &#39;arr&#39; =&gt; KsortedArray &amp;1 (
+<span class="linenos">19</span>-        1 =&gt; null,
+<span class="linenos">20</span>+        1 =&gt; &#39;&#39;,
+<span class="linenos">21</span>         &#39;foo&#39; =&gt; &#39;FOO&#39;,
+<span class="linenos">22</span>     ),
+<span class="linenos">23</span>     &#39;int&#39; =&gt; 123,
+<span class="linenos">24</span> )
+<span class="linenos">25</span>
+<span class="linenos">26</span>recursivelyKsortedArrayIdenticalToTest.php:16
+<span class="linenos">27</span>
+<span class="linenos">28</span>FAILURES!
+<span class="linenos">29</span>Tests: 2, Assertions: 2, Failures: 1.
 </pre></div>
 </div>
 </section>
 <section id="usestrait">
 <span id="constraints-usestrait"></span><h2>usesTrait()<a class="headerlink" href="#usestrait" title="Permalink to this heading"></a></h2>
-<table class="docutils align-default" id="id14" style="width: 100%">
-<caption><span class="caption-text">Prerequisites for <a class="reference internal" href="#constraints-usestrait"><span class="std std-ref">usesTrait()</span></a></span><a class="headerlink" href="#id14" title="Permalink to this table"></a></caption>
+<table class="docutils align-default" id="id16" style="width: 100%">
+<caption><span class="caption-text">Prerequisites for <a class="reference internal" href="#constraints-usestrait"><span class="std std-ref">usesTrait()</span></a></span><a class="headerlink" href="#id16" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 75%" />
@@ -1678,14 +1829,14 @@ recursively specifications of object properties. For more details, see
 </pre></div>
 </div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 11.1.2 by Sebastian Bergmann and contributors.
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>PHPUnit 10.5.66 by Sebastian Bergmann and contributors.
 <span class="linenos"> 2</span>
-<span class="linenos"> 3</span>Runtime:       PHP 8.3.6
+<span class="linenos"> 3</span>Runtime:       PHP 8.4.26
 <span class="linenos"> 4</span>Configuration: phpunit.xml
 <span class="linenos"> 5</span>
 <span class="linenos"> 6</span>.F                                                                  2 / 2 (100%)
 <span class="linenos"> 7</span>
-<span class="linenos"> 8</span>Time: 00:00.011, Memory: 8.00 MB
+<span class="linenos"> 8</span>Time: 00:00.007, Memory: 8.00 MB
 <span class="linenos"> 9</span>
 <span class="linenos">10</span>There was 1 failure:
 <span class="linenos">11</span>
