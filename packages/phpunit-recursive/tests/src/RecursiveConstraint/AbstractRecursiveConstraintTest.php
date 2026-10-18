@@ -75,7 +75,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
 
         $valueSelector = new DummyValueSelector(false, false, 'a tree', 'apples');
 
-        /** @psalm-var class-string<\Traversable<array-key,mixed>> */
+        /** @psalm-var interface-string<\Traversable<array-key,mixed>> */
         $iterable = \Traversable::class;
         $expectations = new DummyValueSelectorWrapper($valueSelector, $this->createStub($iterable));
 
@@ -364,19 +364,21 @@ final class AbstractRecursiveConstraintTest extends TestCase
         ?RecursiveResultUnwrapperInterface $recursiveResultUnwrapper = null
     ): DummyAbstractRecursiveConstraint {
         if (null === $expected) {
-            $expected = $this->createMock(\Traversable::class);
+            /** @psalm-var interface-string<\Traversable<array-key, mixed>> $iterable */
+            $iterable = \Traversable::class;
+            $expected = $this->createStub($iterable);
         }
 
         if (null === $comparator) {
-            $comparator = $this->createMock(ComparatorInterface::class);
+            $comparator = $this->createStub(ComparatorInterface::class);
         }
 
         if (null === $recursiveResultFactory) {
-            $recursiveResultFactory = $this->createMock(RecursiveResultFactoryInterface::class);
+            $recursiveResultFactory = $this->createStub(RecursiveResultFactoryInterface::class);
         }
 
         if (null === $recursiveResultUnwrapper) {
-            $recursiveResultUnwrapper = $this->createMock(RecursiveResultUnwrapperInterface::class);
+            $recursiveResultUnwrapper = $this->createStub(RecursiveResultUnwrapperInterface::class);
         }
 
         return DummyAbstractRecursiveConstraint::create($expected, $comparator, $recursiveResultFactory, $recursiveResultUnwrapper);

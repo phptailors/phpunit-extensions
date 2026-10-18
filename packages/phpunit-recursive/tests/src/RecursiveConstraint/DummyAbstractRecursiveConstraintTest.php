@@ -30,7 +30,7 @@ final class DummyAbstractRecursiveConstraintTest extends TestCase
      */
     public function testCreateWithTraversable(): void
     {
-        /** @psalm-var class-string<\Traversable<array-key,mixed>> */
+        /** @psalm-var interface-string<\Traversable<array-key,mixed>> */
         $iterable = \Traversable::class;
 
         $constraint = DummyAbstractRecursiveConstraint::create(
