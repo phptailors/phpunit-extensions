@@ -28,13 +28,16 @@ final class Exporter
         // @codeCoverageIgnoreStart
 
         if (self::isExportable($value) || $exportObjects) {
-            return new SebastianExporter()->export($value);
+            return self::postprocessOutput((new SebastianExporter())->export($value));
         }
 
         return '{enable export of objects to see this value}';
         // @codeCoverageIgnoreEnd
     }
 
+    /**
+     * @psalm-param mixed $value
+     */
     private static function isExportable(mixed &$value, ?Context $context = null): bool
     {
         // @codeCoverageIgnoreStart
@@ -66,6 +69,44 @@ final class Exporter
 
         return true;
         // @codeCoverageIgnoreEnd
+    }
+
+    private static function postprocessOutput(string $output): string
+    {
+        return self::handleExportableNames($output);
+    }
+
+    private static function handleExportableNames(string $output): string
+    {
+        $counters = [];
+
+        /** @psalm-var string */
+        return preg_replace_callback(
+            '/^(\s*(?:(?:\'[^\']*\'|\"[^\"]*\"|\d+)\s*=>\s*)?)(\w+(?:\\\\\w+)*)\s+Object\s+(#\d+|&[0-9a-fA-f]+)/m',
+            function (array $matches) use (&$counters): string {
+                $class = $matches[2];
+
+                if (!class_exists($class) || !is_subclass_of($class, ExportableNameInterface::class, true)) {
+                    return $matches[0];
+                }
+
+                if (!array_key_exists($class, $counters)) {
+                    $counters[$class] = [];
+                }
+
+                $objId = $matches[3];
+                if (!array_key_exists($objId, $counters[$class])) {
+                    $counters[$class][$objId] = count($counters[$class]);
+                }
+
+                $name = $class::exportableName();
+
+                $level = $counters[$class][$objId];
+
+                return $matches[1].$name.' &'.((string) $level);
+            },
+            $output
+        );
     }
 }
 

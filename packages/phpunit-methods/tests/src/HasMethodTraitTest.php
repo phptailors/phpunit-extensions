@@ -10,7 +10,7 @@
 
 namespace Tailors\PHPUnit;
 
-use PHPUnit\Framework\Attributes\CoversTrait;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\ExpectationFailedException;
@@ -22,7 +22,7 @@ use Tailors\PHPUnit\Constraint\ProvHasMethodTrait;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-#[CoversTrait(HasMethodTrait::class)]
+#[CoversClass(HasMethodTraitTest::class)]
 #[Small]
 final class HasMethodTraitTest extends TestCase
 {
@@ -30,28 +30,86 @@ final class HasMethodTraitTest extends TestCase
     use ProvHasMethodTrait;
 
     /**
-     * @psalm-param non-empty-string $method
+     * @psalm-return iterable<string, array{method: string, subject: mixed}>
+     *
+     * @codeCoverageIgnore
+     */
+    public static function provHasMethodSucceeds(): iterable
+    {
+        foreach (self::provHasMethod() as $key => $case) {
+            yield $key => [
+                'method'  => $case['method'],
+                'subject' => $case['subject'],
+            ];
+        }
+    }
+
+    /**
+     * @psalm-return iterable<string, array{method: string, subject: mixed}>
+     *
+     * @codeCoverageIgnore
+     */
+    public static function provNotHasMethodSucceeds(): iterable
+    {
+        foreach (self::provNotHasMethod() as $key => $case) {
+            yield $key => [
+                'method'  => $case['method'],
+                'subject' => $case['subject'],
+            ];
+        }
+    }
+
+    /**
+     * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     #[DataProvider('provHasMethodSucceeds')]
-    public function testHasMethodSucceeds(string $method, mixed $subject, string $_)
+    public function testHasMethodSucceeds(string $method, $subject): void
     {
         self::assertThat($subject, self::hasMethod($method));
     }
 
     /**
-     * @psalm-param non-empty-string $method
+     * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     #[DataProvider('provHasMethodSucceeds')]
-    public function testAssertHasMethodSucceeds(string $method, mixed $subject, string $_)
+    public function testAssertHasMethodSucceeds(string $method, $subject): void
     {
         self::assertHasMethod($method, $subject);
     }
 
     /**
-     * @psalm-param non-empty-string $method
+     * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    #[DataProvider('provHasMethodFails')]
-    public function testAssertHasMethodFails(string $method, mixed $subject, string $message)
+    #[DataProvider('provNotHasMethodSucceeds')]
+    public function testNotHasMethodSucceeds(string $method, $subject): void
+    {
+        self::assertThat($subject, self::logicalNot(self::hasMethod($method)));
+    }
+
+    /**
+     * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    #[DataProvider('provNotHasMethodSucceeds')]
+    public function testAssertNotHasMethodSucceeds(string $method, $subject): void
+    {
+        self::assertNotHasMethod($method, $subject);
+    }
+
+    /**
+     * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    #[DataProvider('provNotHasMethod')]
+    public function testAssertHasMethodFails(string $method, $subject, string $message): void
     {
         self::expectException(ExpectationFailedException::class);
         self::expectExceptionMessage($message);
@@ -60,28 +118,12 @@ final class HasMethodTraitTest extends TestCase
     }
 
     /**
-     * @psalm-param non-empty-string $method
+     * @param mixed $subject
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
-    #[DataProvider('provHasMethodFails')]
-    public function testNotHasMethodSucceeds(string $method, mixed $subject, string $_)
-    {
-        self::assertThat($method, self::logicalNot(self::hasMethod($method)));
-    }
-
-    /**
-     * @psalm-param non-empty-string $method
-     */
-    #[DataProvider('provHasMethodFails')]
-    public function testAssertNotHasMethodSucceeds(string $method, mixed $subject, string $_)
-    {
-        self::assertNotHasMethod($method, $subject);
-    }
-
-    /**
-     * @psalm-param non-empty-string $method
-     */
-    #[DataProvider('provHasMethodSucceeds')]
-    public function testAssertNotHasMethodFails(string $method, mixed $subject, string $message)
+    #[DataProvider('provHasMethod')]
+    public function testAssertNotHasMethodFails(string $method, $subject, string $message): void
     {
         self::expectException(ExpectationFailedException::class);
         self::expectExceptionMessage($message);

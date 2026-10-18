@@ -10,20 +10,25 @@
 
 namespace Tailors\PHPUnit;
 
-use PHPUnit\Framework\Attributes\CoversTrait;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
-use Tailors\PHPUnit\Arrays\ExpectedArrayValues;
+use Tailors\PHPUnit\Arrays\ArrayValuesSelection;
+use Tailors\PHPUnit\Common\TypesInterface;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
  *
- * @psalm-type ArrayValuesArgs = list{0: array|\Traversable}
+ * @psalm-import-type ArrayLike from TypesInterface
+ *
+ * @psalm-type ArrayValuesArgs = list{ArrayLike}
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
-#[CoversTrait(ArrayValuesTrait::class)]
+#[CoversClass(ArrayValuesTraitTest::class)]
 #[Small]
 final class ArrayValuesTraitTest extends TestCase
 {
@@ -31,35 +36,40 @@ final class ArrayValuesTraitTest extends TestCase
 
     /**
      * @psalm-return iterable<string,array{args: ArrayValuesArgs, expect: mixed}>
+     *
+     * @codeCoverageIgnore
      */
     public static function provExpectArrayValues(): iterable
     {
-        yield 'ArrayValuesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'args'   => [[]],
             'expect' => [],
         ];
 
-        yield 'ArrayValuesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'args'   => [['a' => 'A']],
             'expect' => ['a' => 'A'],
         ];
 
-        yield 'ArrayValuesTraitTest.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'args'   => [new \ArrayObject(['o' => 'O'])],
             'expect' => ['o' => 'O'],
         ];
     }
 
     /**
+     * @param mixed $expect
+     *
      * @psalm-param ArrayValuesArgs $args
-     * @psalm-param mixed           $expect
+     *
+     * @psalm-suppress MissingThrowsDocblock
      */
     #[DataProvider('provExpectArrayValues')]
-    public function testExpectedArrayValues(array $args, mixed $expect): void
+    public function testExpectedArrayValues(array $args, $expect): void
     {
         $values = self::arrayValues(...$args);
-        self::assertInstanceOf(ExpectedArrayValues::class, $values);
-        self::assertSame($expect, (array) $values);
+        self::assertInstanceOf(ArrayValuesSelection::class, $values);
+        self::assertSame($expect, iterator_to_array($values));
     }
 }
 

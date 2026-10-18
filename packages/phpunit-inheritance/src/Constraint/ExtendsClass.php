@@ -10,33 +10,54 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
-use Tailors\PHPUnit\Inheritance\AbstractConstraint;
-use Tailors\PHPUnit\Inheritance\ConstraintImplementationTrait;
+use Tailors\PHPUnit\Inheritance\AbstractInheritanceConstraint;
+use Tailors\PHPUnit\InvalidArgumentException;
+use Tailors\PHPUnit\InvalidReturnValueException;
+use Tailors\PHPUnit\StringArgumentValidator;
 
 /**
  * Constraint that accepts classes that extend given class.
  */
-final class ExtendsClass extends AbstractConstraint
+final class ExtendsClass extends AbstractInheritanceConstraint
 {
-    use ConstraintImplementationTrait;
+    /**
+     * @throws InvalidArgumentException
+     *
+     * @psalm-assert class-string $expected
+     */
+    public static function create(string $expected): self
+    {
+        (new StringArgumentValidator('class_exists', 'a class-string'))->validate(1, $expected);
 
-    private static string $verb = 'extends class';
-    private static string $negatedVerb = 'does not extend class';
+        return new self($expected);
+    }
+
+    protected function verb(): string
+    {
+        return 'extends class';
+    }
+
+    protected function negatedVerb(): string
+    {
+        return 'does not extend class';
+    }
 
     /**
-     * @psalm-var array{0:callable, 1:string}
+     * @throws InvalidReturnValueException
+     *
+     * @psalm-return array<class-string, class-string>
      */
-    private static array $validation = ['class_exists', 'a class-string'];
+    protected function inheritance(string $class): array
+    {
+        $value = class_parents($class);
 
-    /**
-     * @psalm-var callable
-     */
-    private static mixed $inheritance = 'class_parents';
+        return false === $value ? [] : $value;
+    }
 
-    /**
-     * @psalm-var array{0:callable}
-     */
-    private static array $supports = ['class_exists'];
+    protected function supports(string $subject): bool
+    {
+        return class_exists($subject);
+    }
 }
 
 // vim: syntax=php sw=4 ts=4 et:

@@ -10,7 +10,7 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
-use PHPUnit\Framework\Constraint\Constraint;
+use Tailors\PHPUnit\Properties\ObjectPropertiesSelection;
 
 /**
  * @internal This trait is not covered by the backward compatibility promise
@@ -19,31 +19,42 @@ use PHPUnit\Framework\Constraint\Constraint;
  */
 trait ProvObjectPropertiesTrait
 {
-    abstract public static function createConstraint(mixed ...$args): Constraint;
-
-    // @codeCoverageIgnoreStart
-
+    /**
+     * @psalm-return iterable<string, array{
+     *      expect: array<string, mixed>,
+     *      actual: object,
+     *      string: string
+     * }>
+     *
+     * @codeCoverageIgnore
+     */
     public static function provObjectPropertiesIdenticalTo(): iterable
     {
         $esmith = new class() {
-            public $name = 'Emily';
-            public $last = 'Smith';
-            public $age = 20;
-            public $husband;
-            public $family = [];
-            private $salary = 98;
+            public string $name = 'Emily';
 
-            public function getSalary()
+            public string $last = 'Smith';
+
+            public int $age = 20;
+
+            public ?object $husband = null;
+
+            /** @var object[] */
+            public array $family = [];
+
+            private int $salary = 98;
+
+            public function getSalary(): int
             {
                 return $this->salary;
             }
 
-            public function getDebit()
+            public function getDebit(): int
             {
                 return -$this->salary;
             }
 
-            public function marry($husband)
+            public function marry(object $husband): void
             {
                 $this->husband = $husband;
                 $this->family[] = $husband;
@@ -51,24 +62,30 @@ trait ProvObjectPropertiesTrait
         };
 
         $jsmith = new class() {
-            public $name = 'John';
-            public $last = 'Smith';
-            public $age = 21;
-            public $wife;
-            public $family = [];
-            private $salary = 123;
+            public string $name = 'John';
 
-            public function getSalary()
+            public string $last = 'Smith';
+
+            public int $age = 21;
+
+            public ?object $wife = null;
+
+            /** @var object[] */
+            public array $family = [];
+
+            private int $salary = 123;
+
+            public function getSalary(): int
             {
                 return $this->salary;
             }
 
-            public function getDebit()
+            public function getDebit(): int
             {
                 return -$this->salary;
             }
 
-            public function marry($wife)
+            public function marry(object $wife): void
             {
                 $this->wife = $wife;
                 $this->family[] = $wife;
@@ -79,10 +96,11 @@ trait ProvObjectPropertiesTrait
         $jsmith->marry($esmith);
 
         $registry = new class() {
-            public $persons = [];
-            public $families = [];
+            public array $persons = [];
 
-            public function addFamily(string $key, array $persons)
+            public array $families = [];
+
+            public function addFamily(string $key, array $persons): void
             {
                 $this->families[$key] = $persons;
                 $this->persons = array_merge($this->persons, $persons);
@@ -91,19 +109,19 @@ trait ProvObjectPropertiesTrait
 
         $registry->addFamily('smith', [$esmith, $jsmith]);
 
-        yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => [],
             'actual' => $jsmith,
             'string' => 'object '.$jsmith::class,
         ];
 
-        yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['name' => 'John', 'last' => 'Smith', 'age' => 21, 'wife' => $esmith],
             'actual' => $jsmith,
             'string' => 'object '.$jsmith::class,
         ];
 
-        yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => [
                 'name' => 'John',
                 'last' => 'Smith',
@@ -114,31 +132,31 @@ trait ProvObjectPropertiesTrait
             'string' => 'object '.$jsmith::class,
         ];
 
-        yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['name' => 'John', 'last' => 'Smith', 'age' => 21],
             'actual' => $jsmith,
             'string' => 'object '.$jsmith::class,
         ];
 
-        yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['name' => 'John', 'last' => 'Smith'],
             'actual' => $jsmith,
             'string' => 'object '.$jsmith::class,
         ];
 
-        yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['age' => 21],
             'actual' => $jsmith,
             'string' => 'object '.$jsmith::class,
         ];
 
-        yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['age' => 21, 'getSalary()' => 123, 'getDebit()' => -123],
             'actual' => $jsmith,
             'string' => 'object '.$jsmith::class,
         ];
 
-        yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => [
                 'family' => [$esmith],
             ],
@@ -146,9 +164,9 @@ trait ProvObjectPropertiesTrait
             'string' => 'object '.$jsmith::class,
         ];
 
-        yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => [
-                'persons' => [
+                'persons'  => [
                     $esmith,
                     $jsmith,
                 ],
@@ -164,17 +182,30 @@ trait ProvObjectPropertiesTrait
         ];
     }
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      expect: array<string, mixed>,
+     *      actual: object,
+     *      string: string
+     * }>
+     *
+     * @codeCoverageIgnore
+     */
     public static function provObjectPropertiesEqualButNotIdenticalTo(): iterable
     {
         $object = new class() {
-            public $emptyString = '';
-            public $null;
-            public $string123 = '123';
-            public $int321 = 321;
-            public $boolFalse = false;
+            public string $emptyString = '';
+
+            public mixed $null = null;
+
+            public string $string123 = '123';
+
+            public int $int321 = 321;
+
+            public bool $boolFalse = false;
         };
 
-        yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => [
                 'emptyString' => null,
                 'null'        => '',
@@ -187,33 +218,49 @@ trait ProvObjectPropertiesTrait
         ];
     }
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      expect: array<string, mixed>,
+     *      actual: object,
+     *      string: string
+     * }>
+     *
+     * @codeCoverageIgnore
+     */
     public static function provObjectPropertiesNotEqualTo(): iterable
     {
         $hbrown = new class() {
-            public $name = 'Helen';
-            public $last = 'Brown';
-            public $age = 44;
+            public string $name = 'Helen';
+
+            public string $last = 'Brown';
+
+            public int $age = 44;
         };
 
         $esmith = new class() {
-            public $name = 'Emily';
-            public $last = 'Smith';
-            public $age = 20;
-            public $husband;
-            public $family = [];
-            private $salary = 98;
+            public string $name = 'Emily';
 
-            public function getSalary()
+            public string $last = 'Smith';
+
+            public int $age = 20;
+
+            public mixed $husband = null;
+
+            public array $family = [];
+
+            private int $salary = 98;
+
+            public function getSalary(): int
             {
                 return $this->salary;
             }
 
-            public function getDebit()
+            public function getDebit(): int
             {
                 return -$this->salary;
             }
 
-            public function marry($husband)
+            public function marry(object $husband): void
             {
                 $this->husband = $husband;
                 $this->family[] = $husband;
@@ -221,24 +268,30 @@ trait ProvObjectPropertiesTrait
         };
 
         $jsmith = new class() {
-            public $name = 'John';
-            public $last = 'Smith';
-            public $age = 21;
-            public $wife;
-            public $family = [];
-            private $salary = 123;
+            public string $name = 'John';
 
-            public function getSalary()
+            public string $last = 'Smith';
+
+            public int $age = 21;
+
+            public ?object $wife = null;
+
+            /** @var object[] */
+            public array $family = [];
+
+            private int $salary = 123;
+
+            public function getSalary(): int
             {
                 return $this->salary;
             }
 
-            public function getDebit()
+            public function getDebit(): int
             {
                 return -$this->salary;
             }
 
-            public function marry($wife)
+            public function marry(object $wife): void
             {
                 $this->wife = $wife;
                 $this->family[] = $wife;
@@ -249,10 +302,16 @@ trait ProvObjectPropertiesTrait
         $jsmith->marry($esmith);
 
         $registry = new class() {
-            public $persons = [];
-            public $families = [];
+            /** @var array<object> */
+            public array $persons = [];
 
-            public function addFamily(string $key, array $persons)
+            /** @var array<array<object>> */
+            public array $families = [];
+
+            /**
+             * @psalm-param array<object> $persons
+             */
+            public function addFamily(string $key, array $persons): void
             {
                 $this->families[$key] = $persons;
                 $this->persons = array_merge($this->persons, $persons);
@@ -261,58 +320,58 @@ trait ProvObjectPropertiesTrait
 
         $registry->addFamily('smith', [$esmith, $jsmith]);
 
-        yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['name' => 'John', 'last' => 'Brown', 'age' => 21],
             'actual' => $jsmith,
             'string' => 'object '.$jsmith::class,
         ];
 
-        yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['name' => 'John', 'last' => 'Smith', 'wife' => null],
             'actual' => $jsmith,
             'string' => 'object '.$jsmith::class,
         ];
 
-        yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['name' => 'John', 'last' => 'Smith', 'wife' => 'Emily'],
             'actual' => $jsmith,
             'string' => 'object '.$jsmith::class,
         ];
 
-        yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['name' => 'John', 'last' => 'Smith', 'wife' => $hbrown],
             'actual' => $jsmith,
             'string' => 'object '.$jsmith::class,
         ];
 
-        yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['name' => 'John', 'last' => 'Brown'],
             'actual' => $jsmith,
             'string' => 'object '.$jsmith::class,
         ];
 
-        yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['age' => 19],
             'actual' => $jsmith,
             'string' => 'object '.$jsmith::class,
         ];
 
-        yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['age' => 21, 'getSalary()' => 1230],
             'actual' => $jsmith,
             'string' => 'object '.$jsmith::class,
         ];
 
-        yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => [
                 'name' => 'John',
                 'last' => 'Smith',
                 'age'  => 21,
                 'wife' => [
-                    'name'    => 'Emily',
-                    'last'    => 'Smith',
-                    'age'     => 20,
-                    'husband' => [
+                    'name'        => 'Emily',
+                    'last'        => 'Smith',
+                    'age'         => 20,
+                    'husband'     => [
                         'name'        => 'John',
                         'last'        => 'Smith',
                         'age'         => 21,
@@ -325,7 +384,7 @@ trait ProvObjectPropertiesTrait
             'string' => 'object '.$jsmith::class,
         ];
 
-        yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => [
                 'family' => [
                     ['name' => 'Emily', 'last' => 'Smith'],
@@ -335,9 +394,9 @@ trait ProvObjectPropertiesTrait
             'string' => 'object '.$jsmith::class,
         ];
 
-        yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => [
-                'persons' => [
+                'persons'  => [
                     ['name' => 'Emily', 'last' => 'Smith'],
                     ['name' => 'John', 'last' => 'Smith'],
                 ],
@@ -352,14 +411,15 @@ trait ProvObjectPropertiesTrait
             'string' => 'object '.$registry::class,
         ];
 
-        yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+        /** @psalm-suppress MissingThrowsDocblock */
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => [
-                'persons' => [
+                'persons'  => [
                     $esmith,
                     $jsmith,
                 ],
                 // the following must not match, as the 'families' property is an array, not an object.
-                'families' => static::createConstraint([
+                'families' => new ObjectPropertiesSelection([
                     'smith' => [
                         $esmith,
                         $jsmith,
@@ -371,32 +431,39 @@ trait ProvObjectPropertiesTrait
         ];
     }
 
+    /**
+     * @psalm-return iterable<string, array{
+     *      expect: array<string, mixed>,
+     *      actual: mixed,
+     *      string: string
+     * }>
+     *
+     * @codeCoverageIgnore
+     */
     public static function provObjectPropertiesNotEqualToNonObject(): iterable
     {
-        yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['foo' => 'FOO'],
             'actual' => 123,
             'string' => '123',
         ];
 
-        yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['foo' => 'FOO'],
             'actual' => 'arbitrary string',
             'string' => '\'arbitrary string\'',
         ];
 
-        yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['foo' => 'FOO'],
             'actual' => null,
             'string' => 'null',
         ];
 
-        yield 'ProvObjectPropertiesTrait.php:'.__LINE__ => [
+        yield basename(__FILE__).':'.__LINE__ => [
             'expect' => ['foo' => 'FOO'],
             'actual' => ['foo' => 'FOO'],
             'string' => 'array',
         ];
     }
-
-    // @codeCoverageIgnoreEnd
 }

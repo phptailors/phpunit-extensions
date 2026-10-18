@@ -1,0 +1,80 @@
+<?php declare(strict_types=1);
+
+/*
+ * This file is part of phptailors/phpunit-extensions.
+ *
+ * Copyright (c) Paweł Tomulik <pawel@tomulik.pl>
+ *
+ * View the LICENSE file for full copyright and license information.
+ */
+
+namespace Tailors\PHPUnit\Common;
+
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
+use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\ResultFactory\DummyResultFactory;
+use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
+
+/**
+ * @internal This class is not covered by the backward compatibility promise
+ *
+ * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-import-type ArrayLike from TypesInterface
+ */
+#[CoversClass(DummyArrayExpectations::class)]
+#[CoversClass(DummyArrayExpectationsTest::class)]
+#[Small]
+final class DummyArrayExpectationsTest extends TestCase
+{
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testExtendsAbstractArraySpec(): void
+    {
+        $resultFactory = $this->createStub(ResultFactoryInterface::class);
+        $this->assertInstanceOf(AbstractArrayExpectations::class, new DummyArrayExpectations($resultFactory, []));
+    }
+
+    /**
+     * @psalm-return iterable<string, array{
+     *      factory: ResultFactoryInterface,
+     *      array:   ArrayLike
+     * }>
+     *
+     * @codeCoverageIgnore
+     */
+    public static function provDummyAbstractArraySpec(): iterable
+    {
+        yield basename(__FILE__).':'.__LINE__ => [
+            'factory' => new DummyResultFactory(false),
+            'array'   => ['a' => 'A'],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'factory' => new DummyResultFactory(false),
+            'array'   => new \ArrayObject(['a' => 'A']),
+        ];
+    }
+
+    /**
+     * @psalm-template SupportedInput
+     *
+     * @psalm-param ResultFactoryInterface<SupportedInput> $factory
+     * @psalm-param ArrayLike                              $array
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    #[DataProvider('provDummyAbstractArraySpec')]
+    public function testDummyAbstractArraySpec(ResultFactoryInterface $factory, iterable $array): void
+    {
+        $dummyArraySpec = new DummyArrayExpectations($factory, $array);
+
+        $this->assertSame($factory, $dummyArraySpec->getResultFactory());
+
+        $expect = is_array($array) ? $array : iterator_to_array($array);
+        $this->assertSame($expect, iterator_to_array($dummyArraySpec));
+    }
+}

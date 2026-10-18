@@ -1,0 +1,146 @@
+<?php declare(strict_types=1);
+
+/*
+ * This file is part of phptailors/phpunit-extensions.
+ *
+ * Copyright (c) Paweł Tomulik <pawel@tomulik.pl>
+ *
+ * View the LICENSE file for full copyright and license information.
+ */
+
+namespace Tailors\PHPUnit\RecursiveTraversal;
+
+use Tailors\PHPUnit\Common\ReferenceStorage;
+use Tailors\PHPUnit\Common\TypesInterface;
+use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorInterface;
+use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorStackItemInterface;
+
+/**
+ * @internal This class is not covered by the backward compatibility promise
+ *
+ * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-template VisitorStackItem of RecursiveVisitorStackItemInterface
+ *
+ * @psalm-import-type ArrayLike from TypesInterface
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
+ */
+final class RecursiveTraversal implements RecursiveTraversalInterface
+{
+    private ReferenceStorage $seen;
+
+    /**
+     * @psalm-var list<VisitorStackItem>
+     */
+    private array $stack;
+
+    /**
+     * Initializes the object.
+     */
+    public function __construct()
+    {
+        $this->seen = new ReferenceStorage();
+        $this->stack = [];
+    }
+
+    /**
+     * Walk recursively through $array and apply methods defined by $visitor
+     * to all the visited elements.
+     *
+     * @psalm-template StackItem of RecursiveVisitorStackItemInterface
+     *
+     * @psalm-param ArrayLike                            $array
+     * @psalm-param RecursiveVisitorInterface<StackItem> $visitor
+     */
+    public function walk(iterable &$array, RecursiveVisitorInterface $visitor): void
+    {
+        $this->seen = new ReferenceStorage();
+        $this->stack = [];
+
+        try {
+            /** @psalm-var self<StackItem> $this */
+            $this->walkRecursive($array, $visitor);
+        } finally {
+            $this->seen = new ReferenceStorage();
+            $this->stack = [];
+        }
+    }
+
+    /**
+     * @psalm-template StackItem of RecursiveVisitorStackItemInterface
+     *
+     * @psalm-param ArrayLike                            $node
+     * @psalm-param RecursiveVisitorInterface<StackItem> $visitor
+     *
+     * @psalm-if-this-is self<StackItem>
+     */
+    private function walkRecursive(iterable &$node, RecursiveVisitorInterface $visitor): void
+    {
+        if ($this->seen->contains($node)) {
+            if (!$visitor->cycle($node, $this->stack)) {
+                return;
+            }
+        }
+
+        $this->seen->add($node);
+
+        try {
+            $iterate = $visitor->enter($node, $this->stack);
+            if ($iterate) {
+                $this->iterate($node, $visitor);
+            } else {
+                $visitor->visit($node, $this->stack, false);
+            }
+            $visitor->leave($node, $this->stack, $iterate);
+        } finally {
+            $this->seen->remove($node);
+        }
+    }
+
+    /**
+     * @psalm-template StackItem of RecursiveVisitorStackItemInterface
+     *
+     * @psalm-param ArrayLike                            $node
+     * @psalm-param RecursiveVisitorInterface<StackItem> $visitor
+     *
+     * @psalm-if-this-is self<StackItem>
+     */
+    private function iterate(iterable $node, RecursiveVisitorInterface $visitor): void
+    {
+        /** @var mixed $value */
+        foreach ($node as $key => &$value) {
+            array_push($this->stack, $visitor->makeStackItem($node, $key, $this->stack));
+
+            try {
+                $this->visitOrWalkRecursive($value, $visitor);
+            } finally {
+                $item = array_pop($this->stack);
+            }
+
+            $visitor->freeStackItem($item, $this->stack);
+        }
+    }
+
+    /**
+     * @psalm-template StackItem of RecursiveVisitorStackItemInterface
+     *
+     * @psalm-param RecursiveVisitorInterface<StackItem> $visitor
+     *
+     * @psalm-if-this-is self<StackItem>
+     */
+    private function visitOrWalkRecursive(mixed &$value, RecursiveVisitorInterface $visitor): void
+    {
+        if (is_iterable($value)) {
+            /** @psalm-var ArrayLike $value */
+            $this->walkRecursive($value, $visitor);
+
+            return;
+        }
+
+        // Leaf node
+        $visitor->visit($value, $this->stack, true);
+    }
+}
+
+// vim: syntax=php sw=4 ts=4 et:

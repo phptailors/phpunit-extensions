@@ -170,6 +170,81 @@ recursively with other selection-related utilities such as
 :ref:`utilities.arrayValues` or :ref:`utilities.objectProperties`.
 
 
+
+.. _utilities.ksortedArray:
+
+ksortedArray()
+--------------
+
+
+.. list-table:: Prerequisites for ksortedArray()
+   :width: 100%
+   :widths: 25 75
+   :header-rows: 0
+
+   * - Package
+     - phptailors/phpunit-arrays: ``^1.1 || ^2.1 || ^3.1 || ^4.1 || ^5.1``
+   * - Trait
+     - :class:`Tailors\\PHPUnit\\KsortedArrayTrait`
+
+Since versions ``*.1`` (``1.1``, ``2.1``, ``3.1``, ...) it's possible to
+treat arrays nested somewhere in data structure same way as they are
+handled at the top level by :ref:`constraints.ksortedArrayEqualTo` or
+:ref:`constraints.ksortedArrayIdenticalTo` constraint. To achieve this, wrap
+the array nested somewhere in your expectation specs (``$expected``) with
+``ksortedArray()``:
+
+.. code:: php
+
+  $expected = [
+       'a' => 'A',
+       'b' => $this->ksortedArray([
+            'd' => 'BD',
+            'c' => 'BC'
+       ])
+  ];
+
+The above specification of ``$expected`` will match arrays, such as
+
+.. code:: php
+
+   $actual = [
+        'e' => [
+            'f' => 'EF',
+        ],
+        'b' => [
+            'c' => 'BC',
+            'd' => 'BD'
+        ],
+        'a' => 'A',
+   ];
+
+
+when compared with :ref:`constraints.arrayValuesIdenticalTo`.
+
+Without ``ksortedArray([...])``, the value under ``$actual['b']`` would be
+compared verbatim, that is only the exact sub-array ``['d' => 'BD', 'c' => 'BC']``
+would match (the order of items in array is important in this consideration).
+
+:ref:`utilities.ksortedArray` may be applied at any level and may be used recursively
+
+.. code:: php
+
+   $expected = [
+        'a' => [
+            'b' => $this->ksortedArray([
+                // ...
+            ])
+        ],
+        'c' => $this->ksortedArray([
+            'd' => $this->ksortedArray([ /* ... */ ])
+        ])
+   ];
+
+The utility may be mixed recursively with other utilities such as
+:ref:`utilities.arrayValues` or :ref:`utilities.objectProperties`.
+
+
 .. _utilities.objectProperties:
 
 objectProperties()
@@ -184,7 +259,7 @@ objectProperties()
    * - Package
      - phptailors/phpunit-arrays: ``^1.1 || ^2.1 || ^3.1 || ^4.1 || ^5.1``
    * - Trait
-     - :class:`Tailors\\PHPUnit\\ClassPropertiesTrait`
+     - :class:`Tailors\\PHPUnit\\ObjectPropertiesTrait`
 
 Since versions ``*.1`` (``1.1``, ``2.1``, ``3.1``, ...) it's possible to
 treat object references nested somewhere in data structure same way as they are
@@ -254,5 +329,63 @@ constraints (e.g. :ref:`constraints.objectPropertiesEqualTo`). It may be mixed
 recursively with other selection-related utilities such as
 :ref:`utilities.arrayValues` or :ref:`utilities.objectProperties`.
 
+.. _utilities.recursivelyKsortedArray:
+
+recursivelyKsortedArray()
+-------------------------
+
+
+.. list-table:: Prerequisites for recursivelyKsortedArray()
+   :width: 100%
+   :widths: 25 75
+   :header-rows: 0
+
+   * - Package
+     - phptailors/phpunit-arrays: ``^1.1 || ^2.1 || ^3.1 || ^4.1 || ^5.1``
+   * - Trait
+     - :class:`Tailors\\PHPUnit\\RecursivelyKsortedArrayTrait`
+
+Since versions ``*.1`` (``1.1``, ``2.1``, ``3.1``, ...) it's possible to
+treat arrays nested somewhere in data structure same way as they are
+handled at the top level by :ref:`constraints.recursivelyKsortedArrayEqualTo` or
+:ref:`constraints.recursivelyKsortedArrayIdenticalTo` constraint. To achieve
+this, wrap the array nested somewhere in your expectation specs (``$expected``)
+with ``recursivelyKsortedArray()``:
+
+.. code:: php
+
+  $expected = [
+       'a' => 'A',
+       'b' => $this->recursivelyKsortedArray([
+            'e' => [
+                'g' => 'BEG',
+                'f' => 'BEF'
+            ],
+            'd' => 'BD',
+            'c' => 'BC'
+       ])
+  ];
+
+The above specification of ``$expected`` will match arrays, such as
+
+.. code:: php
+
+   $actual = [
+        'h' => [
+            'i' => 'HI',
+        ],
+        'b' => [
+            'c' => 'BC',
+            'd' => 'BD'
+            'e' => [
+                'f' => 'BEF',
+                'g' => 'BEG',
+            ],
+        ],
+        'a' => 'A',
+   ];
+
+
+when compared with :ref:`constraints.arrayValuesIdenticalTo`.
 
 .. <!--- vim: set syntax=rst spell: -->

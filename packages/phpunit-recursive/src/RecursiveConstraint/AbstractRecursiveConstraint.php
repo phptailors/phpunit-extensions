@@ -1,0 +1,171 @@
+<?php declare(strict_types=1);
+
+/*
+ * This file is part of phptailors/phpunit-extensions.
+ *
+ * Copyright (c) Paweł Tomulik <pawel@tomulik.pl>
+ *
+ * View the LICENSE file for full copyright and license information.
+ */
+
+namespace Tailors\PHPUnit\RecursiveConstraint;
+
+use PHPUnit\Framework\Constraint\Constraint;
+use PHPUnit\Framework\Constraint\LogicalNot;
+use PHPUnit\Framework\Constraint\Operator;
+use PHPUnit\Framework\ExpectationFailedException;
+use SebastianBergmann\Comparator\ComparisonFailure;
+use Tailors\PHPUnit\Common\Exporter;
+use Tailors\PHPUnit\Common\ShortFailureDescriptionTrait;
+use Tailors\PHPUnit\Common\TypesInterface;
+use Tailors\PHPUnit\Comparator\ComparatorInterface;
+use Tailors\PHPUnit\Predicate\ComparatorAwareComplementInterface;
+use Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactoryInterface;
+use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapperInterface;
+use Tailors\PHPUnit\Result\ResultInterface;
+
+/**
+ * @internal This class is not covered by the backward compatibility promise
+ *
+ * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-import-type ArrayLike from TypesInterface
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
+ */
+abstract class AbstractRecursiveConstraint extends Constraint
+{
+    use ShortFailureDescriptionTrait;
+
+    /**
+     * @psalm-param ArrayLike $expectations
+     */
+    final protected function __construct(
+        private iterable $expectations,
+        private ComparatorInterface $comparator,
+        private RecursiveResultFactoryInterface $recursiveResultFactory,
+        private RecursiveResultUnwrapperInterface $recursiveResultUnwrapper
+    ) {}
+
+    /**
+     * Returns a string representation of the constraint.
+     */
+    final public function toString(): string
+    {
+        if ($this->expectations instanceof ComparatorAwareComplementInterface) {
+            return sprintf('is %s', $this->expectations->complement($this->comparator));
+        }
+
+        return 'satisfies the recursive constraint';
+    }
+
+    /**
+     * Evaluates the constraint for parameter $other.
+     *
+     * If $returnResult is set to false (the default), an exception is thrown
+     * in case of a failure. null is returned otherwise.
+     *
+     * If $returnResult is true, the result of the evaluation is returned as
+     * a boolean value instead: true in case of success, false in case of a
+     * failure.
+     *
+     * @throws ExpectationFailedException
+     */
+    final public function evaluate(mixed $other, string $description = '', bool $returnResult = false): ?bool
+    {
+        $success = $this->matches($other);
+
+        if ($returnResult) {
+            return $success;
+        }
+
+        if (!$success) {
+            $f = null;
+
+            if ($this->recursiveResultFactory->supports($this->expectations, $other)) {
+                /** @psalm-var mixed $expectResult */
+                $expectResult = $this->recursiveResultFactory->getExpectedResult($this->expectations);
+
+                /** @psalm-var mixed $actualResult */
+                $actualResult = $this->recursiveResultFactory->getActualResult($this->expectations, $other);
+                $f = new ComparisonFailure(
+                    $this->expectations,
+                    $other,
+                    Exporter::export($expectResult, true),
+                    Exporter::export($actualResult, true)
+                );
+            }
+
+            $this->fail($other, $description, $f);
+        }
+
+        return null;
+    }
+
+    /**
+     * Returns a custom string representation of the constraint object when it
+     * appears in context of an $operator expression.
+     *
+     * The purpose of this method is to provide meaningful descriptive string
+     * in context of operators such as LogicalNot. Native PHPUnit constraints
+     * are supported out of the box by LogicalNot, but externally developed
+     * ones had no way to provide correct strings in this context.
+     *
+     * The method shall return empty string, when it does not handle
+     * customization by itself.
+     *
+     * @param Operator $operator the $operator of the expression
+     * @param mixed    $role     role of $this constraint in the $operator expression
+     */
+    final protected function toStringInContext(Operator $operator, mixed $role): string
+    {
+        if ($operator instanceof LogicalNot) {
+            if ($this->expectations instanceof ComparatorAwareComplementInterface) {
+                return sprintf('fails to be %s', $this->expectations->complement($this->comparator));
+            }
+
+            return 'fails to satisfy the recursive constraint';
+        }
+
+        return '';
+    }
+
+    /**
+     * Evaluates the constraint for parameter $other. Returns true if the
+     * constraint is met, false otherwise.
+     *
+     * @param mixed $other value or object to evaluate
+     */
+    final protected function matches(mixed $other): bool
+    {
+        if (!$this->recursiveResultFactory->supports($this->expectations, $other)) {
+            return false;
+        }
+
+        /** @psalm-var mixed $expectResult */
+        $expectResult = $this->recursiveResultFactory->getExpectedResult($this->expectations);
+
+        /** @psalm-var mixed $expectValue */
+        $expectValue = $this->unwrapResult(false, $expectResult);
+
+        /** @psalm-var mixed $actualResult */
+        $actualResult = $this->recursiveResultFactory->getActualResult($this->expectations, $other);
+
+        /** @psalm-var mixed $actualValue */
+        $actualValue = $this->unwrapResult(true, $actualResult);
+
+        return $this->comparator->compare($expectValue, $actualValue);
+    }
+
+    private function unwrapResult(bool $actual, mixed $result): mixed
+    {
+        if (is_array($result) || is_iterable($result) && $result instanceof ResultInterface) {
+            /** @psalm-var ArrayLike $result */
+            return $this->recursiveResultUnwrapper->unwrap($actual, $result);
+        }
+
+        return $result;
+    }
+}
+
+// vim: syntax=php sw=4 ts=4 et:

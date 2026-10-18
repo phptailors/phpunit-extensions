@@ -10,29 +10,35 @@
 
 namespace Tailors\PHPUnit\Constraint;
 
-use Tailors\PHPUnit\Arrays\AbstractKsortedConstraint;
+use Tailors\PHPUnit\Arrays\KsortedArrayExpectations;
+use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\Comparator\IdentityComparator;
+use Tailors\PHPUnit\RecursiveConstraint\AbstractRecursiveConstraint;
+use Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactory;
+use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapper;
 
 /**
- * Constraint that accepts arrays identical to specified one when key-sorted.
+ * @internal This class is not covered by the backward compatibility promise
  *
- * The ``===`` operator (identity) is used for comparison.
+ * @psalm-internal Tailors\PHPUnit
  *
+ * @psalm-import-type ArrayLike from TypesInterface
  *
- *      $matcher = KsortedArrayIdenticalTo::create([
- *          'name' => 'John', 'age' => 21
- *      ]);
- *
- *      self::assertThat([
- *          'age' => 21,
- *          'name' => 'John',
- *      ], $matcher);
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
-final class KsortedArrayIdenticalTo extends AbstractKsortedConstraint
+final class KsortedArrayIdenticalTo extends AbstractRecursiveConstraint
 {
-    public static function create(array $expected, int $flags = SORT_REGULAR): self
+    /**
+     * @psalm-param ArrayLike $expectations
+     */
+    public static function create(iterable $expectations, int $flags = SORT_REGULAR): self
     {
-        return new self(new IdentityComparator(), $expected, $flags);
+        return new self(
+            new KsortedArrayExpectations($expectations, $flags),
+            new IdentityComparator(),
+            RecursiveResultFactory::create(),
+            RecursiveResultUnwrapper::create()
+        );
     }
 }
 

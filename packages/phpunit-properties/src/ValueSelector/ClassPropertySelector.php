@@ -1,0 +1,48 @@
+<?php declare(strict_types=1);
+
+/*
+ * This file is part of phptailors/phpunit-extensions.
+ *
+ * Copyright (c) Paweł Tomulik <pawel@tomulik.pl>
+ *
+ * View the LICENSE file for full copyright and license information.
+ */
+
+namespace Tailors\PHPUnit\ValueSelector;
+
+/**
+ * @internal This class is not covered by the backward compatibility promise
+ *
+ * @psalm-internal Tailors\PHPUnit
+ *
+ * @template-extends AbstractPropertySelector<class-string>
+ */
+final class ClassPropertySelector extends AbstractPropertySelector
+{
+    /**
+     * @psalm-assert-if-true class-string $input
+     */
+    public function supports(mixed $input): bool
+    {
+        return is_string($input) && class_exists($input);
+    }
+
+    /**
+     * A short string naming the subject type supported by this selector.
+     */
+    public function subject(): string
+    {
+        return 'a class';
+    }
+
+    /**
+     * @psalm-param class-string $subject
+     * @psalm-param array-key    $key
+     */
+    protected function getSubjectAttribute(mixed $subject, mixed $key): mixed
+    {
+        return $subject::${$key};
+    }
+}
+
+// vim: syntax=php sw=4 ts=4 et:

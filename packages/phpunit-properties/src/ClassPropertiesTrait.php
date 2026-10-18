@@ -10,19 +10,24 @@
 
 namespace Tailors\PHPUnit;
 
-use Tailors\PHPUnit\Properties\ExpectedClassProperties;
-use Tailors\PHPUnit\Values\ValuesInterface;
+use Tailors\PHPUnit\Common\TypesInterface;
+use Tailors\PHPUnit\Properties\ClassPropertiesSelection;
 
+/**
+ * @psalm-import-type ArrayLike from TypesInterface
+ *
+ * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
+ */
 trait ClassPropertiesTrait
 {
     /**
      * Returns an object representing expected array values.
      *
-     * @param array|\Traversable $array
+     * @psalm-param ArrayLike $array
      */
-    public static function classProperties($array): ValuesInterface
+    public static function classProperties(iterable $array): ClassPropertiesSelection
     {
-        return new ExpectedClassProperties($array);
+        return new ClassPropertiesSelection($array);
     }
 }
 

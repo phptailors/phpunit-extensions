@@ -44,7 +44,6 @@ final class HasMethod extends Constraint
     /**
      * Returns a string representation of the constraint.
      */
-    #[\Override]
     public function toString(): string
     {
         return sprintf('has %s()', $this->methodSpec->toString());
@@ -53,7 +52,6 @@ final class HasMethod extends Constraint
     /**
      * @psalm-assert-if-true object|class-string|trait-string|interface-string $other
      */
-    #[\Override]
     final protected function matches(mixed $other): bool
     {
         if (!$this->ensureCanReflectAsClass($other)) {

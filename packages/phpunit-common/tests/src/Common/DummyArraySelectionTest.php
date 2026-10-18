@@ -1,0 +1,109 @@
+<?php declare(strict_types=1);
+
+/*
+ * This file is part of phptailors/phpunit-extensions.
+ *
+ * Copyright (c) Paweł Tomulik <pawel@tomulik.pl>
+ *
+ * View the LICENSE file for full copyright and license information.
+ */
+
+namespace Tailors\PHPUnit\Common;
+
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
+use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\Comparator\DummyComparator;
+use Tailors\PHPUnit\ResultFactory\DummyResultFactory;
+use Tailors\PHPUnit\ResultFactory\ResultFactoryInterface;
+use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
+use Tailors\PHPUnit\ValueSelector\ValueSelectorInterface;
+
+/**
+ * @internal This class is not covered by the backward compatibility promise
+ *
+ * @psalm-internal Tailors\PHPUnit
+ *
+ * @psalm-import-type ArrayLike from TypesInterface
+ */
+#[CoversClass(DummyArraySelection::class)]
+#[CoversClass(DummyArraySelectionTest::class)]
+#[Small]
+final class DummyArraySelectionTest extends TestCase
+{
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testExtendsAbstractArraySelectionSpec(): void
+    {
+        $resultFactory = $this->createStub(ResultFactoryInterface::class);
+        $valueSelector = $this->createStub(ValueSelectorInterface::class);
+        $this->assertInstanceOf(AbstractArraySelection::class, new DummyArraySelection($resultFactory, $valueSelector, []));
+    }
+
+    /**
+     * @psalm-return iterable<string, array{
+     *      factory:  ResultFactoryInterface,
+     *      selector: ValueSelectorInterface,
+     *      array:    ArrayLike
+     * }>
+     *
+     * @codeCoverageIgnore
+     */
+    public static function provDummyArraySelection(): iterable
+    {
+        yield basename(__FILE__).':'.__LINE__ => [
+            'factory'  => new DummyResultFactory(false),
+            'selector' => new DummyValueSelector(false, false, '', ''),
+            'array'    => ['a' => 'A'],
+        ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'factory'  => new DummyResultFactory(false),
+            'selector' => new DummyValueSelector(false, false, '', ''),
+            'array'    => new \ArrayObject(['a' => 'A']),
+        ];
+    }
+
+    /**
+     * @psalm-template SupportedInput
+     * @psalm-template SupportedSubject
+     *
+     * @psalm-param ResultFactoryInterface<SupportedInput>   $factory
+     * @psalm-param ValueSelectorInterface<SupportedSubject> $selector
+     * @psalm-param ArrayLike                                $array
+     *
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    #[DataProvider('provDummyArraySelection')]
+    public function testDummyArraySelection(
+        ResultFactoryInterface $factory,
+        ValueSelectorInterface $selector,
+        iterable $array
+    ): void {
+        $dummyArraySelectionSpec = new DummyArraySelection($factory, $selector, $array);
+
+        $this->assertSame($factory, $dummyArraySelectionSpec->getResultFactory());
+        $this->assertSame($selector, $dummyArraySelectionSpec->getValueSelector());
+
+        $expect = is_array($array) ? $array : iterator_to_array($array);
+        $this->assertSame($expect, iterator_to_array($dummyArraySelectionSpec));
+    }
+
+    /**
+     * @psalm-suppress MissingThrowsDocblock
+     */
+    public function testComplement(): void
+    {
+        $dummyArraySelectionSpec = new DummyArraySelection(
+            new DummyResultFactory(false),
+            new DummyValueSelector(false, false, 'rainbow', 'colors'),
+            []
+        );
+
+        $comparator = new DummyComparator(false, 'similar to');
+
+        $this->assertSame('rainbow with colors similar to the specified ones', $dummyArraySelectionSpec->complement($comparator));
+    }
+}
