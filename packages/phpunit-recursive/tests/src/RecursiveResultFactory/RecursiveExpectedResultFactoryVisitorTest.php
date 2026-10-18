@@ -19,6 +19,7 @@ use Tailors\PHPUnit\ArraySpec\DummyResultFactoryWrapper;
 use Tailors\PHPUnit\CircularDependencyException;
 use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\InternalErrorException;
+use Tailors\PHPUnit\Polyfill\ExpectExceptionMessageIsOrContainsTrait;
 use Tailors\PHPUnit\RecursiveResultUnwrapper\RecursiveResultUnwrapper;
 use Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversal;
 use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorInterface;
@@ -46,6 +47,8 @@ use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
 #[Small]
 final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
 {
+    use ExpectExceptionMessageIsOrContainsTrait;
+
     /**
      * @psalm-suppress MissingThrowsDocblock
      */
@@ -847,7 +850,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         $visitor = new RecursiveExpectedResultFactoryVisitor();
 
         self::expectException(InternalErrorException::class);
-        self::expectExceptionMessage('$this->current is null');
+        self::expectExceptionMessageIsOrContains('$this->current is null');
 
         $visitor->makeStackItem([], '', []);
     }
@@ -860,7 +863,7 @@ final class RecursiveExpectedResultFactoryVisitorTest extends TestCase
         $visitor = new RecursiveExpectedResultFactoryVisitor();
 
         self::expectException(InternalErrorException::class);
-        self::expectExceptionMessage('$this->current is null');
+        self::expectExceptionMessageIsOrContains('$this->current is null');
 
         $visitor->leave([], [], true);
     }

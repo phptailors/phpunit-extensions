@@ -21,6 +21,7 @@ use Tailors\PHPUnit\Examples\Inheritance\ExampleClassUsingTrait;
 use Tailors\PHPUnit\Examples\Inheritance\ExampleTrait;
 use Tailors\PHPUnit\Examples\Inheritance\ExampleTraitUsingTrait;
 use Tailors\PHPUnit\InvalidArgumentException;
+use Tailors\PHPUnit\Polyfill\ExpectExceptionMessageIsOrContainsTrait;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -34,6 +35,7 @@ use Tailors\PHPUnit\InvalidArgumentException;
 #[Small]
 final class UsesTraitTest extends TestCase
 {
+    use ExpectExceptionMessageIsOrContainsTrait;
     use InheritanceConstraintTestTrait;
 
     /**
@@ -217,7 +219,7 @@ final class UsesTraitTest extends TestCase
         $constraint = UsesTrait::create($trait);
 
         self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessage($message);
+        self::expectExceptionMessageIsOrContains($message);
 
         $constraint->evaluate($subject);
     }

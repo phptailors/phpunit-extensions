@@ -18,6 +18,7 @@ use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Examples\Inheritance\ExampleTrait;
 use Tailors\PHPUnit\InvalidArgumentException;
+use Tailors\PHPUnit\Polyfill\ExpectExceptionMessageIsOrContainsTrait;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -31,6 +32,7 @@ use Tailors\PHPUnit\InvalidArgumentException;
 #[Small]
 final class ExtendsClassTest extends TestCase
 {
+    use ExpectExceptionMessageIsOrContainsTrait;
     use InheritanceConstraintTestTrait;
 
     /**
@@ -200,7 +202,7 @@ final class ExtendsClassTest extends TestCase
         $constraint = ExtendsClass::create($class);
 
         self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessage($message);
+        self::expectExceptionMessageIsOrContains($message);
 
         $constraint->evaluate($subject);
     }

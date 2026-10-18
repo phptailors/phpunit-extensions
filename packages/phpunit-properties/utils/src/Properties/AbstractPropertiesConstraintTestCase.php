@@ -13,6 +13,7 @@ namespace Tailors\PHPUnit\Properties;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Constraint\Constraint;
 use Tailors\PHPUnit\InvalidArgumentException;
+use Tailors\PHPUnit\Polyfill\ExpectExceptionMessageIsOrContainsTrait;
 use Tailors\PHPUnit\RecursiveConstraint\AbstractRecursiveConstraintTestCase;
 
 /**
@@ -27,6 +28,8 @@ use Tailors\PHPUnit\RecursiveConstraint\AbstractRecursiveConstraintTestCase;
  */
 abstract class AbstractPropertiesConstraintTestCase extends AbstractRecursiveConstraintTestCase
 {
+    use ExpectExceptionMessageIsOrContainsTrait;
+
     /**
      * @psalm-return iterable<string, array{
      *      array: array,
@@ -74,7 +77,7 @@ abstract class AbstractPropertiesConstraintTestCase extends AbstractRecursiveCon
         );
 
         self::expectException(InvalidArgumentException::class);
-        self::expectExceptionMessage($message);
+        self::expectExceptionMessageIsOrContains($message);
 
         static::createConstraint([$array]);
     }

@@ -15,6 +15,7 @@ use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Constraint\Constraint;
 use Tailors\PHPUnit\Common\AbstractConstraintTestCase;
 use Tailors\PHPUnit\InvalidArgumentException;
+use Tailors\PHPUnit\Polyfill\ExpectExceptionMessageIsOrContainsTrait;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -31,6 +32,7 @@ use Tailors\PHPUnit\InvalidArgumentException;
 #[Small]
 final class HasMethodTest extends AbstractConstraintTestCase
 {
+    use ExpectExceptionMessageIsOrContainsTrait;
     use ProvHasMethodTrait;
 
     /**
@@ -155,7 +157,7 @@ final class HasMethodTest extends AbstractConstraintTestCase
     public function testCreateThrowsInvalidArgumentException(): void
     {
         self::expectException(InvalidArgumentException::class);
-        self::expectExceptionMessage(
+        self::expectExceptionMessageIsOrContains(
             'Argument 1 passed to '.HasMethod::class.'::create() must be method specification,'.
             ' \'public function foo??\' (syntax error at "??") given.'
         );

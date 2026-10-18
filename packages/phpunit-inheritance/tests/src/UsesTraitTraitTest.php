@@ -20,6 +20,7 @@ use Tailors\PHPUnit\Examples\Inheritance\ExampleClassNotUsingTrait;
 use Tailors\PHPUnit\Examples\Inheritance\ExampleClassUsingTrait;
 use Tailors\PHPUnit\Examples\Inheritance\ExampleTrait;
 use Tailors\PHPUnit\Examples\Inheritance\ExampleTraitUsingTrait;
+use Tailors\PHPUnit\Polyfill\ExpectExceptionMessageIsOrContainsTrait;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -30,6 +31,7 @@ use Tailors\PHPUnit\Examples\Inheritance\ExampleTraitUsingTrait;
 #[Small]
 final class UsesTraitTraitTest extends TestCase
 {
+    use ExpectExceptionMessageIsOrContainsTrait;
     use UsesTraitTrait;
 
     /**
@@ -185,7 +187,7 @@ final class UsesTraitTraitTest extends TestCase
     public function testAssertNotUsesTraitFails(string $trait, $subject, string $message): void
     {
         self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessage($message);
+        self::expectExceptionMessageIsOrContains($message);
 
         self::assertNotUsesTrait($trait, $subject);
     }
@@ -199,7 +201,7 @@ final class UsesTraitTraitTest extends TestCase
     public function testAssertUsesTraitFails(string $trait, $subject, string $message): void
     {
         self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessage($message);
+        self::expectExceptionMessageIsOrContains($message);
 
         self::assertUsesTrait($trait, $subject);
     }
@@ -239,7 +241,7 @@ final class UsesTraitTraitTest extends TestCase
     public function testUsesTraitThrowsInvalidArgumentException(string $argument, string $message): void
     {
         self::expectException(InvalidArgumentException::class);
-        self::expectExceptionMessage($message);
+        self::expectExceptionMessageIsOrContains($message);
 
         self::usesTrait($argument);
     }

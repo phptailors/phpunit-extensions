@@ -15,6 +15,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\InvalidArgumentException;
+use Tailors\PHPUnit\Polyfill\ExpectExceptionMessageIsOrContainsTrait;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -26,6 +27,8 @@ use Tailors\PHPUnit\InvalidArgumentException;
 #[Small]
 final class ClassPropertySelectorTest extends TestCase
 {
+    use ExpectExceptionMessageIsOrContainsTrait;
+
     /**
      * @psalm-suppress MissingThrowsDocblock
      */
@@ -178,7 +181,7 @@ final class ClassPropertySelectorTest extends TestCase
         $selector = new ClassPropertySelector();
 
         self::expectException(\Error::class);
-        self::expectExceptionMessage('private method');
+        self::expectExceptionMessageIsOrContains('private method');
 
         $selector->select($class, 'foo()');
     }
@@ -194,7 +197,7 @@ final class ClassPropertySelectorTest extends TestCase
         $selector = new ClassPropertySelector();
 
         self::expectException(\Error::class);
-        self::expectExceptionMessage('private property');
+        self::expectExceptionMessageIsOrContains('private property');
 
         $selector->select($class, 'foo');
     }
@@ -216,7 +219,7 @@ final class ClassPropertySelectorTest extends TestCase
                     throw new \ErrorException($message, $severity);
                 });
                 self::expectException(\ErrorException::class);
-                self::expectExceptionMessage('should not be called statically');
+                self::expectExceptionMessageIsOrContains('should not be called statically');
 
                 $selector->select($class, 'foo()');
             } finally {
@@ -226,7 +229,7 @@ final class ClassPropertySelectorTest extends TestCase
         } else {
             // @codeCoverageIgnoreStart
             self::expectException(\TypeError::class);
-            self::expectExceptionMessage('cannot be called statically');
+            self::expectExceptionMessageIsOrContains('cannot be called statically');
             $selector->select($class, 'foo()');
             // @codeCoverageIgnoreEnd
         }
@@ -243,7 +246,7 @@ final class ClassPropertySelectorTest extends TestCase
         $selector = new ClassPropertySelector();
 
         self::expectException(\Error::class);
-        self::expectExceptionMessage('undeclared static property');
+        self::expectExceptionMessageIsOrContains('undeclared static property');
 
         $selector->select($class, 'foo');
     }
@@ -278,7 +281,7 @@ final class ClassPropertySelectorTest extends TestCase
             gettype(123)
         );
         self::expectException(InvalidArgumentException::class);
-        self::expectExceptionMessage($message);
+        self::expectExceptionMessageIsOrContains($message);
 
         $selector->select(123, $key);
     }

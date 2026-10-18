@@ -15,6 +15,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\InvalidArgumentException;
+use Tailors\PHPUnit\Polyfill\ExpectExceptionMessageIsOrContainsTrait;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -30,6 +31,8 @@ use Tailors\PHPUnit\InvalidArgumentException;
 #[Small]
 final class AbstractPropertySelectorTest extends TestCase
 {
+    use ExpectExceptionMessageIsOrContainsTrait;
+
     /**
      * @psalm-suppress PossiblyUnusedProperty
      */
@@ -257,7 +260,7 @@ final class AbstractPropertySelectorTest extends TestCase
         if (null !== $select) {
             if (null !== ($exception = $select['exception'] ?? null)) {
                 self::expectException(InvalidArgumentException::class);
-                self::expectExceptionMessage($exception);
+                self::expectExceptionMessageIsOrContains($exception);
             }
 
             $return = $selector->select($select['subject'], $select['key'], $retval);

@@ -15,6 +15,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\InvalidArgumentException;
+use Tailors\PHPUnit\Polyfill\ExpectExceptionMessageIsOrContainsTrait;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -26,6 +27,8 @@ use Tailors\PHPUnit\InvalidArgumentException;
 #[Small]
 final class ObjectPropertySelectorTest extends TestCase
 {
+    use ExpectExceptionMessageIsOrContainsTrait;
+
     /**
      * @psalm-suppress MissingThrowsDocblock
      */
@@ -187,7 +190,7 @@ final class ObjectPropertySelectorTest extends TestCase
         $selector = new ObjectPropertySelector();
 
         self::expectException(\Error::class);
-        self::expectExceptionMessage('private method');
+        self::expectExceptionMessageIsOrContains('private method');
 
         /** @psalm-suppress RedundantCondition */
         $selector->select($object, 'foo()');
@@ -204,7 +207,7 @@ final class ObjectPropertySelectorTest extends TestCase
         $selector = new ObjectPropertySelector();
 
         self::expectException(\Error::class);
-        self::expectExceptionMessage('private property');
+        self::expectExceptionMessageIsOrContains('private property');
 
         /** @psalm-suppress RedundantCondition */
         $selector->select($object, 'foo');
@@ -226,7 +229,7 @@ final class ObjectPropertySelectorTest extends TestCase
                 throw new \ErrorException($message, $severity);
             });
             self::expectException(\ErrorException::class);
-            self::expectExceptionMessage('static property');
+            self::expectExceptionMessageIsOrContains('static property');
 
             /** @psalm-suppress RedundantCondition */
             $selector->select($object, 'foo');
@@ -265,7 +268,7 @@ final class ObjectPropertySelectorTest extends TestCase
             gettype(123)
         );
         self::expectException(InvalidArgumentException::class);
-        self::expectExceptionMessage($message);
+        self::expectExceptionMessageIsOrContains($message);
 
         $selector->select(123, $key);
     }

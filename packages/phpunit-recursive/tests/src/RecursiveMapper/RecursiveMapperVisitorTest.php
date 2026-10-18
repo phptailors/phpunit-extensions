@@ -17,6 +17,7 @@ use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\CircularDependencyException;
 use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\InvalidArgumentException;
+use Tailors\PHPUnit\Polyfill\ExpectExceptionMessageIsOrContainsTrait;
 use Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversal;
 use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorInterface;
 
@@ -43,6 +44,8 @@ use Tailors\PHPUnit\RecursiveVisitor\RecursiveVisitorInterface;
 #[Small]
 final class RecursiveMapperVisitorTest extends TestCase
 {
+    use ExpectExceptionMessageIsOrContainsTrait;
+
     /**
      * @psalm-suppress MissingThrowsDocblock
      */
@@ -116,7 +119,7 @@ final class RecursiveMapperVisitorTest extends TestCase
         $args = $call['args'];
 
         self::expectException(CircularDependencyException::class);
-        self::expectExceptionMessage($call['message']);
+        self::expectExceptionMessageIsOrContains($call['message']);
 
         self::assertNull($visitor->cycle($args['node'], $args['stack']));
     }
@@ -874,7 +877,7 @@ final class RecursiveMapperVisitorTest extends TestCase
         $visitor->begin(...$begin);
 
         self::expectException(CircularDependencyException::class);
-        self::expectExceptionMessage($message);
+        self::expectExceptionMessageIsOrContains($message);
 
         $traversal->walk($array, $visitor);
     }
@@ -898,7 +901,7 @@ final class RecursiveMapperVisitorTest extends TestCase
 
         $message = 'Circular dependency found in nested array at $array[\'foo\'][\'bar\'].';
         self::expectException(CircularDependencyException::class);
-        self::expectExceptionMessage($message);
+        self::expectExceptionMessageIsOrContains($message);
 
         $traversal->walk($array, $visitor);
     }
@@ -911,7 +914,7 @@ final class RecursiveMapperVisitorTest extends TestCase
         $visitor = new RecursiveMapperVisitor();
 
         self::expectException(InvalidArgumentException::class);
-        self::expectExceptionMessage('Argument 2 passed to '.RecursiveMapperVisitor::class.'::set() must be an iterable, string given.');
+        self::expectExceptionMessageIsOrContains('Argument 2 passed to '.RecursiveMapperVisitor::class.'::set() must be an iterable, string given.');
 
         $visitor->visit('xxx', [], false);
     }

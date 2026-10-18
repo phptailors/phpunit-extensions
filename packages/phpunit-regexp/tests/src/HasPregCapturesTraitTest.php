@@ -16,6 +16,7 @@ use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Constraint\ProvHasPregCapturesTrait;
+use Tailors\PHPUnit\Polyfill\ExpectExceptionMessageIsOrContainsTrait;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -26,6 +27,7 @@ use Tailors\PHPUnit\Constraint\ProvHasPregCapturesTrait;
 #[Small]
 final class HasPregCapturesTraitTest extends TestCase
 {
+    use ExpectExceptionMessageIsOrContainsTrait;
     use HasPregCapturesTrait;
     use ProvHasPregCapturesTrait;
 
@@ -131,7 +133,7 @@ final class HasPregCapturesTraitTest extends TestCase
     public function testAssertHasPregCapturesFails(array $expect, array $actual, string $message): void
     {
         self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessage(sprintf('Failed asserting that %s.', $message));
+        self::expectExceptionMessageIsOrContains(sprintf('Failed asserting that %s.', $message));
 
         self::assertHasPregCaptures($expect, $actual);
     }
@@ -146,7 +148,7 @@ final class HasPregCapturesTraitTest extends TestCase
     public function testAssertNotHasPregCaptureFails(array $expect, array $actual, string $message): void
     {
         self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessage(sprintf('Failed asserting that %s.', $message));
+        self::expectExceptionMessageIsOrContains(sprintf('Failed asserting that %s.', $message));
         self::assertNotHasPregCaptures($expect, $actual);
     }
 
@@ -162,7 +164,7 @@ final class HasPregCapturesTraitTest extends TestCase
     public function testHasPregCapturesFails(array $expect, $actual, string $message): void
     {
         self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessage(sprintf('Failed asserting that %s.', $message));
+        self::expectExceptionMessageIsOrContains(sprintf('Failed asserting that %s.', $message));
 
         self::assertThat($actual, self::hasPregCaptures($expect));
     }

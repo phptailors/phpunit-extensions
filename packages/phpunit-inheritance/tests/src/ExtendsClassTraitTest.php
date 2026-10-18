@@ -17,6 +17,7 @@ use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Constraint\ExtendsClass;
 use Tailors\PHPUnit\Examples\Inheritance\ExampleTrait;
+use Tailors\PHPUnit\Polyfill\ExpectExceptionMessageIsOrContainsTrait;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -27,6 +28,7 @@ use Tailors\PHPUnit\Examples\Inheritance\ExampleTrait;
 #[Small]
 final class ExtendsClassTraitTest extends TestCase
 {
+    use ExpectExceptionMessageIsOrContainsTrait;
     use ExtendsClassTrait;
 
     /**
@@ -176,7 +178,7 @@ final class ExtendsClassTraitTest extends TestCase
     public function testAssertExtendsClassFails(string $class, $subject, string $message): void
     {
         self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessage($message);
+        self::expectExceptionMessageIsOrContains($message);
 
         self::assertExtendsClass($class, $subject);
     }
@@ -190,7 +192,7 @@ final class ExtendsClassTraitTest extends TestCase
     public function testAssertNotExtendsClassFails(string $class, $subject, string $message): void
     {
         self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessage($message);
+        self::expectExceptionMessageIsOrContains($message);
 
         self::assertNotExtendsClass($class, $subject);
     }
@@ -230,7 +232,7 @@ final class ExtendsClassTraitTest extends TestCase
     public function testExtendsClassThrowsInvalidArgumentException(string $argument, string $message): void
     {
         self::expectException(InvalidArgumentException::class);
-        self::expectExceptionMessage($message);
+        self::expectExceptionMessageIsOrContains($message);
 
         self::extendsClass($argument);
     }

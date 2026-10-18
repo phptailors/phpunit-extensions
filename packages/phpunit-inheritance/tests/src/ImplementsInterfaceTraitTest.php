@@ -17,6 +17,7 @@ use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Constraint\ImplementsInterface;
 use Tailors\PHPUnit\Examples\Inheritance\ExampleTrait;
+use Tailors\PHPUnit\Polyfill\ExpectExceptionMessageIsOrContainsTrait;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -27,6 +28,7 @@ use Tailors\PHPUnit\Examples\Inheritance\ExampleTrait;
 #[Small]
 final class ImplementsInterfaceTraitTest extends TestCase
 {
+    use ExpectExceptionMessageIsOrContainsTrait;
     use ImplementsInterfaceTrait;
 
     /**
@@ -182,7 +184,7 @@ final class ImplementsInterfaceTraitTest extends TestCase
     public function testAssertImplementsInterfaceFails(string $interface, $subject, string $message): void
     {
         self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessage($message);
+        self::expectExceptionMessageIsOrContains($message);
 
         self::assertImplementsInterface($interface, $subject);
     }
@@ -196,7 +198,7 @@ final class ImplementsInterfaceTraitTest extends TestCase
     public function testAssertNotImplementsInterfaceFails(string $interface, $subject, string $message): void
     {
         self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessage($message);
+        self::expectExceptionMessageIsOrContains($message);
 
         self::assertNotImplementsInterface($interface, $subject);
     }
@@ -236,7 +238,7 @@ final class ImplementsInterfaceTraitTest extends TestCase
     public function testImplementsInterfaceThrowsInvalidArgumentException(string $argument, string $message): void
     {
         self::expectException(InvalidArgumentException::class);
-        self::expectExceptionMessage($message);
+        self::expectExceptionMessageIsOrContains($message);
 
         self::implementsInterface($argument);
     }

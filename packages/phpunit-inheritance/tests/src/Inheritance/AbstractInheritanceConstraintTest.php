@@ -17,6 +17,7 @@ use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\UnaryOperator;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\Polyfill\ExpectExceptionMessageIsOrContainsTrait;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -31,6 +32,8 @@ use PHPUnit\Framework\TestCase;
 #[Small]
 final class AbstractInheritanceConstraintTest extends TestCase
 {
+    use ExpectExceptionMessageIsOrContainsTrait;
+
     /**
      * @psalm-suppress MissingThrowsDocblock
      */
@@ -186,7 +189,7 @@ final class AbstractInheritanceConstraintTest extends TestCase
     {
         if (null !== ($exception = $assertion['exception'] ?? null)) {
             self::expectException(ExpectationFailedException::class);
-            self::expectExceptionMessage($exception);
+            self::expectExceptionMessageIsOrContains($exception);
         }
 
         self::assertThat($assertion['other'], $constraint);

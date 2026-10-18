@@ -18,6 +18,7 @@ use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Common\TypesInterface;
 use Tailors\PHPUnit\InvalidArgumentException;
+use Tailors\PHPUnit\Polyfill\ExpectExceptionMessageIsOrContainsTrait;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -33,6 +34,7 @@ use Tailors\PHPUnit\InvalidArgumentException;
 #[Small]
 final class HasPregCapturesTest extends TestCase
 {
+    use ExpectExceptionMessageIsOrContainsTrait;
     use ProvHasPregCapturesTrait;
 
     /**
@@ -123,7 +125,7 @@ final class HasPregCapturesTest extends TestCase
         $constraint = HasPregCaptures::create($expect);
 
         self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessage($message);
+        self::expectExceptionMessageIsOrContains($message);
 
         self::assertNull($constraint->evaluate($actual));
     }
@@ -141,7 +143,7 @@ final class HasPregCapturesTest extends TestCase
         $constraint = new LogicalNot(HasPregCaptures::create($expect));
 
         self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessage($message);
+        self::expectExceptionMessageIsOrContains($message);
 
         self::assertNull($constraint->evaluate($actual));
     }
@@ -189,7 +191,7 @@ final class HasPregCapturesTest extends TestCase
     public function testCreateThrowsInvalidArgumentException(array $args, string $message): void
     {
         self::expectException(InvalidArgumentException::class);
-        self::expectExceptionMessage($message);
+        self::expectExceptionMessageIsOrContains($message);
 
         HasPregCaptures::create(...$args);
     }

@@ -15,6 +15,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\InvalidArgumentException;
+use Tailors\PHPUnit\Polyfill\ExpectExceptionMessageIsOrContainsTrait;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -37,6 +38,8 @@ use Tailors\PHPUnit\InvalidArgumentException;
 #[Small]
 final class AbstractValueSelectorTest extends TestCase
 {
+    use ExpectExceptionMessageIsOrContainsTrait;
+
     /**
      * @psalm-suppress MissingThrowsDocblock
      */
@@ -193,7 +196,7 @@ final class AbstractValueSelectorTest extends TestCase
 
             if (array_key_exists('exception', $select)) {
                 self::expectException(InvalidArgumentException::class);
-                self::expectExceptionMessage($select['exception']);
+                self::expectExceptionMessageIsOrContains($select['exception']);
 
                 $selector->select(...$args);
             }

@@ -14,6 +14,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\Polyfill\ExpectExceptionMessageIsOrContainsTrait;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -34,6 +35,8 @@ use PHPUnit\Framework\TestCase;
 #[Small]
 final class MethodSpecFactoryTest extends TestCase
 {
+    use ExpectExceptionMessageIsOrContainsTrait;
+
     public const int IS_STATIC = MethodSpec::IS_STATIC;
     public const int IS_PUBLIC = MethodSpec::IS_PUBLIC;
     public const int IS_PROTECTED = MethodSpec::IS_PROTECTED;
@@ -303,7 +306,7 @@ final class MethodSpecFactoryTest extends TestCase
         $factory = new MethodSpecFactory();
 
         self::expectException(MethodSpecSyntaxError::class);
-        self::expectExceptionMessage(sprintf('syntax error at "%s"', $at));
+        self::expectExceptionMessageIsOrContains(sprintf('syntax error at "%s"', $at));
 
         $factory->fromString($string);
     }

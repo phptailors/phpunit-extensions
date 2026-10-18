@@ -16,6 +16,7 @@ use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use Tailors\PHPUnit\Constraint\ProvHasMethodTrait;
+use Tailors\PHPUnit\Polyfill\ExpectExceptionMessageIsOrContainsTrait;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -26,6 +27,7 @@ use Tailors\PHPUnit\Constraint\ProvHasMethodTrait;
 #[Small]
 final class HasMethodTraitTest extends TestCase
 {
+    use ExpectExceptionMessageIsOrContainsTrait;
     use HasMethodTrait;
     use ProvHasMethodTrait;
 
@@ -112,7 +114,7 @@ final class HasMethodTraitTest extends TestCase
     public function testAssertHasMethodFails(string $method, $subject, string $message): void
     {
         self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessage($message);
+        self::expectExceptionMessageIsOrContains($message);
 
         self::assertHasMethod($method, $subject);
     }
@@ -126,7 +128,7 @@ final class HasMethodTraitTest extends TestCase
     public function testAssertNotHasMethodFails(string $method, $subject, string $message): void
     {
         self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessage($message);
+        self::expectExceptionMessageIsOrContains($message);
 
         self::assertNotHasMethod($method, $subject);
     }

@@ -28,6 +28,7 @@ use Tailors\PHPUnit\Comparator\ComparatorInterface;
 use Tailors\PHPUnit\Comparator\DummyComparator;
 use Tailors\PHPUnit\Comparator\EqualityComparator;
 use Tailors\PHPUnit\Comparator\IdentityComparator;
+use Tailors\PHPUnit\Polyfill\ExpectExceptionMessageIsOrContainsTrait;
 use Tailors\PHPUnit\RecursiveResultFactory\RecursiveActualResultFactoryVisitor;
 use Tailors\PHPUnit\RecursiveResultFactory\RecursiveExpectedResultFactoryVisitor;
 use Tailors\PHPUnit\RecursiveResultFactory\RecursiveResultFactory;
@@ -57,6 +58,8 @@ use Tailors\PHPUnit\ValueSelector\DummyValueSelector;
 #[Small]
 final class AbstractRecursiveConstraintTest extends TestCase
 {
+    use ExpectExceptionMessageIsOrContainsTrait;
+
     /**
      * @psalm-suppress MissingThrowsDocblock
      */
@@ -269,7 +272,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
     {
         if (array_key_exists('exception', $expect) && array_key_exists('message', $expect)) {
             self::expectException($expect['exception']);
-            self::expectExceptionMessage($expect['message']);
+            self::expectExceptionMessageIsOrContains($expect['message']);
         }
 
         $actual = $constraint->evaluate(...$args);
@@ -343,7 +346,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
         $constraint = $this->createDummyConstraint($expectations, null, $recursiveResultFactory);
 
         self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessage('Failed asserting that \'value\' satisfies the recursive constraint');
+        self::expectExceptionMessageIsOrContains('Failed asserting that \'value\' satisfies the recursive constraint');
 
         self::assertNull($constraint->evaluate('value'));
     }

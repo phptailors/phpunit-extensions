@@ -17,6 +17,7 @@ use PHPUnit\Framework\Exception;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\MockObject\RuntimeException;
 use PHPUnit\Framework\TestCase;
+use Tailors\PHPUnit\Polyfill\ExpectExceptionMessageIsOrContainsTrait;
 
 /**
  * @internal This class is not covered by the backward compatibility promise
@@ -28,6 +29,8 @@ use PHPUnit\Framework\TestCase;
  */
 abstract class AbstractConstraintTestCase extends TestCase
 {
+    use ExpectExceptionMessageIsOrContainsTrait;
+
     /**
      * Creates constraint's instance.
      *
@@ -95,7 +98,7 @@ abstract class AbstractConstraintTestCase extends TestCase
         $unary = $this->wrapWithUnaryOperator($constraint);
 
         self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessage($message);
+        self::expectExceptionMessageIsOrContains($message);
 
         self::assertThat($actual, $unary);
     }
@@ -129,7 +132,7 @@ abstract class AbstractConstraintTestCase extends TestCase
         $constraint = static::createConstraint($ctorArgs);
 
         self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessage($message);
+        self::expectExceptionMessageIsOrContains($message);
 
         $constraint->evaluate($actual);
     }
@@ -161,7 +164,7 @@ abstract class AbstractConstraintTestCase extends TestCase
         $constraint = self::logicalNot(static::createConstraint($ctorArgs));
 
         self::expectException(ExpectationFailedException::class);
-        self::expectExceptionMessage($message);
+        self::expectExceptionMessageIsOrContains($message);
 
         $constraint->evaluate($actual);
     }

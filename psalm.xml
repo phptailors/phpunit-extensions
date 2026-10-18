@@ -24,5 +24,6 @@
     </plugins>
     <stubs>
         <file name=".psalm/stubs/Countable.php"/>
+        <file name=".psalm/stubs/Tailors/PHPUnit/Pollyfil/ExpectExceptionMessageIsOrContainsTrait.php"/>
     </stubs>
 </psalm>
