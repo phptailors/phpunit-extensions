@@ -1,6 +1,5 @@
 {
     "name": "phptailors/phpunit-extensions",
-    "type": "library",
     "description": "Extensions to PHPUnit framework",
     "license": "MIT",
     "authors": [
@@ -9,6 +8,7 @@
             "email": "pawel@tomulik.pl"
         }
     ],
+    "type": "library",
     "require": {
         "ext-mbstring": "*",
         "php": "^8.1"
@@ -21,20 +21,6 @@
         "sebastian/exporter": "^4 || ^5",
         "sebastian/recursion-context": "^4 || ^5"
     },
-    "replace": {
-        "phptailors/phpunit-arrays": "2.1.x-dev",
-        "phptailors/phpunit-common": "2.1.x-dev",
-        "phptailors/phpunit-inheritance": "2.1.x-dev",
-        "phptailors/phpunit-methods": "2.1.x-dev",
-        "phptailors/phpunit-properties": "2.1.x-dev",
-        "phptailors/phpunit-recursive": "2.1.x-dev",
-        "phptailors/phpunit-regexp": "2.1.x-dev"
-    },
-    "conflict": {
-        "nikic/php-parser": "< 4.13.2"
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "Tailors\\PHPUnit\\": [
@@ -66,16 +52,30 @@
             "Tailors\\PHPUnit\\Docs\\Behat\\": "docs/sphinx/behat/"
         }
     },
-    "config": {
-        "allow-plugins": {
-            "bamarni/composer-bin-plugin": true
-        }
-    },
     "extra": {
         "bamarni-bin": {
             "bin-links": false,
             "forward-command": false,
             "target-directory": "vendor-bin"
         }
-    }
+    },
+    "config": {
+        "allow-plugins": {
+            "bamarni/composer-bin-plugin": true
+        }
+    },
+    "replace": {
+        "phptailors/phpunit-arrays": "2.1.0",
+        "phptailors/phpunit-common": "2.1.0",
+        "phptailors/phpunit-inheritance": "2.1.0",
+        "phptailors/phpunit-methods": "2.1.0",
+        "phptailors/phpunit-properties": "2.1.0",
+        "phptailors/phpunit-recursive": "2.1.0",
+        "phptailors/phpunit-regexp": "2.1.0"
+    },
+    "conflict": {
+        "nikic/php-parser": "< 4.13.2"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
