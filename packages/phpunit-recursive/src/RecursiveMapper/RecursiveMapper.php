@@ -27,11 +27,11 @@ use Tailors\PHPUnit\RecursiveTraversal\RecursiveTraversalInterface;
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
-final class RecursiveMapper implements RecursiveMapperInterface
+final readonly class RecursiveMapper implements RecursiveMapperInterface
 {
     public function __construct(
-        private readonly RecursiveMapperVisitorInterface $visitor,
-        private readonly RecursiveTraversalInterface $traversal
+        private RecursiveMapperVisitorInterface $visitor,
+        private RecursiveTraversalInterface $traversal
     ) {}
 
     public static function create(): self

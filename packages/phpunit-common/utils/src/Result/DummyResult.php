@@ -15,9 +15,9 @@ namespace Tailors\PHPUnit\Result;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class DummyResult implements ResultInterface
+final readonly class DummyResult implements ResultInterface
 {
-    public function __construct(private readonly bool $actual) {}
+    public function __construct(private bool $actual) {}
 
     /**
      * @psalm-mutation-free

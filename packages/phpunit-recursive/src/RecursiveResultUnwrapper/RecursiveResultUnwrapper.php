@@ -25,11 +25,11 @@ use Tailors\PHPUnit\Result\ResultInterface;
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
-final class RecursiveResultUnwrapper implements RecursiveResultUnwrapperInterface
+final readonly class RecursiveResultUnwrapper implements RecursiveResultUnwrapperInterface
 {
     public function __construct(
-        private readonly RecursiveResultUnwrapperVisitorInterface $visitor,
-        private readonly RecursiveTraversalInterface $traversal
+        private RecursiveResultUnwrapperVisitorInterface $visitor,
+        private RecursiveTraversalInterface $traversal
     ) {}
 
     public static function create(bool $tagging = true): self

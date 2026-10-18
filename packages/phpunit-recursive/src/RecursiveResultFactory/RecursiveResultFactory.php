@@ -25,12 +25,12 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  *
  * @var TypesInterface $__phpactor__workaround__unused_import__TypesInterface
  */
-final class RecursiveResultFactory implements RecursiveResultFactoryInterface
+final readonly class RecursiveResultFactory implements RecursiveResultFactoryInterface
 {
     public function __construct(
-        private readonly RecursiveExpectedResultFactoryVisitorInterface $expectedResultVisitor,
-        private readonly RecursiveActualResultFactoryVisitorInterface $actualResultVisitor,
-        private readonly RecursiveTraversalInterface $traversal
+        private RecursiveExpectedResultFactoryVisitorInterface $expectedResultVisitor,
+        private RecursiveActualResultFactoryVisitorInterface $actualResultVisitor,
+        private RecursiveTraversalInterface $traversal
     ) {}
 
     public static function create(): self

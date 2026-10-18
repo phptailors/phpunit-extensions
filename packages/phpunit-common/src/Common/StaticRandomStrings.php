@@ -17,7 +17,7 @@ namespace Tailors\PHPUnit\Common;
  */
 final class StaticRandomStrings
 {
-    public const STRINGLEN = 40;
+    public const int STRINGLEN = 40;
 
     /**
      * @param mixed $key

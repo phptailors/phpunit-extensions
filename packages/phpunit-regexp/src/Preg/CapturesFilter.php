@@ -15,12 +15,12 @@ namespace Tailors\PHPUnit\Preg;
  *
  * @psalm-internal Tailors\PHPUnit
  */
-final class CapturesFilter implements CapturesFilterInterface
+final readonly class CapturesFilter implements CapturesFilterInterface
 {
     /**
      * @param int $flags PREG_* flags such as PREG_UNMATCHED_AS_NULL or PREG_OFFSET_CAPTURE
      */
-    public function __construct(private readonly int $flags = 0) {}
+    public function __construct(private int $flags = 0) {}
 
     /**
      * Filter-out all elements of $array with $this->accepts().
