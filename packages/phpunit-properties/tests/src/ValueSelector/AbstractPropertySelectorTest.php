@@ -31,11 +31,9 @@ use Tailors\PHPUnit\InvalidArgumentException;
 final class AbstractPropertySelectorTest extends TestCase
 {
     /**
-     * @var string
-     *
      * @psalm-suppress PossiblyUnusedProperty
      */
-    public static $staticFoo = 'static foo';
+    public static string $staticFoo = 'static foo';
 
     /**
      * @psalm-suppress PossiblyUnusedMethod

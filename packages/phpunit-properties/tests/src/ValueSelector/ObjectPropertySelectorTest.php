@@ -105,8 +105,7 @@ final class ObjectPropertySelectorTest extends TestCase
     {
         yield basename(__FILE__).':'.__LINE__ => [
             'object' => new class() {
-                /** @var string */
-                public $foo = 'FOO';
+                public string $foo = 'FOO';
             },
             'key'    => 'foo',
             'return' => true,
@@ -115,8 +114,7 @@ final class ObjectPropertySelectorTest extends TestCase
 
         yield basename(__FILE__).':'.__LINE__ => [
             'object' => new class() {
-                /** @var string */
-                public $foo = 'FOO';
+                public string $foo = 'FOO';
             },
             'key'    => 'bar',
             'return' => false,
@@ -201,8 +199,7 @@ final class ObjectPropertySelectorTest extends TestCase
     public function testSelectThrowsOnPrivateAttribute(): void
     {
         $object = new class() {
-            /** @var string */
-            private $foo = 'FOO';
+            private string $foo = 'FOO';
         };
         $selector = new ObjectPropertySelector();
 
@@ -219,8 +216,7 @@ final class ObjectPropertySelectorTest extends TestCase
     public function testSelectThrowsOnStaticProperty(): void
     {
         $object = new class() {
-            /** @var string */
-            public static $foo = 'FOO';
+            public static string $foo = 'FOO';
         };
         $selector = new ObjectPropertySelector();
 

@@ -106,8 +106,7 @@ final class ClassPropertySelectorTest extends TestCase
         // #0
         yield basename(__FILE__).':'.__LINE__ => [
             'class'  => (new class() {
-                /** @var string */
-                public static $foo = 'FOO';
+                public static string $foo = 'FOO';
             })::class,
             'key'    => 'foo',
             'return' => true,
@@ -117,8 +116,7 @@ final class ClassPropertySelectorTest extends TestCase
         // #1
         yield basename(__FILE__).':'.__LINE__ => [
             'class'  => (new class() {
-                /** @var string */
-                public static $foo = 'FOO';
+                public static string $foo = 'FOO';
             })::class,
             'key'    => 'bar',
             'return' => false,
@@ -191,8 +189,7 @@ final class ClassPropertySelectorTest extends TestCase
     public function testSelectThrowsOnPrivateAttribute(): void
     {
         $class = (new class() {
-            /** @var string */
-            private $foo = 'FOO';
+            private string $foo = 'FOO';
         })::class;
         $selector = new ClassPropertySelector();
 
@@ -241,8 +238,7 @@ final class ClassPropertySelectorTest extends TestCase
     public function testSelectThrowsOnNonStaticProperty(): void
     {
         $class = (new class() {
-            /** @var string */
-            public $foo = 'FOO';
+            public string $foo = 'FOO';
         })::class;
         $selector = new ClassPropertySelector();
 

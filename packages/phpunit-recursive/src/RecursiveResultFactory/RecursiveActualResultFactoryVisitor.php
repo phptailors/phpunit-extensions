@@ -32,20 +32,11 @@ use Tailors\PHPUnit\ValueSelector\ValueSelectorWrapperInterface;
  */
 final class RecursiveActualResultFactoryVisitor implements RecursiveActualResultFactoryVisitorInterface
 {
-    /**
-     * @var mixed
-     */
-    private $subject;
+    private mixed $subject;
 
-    /**
-     * @var mixed
-     */
-    private $result;
+    private mixed $result;
 
-    /**
-     * @var ?SubjectResultCouple
-     */
-    private $current;
+    private ?SubjectResultCouple $current = null;
 
     public function __construct()
     {

@@ -31,23 +31,18 @@ trait ProvObjectPropertiesTrait
     public static function provObjectPropertiesIdenticalTo(): iterable
     {
         $esmith = new class() {
-            /** @var string */
-            public $name = 'Emily';
+            public string $name = 'Emily';
 
-            /** @var string */
-            public $last = 'Smith';
+            public string $last = 'Smith';
 
-            /** @var int */
-            public $age = 20;
+            public int $age = 20;
 
-            /** @var ?object */
-            public $husband;
+            public ?object $husband = null;
 
             /** @var object[] */
-            public $family = [];
+            public array $family = [];
 
-            /** @var int */
-            private $salary = 98;
+            private int $salary = 98;
 
             public function getSalary(): int
             {
@@ -67,23 +62,18 @@ trait ProvObjectPropertiesTrait
         };
 
         $jsmith = new class() {
-            /** @var string */
-            public $name = 'John';
+            public string $name = 'John';
 
-            /** @var string */
-            public $last = 'Smith';
+            public string $last = 'Smith';
 
-            /** @var int */
-            public $age = 21;
+            public int $age = 21;
 
-            /** @var ?object */
-            public $wife;
+            public ?object $wife = null;
 
             /** @var object[] */
-            public $family = [];
+            public array $family = [];
 
-            /** @var int */
-            private $salary = 123;
+            private int $salary = 123;
 
             public function getSalary(): int
             {
@@ -106,11 +96,9 @@ trait ProvObjectPropertiesTrait
         $jsmith->marry($esmith);
 
         $registry = new class() {
-            /** @var array */
-            public $persons = [];
+            public array $persons = [];
 
-            /** @var array */
-            public $families = [];
+            public array $families = [];
 
             public function addFamily(string $key, array $persons): void
             {
@@ -206,20 +194,15 @@ trait ProvObjectPropertiesTrait
     public static function provObjectPropertiesEqualButNotIdenticalTo(): iterable
     {
         $object = new class() {
-            /** @var string */
-            public $emptyString = '';
+            public string $emptyString = '';
 
-            /** @var mixed */
-            public $null;
+            public mixed $null = null;
 
-            /** @var string */
-            public $string123 = '123';
+            public string $string123 = '123';
 
-            /** @var int */
-            public $int321 = 321;
+            public int $int321 = 321;
 
-            /** @var bool */
-            public $boolFalse = false;
+            public bool $boolFalse = false;
         };
 
         yield basename(__FILE__).':'.__LINE__ => [
@@ -247,34 +230,25 @@ trait ProvObjectPropertiesTrait
     public static function provObjectPropertiesNotEqualTo(): iterable
     {
         $hbrown = new class() {
-            /** @var string */
-            public $name = 'Helen';
+            public string $name = 'Helen';
 
-            /** @var string */
-            public $last = 'Brown';
+            public string $last = 'Brown';
 
-            /** @var int */
-            public $age = 44;
+            public int $age = 44;
         };
 
         $esmith = new class() {
-            /** @var string */
-            public $name = 'Emily';
+            public string $name = 'Emily';
 
-            /** @var string */
-            public $last = 'Smith';
+            public string $last = 'Smith';
 
-            /** @var int */
-            public $age = 20;
+            public int $age = 20;
 
-            /** @var mixed */
-            public $husband;
+            public mixed $husband = null;
 
-            /** @var array */
-            public $family = [];
+            public array $family = [];
 
-            /** @var int */
-            private $salary = 98;
+            private int $salary = 98;
 
             public function getSalary(): int
             {
@@ -294,23 +268,18 @@ trait ProvObjectPropertiesTrait
         };
 
         $jsmith = new class() {
-            /** @var string */
-            public $name = 'John';
+            public string $name = 'John';
 
-            /** @var string */
-            public $last = 'Smith';
+            public string $last = 'Smith';
 
-            /** @var int */
-            public $age = 21;
+            public int $age = 21;
 
-            /** @var ?object */
-            public $wife;
+            public ?object $wife = null;
 
             /** @var object[] */
-            public $family = [];
+            public array $family = [];
 
-            /** @var int */
-            private $salary = 123;
+            private int $salary = 123;
 
             public function getSalary(): int
             {
@@ -334,10 +303,10 @@ trait ProvObjectPropertiesTrait
 
         $registry = new class() {
             /** @var array<object> */
-            public $persons = [];
+            public array $persons = [];
 
             /** @var array<array<object>> */
-            public $families = [];
+            public array $families = [];
 
             /**
              * @psalm-param array<object> $persons
