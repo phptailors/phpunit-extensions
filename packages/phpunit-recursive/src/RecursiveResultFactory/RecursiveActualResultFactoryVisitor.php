@@ -47,6 +47,13 @@ final class RecursiveActualResultFactoryVisitor implements RecursiveActualResult
      */
     private $current;
 
+    public function __construct()
+    {
+        $this->subject = null;
+        $this->result = null;
+        $this->current = null;
+    }
+
     public function begin(mixed $subject): void
     {
         $this->subject = $subject;
