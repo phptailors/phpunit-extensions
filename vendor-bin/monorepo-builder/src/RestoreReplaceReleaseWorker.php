@@ -10,15 +10,38 @@ use Symplify\MonorepoBuilder\FileSystem\ComposerJsonProvider;
 use Symplify\MonorepoBuilder\Release\Contract\ReleaseWorker\ReleaseWorkerInterface;
 use Symplify\MonorepoBuilder\Release\Exception\MissingComposerJsonException;
 use Symplify\MonorepoBuilder\Utils\VersionUtils;
-use Symplify\SmartFileSystem\SmartFileInfo;
 
-final readonly class RestoreReplaceReleaseWorker implements ReleaseWorkerInterface
+final class RestoreReplaceReleaseWorker implements ReleaseWorkerInterface
 {
+    /**
+     * @var ComposerJsonProvider
+     *
+     * @readonly
+     */
+    private $composerJsonProvider;
+
+    /**
+     * @var JsonFileManager
+     *
+     * @readonly
+     */
+    private $jsonFileManager;
+
+    /**
+     * @var VersionUtils
+     *
+     * @readonly
+     */
+    private $versionUtils;
+
     public function __construct(
-        private ComposerJsonProvider $composerJsonProvider,
-        private JsonFileManager $jsonFileManager,
-        private VersionUtils $versionUtils
+        ComposerJsonProvider $composerJsonProvider,
+        JsonFileManager $jsonFileManager,
+        VersionUtils $versionUtils
     ) {
+        $this->composerJsonProvider = $composerJsonProvider;
+        $this->jsonFileManager = $jsonFileManager;
+        $this->versionUtils = $versionUtils;
     }
 
     public function work(Version $version): void

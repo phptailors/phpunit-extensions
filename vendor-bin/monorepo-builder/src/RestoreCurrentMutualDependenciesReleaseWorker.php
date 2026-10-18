@@ -11,14 +11,46 @@ use Symplify\MonorepoBuilder\Package\PackageNamesProvider;
 use Symplify\MonorepoBuilder\Release\Contract\ReleaseWorker\ReleaseWorkerInterface;
 use Symplify\MonorepoBuilder\Utils\VersionUtils;
 
-final readonly class RestoreCurrentMutualDependenciesReleaseWorker implements ReleaseWorkerInterface
+final class RestoreCurrentMutualDependenciesReleaseWorker implements ReleaseWorkerInterface
 {
+    /**
+     * @var ComposerJsonProvider
+     *
+     * @readonly
+     */
+    private $composerJsonProvider;
+
+    /**
+     * @var DependencyUpdater
+     *
+     * @readonly
+     */
+    private $dependencyUpdater;
+
+    /**
+     * @var PackageNamesProvider
+     *
+     * @readonly
+     */
+    private $packageNamesProvider;
+
+    /**
+     * @var VarsionUtils
+     *
+     * @readonly
+     */
+    private $versionUtils;
+
     public function __construct(
-        private ComposerJsonProvider $composerJsonProvider,
-        private DependencyUpdater $dependencyUpdater,
-        private PackageNamesProvider $packageNamesProvider,
-        private VersionUtils $versionUtils
+        ComposerJsonProvider $composerJsonProvider,
+        DependencyUpdater $dependencyUpdater,
+        PackageNamesProvider $packageNamesProvider,
+        VersionUtils $versionUtils
     ) {
+        $this->composerJsonProvider = $composerJsonProvider;
+        $this->dependencyUpdater = $dependencyUpdater;
+        $this->packageNamesProvider = $packageNamesProvider;
+        $this->versionUtils = $versionUtils;
     }
 
     public function work(Version $version): void

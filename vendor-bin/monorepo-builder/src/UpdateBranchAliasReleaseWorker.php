@@ -10,13 +10,37 @@ use Symplify\MonorepoBuilder\FileSystem\ComposerJsonProvider;
 use Symplify\MonorepoBuilder\Release\Contract\ReleaseWorker\ReleaseWorkerInterface;
 use Symplify\MonorepoBuilder\Utils\VersionUtils;
 
-final readonly class UpdateBranchAliasReleaseWorker implements ReleaseWorkerInterface
+final class UpdateBranchAliasReleaseWorker implements ReleaseWorkerInterface
 {
+    /**
+     * @var DevMasterAliasUpdater
+     *
+     * @readonly
+     */
+    private $devMasterAliasUpdater;
+
+    /**
+     * @var ComposerJsonProvider
+     *
+     * @readonly
+     */
+    private $composerJsonProvider;
+
+    /**
+     * @var VersionUtils
+     *
+     * @readonly
+     */
+    private $versionUtils;
+
     public function __construct(
-        private DevMasterAliasUpdater $devMasterAliasUpdater,
-        private ComposerJsonProvider $composerJsonProvider,
-        private VersionUtils $versionUtils
+        DevMasterAliasUpdater $devMasterAliasUpdater,
+        ComposerJsonProvider $composerJsonProvider,
+        VersionUtils $versionUtils
     ) {
+        $this->devMasterAliasUpdater = $devMasterAliasUpdater;
+        $this->composerJsonProvider = $composerJsonProvider;
+        $this->versionUtils = $versionUtils;
     }
 
     public function work(Version $version): void
