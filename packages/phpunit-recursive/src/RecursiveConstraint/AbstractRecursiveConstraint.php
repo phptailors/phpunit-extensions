@@ -157,10 +157,7 @@ abstract class AbstractRecursiveConstraint extends Constraint
         return $this->comparator->compare($expectValue, $actualValue);
     }
 
-    /**
-     * @return mixed
-     */
-    private function unwrapResult(bool $actual, mixed $result)
+    private function unwrapResult(bool $actual, mixed $result): mixed
     {
         if (is_array($result) || is_iterable($result) && $result instanceof ResultInterface) {
             /** @psalm-var ArrayLike $result */

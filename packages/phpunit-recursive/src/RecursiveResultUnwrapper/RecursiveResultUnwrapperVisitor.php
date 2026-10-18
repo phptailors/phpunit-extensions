@@ -76,11 +76,9 @@ final class RecursiveResultUnwrapperVisitor implements RecursiveResultUnwrapperV
     }
 
     /**
-     * @return null|array|ResultInterface
-     *
      * @psalm-mutation-free
      */
-    public function result()
+    public function result(): array|ResultInterface|null
     {
         return $this->result;
     }

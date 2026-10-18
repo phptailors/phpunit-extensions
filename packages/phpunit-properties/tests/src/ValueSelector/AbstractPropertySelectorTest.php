@@ -85,7 +85,7 @@ final class AbstractPropertySelectorTest extends TestCase
              *
              * @psalm-suppress UnusedClosureParam
              */
-            fn (mixed $subject, mixed $key) => $subject::${$key},
+            fn (mixed $subject, mixed $key): mixed => $subject::${$key},
         ];
 
         $objectPropertySelector = [
@@ -107,7 +107,7 @@ final class AbstractPropertySelectorTest extends TestCase
              * @psalm-param class-string $subject
              * @psalm-param array-key    $key
              */
-            fn (mixed $subject, mixed $key) => $subject->{$key},
+            fn (mixed $subject, mixed $key): mixed => $subject->{$key},
         ];
 
         yield basename(__FILE__).':'.__LINE__ => [
@@ -310,12 +310,10 @@ final class AbstractPropertySelectorTest extends TestCase
                 }
 
                 /**
-                 * @return mixed
-                 *
                  * @psalm-param SubjectType $subject
                  * @psalm-param array-key   $key
                  */
-                protected function getSubjectAttribute(mixed $subject, mixed $key)
+                protected function getSubjectAttribute(mixed $subject, mixed $key): mixed
                 {
                     return call_user_func($this->getSubjectAttribute, $subject, $key);
                 }

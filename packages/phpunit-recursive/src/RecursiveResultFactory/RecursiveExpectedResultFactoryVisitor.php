@@ -52,11 +52,9 @@ final class RecursiveExpectedResultFactoryVisitor implements RecursiveExpectedRe
     }
 
     /**
-     * @return mixed
-     *
      * @psalm-mutation-free
      */
-    public function result()
+    public function result(): mixed
     {
         return $this->result;
     }

@@ -29,18 +29,14 @@ interface RecursiveResultFactoryInterface
     public function supports(iterable $array, mixed $input): bool;
 
     /**
-     * @return mixed
-     *
      * @psalm-param ArrayLike $array
      */
-    public function getActualResult(iterable $array, mixed $input);
+    public function getActualResult(iterable $array, mixed $input): mixed;
 
     /**
-     * @return mixed
-     *
      * @psalm-param ArrayLike $array
      */
-    public function getExpectedResult(iterable $array);
+    public function getExpectedResult(iterable $array): mixed;
 }
 
 // vim: syntax=php sw=4 ts=4 et:

@@ -41,11 +41,9 @@ final class RecursiveResultUnwrapper implements RecursiveResultUnwrapperInterfac
     }
 
     /**
-     * @return array|ResultInterface
-     *
      * @psalm-param ArrayLike $array
      */
-    public function unwrap(bool $actual, iterable $array)
+    public function unwrap(bool $actual, iterable $array): array|ResultInterface
     {
         $this->visitor->begin($actual);
 

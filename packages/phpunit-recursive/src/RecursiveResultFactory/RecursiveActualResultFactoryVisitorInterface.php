@@ -27,10 +27,7 @@ interface RecursiveActualResultFactoryVisitorInterface extends RecursiveVisitorI
 
     public function end(): void;
 
-    /**
-     * @return mixed
-     */
-    public function result();
+    public function result(): mixed;
 }
 
 // vim: syntax=php sw=4 ts=4 et:

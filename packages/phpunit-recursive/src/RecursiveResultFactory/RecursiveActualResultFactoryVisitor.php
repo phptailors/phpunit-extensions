@@ -61,11 +61,9 @@ final class RecursiveActualResultFactoryVisitor implements RecursiveActualResult
     }
 
     /**
-     * @return mixed
-     *
      * @psalm-mutation-free
      */
-    public function result()
+    public function result(): mixed
     {
         return $this->result;
     }

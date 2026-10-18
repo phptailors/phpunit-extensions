@@ -77,11 +77,9 @@ final class RecursiveResultFactory implements RecursiveResultFactoryInterface
     }
 
     /**
-     * @return mixed
-     *
      * @psalm-param ArrayLike $array
      */
-    public function getActualResult(iterable $array, mixed $input)
+    public function getActualResult(iterable $array, mixed $input): mixed
     {
         $this->actualResultVisitor->begin($input);
 
@@ -93,11 +91,9 @@ final class RecursiveResultFactory implements RecursiveResultFactoryInterface
     }
 
     /**
-     * @return mixed
-     *
      * @psalm-param ArrayLike $array
      */
-    public function getExpectedResult(iterable $array)
+    public function getExpectedResult(iterable $array): mixed
     {
         $this->expectedResultVisitor->begin();
 

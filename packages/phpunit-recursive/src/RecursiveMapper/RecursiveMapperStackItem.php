@@ -49,21 +49,16 @@ final class RecursiveMapperStackItem implements RecursiveVisitorStackItemInterfa
     }
 
     /**
-     * @return mixed
-     *
      * @psalm-return array-key
      *
      * @psalm-mutation-free
      */
-    public function key()
+    public function key(): mixed
     {
         return $this->key;
     }
 
-    /**
-     * @return array|\ArrayAccess
-     */
-    public function result()
+    public function result(): array|\ArrayAccess
     {
         return $this->result;
     }
