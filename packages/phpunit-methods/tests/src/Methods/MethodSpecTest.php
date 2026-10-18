@@ -13,7 +13,7 @@ namespace Tailors\PHPUnit\Methods;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Small;
-use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -36,7 +36,7 @@ use PHPUnit\Framework\TestCase;
  *                               abstract: mixed,
  *                               final: mixed,
  *                               }
- * @psalm-type MethodMockFactory = \Closure(TestCase):MockObject&\ReflectionMethod
+ * @psalm-type MethodStubFactory = \Closure(TestCase):Stub&\ReflectionMethod
  */
 #[CoversClass(MethodSpec::class)]
 #[CoversClass(MethodSpecTest::class)]
@@ -254,7 +254,7 @@ final class MethodSpecTest extends TestCase
     }
 
     /**
-     * @psalm-return iterable<array-key, list{CtorArgs, MethodMockFactory, bool}>
+     * @psalm-return iterable<array-key, list{CtorArgs, MethodStubFactory, bool}>
      *
      * @codeCoverageIgnore
      */
@@ -353,7 +353,7 @@ final class MethodSpecTest extends TestCase
 
     /**
      * @psalm-param CtorArgs          $ctorArgs
-     * @psalm-param MethodMockFactory $method
+     * @psalm-param MethodStubFactory $method
      *
      * @psalm-suppress MissingThrowsDocblock
      */
@@ -465,7 +465,7 @@ final class MethodSpecTest extends TestCase
     }
 
     /**
-     * @psalm-return MockObject&\ReflectionMethod
+     * @psalm-return Stub&\ReflectionMethod
      *
      * @psalm-suppress MissingThrowsDocblock
      */
