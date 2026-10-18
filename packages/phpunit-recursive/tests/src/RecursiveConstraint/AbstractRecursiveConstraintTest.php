@@ -75,7 +75,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
 
         $valueSelector = new DummyValueSelector(false, false, 'a tree', 'apples');
 
-        /** @psalm-var class-string<\Traversable<array-key,mixed>> */
+        /** @psalm-var interface-string<\Traversable<array-key,mixed>> */
         $iterable = \Traversable::class;
         $expectations = new DummyValueSelectorWrapper($valueSelector, $this->createStub($iterable));
 
@@ -364,7 +364,9 @@ final class AbstractRecursiveConstraintTest extends TestCase
         ?RecursiveResultUnwrapperInterface $recursiveResultUnwrapper = null
     ): DummyAbstractRecursiveConstraint {
         if (null === $expected) {
-            $expected = $this->createStub(\Traversable::class);
+            /** @psalm-var interface-string<\Traversable<array-key, mixed>> $iterable */
+            $iterable = \Traversable::class;
+            $expected = $this->createStub($iterable);
         }
 
         if (null === $comparator) {
