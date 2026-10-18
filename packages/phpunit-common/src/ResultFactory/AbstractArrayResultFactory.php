@@ -50,7 +50,7 @@ abstract class AbstractArrayResultFactory implements ResultFactoryInterface
      */
     final public function getResult(bool $actual, $input): ResultInterface
     {
-        $this->assertSupports($input, 2);
+        self::assertSupports($input, 2);
 
         return $this->getArrayResult($actual, $input);
     }

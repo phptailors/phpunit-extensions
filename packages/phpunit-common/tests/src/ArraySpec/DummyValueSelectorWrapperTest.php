@@ -53,7 +53,7 @@ final class DummyValueSelectorWrapperTest extends TestCase
      */
     public function testExtendsArrayObject(): void
     {
-        $this->assertInstanceOf(\ArrayObject::class, self::createDummyValueSelectorWrapper([]));
+        self::assertInstanceOf(\ArrayObject::class, self::createDummyValueSelectorWrapper([]));
     }
 
     /**
@@ -61,7 +61,7 @@ final class DummyValueSelectorWrapperTest extends TestCase
      */
     public function testImplementsValueSelectorWrapperInterface(): void
     {
-        $this->assertInstanceOf(ValueSelectorWrapperInterface::class, self::createDummyValueSelectorWrapper([]));
+        self::assertInstanceOf(ValueSelectorWrapperInterface::class, self::createDummyValueSelectorWrapper([]));
     }
 
     /**
@@ -69,7 +69,7 @@ final class DummyValueSelectorWrapperTest extends TestCase
      */
     public function testImplementsComparatorAwareComplementInterface(): void
     {
-        $this->assertInstanceOf(ComparatorAwareComplementInterface::class, self::createDummyValueSelectorWrapper([]));
+        self::assertInstanceOf(ComparatorAwareComplementInterface::class, self::createDummyValueSelectorWrapper([]));
     }
 
     /**
@@ -111,10 +111,10 @@ final class DummyValueSelectorWrapperTest extends TestCase
 
         $dummyValueSelectorWrapper = self::createDummyValueSelectorWrapper($array, $valueSelector);
 
-        $this->assertSame($valueSelector, $dummyValueSelectorWrapper->getValueSelector());
+        self::assertSame($valueSelector, $dummyValueSelectorWrapper->getValueSelector());
 
         $expect = is_array($array) ? $array : iterator_to_array($array);
-        $this->assertSame($expect, iterator_to_array($dummyValueSelectorWrapper));
+        self::assertSame($expect, iterator_to_array($dummyValueSelectorWrapper));
     }
 
     /**
@@ -129,6 +129,6 @@ final class DummyValueSelectorWrapperTest extends TestCase
 
         $comparator = new DummyComparator(false, 'similar to');
 
-        $this->assertSame('rainbow with colors similar to the specified ones', $dummyWrapper->complement($comparator));
+        self::assertSame('rainbow with colors similar to the specified ones', $dummyWrapper->complement($comparator));
     }
 }

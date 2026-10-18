@@ -32,7 +32,7 @@ final class AbstractArrayObjectTest extends TestCase
     public function testExtendsArrayObject(): void
     {
         $arrayObject = $this->createStub(AbstractArrayObject::class);
-        $this->assertInstanceOf(\ArrayObject::class, $arrayObject);
+        self::assertInstanceOf(\ArrayObject::class, $arrayObject);
     }
 
     /**
@@ -69,7 +69,7 @@ final class AbstractArrayObjectTest extends TestCase
         };
 
         $expect = is_array($array) ? $array : iterator_to_array($array);
-        $this->assertSame($expect, iterator_to_array($arrayObject));
+        self::assertSame($expect, iterator_to_array($arrayObject));
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

@@ -119,9 +119,9 @@ final class MethodSpecFactory implements MethodSpecFactoryInterface
         ?int &$access = null
     ): void {
         $this->handleBoolModifier('abstract', $matches, $abstract);
-        $this->assertAbstractFinalConsistent($string, $matches, $abstract, $final);
+        self::assertAbstractFinalConsistent($string, $matches, $abstract, $final);
         $this->handleBoolModifier('final', $matches, $final);
-        $this->assertAbstractFinalConsistent($string, $matches, $abstract, $final);
+        self::assertAbstractFinalConsistent($string, $matches, $abstract, $final);
         $this->handleBoolModifier('static', $matches, $static);
         $this->handleAccessModifier($matches, $access);
     }

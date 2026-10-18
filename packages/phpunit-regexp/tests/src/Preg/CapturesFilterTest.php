@@ -210,7 +210,7 @@ final class CapturesFilterTest extends TestCase
     public function testIsCapture(array $ctorArgs, $value, $expect): void
     {
         $filter = new CapturesFilter(...$ctorArgs);
-        $this->assertSame($expect, $filter->accepts($value));
+        self::assertSame($expect, $filter->accepts($value));
     }
 
     /**
@@ -290,7 +290,7 @@ final class CapturesFilterTest extends TestCase
     public function testFilter(array $ctorArgs, array $array, $expect): void
     {
         $filter = new CapturesFilter(...$ctorArgs);
-        $this->assertSame($expect, $filter->filter($array));
+        self::assertSame($expect, $filter->filter($array));
     }
 }
 

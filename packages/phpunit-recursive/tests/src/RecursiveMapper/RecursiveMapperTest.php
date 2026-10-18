@@ -73,7 +73,7 @@ final class RecursiveMapperTest extends TestCase
             ->willReturn(['out' => 'OUT'])
         ;
 
-        $this->assertSame(['out' => 'OUT'], $recursiveMapper->map(['in' => 'IN']));
+        self::assertSame(['out' => 'OUT'], $recursiveMapper->map(['in' => 'IN']));
     }
 
     /**
@@ -124,7 +124,7 @@ final class RecursiveMapperTest extends TestCase
             ->willReturn(['out' => 'OUT'])
         ;
 
-        $this->assertSame(['out' => 'OUT'], $recursiveMapper->map(['in' => 'IN'], $arrayMapper, $valueMapper));
+        self::assertSame(['out' => 'OUT'], $recursiveMapper->map(['in' => 'IN'], $arrayMapper, $valueMapper));
     }
 
     /**
@@ -156,8 +156,8 @@ final class RecursiveMapperTest extends TestCase
             ->willReturn(null)
         ;
 
-        $this->expectException(InternalErrorException::class);
-        $this->expectExceptionMessageMatches('/^(?:\\$\w+(?:->\w+)*)->result\(\) returned null$/');
+        self::expectException(InternalErrorException::class);
+        self::expectExceptionMessageMatches('/^(?:\\$\w+(?:->\w+)*)->result\(\) returned null$/');
 
         $recursiveMapper->map([]);
     }
@@ -169,7 +169,7 @@ final class RecursiveMapperTest extends TestCase
     {
         $recursiveMapper = RecursiveMapper::create();
 
-        $this->assertSame(['x' => 'X'], $recursiveMapper->map(['x' => 'X']));
+        self::assertSame(['x' => 'X'], $recursiveMapper->map(['x' => 'X']));
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

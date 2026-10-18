@@ -41,7 +41,7 @@ final class RecursivelyKsortedArrayExpectationsTest extends TestCase
      */
     public function testCreateReturnsAnInstance(): void
     {
-        $this->assertInstanceOf(RecursivelyKsortedArrayExpectations::class, RecursivelyKsortedArrayExpectations::create([]));
+        self::assertInstanceOf(RecursivelyKsortedArrayExpectations::class, RecursivelyKsortedArrayExpectations::create([]));
     }
 
     /**
@@ -49,7 +49,7 @@ final class RecursivelyKsortedArrayExpectationsTest extends TestCase
      */
     public function testExtendsAbstractArraySpec(): void
     {
-        $this->assertInstanceOf(AbstractArrayExpectations::class, RecursivelyKsortedArrayExpectations::create([]));
+        self::assertInstanceOf(AbstractArrayExpectations::class, RecursivelyKsortedArrayExpectations::create([]));
     }
 
     /**
@@ -57,7 +57,7 @@ final class RecursivelyKsortedArrayExpectationsTest extends TestCase
      */
     public function testImplementsResultFactoryWrapperInterface(): void
     {
-        $this->assertInstanceOf(ResultFactoryWrapperInterface::class, RecursivelyKsortedArrayExpectations::create([]));
+        self::assertInstanceOf(ResultFactoryWrapperInterface::class, RecursivelyKsortedArrayExpectations::create([]));
     }
 
     /**
@@ -65,7 +65,7 @@ final class RecursivelyKsortedArrayExpectationsTest extends TestCase
      */
     public function testImplementsComparatorAwareComplementInterface(): void
     {
-        $this->assertInstanceOf(ComparatorAwareComplementInterface::class, RecursivelyKsortedArrayExpectations::create([]));
+        self::assertInstanceOf(ComparatorAwareComplementInterface::class, RecursivelyKsortedArrayExpectations::create([]));
     }
 
     /**
@@ -228,7 +228,7 @@ final class RecursivelyKsortedArrayExpectationsTest extends TestCase
                 // @codeCoverageIgnoreEnd
             };
 
-        $this->assertSame($expect['array'], $mapper->map($expectations, $unwrapper));
+        self::assertSame($expect['array'], $mapper->map($expectations, $unwrapper));
     }
 
     /**
@@ -262,7 +262,7 @@ final class RecursivelyKsortedArrayExpectationsTest extends TestCase
         $expectations = RecursivelyKsortedArrayExpectations::create([]);
         $comparator = new DummyComparator(false, 'similar to');
 
-        $this->assertSame('an array similar to the specified one when ksorted recursively', $expectations->complement($comparator));
+        self::assertSame('an array similar to the specified one when ksorted recursively', $expectations->complement($comparator));
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

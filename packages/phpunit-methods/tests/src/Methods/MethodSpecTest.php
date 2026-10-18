@@ -246,11 +246,11 @@ final class MethodSpecTest extends TestCase
     public function testConstructor(array $ctorArgs, array $expect): void
     {
         $spec = new MethodSpec(...$ctorArgs);
-        $this->assertSame($expect['name'], $spec->getName());
-        $this->assertSame($expect['static'], $spec->getStatic());
-        $this->assertSame($expect['access'], $spec->getAccess());
-        $this->assertSame($expect['abstract'], $spec->getAbstract());
-        $this->assertSame($expect['final'], $spec->getFinal());
+        self::assertSame($expect['name'], $spec->getName());
+        self::assertSame($expect['static'], $spec->getStatic());
+        self::assertSame($expect['access'], $spec->getAccess());
+        self::assertSame($expect['abstract'], $spec->getAbstract());
+        self::assertSame($expect['final'], $spec->getFinal());
     }
 
     /**
@@ -378,7 +378,7 @@ final class MethodSpecTest extends TestCase
     public function testMatches(array $ctorArgs, \Closure $method, bool $expect): void
     {
         $spec = new MethodSpec(...$ctorArgs);
-        $this->assertSame($expect, $spec->matches($method($this)));
+        self::assertSame($expect, $spec->matches($method($this)));
     }
 
     /**
@@ -479,7 +479,7 @@ final class MethodSpecTest extends TestCase
     public function testToString(array $ctorArgs, string $expect): void
     {
         $spec = new MethodSpec(...$ctorArgs);
-        $this->assertSame($expect, $spec->toString());
+        self::assertSame($expect, $spec->toString());
     }
 
     /**

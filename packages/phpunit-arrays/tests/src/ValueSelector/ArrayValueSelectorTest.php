@@ -221,8 +221,8 @@ final class ArrayValueSelectorTest extends TestCase
             AbstractValueSelector::class,
             gettype(123)
         );
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage($message);
+        self::expectException(InvalidArgumentException::class);
+        self::expectExceptionMessage($message);
 
         $selector->select(123, 'foo');
     }

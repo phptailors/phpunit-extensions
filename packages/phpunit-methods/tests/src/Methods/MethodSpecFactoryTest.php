@@ -159,11 +159,11 @@ final class MethodSpecFactoryTest extends TestCase
     {
         $factory = new MethodSpecFactory();
         $spec = $factory->fromString($string);
-        $this->assertSame($expect['name'], $spec->getName());
-        $this->assertSame($expect['static'], $spec->getStatic());
-        $this->assertSame($expect['access'], $spec->getAccess());
-        $this->assertSame($expect['abstract'], $spec->getAbstract());
-        $this->assertSame($expect['final'], $spec->getFinal());
+        self::assertSame($expect['name'], $spec->getName());
+        self::assertSame($expect['static'], $spec->getStatic());
+        self::assertSame($expect['access'], $spec->getAccess());
+        self::assertSame($expect['abstract'], $spec->getAbstract());
+        self::assertSame($expect['final'], $spec->getFinal());
     }
 
     /**
@@ -303,8 +303,8 @@ final class MethodSpecFactoryTest extends TestCase
     {
         $factory = new MethodSpecFactory();
 
-        $this->expectException(MethodSpecSyntaxError::class);
-        $this->expectExceptionMessage(sprintf('syntax error at "%s"', $at));
+        self::expectException(MethodSpecSyntaxError::class);
+        self::expectExceptionMessage(sprintf('syntax error at "%s"', $at));
 
         $factory->fromString($string);
     }

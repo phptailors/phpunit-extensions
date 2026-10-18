@@ -38,7 +38,7 @@ final class ObjectPropertiesSelectionTest extends TestCase
      */
     public function testExtendsAbstractArraySelectionSpec(): void
     {
-        $this->assertInstanceOf(AbstractArraySelection::class, new ObjectPropertiesSelection([]));
+        self::assertInstanceOf(AbstractArraySelection::class, new ObjectPropertiesSelection([]));
     }
 
     /**
@@ -46,7 +46,7 @@ final class ObjectPropertiesSelectionTest extends TestCase
      */
     public function testImplementsResultFactoryWrapperInterface(): void
     {
-        $this->assertInstanceOf(ResultFactoryWrapperInterface::class, new ObjectPropertiesSelection([]));
+        self::assertInstanceOf(ResultFactoryWrapperInterface::class, new ObjectPropertiesSelection([]));
     }
 
     /**
@@ -54,7 +54,7 @@ final class ObjectPropertiesSelectionTest extends TestCase
      */
     public function testImplementValueSelectorWrapperInterface(): void
     {
-        $this->assertInstanceOf(ValueSelectorWrapperInterface::class, new ObjectPropertiesSelection([]));
+        self::assertInstanceOf(ValueSelectorWrapperInterface::class, new ObjectPropertiesSelection([]));
     }
 
     /**
@@ -86,11 +86,11 @@ final class ObjectPropertiesSelectionTest extends TestCase
     {
         $selection = new ObjectPropertiesSelection($array);
 
-        $this->assertInstanceOf(ObjectPropertiesFactory::class, $selection->getResultFactory());
-        $this->assertInstanceOf(ObjectPropertySelector::class, $selection->getValueSelector());
+        self::assertInstanceOf(ObjectPropertiesFactory::class, $selection->getResultFactory());
+        self::assertInstanceOf(ObjectPropertySelector::class, $selection->getValueSelector());
 
         $expect = is_array($array) ? $array : iterator_to_array($array);
-        $this->assertSame($expect, iterator_to_array($selection));
+        self::assertSame($expect, iterator_to_array($selection));
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

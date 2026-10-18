@@ -95,12 +95,12 @@ final class DummyRecursiveVisitorTest extends TestCase
 
         // Mostly for code coverage.
         $visitor = new DummyRecursiveVisitor(...$ctor);
-        $this->assertSame($expect['enter'], $visitor->enter($node, $stack));
+        self::assertSame($expect['enter'], $visitor->enter($node, $stack));
         array_push($stack, $visitor->makeStackItem($node, 'foo', $stack));
-        $this->assertNull($visitor->visit($node['foo'], $stack, true));
-        $this->assertNull($visitor->freeStackItem(array_pop($stack), $stack));
-        $this->assertNull($visitor->leave($node, $stack, true));
-        $this->assertSame($expect['cycle'], $visitor->cycle([], []));
+        self::assertNull($visitor->visit($node['foo'], $stack, true));
+        self::assertNull($visitor->freeStackItem(array_pop($stack), $stack));
+        self::assertNull($visitor->leave($node, $stack, true));
+        self::assertSame($expect['cycle'], $visitor->cycle([], []));
 
         $trace = [
             ['func' => 'enter', 'node' => $node, 'path' => []],
@@ -110,7 +110,7 @@ final class DummyRecursiveVisitorTest extends TestCase
             ['func' => 'leave', 'node' => $node, 'path' => []],
             ['func' => 'cycle', 'node' => [], 'path' => []],
         ];
-        $this->assertSame($trace, $visitor->trace());
+        self::assertSame($trace, $visitor->trace());
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

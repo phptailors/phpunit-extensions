@@ -51,7 +51,7 @@ final class DummyResultFactoryWrapperTest extends TestCase
      */
     public function testExtendsArrayObject(): void
     {
-        $this->assertInstanceOf(\ArrayObject::class, self::createDummyResultFactoryWrapper([]));
+        self::assertInstanceOf(\ArrayObject::class, self::createDummyResultFactoryWrapper([]));
     }
 
     /**
@@ -59,7 +59,7 @@ final class DummyResultFactoryWrapperTest extends TestCase
      */
     public function testImplementsResultFactoryWrapperInterface(): void
     {
-        $this->assertInstanceOf(ResultFactoryWrapperInterface::class, self::createDummyResultFactoryWrapper([]));
+        self::assertInstanceOf(ResultFactoryWrapperInterface::class, self::createDummyResultFactoryWrapper([]));
     }
 
     /**
@@ -101,9 +101,9 @@ final class DummyResultFactoryWrapperTest extends TestCase
 
         $dummyResultFactoryWrapper = self::createDummyResultFactoryWrapper($array, $resultFactory);
 
-        $this->assertSame($resultFactory, $dummyResultFactoryWrapper->getResultFactory());
+        self::assertSame($resultFactory, $dummyResultFactoryWrapper->getResultFactory());
 
         $expect = is_array($array) ? $array : iterator_to_array($array);
-        $this->assertSame($expect, iterator_to_array($dummyResultFactoryWrapper));
+        self::assertSame($expect, iterator_to_array($dummyResultFactoryWrapper));
     }
 }

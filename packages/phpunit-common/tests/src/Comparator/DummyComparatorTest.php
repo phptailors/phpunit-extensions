@@ -31,12 +31,12 @@ final class DummyComparatorTest extends TestCase
     {
         // Mostly for code coverage.
         $comparator = new DummyComparator(false, 'foo');
-        $this->assertFalse($comparator->compare('a', 'b'));
-        $this->assertSame('foo', $comparator->adjective());
+        self::assertFalse($comparator->compare('a', 'b'));
+        self::assertSame('foo', $comparator->adjective());
 
         $comparator = new DummyComparator(true, 'bar');
-        $this->assertTrue($comparator->compare('c', 'c'));
-        $this->assertSame('bar', $comparator->adjective());
+        self::assertTrue($comparator->compare('c', 'c'));
+        self::assertSame('bar', $comparator->adjective());
     }
 }
 // vim: syntax=php sw=4 ts=4 et:

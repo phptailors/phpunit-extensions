@@ -35,7 +35,7 @@ final class AbstractArrayExpectationsTest extends TestCase
     public function testExtendsAbstractArrayObject(): void
     {
         $arrayExpectations = $this->createStub(AbstractArrayExpectations::class);
-        $this->assertInstanceOf(AbstractArrayObject::class, $arrayExpectations);
+        self::assertInstanceOf(AbstractArrayObject::class, $arrayExpectations);
     }
 
     /**
@@ -44,7 +44,7 @@ final class AbstractArrayExpectationsTest extends TestCase
     public function testImplementsResultFactoryWrapperInterface(): void
     {
         $arrayExpectations = $this->createStub(AbstractArrayExpectations::class);
-        $this->assertInstanceOf(ResultFactoryWrapperInterface::class, $arrayExpectations);
+        self::assertInstanceOf(ResultFactoryWrapperInterface::class, $arrayExpectations);
     }
 
     /**
@@ -82,10 +82,10 @@ final class AbstractArrayExpectationsTest extends TestCase
     {
         $arrayExpectations = self::getTestableObject($resultFactory, $array);
 
-        $this->assertSame($resultFactory, $arrayExpectations->getResultFactory());
+        self::assertSame($resultFactory, $arrayExpectations->getResultFactory());
 
         $expect = is_array($array) ? $array : iterator_to_array($array);
-        $this->assertSame($expect, iterator_to_array($arrayExpectations));
+        self::assertSame($expect, iterator_to_array($arrayExpectations));
     }
 
     /**

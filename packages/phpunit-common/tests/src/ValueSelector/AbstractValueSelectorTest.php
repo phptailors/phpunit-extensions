@@ -171,30 +171,30 @@ final class AbstractValueSelectorTest extends TestCase
         $selector = self::getObject($ctorArgs);
 
         if (null !== $subject) {
-            $this->assertSame($subject['return'], $selector->subject());
+            self::assertSame($subject['return'], $selector->subject());
         }
 
         if (null !== $selectable) {
-            $this->assertSame($selectable['return'], $selector->selectable());
+            self::assertSame($selectable['return'], $selector->selectable());
         }
 
         if (null !== $supports) {
-            $this->assertSame($supports['return'], $selector->supports(...$supports['args']));
+            self::assertSame($supports['return'], $selector->supports(...$supports['args']));
         }
 
         if (null !== $select) {
             $retval = null;
             $args = array_merge($select['args'], [&$retval]);
             if (array_key_exists('return', $select)) {
-                $this->assertSame($select['return'], $selector->select(...$args));
+                self::assertSame($select['return'], $selector->select(...$args));
                 if (array_key_exists('retval', $select)) {
-                    $this->assertSame($select['retval'], $retval);
+                    self::assertSame($select['retval'], $retval);
                 }
             }
 
             if (array_key_exists('exception', $select)) {
-                $this->expectException(InvalidArgumentException::class);
-                $this->expectExceptionMessage($select['exception']);
+                self::expectException(InvalidArgumentException::class);
+                self::expectExceptionMessage($select['exception']);
 
                 $selector->select(...$args);
             }

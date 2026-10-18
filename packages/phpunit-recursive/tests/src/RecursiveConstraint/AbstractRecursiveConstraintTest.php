@@ -59,7 +59,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
     public function testExtendsConstraint(): void
     {
         $constraint = $this->createDummyConstraint();
-        $this->assertInstanceOf(Constraint::class, $constraint);
+        self::assertInstanceOf(Constraint::class, $constraint);
     }
 
     /**
@@ -75,7 +75,7 @@ final class AbstractRecursiveConstraintTest extends TestCase
 
         $constraint = $this->createDummyConstraint($expectations, $comparator);
 
-        $this->assertSame('is a tree with apples having colors similar to the specified ones', $constraint->toString());
+        self::assertSame('is a tree with apples having colors similar to the specified ones', $constraint->toString());
     }
 
     /**
@@ -263,14 +263,14 @@ final class AbstractRecursiveConstraintTest extends TestCase
     public function testEvaluate(Constraint $constraint, array $args, array $expect): void
     {
         if (array_key_exists('exception', $expect) && array_key_exists('message', $expect)) {
-            $this->expectException($expect['exception']);
-            $this->expectExceptionMessage($expect['message']);
+            self::expectException($expect['exception']);
+            self::expectExceptionMessage($expect['message']);
         }
 
         $actual = $constraint->evaluate(...$args);
 
         if (array_key_exists('return', $expect)) {
-            $this->assertSame($expect['return'], $actual);
+            self::assertSame($expect['return'], $actual);
         }
     }
 
@@ -338,10 +338,10 @@ final class AbstractRecursiveConstraintTest extends TestCase
 
         $constraint = $this->createDummyConstraint($expectations, null, $recursiveResultFactory);
 
-        $this->expectException(ExpectationFailedException::class);
-        $this->expectExceptionMessage('Failed asserting that \'value\' satisfies the recursive constraint');
+        self::expectException(ExpectationFailedException::class);
+        self::expectExceptionMessage('Failed asserting that \'value\' satisfies the recursive constraint');
 
-        $this->assertNull($constraint->evaluate('value'));
+        self::assertNull($constraint->evaluate('value'));
     }
 
     /**
