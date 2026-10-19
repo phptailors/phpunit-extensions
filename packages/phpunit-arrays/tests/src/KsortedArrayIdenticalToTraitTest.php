@@ -23,8 +23,6 @@ use Tailors\PHPUnit\Constraint\ProvKsortedArrayTrait;
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
- *
- * @psalm-type CtorArgs = list{0: array, 1?: int}
  */
 final class KsortedArrayIdenticalToTraitTest extends TestCase
 {
@@ -32,7 +30,7 @@ final class KsortedArrayIdenticalToTraitTest extends TestCase
     use ProvKsortedArrayTrait;
 
     /**
-     * @psalm-return iterable<string, array{expect: array, actual: mixed}>
+     * @psalm-return iterable<string, array{expect: array, actual: mixed, flags?: int}>
      *
      * @codeCoverageIgnore
      */
@@ -46,12 +44,12 @@ final class KsortedArrayIdenticalToTraitTest extends TestCase
             yield $key => [
                 'expect' => $case['expect'],
                 'actual' => $case['actual'],
-            ];
+            ] + (array_key_exists('flags', $case) ? ['flags' => $case['flags']] : []);
         }
     }
 
     /**
-     * @psalm-return iterable<string, array{expect: array, actual: mixed}>
+     * @psalm-return iterable<string, array{expect: array, actual: mixed, flags?: int}>
      *
      * @codeCoverageIgnore
      */
@@ -67,7 +65,7 @@ final class KsortedArrayIdenticalToTraitTest extends TestCase
             yield $key => [
                 'expect' => $case['expect'],
                 'actual' => $case['actual'],
-            ];
+            ] + (array_key_exists('flags', $case) ? ['flags' => $case['flags']] : []);
         }
     }
 
@@ -78,9 +76,13 @@ final class KsortedArrayIdenticalToTraitTest extends TestCase
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testKsortedArrayIdenticalToSucceeds(array $expect, mixed $actual): void
+    public function testKsortedArrayIdenticalToSucceeds(array $expect, mixed $actual, ?int $flags = null): void
     {
-        self::assertThat($actual, self::ksortedArrayIdenticalTo($expect));
+        if (null === $flags) {
+            self::assertThat($actual, self::ksortedArrayIdenticalTo($expect));
+        } else {
+            self::assertThat($actual, self::ksortedArrayIdenticalTo($expect, $flags));
+        }
     }
 
     /**
@@ -90,9 +92,13 @@ final class KsortedArrayIdenticalToTraitTest extends TestCase
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertKsortedArrayIdenticalToSucceeds(array $expect, mixed $actual): void
+    public function testAssertKsortedArrayIdenticalToSucceeds(array $expect, mixed $actual, ?int $flags = null): void
     {
-        self::assertKsortedArrayIdenticalTo($expect, $actual);
+        if (null === $flags) {
+            self::assertKsortedArrayIdenticalTo($expect, $actual);
+        } else {
+            self::assertKsortedArrayIdenticalTo($expect, $actual, '', $flags);
+        }
     }
 
     /**
@@ -102,9 +108,13 @@ final class KsortedArrayIdenticalToTraitTest extends TestCase
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testNotKsortedArrayIdenticalToSucceeds(array $expect, mixed $actual): void
+    public function testNotKsortedArrayIdenticalToSucceeds(array $expect, mixed $actual, ?int $flags = null): void
     {
-        self::assertThat($actual, self::logicalNot(self::ksortedArrayIdenticalTo($expect)));
+        if (null === $flags) {
+            self::assertThat($actual, self::logicalNot(self::ksortedArrayIdenticalTo($expect)));
+        } else {
+            self::assertThat($actual, self::logicalNot(self::ksortedArrayIdenticalTo($expect, $flags)));
+        }
     }
 
     /**
@@ -114,9 +124,13 @@ final class KsortedArrayIdenticalToTraitTest extends TestCase
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertNotKsortedArrayIdenticalToSucceeds(array $expect, mixed $actual): void
+    public function testAssertNotKsortedArrayIdenticalToSucceeds(array $expect, mixed $actual, ?int $flags = null): void
     {
-        self::assertNotKsortedArrayIdenticalTo($expect, $actual);
+        if (null === $flags) {
+            self::assertNotKsortedArrayIdenticalTo($expect, $actual);
+        } else {
+            self::assertNotKsortedArrayIdenticalTo($expect, $actual, '', $flags);
+        }
     }
 
     /**
@@ -127,7 +141,7 @@ final class KsortedArrayIdenticalToTraitTest extends TestCase
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertKsortedArrayIdenticalToFails(array $expect, mixed $actual, string $string): void
+    public function testAssertKsortedArrayIdenticalToFails(array $expect, mixed $actual, string $string, ?int $flags = null): void
     {
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that '.preg_quote($string, '/').' is an array '.
@@ -135,7 +149,11 @@ final class KsortedArrayIdenticalToTraitTest extends TestCase
         $this->expectException(ExpectationFailedException::class);
         $this->expectExceptionMessageMatches($regexp);
 
-        self::assertKsortedArrayIdenticalTo($expect, $actual, 'Lorem ipsum.');
+        if (null === $flags) {
+            self::assertKsortedArrayIdenticalTo($expect, $actual, 'Lorem ipsum.');
+        } else {
+            self::assertKsortedArrayIdenticalTo($expect, $actual, 'Lorem ipsum.', $flags);
+        }
     }
 
     /**
@@ -145,7 +163,7 @@ final class KsortedArrayIdenticalToTraitTest extends TestCase
      *
      * @psalm-suppress MissingThrowsDocblock
      */
-    public function testAssertNotKsortedArrayIdenticalToFails(array $expect, mixed $actual, string $string): void
+    public function testAssertNotKsortedArrayIdenticalToFails(array $expect, mixed $actual, string $string, ?int $flags = null): void
     {
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that '.preg_quote($string, '/').' fails to be an array '.
@@ -153,7 +171,11 @@ final class KsortedArrayIdenticalToTraitTest extends TestCase
         $this->expectException(ExpectationFailedException::class);
         $this->expectExceptionMessageMatches($regexp);
 
-        self::assertNotKsortedArrayIdenticalTo($expect, $actual, 'Lorem ipsum.');
+        if (null === $flags) {
+            self::assertNotKsortedArrayIdenticalTo($expect, $actual, 'Lorem ipsum.');
+        } else {
+            self::assertNotKsortedArrayIdenticalTo($expect, $actual, 'Lorem ipsum.', $flags);
+        }
     }
 }
 
