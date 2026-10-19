@@ -121,7 +121,7 @@ final class RecursiveActualResultFactoryStackItemTest extends TestCase
                 'node'    => ['n' => 'N'],
                 'key'     => '',
                 'subject' => null,
-                'result'  => ['r' => 'R', null => 'V'],
+                'result'  => ['r' => 'R', '' => 'V'],
             ],
         ];
 
