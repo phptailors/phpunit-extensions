@@ -825,8 +825,8 @@ Synopsis:
   function assertRecursivelyKsortedArrayIdenticalTo(array $expected, mixed $actual[, string $message = ''[, int $flags = SORT_REGULAR]])
 
 Reports an error identified by ``$message`` if ``$actual`` is not identical to
-``$expected`` one when key-sorted (tested with ``===`` operator). If
-``$actual`` is not an array, the constraint fails.
+``$expected`` one when key-sorted **recursively** (tested with ``===`` operator).
+If ``$actual`` is not an array, the constraint fails.
 
 The arguments are:
 
