@@ -25,10 +25,8 @@ final class PushRestoredDevReleaseWorker implements ReleaseWorkerInterface
      */
     private $versionUtils;
 
-    public function __construct(
-        ProcessRunner $processRunner,
-        VersionUtils $versionUtils,
-    ) {
+    public function __construct(ProcessRunner $processRunner, VersionUtils $versionUtils)
+    {
         $this->processRunner = $processRunner;
         $this->versionUtils = $versionUtils;
     }
