@@ -1888,8 +1888,8 @@ is not an array, the constraint fails.</p>
 </pre></div>
 </div>
 <p>Reports an error identified by <code class="docutils literal notranslate"><span class="pre">$message</span></code> if <code class="docutils literal notranslate"><span class="pre">$actual</span></code> is not identical to
-<code class="docutils literal notranslate"><span class="pre">$expected</span></code> one when key-sorted (tested with <code class="docutils literal notranslate"><span class="pre">===</span></code> operator). If
-<code class="docutils literal notranslate"><span class="pre">$actual</span></code> is not an array, the constraint fails.</p>
+<code class="docutils literal notranslate"><span class="pre">$expected</span></code> one when key-sorted <strong>recursively</strong> (tested with <code class="docutils literal notranslate"><span class="pre">===</span></code> operator).
+If <code class="docutils literal notranslate"><span class="pre">$actual</span></code> is not an array, the constraint fails.</p>
 <p>The arguments are:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">$expected</span></code> - an array of expected values,</p></li>
