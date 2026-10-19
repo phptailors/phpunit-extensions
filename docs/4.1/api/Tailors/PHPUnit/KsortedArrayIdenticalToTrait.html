@@ -115,7 +115,7 @@
                     static&nbsp;void
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_assertKsortedArrayIdenticalTo">assertKsortedArrayIdenticalTo</a>(array $expected, mixed $actual, string $message = &#039;&#039;)
+                    <a href="#method_assertKsortedArrayIdenticalTo">assertKsortedArrayIdenticalTo</a>(array $expected, mixed $actual, string $message = &#039;&#039;, int $flags = SORT_REGULAR)
         
                                             <p><p>Asserts that <em>$actual</em> is an array identical to <em>$expected</em> when key-sorted.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -125,7 +125,7 @@
                     static&nbsp;void
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_assertNotKsortedArrayIdenticalTo">assertNotKsortedArrayIdenticalTo</a>(array $expected, mixed $actual, string $message = &#039;&#039;)
+                    <a href="#method_assertNotKsortedArrayIdenticalTo">assertNotKsortedArrayIdenticalTo</a>(array $expected, mixed $actual, string $message = &#039;&#039;, int $flags = SORT_REGULAR)
         
                                             <p><p>Asserts that <em>$actual</em> fails to be an array identical to <em>$expected</em> when key-sorted.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -135,7 +135,7 @@
                     static&nbsp;<a href="../../Tailors/PHPUnit/Constraint/KsortedArrayIdenticalTo.html"><abbr title="Tailors\PHPUnit\Constraint\KsortedArrayIdenticalTo">KsortedArrayIdenticalTo</abbr></a>
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_ksortedArrayIdenticalTo">ksortedArrayIdenticalTo</a>(array $expected)
+                    <a href="#method_ksortedArrayIdenticalTo">ksortedArrayIdenticalTo</a>(array $expected, int $flags = SORT_REGULAR)
         
                                             <p><p>Compares selected <em>$actual</em> with <em>$expected</em> array after key-sorting both sides.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -209,9 +209,9 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_assertKsortedArrayIdenticalTo">
-        <div class="location">at line 37</div>
+        <div class="location">at line 38</div>
         <code>        static            void
-    <strong>assertKsortedArrayIdenticalTo</strong>(array $expected, mixed $actual, string $message = &#039;&#039;)
+    <strong>assertKsortedArrayIdenticalTo</strong>(array $expected, mixed $actual, string $message = &#039;&#039;, int $flags = SORT_REGULAR)
         </code>
     </h3>
     <div class="details">    
@@ -239,6 +239,11 @@
                 <td>string</td>
                 <td>$message</td>
                 <td><p>optional failure message</p></td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$flags</td>
+                <td><p>optional flags passed to ksort()</p></td>
             </tr>
             </table>
 
@@ -274,9 +279,9 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_assertNotKsortedArrayIdenticalTo">
-        <div class="location">at line 55</div>
+        <div class="location">at line 58</div>
         <code>        static            void
-    <strong>assertNotKsortedArrayIdenticalTo</strong>(array $expected, mixed $actual, string $message = &#039;&#039;)
+    <strong>assertNotKsortedArrayIdenticalTo</strong>(array $expected, mixed $actual, string $message = &#039;&#039;, int $flags = SORT_REGULAR)
         </code>
     </h3>
     <div class="details">    
@@ -304,6 +309,11 @@
                 <td>string</td>
                 <td>$message</td>
                 <td><p>optional failure message</p></td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$flags</td>
+                <td><p>optional flags passed to ksort()</p></td>
             </tr>
             </table>
 
@@ -339,9 +349,9 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_ksortedArrayIdenticalTo">
-        <div class="location">at line 70</div>
+        <div class="location">at line 75</div>
         <code>        static            <a href="../../Tailors/PHPUnit/Constraint/KsortedArrayIdenticalTo.html"><abbr title="Tailors\PHPUnit\Constraint\KsortedArrayIdenticalTo">KsortedArrayIdenticalTo</abbr></a>
-    <strong>ksortedArrayIdenticalTo</strong>(array $expected)
+    <strong>ksortedArrayIdenticalTo</strong>(array $expected, int $flags = SORT_REGULAR)
         </code>
     </h3>
     <div class="details">    
@@ -359,6 +369,11 @@
                 <td>array</td>
                 <td>$expected</td>
                 <td><p>expected array</p></td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$flags</td>
+                <td><p>optional flags passed to ksort()</p></td>
             </tr>
             </table>
 
