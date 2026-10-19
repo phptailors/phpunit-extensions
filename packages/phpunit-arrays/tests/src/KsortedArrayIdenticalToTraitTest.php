@@ -70,8 +70,8 @@ final class KsortedArrayIdenticalToTraitTest extends TestCase
     }
 
     /**
-     *
      * @psalm-param array $expect
+     *
      * @psalm-suppress MissingThrowsDocblock
      */
     #[DataProvider('provKsortedArrayIdenticalToSucceeds')]
@@ -85,8 +85,8 @@ final class KsortedArrayIdenticalToTraitTest extends TestCase
     }
 
     /**
-     *
      * @psalm-param array $expect
+     *
      * @psalm-suppress MissingThrowsDocblock
      */
     #[DataProvider('provKsortedArrayIdenticalToSucceeds')]
@@ -100,8 +100,8 @@ final class KsortedArrayIdenticalToTraitTest extends TestCase
     }
 
     /**
-     *
      * @psalm-param array $expect
+     *
      * @psalm-suppress MissingThrowsDocblock
      */
     #[DataProvider('provNotKsortedArrayIdenticalToSucceeds')]
@@ -115,8 +115,8 @@ final class KsortedArrayIdenticalToTraitTest extends TestCase
     }
 
     /**
-     *
      * @psalm-param array $expect
+     *
      * @psalm-suppress MissingThrowsDocblock
      */
     #[DataProvider('provNotKsortedArrayIdenticalToSucceeds')]
@@ -130,8 +130,8 @@ final class KsortedArrayIdenticalToTraitTest extends TestCase
     }
 
     /**
-     *
      * @psalm-param array $expect
+     *
      * @psalm-suppress MissingThrowsDocblock
      */
     #[DataProvider('provKsortedArrayNotEqualTo')]
@@ -152,8 +152,8 @@ final class KsortedArrayIdenticalToTraitTest extends TestCase
     }
 
     /**
-     *
      * @psalm-param array $expect
+     *
      * @psalm-suppress MissingThrowsDocblock
      */
     #[DataProvider('provKsortedArrayIdenticalTo')]

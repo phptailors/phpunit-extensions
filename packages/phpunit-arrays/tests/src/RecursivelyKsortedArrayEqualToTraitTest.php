@@ -70,8 +70,8 @@ final class RecursivelyKsortedArrayEqualToTraitTest extends TestCase
     }
 
     /**
-     *
      * @psalm-param array $expect
+     *
      * @psalm-suppress MissingThrowsDocblock
      */
     #[DataProvider('provRecursivelyKsortedArrayEqualToSucceeds')]
@@ -85,8 +85,8 @@ final class RecursivelyKsortedArrayEqualToTraitTest extends TestCase
     }
 
     /**
-     *
      * @psalm-param array $expect
+     *
      * @psalm-suppress MissingThrowsDocblock
      */
     #[DataProvider('provRecursivelyKsortedArrayEqualToSucceeds')]
@@ -100,8 +100,8 @@ final class RecursivelyKsortedArrayEqualToTraitTest extends TestCase
     }
 
     /**
-     *
      * @psalm-param array $expect
+     *
      * @psalm-suppress MissingThrowsDocblock
      */
     #[DataProvider('provNotRecursivelyKsortedArrayEqualToSucceeds')]
@@ -115,8 +115,8 @@ final class RecursivelyKsortedArrayEqualToTraitTest extends TestCase
     }
 
     /**
-     *
      * @psalm-param array $expect
+     *
      * @psalm-suppress MissingThrowsDocblock
      */
     #[DataProvider('provNotRecursivelyKsortedArrayEqualToSucceeds')]
@@ -130,8 +130,8 @@ final class RecursivelyKsortedArrayEqualToTraitTest extends TestCase
     }
 
     /**
-     *
      * @psalm-param array $expect
+     *
      * @psalm-suppress MissingThrowsDocblock
      */
     #[DataProvider('provRecursivelyKsortedArrayNotEqualTo')]
@@ -151,8 +151,8 @@ final class RecursivelyKsortedArrayEqualToTraitTest extends TestCase
     }
 
     /**
-     *
      * @psalm-param array $expect
+     *
      * @psalm-suppress MissingThrowsDocblock
      */
     #[DataProvider('provRecursivelyKsortedArrayIdenticalTo')]
