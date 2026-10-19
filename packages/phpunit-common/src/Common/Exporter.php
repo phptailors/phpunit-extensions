@@ -28,8 +28,15 @@ final class Exporter
         // @codeCoverageIgnoreStart
 
         if (self::isExportable($value) || $exportObjects) {
+            if (class_exists(ExportableNameObjectExporter::class)) {
+                /** @psalm-suppress InvalidNamedArgument */
+                $exporter = new SebastianExporter(objectExporter: new ExportableNameObjectExporter());
+            } else {
+                $exporter = new SebastianExporter();
+            }
+
             /** @psalm-suppress MissingThrowsDocblock */
-            return self::postprocessOutput((new SebastianExporter())->export($value));
+            return self::postprocessOutput($exporter->export($value));
         }
 
         return '{enable export of objects to see this value}';
@@ -81,33 +88,37 @@ final class Exporter
     {
         $counters = [];
 
-        /** @psalm-var string */
-        return preg_replace_callback(
-            '/^(\s*(?:(?:\'[^\']*\'|\"[^\"]*\"|\d+)\s*=>\s*)?)(\w+(?:\\\\\w+)*)\s+Object\s+(#\d+|&[0-9a-fA-f]+)/m',
-            function (array $matches) use (&$counters): string {
-                $class = $matches[2];
+        if (!class_exists(ExportableNameObjectExporter::class)) {
+            /** @psalm-var string */
+            $output = preg_replace_callback(
+                '/^(\s*(?:(?:\'[^\']*\'|\"[^\"]*\"|\d+)\s*=>\s*)?)(\w+(?:\\\\\w+)*)\s+Object\s+(#\d+|&[0-9a-fA-f]+)/m',
+                function (array $matches) use (&$counters): string {
+                    $class = $matches[2];
 
-                if (!class_exists($class) || !is_subclass_of($class, ExportableNameInterface::class, true)) {
-                    return $matches[0];
-                }
+                    if (!class_exists($class) || !is_subclass_of($class, ExportableNameInterface::class, true)) {
+                        return $matches[0];
+                    }
 
-                if (!array_key_exists($class, $counters)) {
-                    $counters[$class] = [];
-                }
+                    if (!array_key_exists($class, $counters)) {
+                        $counters[$class] = [];
+                    }
 
-                $objId = $matches[3];
-                if (!array_key_exists($objId, $counters[$class])) {
-                    $counters[$class][$objId] = count($counters[$class]);
-                }
+                    $objId = $matches[3];
+                    if (!array_key_exists($objId, $counters[$class])) {
+                        $counters[$class][$objId] = count($counters[$class]);
+                    }
 
-                $name = $class::exportableName();
+                    $name = $class::exportableName();
 
-                $level = $counters[$class][$objId];
+                    $level = $counters[$class][$objId];
 
-                return $matches[1].$name.' &'.((string) $level);
-            },
-            $output
-        );
+                    return $matches[1].$name.' &'.((string) $level);
+                },
+                $output
+            );
+        }
+
+        return $output;
     }
 }
 

@@ -9,7 +9,10 @@
     "PHPUnit\\Framework\\TestCase",
     "PHPUnit\\Util\\Exporter",
     "SebastianBergmann\\Comparator\\ComparisonFailure",
+    "SebastianBergmann\\Exporter\\ExportContext",
     "SebastianBergmann\\Exporter\\Exporter",
+    "SebastianBergmann\\Exporter\\ObjectExporter",
+    "SebastianBergmann\\Exporter\\ObjectNotSupportedException",
     "SebastianBergmann\\RecursionContext\\Context",
     "Tailors\\PHPUnit\\Polyfill\\ExpectExceptionMessageIsOrContainsTrait"
   ],
