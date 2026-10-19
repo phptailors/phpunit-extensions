@@ -72,6 +72,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         $unary = $this->wrapWithUnaryOperator($constraint);
 
         self::expectException(ExpectationFailedException::class);
+
         /** @psalm-suppress DeprecatedMethod */
         self::expectExceptionMessage($message);
 
@@ -105,6 +106,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         $constraint = static::createConstraint(...$args);
 
         $this->expectException(ExpectationFailedException::class);
+
         /** @psalm-suppress DeprecatedMethod */
         $this->expectExceptionMessage($message);
 
@@ -134,6 +136,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         $constraint = self::logicalNot(static::createConstraint(...$args));
 
         $this->expectException(ExpectationFailedException::class);
+
         /** @psalm-suppress DeprecatedMethod */
         $this->expectExceptionMessage($message);
 
