@@ -1,6 +1,6 @@
 {
     "name": "phptailors/phpunit-common",
-    "description": "Common objects used by other phptailors/phunit-* packages",
+    "description": "Common objects used by other phptailors/phpunit-* packages",
     "type": "library",
     "license": "MIT",
     "support": {
