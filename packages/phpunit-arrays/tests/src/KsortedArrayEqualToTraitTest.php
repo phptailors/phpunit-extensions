@@ -21,8 +21,6 @@ use Tailors\PHPUnit\Constraint\ProvKsortedArrayTrait;
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
- *
- * @psalm-type CtorArgs = list{0: array, 1?: int}
  */
 #[CoversClass(KsortedArrayEqualToTraitTest::class)]
 #[Small]
@@ -32,7 +30,7 @@ final class KsortedArrayEqualToTraitTest extends TestCase
     use ProvKsortedArrayTrait;
 
     /**
-     * @psalm-return iterable<string, array{expect: array, actual: mixed}>
+     * @psalm-return iterable<string, array{expect: array, actual: mixed, flags?: int}>
      *
      * @codeCoverageIgnore
      */
@@ -48,12 +46,12 @@ final class KsortedArrayEqualToTraitTest extends TestCase
             yield $key => [
                 'expect' => $case['expect'],
                 'actual' => $case['actual'],
-            ];
+            ] + (array_key_exists('flags', $case) ? ['flags' => $case['flags']] : []);
         }
     }
 
     /**
-     * @psalm-return iterable<string, array{expect: array, actual: mixed}>
+     * @psalm-return iterable<string, array{expect: array, actual: mixed, flags?: int}>
      *
      * @codeCoverageIgnore
      */
@@ -67,71 +65,77 @@ final class KsortedArrayEqualToTraitTest extends TestCase
             yield $key => [
                 'expect' => $case['expect'],
                 'actual' => $case['actual'],
-            ];
+            ] + (array_key_exists('flags', $case) ? ['flags' => $case['flags']] : []);
         }
     }
 
     /**
-     * @param mixed $actual
-     *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
     #[DataProvider('provKsortedArrayEqualToSucceeds')]
-    public function testKsortedArrayEqualToSucceeds(array $expect, $actual): void
+    public function testKsortedArrayEqualToSucceeds(array $expect, mixed $actual, ?int $flags = null): void
     {
-        self::assertThat($actual, self::ksortedArrayEqualTo($expect));
+        if (null === $flags) {
+            self::assertThat($actual, self::ksortedArrayEqualTo($expect));
+        } else {
+            self::assertThat($actual, self::ksortedArrayEqualTo($expect, $flags));
+        }
     }
 
     /**
-     * @param mixed $actual
-     *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
     #[DataProvider('provKsortedArrayEqualToSucceeds')]
-    public function testAssertKsortedArrayEqualToSucceeds(array $expect, $actual): void
+    public function testAssertKsortedArrayEqualToSucceeds(array $expect, mixed $actual, ?int $flags = null): void
     {
-        self::assertKsortedArrayEqualTo($expect, $actual);
+        if (null === $flags) {
+            self::assertKsortedArrayEqualTo($expect, $actual);
+        } else {
+            self::assertKsortedArrayEqualTo($expect, $actual, '', $flags);
+        }
     }
 
     /**
-     * @param mixed $actual
-     *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
     #[DataProvider('provNotKsortedArrayEqualToSucceeds')]
-    public function testLogicalNotKsortedArrayEqualToSucceeds(array $expect, $actual): void
+    public function testLogicalNotKsortedArrayEqualToSucceeds(array $expect, mixed $actual, ?int $flags = null): void
     {
-        self::assertThat($actual, self::logicalNot(self::ksortedArrayEqualTo($expect)));
+        if (null === $flags) {
+            self::assertThat($actual, self::logicalNot(self::ksortedArrayEqualTo($expect)));
+        } else {
+            self::assertThat($actual, self::logicalNot(self::ksortedArrayEqualTo($expect, $flags)));
+        }
     }
 
     /**
-     * @param mixed $actual
-     *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
     #[DataProvider('provNotKsortedArrayEqualToSucceeds')]
-    public function testAssertNotKsortedArrayEqualToSucceeds(array $expect, $actual): void
+    public function testAssertNotKsortedArrayEqualToSucceeds(array $expect, mixed $actual, ?int $flags = null): void
     {
-        self::assertNotKsortedArrayEqualTo($expect, $actual);
+        if (null === $flags) {
+            self::assertNotKsortedArrayEqualTo($expect, $actual);
+        } else {
+            self::assertNotKsortedArrayEqualTo($expect, $actual, '', $flags);
+        }
     }
 
     /**
-     * @param mixed $actual
-     *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
     #[DataProvider('provKsortedArrayNotEqualTo')]
-    public function testAssertKsortedArrayEqualToFails(array $expect, $actual, string $string): void
+    public function testAssertKsortedArrayEqualToFails(array $expect, mixed $actual, string $string, ?int $flags = null): void
     {
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that '.preg_quote($string, '/').' is an array '.
@@ -139,19 +143,21 @@ final class KsortedArrayEqualToTraitTest extends TestCase
         $this->expectException(ExpectationFailedException::class);
         $this->expectExceptionMessageMatches($regexp);
 
-        self::assertKsortedArrayEqualTo($expect, $actual, 'Lorem ipsum.');
+        if (null === $flags) {
+            self::assertKsortedArrayEqualTo($expect, $actual, 'Lorem ipsum.');
+        } else {
+            self::assertKsortedArrayEqualTo($expect, $actual, 'Lorem ipsum.', $flags);
+        }
     }
 
     /**
-     * @param mixed $actual
-     *
      * @psalm-param array $expect
      *
      * @psalm-suppress MissingThrowsDocblock
      */
     #[DataProvider('provKsortedArrayIdenticalTo')]
     #[DataProvider('provKsortedArrayEqualButNotIdenticalTo')]
-    public function testAssertNotKsortedArrayEqualToFails(array $expect, $actual, string $string): void
+    public function testAssertNotKsortedArrayEqualToFails(array $expect, mixed $actual, string $string, ?int $flags = null): void
     {
         $regexp = '/^Lorem ipsum.\n'.
             'Failed asserting that '.preg_quote($string, '/').' fails to be an array '.
@@ -159,7 +165,11 @@ final class KsortedArrayEqualToTraitTest extends TestCase
         $this->expectException(ExpectationFailedException::class);
         $this->expectExceptionMessageMatches($regexp);
 
-        self::assertNotKsortedArrayEqualTo($expect, $actual, 'Lorem ipsum.');
+        if (null === $flags) {
+            self::assertNotKsortedArrayEqualTo($expect, $actual, 'Lorem ipsum.');
+        } else {
+            self::assertNotKsortedArrayEqualTo($expect, $actual, 'Lorem ipsum.', $flags);
+        }
     }
 }
 
