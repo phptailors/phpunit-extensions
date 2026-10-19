@@ -30,7 +30,8 @@ trait ProvRecursivelyKsortedArrayTrait
      * @psalm-return iterable<string, array{
      *      expect: array,
      *      actual: mixed,
-     *      string: string
+     *      string: string,
+     *      flags?: int
      * }>
      *
      * @codeCoverageIgnore

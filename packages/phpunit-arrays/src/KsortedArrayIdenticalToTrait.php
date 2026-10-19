@@ -34,6 +34,7 @@ trait KsortedArrayIdenticalToTrait
      * @param array  $expected expected array
      * @param mixed  $actual   actual value
      * @param string $message  optional failure message
+     * @param int    $flags    optional flags passed to ksort()
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
@@ -42,9 +43,10 @@ trait KsortedArrayIdenticalToTrait
     public static function assertKsortedArrayIdenticalTo(
         array $expected,
         $actual,
-        string $message = ''
+        string $message = '',
+        int $flags = SORT_REGULAR
     ): void {
-        self::assertThat($actual, self::ksortedArrayIdenticalTo($expected), $message);
+        self::assertThat($actual, self::ksortedArrayIdenticalTo($expected, $flags), $message);
     }
 
     /**
@@ -53,6 +55,7 @@ trait KsortedArrayIdenticalToTrait
      * @param array  $expected expected array
      * @param mixed  $actual   actual value
      * @param string $message  optional failure message
+     * @param int    $flags    optional flags passed to ksort()
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
@@ -61,21 +64,23 @@ trait KsortedArrayIdenticalToTrait
     public static function assertNotKsortedArrayIdenticalTo(
         array $expected,
         $actual,
-        string $message = ''
+        string $message = '',
+        int $flags = SORT_REGULAR
     ): void {
-        self::assertThat($actual, new LogicalNot(self::ksortedArrayIdenticalTo($expected)), $message);
+        self::assertThat($actual, new LogicalNot(self::ksortedArrayIdenticalTo($expected, $flags)), $message);
     }
 
     /**
      * Compares selected *$actual* with *$expected* array after key-sorting both sides.
      *
      * @param array $expected expected array
+     * @param int   $flags    optional flags passed to ksort()
      *
      * @throws \Tailors\PHPUnit\InvalidArgumentException
      */
-    public static function ksortedArrayIdenticalTo(array $expected): KsortedArrayIdenticalTo
+    public static function ksortedArrayIdenticalTo(array $expected, int $flags = SORT_REGULAR): KsortedArrayIdenticalTo
     {
-        return KsortedArrayIdenticalTo::create($expected);
+        return KsortedArrayIdenticalTo::create($expected, $flags);
     }
 }
 

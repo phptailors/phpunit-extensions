@@ -23,8 +23,6 @@ use Tailors\PHPUnit\Constraint\ProvRecursivelyKsortedArrayTrait;
  * @internal This class is not covered by the backward compatibility promise
  *
  * @psalm-internal Tailors\PHPUnit
- *
- * @psalm-type CtorArgs = list{0: array, 1?: int}
  */
 final class RecursivelyKsortedArrayEqualToTraitTest extends TestCase
 {

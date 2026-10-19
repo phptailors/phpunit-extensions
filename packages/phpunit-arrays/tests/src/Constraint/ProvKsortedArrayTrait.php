@@ -29,7 +29,8 @@ trait ProvKsortedArrayTrait
      * @psalm-return iterable<string, array{
      *      expect: array,
      *      actual: mixed,
-     *      string: string
+     *      string: string,
+     *      flags?: int
      * }>
      *
      * @codeCoverageIgnore
@@ -71,13 +72,21 @@ trait ProvKsortedArrayTrait
             'actual' => ['a' => ['b' => 'B']],
             'string' => 'array',
         ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'expect' => ['a' => 'A', 'b' => 'B', 1 => 'one', 2 => 'two'],
+            'actual' => [2 => 'two', 1 => 'one', 'a' => 'A', 'b' => 'B'],
+            'string' => 'array',
+            'flags'  => SORT_NUMERIC,
+        ];
     }
 
     /**
      * @psalm-return iterable<string, array{
      *      expect: array,
      *      actual: mixed,
-     *      string: string
+     *      string: string,
+     *      flags?: int
      * }>
      *
      * @codeCoverageIgnore
@@ -108,13 +117,21 @@ trait ProvKsortedArrayTrait
             'actual' => ['foo' => 'FOO', 'arr' => ['gez' => 'GEZ', 'bar' => 'BAR']],
             'string' => 'array',
         ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'expect' => ['a' => 'A', 'b' => 'B', 1 => 'one', 2 => 'two'],
+            'actual' => [2 => 'two', 1 => 'one', 'b' => 'B', 'a' => 'A'],
+            'string' => 'array',
+            'flags'  => SORT_NUMERIC,
+        ];
     }
 
     /**
      * @psalm-return iterable<string, array{
      *      expect: array,
      *      actual: mixed,
-     *      string: string
+     *      string: string,
+     *      flags?: int
      * }>
      *
      * @codeCoverageIgnore
@@ -150,7 +167,8 @@ trait ProvKsortedArrayTrait
      * @psalm-return iterable<string, array{
      *      expect: array,
      *      actual: mixed,
-     *      string: string
+     *      string: string,
+     *      flags?: int
      * }>
      *
      * @codeCoverageIgnore
