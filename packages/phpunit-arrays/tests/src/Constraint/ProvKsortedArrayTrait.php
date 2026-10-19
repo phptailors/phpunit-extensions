@@ -161,6 +161,13 @@ trait ProvKsortedArrayTrait
             'actual' => \Exception::class,
             'string' => \Exception::class,
         ];
+
+        yield basename(__FILE__).':'.__LINE__ => [
+            'expect' => ['foo' => 'FOO', 'arr' => ['bar' => 'GEZ']],
+            'actual' => ['foo' => 'FOO', 'arr' => ['bar' => 'BAR']],
+            'string' => 'array',
+            'flags'  => SORT_REGULAR,
+        ];
     }
 
     /**
