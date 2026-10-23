@@ -427,7 +427,7 @@ Synopsis:
 
 .. code:: php
 
-  function ksortedArrayEqualTo(array $expected)
+  function ksortedArrayEqualTo(array $expected[, int $flags = SORT_REGULAR])
 
 Creates :class:`Tailors\\PHPUnit\\Constraint\\KsortedArrayEqualTo` constraint.
 
@@ -462,7 +462,7 @@ Synopsis:
 
 .. code:: php
 
-  function ksortedArrayIdenticalTo(array $expected)
+  function ksortedArrayIdenticalTo(array $expected[, int $flags = SORT_REGULAR])
 
 Creates :class:`Tailors\\PHPUnit\\Constraint\\KsortedArrayIdenticalTo` constraint.
 
