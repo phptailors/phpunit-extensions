@@ -25,7 +25,7 @@ jobs:
     name: Psalm (PHP-${{ matrix.php-version }}:${{ matrix.dependencies }})
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Install extra PHP 7.4 (PHP 7.3 only)
         if: matrix.php-version == '7.3'
