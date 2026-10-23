@@ -1225,7 +1225,7 @@ succeeds only if the class implements the <code class="docutils literal notransl
 </tbody>
 </table>
 <p>Synopsis:</p>
-<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">assertKsortedArrayEqualTo</span><span class="p">(</span><span class="k">array</span> <span class="nv">$expected</span><span class="p">,</span> <span class="nx">mixed</span> <span class="nv">$actual</span><span class="p">[,</span> <span class="nx">string</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">])</span>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">assertKsortedArrayEqualTo</span><span class="p">(</span><span class="k">array</span> <span class="nv">$expected</span><span class="p">,</span> <span class="nx">mixed</span> <span class="nv">$actual</span><span class="p">[,</span> <span class="nx">string</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">[,</span> <span class="nx">int</span> <span class="nv">$flags</span> <span class="o">=</span> <span class="nx">SORT_REGULAR</span><span class="p">]])</span>
 </pre></div>
 </div>
 <p>Reports an error identified by <code class="docutils literal notranslate"><span class="pre">$message</span></code> if <code class="docutils literal notranslate"><span class="pre">$actual</span></code> array is not equal
@@ -1236,9 +1236,10 @@ is not an array, the constraint fails.</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">$expected</span></code> - an array of expected values,</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">$actual</span></code> - an actual value,</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">$message</span></code> - optional failure message,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$flags</span></code> - optional sort flags passed to <code class="docutils literal notranslate"><span class="pre">ksort()</span></code>.</p></li>
 </ul>
 <p>The method</p>
-<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">assertNotKsortedArrayEqualTo</span><span class="p">(</span><span class="k">array</span> <span class="nv">$expected</span><span class="p">,</span> <span class="nx">mixed</span> <span class="nv">$actual</span><span class="p">[,</span> <span class="nx">string</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">])</span>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">assertNotKsortedArrayEqualTo</span><span class="p">(</span><span class="k">array</span> <span class="nv">$expected</span><span class="p">,</span> <span class="nx">mixed</span> <span class="nv">$actual</span><span class="p">[,</span> <span class="nx">string</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">[,</span> <span class="nx">int</span> <span class="nv">$flags</span> <span class="o">=</span> <span class="nx">KSORT_REGULAR</span><span class="p">]])</span>
 </pre></div>
 </div>
 <p>is the inverse of this.</p>
@@ -1317,7 +1318,7 @@ is not an array, the constraint fails.</p>
 </tbody>
 </table>
 <p>Synopsis:</p>
-<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">assertKsortedArrayIdenticalTo</span><span class="p">(</span><span class="k">array</span> <span class="nv">$expected</span><span class="p">,</span> <span class="nx">mixed</span> <span class="nv">$actual</span><span class="p">[,</span> <span class="nx">string</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">])</span>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">assertKsortedArrayIdenticalTo</span><span class="p">(</span><span class="k">array</span> <span class="nv">$expected</span><span class="p">,</span> <span class="nx">mixed</span> <span class="nv">$actual</span><span class="p">[,</span> <span class="nx">string</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">[,</span> <span class="nx">int</span> <span class="nv">$flags</span> <span class="o">=</span> <span class="nx">SORT_REGULAR</span><span class="p">]])</span>
 </pre></div>
 </div>
 <p>Reports an error identified by <code class="docutils literal notranslate"><span class="pre">$message</span></code> if <code class="docutils literal notranslate"><span class="pre">$actual</span></code> is not identical to
@@ -1328,9 +1329,10 @@ is not an array, the constraint fails.</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">$expected</span></code> - an array of expected values,</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">$actual</span></code> - actual value,</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">$message</span></code> - optional failure message,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$flags</span></code> - optional sort flags passed to <code class="docutils literal notranslate"><span class="pre">ksort()</span></code>.</p></li>
 </ul>
 <p>The method</p>
-<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">assertNotKsortedArrayIdenticalTo</span><span class="p">(</span><span class="k">array</span> <span class="nv">$expected</span><span class="p">,</span> <span class="nx">mixed</span> <span class="nv">$actual</span><span class="p">[,</span> <span class="nx">string</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">])</span>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">assertNotKsortedArrayIdenticalTo</span><span class="p">(</span><span class="k">array</span> <span class="nv">$expected</span><span class="p">,</span> <span class="nx">mixed</span> <span class="nv">$actual</span><span class="p">[,</span> <span class="nx">string</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">[,</span> <span class="nx">int</span> <span class="nv">$flags</span> <span class="o">=</span> <span class="nx">SORT_REGULAR</span><span class="p">]])</span>
 </pre></div>
 </div>
 <p>is the inverse of this.</p>
