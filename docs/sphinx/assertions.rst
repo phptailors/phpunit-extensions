@@ -541,7 +541,7 @@ Synopsis:
 
 .. code:: php
 
-  function assertKsortedArrayEqualTo(array $expected, mixed $actual[, string $message = ''])
+  function assertKsortedArrayEqualTo(array $expected, mixed $actual[, string $message = ''[, int $flags = SORT_REGULAR]])
 
 Reports an error identified by ``$message`` if ``$actual`` array is not equal
 to ``$expected`` when key-sorted (tested with ``==`` operator). If ``$actual``
@@ -552,12 +552,13 @@ The arguments are:
 - ``$expected`` - an array of expected values,
 - ``$actual`` - an actual value,
 - ``$message`` - optional failure message,
+- ``$flags`` - optional sort flags passed to ``ksort()``.
 
 The method
 
 .. code:: php
 
-  function assertNotKsortedArrayEqualTo(array $expected, mixed $actual[, string $message = ''])
+  function assertNotKsortedArrayEqualTo(array $expected, mixed $actual[, string $message = ''[, int $flags = KSORT_REGULAR]])
 
 is the inverse of this.
 
@@ -590,7 +591,7 @@ Synopsis:
 
 .. code:: php
 
-  function assertKsortedArrayIdenticalTo(array $expected, mixed $actual[, string $message = ''])
+  function assertKsortedArrayIdenticalTo(array $expected, mixed $actual[, string $message = ''[, int $flags = SORT_REGULAR]])
 
 Reports an error identified by ``$message`` if ``$actual`` is not identical to
 ``$expected`` one when key-sorted (tested with ``===`` operator). If
@@ -601,12 +602,13 @@ The arguments are:
 - ``$expected`` - an array of expected values,
 - ``$actual`` - actual value,
 - ``$message`` - optional failure message,
+- ``$flags`` - optional sort flags passed to ``ksort()``.
 
 The method
 
 .. code:: php
 
-  function assertNotKsortedArrayIdenticalTo(array $expected, mixed $actual[, string $message = ''])
+  function assertNotKsortedArrayIdenticalTo(array $expected, mixed $actual[, string $message = ''[, int $flags = SORT_REGULAR]])
 
 is the inverse of this.
 
