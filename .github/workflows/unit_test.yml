@@ -60,6 +60,8 @@ jobs:
         uses: codecov/codecov-action@v6
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+          flags: ${{matrix.os}}-php-${{ matrix.php-version }}-deps-${{ matrix.dependencies }}
+          name: "${{matrix.os}}-php-${{ matrix.php-version }}-deps-${{ matrix.dependencies }}"
 
   after_split_testing:
     needs: provide_packages_json
