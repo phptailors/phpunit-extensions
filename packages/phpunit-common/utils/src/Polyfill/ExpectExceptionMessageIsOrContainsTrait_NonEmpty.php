@@ -20,10 +20,11 @@ use PHPUnit\Framework\TestCase;
  * @psalm-require-extends TestCase
  *
  * @var TestCase $__phpactor__workaround__unused_import__TestCase
+ *
+ * @codeCoverageIgnore
  */
 trait ExpectExceptionMessageIsOrContainsTrait_NonEmpty
 {
-    /** @psalm-suppress DuplicateClass */
     protected function expectExceptionMessageIsOrContains(string $message): void
     {
         $this->expectExceptionMessage($message);
