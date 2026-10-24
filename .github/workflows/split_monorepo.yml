@@ -21,15 +21,6 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      # required for matrix of packages set
-      - uses: shivammathur/setup-php@v2
-        with:
-          php-version: "8.4"
-          coverage: none
-
-      - run: composer install --no-progress --ansi
-      - run: composer bin monorepo-builder install --no-progress --ansi
-
       # get package json list
       - id: output_data
         run: echo "matrix=$(util/packages-json.sh)" >> $GITHUB_OUTPUT
