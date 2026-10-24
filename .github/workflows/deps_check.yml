@@ -6,7 +6,7 @@ on:
 
 env:
    # see https://github.com/composer/composer/issues/9368#issuecomment-718112361
-  COMPOSER_ROOT_VERSION: "1.0.x-dev"
+  COMPOSER_ROOT_VERSION: "dev-master"
 
 jobs:
   provide_packages_json:
