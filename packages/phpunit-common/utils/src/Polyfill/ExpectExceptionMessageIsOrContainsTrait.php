@@ -12,8 +12,10 @@ namespace Tailors\PHPUnit\Polyfill;
 
 use PHPUnit\Framework\TestCase;
 
+// @codeCoverageIgnoreStart
 if (method_exists(TestCase::class, 'expectExceptionMessageIsOrContains')) {
     class_alias(ExpectExceptionMessageIsOrContainsTrait_Empty::class, __NAMESPACE__.'\ExpectExceptionMessageIsOrContainsTrait');
 } else {
     class_alias(ExpectExceptionMessageIsOrContainsTrait_NonEmpty::class, __NAMESPACE__.'\ExpectExceptionMessageIsOrContainsTrait');
 }
+// @codeCoverageIgnoreEnd
